@@ -89,7 +89,7 @@
     .card-penal .card-image { background: var(--grad-6); }
     .card-penal-proc .card-image { background: var(--grad-2); }
     .card-pension .card-image { background: var(--grad-5); }
-    .bottom-bar { position: fixed; left: 0; right: 0; bottom: 0; padding: 10px max(10px, env(safe-area-inset-left)) calc(10px + env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-right)); background: rgba(17, 24, 39, .6); backdrop-filter: var(--blur); border-top: 1px solid rgba(255,255,255,.12); display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-items: center; z-index: 50; min-height: 72px; }
+    .bottom-bar { position: fixed; left: 0; right: 0; bottom: 0; padding: 10px max(10px, env(safe-area-inset-left)) calc(10px + env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-right)); background: rgba(17, 24, 39, .6); backdrop-filter: var(--blur); border-top: 1px solid rgba(255,255,255,.12); display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; align-items: center; z-index: 50; min-height: 72px; }
     [data-theme="light"] .bottom-bar { background: rgba(255,255,255,.75); }
     .bottom-btn { height: 44px; border-radius: 12px; border: 0; color: white; font-weight: 800; letter-spacing: .3px; }
     .bb-home  { background: var(--grad-1); }
@@ -117,7 +117,7 @@
       .portfolio { grid-template-columns: 1fr; }
       .card-image { aspect-ratio: 16/9; }
       .card-buttons { grid-template-columns: 1fr; }
-      .bottom-bar { grid-template-columns: 1fr 1fr; }
+      .bottom-bar { grid-template-columns: 1fr 1fr 1fr; }
     }
 
     /* --- Very small screens --- */
@@ -268,7 +268,8 @@
     .search-input:not(:placeholder-shown) + .close-search {
       display: block;
     }
-  </style>
+  .card-budget .card-image { background: var(--grad-4); }
+</style>
   <link rel="manifest" href="manifest.webmanifest">
   <meta name="theme-color" content="#22c55e">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
@@ -293,6 +294,7 @@
   @keyframes fadeOut { to { opacity: 0; visibility: hidden; } }
   @keyframes rise { from { transform: translateY(8px); opacity: .9; } to { transform: translateY(0); opacity: 1; } }
   @media (prefers-reduced-motion: reduce){ #pwa-welcome{animation:none;} #pwa-welcome .title{animation:none; opacity:1;} }
+.card-budget .card-image { background: var(--grad-4); }
 </style>
 
 <!-- HOME TOP POSITION (non-destructive) -->
@@ -303,6 +305,7 @@
     #auth-fab{ top: calc(12px + env(safe-area-inset-top)); }
     .views-badge{ top: calc(12px + env(safe-area-inset-top)); }
   }
+.card-budget .card-image { background: var(--grad-4); }
 </style>
 
 <style>
@@ -318,6 +321,7 @@
   @supports (padding-top: env(safe-area-inset-top)){
     .views-badge{ top: calc(12px + env(safe-area-inset-top)); }
   }
+.card-budget .card-image { background: var(--grad-4); }
 </style>
 
 </head>
@@ -337,6 +341,10 @@
     setTimeout(removeSplash, 4000);
     window.addEventListener('visibilitychange', ()=>{ if(document.visibilityState==='hidden'){ removeSplash(); } });
   })();
+
+// Ajout navigation Budget
+document.getElementById('btnBudget')?.addEventListener('click', () => { window.location.href = 'budget.html'; });
+
 </script>
   <div class="container">
     <header class="header reveal" id="top">
@@ -492,13 +500,29 @@
           </div>
         </div>
       </article>
-    </main>
+    
+<!-- Hub Budgétaire -->
+<article class="card card-budget reveal">
+  <span class="ribbon">Finances</span>
+  <div class="card-image"><i class="fas fa-chart-pie icon" aria-hidden="true"></i></div>
+  <div class="card-content">
+    <h2>Budget de l’État (Hub)</h2>
+    <p>Par Ministère → Programmes → Natures (Personnel, Biens & services, Transferts, Investissements) → Lignes.</p>
+    <div class="card-buttons">
+      <a href="budget.html" class="btn primary"><i class="fas fa-eye"></i> Ouvrir le Hub</a>
+    </div>
+  </div>
+</article>
+
+</main>
   </div>
 
   <nav class="bottom-bar" aria-label="Actions rapides">
-    <button class="bottom-btn bb-home" id="btnHome"><i class="fas fa-home"></i> Accueil</button>
-    <button class="bottom-btn bb-theme" id="btnTheme"><i class="fas fa-moon"></i> Thème</button>
-  </nav>
+  <button class="bottom-btn bb-home"  id="btnHome"><i class="fas fa-home"></i> Accueil</button>
+  <button class="bottom-btn bb-theme" id="btnTheme"><i class="fas fa-moon"></i> Thème</button>
+  <button class="bottom-btn bb-budget" id="btnBudget"><i class="fas fa-chart-pie"></i> Budget</button>
+
+</nav>
 
   <div class="notification" id="notification" role="status" aria-live="polite"></div>
 
@@ -516,6 +540,13 @@
 
     // Index de recherche
     const searchIndex = [
+{
+  title: "Budget de l’État (Hub)",
+  description: "Ministères, Programmes, Natures (Personnel, Biens & services, Transferts, Investissements) et lignes budgétaires.",
+  url: "budget.html",
+  category: "Finances",
+  keywords: ["budget", "finances", "ministère", "programme", "personnel", "biens et services", "investissements", "transferts"]
+},
       {
         title: "Statuts et Règlements",
         description: "Statut général, décrets d'application, pensions, indices, statuts Police, Greffiers, Diplomates, Préfectoral, Commissaires de justice, Notaires, Architectes…",
@@ -729,7 +760,11 @@
       const current = document.documentElement.getAttribute('data-theme');
       setTheme(current === 'light' ? 'dark' : 'light');
     });
-  </script>
+  
+// Ajout navigation Budget
+document.getElementById('btnBudget')?.addEventListener('click', () => { window.location.href = 'budget.html'; });
+
+</script>
 
   <script>
     // --- Ensure last card never hides behind the bottom bar ---
@@ -747,11 +782,19 @@
     // In case fonts/icons load later and change layout
     setTimeout(adjustBottomSpacing, 300);
     setTimeout(adjustBottomSpacing, 1200);
-  </script>
+  
+// Ajout navigation Budget
+document.getElementById('btnBudget')?.addEventListener('click', () => { window.location.href = 'budget.html'; });
+
+</script>
   <script>
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js"));
   }
+
+// Ajout navigation Budget
+document.getElementById('btnBudget')?.addEventListener('click', () => { window.location.href = 'budget.html'; });
+
 </script>
   <!-- PWA Install Button -->
 <button id="pwa-install-btn" aria-label="Installer l'application" hidden>Installer</button>
@@ -766,6 +809,7 @@
   @supports (padding-bottom: env(safe-area-inset-bottom)){
     #pwa-install-btn{ bottom: calc(16px + env(safe-area-inset-bottom)); }
   }
+.card-budget .card-image { background: var(--grad-4); }
 </style>
 <script>
   (function(){
@@ -798,6 +842,10 @@
       if(btn) btn.hidden = true;
     }
   })();
+
+// Ajout navigation Budget
+document.getElementById('btnBudget')?.addEventListener('click', () => { window.location.href = 'budget.html'; });
+
 </script>
   <!-- Auth UI minimal -->
 <style>
@@ -808,6 +856,7 @@
   .auth-box button{background:#22c55e; color:#fff; border:none; padding:6px 10px; border-radius:8px; cursor:pointer}
   .auth-box .row{display:flex; gap:6px; flex-wrap:wrap}
   .views-badge{position:fixed; left:12px; bottom:12px; z-index:9998; background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px; font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)}
+.card-budget .card-image { background: var(--grad-4); }
 </style><!-- Admin link (visible only when logged-in) -->
 <style>
   .admin-link{
@@ -823,10 +872,19 @@
   @supports (padding-bottom: env(safe-area-inset-bottom)){
     .admin-link{ bottom: calc(88px + env(safe-area-inset-bottom)); }
   }
+.card-budget .card-image { background: var(--grad-4); }
 </style>
 <a href="admin.html" class="admin-link" title="Tableau de bord">Admin</a>
-  <script type="module" src="assets/firebase-app.js"></script>
-  <script>window.autoCountAndBind && window.autoCountAndBind();</script>
+  <script type="module" src="assets/firebase-app.js">
+// Ajout navigation Budget
+document.getElementById('btnBudget')?.addEventListener('click', () => { window.location.href = 'budget.html'; });
+
+</script>
+  <script>window.autoCountAndBind && window.autoCountAndBind();
+// Ajout navigation Budget
+document.getElementById('btnBudget')?.addEventListener('click', () => { window.location.href = 'budget.html'; });
+
+</script>
   
 <!-- Floating Auth Button + Modal -->
 <style>
@@ -860,6 +918,7 @@
   .btn-primary{background:#22c55e; color:white}
   .btn-ghost{background:transparent; color:#e5e7eb; border:1px solid #374151}
   .muted{opacity:.8}
+.card-budget .card-image { background: var(--grad-4); }
 </style>
 
 <button id="auth-fab" title="Connexion / Compte"></button>
@@ -922,6 +981,10 @@
     msg.textContent = "";
     try{ await authLogout(); msg.textContent = "✅ Déconnecté."; }catch(e){ msg.textContent = "❌ " + (e?.message||"Erreur"); }
   });
+
+// Ajout navigation Budget
+document.getElementById('btnBudget')?.addEventListener('click', () => { window.location.href = 'budget.html'; });
+
 </script>
 
 
@@ -935,6 +998,7 @@
     pointer-events:none;
   }
   .card-views-wrap{ position:relative; }
+.card-budget .card-image { background: var(--grad-4); }
 </style>
 <script type="module">
   import { getViewCount } from "./assets/firebase-app.js";
@@ -978,6 +1042,10 @@
   initCardCounters();
   const obs = new MutationObserver(()=>initCardCounters());
   obs.observe(document.body, { childList:true, subtree:true });
+
+// Ajout navigation Budget
+document.getElementById('btnBudget')?.addEventListener('click', () => { window.location.href = 'budget.html'; });
+
 </script>
 
 </body>
