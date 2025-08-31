@@ -13,11 +13,16 @@
     <div class="wrap row">
       <button class="back" onclick="history.back()" aria-label="Retour"><i class="fa fa-arrow-left"></i></button>
       <h1>Hub Budgétaire — Côte d'Ivoire</h1>
-      <a class="pill" href="budget_ci_2025_enriched_mobile.json" download><i class="fa fa-download"></i> Export JSON</a>
+      <a class="pill" href="budget.json" download><i class="fa fa-download"></i> Export JSON</a>
     </div>
   </header>
 
-  <main class="wrap" id="app" aria-live="polite"></main>
+  <main class="wrap" id="app" aria-live="polite">
+    <div class="card">
+      <div class="title">Chargement…</div>
+      <p class="muted">Merci de patienter.</p>
+    </div>
+  </main>
   <div class="footer"></div>
 
   <script>
@@ -26,29 +31,44 @@
 
     function money(n){ return '<span class="money">' + FMT.format(n||0) + ' FCFA</span>'; }
 
-    // Simple router d’état
     let st = { ministry:null, program:null, nature:null, data:null };
 
+    function infoEmpty(reason){
+      app.innerHTML = `
+        <div class="card">
+          <div class="title">Aucune donnée à afficher</div>
+          <p class="muted">${reason}</p>
+          <ul class="muted">
+            <li>Vérifie que <code>budget.json</code> est à la <strong>racine</strong> (même dossier que cette page).</li>
+            <li>Ouvre directement ce lien pour confirmer: <a href="budget.json" target="_blank">budget.json</a></li>
+            <li>Si la page est installée en PWA, force le rechargement (rafraîchir le cache) ou rouvre dans le navigateur.</li>
+          </ul>
+        </div>`;
+    }
+
     function viewHome(){
-      app.innerHTML = \`
+      if (!st.data || !Array.isArray(st.data.ministries)) return infoEmpty("Structure JSON invalide.");
+      if (st.data.ministries.length === 0) return infoEmpty("Le fichier JSON est présent mais vide (aucun ministère)."); 
+
+      app.innerHTML = `
         <div class="row" style="margin:10px 0 12px">
           <div class="caps">Ministères</div>
           <div class="caps">Année&nbsp;<strong id="year"></strong>&nbsp;•&nbsp;Monnaie&nbsp;<strong id="cur"></strong></div>
         </div>
-        <div class="grid" id="grid"></div>\`;
+        <div class="grid" id="grid"></div>`;
       document.getElementById('year').textContent = st.data.year;
       document.getElementById('cur').textContent  = st.data.currency;
       const grid = document.getElementById('grid');
       st.data.ministries.forEach(m => {
         const div = document.createElement('div');
         div.className = 'card';
-        div.innerHTML = \`
+        div.innerHTML = `
           <div class="row">
-            <div class="title">\${m.name}</div>
-            <div class="tag">CP \${money(m.cp||0)}</div>
+            <div class="title">${m.name}</div>
+            <div class="tag">CP ${money(m.cp||0)}</div>
           </div>
-          <div class="muted">\${m.programs.length} programme(s)</div>
-          <button class="btn">Ouvrir</button>\`;
+          <div class="muted">${(m.programs||[]).length} programme(s)</div>
+          <button class="btn">Ouvrir</button>`;
         div.querySelector('.btn').onclick = () => { st.ministry = m; st.program=null; st.nature=null; viewMinistry(); };
         grid.appendChild(div);
       });
@@ -56,28 +76,29 @@
     }
 
     function viewMinistry(){
-      app.innerHTML = \`
+      const m = st.ministry;
+      app.innerHTML = `
         <div class="card">
           <div class="row">
             <div>
               <div class="caps">Ministère</div>
-              <div class="title">\${st.ministry.name}</div>
+              <div class="title">${m.name}</div>
             </div>
-            <div class="tag">CP \${money(st.ministry.cp||0)}</div>
+            <div class="tag">CP ${money(m.cp||0)}</div>
           </div>
         </div>
-        <div class="grid" id="grid"></div>\`;
+        <div class="grid" id="grid"></div>`;
       const grid = document.getElementById('grid');
-      st.ministry.programs.forEach(p => {
+      (m.programs||[]).forEach(p => {
         const div = document.createElement('div');
         div.className = 'card';
-        div.innerHTML = \`
+        div.innerHTML = `
           <div class="row">
-            <div class="title">\${p.title}</div>
-            <div class="tag">\${money(p.amount||0)}</div>
+            <div class="title">${p.title}</div>
+            <div class="tag">${money(p.amount||0)}</div>
           </div>
-          <div class="muted">\${p.natures ? p.natures.length+' nature(s)' : (p.lines?.length||0)+' ligne(s)'}\</div>
-          <button class="btn">Voir</button>\`;
+          <div class="muted">${p.natures ? p.natures.length+' nature(s)' : (p.lines?.length||0)+' ligne(s)'}</div>
+          <button class="btn">Voir</button>`;
         div.querySelector('.btn').onclick = () => { st.program = p; st.nature=null; viewProgram(); };
         grid.appendChild(div);
       });
@@ -87,16 +108,16 @@
     function viewProgram(){
       const p = st.program;
       const hasNatures = Array.isArray(p.natures) && p.natures.length>0;
-      app.innerHTML = \`
+      app.innerHTML = `
         <div class="card">
           <div class="row">
             <div>
               <div class="caps">Programme</div>
-              <div class="title">\${p.title}</div>
+              <div class="title">${p.title}</div>
             </div>
-            <div class="tag">\${money(p.amount||0)}</div>
+            <div class="tag">${money(p.amount||0)}</div>
           </div>
-          \${hasNatures ? '<div class="natures" id="natures"></div>' : ''}
+          ${hasNatures ? '<div class="natures" id="natures"></div>' : ''}
         </div>
         <div class="card">
           <div class="row"><div class="caps">Lignes budgétaires</div></div>
@@ -106,16 +127,15 @@
               <tbody id="tbody"></tbody>
             </table>
           </div>
-        </div>\`;
+        </div>`;
       if (hasNatures){
-        // Ordre strict: Personnel, Biens et services, Transferts, Investissements
         const prio = ["Personnel","Biens et services","Transferts","Investissements"];
         p.natures.sort((a,b)=> prio.indexOf(a.title) - prio.indexOf(b.title));
         const wrap = document.getElementById('natures');
         p.natures.forEach(n => {
           const b = document.createElement('button');
           b.className = 'nature';
-          b.innerHTML = \`<div class="caps">\${n.title}</div><div>\${money(n.amount||0)}</div>\`;
+          b.innerHTML = `<div class="caps">${n.title}</div><div>${money(n.amount||0)}</div>`;
           b.onclick = () => { st.nature = n; renderLines(); Array.from(wrap.children).forEach(el=>el.classList.remove('active')); b.classList.add('active'); };
           wrap.appendChild(b);
         });
@@ -130,22 +150,29 @@
       const lines = st.nature?.lines || st.program.lines || [];
       lines.forEach(ln => {
         const tr = document.createElement('tr');
-        tr.innerHTML = \`<td>\${ln.label}</td><td class="money">\${FMT.format(ln.amount||0)} FCFA</td>\`;
+        tr.innerHTML = `<td>${ln.label}</td><td class="money">${FMT.format(ln.amount||0)} FCFA</td>`;
         tbody.appendChild(tr);
       });
     }
 
-    // Chargement données
     (async function init(){
       try{
-        const res = await fetch('budget_ci_2025_enriched_mobile.json',{cache:'no-store'});
+        // cache-busting param to avoid PWA/ServiceWorker stale cache
+        const res = await fetch('budget.json?v=' + Date.now(), {cache:'no-store'});
+        if (!res.ok) throw new Error('HTTP ' + res.status);
         const data = await res.json();
+        if (!data || !Array.isArray(data.ministries)) throw new Error('Structure JSON invalide.');
         st.data = data;
         viewHome();
       }catch(e){
-        document.getElementById('app').innerHTML = \`
-          <div class="card"><div class="title">Fichier JSON introuvable</div>
-          <p class="muted">Place <code>budget_ci_2025_enriched_mobile.json</code> à la racine du site puis recharge la page.</p></div>\`;
+        console.error('Chargement JSON échoué:', e);
+        app.innerHTML = `
+          <div class="card">
+            <div class="title">Impossible de charger le JSON</div>
+            <p class="muted">Erreur: ${e?.message || e}</p>
+            <p class="muted">Vérifie le chemin et que le fichier est bien à la racine. Essaye aussi d'ouvrir 
+            <a href="budget.json?v=2" target="_blank">budget.json</a>.</p>
+          </div>`;
       }
     })();
   </script>
