@@ -1,0 +1,1859 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#3f51b5">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Loi relative au divorce et à la séparation de corps</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Raleway:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3f51b5; /* Bleu profond */
+            --secondary-color: #e8eaf6; /* Bleu très clair */
+            --accent-color: #7986cb; /* Bleu moyen */
+            --dark-color: #283593; /* Bleu très foncé */
+            --light-color: #f5f5f5; /* Blanc cassé */
+            --gold-color: #ffab00; /* Or pour les accents */
+            --transition: all 0.3s ease;
+            --text-color: #333;
+            --bg-color: #f5f5f5;
+            --article-bg: white;
+            --header-bg: linear-gradient(135deg, var(--primary-color), #3949ab);
+        }
+        
+        .dark-mode {
+            --primary-color: #5c6bc0;
+            --secondary-color: #1a237e;
+            --accent-color: #8e99f3;
+            --dark-color: #c5cae9;
+            --light-color: #121212;
+            --text-color: #e0e0e0;
+            --bg-color: #1e1e1e;
+            --article-bg: #2d2d2d;
+            --header-bg: linear-gradient(135deg, #1a237e, #283593);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Raleway', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 50L0 25L50 0L100 25L50 50Z' fill='%233f51b522' /%3E%3C/svg%3E");
+            transition: var(--transition);
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--article-bg);
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            border: 1px solid var(--secondary-color);
+            transition: var(--transition);
+        }
+        
+        header {
+            background: var(--header-bg);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-bottom: 5px solid var(--gold-color);
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        header::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold-color), transparent);
+        }
+        
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .subtitle {
+            font-style: italic;
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            scroll-margin-top: 20px;
+        }
+        
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--dark-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        h2::after {
+            content: "⚖️";
+            position: absolute;
+            right: 0;
+            bottom: 10px;
+        }
+
+        .articleX {
+            background: var(--article-bg);
+            border-left: 4px solid var(--primary-color);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            scroll-margin-top: 20px;
+            position: relative;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .articleX::before {
+            content: "📜";
+            position: absolute;
+            left: -15px;
+            top: 15px;
+            background: var(--article-bg);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--primary-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: var(--transition);
+        }
+        
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+        }
+        
+        .article-title::before {
+            content: "🏛️";
+            margin-right: 10px;
+            color: var(--gold-color);
+        }
+        
+        .article-content {
+            color: var(--text-color);
+            line-height: 1.7;
+            transition: var(--transition);
+        }
+
+        /* Boutons de contrôle */
+        .control-buttons {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+        
+        .control-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .control-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Boutons défilement */
+        #scrollTopBtn, #scrollBottomBtn {
+            position: fixed;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border: none;
+            border-radius: 50%;
+            background-color: rgba(63, 81, 181, 0.8);
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+            z-index: 99;
+            display: none;
+            transition: opacity 0.3s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        #scrollTopBtn {
+            bottom: 80px;
+        }
+        
+        #scrollBottomBtn {
+            bottom: 20px;
+        }
+        
+        #scrollTopBtn:hover, #scrollBottomBtn:hover {
+            background-color: rgba(63, 81, 181, 1);
+            transform: scale(1.05);
+        }
+        
+        .show-buttons {
+            display: block !important;
+            opacity: 1;
+        }
+        
+        .hide-buttons {
+            opacity: 0;
+            display: none !important;
+        }
+        
+        /* Modal plein écran */
+        .article-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .article-modal.active {
+            opacity: 1;
+            display: flex;
+        }
+        
+        .modal-content {
+            background: var(--article-bg);
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 30px;
+            border-radius: 15px;
+            position: relative;
+            transform: translateY(20px);
+            transition: transform 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .article-modal.active .modal-content {
+            transform: translateY(0);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-color);
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-close:hover {
+            color: var(--primary-color);
+            background-color: var(--secondary-color);
+        }
+        
+        /* Contrôles de lecture vocale */
+        .voice-controls {
+            position: fixed;
+            bottom: 140px;
+            left: 50%;
+            transform: translateX(-50%); 
+            display: flex;
+            gap: 10px;
+            background: var(--primary-color);
+            padding: 10px 15px;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            opacity: 0.9;
+        }
+        
+        .voice-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: var(--transition);
+        }
+        
+        .voice-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Curseur de luminosité */
+        .brightness-control {
+            position: fixed;
+            top: 80px;
+            left: 20px;
+            background: var(--article-bg);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .brightness-control.active {
+            display: flex;
+        }
+        
+        .brightness-slider {
+            width: 150px;
+            --webkit-appearance: none;
+            height: 8px;
+            border-radius: 5px;
+            background: var(--secondary-color);
+            outline: none;
+        }
+        
+        .brightness-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            cursor: pointer;
+        }
+        
+        /* Bouton sommaire mobile */
+        .mobile-sommaire-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--header-bg);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1001;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid white;
+        }
+        
+        .mobile-sommaire-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Sommaire plein écran pour mobile */
+        .mobile-sommaire {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(63, 81, 181, 0.95);
+            z-index: 1002;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .mobile-sommaire.active {
+            opacity: 1;
+            display: flex;
+        }
+        
+        .mobile-sommaire-content {
+            background: var(--article-bg);
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transform: translateY(20px);
+            transition: transform 0.4s ease;
+            border: 2px solid var(--secondary-color);
+        }
+        
+        .mobile-sommaire.active .mobile-sommaire-content {
+            transform: translateY(0);
+        }
+        
+        .mobile-sommaire-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+        
+        .mobile-sommaire-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+        
+        .mobile-sommaire-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-color);
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .mobile-sommaire-close:hover {
+            color: var(--primary-color);
+            background-color: var(--secondary-color);
+        }
+        
+        .sommaire-list {
+            list-style: none;
+        }
+        
+        .sommaire-item {
+            margin-bottom: 12px;
+            padding: 15px;
+            border-radius: 8px;
+            transition: var(--transition);
+            background-color: var(--light-color);
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .sommaire-item:hover {
+            background-color: var(--secondary-color);
+            transform: translateX(5px);
+        }
+        
+        .sommaire-item a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            display: block;
+            transition: var(--transition);
+        }
+        
+        .sommaire-item:hover a {
+            color: var(--primary-color);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--dark-color);
+            font-size: 0.9rem;
+            background: var(--secondary-color);
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+        
+        /* Indicateur de navigation */
+        .nav-indicator {
+            position: fixed;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 999;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 8px 12px;
+            border-radius: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--secondary-color);
+            transition: var(--transition);
+        }
+        
+        .nav-dot.active {
+            background: var(--primary-color);
+            transform: scale(1.3);
+        }
+        
+        /* Mode lecture plein écran */
+        .fullscreen-mode {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--article-bg);
+            z-index: 3000;
+            overflow: auto;
+            padding: 20px;
+            display: none;
+        }
+        
+        .fullscreen-mode.active {
+            display: block;
+        }
+        
+        .fullscreen-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+        
+        .fullscreen-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--dark-color);
+        }
+        
+        .fullscreen-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-color);
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .fullscreen-close:hover {
+            color: var(--primary-color);
+            background-color: var(--secondary-color);
+        }
+        
+        .fullscreen-content {
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+        
+        .fullscreen-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid var(--secondary-color);
+        }
+        
+        .fullscreen-nav-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .fullscreen-nav-btn:hover {
+            background: var(--dark-color);
+        }
+        
+        .fullscreen-nav-btn:disabled {
+            background: var(--secondary-color);
+            cursor: not-allowed;
+        }
+        
+        /* Bouton pour activer le mode plein écran */
+        .fullscreen-toggle {
+            position: fixed;
+            bottom: 140px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border: none;
+            border-radius: 50%;
+            background-color: rgba(63, 81, 181, 0.8);
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+            z-index: 99;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+        }
+        
+        .fullscreen-toggle:hover {
+            background-color: rgba(63, 81, 181, 1);
+            transform: scale(1.05);
+        }
+        
+        /* Contrôles vocaux en mode plein écran */
+        .fullscreen-voice-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .fullscreen-voice-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .fullscreen-voice-btn:hover {
+            background: var(--dark-color);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .mobile-sommaire-btn {
+                display: flex;
+            }
+            
+            .control-buttons {
+                top: 90px;
+                left: 10px;
+                flex-direction: column;
+            }
+            
+            .voice-controls {
+                bottom: 140px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: calc(100% - 40px);
+                justify-content: center;
+            }
+            
+            header {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .section, .articleX {
+                scroll-margin-top: 80px;
+            }
+            
+            .fullscreen-toggle {
+                bottom: 200px;
+            }
+        }
+
+        /* Styles pour l'interface de recherche */
+        #searchInterface {
+            backdrop-filter: blur(5px);
+            border: 1px solid var(--secondary-color);
+        }
+
+        #searchInput:focus {
+            outline: none;
+            border-color: var(--primary-color) !important;
+        }
+
+        #searchResultsCount {
+            min-width: 80px;
+            text-align: center;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Loi relative au divorce et à la séparation de corps</h1>
+            <p class="subtitle">Loi n°2022-793 du 13 octobre 2022</p>
+        </header>
+        
+        <div class=content>
+            <!-- Boutons de contrôle -->
+            <div class="control-buttons">
+                <button class="control-btn" id="themeToggle" title="Mode nuit/jour">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="control-btn" id="brightnessBtn" title="Contrôle de luminosité">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
+            
+            <!-- Curseur de luminosité -->
+            <div class="brightness-control" id="brightnessControl">
+                <label for="brightnessSlider">Luminosité</label>
+                <input type="range" min="50" max="150" value="100" class="brightness-slider" id="brightnessSlider">
+            </div>
+            
+            <!-- Boutons de défilement -->
+            <button id="scrollTopBtn" title="Aller en haut">↑</button>
+            <button id="scrollBottomBtn" title="Aller en bas">↓</button>
+            
+            <!-- Bouton pour activer le mode plein écran -->
+            <button class="fullscreen-toggle" id="fullscreenToggle" title="Mode lecture plein écran">
+                <i class="fas fa-expand"></i>
+            </button>
+            
+            <!-- Modal pour lecture plein écran -->
+            <div class="article-modal" id="articleModal">
+                <div class="modal-content">
+                    <button class="modal-close" id="modalClose">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <div id="modalArticleContent"></div>
+                </div>
+            </div>
+            
+            <!-- Mode lecture plein écran -->
+            <div class="fullscreen-mode" id="fullscreenMode">
+                <div class="fullscreen-header">
+                    <h2 class="fullscreen-title" id="fullscreenTitle"></h2>
+                    <button class="fullscreen-close" id="fullscreenClose">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="fullscreen-content" id="fullscreenContent"></div>
+                
+                <!-- Contrôles vocaux en mode plein écran -->
+                <div class="fullscreen-voice-controls">
+                    <button class="fullscreen-voice-btn" id="fullscreenPlayBtn" title="Lire">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <button class="fullscreen-voice-btn" id="fullscreenPauseBtn" title="Pause">
+                        <i class="fas fa-pause"></i>
+                    </button>
+                    <button class="fullscreen-voice-btn" id="fullscreenStopBtn" title="Arrêter">
+                        <i class="fas fa-stop"></i>
+                    </button>
+                </div>
+                
+                <div class="fullscreen-nav">
+                    <button class="fullscreen-nav-btn" id="prevArticleBtn" disabled>Précédent</button>
+                    <button class="fullscreen-nav-btn" id="nextArticleBtn">Suivant</button>
+                </div>
+            </div>
+            
+            <!-- Contrôles de lecture vocale -->
+            <div class="voice-controls" id="voiceControls">
+                <button class="voice-btn" id="playBtn" title="Lire">
+                    <i class="fas fa-play"></i>
+                </button>
+                <button class="voice-btn" id="pauseBtn" title="Pause">
+                    <i class="fas fa-pause"></i>
+                </button>
+                <button class="voice-btn" id="stopBtn" title="Arrêter">
+                    <i class="fas fa-stop"></i>
+                </button>
+            </div>
+            
+            <!-- Conteneur pour les articles -->
+            <div id="articlesContainer"></div>
+            
+            <!-- Indicateur de navigation -->
+            <div class="nav-indicator" id="navIndicator"></div>
+        </div>
+        
+        <footer>
+            <p>© 2023 - Ministère de la Justice - République de Côte d'Ivoire</p>
+        </footer>
+    </div>
+    
+    <!-- Bouton sommaire mobile -->
+    <div class="mobile-sommaire-btn" id="mobileSommaireBtn">
+        <i class="fas fa-bars"></i>
+    </div>
+    
+    <!-- Sommaire mobile -->
+    <div class="mobile-sommaire" id="mobileSommaire">
+        <div class="mobile-sommaire-content">
+            <div class="mobile-sommaire-header">
+                <h3 class="mobile-sommaire-title">Sommaire</h3>
+                <button class="mobile-sommaire-close" id="mobileSommaireClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <ul class="sommaire-list" id="sommaireList">
+                <!-- Les éléments du sommaire seront générés dynamiquement -->
+            </ul>
+        </div>
+    </div>
+    
+    <script>
+        // Variables globales
+        let currentSpeech = null;
+        let isDarkMode = false;
+        let brightnessLevel = 100;
+        let touchStartX = 0;
+        let touchEndX = 0;
+        let currentArticleIndex = 0;
+        let isAutoReading = false;
+        let articles = [];
+        
+        // Structure des données des articles (à remplacer par vos données)
+        const lawData = {
+            title: "Loi relative au divorce et à la séparation de corps",
+            subtitle: "Loi n°2022-793 du 13 octobre 2022",
+            chapters: [
+                {
+                    title: "SOUS-CHAPITRE 1 : Le divorce par consentement mutuel",
+                    articles: [
+                        {
+                            id: "article1",
+                            title: "Article 1",
+                            content: `<p>Le divorce peut être prononcé par consentement mutuel des époux ou pour faute, à la demande de l'un au moins des époux.</p>
+                                      <p>Il peut également être prononcé pour altération définitive du lien conjugal.</p>`
+                        },
+                        {
+                            id: "article2",
+                            title: "Article 2",
+                            content: `<p>Le divorce par consentement mutuel est prononcé sans qu'il soit nécessaire d'établir les faits à l'origine de la rupture.</p>
+                                      <p>Les époux doivent soumettre à l'approbation du juge une convention réglant les conséquences du divorce.</p>`
+                        },
+                        {
+                            id: "article3",
+                            title: "Article 3",
+                            content: `<p>Le divorce pour faute peut être demandé par l'un des époux lorsque des faits constitutifs d'une violation grave ou renouvelée des devoirs et obligations du mariage sont imputables à son conjoint.</p>
+                                      <p>Ces faits rendent intolérable le maintien de la vie commune.</p>`
+                        }
+                    ]
+                },
+                {
+                    title: "SOUS-CHAPITRE 2 : Procédures de divorce",
+                    articles: [
+                        {
+                            id: "article4",
+                            title: "Article 4",
+                            content: `<p>La demande en divorce est introduite par assignation ou par requête conjointe.</p>
+                                      <p>La requête conjointe est utilisée pour le divorce par consentement mutuel.</p>`
+                        },
+                        {
+                            id: "article5",
+                            title: "Article 5",
+                            content: `<p>Le juge s'assure de la libre volonté des époux et de la réalité de leur consentement.</p>
+                                      <p>Il peut convoquer les époux et les entendre séparément ou ensemble.</p>`
+                        },
+                        {
+                            id: "article6",
+                            title: "Article 6",
+                            content: "<p>Le tribunal territorialement compétent est :</p><p>1° celui du lieu du domicile des époux ;</p><p>2° celui de la résidence de l’époux avec lequel habitent les enfants mineurs.</p>"
+                            },
+                            {
+                            id: "article7",
+                            title: "Article 7",
+                            content: "<p>La requête doit être obligatoirement accompagnée :</p><p>1° d’un extrait de l’acte de mariage ;</p><p>2° d’un extrait de l’acte de naissance de chacun des époux ;</p><p>3° des extraits d’acte de naissance des enfants mineurs communs ;</p><p>4° de la convention prévue à l’article 5.</p>"
+                            },
+                            {
+                            id: "article8",
+                            title: "Article 8",
+                            content: "<p>Dès réception de la requête, le président du tribunal fixe une date d’audience, qui ne peut excéder quinze jours, à laquelle les parties comparantont devant le tribunal.</p><p>À la date indiquée, si les deux époux ne comparaissent pas en personne, l’affaire est radiée.</p><p>Si l’un des époux ne comparaît pas, le tribunal fixe une nouvelle date qui ne peut excéder quinze jours. À la nouvelle date, la non-comparution de l’un des époux entraîne la radiation d’office de la procédure.</p><p>Lorsque les époux comparaissent à la date indiquée, sans pouvoir les interpeller sur leurs motivations, le tribunal désigne l’un de ses membres qui examine la demande avec chacun des époux séparément, hors la présence de leurs avocats, et s’assure que les conditions relatives au consentement prévu à l’article 3 sont remplies.</p><p>Le juge désigné par le tribunal réunit les époux avec leurs avocats, leur fait les observations qu’il estime nécessaires et leur pose les questions qu’il juge utiles sur leur convention.</p>"
+                            },
+                            {
+                            id: "article9",
+                            title: "Article 9",
+                            content: "<p>Lorsque le juge estime que la volonté des époux s’est manifestée librement et s’il ne relève dans leur convention aucune disposition contraire à la loi, à l’ordre public ou aux bonnes mœurs, il renvoie l’affaire à une date qui ne peut excéder un mois et les invite à y comparaitre pour confirmer leur requête.</p><p>Si à cette date, les époux ne comparaissent pas en personne, sans justes motifs, l’affaire est rayée du rôle.</p>"
+                            },
+                            {
+                            id: "article10",
+                            title: "Article 10",
+                            content: "<p>À l’audience de confirmation, si les époux ne confirment pas leur volonté de divorcer, le tribunal rejette la demande de divorce.</p><p>Si les époux maintiennent leur volonté de divorcer, le tribunal prononce le divorce dans un délai d’un mois à compter de la confirmation du consentement, après conclusions écrites du ministère public.</p><p>Il homologue par la même décision la convention qui en règle les conséquences.</p><p>Si le tribunal relève dans leur accord des dispositions contraires à la loi, à l’ordre public ou aux bonnes mœurs, il refuse l’homologation de la convention et rejette la demande de divorce.</p><p>L’affaire est instruite en chambre du conseil et le jugement rendu en audience publique.</p>"
+                            },
+                            {
+                            id: "article11",
+                            title: "Article 11",
+                            content: "<p>Le jugement de divorce par consentement mutuel devenu irrévocable, dissout le lien matrimonial et a pour effets, outre ceux contenus dans la convention homologuée par le juge, ceux énumérés aux articles 39, 40 et 46.</p><p>Il rend exécutoires les conventions établies par les époux en ce qui concerne leurs biens et les enfants communs.</p><p>Ces effets se produisent à l’égard des époux, au jour de la demande et, à l’égard des tiers, à compter de l’insertion du dispositif du jugement dans un journal d’annonces légales.</p>"
+                            },
+                            {
+                            id: "article12",
+                            title: "Article 12",
+                            content: "<p>Le conjoint étranger qui a acquis la nationalité ivoirienne par le mariage perd de plein droit celle-ci en cas de divorce par consentement mutuel intervenu avant l’expiration de la dixième année de mariage.</p><p>Une expédition de la décision de divorce est transmise au ministère en charge de la Justice à cet effet.</p>"
+                            },
+                            {
+                            id: "article13",
+                            title: "Article 13",
+                            content: "<p>En cas de divorce par consentement mutuel, les dépens sont supportés pour moitié par chacune des parties.</p>"
+                            }
+                    ]
+                },
+                        {
+                            title: "SOUS-CHAPITRE 2 : Le divorce pour faute",
+                            articles: [
+                            {
+                            id: "article14",
+                            title: "Article 14",
+                            content: "<p>Le divorce pour faute peut être prononcé, à la demande de l’un des époux pour l’une des causes suivantes, lorsque celle-ci rend intolérable le maintien du lien conjugal ou de la vie commune :</p><p>1° adultère de l’autre époux ;</p><p>2° condamnation de l’autre époux pour des faits portant atteinte à l’honneur et à la considération ;</p><p>3° abandon de famille ou de domicile conjugal par l’autre époux ;</p><p>4° mauvais traitements, excès, sévices ou injures graves.</p>"
+                            },
+                            {
+                            id: "article15",
+                            title: "Article 15",
+                            content: "<p>L’époux qui veut former une demande en divorce doit présenter sa requête en personne par écrit ou oralement au président du tribunal compétent ou au juge délégué par lui.</p><p>Le tribunal territorialement compétent est :</p><p>1° celui du lieu où se trouve le domicile de la famille ;</p><p>2° celui du lieu de résidence de l’époux avec lequel habitent leurs enfants mineurs ;</p><p>3° celui du lieu où réside l’époux qui n’a pas pris l’initiative de la demande dans les autres cas ;</p><p>4° celui du domicile ou de la résidence du demandeur si le défendeur est un ivoirien établi à l’étranger ou un étranger n’ayant en Côte d’Ivoire ni domicile ni résidence.</p><p>La compétence territoriale du tribunal est déterminée par le domicile ou la résidence au jour où la requête initiale est présentée.</p>"
+                            },
+                            {
+                            id: "article16",
+                            title: "Article 16",
+                            content: "<p>Le président du tribunal ou le juge délégué entend la partie demanderesse et lui fait les observations qu’il juge nécessaires.</p><p>Si la partie demanderesse persiste dans son intention, le juge ordonne que les parties comparativont devant le tribunal siègeant en chambre du conseil aux jour et heure qu’il indique et commet un commissaire de Justice aux fins d’assignation du défendeur.</p><p>Il peut, en outre, en cas d’urgence, l’époux défendeur dûment appelé, autoriser par ordonnance l’époux demandeur à résider séparément.</p><p>Il peut également à la demande de l’un des époux l’autoriser à prendre, pour la garantie de ses droits, des mesures conservatoires, notamment ordonner l’apposition des scellés sur les biens de la communauté. Les scellés sont levés à la requête de la partie la plus diligente, les objets et valeurs sont inventoriés et prises. L’époux qui est en possession est constitué gardien judiciaire, à moins qu’il n’en soit décidé autrement. Dans tous ces cas, l’époux défendeur est entendu.</p><p>Si le défendeur est demeuré introuvable, le juge autorise le demandeur à l’assigner dans un délai maximum de deux mois.</p>"
+                            },
+                            {
+                            id: "article17",
+                            title: "Article 17",
+                            content: "<p>Au jour indiqué, si le demandeur ne comparaît pas sans justifier d’un motif légitime, il est considéré comme ayant renoncé à l’instance et l’affaire est rayée du rôle.</p><p>Si le défendeur ne comparaît pas, le tribunal renvoie l’affaire une seule fois pour lui.</p><p>Lorsque les époux disparaissent, le tribunal désigne l’un de ses membres qui les entend, le cas échéant en présence de leurs avocats. Il leur fait les observations de nature à opérer un rapprochement.</p><p>S’il apparaît que ce rapprochement est possible, le tribunal renvoie la cause à trois mois pour continuation de la tentative de conciliation. Ce délai ne peut être renouvelé qu’une seule fois.</p>"
+                            },
+                            {
+                            id: "article18",
+                            title: "Article 18",
+                            content: "<p>En cas de empêchement dûment constaté de l’un des époux, le juge se transporte assisté de son greffier à la résidence de celui-ci.</p>"
+                            },
+                            {
+                            id: "article19",
+                            title: "Article 19",
+                            content: "<p>En cas de conciliation ou de non-conciliation, le juge en dresse procès-verbal. Il renvoie l’affaire devant le tribunal.</p><p>Le tribunal, après avoir entendu les parties et le cas échéant, leurs avocats, prend s’il y a lieu, les mesures provisoires, notamment :</p><p>1° autoriser les époux à résider séparément ;</p><p>2° ordonner la remise des effets à usage personnel ;</p><p>3° ordonner le maintien ou non d’un des époux au domicile conjugal ;</p><p>4° allouer, en cas de nécessité une pension alimentaire et en fixer le montant ;</p><p>5° accorder à l’un des époux des provisions sur sa part de communauté si la situation le rend nécessaire.</p><p>Lorsque la résidence séparée des époux est ordonnée, toute notification faite à un époux, dans une matière mettant en cause leur intérêt commun, doit également être adressée à son conjoint, sous peine de nullité. Cette nullité est d’ordre public.</p>"
+                            },
+                            {
+                            id: "article20",
+                            title: "Article 20",
+                            content: "<p>S’il y a des enfants mineurs, le tribunal se prononce sur les modalités d’exercice de l’autorité parentale.</p><p>Il commet, en cas de nécessité, toute personne qualifiée pour recueillir des renseignements sur la situation matérielle et morale de la famille, sur les conditions dans lesquelles vivent et sont élevés les enfants et sur les mesures à prendre, relativement à leur garde.</p><p>Il se prononce également sur le droit de visite et d’hébergement et fixe la contribution due pour leur entretien et pour leur éducation.</p><p>Le tribunal peut, en cas de besoin, recueillir l’avis de l’enfant.</p>"
+                            },
+                            {
+                            id: "article21",
+                            title: "Article 21",
+                            content: "<p>Les mesures mentionnées aux articles 19 et 20 sont prononcées à l’audience publique après débats en chambre du conseil et conclusions écrites du ministère public.</p><p>Ces mesures peuvent être modifiées ou complétées au cours de l’instance.</p><p>Les jugements qui les ordonnent sont exécutoires par provision et peuvent être frappés d’appel dans le délai de quinze jours à compter de la signification.</p><p>La cour d’appel statue dans un délai d’un mois à compter de sa saisine.</p>"
+                            },
+                            {
+                            id: "article22",
+                            title: "Article 22",
+                            content: "<p>Le jugement qui ordonne les mesures provisoires renvoie la cause pour être statué sur la demande de divorce. La cause est instruite en la forme ordinaire et débattue en chambre du conseil.</p>"
+                            },
+                            {
+                            id: "article23",
+                            title: "Article 23",
+                            content: "<p>Les faits invoqués en tant que cause de divorce ou comme défense à une demande en divorce peuvent être établis par tout mode de preuve y compris l’aveu.</p><p>Lorsqu’il y a lieu à enquête, elle est faite conformément aux dispositions de droit commun.</p><p>S’il y a lieu à audition de témoins, ceux-ci seront entendus par le tribunal en présence des époux dûment convoqués.</p><p>A l’exception des descendants et des domestiques des époux, les parents peuvent être entendus comme témoins.</p><p>Les époux doivent se communiquer et communiquer au tribunal, ainsi qu’aux experts désignés par lui, tous renseignements et documents utiles pour fixer les prestations et pensions et liquider le régime matrimonial.</p><p>Le tribunal peut procéder ou faire procéder à toute recherche utile auprès des débiteurs ou de ceux qui détiennent des valeurs pour le compte des époux sans que le secret professionnel puisse lui être opposé.</p>"
+                            },
+                            {
+                            id: "article24",
+                            title: "Article 24",
+                            content: "<p>Les demandes reconventionnelles en divorce se font à l’audience par déclaration consignée par le greffier ou par dépôt de conclusions. Dans les mêmes formes, le demandeur peut, jusqu’à la clôture des débats, transformer sa demande de divorce en demande de séparation de corps.</p><p>Les époux peuvent, à tout moment de la procédure, par requête conjointe écrite, demander au juge de constater leur accord pour voir prononcer le divorce par consentement mutuel, en lui présentant une convention réglant les conséquences de celui-ci.</p>"
+                            },
+                            {
+                            id: "article25",
+                            title: "Article 25",
+                            content: "<p>Toute obligation contractée par l’un des époux à la charge de la communauté, toute aliénation par lui faite des biens qui en défendent, postérieurement à la date de l’ordonnance autorisant le demandeur à assigner le défendeur, sera déclarée nulle s’il est prouvé qu’elle a été faite ou contractée en fraude des droits de l’autre.</p>"
+                            },
+                            {
+                            id: "article26",
+                            title: "Article 26",
+                            content: "<p>L’action en divorce s’éteint par la réconciliation des époux survenue soit depuis les faits allégués dans la demande, soit depuis cette demande.</p><p>Toutefois, une nouvelle demande peut être formée en raison des faits survenus ou découverts depuis la réconciliation.</p><p>L’action s’éteint également par le décès de l’un des époux survenu avant que le jugement ou l’arrêt prononçant le divorce soit devenu irrévocable.</p><p>Dans les cas prévus aux alinéas 1 et 3 du présent article, la juridiction saisie rend une décision constatant l’extinction de l’action en divorce.</p>"
+                            },
+                            {
+                            id: "article27",
+                            title: "Article 27",
+                            content: "<p>Si l’époux défendeur reconnaît les faits, le tribunal prononce le divorce aux torts de ce dernier.</p><p>S’il reconnaît les faits tout en invoquant de son côté des faits également justificatifs de divorce à l’égard de son conjoint et si ce dernier reconnaît la réalité desdits faits, le tribunal constate qu’il existe de part et d’autre des faits constituant une cause de divorce et prononce le divorce sans avoir à énoncer les torts et griefs des parties.</p><p>Le divorce ainsi prononcé produit les effets d’un divorce aux torts réciproques et les déclarations faites par les époux ne peuvent être utilisées comme moyen de preuve dans une autre action en justice.</p><p>Même en l’absence de demande reconventionnelle, le divorce peut être prononcé aux torts partagés des deux époux si les débats font apparaître des torts à la charge de l’un et de l’autre.</p>"
+                            },
+                            {
+                            id: "article28",
+                            title: "Article 28",
+                            content: "<p>Les époux peuvent, pendant l’instance, conclure entre eux toutes conventions réglant les conséquences du divorce y compris la liquidation de leur régime matrimonial.</p><p>Ces conventions sont soumises à l’homologation du tribunal.</p><p>Le tribunal, en prononçant le divorce, peut refuser l’homologation s’il constate que les conventions contiennent des stipulations contraires à la loi, à l’ordre public ou aux bonnes mœurs.</p>"
+                            },
+                            {
+                            id: "article29",
+                            title: "Article 29",
+                            content: "<p>Lorsqu’il rejette la demande, le tribunal met fin aux mesures provisoires et ordonne la reprise de la vie commune.</p>"
+                            },
+                            {
+                            id: "article30",
+                            title: "Article 30",
+                            content: "<p>Le jugement prononçant le divorce ou rejetant la demande en divorce doit être prononcé dans un délai maximal de six mois, à compter de la première audience suivant le constat de la non-conciliation des époux. Ce délai est exceptionnellement prorogé d’un mois par ordonnance du président du tribunal.</p><p>Le jugement est susceptible de voir de recours conformément aux règles de droit commun.</p>"
+                            },
+                            {
+                            id: "article31",
+                            title: "Article 31",
+                            content: "<p>En cas d’appel, la cause est débattue en chambre du conseil sans qu’il puisse être procédé à une tentative de conciliation.</p><p>Les demandes incidentes peuvent être formées en appel à condition qu’elles ne soient pas des demandes nouvelles.</p><p>Le pourvoi est suspensif en matière de divorce, sauf en ce qui concerne les mesures provisoires ou les condamnations pécuniaires pour lesquelles l’exécution provisoire a été ordonnée.</p><p>Si après le prononcé du divorce, un litige s’élève entre les époux sur l’une de ses conséquences, le tribunal compétent pour en connaître est celui du lieu où réside l’époux qui a la garde des enfants mineurs lors de l’introduction de l’instance ; à défaut le tribunal du lieu où réside l’époux qui n’a pas pris l’initiative de la demande. Ce tribunal peut demander communication du dossier à la juridiction qui a prononcé le divorce.</p>"
+                            },
+                            {
+                            id: "article32",
+                            title: "Article 32",
+                            content: "<p>Le jugement et l’arrêt sont rendus en audience publique. Seul le dispositif est lu.</p>"
+                            },
+                            {
+                            id: "article33",
+                            title: "Article 33",
+                            content: "<p>Un extrait du dispositif de la décision prononçant le divorce est inséré à la diligence du ministère public ou des époux, par acte extrajudiciaire, dans un journal d’annonces légales.</p>"
+                            },
+                            {
+                            id: "article34",
+                            title: "Article 34",
+                            content: "<p>Le dispositif du jugement ou de l’arrêt qui prononce le divorce est mentionné en charge de l’acte de mariage et des actes de naissance des époux.</p><p>Si le mariage a été célébré à l’étranger, le dispositif du jugement ou de l’arrêt est transcrit sur un registre spécial tenu au ministère des Affaires étrangères et mentionné en outre en charge des actes de naissance de chacun des époux.</p>"
+                            },
+                            {
+                            id: "article35",
+                            title: "Article 35",
+                            content: "<p>Les mentions et les transcriptions sont faites à la diligence du ministère public.</p><p>A cet effet, la décision est notifiée à l’officier de l’état civil compétent dans les meilleurs délais, à compter de la date à laquelle elle est devenue irrévocable.</p><p>En cas de rejet d’un pourvoi formé contre un arrêt prononçant le divorce, le greffier en chef de la Cour de Cassation doit, dans le mois du prononcé de l’arrêt de rejet, adresser un extrait de la-dite décision au Procureur général près la Cour d’appel qui a prononcé le divorce, lequel fait immédiatement procéder aux mesures de publicité prescrites.</p><p>Les mentions et la transcription sont faites par l’officier de l’état civil dans les meilleurs délais, à compter de la réception de la réquisition.</p>"
+                            },
+                            {
+                            id: "article36",
+                            title: "Article 36",
+                            content: "<p>En cas d’inaction du ministère public, les mentions et la transcription peuvent être directement requises par l’époux intéressé, par acte extrajudiciaire, sur présentation à l’officier d’état civil du dispositif du jugement ou de l’arrêt et d’un certificat délivré par le greffier attestant que la décision est devenue irrévocable.</p>"
+                            },
+                            {
+                            id: "article37",
+                            title: "Article 37",
+                            content: "<p>Le jugement ou l’arrêt devenu irrévocable remonte quant à ses effets entre époux, en ce qui concerne leurs biens, au jour du dépôt de la requête.</p><p>Il ne produit effet à l’égard des tiers qu’à compter du jour où les formalités de publicité sont accomplies.</p>"
+                            },
+                            {
+                            id: "article38",
+                            title: "Article 38",
+                            content: "<p>Le dispositif du jugement ou de l’arrêt qui prononce le divorce doit énoncer la date de la décision ayant autorisé les époux à résider séparément. Cette date doit figurer dans la mention en charge ou dans la transcription faite en application de l’article 34.</p>"
+                            },
+                            {
+                            id: "article39",
+                            title: "Article 39",
+                            content: "<p>Le divorce dissout le mariage. Il met fin aux devoirs réciproques des époux et au régime matrimonial.</p>"
+                            },
+                            {
+                            id: "article40",
+                            title: "Article 40",
+                            content: "<p>Par l’effet du divorce, la femme perd l’usage du nom du mari.</p><p>Toutefois, elle peut conserver l’usage du nom du mari avec l’accord de ce dernier ou sur autorisation du juge si elle justifie qu’un intérêt particulier s’y attache pour elle-même ou pour les enfants.</p>"
+                            },
+                            {
+                            id: "article41",
+                            title: "Article 41",
+                            content: "<p>Chacun des époux peut contracter un nouveau mariage.</p><p>Au cas de réunion des époux divorcés, une nouvelle célébration du mariage est nécessaire.</p><p>La femme divorcée peut se remarier aussitôt que le jugement ou l’arrêt ayant prononcé le divorce sera devenu irrévocable si, toutefois, il s’est écoulé trois cents jours depuis qu’est intervenue dans l’instance qui aura abouti au divorce, la décision autorisant les époux à avoir une résidence séparée.</p><p>En l’absence d’une telle décision le délai de trois cents jours commence à courre du jour où le jugement ou l’arrêt de divorce sera devenu irrévocable.</p><p>Si le mari meurt avant que le divorce ait été prononcé ou avant que le jugement ou l’arrêt le prononçant soit devenu irrévocable, la femme peut se remarier dès qu’il sera écoulé trois cents jours depuis la décision autorisant la résidence séparée ou depuis le décès.</p><p>Le délai de trois cents jours prend fin en cas d’accouchement survenu après la décision autorisant la résidence séparée, ou à défaut, après la décision irrévocable de divorce ou après le décès ou s’il est établi médicalement que la femme n’est pas en état de grossesse.</p>"
+                            },
+                            {
+                            id: "article42",
+                            title: "Article 42",
+                            content: "<p>Si les époux ne s’étaient faits aucun avantage ou si ceux qu’ils se sont faits ne paraissent pas suffisants pour assurer la subsistance de l’époux qui a obtenu le divorce, le tribunal compétent peut lui accorder, sur les biens de l’autre époux, une pension alimentaire qui ne peut excéder le quart des revenus de cet autre époux. Le tribunal peut, en raison des circonstances, fixer un terme au paiement de la pension alimentaire.</p><p>Cette pension est révocable en cas de remariage de l’époux bénéficiaire ou dans le cas où elle cesse d’être nécessaire.</p>"
+                            },
+                            {
+                            id: "article43",
+                            title: "Article 43",
+                            content: "<p>Le divorce est sans incidence sur les avantages que les époux se sont faits.</p><p>Toutefois, le divorce emporte révocation de plein droit des avantages qui ne prennent effet qu’au décès de l’un des conjoints, sauf volonté contraire de l’époux qui les a consentis.</p>"
+                            },
+                            {
+                            id: "article44",
+                            title: "Article 44",
+                            content: "<p>En cas de divorce prononcé aux torts exclusifs de l’un des époux, le tribunal peut allouer, à la demande de l’époux qui a obtenu le divorce, des dommages et intérêts pour le préjudice matériel ou moral que lui cause la dissolution du mariage.</p>"
+                            },
+                            {
+                            id: "article45",
+                            title: "Article 45",
+                            content: "<p>Le divorce laisse subsister les droits et les obligations des père et mère à l’égard de leurs enfants, sous réserve des règles qui suivent.</p>"
+                            },
+                            {
+                            id: "article46",
+                            title: "Article 46",
+                            content: "<p>La garde des enfants nés pendant le mariage, légitimés par le mariage ou adoptés par les époux ensemble pendant le mariage est confiée à l’un des époux, en tenant compte de l’intérêt des enfants.</p><p>Si l’intérêt des enfants l’exige, la garde peut être confiée à un tiers, personne physique, ou à une institution spécialisée. Dans ce cas, les obligations des père et mère à l’égard des enfants demeurent.</p>"
+                            },
+                            {
+                            id: "article47",
+                            title: "Article 47",
+                            content: "<p>Avant de statuer sur la garde des enfants, le droit de visite et le droit d’hébergement, le tribunal commet toute personne qualifiée à l’effet d’effectuer une enquête sociale.</p>"
+                            },
+                            {
+                            id: "article48",
+                            title: "Article 48",
+                            content: "<p>La séparation de corps peut être prononcée, à la demande de l’un ou l’autre des époux ou des deux conjointement dans les mêmes formes, aux mêmes conditions et modalités que celles du divorce.</p>"
+                            },
+                            {
+                            id: "article49",
+                            title: "Article 49",
+                            content: "<p>L’époux contre lequel est présentée une demande en divorce peut former une demande reconventionnelle en séparation de corps.</p><p>L’époux contre lequel est présentée une demande en séparation de corps peut former une demande reconventionnelle en divorce.</p><p>Si une demande en divorce et une demande en séparation de corps sont simultanément accueillies, le juge prononce le divorce.</p>"
+                            },
+                            {
+                            id: "article50",
+                            title: "Article 50",
+                            content: "<p>La séparation de corps met fin à la vie commune et aux obligations qui en découlent, mais elle laisse subsister les devoirs de fidélité et de secours.</p><p>Chacun des époux a droit à un domicile propre et il est mis fin au pouvoir de représentation des époux tel que prévu par les dispositions relatives au mariage.</p><p>La séparation de corps emporte séparation des biens lorsque les époux sont mariés sous le régime de la communauté de biens.</p>"
+                            }
+                            ,
+                            {
+                            id: "article51",
+                            title: "Article 51",
+                            content: "<p>Le jugement qui prononce la séparation de corps ou un jugement intervenu postérieurement fixe la pension alimentaire à l’époux dans le besoin qui en fait la demande.</p><p>Cette pension est attribuée sans considération des torts et soumise au régime des obligations alimentaires.</p>"
+                            },
+                            {
+                            id: "article52",
+                            title: "Article 52",
+                            content: "<p>La femme séparée de corps conserve l’usage du nom du mari.</p>"
+                            },
+                            {
+                            id: "article53",
+                            title: "Article 53",
+                            content: "<p>Le jugement de séparation de corps est converti de plein droit en jugement de divorce sur la demande de l’un des époux lorsque la séparation de corps a duré deux ans.</p><p>Si la demande est présentée conjointement par les deux époux, le jugement de conversion peut intervenir à tout moment.</p>"
+                            },
+                            {
+                            id: "article54",
+                            title: "Article 54",
+                            content: "<p>La demande est introduite par acte de commissaire de Justice délivré en vertu d’une ordonnance rendue sur requête par le président du tribunal du domicile du demandeur à la conversion.</p><p>Elle est débattue en chambre du conseil.</p><p>Le jugement est rendu en audience publique, après conclusions écrites du ministère public.</p>"
+                            },
+                            {
+                            id: "article55",
+                            title: "Article 55",
+                            content: "<p>Le tribunal saisi d’une demande de conversion de séparation de corps en divorce, est compétent pour statuer sur les demandes de pension alimentaire ou de dommages-intérêts accessoires à cette demande.</p><p>Il peut, de même, connaître des demandes tendant à la modification des mesures prescrites lors du jugement de séparation de corps ou ordonnées postérieurement.</p>"
+                            },
+                            {
+                            id: "article56",
+                            title: "Article 56",
+                            content: "<p>La cause en appel du jugement de conversion est débattue en chambre du conseil. L’arrêt est rendu en audience publique, après conclusions écrites du ministère public.</p>"
+                            },
+                            {
+                            id: "article57",
+                            title: "Article 57",
+                            content: "<p>Du fait de la conversion, la cause de la séparation de corps devient la cause de divorce et l’attribution des torts n’est pas modifiée.</p><p>Les conséquences du divorce sont déterminées selon les règles qui lui sont propres.</p>"
+                            },
+                            {
+                            id: "article58",
+                            title: "Article 58",
+                            content: "<p>Les dépens de l’instance sont mis à la charge de celui des époux contre lequel la séparation de corps est prononcée, et pour moitié à la charge de chacun des époux, si la séparation est prononcée à leurs torts réciproques.</p>"
+                            },
+                            {
+                            id: "article59",
+                            title: "Article 59",
+                            content: "<p>Sont applicables au jugement ou à l’arrêt de conversion les dispositions contenues dans les articles 33 à 36.</p>"
+                            },
+                            {
+                            id: "article60",
+                            title: "Article 60",
+                            content: "<p>La séparation de corps prend fin par :</p><p>1°la réconciliation des époux ;</p><p>2°le décès de l’un des époux ;</p><p>3°le divorce.</p>"
+                            },
+                            {
+                            id: "article61",
+                            title: "Article 61",
+                            content: "<p>La réconciliation est faite par déclaration conjointe des époux devant le président du tribunal de leur résidence qui fait dresser procès-verbal par le greffier.</p><p>Un extrait du procès-verbal est publié dans un journal d’annonces légales par le greffier et mention est portée en marge du jugement ou de l’arrêt ayant prononcé la séparation de corps.</p><p>Mention du procès-verbal est également faite en marge des registres d’état civil à la diligence du ministère public. En cas d’inaction de celui-ci, les époux peuvent y faire procéder par acte de commissaire de Justice, sur production d’une expédition du procès-verbal constatant la réconciliation.</p><p>Les effets résultant de la reprise de la vie commune ne seront opposables aux tiers qu’à compter de l’accomplissement des formalités prescrites à l’alinéa précédent.</p><p>Si la communauté n’était pas encore liquidée, lors de la réconciliation, sa dissolution est réputée non avenue. Si elle l’était déjà, les biens reçus en partage restent propres à chacun des époux.</p>"
+                            }
+                        ]
+                            },
+                            {
+                            title: "CHAPITRE 3 : Dispositions finales",
+                            articles: [
+                            {
+                            id: "article62",
+                            title: "Article 62",
+                            content: "<p>La présente loi abroge la loi n°64-376 du 7 octobre 1964 relative au divorce et à la séparation de corps, telle que modifiée par les lois n° 83-801 du 2 août 1983 et n°98-748 du 23 décembre 1998 et la loi n°64-381 du 7 octobre 1964, relative aux dispositions diverses applicables aux matières régies par la loi sur le divorce et la séparation de corps.</p>"
+                            },
+                            {
+                            id: "article63",
+                            title: "Article 63",
+                            content: "<p>La présente loi sera publiée au Journal officiel de la République de Cote d’Ivoire et exécutée comme loi de l’Etat.</p>"
+                            }
+                        ]
+    }
+  ]
+}
+
+     
+          
+       // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            initArticles();
+            initScrollButtons();
+            initVoiceControls();
+            initThemeToggle();
+            initBrightnessControl();
+            initTouchNavigation();
+            initFullscreenReading();
+            initMobileSommaire();
+            initNavIndicator();
+            initFullscreenMode();
+            initSpeechEvents();
+        });
+        
+        // Fonction pour initialiser les articles
+        function initArticles() {
+            const articlesContainer = document.getElementById('articlesContainer');
+            
+            // Parcourir tous les chapters
+            lawData.chapters.forEach(chapter => {
+                // Créer un conteneur de section
+                const section = document.createElement('div');
+                section.className = 'section';
+                
+                // Créer un title de chapitre
+                const chapterTitle = document.createElement('h2');
+                chapterTitle.className = 'article-title';
+                chapterTitle.id = chapter.title.replace(/\s+/g, '-').toLowerCase();
+                chapterTitle.textContent = chapter.title;
+                section.appendChild(chapterTitle);
+                
+                // Créer les articles du chapitre
+                chapter.articles.forEach(articleData => {
+                    const article = document.createElement('div');
+                    article.className = 'articleX';
+                    article.id = articleData.id;
+                    
+                    const title = document.createElement('h3');
+                    title.textContent = articleData.title;
+                    
+                    const content = document.createElement('div');
+                    content.className = 'article-content';
+                    content.innerHTML = articleData.content;
+                    
+                    article.appendChild(title);
+                    article.appendChild(content);
+                    section.appendChild(article);
+                    
+                    // Ajouter au sommaire
+                    const sommaireList = document.getElementById('sommaireList');
+                    const listItem = document.createElement('li');
+                    listItem.className = 'sommaire-item';
+                    listItem.innerHTML = `<a href="#${articleData.id}">${articleData.title}</a>`;
+                    sommaireList.appendChild(listItem);
+                });
+                
+                articlesContainer.appendChild(section);
+            });
+            
+            // Mettre à jour la liste des articles
+            articles = document.querySelectorAll('.articleX');
+        }
+        
+        // Fonction d'initialisation des boutons de défilement
+        function initScrollButtons() {
+            const scrollTopBtn = document.getElementById('scrollTopBtn');
+            const scrollBottomBtn = document.getElementById('scrollBottomBtn');
+            
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 300) {
+                    scrollTopBtn.classList.add('show-buttons');
+                } else {
+                    scrollTopBtn.classList.remove('show-buttons');
+                }
+                
+                if ((window.innerHeight + window.scrollY) < document.body.offsetHeight - 300) {
+                    scrollBottomBtn.classList.add('show-buttons');
+                } else {
+                    scrollBottomBtn.classList.remove('show-buttons');
+                }
+            });
+            
+            scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+            scrollBottomBtn.addEventListener('click', () => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }));
+        }
+        
+        // Fonction d'initialisation du lecteur vocal
+        function initVoiceControls() {
+            const playBtn = document.getElementById('playBtn');
+            const pauseBtn = document.getElementById('pauseBtn');
+            const stopBtn = document.getElementById('stopBtn');
+            
+            if (!('speechSynthesis' in window)) {
+                playBtn.disabled = pauseBtn.disabled = stopBtn.disabled = true;
+                playBtn.title = "Synthèse vocale non supportée";
+                return;
+            }
+            
+            playBtn.addEventListener('click', function() {
+                if (speechSynthesis.paused) {
+                    speechSynthesis.resume();
+                } else if (!speechSynthesis.speaking) {
+                    const visibleArticle = getVisibleArticle();
+                    if (visibleArticle) {
+                        readArticle(visibleArticle);
+                    }
+                }
+            });
+            
+            pauseBtn.addEventListener('click', () => speechSynthesis.pause());
+            stopBtn.addEventListener('click', () => speechSynthesis.cancel());
+        }
+
+        // Fonction améliorée pour détecter l'article visible
+        function getVisibleArticle() {
+            let mostVisibleArticle = null;
+            let maxVisibility = 0;
+            
+            articles.forEach((article, index) => {
+                const rect = article.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                
+                // Calculer la proportion de l'article visible dans la fenêtre
+                const visibleHeight = Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0);
+                const visibilityRatio = visibleHeight / rect.height;
+                
+                if (visibilityRatio > maxVisibility && visibilityRatio > 0.3) {
+                    maxVisibility = visibilityRatio;
+                    mostVisibleArticle = article;
+                    currentArticleIndex = index;
+                }
+            });
+            
+            return mostVisibleArticle;
+        }
+
+        function readArticle(article) {
+            speechSynthesis.cancel();
+            const title = article.querySelector('h3').textContent;
+            const content = article.querySelector('.article-content').textContent;
+            const textToRead = `${title}. ${content}`;
+            const utterance = new SpeechSynthesisUtterance(textToRead);
+            utterance.lang = 'fr-FR';
+            
+            // Ajouter un événement pour détecter la fin de la lecture
+            utterance.onend = function() {
+                if (isAutoReading) {
+                    // Passer automatiquement à l'article suivant
+                    if (currentArticleIndex < articles.length - 1) {
+                        currentArticleIndex++;
+                        scrollToArticle(currentArticleIndex);
+                        readArticle(articles[currentArticleIndex]);
+                    } else {
+                        isAutoReading = false;
+                    }
+                }
+            };
+            
+            speechSynthesis.speak(utterance);
+        }
+        
+        function initSpeechEvents() {
+            // Ajouter les événements pour les contrôles vocaux en mode plein écran
+            const fullscreenPlayBtn = document.getElementById('fullscreenPlayBtn');
+            const fullscreenPauseBtn = document.getElementById('fullscreenPauseBtn');
+            const fullscreenStopBtn = document.getElementById('fullscreenStopBtn');
+            
+            fullscreenPlayBtn.addEventListener('click', function() {
+                if (speechSynthesis.paused) {
+                    speechSynthesis.resume();
+                } else if (!speechSynthesis.speaking) {
+                    const fullscreenContent = document.getElementById('fullscreenContent');
+                    const textToRead = fullscreenContent.textContent;
+                    const utterance = new SpeechSynthesisUtterance(textToRead);
+                    utterance.lang = 'fr-FR';
+                    speechSynthesis.speak(utterance);
+                }
+            });
+            
+            fullscreenPauseBtn.addEventListener('click', () => speechSynthesis.pause());
+            fullscreenStopBtn.addEventListener('click', () => speechSynthesis.cancel());
+        }
+        
+        function initThemeToggle() {
+            const themeToggle = document.getElementById('themeToggle');
+            const icon = themeToggle.querySelector('i');
+            
+            themeToggle.addEventListener('click', function() {
+                isDarkMode = !isDarkMode;
+                document.body.classList.toggle('dark-mode', isDarkMode);
+                icon.classList.toggle('fa-moon', !isDarkMode);
+                icon.classList.toggle('fa-sun', isDarkMode);
+            });
+        }
+        
+        function initBrightnessControl() {
+            const brightnessBtn = document.getElementById('brightnessBtn');
+            const brightnessControl = document.getElementById('brightnessControl');
+            const brightnessSlider = document.getElementById('brightnessSlider');
+            
+            brightnessBtn.addEventListener('click', function() {
+                brightnessControl.classList.toggle('active');
+            });
+            
+            brightnessSlider.addEventListener('input', function() {
+                brightnessLevel = this.value;
+                document.body.style.filter = `brightness(${brightnessLevel}%)`;
+            });
+        }
+        
+        function initTouchNavigation() {
+            document.addEventListener('touchstart', function(event) {
+                touchStartX = event.changedTouches[0].screenX;
+            }, false);
+            
+            document.addEventListener('touchend', function(event) {
+                touchEndX = event.changedTouches[0].screenX;
+                handleSwipe();
+            }, false);
+            
+            function handleSwipe() {
+                const threshold = 100; // Seuil minimal pour détecter un swipe
+                const diff = touchEndX - touchStartX;
+                
+                if (Math.abs(diff) > threshold) {
+                    if (diff > 0) {
+                        // Swipe vers la droite - article précédent
+                        if (currentArticleIndex > 0) {
+                            currentArticleIndex--;
+                            scrollToArticle(currentArticleIndex);
+                        }
+                    } else {
+                        // Swipe vers la gauche - article suivant
+                        if (currentArticleIndex < articles.length - 1) {
+                            currentArticleIndex++;
+                            scrollToArticle(currentArticleIndex);
+                        }
+                    }
+                }
+            }
+        }
+        
+        function scrollToArticle(index) {
+            articles[index].scrollIntoView({ behavior: 'smooth', block: 'center' });
+            updateNavIndicator(index);
+        }
+        
+        function initNavIndicator() {
+            const navIndicator = document.getElementById('navIndicator');
+            
+            // Créer les indicateurs de navigation
+            for (let i = 0; i < articles.length; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'nav-dot';
+                dot.dataset.index = i;
+                dot.addEventListener('click', function() {
+                    const index = parseInt(this.dataset.index);
+                    scrollToArticle(index);
+                });
+                navIndicator.appendChild(dot);
+            }
+            
+            // Mettre à jour l'indicateur lors du défilement
+            window.addEventListener('scroll', function() {
+                const visibleArticle = getVisibleArticle();
+                if (visibleArticle) {
+                    const index = Array.from(articles).indexOf(visibleArticle);
+                    updateNavIndicator(index);
+                }
+            });
+        }
+        
+        function updateNavIndicator(index) {
+            const dots = document.querySelectorAll('.nav-dot');
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+        }
+        
+        function initFullscreenReading() {
+            // Ajouter un événement de clic à chaque article
+            articles.forEach(article => {
+                article.addEventListener('click', function() {
+                    const title = this.querySelector('h3').textContent;
+                    const content = this.querySelector('.article-content').innerHTML;
+                    
+                    document.getElementById('modalArticleContent').innerHTML = `
+                        <h3>${title}</h3>
+                        <div>${content}</div>
+                    `;
+                    
+                    document.getElementById('articleModal').classList.add('active');
+                });
+            });
+            
+            // Fermer le modal
+            document.getElementById('modalClose').addEventListener('click', function() {
+                document.getElementById('articleModal').classList.remove('active');
+            });
+        }
+        
+        function initMobileSommaire() {
+            const mobileSommaireBtn = document.getElementById('mobileSommaireBtn');
+            const mobileSommaire = document.getElementById('mobileSommaire');
+            const mobileSommaireClose = document.getElementById('mobileSommaireClose');
+            
+            mobileSommaireBtn.addEventListener('click', function() {
+                mobileSommaire.classList.add('active');
+            });
+            
+            mobileSommaireClose.addEventListener('click', function() {
+                mobileSommaire.classList.remove('active');
+            });
+        }
+
+        // Fonction pour masquer le sommaire mobile après un clic sur un lien
+        function initAutoCloseSommaire() {
+            const sommaireLinks = document.querySelectorAll('.sommaire-item a');
+            const mobileSommaire = document.getElementById('mobileSommaire');
+            
+            sommaireLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    // Fermer le sommaire mobile après un court délai pour permettre la navigation
+                    setTimeout(() => {
+                        mobileSommaire.classList.remove('active');
+                    }, 300); // Délai de 300ms pour permettre l'animation de défilement
+                });
+            });
+        }
+
+        // Appeler cette fonction dans l'initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            // ... autres initialisations existantes
+            initAutoCloseSommaire(); // Ajouter cette ligne
+        });
+        
+        function initFullscreenMode() {
+            const fullscreenToggle = document.getElementById('fullscreenToggle');
+            const fullscreenMode = document.getElementById('fullscreenMode');
+            const fullscreenClose = document.getElementById('fullscreenClose');
+            const prevArticleBtn = document.getElementById('prevArticleBtn');
+            const nextArticleBtn = document.getElementById('nextArticleBtn');
+            
+            fullscreenToggle.addEventListener('click', function() {
+                const visibleArticle = getVisibleArticle();
+                if (visibleArticle) {
+                    const title = visibleArticle.querySelector('h3').textContent;
+                    const content = visibleArticle.querySelector('.article-content').innerHTML;
+                    
+                    document.getElementById('fullscreenTitle').textContent = title;
+                    document.getElementById('fullscreenContent').innerHTML = content;
+                    
+                    fullscreenMode.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                    
+                    // Mettre à jour les boutons de navigation
+                    updateFullscreenNavButtons();
+                }
+            });
+            
+            fullscreenClose.addEventListener('click', function() {
+                fullscreenMode.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+            
+            prevArticleBtn.addEventListener('click', function() {
+                if (currentArticleIndex > 0) {
+                    currentArticleIndex--;
+                    loadArticleIntoFullscreen();
+                }
+            });
+            
+            nextArticleBtn.addEventListener('click', function() {
+                if (currentArticleIndex < articles.length - 1) {
+                    currentArticleIndex++;
+                    loadArticleIntoFullscreen();
+                }
+            });
+            
+            function loadArticleIntoFullscreen() {
+                const article = articles[currentArticleIndex];
+                const title = article.querySelector('h3').textContent;
+                const content = article.querySelector('.article-content').innerHTML;
+                
+                document.getElementById('fullscreenTitle').textContent = title;
+                document.getElementById('fullscreenContent').innerHTML = content;
+                
+                updateFullscreenNavButtons();
+                
+                // Arrêter la lecture en cours
+                speechSynthesis.cancel();
+            }
+            
+            function updateFullscreenNavButtons() {
+                document.getElementById('prevArticleBtn').disabled = currentArticleIndex === 0;
+                document.getElementById('nextArticleBtn').disabled = currentArticleIndex === articles.length - 1;
+            }
+        }
+
+         function disableSelectionAndCopyPaste() {
+            // Désactive la sélection de texte via CSS
+            document.body.style.userSelect = 'none';
+            document.body.style.webkitUserSelect = 'none'; // Pour Safari
+            document.body.style.mozUserSelect = 'none';    // Pour Firefox
+            document.body.style.msUserSelect = 'none';     // Pour Internet Explorer/Edge
+
+            // Bloque le menu contextuel (clic droit)
+            window.addEventListener('contextmenu', e => e.preventDefault());
+
+            // Bloque l'action de copier (ex: Ctrl+C)
+            window.addEventListener('copy', e => e.preventDefault());
+
+            // Bloque l'action de coller (ex: Ctrl+V)
+            window.addEventListener('paste', e => e.preventDefault());
+
+            // Bloque le démarrage de la sélection
+            window.addEventListener('selectstart', e => e.preventDefault());
+        }
+
+        // Appelle la fonction pour activer les restrictions
+        disableSelectionAndCopyPaste();
+
+        // Fonctionnalité de recherche
+function initSearchFeature() {
+    // Créer le bouton de recherche
+    const searchBtn = document.createElement('button');
+    searchBtn.className = 'control-btn';
+    searchBtn.id = 'searchBtn';
+    searchBtn.title = 'Rechercher dans le document';
+    searchBtn.innerHTML = '<i class="fas fa-search"></i>';
+    
+    // Ajouter le bouton à la barre de contrôle
+    const controlButtons = document.querySelector('.control-buttons');
+    controlButtons.appendChild(searchBtn);
+    
+    // Créer l'interface de recherche
+    const searchInterface = document.createElement('div');
+    searchInterface.id = 'searchInterface';
+    searchInterface.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 100px;
+        background: var(--article-bg);
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        display: none;
+        align-items: center;
+        gap: 10px;
+        transition: var(--transition);
+    `;
+    
+    searchInterface.innerHTML = `
+        <input type="text" id="searchInput" placeholder="Rechercher..." 
+               style="padding: 8px; border: 1px solid var(--secondary-color); border-radius: 5px; width: 200px;">
+        <button id="searchPrevBtn" class="control-btn" style="width: 35px; height: 35px;"><i class="fas fa-chevron-up"></i></button>
+        <button id="searchNextBtn" class="control-btn" style="width: 35px; height: 35px;"><i class="fas fa-chevron-down"></i></button>
+        <span id="searchResultsCount" style="font-size: 0.9rem; color: var(--dark-color);"></span>
+        <button id="closeSearchBtn" class="control-btn" style="width: 35px; height: 35px;"><i class="fas fa-times"></i></button>
+    `;
+    
+    document.body.appendChild(searchInterface);
+    
+    // Variables pour la recherche
+    let searchResults = [];
+    let currentSearchIndex = -1;
+    let originalContents = new Map();
+    
+    // Normaliser le texte pour ignorer accents et casse
+    function normalizeText(text) {
+        return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+    }
+    
+    // Rechercher dans le document
+    function performSearch() {
+        const searchTerm = document.getElementById('searchInput').value;
+        if (!searchTerm.trim()) {
+            resetSearch();
+            return;
+        }
+        
+        const normalizedSearchTerm = normalizeText(searchTerm);
+        searchResults = [];
+        currentSearchIndex = -1;
+        
+        // Sauvegarder les contenus originaux si c'est la première recherche
+        if (originalContents.size === 0) {
+            document.querySelectorAll('.article-content, .article-title').forEach(element => {
+                originalContents.set(element, element.innerHTML);
+            });
+        } else {
+            // Restaurer les contenus avant une nouvelle recherche
+            originalContents.forEach((content, element) => {
+                element.innerHTML = content;
+            });
+        }
+        
+        // Rechercher dans les articles
+        document.querySelectorAll('.article-content, .article-title').forEach(element => {
+            const originalText = element.textContent;
+            const normalizedText = normalizeText(originalText);
+            
+            if (normalizedText.includes(normalizedSearchTerm)) {
+                // Marquer les occurrences
+                let newHtml = originalText;
+                let startIndex = 0;
+                
+                while (true) {
+                    const normalizedSlice = normalizeText(originalText.slice(startIndex));
+                    const foundIndex = normalizedSlice.indexOf(normalizedSearchTerm);
+                    
+                    if (foundIndex === -1) break;
+                    
+                    const actualIndex = startIndex + foundIndex;
+                    const matchedText = originalText.substring(actualIndex, actualIndex + searchTerm.length);
+                    
+                    newHtml = newHtml.replace(
+                        matchedText, 
+                        `<mark style="background-color: var(--accent-color); color: white; padding: 0 2px;">${matchedText}</mark>`
+                    );
+                    
+                    searchResults.push({
+                        element: element,
+                        index: actualIndex
+                    });
+                    
+                    startIndex = actualIndex + searchTerm.length;
+                }
+                
+                element.innerHTML = newHtml;
+            }
+        });
+        
+            // Mettre à jour le compteur de résultats
+            const resultsCount = document.getElementById('searchResultsCount');
+            if (searchResults.length > 0) {
+                resultsCount.textContent = `${currentSearchIndex + 1}/${searchResults.length}`;
+                navigateToNextResult(true); // Aller au premier résultat
+            } else {
+                resultsCount.textContent = 'Aucun résultat';
+            }
+        }
+        
+        // Naviguer vers le résultat suivant ou précédent
+        function navigateToNextResult(isNext = true) {
+            if (searchResults.length === 0) return;
+            
+            if (isNext) {
+                currentSearchIndex = (currentSearchIndex + 1) % searchResults.length;
+            } else {
+                currentSearchIndex = (currentSearchIndex - 1 + searchResults.length) % searchResults.length;
+            }
+            
+            const result = searchResults[currentSearchIndex];
+            result.element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            // Mettre à jour le compteur
+            document.getElementById('searchResultsCount').textContent = `${currentSearchIndex + 1}/${searchResults.length}`;
+            
+            // Surligner le résultat actuel
+            document.querySelectorAll('mark').forEach(mark => {
+                mark.style.backgroundColor = 'var(--accent-color)';
+            });
+            
+            const currentMark = Array.from(result.element.querySelectorAll('mark'))[
+                Array.from(result.element.querySelectorAll('mark')).findIndex(mark => 
+                    normalizeText(mark.textContent) === normalizeText(document.getElementById('searchInput').value)
+                )
+            ];
+            
+            if (currentMark) {
+                currentMark.style.backgroundColor = 'var(--dark-color)';
+                currentMark.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+        
+        // Réinitialiser la recherche
+        function resetSearch() {
+            // Restaurer les contenus originaux
+            originalContents.forEach((content, element) => {
+                element.innerHTML = content;
+            });
+            
+            originalContents.clear();
+            searchResults = [];
+            currentSearchIndex = -1;
+            
+            document.getElementById('searchResultsCount').textContent = '';
+            document.getElementById('searchInput').value = '';
+        }
+        
+        // Événements
+        document.getElementById('searchBtn').addEventListener('click', function() {
+            const isVisible = searchInterface.style.display === 'flex';
+            searchInterface.style.display = isVisible ? 'none' : 'flex';
+            
+            if (!isVisible) {
+                document.getElementById('searchInput').focus();
+            } else {
+                resetSearch();
+            }
+        });
+        
+        document.getElementById('searchInput').addEventListener('input', performSearch);
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                navigateToNextResult(true);
+            }
+        });
+        
+        document.getElementById('searchNextBtn').addEventListener('click', () => navigateToNextResult(true));
+        document.getElementById('searchPrevBtn').addEventListener('click', () => navigateToNextResult(false));
+        document.getElementById('closeSearchBtn').addEventListener('click', function() {
+            searchInterface.style.display = 'none';
+            resetSearch();
+        });
+        
+        // Fermer la recherche en appuyant sur Échap
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && searchInterface.style.display === 'flex') {
+                searchInterface.style.display = 'none';
+                resetSearch();
+            }
+        });
+    }
+
+    // Appeler la fonction d'initialisation de la recherche
+    initSearchFeature();
+        
+    </script>
+</body>
+</html>
