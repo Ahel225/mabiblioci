@@ -1,0 +1,1701 @@
+{
+  "year": 2025,
+  "currency": "FCFA",
+  "ministries": [
+    {
+      "id": "menapln",
+      "name": "Ministère de l'Éducation Nationale et de l'Alphabétisation",
+      "icon": "Landmark",
+      "cp": 46766478879636111288,
+      "programs": [
+        {
+          "id": "edu_global",
+          "title": "Budget global",
+          "amount": 46766478879636111288,
+          "natures": [
+            {
+              "title": "Personnel",
+              "amount": 110795031504,
+              "lines": [
+                {
+                  "label": "1 Personnel 53.729.980.754",
+                  "amount": 53729980754,
+                  "page": 257
+                },
+                {
+                  "label": "78016001632 Veiller au paiement de la solde des personnels de l'Administration du Territoire 53.665.050.750",
+                  "amount": 53665050750,
+                  "page": 258
+                },
+                {
+                  "label": "1 Personnel 1.700.000.000",
+                  "amount": 1700000000,
+                  "page": 276
+                },
+                {
+                  "label": "78016001648 Effectuer le transfert des subventions équilibre personnel à l'ONECI 1.700.000.000",
+                  "amount": 1700000000,
+                  "page": 276
+                }
+              ]
+            },
+            {
+              "title": "Biens et services",
+              "amount": 7529929231036366339,
+              "lines": [
+                {
+                  "label": "25016001966 Développer des services culturels dans la Commune  de M'bengue 13.000.000",
+                  "amount": 13000000,
+                  "page": 222
+                },
+                {
+                  "label": "25016001968 Développer des services culturels dans la Commune  de Napieledougou 20.000.000",
+                  "amount": 20000000,
+                  "page": 222
+                },
+                {
+                  "label": "25016002194 Développer les autres services généraux dans la Commune  de Sinématiali 12.000.000",
+                  "amount": 12000000,
+                  "page": 222
+                },
+                {
+                  "label": "25016002260 Développer les autres services généraux dans la Commune  de Napieledougou 96.705.068",
+                  "amount": 96705068,
+                  "page": 222
+                },
+                {
+                  "label": "25016002438 Développer les services de police dans la commune de Komborodougou 23.000.000",
+                  "amount": 23000000,
+                  "page": 222
+                },
+                {
+                  "label": "25092100075 Développer les autres services généraux dans la commune deKomborodougou 27.500.000",
+                  "amount": 27500000,
+                  "page": 223
+                },
+                {
+                  "label": "26016000998 Développer les autres services généraux dans la Commune  de Kasséré",
+                  "amount": 114000000114000000,
+                  "page": 223
+                },
+                {
+                  "label": "26016000999 Développer les autres services généraux dans la commune de tengrela 25.000.000",
+                  "amount": 25000000,
+                  "page": 223
+                },
+                {
+                  "label": "26016001079 Développer des services culturels dans la commune de kolia 12.813.000",
+                  "amount": 12813000,
+                  "page": 223
+                },
+                {
+                  "label": "26016001082 Développer des services récréatifs et sportifs dans la commune de gbon 75.000.000",
+                  "amount": 75000000,
+                  "page": 223
+                },
+                {
+                  "label": "26016001083 Développer des services culturels dans la Commune  de Kanakono 76.986.000",
+                  "amount": 76986000,
+                  "page": 223
+                },
+                {
+                  "label": "26016001101 Développer des services culturels dans la Région dans la Bagoué",
+                  "amount": 149000000149000000,
+                  "page": 223
+                },
+                {
+                  "label": "26016001184 Développer des services culturels dans la commune de kouto 57.150.791",
+                  "amount": 57150791,
+                  "page": 223
+                },
+                {
+                  "label": "26016001201 Développer les autres services généraux dans la commune de kouto 19.032.000",
+                  "amount": 19032000,
+                  "page": 224
+                },
+                {
+                  "label": "26016001316 Développer les services généraux de planification et de statistiques dans la commune de boundiali 23.547.000",
+                  "amount": 23547000,
+                  "page": 224
+                },
+                {
+                  "label": "26016001350 Développer des services culturels dans la commune de kassere 28.500.000",
+                  "amount": 28500000,
+                  "page": 224
+                },
+                {
+                  "label": "26016001418 Développer des services récréatifs et sportifs dans la commune de tengrela",
+                  "amount": 120277363120277363,
+                  "page": 224
+                },
+                {
+                  "label": "26016001475 Développer les autres services généraux dans la Commune  de kanakono 60.000.000",
+                  "amount": 60000000,
+                  "page": 224
+                },
+                {
+                  "label": "26016001478 Développer les services généraux de planification et de statistiques dans la commune de tengrela 25.000.000",
+                  "amount": 25000000,
+                  "page": 224
+                },
+                {
+                  "label": "26016001533 Développer les autres services généraux dans la commune de kolia 25.000.000",
+                  "amount": 25000000,
+                  "page": 224
+                },
+                {
+                  "label": "26016001538 Développer des services culturels dans la commune de tengrela 29.332.000",
+                  "amount": 29332000,
+                  "page": 224
+                },
+                {
+                  "label": "27016000648 Développer les autres services généraux dans la commune de minignan 62.500.000",
+                  "amount": 62500000,
+                  "page": 225
+                },
+                {
+                  "label": "27016000657 Développer les services de police dans la commune de kaniasso 1.600.000",
+                  "amount": 1600000,
+                  "page": 225
+                },
+                {
+                  "label": "27016000698 Développer des services récréatifs et sportifs dans la commune de minignan 44.882.000",
+                  "amount": 44882000,
+                  "page": 225
+                },
+                {
+                  "label": "27016000764 Développer les autres services généraux dans la région du folon",
+                  "amount": 409000000409000000,
+                  "page": 225
+                },
+                {
+                  "label": "27016000771 Développer les services généraux de planification et de statistiques dans la Région du Folon 20.000.000",
+                  "amount": 20000000,
+                  "page": 225
+                },
+                {
+                  "label": "27016000779 Développer les services de protection civile dans la Région du Folon 46.531.000",
+                  "amount": 46531000,
+                  "page": 225
+                },
+                {
+                  "label": "27016000812 Promouvoir la recherche et le développement concernant les services généraux des administrations publiques dans la région du folon 20.000.000",
+                  "amount": 20000000,
+                  "page": 225
+                },
+                {
+                  "label": "27016000814 Développer des services culturels dans la commune de tienko 91.000.858",
+                  "amount": 91000858,
+                  "page": 225
+                },
+                {
+                  "label": "27016000850 Développer les services généraux de planification et de statistiques dans la commune de goulia 10.000.000",
+                  "amount": 10000000,
+                  "page": 225
+                },
+                {
+                  "label": "27016000854 Développer les autres services généraux dans la commune de kaniasso",
+                  "amount": 110733569110733569,
+                  "page": 225
+                },
+                {
+                  "label": "27016000874 Développer des services culturels dans la Région du Folon",
+                  "amount": 149000000149000000,
+                  "page": 225
+                },
+                {
+                  "label": "27016000892 Développer les autres services généraux dans la commune de goulia 12.000.000",
+                  "amount": 12000000,
+                  "page": 226
+                },
+                {
+                  "label": "27016000903 Développer les services généraux de planification et de statistiques dans la commune de kaniasso 12.000.000",
+                  "amount": 12000000,
+                  "page": 226
+                },
+                {
+                  "label": "27016000972 Développer des services de radiodiffusion, de télévision et d'édition dans la commune de minignan 5.000.000",
+                  "amount": 5000000,
+                  "page": 226
+                },
+                {
+                  "label": "27016001170 Développer les services généraux de planification et de statistiques dans la Commune  de Tienko 14.000.000",
+                  "amount": 14000000,
+                  "page": 226
+                },
+                {
+                  "label": "28016000637 Développer les autres services généraux dans la région du bounkani",
+                  "amount": 704000021704000021,
+                  "page": 226
+                },
+                {
+                  "label": "28016000671 Développer les services de police dans la Commune  de Téhini 60.000.000",
+                  "amount": 60000000,
+                  "page": 226
+                },
+                {
+                  "label": "28016000727 Développer des services culturels dans la Région du BounKani 38.000.000",
+                  "amount": 38000000,
+                  "page": 226
+                },
+                {
+                  "label": "28016000777 Développer les autres services généraux dans la commune de doropo 25.000.000",
+                  "amount": 25000000,
+                  "page": 226
+                },
+                {
+                  "label": "28016000854 Développer des services culturels dans la commune de téhini 16.500.000",
+                  "amount": 16500000,
+                  "page": 227
+                },
+                {
+                  "label": "28016000861 Développer les autres services généraux dans la commune de bouna 76.000.000",
+                  "amount": 76000000,
+                  "page": 227
+                },
+                {
+                  "label": "28016000963 Développer les services généraux de planification et de statistiques dans la région du bounkani 29.000.000",
+                  "amount": 29000000,
+                  "page": 227
+                },
+                {
+                  "label": "31016001091 Développer les autres services généraux dans la commune de gboguhé 62.980.000",
+                  "amount": 62980000,
+                  "page": 227
+                },
+                {
+                  "label": "31016001092 Développer les autres services généraux dans la commune d'issia 70.000.000",
+                  "amount": 70000000,
+                  "page": 227
+                },
+                {
+                  "label": "31016001094 Développer les autres services généraux dans la commune de vavoua",
+                  "amount": 125000000125000000,
+                  "page": 227
+                },
+                {
+                  "label": "31016001097 Développer les services de police dans la région du haut sassandra",
+                  "amount": 285877000285877000,
+                  "page": 227
+                },
+                {
+                  "label": "31016001111 Développer les services de police dans la commune de vavoua 40.000.000",
+                  "amount": 40000000,
+                  "page": 227
+                },
+                {
+                  "label": "31016001149 Développer les services généraux de planification et de statistiques dans la commune de saïoua 15.000.000",
+                  "amount": 15000000,
+                  "page": 228
+                },
+                {
+                  "label": "31016001177 Développer des services culturels dans la commune de saïoua 10.000.000",
+                  "amount": 10000000,
+                  "page": 228
+                },
+                {
+                  "label": "31016001326 Développer les services généraux de planification et de statistiques dans la commune de vavoua 20.000.000",
+                  "amount": 20000000,
+                  "page": 228
+                },
+                {
+                  "label": "31016001462 Développer les services de police dans la Commune  de Bédiala 12.000.000",
+                  "amount": 12000000,
+                  "page": 228
+                },
+                {
+                  "label": "31016001473 Développer les services de protection civile dans la région du haut sassandra 32.107.774",
+                  "amount": 32107774,
+                  "page": 228
+                },
+                {
+                  "label": "31016001637 Développer les autres services généraux dans la Commune  de Saïoua 98.500.000",
+                  "amount": 98500000,
+                  "page": 229
+                },
+                {
+                  "label": "32016000797 Développer les autres services généraux dans la commune de Gagnoa",
+                  "amount": 107000000107000000,
+                  "page": 229
+                },
+                {
+                  "label": "32016000798 Développer les autres services généraux dans la Commune  de Guiberoua 25.000.000",
+                  "amount": 25000000,
+                  "page": 229
+                },
+                {
+                  "label": "32016000869 Développer des services culturels dans la commune d'oume 28.700.000",
+                  "amount": 28700000,
+                  "page": 229
+                },
+                {
+                  "label": "32016000883 Développer des services culturels dans la région du goh 90.717.000",
+                  "amount": 90717000,
+                  "page": 229
+                },
+                {
+                  "label": "32016000960 Développer les autres services généraux dans la commune de diegonefla 27.613.937",
+                  "amount": 27613937,
+                  "page": 229
+                },
+                {
+                  "label": "32016001060 Développer les autres services généraux dans la commune d'oume 96.625.000",
+                  "amount": 96625000,
+                  "page": 230
+                },
+                {
+                  "label": "32016001100 Développer des services récréatifs et sportifs dans la commune de ouragahio 12.000.000",
+                  "amount": 12000000,
+                  "page": 230
+                },
+                {
+                  "label": "32016001101 Développer des services récréatifs et sportifs dans la commune de guiberoua 36.700.000",
+                  "amount": 36700000,
+                  "page": 230
+                },
+                {
+                  "label": "32016001224 Développer des services culturels dans la commune de diegonefla 40.380.000",
+                  "amount": 40380000,
+                  "page": 230
+                },
+                {
+                  "label": "32016001249 Développer les services généraux de planification et de statistiques dans la région du goh 60.000.000",
+                  "amount": 60000000,
+                  "page": 230
+                },
+                {
+                  "label": "35016000740 Développer les autres services généraux dans la commune de sinfra 17.746.261",
+                  "amount": 17746261,
+                  "page": 230
+                },
+                {
+                  "label": "35016000741 Développer les autres services généraux dans la commune de gohitafla 25.000.000",
+                  "amount": 25000000,
+                  "page": 230
+                },
+                {
+                  "label": "35016000756 Développer les services de police dans la région dans la marahoue 50.000.000",
+                  "amount": 50000000,
+                  "page": 230
+                },
+                {
+                  "label": "35016000822 Développer des services culturels dans la commune de zuenoula 10.000.000",
+                  "amount": 10000000,
+                  "page": 231
+                },
+                {
+                  "label": "35016000823 Développer des services récréatifs et sportifs dans la Commune  de Zuénoula 6.395.000",
+                  "amount": 6395000,
+                  "page": 231
+                },
+                {
+                  "label": "35016000856 Développer des services hospitaliers généraux dans la région dans la marahoue 50.000.000",
+                  "amount": 50000000,
+                  "page": 231
+                },
+                {
+                  "label": "35016000970 Développer des services culturels dans la Commune  de Bouaflé 45.750.000",
+                  "amount": 45750000,
+                  "page": 231
+                },
+                {
+                  "label": "35016000977 Développer les services généraux de planification et de statistiques dans la commune de zuenoula 20.000.000",
+                  "amount": 20000000,
+                  "page": 231
+                },
+                {
+                  "label": "35016000990 Développer des services de médecine générale dans la région dans la marahoue 30.000.000",
+                  "amount": 30000000,
+                  "page": 231
+                },
+                {
+                  "label": "35016001045 Développer les services de protection civile dans la région dans la marahoue 20.000.000",
+                  "amount": 20000000,
+                  "page": 232
+                },
+                {
+                  "label": "35016001061 Développer des services culturels dans la Commune  de Gohitafla 12.300.000",
+                  "amount": 12300000,
+                  "page": 232
+                },
+                {
+                  "label": "35016001116 Développer des services culturels dans la Région dans la Marahoué",
+                  "amount": 120000000120000000,
+                  "page": 232
+                },
+                {
+                  "label": "35016001138 Développer des services récréatifs et sportifs dans la Commune  de Sinfra 29.940.834",
+                  "amount": 29940834,
+                  "page": 232
+                },
+                {
+                  "label": "35016001161 Développer les services généraux de planification et de statistiques dans la commune de bouafle 24.000.000",
+                  "amount": 24000000,
+                  "page": 232
+                },
+                {
+                  "label": "36016000990 Développer les services de police dans la commune de morondo 51.000.000",
+                  "amount": 51000000,
+                  "page": 232
+                },
+                {
+                  "label": "36016000994 Développer les autres services généraux dans la Commune  de Djibrosso 36.219.000",
+                  "amount": 36219000,
+                  "page": 232
+                },
+                {
+                  "label": "36016001044 Développer les services de police dans la commune de djibrosso 20.011.000",
+                  "amount": 20011000,
+                  "page": 232
+                },
+                {
+                  "label": "36016001097 Développer des services culturels dans la commune de worofla 29.500.000",
+                  "amount": 29500000,
+                  "page": 233
+                },
+                {
+                  "label": "36016001098 Développer des services culturels dans la commune de sifie 10.000.000",
+                  "amount": 10000000,
+                  "page": 233
+                },
+                {
+                  "label": "36016001099 Développer des services culturels dans la commune de morondo 27.000.000",
+                  "amount": 27000000,
+                  "page": 233
+                },
+                {
+                  "label": "36016001104 Développer des services récréatifs et sportifs dans la Commune  de Kani 69.423.862",
+                  "amount": 69423862,
+                  "page": 233
+                },
+                {
+                  "label": "36016001105 Développer des services culturels dans la Commune  de Dualla 14.000.000",
+                  "amount": 14000000,
+                  "page": 233
+                },
+                {
+                  "label": "36016001203 Développer les services généraux de planification et de statistiques dans la région du worodougou 60.000.000",
+                  "amount": 60000000,
+                  "page": 233
+                },
+                {
+                  "label": "36016001219 Développer les autres services généraux dans la Commune  de Morondo 45.000.000",
+                  "amount": 45000000,
+                  "page": 233
+                },
+                {
+                  "label": "36016001327 Développer les services généraux de planification et de statistiques dans la commune de morondo 25.000.000",
+                  "amount": 25000000,
+                  "page": 233
+                },
+                {
+                  "label": "36016001496 Développer les services de police dans la commune de kani 10.000.000",
+                  "amount": 10000000,
+                  "page": 234
+                },
+                {
+                  "label": "36016001499 Développer les autres services généraux dans la commune de massala 9.908.000",
+                  "amount": 9908000,
+                  "page": 234
+                },
+                {
+                  "label": "36016001523 Développer des services culturels dans la commune de massala 38.000.000",
+                  "amount": 38000000,
+                  "page": 234
+                },
+                {
+                  "label": "36016001534 Développer des services culturels dans la commune de djibrosso 30.000.000",
+                  "amount": 30000000,
+                  "page": 234
+                },
+                {
+                  "label": "36016001862 Développer les autres services généraux dans la Commune  de Sifié 12.000.000",
+                  "amount": 12000000,
+                  "page": 234
+                },
+                {
+                  "label": "36092100030 Développer les autres services généraux dans la commune de Worofla",
+                  "amount": 123000000123000000,
+                  "page": 234
+                },
+                {
+                  "label": "37016000832 Développer les services de police dans la commune de kongasso 15.000.000",
+                  "amount": 15000000,
+                  "page": 234
+                },
+                {
+                  "label": "37016000920 Développer des services culturels dans la commune de dianra 20.000.000",
+                  "amount": 20000000,
+                  "page": 235
+                },
+                {
+                  "label": "37016000922 Développer des services culturels dans la Commune  de Sarhala 65.205.439",
+                  "amount": 65205439,
+                  "page": 235
+                },
+                {
+                  "label": "37016001008 Développer des services hospitaliers généraux dans la région du bere 39.000.969",
+                  "amount": 39000969,
+                  "page": 235
+                },
+                {
+                  "label": "37016001014 Développer des services culturels dans la Commune  de Kongasso 27.000.000",
+                  "amount": 27000000,
+                  "page": 235
+                },
+                {
+                  "label": "37016001294 Développer les services généraux de planification et de statistiques dans la commune de mankono 28.000.000",
+                  "amount": 28000000,
+                  "page": 236
+                },
+                {
+                  "label": "37016001306 Développer les autres services généraux dans la Région du Béré",
+                  "amount": 362889000362889000,
+                  "page": 236
+                },
+                {
+                  "label": "37016001309 Développer des services culturels dans la Région du Béré",
+                  "amount": 253077000253077000,
+                  "page": 236
+                },
+                {
+                  "label": "37016001319 Développer les autres Services Généraux de la Commune  de Sarhala 35.500.000",
+                  "amount": 35500000,
+                  "page": 236
+                },
+                {
+                  "label": "37016001378 Développer les autres services généraux de Mankono 96.000.000",
+                  "amount": 96000000,
+                  "page": 236
+                },
+                {
+                  "label": "37016001474 Développer les autres services généraux dans la Commune  de Tiéningboue 45.150.000",
+                  "amount": 45150000,
+                  "page": 236
+                },
+                {
+                  "label": "37016001557 Développer les autres services généraux dans la Commune  de Kounahiri 38.000.000",
+                  "amount": 38000000,
+                  "page": 236
+                },
+                {
+                  "label": "37016001558 Développer les autres services généraux dans la Commune  de Kongasso 67.000.000",
+                  "amount": 67000000,
+                  "page": 236
+                },
+                {
+                  "label": "37016001559 Développer les services de police dans la région du Béré 29.000.000",
+                  "amount": 29000000,
+                  "page": 236
+                },
+                {
+                  "label": "37092200011 Développer les autres services généraux dans la commune de Dianra 35.000.000",
+                  "amount": 35000000,
+                  "page": 236
+                },
+                {
+                  "label": "41016001148 Développer les services de police dans la commune de biankouma 29.500.000",
+                  "amount": 29500000,
+                  "page": 236
+                },
+                {
+                  "label": "41016001268 Développer des services culturels dans la Commune  de Zouan-hounien 5.000.000",
+                  "amount": 5000000,
+                  "page": 236
+                },
+                {
+                  "label": "41016001277 Développer des services culturels dans la Commune  de Man 34.650.000",
+                  "amount": 34650000,
+                  "page": 236
+                },
+                {
+                  "label": "41016001299 Développer des services culturels dans la Région du Tonkpi 82.000.000",
+                  "amount": 82000000,
+                  "page": 237
+                },
+                {
+                  "label": "41016001424 Développer les services généraux de planification et de statistiques dans la commune de man 20.000.000",
+                  "amount": 20000000,
+                  "page": 237
+                },
+                {
+                  "label": "41016001452 Développer des services de radiodiffusion, de télévision et d'édition dans la commune de biankouma 20.000.000",
+                  "amount": 20000000,
+                  "page": 237
+                },
+                {
+                  "label": "41016001456 Développer des services récréatifs et sportifs dans la région du tonkpi 30.000.000",
+                  "amount": 30000000,
+                  "page": 237
+                },
+                {
+                  "label": "41016001473 Développer les services de police dans la commune de man 40.000.000",
+                  "amount": 40000000,
+                  "page": 237
+                },
+                {
+                  "label": "41016001534 Développer des services culturels dans la Commune  de Logoualé 80.000.000",
+                  "amount": 80000000,
+                  "page": 237
+                },
+                {
+                  "label": "41016001542 Développer les services généraux de planification et de statistiques dans la commune de sangouine 15.000.000",
+                  "amount": 15000000,
+                  "page": 237
+                },
+                {
+                  "label": "41016001544 Développer les autres services généraux dans la Région du Tonkpi 48.000.000",
+                  "amount": 48000000,
+                  "page": 237
+                },
+                {
+                  "label": "41016001598 Développer des services de radiodiffusion, de télévision et d'édition dans la commune de logouale 20.000.000",
+                  "amount": 20000000,
+                  "page": 238
+                },
+                {
+                  "label": "41016001599 Développer des services culturels dans la commune de danane 20.000.000",
+                  "amount": 20000000,
+                  "page": 238
+                },
+                {
+                  "label": "41016001600 Développer des services culturels dans la commune de bin-houye 30.000.000",
+                  "amount": 30000000,
+                  "page": 238
+                },
+                {
+                  "label": "41016001662 Développer des services culturels dans la Commune  de Biankouma 21.000.000",
+                  "amount": 21000000,
+                  "page": 238
+                },
+                {
+                  "label": "41016001691 Développer des services culturels dans la Commune  de Sangouine 15.568.000",
+                  "amount": 15568000,
+                  "page": 238
+                },
+                {
+                  "label": "41016001747 Développer les autres services généraux dans la commune de biankouma 45.000.000",
+                  "amount": 45000000,
+                  "page": 238
+                },
+                {
+                  "label": "41016001758 Développer les services généraux de planification et de statistiques dans la commune de logouale 11.550.000",
+                  "amount": 11550000,
+                  "page": 238
+                },
+                {
+                  "label": "41016001786 Développer des services récréatifs et sportifs dans la commune de danane 40.000.000",
+                  "amount": 40000000,
+                  "page": 238
+                },
+                {
+                  "label": "41016001978 Développer les autres services généraux dans la commune de Sipilou 29.900.000",
+                  "amount": 29900000,
+                  "page": 238
+                },
+                {
+                  "label": "41016001990 Développer les autres services généraux dans la commune de Danané 30.000.000",
+                  "amount": 30000000,
+                  "page": 238
+                },
+                {
+                  "label": "41016002230 Développer les autres services généraux dans la Commune  de Sangouiné 31.500.000",
+                  "amount": 31500000,
+                  "page": 238
+                },
+                {
+                  "label": "41016002231 Développer les autres services généraux dans la Commune  de Logoualé 25.000.000",
+                  "amount": 25000000,
+                  "page": 238
+                },
+                {
+                  "label": "41092100060 Développer les autres services généraux dans la Commune  de Gbonné 15.000.000",
+                  "amount": 15000000,
+                  "page": 238
+                },
+                {
+                  "label": "42016000652 Développer les autres services généraux dans la région du cavally",
+                  "amount": 335287336335287336,
+                  "page": 238
+                },
+                {
+                  "label": "42016000655 Développer les services de police dans la Commune  de Guiglo 10.364.000",
+                  "amount": 10364000,
+                  "page": 238
+                },
+                {
+                  "label": "42016000720 Développer des services récréatifs et sportifs dans la commune de taï 35.000.000",
+                  "amount": 35000000,
+                  "page": 239
+                },
+                {
+                  "label": "42016000721 Développer des services récréatifs et sportifs dans la commune de guiglo 79.850.000",
+                  "amount": 79850000,
+                  "page": 239
+                },
+                {
+                  "label": "42016000764 Développer des services récréatifs et sportifs dans la commune de bloléquin 29.000.000",
+                  "amount": 29000000,
+                  "page": 239
+                },
+                {
+                  "label": "42016000899 Développer des services culturels dans la Région du Cavally 80.862.000",
+                  "amount": 80862000,
+                  "page": 239
+                },
+                {
+                  "label": "42016000901 Développer des services culturels dans la Commune  de Guiglo 12.000.000",
+                  "amount": 12000000,
+                  "page": 239
+                },
+                {
+                  "label": "42016000984 Développer les services généraux de planification et de statistiques dans la commune de bloléquin 21.000.000",
+                  "amount": 21000000,
+                  "page": 240
+                },
+                {
+                  "label": "42016000986 Développer des services culturels dans la Commune  de Toulépleu 14.000.000",
+                  "amount": 14000000,
+                  "page": 240
+                },
+                {
+                  "label": "42016001258 Développer les autres services généraux dans la Commune  de Guiglo 46.658.000",
+                  "amount": 46658000,
+                  "page": 240
+                },
+                {
+                  "label": "42104000031 Développer les autres services généraux dans la Commune  de Bloléquin 72.934.000",
+                  "amount": 72934000,
+                  "page": 240
+                },
+                {
+                  "label": "42104000032 Développer les autres services généraux dans la commune de Taï 30.841.659",
+                  "amount": 30841659,
+                  "page": 240
+                },
+                {
+                  "label": "43016000700 Développer les autres services généraux dans la commune de facobly 45.000.000",
+                  "amount": 45000000,
+                  "page": 240
+                },
+                {
+                  "label": "43016000755 Développer des services culturels dans la Commune  de Kouibli 39.000.000",
+                  "amount": 39000000,
+                  "page": 240
+                },
+                {
+                  "label": "43016000770 Développer des services culturels dans la Région du Guémon",
+                  "amount": 162138145162138145,
+                  "page": 240
+                },
+                {
+                  "label": "43016000903 Développer des services récréatifs et sportifs dans la région du guemon 18.040.000",
+                  "amount": 18040000,
+                  "page": 241
+                },
+                {
+                  "label": "43016000925 Développer des services hospitaliers généraux dans la région du guemon 53.324.000",
+                  "amount": 53324000,
+                  "page": 241
+                },
+                {
+                  "label": "43016000933 Développer des services de radiodiffusion, de télévision et d'édition dans la commune de kouibli 9.000.000",
+                  "amount": 9000000,
+                  "page": 241
+                },
+                {
+                  "label": "43016000951 Développer des services de radiodiffusion, de télévision et d'édition dans la région du guemon 15.000.000",
+                  "amount": 15000000,
+                  "page": 241
+                },
+                {
+                  "label": "43016000952 Développer des services récréatifs et sportifs dans la Commune  de Kouibli 38.103.000",
+                  "amount": 38103000,
+                  "page": 241
+                },
+                {
+                  "label": "43016001078 Développer des services culturels dans la commune de facobly 42.411.070",
+                  "amount": 42411070,
+                  "page": 241
+                },
+                {
+                  "label": "43016001096 Développer des services culturels dans la Commune  de Bangolo 30.000.271",
+                  "amount": 30000271,
+                  "page": 241
+                },
+                {
+                  "label": "43016001297 Développer les autres services généraux dans la Commune  de Duekoué",
+                  "amount": 118000000118000000,
+                  "page": 241
+                },
+                {
+                  "label": "43016001391 Développer les autres services généraux dans la commune de Kouibly 36.300.997",
+                  "amount": 36300997,
+                  "page": 241
+                },
+                {
+                  "label": "51016000853 Développer les autres services généraux dans la Région du Loh-djiboua",
+                  "amount": 185000000185000000,
+                  "page": 241
+                },
+                {
+                  "label": "51016000860 Développer les autres services généraux dans la commune de divo 80.000.000",
+                  "amount": 80000000,
+                  "page": 241
+                },
+                {
+                  "label": "51016000862 Développer les autres services généraux dans la commune de hire 70.000.000",
+                  "amount": 70000000,
+                  "page": 241
+                },
+                {
+                  "label": "51016000870 Développer les services généraux de planification et de statistiques dans la commune dans lakota 29.500.000",
+                  "amount": 29500000,
+                  "page": 241
+                },
+                {
+                  "label": "51016000939 Développer des services culturels dans la Commune  de Guitry 66.873.366",
+                  "amount": 66873366,
+                  "page": 242
+                },
+                {
+                  "label": "51016000945 Développer des services récréatifs et sportifs dans la commune de hire 30.000.000",
+                  "amount": 30000000,
+                  "page": 242
+                },
+                {
+                  "label": "51016000947 Développer des services récréatifs et sportifs dans la commune de divo 22.044.607",
+                  "amount": 22044607,
+                  "page": 242
+                },
+                {
+                  "label": "51016001054 Développer les autres services généraux dans la Commune  de Guitry 65.000.000",
+                  "amount": 65000000,
+                  "page": 242
+                },
+                {
+                  "label": "51016001176 Développer les autres services généraux dans la commune de lakota 40.184.000",
+                  "amount": 40184000,
+                  "page": 242
+                },
+                {
+                  "label": "55016000756 Développer les autres services généraux dans la région de san-pedro",
+                  "amount": 180000000180000000,
+                  "page": 243
+                },
+                {
+                  "label": "55016000802 Développer des services hospitaliers spécialisés dans la Région du Bafing 5.000.000",
+                  "amount": 5000000,
+                  "page": 243
+                },
+                {
+                  "label": "55016000838 Développer des services culturels dans la commune de grand-bereby",
+                  "amount": 129000000129000000,
+                  "page": 243
+                },
+                {
+                  "label": "55016000850 Développer des services culturels dans la Région du Bafing 85.000.000",
+                  "amount": 85000000,
+                  "page": 243
+                },
+                {
+                  "label": "55016000851 Développer des services culturels dans la Région de San-Pedro 50.000.000",
+                  "amount": 50000000,
+                  "page": 243
+                },
+                {
+                  "label": "55016000928 Développer les services de police dans la région de san-pedro 38.744.000",
+                  "amount": 38744000,
+                  "page": 243
+                },
+                {
+                  "label": "55016000985 Développer des services culturels commune de san-pedro 35.000.000",
+                  "amount": 35000000,
+                  "page": 244
+                },
+                {
+                  "label": "55016001003 Développer les services généraux de planification et de statistiques dans la région de san-pedro 90.000.000",
+                  "amount": 90000000,
+                  "page": 244
+                },
+                {
+                  "label": "55016001041 Développer des services récréatifs et sportifs Commune  de San-pédro 42.299.000",
+                  "amount": 42299000,
+                  "page": 244
+                },
+                {
+                  "label": "55016001049 Développer des services de Médecine spécialisée dans la Région de San-Pedro 35.000.000",
+                  "amount": 35000000,
+                  "page": 244
+                },
+                {
+                  "label": "55016001141 Développer des services récréatifs et sportifs dans la commune de tabou 70.655.744",
+                  "amount": 70655744,
+                  "page": 244
+                },
+                {
+                  "label": "55016001143 Développer les autres services généraux dans la région du bafing",
+                  "amount": 145000000145000000,
+                  "page": 244
+                },
+                {
+                  "label": "55016001205 Développer les autres services généraux dans la commune de tabou 15.000.000",
+                  "amount": 15000000,
+                  "page": 244
+                },
+                {
+                  "label": "55016001636 Développer les autres services généraux dans la commune de San-Pedro 69.000.000",
+                  "amount": 69000000,
+                  "page": 244
+                },
+                {
+                  "label": "55016001637 Développer les services de police dans la commune de San-Pedro 30.000.000",
+                  "amount": 30000000,
+                  "page": 244
+                },
+                {
+                  "label": "56016000835 Développer les autres services généraux dans la région de la nawa",
+                  "amount": 335000000335000000,
+                  "page": 244
+                },
+                {
+                  "label": "56016000843 Développer les autres services généraux dans la commune de buyo 45.000.000",
+                  "amount": 45000000,
+                  "page": 245
+                },
+                {
+                  "label": "56016000847 Développer les autres services généraux dans la Commune  de Mayo 50.226.000",
+                  "amount": 50226000,
+                  "page": 245
+                },
+                {
+                  "label": "56016000931 Développer des services culturels dans la commune de meagui 29.000.000",
+                  "amount": 29000000,
+                  "page": 245
+                },
+                {
+                  "label": "56016000933 Développer des services récréatifs et sportifs dans la Commune  de Mayo 24.184.000",
+                  "amount": 24184000,
+                  "page": 245
+                },
+                {
+                  "label": "56016000934 Développer des services culturels dans la commune de gueyo 23.087.000",
+                  "amount": 23087000,
+                  "page": 245
+                },
+                {
+                  "label": "56016000935 Développer des services culturels dans la commune de grand-zattry 15.000.000",
+                  "amount": 15000000,
+                  "page": 245
+                },
+                {
+                  "label": "56016000936 Développer des services récréatifs et sportifs dans la Commune  de Grand-Zattry 38.000.000",
+                  "amount": 38000000,
+                  "page": 245
+                },
+                {
+                  "label": "56016001013 Développer les services généraux de planification et de statistiques dans la commune de gueyo 20.000.000",
+                  "amount": 20000000,
+                  "page": 245
+                },
+                {
+                  "label": "56016001053 Développer les services de police dans la Région dans la Nawa",
+                  "amount": 176182000176182000,
+                  "page": 245
+                },
+                {
+                  "label": "56016001101 Développer des services culturels dans la Commune  de Mayo 29.500.000",
+                  "amount": 29500000,
+                  "page": 246
+                },
+                {
+                  "label": "56016001183 Développer des services récréatifs et sportifs dans la commune de buyo 25.000.000",
+                  "amount": 25000000,
+                  "page": 246
+                },
+                {
+                  "label": "56016001272 Développer les services de police dans la commune de meagui 2.500.000",
+                  "amount": 2500000,
+                  "page": 246
+                },
+                {
+                  "label": "56016001282 Développer des services récréatifs et sportifs dans la commune de meagui 55.000.000",
+                  "amount": 55000000,
+                  "page": 246
+                },
+                {
+                  "label": "56016001289 Développer les services de police dans la Commune  de Buyo 51.000.000",
+                  "amount": 51000000,
+                  "page": 246
+                },
+                {
+                  "label": "57016000424 Développer les autres services généraux dans la commune de fresco 50.000.000",
+                  "amount": 50000000,
+                  "page": 246
+                },
+                {
+                  "label": "57016000459 Développer des services culturels dans la commune de fresco 26.000.000",
+                  "amount": 26000000,
+                  "page": 246
+                },
+                {
+                  "label": "57016000499 Développer les autres services généraux dans la région du gbokle",
+                  "amount": 300000000300000000,
+                  "page": 247
+                },
+                {
+                  "label": "57016000537 Développer des services hospitaliers généraux dans la région du gbokle 29.000.000",
+                  "amount": 29000000,
+                  "page": 247
+                },
+                {
+                  "label": "57016000551 Développer les services généraux de planification et de statistiques dans la commune de sassandra 15.001.500",
+                  "amount": 15001500,
+                  "page": 247
+                },
+                {
+                  "label": "57016000567 Développer les services de protection civile dans la région du gbokle 64.910.000",
+                  "amount": 64910000,
+                  "page": 247
+                },
+                {
+                  "label": "57016000670 Développer des services récréatifs et sportifs dans la Commune  de Fresco 65.000.000",
+                  "amount": 65000000,
+                  "page": 247
+                },
+                {
+                  "label": "61016000651 Développer les services de police dans la Commune  d'Agnibilékrou 60.000.000",
+                  "amount": 60000000,
+                  "page": 247
+                },
+                {
+                  "label": "61016000668 Développer les services généraux de planification et de statistiques dans la commune de bettie 25.000.000",
+                  "amount": 25000000,
+                  "page": 247
+                },
+                {
+                  "label": "61016000714 Développer des services culturels dans la Commune  de Bettié 10.000.000",
+                  "amount": 10000000,
+                  "page": 247
+                },
+                {
+                  "label": "61016001021 Développer les autres services généraux dans la région de l'indenie djuablin",
+                  "amount": 225000000225000000,
+                  "page": 248
+                },
+                {
+                  "label": "62016001109 Développer les autres services généraux dans la Région de Gontougo",
+                  "amount": 355311548355311548,
+                  "page": 248
+                },
+                {
+                  "label": "62016001134 Développer les services de police dans la région de gontougo 12.447.000",
+                  "amount": 12447000,
+                  "page": 248
+                },
+                {
+                  "label": "62016001240 Développer des services récréatifs et sportifs dans la commune de kouassi-datekro 29.999.500",
+                  "amount": 29999500,
+                  "page": 249
+                },
+                {
+                  "label": "62016001243 Développer des services culturels dans la Commune  d'Assuefry 64.000.000",
+                  "amount": 64000000,
+                  "page": 249
+                },
+                {
+                  "label": "62016001269 Développer des services culturels dans la Commune  de Kouassi-datèkro 20.995.000",
+                  "amount": 20995000,
+                  "page": 249
+                },
+                {
+                  "label": "62016001273 Développer des services culturels dans la Région de Gontougo 30.000.000",
+                  "amount": 30000000,
+                  "page": 249
+                },
+                {
+                  "label": "62016001500 Développer les services de police dans la commune de kouassi-datekro 29.999.000",
+                  "amount": 29999000,
+                  "page": 249
+                },
+                {
+                  "label": "62016001530 Développer des services de radiodiffusion, de télévision et d'édition dans la commune de sandegue 26.000.000",
+                  "amount": 26000000,
+                  "page": 250
+                },
+                {
+                  "label": "62016001565 Développer des services récréatifs et sportifs dans la commune de koun-fao 44.500.000",
+                  "amount": 44500000,
+                  "page": 250
+                },
+                {
+                  "label": "62016001687 Développer les autres services généraux dans la commune de kouassi-datekro 28.142.513",
+                  "amount": 28142513,
+                  "page": 250
+                },
+                {
+                  "label": "71016001187 Développer les services généraux de planification et de statistiques dans la commune d'adiake 39.542.000",
+                  "amount": 39542000,
+                  "page": 250
+                },
+                {
+                  "label": "71016001191 Développer les services généraux de planification et de statistiques dans la commune de mafere 25.000.000",
+                  "amount": 25000000,
+                  "page": 250
+                },
+                {
+                  "label": "71016001196 Développer les services de police dans la commune de bonoua 86.155.000",
+                  "amount": 86155000,
+                  "page": 250
+                },
+                {
+                  "label": "71016001313 Développer des services culturels dans la commune de tiapoum 12.000.000",
+                  "amount": 12000000,
+                  "page": 251
+                },
+                {
+                  "label": "71016001315 Développer des services culturels dans la Commune  de Maféré 50.000.000",
+                  "amount": 50000000,
+                  "page": 251
+                },
+                {
+                  "label": "71016001316 Développer des services récréatifs et sportifs dans la Commune  de Maféré 15.011.733",
+                  "amount": 15011733,
+                  "page": 251
+                },
+                {
+                  "label": "71016001320 Développer des services culturels dans la Commune  d'Ayamé 25.000.000",
+                  "amount": 25000000,
+                  "page": 251
+                },
+                {
+                  "label": "71016001322 Développer des services récréatifs et sportifs dans la commune d'adiake 23.275.000",
+                  "amount": 23275000,
+                  "page": 251
+                },
+                {
+                  "label": "71016001348 Développer des services culturels dans la Région du Sud-comoé 91.746.672",
+                  "amount": 91746672,
+                  "page": 251
+                },
+                {
+                  "label": "71016001456 Développer les services de police dans la Région du Sud-comoé 15.000.000",
+                  "amount": 15000000,
+                  "page": 251
+                },
+                {
+                  "label": "71016001469 Développer les autres services généraux dans la commune d'ayame 8.000.000",
+                  "amount": 8000000,
+                  "page": 251
+                },
+                {
+                  "label": "71016001473 Développer les services généraux de planification et de statistiques dans la commune d'ayame 30.000.000",
+                  "amount": 30000000,
+                  "page": 251
+                },
+                {
+                  "label": "71016001574 Développer des services récréatifs et sportifs dans la Commune  d'Ayamé 20.000.000",
+                  "amount": 20000000,
+                  "page": 252
+                },
+                {
+                  "label": "71016001590 Développer les autres services généraux dans la commune de bonoua",
+                  "amount": 156556229156556229,
+                  "page": 252
+                },
+                {
+                  "label": "71016001642 Développer des services dentaires dans la région du sud-comoe 24.000.000",
+                  "amount": 24000000,
+                  "page": 252
+                },
+                {
+                  "label": "71016001817 Développer des services de radiodiffusion, de télévision et d'édition dans la Région du Sud-comoé 10.000.000",
+                  "amount": 10000000,
+                  "page": 252
+                },
+                {
+                  "label": "76016000994 Développer les autres services généraux dans la région de l'agneby-tiassa",
+                  "amount": 542000000542000000,
+                  "page": 252
+                },
+                {
+                  "label": "76016001009 Développer les autres services généraux dans la commune d'agboville",
+                  "amount": 170000000170000000,
+                  "page": 252
+                },
+                {
+                  "label": "76016001011 Développer les autres services généraux dans la commune d'azaguie 70.000.000",
+                  "amount": 70000000,
+                  "page": 252
+                },
+                {
+                  "label": "76016001012 Développer les autres services généraux dans la commune de rubino 40.789.000",
+                  "amount": 40789000,
+                  "page": 252
+                },
+                {
+                  "label": "76016001019 Développer les services de police dans la Région de l'Agneby-tiassa 78.000.000",
+                  "amount": 78000000,
+                  "page": 252
+                },
+                {
+                  "label": "76016001092 Développer des services culturels dans la commune de de tiassale 51.000.000",
+                  "amount": 51000000,
+                  "page": 253
+                },
+                {
+                  "label": "76016001097 Développer des services récréatifs et sportifs dans la commune d'azaguie 20.000.000",
+                  "amount": 20000000,
+                  "page": 253
+                },
+                {
+                  "label": "76016001119 Développer des services de radiodiffusion, de télévision et d'édition dans la Région de l'Agneby-tiassa 10.000.000",
+                  "amount": 10000000,
+                  "page": 253
+                },
+                {
+                  "label": "76016001223 Développer les services généraux de planification et de statistiques dans la commune d'azaguie 2.441.000",
+                  "amount": 2441000,
+                  "page": 253
+                },
+                {
+                  "label": "76016001295 Développer des services culturels dans la Commune  de de Taabo 52.567.000",
+                  "amount": 52567000,
+                  "page": 254
+                },
+                {
+                  "label": "76016001326 Développer des services culturels dans la Commune  d'Azaguié 55.667.037",
+                  "amount": 55667037,
+                  "page": 254
+                },
+                {
+                  "label": "76016001487 Développer les services généraux de planification et de statistiques dans la commune de n'douci 40.000.000",
+                  "amount": 40000000,
+                  "page": 254
+                },
+                {
+                  "label": "77016000888 Développer les services généraux de planification et de statistiques dans la Commune  d'Agou 8.531.000",
+                  "amount": 8531000,
+                  "page": 254
+                },
+                {
+                  "label": "77016000898 Développer les autres services généraux dans la commune d'Adzopé",
+                  "amount": 140000000140000000,
+                  "page": 254
+                },
+                {
+                  "label": "77016000901 Développer les autres services généraux dans la commune d'akoupe 45.000.000",
+                  "amount": 45000000,
+                  "page": 254
+                },
+                {
+                  "label": "77016000902 Développer les autres services généraux dans la commune d'Alépé 92.000.000",
+                  "amount": 92000000,
+                  "page": 254
+                },
+                {
+                  "label": "77016001012 Développer des services récréatifs et sportifs dans la commune d'akoupe 29.000.000",
+                  "amount": 29000000,
+                  "page": 255
+                },
+                {
+                  "label": "77016001014 Développer des services culturels dans la commune d'affery 19.375.000",
+                  "amount": 19375000,
+                  "page": 255
+                },
+                {
+                  "label": "77016001078 Développer des services culturels dans la commune d'agou 12.239.000",
+                  "amount": 12239000,
+                  "page": 255
+                },
+                {
+                  "label": "77016001164 Développer les services généraux de planification et de statistiques dans la région dans la Mé 70.000.000",
+                  "amount": 70000000,
+                  "page": 255
+                },
+                {
+                  "label": "77016001249 Développer des services culturels dans la Commune  de Yakasse-attobrou 26.098.000",
+                  "amount": 26098000,
+                  "page": 256
+                },
+                {
+                  "label": "77016001392 Développer des services de radiodiffusion, de télévision et d'édition dans la Commune  d'Agou 8.328.000",
+                  "amount": 8328000,
+                  "page": 256
+                },
+                {
+                  "label": "78016001592 Développer des services récréatifs et sportifs dans la Commune  de Bingerville 40.000.000",
+                  "amount": 40000000,
+                  "page": 256
+                },
+                {
+                  "label": "79016000546 Développer les services généraux de planification et de statistiques dans la région des grands ponts 54.115.850",
+                  "amount": 54115850,
+                  "page": 256
+                },
+                {
+                  "label": "79016000548 Développer les autres services généraux dans la Région des Grands Ponts",
+                  "amount": 480000000480000000,
+                  "page": 256
+                },
+                {
+                  "label": "79016000613 Développer des services culturels dans la Région des Grands Ponts 42.000.000",
+                  "amount": 42000000,
+                  "page": 256
+                },
+                {
+                  "label": "79016000616 Développer des services récréatifs et sportifs dans la commune de grand-lahou 45.000.000",
+                  "amount": 45000000,
+                  "page": 256
+                },
+                {
+                  "label": "79016000618 Développer des services culturels dans la commune de Jacqueville 25.000.000",
+                  "amount": 25000000,
+                  "page": 257
+                },
+                {
+                  "label": "79016000697 Développer des services hospitaliers généraux dans la région des grands ponts",
+                  "amount": 155000000155000000,
+                  "page": 257
+                },
+                {
+                  "label": "79016000750 Développer des services de radiodiffusion, de télévision et d'édition dans la région des grands ponts 25.000.000",
+                  "amount": 25000000,
+                  "page": 257
+                },
+                {
+                  "label": "79016000768 Développer des services culturels dans la Commune  de Dabou",
+                  "amount": 107600000107600000,
+                  "page": 257
+                },
+                {
+                  "label": "79016000848 Développer des services récréatifs et sportifs dans la Commune  de Dabou 14.000.000",
+                  "amount": 14000000,
+                  "page": 257
+                },
+                {
+                  "label": "2 Biens et services 4.051.648.922",
+                  "amount": 4051648922,
+                  "page": 258
+                },
+                {
+                  "label": "78016001643 Encadrer le fonctionnement des Circonscriptions Administratives 41.002.108",
+                  "amount": 41002108,
+                  "page": 275
+                },
+                {
+                  "label": "2 Biens et services 58.224.378",
+                  "amount": 58224378,
+                  "page": 276
+                },
+                {
+                  "label": "78016001650 Elaborer la loi portant création, organisation et fonctionnement du Conseil Supérieur des Religions et des Convictions 19.577.408",
+                  "amount": 19577408,
+                  "page": 276
+                }
+              ]
+            },
+            {
+              "title": "Investissements",
+              "amount": 404559348780315952,
+              "lines": [
+                {
+                  "label": "32016001245 Provision pour investissement de la commune de ouragahio 25.000.000",
+                  "amount": 25000000,
+                  "page": 230
+                },
+                {
+                  "label": "77016000886 Provision pour investissement de la région dans la Mé",
+                  "amount": 404559331404559331,
+                  "page": 254
+                },
+                {
+                  "label": "78016001838 Provision pour investissement des collectivités territoriales 1.400.000.000",
+                  "amount": 1400000000,
+                  "page": 256
+                },
+                {
+                  "label": "4 Investissements 15.873.409.931",
+                  "amount": 15873409931,
+                  "page": 276
+                },
+                {
+                  "label": "78016001808 Effectuer des transferts à l'ONECI pour prendre en charge les Dépenses d'Investissement 77.346.690",
+                  "amount": 77346690,
+                  "page": 276
+                }
+              ]
+            },
+            {
+              "title": "Transferts",
+              "amount": 9368923305,
+              "lines": [
+                {
+                  "label": "3 Transferts 9.368.923.305",
+                  "amount": 9368923305,
+                  "page": 276
+                }
+              ]
+            },
+            {
+              "title": "Autres",
+              "amount": 38831990179655474188,
+              "lines": [
+                {
+                  "label": "25016001831 Développer des dispensaires et des maternités dans la commune de sinematiali 24.700.000",
+                  "amount": 24700000,
+                  "page": 221
+                },
+                {
+                  "label": "25016001833 Développer des dispensaires et des maternités dans la Commune  de Tioroniaradougou 99.333.000",
+                  "amount": 99333000,
+                  "page": 222
+                },
+                {
+                  "label": "25016001836 Acquérir des appareils et du matériel thérapeutique dans la commune de Korhogo 3.000.000",
+                  "amount": 3000000,
+                  "page": 222
+                },
+                {
+                  "label": "25016001874 Développer l'enseignement primaire dans la Région du Poro",
+                  "amount": 404322000404322000,
+                  "page": 222
+                },
+                {
+                  "label": "25016001888 Développer des dispensaires et des maternités dans la Commune  de karakoro 69.000.000",
+                  "amount": 69000000,
+                  "page": 222
+                },
+                {
+                  "label": "25016001904 Développer l'enseignement préélémentaire dans la Commune  de Korhogo 35.000.000",
+                  "amount": 35000000,
+                  "page": 222
+                },
+                {
+                  "label": "25016001912 Développer l'éclairage public dans la commune de dikodougou 29.800.000",
+                  "amount": 29800000,
+                  "page": 222
+                },
+                {
+                  "label": "25016001916 Développer des dispensaires et des maternités dans la Commune  de Niofoin 28.000.000",
+                  "amount": 28000000,
+                  "page": 222
+                },
+                {
+                  "label": "25016001927 Développer des dispensaires et des maternités dans la Région du Poro",
+                  "amount": 423456966423456966,
+                  "page": 222
+                },
+                {
+                  "label": "25016001943 Développer la distribution, les entrepôts et les magasins dans la Commune  de Napieledougou 35.000.000",
+                  "amount": 35000000,
+                  "page": 222
+                },
+                {
+                  "label": "25016001950 Développer l'alimentation en eau dans la commune de napieledougou 25.000.000",
+                  "amount": 25000000,
+                  "page": 222
+                },
+                {
+                  "label": "25016001952 Développer l'alimentation en eau dans la Commune  de Tioroniaradougou 8.350.000",
+                  "amount": 8350000,
+                  "page": 222
+                },
+                {
+                  "label": "25016001953 Développer les équipements collectifs dans la Commune  de Komborodougou 20.000.000",
+                  "amount": 20000000,
+                  "page": 222
+                },
+                {
+                  "label": "25016001979 Développer l'enseignement primaire dans la Commune  de Guiémbé 27.000.000",
+                  "amount": 27000000,
+                  "page": 222
+                },
+                {
+                  "label": "25016001983 Développer le deuxième cycle de l'enseignement sécondaire dans la Région du Poro 46.000.000",
+                  "amount": 46000000,
+                  "page": 222
+                },
+                {
+                  "label": "25016001996 Développer la distribution, les entrepôts et les magasins dans la commune de sirasso 42.000.000",
+                  "amount": 42000000,
+                  "page": 222
+                },
+                {
+                  "label": "25016001999 Acquérir des appareils et du matériel thérapeutique dans la commune de guiembe 18.000.000",
+                  "amount": 18000000,
+                  "page": 222
+                },
+                {
+                  "label": "25016002042 Développer l'alimentation en eau dans la Commune  de Dikodougou 24.800.266",
+                  "amount": 24800266,
+                  "page": 222
+                },
+                {
+                  "label": "25016002047 Acquérir des appareils et du matériel thérapeutique dans la commune de dikodougou 18.000.000",
+                  "amount": 18000000,
+                  "page": 222
+                },
+                {
+                  "label": "25016002079 Développer l'agriculture dans la commune de m'bengue 27.624.248",
+                  "amount": 27624248,
+                  "page": 222
+                },
+                {
+                  "label": "25016002113 Développer l'hôtellerie et la restauration dans la commune de tioroniaradougou 29.500.000",
+                  "amount": 29500000,
+                  "page": 222
+                },
+                {
+                  "label": "25016002141 Développer la distribution, les entrepôts et les magasins dans la commune de guiembe 31.000.000",
+                  "amount": 31000000,
+                  "page": 222
+                },
+                {
+                  "label": "25016002143 Développer le logement dans la Commune  de Tioroniaradougou 6.735.000",
+                  "amount": 6735000,
+                  "page": 222
+                },
+                {
+                  "label": "25016002144 Développer l'éclairage public dans la Commune  de M'bengué 23.114.000",
+                  "amount": 23114000,
+                  "page": 222
+                },
+                {
+                  "label": "25016002172 Développer l'enseignement primaire dans la Commune  de Sirasso 53.796.649",
+                  "amount": 53796649,
+                  "page": 222
+                },
+                {
+                  "label": "25016002230 Développer l'enseignement non défini par niveau dans la commune de dikodougou 41.700.000",
+                  "amount": 41700000,
+                  "page": 222
+                },
+                {
+                  "label": "25016002246 Développer l'alimentation en eau dans la commune de karakoro 38.339.000",
+                  "amount": 38339000,
+                  "page": 222
+                },
+                {
+                  "label": "25016002248 Développer l'enseignement primaire dans la Commune  de Dikodougou 28.000.000",
+                  "amount": 28000000,
+                  "page": 222
+                },
+                {
+                  "label": "25016002617 Développer la distribution, les entrepôts et les magasins dans la Région du Poro 63.000.000",
+                  "amount": 63000000,
+                  "page": 222
+                },
+                {
+                  "label": "25016002618 Développer l'hôtellerie et la restauration dans la Commune  de Komborodougou 44.000.000",
+                  "amount": 44000000,
+                  "page": 223
+                },
+                {
+                  "label": "25016002729 Développer le logement dans la Commune de Komborodougou 29.000.000",
+                  "amount": 29000000,
+                  "page": 223
+                },
+                {
+                  "label": "25016002730 Développer des dispensaires et des maternités dans la commune de Komborodougou 7.000.000",
+                  "amount": 7000000,
+                  "page": 223
+                },
+                {
+                  "label": "26016000968 Développer les transports routiers dans la Commune  de Boundiali 68.000.000",
+                  "amount": 68000000,
+                  "page": 223
+                },
+                {
+                  "label": "26016000970 Développer l'hôtellerie et la restauration dans la commune de boundiali",
+                  "amount": 101329218101329218,
+                  "page": 223
+                },
+                {
+                  "label": "26016000977 Développer les transports routiers dans la commune de kouto",
+                  "amount": 123241000123241000,
+                  "page": 223
+                },
+                {
+                  "label": "26016000983 Promouvoir la recherche et le développement dans d'autres branches d'activités dans la commune de tengrela 25.000.000",
+                  "amount": 25000000,
+                  "page": 223
+                },
+                {
+                  "label": "26016000986 Développer l'hôtellerie et la restauration dans la Commune  de Kanakono 7.022.000",
+                  "amount": 7022000,
+                  "page": 223
+                },
+                {
+                  "label": "26016000990 Développer les transports routiers dans la Commune  de Gbon 43.500.416",
+                  "amount": 43500416,
+                  "page": 223
+                },
+                {
+                  "label": "26016000994 Développer la distribution, les entrepôts et les magasins dans la Commune  de Kolia",
+                  "amount": 104391000104391000,
+                  "page": 223
+                },
+                {
+                  "label": "26016001019 Développer l'agriculture dans la Région dans la Bagoué",
+                  "amount": 270592000270592000,
+                  "page": 223
+                },
+                {
+                  "label": "26016001025 Développer le logement dans la Région dans la Bagoué 30.000.000",
+                  "amount": 30000000,
+                  "page": 223
+                },
+                {
+                  "label": "26016001054 Développer l'éclairage public dans la Commune  de Kasséré 40.737.000",
+                  "amount": 40737000,
+                  "page": 223
+                },
+                {
+                  "label": "26016001059 Développer les équipements collectifs dans la commune de kanakono 20.000.000",
+                  "amount": 20000000,
+                  "page": 223
+                },
+                {
+                  "label": "26016001062 Développer l'alimentation en eau dans la commune de gbon 25.035.000",
+                  "amount": 25035000,
+                  "page": 223
+                },
+                {
+                  "label": "26016001065 Développer l'alimentation en eau dans la commune de kolia 29.000.000",
+                  "amount": 29000000,
+                  "page": 223
+                },
+                {
+                  "label": "26016001074 Acquérir des appareils et du matériel thérapeutique dans la commune de tengrela 14.000.000",
+                  "amount": 14000000,
+                  "page": 223
+                },
+                {
+                  "label": "26016001091 Développer l'enseignement primaire dans la commune de kolia 96.589.442",
+                  "amount": 96589442,
+                  "page": 223
+                },
+                {
+                  "label": "26016001095 Développer l'enseignement primaire dans la commune de kanakono 62.546.000",
+                  "amount": 62546000,
+                  "page": 223
+                },
+                {
+                  "label": "26016001096 Développer l'enseignement préélémentaire dans la commune de kanakono 25.000.000",
+                  "amount": 25000000,
+                  "page": 223
+                },
+                {
+                  "label": "26016001097 Développer l'enseignement non défini par niveau dans la Commune  de Kouto 15.575.000",
+                  "amount": 15575000,
+                  "page": 223
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

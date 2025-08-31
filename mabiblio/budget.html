@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+  <title>Hub Budgétaire — Côte d'Ivoire</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/icon-192.png">
+  <link rel="stylesheet" href="budget.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+  <header>
+    <div class="wrap row">
+      <button class="back" onclick="history.back()" aria-label="Retour"><i class="fa fa-arrow-left"></i></button>
+      <h1>Hub Budgétaire — Côte d'Ivoire</h1>
+      <a class="pill" href="budget_ci_2025_enriched_mobile.json" download><i class="fa fa-download"></i> Export JSON</a>
+    </div>
+  </header>
+
+  <main class="wrap" id="app" aria-live="polite"></main>
+  <div class="footer"></div>
+
+  <script>
+    const FMT = new Intl.NumberFormat('fr-FR');
+    const app = document.getElementById('app');
+
+    function money(n){ return '<span class="money">' + FMT.format(n||0) + ' FCFA</span>'; }
+
+    // Simple router d’état
+    let st = { ministry:null, program:null, nature:null, data:null };
+
+    function viewHome(){
+      app.innerHTML = \`
+        <div class="row" style="margin:10px 0 12px">
+          <div class="caps">Ministères</div>
+          <div class="caps">Année&nbsp;<strong id="year"></strong>&nbsp;•&nbsp;Monnaie&nbsp;<strong id="cur"></strong></div>
+        </div>
+        <div class="grid" id="grid"></div>\`;
+      document.getElementById('year').textContent = st.data.year;
+      document.getElementById('cur').textContent  = st.data.currency;
+      const grid = document.getElementById('grid');
+      st.data.ministries.forEach(m => {
+        const div = document.createElement('div');
+        div.className = 'card';
+        div.innerHTML = \`
+          <div class="row">
+            <div class="title">\${m.name}</div>
+            <div class="tag">CP \${money(m.cp||0)}</div>
+          </div>
+          <div class="muted">\${m.programs.length} programme(s)</div>
+          <button class="btn">Ouvrir</button>\`;
+        div.querySelector('.btn').onclick = () => { st.ministry = m; st.program=null; st.nature=null; viewMinistry(); };
+        grid.appendChild(div);
+      });
+      window.scrollTo({top:0,behavior:'instant'});
+    }
+
+    function viewMinistry(){
+      app.innerHTML = \`
+        <div class="card">
+          <div class="row">
+            <div>
+              <div class="caps">Ministère</div>
+              <div class="title">\${st.ministry.name}</div>
+            </div>
+            <div class="tag">CP \${money(st.ministry.cp||0)}</div>
+          </div>
+        </div>
+        <div class="grid" id="grid"></div>\`;
+      const grid = document.getElementById('grid');
+      st.ministry.programs.forEach(p => {
+        const div = document.createElement('div');
+        div.className = 'card';
+        div.innerHTML = \`
+          <div class="row">
+            <div class="title">\${p.title}</div>
+            <div class="tag">\${money(p.amount||0)}</div>
+          </div>
+          <div class="muted">\${p.natures ? p.natures.length+' nature(s)' : (p.lines?.length||0)+' ligne(s)'}\</div>
+          <button class="btn">Voir</button>\`;
+        div.querySelector('.btn').onclick = () => { st.program = p; st.nature=null; viewProgram(); };
+        grid.appendChild(div);
+      });
+      window.scrollTo({top:0,behavior:'instant'});
+    }
+
+    function viewProgram(){
+      const p = st.program;
+      const hasNatures = Array.isArray(p.natures) && p.natures.length>0;
+      app.innerHTML = \`
+        <div class="card">
+          <div class="row">
+            <div>
+              <div class="caps">Programme</div>
+              <div class="title">\${p.title}</div>
+            </div>
+            <div class="tag">\${money(p.amount||0)}</div>
+          </div>
+          \${hasNatures ? '<div class="natures" id="natures"></div>' : ''}
+        </div>
+        <div class="card">
+          <div class="row"><div class="caps">Lignes budgétaires</div></div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Libellé</th><th>Montant</th></tr></thead>
+              <tbody id="tbody"></tbody>
+            </table>
+          </div>
+        </div>\`;
+      if (hasNatures){
+        // Ordre strict: Personnel, Biens et services, Transferts, Investissements
+        const prio = ["Personnel","Biens et services","Transferts","Investissements"];
+        p.natures.sort((a,b)=> prio.indexOf(a.title) - prio.indexOf(b.title));
+        const wrap = document.getElementById('natures');
+        p.natures.forEach(n => {
+          const b = document.createElement('button');
+          b.className = 'nature';
+          b.innerHTML = \`<div class="caps">\${n.title}</div><div>\${money(n.amount||0)}</div>\`;
+          b.onclick = () => { st.nature = n; renderLines(); Array.from(wrap.children).forEach(el=>el.classList.remove('active')); b.classList.add('active'); };
+          wrap.appendChild(b);
+        });
+      }
+      renderLines();
+      window.scrollTo({top:0,behavior:'instant'});
+    }
+
+    function renderLines(){
+      const tbody = document.getElementById('tbody');
+      tbody.innerHTML = '';
+      const lines = st.nature?.lines || st.program.lines || [];
+      lines.forEach(ln => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = \`<td>\${ln.label}</td><td class="money">\${FMT.format(ln.amount||0)} FCFA</td>\`;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // Chargement données
+    (async function init(){
+      try{
+        const res = await fetch('budget_ci_2025_enriched_mobile.json',{cache:'no-store'});
+        const data = await res.json();
+        st.data = data;
+        viewHome();
+      }catch(e){
+        document.getElementById('app').innerHTML = \`
+          <div class="card"><div class="title">Fichier JSON introuvable</div>
+          <p class="muted">Place <code>budget_ci_2025_enriched_mobile.json</code> à la racine du site puis recharge la page.</p></div>\`;
+      }
+    })();
+  </script>
+</body>
+</html>
