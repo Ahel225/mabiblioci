@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Code de Conduite — Éducation (Lecteur)</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f8ff; --paper:#ffffff; --ink:#0f2742;
+  --primary:#1e4e8c; --primary-700:#113761; --accent:#f2c94c; --accent-2:#fff6cc;
+  --muted:#e7eef9; --shadow:0 12px 28px rgba(0,0,0,.08); --radius:18px; --transition:.25s ease;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.6}
+header{position:sticky;top:0;z-index:60;background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(255,255,255,.88));backdrop-filter:saturate(1.1) blur(8px);border-bottom:1px solid #e6eef6}
+.container{max-width:1120px;margin:0 auto;padding:14px 16px;display:flex;align-items:center;gap:12px}
+.logo{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:radial-gradient(circle at 30% 30%, var(--accent), #ffe89c);color:#113761;box-shadow:var(--shadow);font-size:18px}
+h1{margin:0;font-family:'Playfair Display',serif;font-size:20px;color:var(--primary-700)}
+.sub{color:#496b8d;font-size:12px;margin-top:2px}
+.control-buttons{margin-left:auto;display:flex;gap:8px;align-items:center}
+.btn{min-width:38px;height:38px;border-radius:12px;border:1px solid #d5e6f6;background:#fff;color:var(--primary-700);display:grid;place-items:center;cursor:pointer;box-shadow:var(--shadow);transition:var(--transition)}
+.btn:hover{transform:translateY(-1px)}
+.wrapper{max-width:1120px;margin:16px auto;padding:0 12px}
+.group{background:var(--paper);border:1px solid #e2eef7;border-radius:var(--radius);box-shadow:var(--shadow);margin:14px 0;overflow:hidden}
+.group>h2{margin:0;padding:14px 16px;background:linear-gradient(180deg,#ffffff,#f2f8ff);border-bottom:1px solid #e2eef7;color:#1a4177;font-size:18px;font-family:'Playfair Display',serif}
+.article{margin:10px 10px 14px 10px;padding:12px 14px;border-left:6px solid var(--primary);background:#fff;border-radius:14px;box-shadow:0 1px 0 rgba(0,0,0,.03)}
+.article-header{display:flex; align-items:center; gap:8px; margin:0 0 6px 0;}
+.article-header h3{margin:0; color:#113761;}
+.article .open-fs{ order:2; margin-left:auto; width:34px; height:34px; border:1px solid #d5e6f6; background:#fff; border-radius:10px; cursor:pointer; }
+.article-content p{margin:.5rem 0}.article-content ul,.article-content ol{margin:.5rem 0 .8rem 1.25rem}
+.article-content ol>li, .article-content ul>li{ padding:8px 0; line-height:1.7; border-bottom:1px solid #eaf3fb; }
+.article-content ol>li:last-child, .article-content ul>li:last-child{ border-bottom:0; }
+.article-content li > ol > li, .article-content li > ul > li{ padding:6px 0; border-bottom:1px dashed #eaf3fb; }
+.article-content li > ol > li:last-child, .article-content li > ul > li:last-child{ border-bottom:0; }
+.reading{ outline:2px solid var(--accent); outline-offset:2px; border-left-color:var(--accent) !important; background:linear-gradient(180deg,#fff, var(--accent-2)) }
+mark{background:rgba(242,201,76,.45)}
+/* Floating TOC */
+#tocFloatBtn{position:fixed; right:14px; bottom:120px; width:46px; height:46px; border-radius:50%; border:none; background:var(--primary); color:#fff; display:grid; place-items:center; box-shadow:0 10px 24px rgba(0,0,0,.25); z-index:1500;}
+#tocPanel{position:fixed; top:0; right:0; height:100%; width:86%; max-width:420px; background:#fff; border-left:1px solid #e2eef7; box-shadow:-16px 0 35px rgba(0,0,0,.2); transform:translateX(100%); transition:transform .25s ease; z-index:1600; overflow:auto;}
+#tocOverlay{position:fixed; inset:0; background:rgba(0,0,0,.28); backdrop-filter:blur(2px); display:none; z-index:1590}
+#tocPanel.open{ transform:none } #tocOverlay.show{ display:block }
+#tocPanel header{position:sticky; top:0; background:#fff; padding:12px 14px; border-bottom:1px solid #e2eef7}
+#tocPanel h3{margin:0; color:#1a4177} #tocPanel .toc-list{padding:12px 14px}
+#tocPanel .toc-list a{display:block; padding:6px 0; color:#183a69; text-decoration:none}
+#tocPanel .toc-sub{margin-left:10px; border-left:2px solid #eef6fd; padding-left:8px}
+/* Voice bar */
+#voiceBar{position:fixed; left:50%; transform:translateX(-50%); bottom:14px; background:#113761; color:#fff; z-index:1550; border-radius:22px; padding:8px 12px; display:flex; gap:10px; align-items:center; box-shadow:0 12px 28px rgba(0,0,0,.3)}
+#voiceBar button{width:34px; height:34px; border-radius:10px; border:1px solid #cfe3f5; background:transparent; color:#eaf0f6; display:grid; place-items:center; cursor:pointer}
+#voiceBar .now{font-size:12px; max-width:52vw; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:#f1f5f9}
+/* Fullscreen */
+#fsOverlay{ position:fixed; inset:0; background:#fff; z-index:1700; display:none; }
+#fsOverlay.show{ display:block } #fsHeader{ position:sticky; top:0; background:#fff; padding:10px 14px; border-bottom:1px solid #e2eef7; display:flex; align-items:center; gap:10px }
+#fsHeader .ttl{ font-weight:700; color:#173f64; flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
+#fsHeader button{ width:36px; height:36px; border-radius:10px; border:1px solid #d5e6f6; background:#fff; }
+#fsBody{ padding:14px; height:calc(100% - 58px); overflow:auto } #fsBody .article-content{ font-size:1.04rem }
+#fsNavPrev,#fsNavNext{ position:fixed; top:50%; transform:translateY(-50%); width:42px; height:42px; border-radius:50%; border:none; background:var(--primary); color:#fff; display:grid; place-items:center; z-index:1710; opacity:.9 }
+#fsNavPrev{ left:10px } #fsNavNext{ right:10px }
+footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c6785;font-size:12px}
+
+/* ===== Anti-sélection / anti-copie ===== */
+.no-select, .no-select *:not(input):not(textarea):not(.selectable){
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  -webkit-touch-callout: none !important;
+}
+</style>
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#22c55e">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<!-- HIDE AUTH/VIEWS WIDGETS OUTSIDE HOME (safe) -->
+<style>
+  #auth-fab, .views-badge, #auth-modal, .card-views-badge { display: none !important; }
+</style>
+
+</head>
+<body>
+<header>
+  <div class="container">
+    <div class="logo"><i class="fa-solid fa-chalkboard-user"></i></div>
+    <div>
+      <h1>Code de Conduite — Éducation Nationale</h1>
+      <div class="sub">Lecteur optimisé (éducation) • Sommaire • Recherche • Lecture continue • Plein écran</div>
+    </div>
+    <div class="control-buttons">
+      <button class="btn" id="tocHeaderBtn" title="Sommaire"><i class="fa-solid fa-graduation-cap"></i></button>
+      <button class="btn" title="Haut de page" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fa-solid fa-angles-up"></i></button>
+    </div>
+  </div>
+</header>
+<main class="wrapper"><section class="group"><h2>CHAPITRE I : OBJET ET CHAMP D&#x27;APPLICATION</h2><div class="article" id="Article_1"><div class="article-header"><h3>Article 1</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Il est institué un code de conduite des personnels des structures publiques et privées relevant du Ministère de l'Éducation Nationale et de l'Enseignement Technique.</p>
+<p>Il a pour objet de contribuer au renforcement de la cohésion sociale, d'assurer la protection des élèves, de faire la promotion des valeurs de citoyenneté et de développer des relations de convivialité entre les parents d'élèves, la communauté et l'école.</p>
+<p>Il traite :</p>
+<ul>
+<li>de la déontologie desdits personnels ;</li>
+<li>des sanctions disciplinaires prévues en cas de manquement aux dispositions du présent code de conduite ;</li>
+<li>du cadre institutionnel et des procédures pour l'application des sanctions disciplinaires.</li>
+</ul>
+</div></div><div class="article" id="Article_2"><div class="article-header"><h3>Article 2</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le présent code est applicable à tous les personnels des structures publiques et privées relevant du Ministère de l'Éducation Nationale et de l'Enseignement Technique sans exclusive.</p>
+</div></div></section><section class="group"><h2>CHAPITRE II : VALEURS MORALES ET ATTITUDES COMMUNES REQUISES</h2><div class="article" id="Article_3"><div class="article-header"><h3>Article 3</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Tout membre des personnels des structures publiques et privées relevant du Ministère de l'Éducation Nationale et de l'Enseignement Technique doit être :</p>
+<ol>
+<li>de bonne moralité ;</li>
+<li>aimable, attentionné ;</li>
+<li>accessible et disponible ;</li>
+<li>ponctuel et assidu au travail.</li>
+</ol>
+</div></div><div class="article" id="Article_4"><div class="article-header"><h3>Article 4</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Tout membre des personnels des structures publiques et privées relevant du Ministère de l'Éducation Nationale et de l'Enseignement Technique doit :</p>
+<ol>
+<li>traiter l'élève avec respect ;</li>
+<li>respecter l'intégrité physique et morale de l'élève en toute circonstance ;</li>
+<li>privilégier la communication avec l'élève et tenir compte de son avis ;</li>
+<li>avoir un langage décent avec l'élève ;</li>
+<li>avoir un comportement exemplaire ;</li>
+<li>faire preuve d'impartialité et d'équité ;</li>
+<li>inspirer respect et confiance ;</li>
+<li>veiller à établir une relation de confiance avec chaque élève ;</li>
+<li>prendre en compte, en toute circonstance, les besoins de l'élève et tenir compte de son intérêt supérieur dans toute décision le concernant.</li>
+</ol>
+</div></div></section><section class="group"><h2>CHAPITRE III : COMPORTEMENTS INTERDITS</h2><div class="article" id="Article_5"><div class="article-header"><h3>Article 5</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Sont interdits et passibles de sanctions disciplinaires :</p>
+<ol>
+<li>toute tenue indécente, à caractère politique, religieux ou relative à une publicité non autorisée en milieu scolaire, ainsi que les chaussures non fermées, les tatouages, les piercings et les dread ;</li>
+<li>tout prosélytisme à caractère politique ou religieux, de même que l'expression d'une opinion personnelle syndicale, religieuse ou politique face aux élèves ;</li>
+<li>l'absence au poste sans autorisation du supérieur hiérarchique ;</li>
+<li>l'exclusion d'un élève des cours non conforme aux dispositions prévues dans le règlement intérieur de l'établissement ;</li>
+<li>toute tâche confiée à un élève en dehors d'un objectif pédagogique clairement défini par le Ministère, à fortiori inadaptée à l'âge de l'élève ;</li>
+<li>toute forme de discrimination notamment celle basée sur l'ethnie, la religion, la race, la situation sociale, le genre et/ou le handicap de l'élève ;</li>
+<li>toute forme de propos à caractère insultant, humiliant, discriminatoire ou raciste à l'endroit de l'élève ;</li>
+<li>toute forme de menace sur l'élève ;</li>
+<li>toute forme de punition physique, psychologique et humiliante à l'endroit de l'élève ;</li>
+<li>l'introduction, la vente et/ou la consommation d'alcool et de tabac à l'intérieur et aux abords des établissements scolaires et dans les administrations relevant du Ministère.</li>
+</ol>
+</div></div><div class="article" id="Article_6"><div class="article-header"><h3>Article 6</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Sont interdits et passibles de sanctions disciplinaires et/ou de poursuites judiciaires :</p>
+<ol>
+<li>les relations sexuelles entre tout agent et les élèves ;</li>
+<li>toute forme de harcèlement sexuel sur les élèves ;</li>
+<li>les attouchements sexuels sur les élèves ;</li>
+<li>la divulgation de toute information confidentielle concernant la situation personnelle ou familiale d'un élève ;</li>
+<li>l'acceptation ou la sollicitation d'un avantage financier, matériel ou de quelque nature que ce soit, en contrepartie de la notation, de la progression scolaire d'un élève ou d'un autre traitement particulier que ce soit à l'intérieur ou à l'extérieur de l'établissement scolaire ;</li>
+<li>les coups et blessures volontaires sur les élèves ;</li>
+<li>la consommation du tabac, la vente et la consommation de stupéfiants ou de toute autre substance psychotrope à l'intérieur et aux abords des établissements scolaires et dans les administrations relevant du Ministère.</li>
+</ol>
+</div></div></section><section class="group"><h2>CHAPITRE IV : SANCTIONS</h2><div class="article" id="Article_7"><div class="article-header"><h3>Article 7</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Tout agent membre des personnels des structures publiques et privées relevant du Ministère de l'Éducation Nationale et de l'Enseignement Technique qui enfreint les dispositions du présent code, s'expose à l'une des sanctions disciplinaires prévues par le Statut général de la Fonction Publique.</p>
+<p>Ce sont :</p>
+<ol>
+<li>sanctions du premier degré :
+                    <ul>
+<li>l'avertissement ;</li>
+<li>le blâme ;</li>
+<li>le déplacement d'office.</li>
+</ul>
+</li>
+<li>sanctions du second degré :
+                    <ul>
+<li>la radiation du tableau d'avancement ;</li>
+<li>la réduction du traitement dans la proportion maximum de 25 % et pour une durée ne pouvant excéder trente (30) jours ;</li>
+<li>l'exclusion temporaire pour une durée ne pouvant excéder six (06) mois. Cette sanction entraîne la perte de toute rémunération à l'exception des allocations familiales ;</li>
+<li>l'abaissement d'échelon ;</li>
+<li>l'abaissement de classe ;</li>
+<li>la révocation avec ou sans suspension des droits à pension.</li>
+</ul>
+</li>
+</ol>
+<p>La prise des sanctions du second degré relève de la compétence du Ministre en charge de la Fonction Publique, après avis du Conseil de Discipline.</p>
+</div></div><div class="article" id="Article_8"><div class="article-header"><h3>Article 8</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Les sanctions disciplinaires applicables aux fonctionnaires stagiaires sont :</p>
+<ol>
+<li>sanctions du premier degré :
+                    <ul>
+<li>l'avertissement ;</li>
+<li>le blâme ;</li>
+<li>la réduction du traitement dans la limite maximum de 25 % et pour une durée ne pouvant excéder trente jours.</li>
+</ul>
+</li>
+<li>sanctions du second degré :
+                    <ul>
+<li>l'exclusion définitive de l'emploi.</li>
+</ul>
+</li>
+</ol>
+</div></div><div class="article" id="Article_9"><div class="article-header"><h3>Article 9</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le supérieur hiérarchique dont dépend le fonctionnaire mis en cause engage la procédure disciplinaire par une demande d'explications écrite à lui adressée. S'il y a lieu de saisir le Conseil de Discipline, le Ministre en charge de l'Éducation Nationale adresse un rapport circonstancié des faits au Ministre en charge de la Fonction Publique.</p>
+</div></div><div class="article" id="Article_10"><div class="article-header"><h3>Article 10</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Tout stagiaire d'une structure de formation initiale sous tutelle du Ministère de l'Éducation Nationale et de l'Enseignement Technique qui enfreint aux dispositions du présent code, s'expose à une des sanctions disciplinaires prévues par le règlement intérieur de ladite structure.</p>
+</div></div><div class="article" id="Article_11"><div class="article-header"><h3>Article 11</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>En cas de violation des dispositions du présent code par un stagiaire d'une structure de formation initiale sous tutelle d'un autre Ministère, le Ministre de l'Éducation Nationale et de l'Enseignement Technique informe par écrit le Ministre de tutelle en vue de la prise d'une sanction disciplinaire par ce dernier.</p>
+</div></div><div class="article" id="Article_12"><div class="article-header"><h3>Article 12</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Tout membre des personnels des structures relevant du Ministère de l'Éducation Nationale et de l'Enseignement Technique, lié par un contrat de travail de droit privé qui enfreint aux dispositions du présent code, encourt l'une des sanctions prévues par la Convention Collective Interprofessionnelle à savoir :</p>
+<ul>
+<li>l'avertissement écrit ;</li>
+<li>la mise à pied temporaire sans salaire, d'une durée de 1 à 3 jours ;</li>
+<li>la mise à pied temporaire sans salaire, d'une durée de 4 à 8 jours ;</li>
+<li>le licenciement.</li>
+</ul>
+<p>La sanction est prise par le chef d'établissement ou son représentant après que l'intéressé, assisté s'il le désire, d'un délégué du personnel s'il y en a, aura fourni les explications écrites. La sanction est signifiée par écrit à celui-ci et ampliation de la sanction est adressée à l'Inspecteur du travail territorialement compétent.</p>
+<p>Une copie de la sanction accompagnée des explications écrites de l'agent devra être adressée au Ministre de l'Éducation Nationale et de l'Enseignement Technique par le chef d'établissement.</p>
+</div></div><div class="article" id="Article_13"><div class="article-header"><h3>Article 13</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Lorsque l'agent fautif est un enseignant du secteur privé ou un Directeur des Études, il encourt soit l'une des sanctions disciplinaires prévues à l'article 11, soit le retrait de son autorisation d'enseigner ou de diriger.</p>
+<p>Si la faute est commise par un enseignant fonctionnaire dans le cadre d'une vacation sur un élève d'un établissement scolaire privé, même en dehors de cet établissement, le mis en cause encourt l'une des sanctions prévues à l'article 7. Dans ce cas, le chef de cet établissement privé adresse un courrier contenant les explications écrites du mis en cause au Ministre de l'Éducation Nationale et de l'Enseignement Technique pour la prise de la sanction disciplinaire.</p>
+</div></div><div class="article" id="Article_14"><div class="article-header"><h3>Article 14</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Lorsque les faits sont constitutifs d'une infraction pénale, notamment ceux indiqués à l'article 6, l'auteur est passible d'une poursuite judiciaire. Le Ministère de l'Éducation Nationale et de l'Enseignement Technique se réserve par ailleurs le droit de se constituer partie civile.</p>
+</div></div><div class="article" id="Article_15"><div class="article-header"><h3>Article 15</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Les ouvriers et les personnels contractuels des structures publiques du Ministère de l'Éducation Nationale et de l'Enseignement Technique qui violent les dispositions du présent code s'exposent :</p>
+<ul>
+<li>à la rupture de leur contrat de travail ;</li>
+<li>à la poursuite judiciaire selon la gravité des faits.</li>
+</ul>
+</div></div><div class="article" id="Article_16"><div class="article-header"><h3>Article 16</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Tout membre des personnels des structures publiques et privées du Ministère de l'Éducation Nationale et de l'Enseignement Technique qui a connaissance de faits ou agissements avérés contraires au présent code, que ce soit à l'intérieur ou à l'extérieur de l'établissement scolaire, a obligation d'en informer sans délai, par écrit ou par voie orale, son supérieur hiérarchique.</p>
+<p>S'il se garde de dénoncer les faits, il est passible d'une sanction.</p>
+</div></div><div class="article" id="Article_17"><div class="article-header"><h3>Article 17</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le supérieur hiérarchique informé des faits, a obligation de saisir l'autorité compétente pour ordonner une enquête administrative interne et d'informer le Procureur de la République lorsque les faits sont constitutifs de délits ou de crimes commis sur les élèves, conformément à l'article 40 alinéa 2 du Code de Procédure Pénale.</p>
+</div></div><div class="article" id="Article_18"><div class="article-header"><h3>Article 18</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Il est interdit à toute autorité hiérarchique de divulguer l'identité de celui qui a fait la dénonciation des faits sous peine de sanction disciplinaire.</p>
+</div></div><div class="article" id="Article_19"><div class="article-header"><h3>Article 19</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>L'auteur d'une dénonciation de faits inexacts et mensongers encourt une sanction disciplinaire.</p>
+</div></div><div class="article" id="Article_20"><div class="article-header"><h3>Article 20</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le supérieur hiérarchique qui par son attitude entrave l'engagement d'une procédure ou fait obstacle à la poursuite d'une procédure engagée est passible de sanction disciplinaire.</p>
+</div></div></section><section class="group"><h2>CHAPITRE V : DISPOSITIONS FINALES</h2><div class="article" id="Article_21"><div class="article-header"><h3>Article 21</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Chaque membre des personnels des structures publiques et privées du Ministère de l'Éducation Nationale et de l'Enseignement Technique doit s'engager à respecter les principes et bonnes pratiques énoncés dans le présent code afin de garantir les droits à l'éducation et à la protection de tous les enfants élèves, filles et garçons.</p>
+</div></div><div class="article" id="Article_22"><div class="article-header"><h3>Article 22</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le présent arrêté qui prend effet à compter de sa date de signature et abroge l'arrêté n°0126/MEN/DELC/IGEN du 27 septembre 2012 portant code de conduite des personnels du Ministère de l'Éducation Nationale, sera enregistré publié et communiqué partout où besoin sera.</p>
+</div></div></section></main>
+<button id="tocFloatBtn" title="Sommaire" class="btn"><i class="fa-solid fa-book"></i></button>
+<div id="tocOverlay"></div>
+<aside id="tocPanel"><header><h3><i class="fa-solid fa-school"></i> Sommaire</h3></header><div class="toc-list" id="tocList"></div></aside>
+<div id="voiceBar" role="region" aria-label="Lecteur vocal">
+  <button id="vPrev" title="Article précédent"><i class="fas fa-backward"></i></button>
+  <button id="vPlay" title="Lire / Reprendre"><i class="fas fa-play"></i></button>
+  <button id="vPause" title="Pause"><i class="fas fa-pause"></i></button>
+  <button id="vStop" title="Arrêter"><i class="fas fa-stop"></i></button>
+  <button id="vNext" title="Article suivant"><i class="fas fa-forward"></i></button>
+  <span class="now" id="vNow">—</span>
+</div>
+<div id="fsOverlay">
+  <div id="fsHeader">
+    <button id="fsClose" title="Fermer"><i class="fas fa-xmark"></i></button>
+    <div class="ttl" id="fsTitle"></div>
+    <button id="fsPlay" title="Lecture"><i class="fas fa-play"></i></button>
+  </div>
+  <div id="fsBody"><article class="article"><div class="article-content" id="fsContent"></div></article></div>
+  <button id="fsNavPrev" title="Précédent"><i class="fas a-chevron-left"></i></button>
+  <button id="fsNavNext" title="Suivant"><i class="fas fa-chevron-right"></i></button>
+</div>
+
+<script>
+function initSearchFeature() {
+    const searchBtn = document.createElement('button');
+    searchBtn.className = 'btn';
+    searchBtn.id = 'searchBtn';
+    searchBtn.title = 'Rechercher';
+    searchBtn.innerHTML = '<i class="fas fa-search"></i>';
+    document.querySelector('.control-buttons').appendChild(searchBtn);
+    
+    const searchInterface = document.createElement('div');
+    searchInterface.id = 'searchInterface';
+    searchInterface.style.cssText = `
+        position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+        width: calc(100% - 40px); max-width: 550px; background: #fff;
+        padding: 10px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        z-index: 1800; display: none; align-items: center; gap: 5px; transition: .25s ease;
+    `;
+    searchInterface.innerHTML = `
+        <input type="text" id="searchInput" placeholder="Rechercher..." style="flex-grow: 1; padding: 8px; border: 1px solid #d6e2ef; border-radius: 5px;">
+        <button id="searchPrevBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-up"></i></button>
+        <button id="searchNextBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-down"></i></button>
+        <span id="searchResultsCount" style="flex-shrink: 0; padding: 0 5px; min-width: 40px; text-align: center;"></span>
+        <button id="closeSearchBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-times"></i></button>
+    `;
+    document.body.appendChild(searchInterface);
+
+    let searchResults = [];
+    let currentSearchIndex = -1;
+    let originalContents = new Map();
+
+    function performSearch() {
+        const searchTerm = document.getElementById('searchInput').value.trim();
+        if (!originalContents.size) {
+            document.querySelectorAll('.article-content, h2, h3').forEach(el => originalContents.set(el, el.innerHTML));
+        }
+        originalContents.forEach((content, el) => el.innerHTML = content);
+        searchResults = [];
+        currentSearchIndex = -1;
+        if (!searchTerm) { updateSearchUI(); return; }
+
+        const regex = new RegExp(searchTerm.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&'), 'gi');
+        originalContents.forEach((content, element) => {
+            element.innerHTML = content.replace(regex, match => `<mark>${match}</mark>`);
+        });
+        searchResults = Array.from(document.querySelectorAll('mark'));
+        if (searchResults.length > 0) navigateResults(true, false);
+        updateSearchUI();
+        window.dispatchEvent(new Event('reflowArticles'));
+    }
+
+    function navigateResults(isNext, shouldWrap = true) {
+        if (!searchResults.length) return;
+        searchResults.forEach(mark => mark.style.backgroundColor = '');
+        if (shouldWrap) {
+            currentSearchIndex = isNext ? (currentSearchIndex + 1) % searchResults.length : (currentSearchIndex - 1 + searchResults.length) % searchResults.length;
+        } else {
+            currentSearchIndex = 0;
+        }
+        const currentMark = searchResults[currentSearchIndex];
+        currentMark.style.backgroundColor = 'var(--accent)';
+        currentMark.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        updateSearchUI();
+    }
+
+    function updateSearchUI() {
+        document.getElementById('searchResultsCount').textContent = searchResults.length > 0 ? `${currentSearchIndex + 1}/${searchResults.length}` : '0/0';
+    }
+    
+    function resetSearch() {
+        originalContents.forEach((content, el) => el.innerHTML = content);
+        originalContents.clear();
+        document.getElementById('searchInput').value = '';
+        searchResults = []; currentSearchIndex = -1;
+        updateSearchUI();
+    }
+
+    searchBtn.addEventListener('click', () => {
+        const isVisible = searchInterface.style.display === 'flex';
+        searchInterface.style.display = isVisible ? 'none' : 'flex';
+        if (isVisible) resetSearch(); else document.getElementById('searchInput').focus();
+    });
+    document.getElementById('searchInput').addEventListener('input', performSearch);
+    document.getElementById('searchNextBtn').addEventListener('click', () => navigateResults(true));
+    document.getElementById('searchPrevBtn').addEventListener('click', () => navigateResults(false));
+    document.getElementById('closeSearchBtn').addEventListener('click', () => {
+        searchInterface.style.display = 'none';
+        resetSearch();
+    });
+}
+</script>
+
+
+<script>
+(function(){
+  function extractEnumeration(s){
+    const re = /(\d{1,2})(?:\s*°)?(?:\))?(?:\.)?\s+/g; const matches = []; let m;
+    while ((m = re.exec(s))){ const idx=m.index; const prev = idx>0 ? s.charAt(idx-1) : " "; if (/\d/.test(prev)) continue; matches.push({num:parseInt(m[1],10), start:idx, end:re.lastIndex}); }
+    if (matches.length < 2) return null;
+    for (let i=1;i<matches.length;i++){ if (matches[i].num !== matches[i-1].num + 1) return null; }
+    const intro = s.slice(0, matches[0].start).trim().replace(/[:;,\-]\s*$/, ""); const items = [];
+    for (let i=0;i<matches.length;i++){ const st=matches[i].end; const en=(i+1<matches.length)?matches[i+1].start:s.length; let seg = s.slice(st,en).trim().replace(/^[;,:-]\s*/,"").replace(/[;,\s]+$/,""); items.push(seg); }
+    return {intro, start: matches[0].num, items};
+  }
+  function transformNode(node){
+    if (node.querySelector('ol')) return;
+    const plain = node.textContent.replace(/\s+/g,' ').trim(); const res = extractEnumeration(plain); if (!res) return;
+    const frag = document.createElement('div'); if (res.intro){ const p=document.createElement('p'); p.textContent=res.intro; frag.appendChild(p); }
+    const ol=document.createElement('ol'); if (res.start!==1) ol.setAttribute('start', String(res.start));
+    res.items.forEach(it=>{ const li=document.createElement('li'); li.textContent=it; ol.appendChild(li); });
+    frag.appendChild(ol); node.innerHTML=frag.innerHTML;
+  }
+  function run(){ document.querySelectorAll('.article-content').forEach(transformNode); }
+  window.addEventListener('DOMContentLoaded', ()=>setTimeout(run, 60));
+  window.addEventListener('reflowArticles', run);
+})();
+</script>
+
+
+<script>
+(function(){
+  const $ = s=>document.querySelector(s);
+  const $$ = s=>Array.from(document.querySelectorAll(s));
+  function buildTOC(){
+    const toc = document.getElementById('tocList'); if(!toc) return; toc.innerHTML='';
+    $$('.group').forEach((grp, gi)=>{
+      const gh = grp.querySelector('h2')?.textContent.trim() || `Groupe ${gi+1}`;
+      const gl = document.createElement('a'); gl.textContent=gh; gl.href='#'; gl.style.fontWeight='700';
+      gl.addEventListener('click', e=>{ e.preventDefault(); grp.scrollIntoView({behavior:'smooth', block:'start'}); hideTOC(); });
+      toc.appendChild(gl);
+      const sub = document.createElement('div'); sub.className='toc-sub';
+      grp.querySelectorAll('.article').forEach((art, ai)=>{
+        const at = art.querySelector('.article-header h3')?.textContent.trim() || `Article ${ai+1}`;
+        const a = document.createElement('a'); a.textContent=at; a.href='#';
+        a.addEventListener('click', e=>{ e.preventDefault(); art.scrollIntoView({behavior:'smooth', block:'start'}); hideTOC(); });
+        sub.appendChild(a);
+        if (!art.querySelector('.open-fs')){
+          const btn = document.createElement('button'); btn.className='open-fs'; btn.innerHTML='<i class="fas fa-maximize"></i>';
+          btn.title='Plein écran'; btn.addEventListener('click', ()=>openFS(artIndex(art))); art.querySelector('.article-header')?.appendChild(btn);
+        }
+      });
+      toc.appendChild(sub);
+    });
+  }
+  function showTOC(){ document.getElementById('tocOverlay').classList.add('show'); document.getElementById('tocPanel').classList.add('open'); }
+  function hideTOC(){ document.getElementById('tocOverlay').classList.remove('show'); document.getElementById('tocPanel').classList.remove('open'); }
+  document.addEventListener('DOMContentLoaded', ()=>{
+    const floatBtn = document.getElementById('tocFloatBtn');
+    if (floatBtn) floatBtn.addEventListener('click', showTOC);
+    const overlay = document.getElementById('tocOverlay');
+    if (overlay) overlay.addEventListener('click', hideTOC);
+    const headerBtn = document.getElementById('tocHeaderBtn');
+    if (headerBtn) headerBtn.addEventListener('click', showTOC);
+  });
+  const articles = $$('.article');
+  function artIndex(el){ return articles.indexOf(el); }
+  function getArticle(i){ return articles[Math.max(0, Math.min(articles.length-1, i))]; }
+  function artTitle(i){ const el=getArticle(i); return el? (el.querySelector('.article-header h3')?.textContent.trim()||'') : ''; }
+  function artText(i){ const el=getArticle(i); return el? (el.querySelector('.article-content')?.innerText.trim()||'') : ''; }
+  const synth = window.speechSynthesis;
+  let current = 0, utter = null, playing = false, paused = false, inFS=false;
+  function speakIndex(i){ stopSpeak(); current=i; const text=artText(i); if(!text){ nextArticle(); return; }
+    utter = new SpeechSynthesisUtterance(text); utter.lang='fr-FR'; utter.rate=1; utter.pitch=1;
+    utter.onend = ()=>{ if(playing && !paused){ nextArticle(); } };
+    try{ synth.speak(utter);}catch(e){ console.warn(e); }
+    playing=true; paused=false; updateUI(); highlightCurrent(); }
+  function highlightCurrent(){ articles.forEach(a=>a.classList.remove('reading')); const el=getArticle(current); if(el){ el.classList.add('reading'); if(!inFS) el.scrollIntoView({behavior:'smooth', block:'center'}); } document.getElementById('vNow').textContent = artTitle(current) || '—'; }
+  function pauseSpeak(){ if(synth && synth.speaking){ synth.pause(); paused=true; playing=true; } }
+  function resumeSpeak(){ if(synth && paused){ synth.resume(); paused=false; } else { speakIndex(current); } updateUI(); }
+  function stopSpeak(){ if(synth){ try{synth.cancel();}catch(e){} } playing=false; paused=false; updateUI(); }
+  function prevArticle(){ current=Math.max(0,current-1); if(playing){ speakIndex(current);} else {highlightCurrent();} if(inFS) openFS(current); }
+  function nextArticle(){ current=Math.min(articles.length-1,current+1); if(playing){ speakIndex(current);} else {highlightCurrent();} if(inFS) openFS(current); }
+  document.addEventListener('DOMContentLoaded', ()=>{
+    document.getElementById('vPlay').addEventListener('click', ()=>{ if(!playing || paused){ resumeSpeak(); } else { pauseSpeak(); } });
+    document.getElementById('vPause').addEventListener('click', ()=>pauseSpeak());
+    document.getElementById('vStop').addEventListener('click', ()=>{ stopSpeak(); });
+    document.getElementById('vPrev').addEventListener('click', prevArticle);
+    document.getElementById('vNext').addEventListener('click', nextArticle);
+  });
+  function updateUI(){ document.getElementById('vPlay').innerHTML = paused || !playing ? '<i class="fas fa-play"></i>' : '<i class="fas fa-pause"></i>'; }
+  function openFS(i){ inFS=true; current=i; document.getElementById('fsTitle').textContent=artTitle(i); document.getElementById('fsContent').textContent=artText(i); document.getElementById('fsOverlay').classList.add('show'); document.body.style.overflow='hidden'; speakIndex(i); }
+  function closeFS(){ inFS=false; document.getElementById('fsOverlay').classList.remove('show'); document.body.style.overflow=''; }
+  document.addEventListener('DOMContentLoaded', ()=>{
+    document.getElementById('fsClose').addEventListener('click', ()=>{ closeFS(); });
+    document.getElementById('fsPlay').addEventListener('click', ()=>{ if(!playing || paused){ resumeSpeak(); } else { pauseSpeak(); } });
+    document.getElementById('fsNavPrev').addEventListener('click', ()=>{ prevArticle(); });
+    document.getElementById('fsNavNext').addEventListener('click', ()=>{ nextArticle(); });
+    document.querySelectorAll('.article .open-fs').forEach((btn, idx)=> btn.addEventListener('click', ()=>openFS(idx)));
+    document.querySelectorAll('.article').forEach((art, idx)=> art.addEventListener('dblclick', ()=>openFS(idx)));
+    document.getElementById('fsOverlay').addEventListener('touchstart', (e)=>{ window.__touchX = e.changedTouches[0].clientX; }, {passive:true});
+    document.getElementById('fsOverlay').addEventListener('touchend', (e)=>{ const dx = e.changedTouches[0].clientX - (window.__touchX||0); const TH=50; if(dx<-TH){ nextArticle(); } else if(dx>TH){ prevArticle(); } }, {passive:true});
+  });
+  window.addEventListener('reflowArticles', ()=>{ buildTOC(); });
+  buildTOC();
+})();
+</script>
+
+<script>initSearchFeature(); window.dispatchEvent(new Event('reflowArticles'));</script>
+<footer>Source HTML fournie par vous (codeeducation.html), adaptée au modèle lecteur. Thème éducation & icônes enseignants.</footer>
+
+<script>
+(function(){
+  function isInteractive(el){
+    if (!el) return false;
+    if (el.tagName){
+      const tag = el.tagName.toLowerCase();
+      if (['input','textarea','select'].includes(tag)) return true;
+    }
+    if (el.isContentEditable) return true;
+    if (el.closest && el.closest('#searchInterface')) return true;
+    return false;
+  }
+  document.addEventListener('DOMContentLoaded', ()=>{ document.body.classList.add('no-select'); });
+  document.addEventListener('contextmenu', e=>{ if (!isInteractive(e.target)) e.preventDefault(); }, {capture:true});
+  document.addEventListener('selectstart', e=>{ if (!isInteractive(e.target)) e.preventDefault(); }, {capture:true});
+  ['copy','cut','paste','dragstart'].forEach(type=>{
+    document.addEventListener(type, e=>{ if (!isInteractive(document.activeElement)) e.preventDefault(); }, {capture:true});
+  });
+  document.addEventListener('keydown', e=>{
+    const k=(e.key||'').toLowerCase();
+    const combo=(e.ctrlKey||e.metaKey)&&['c','x','a','s','p','insert'].includes(k);
+    if(combo && !isInteractive(document.activeElement)){ e.preventDefault(); e.stopPropagation(); }
+  }, {capture:true});
+})();
+</script>
+
+  <script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js"));
+  }
+</script>
+  <!-- PWA Install Button -->
+<button id="pwa-install-btn" aria-label="Installer l'application" hidden>Installer</button>
+<style>
+  #pwa-install-btn{
+    position:fixed; right:16px; bottom:16px; z-index:9999;
+    padding:10px 14px; border:none; border-radius:999px;
+    background:#22c55e; color:white; font:600 14px system-ui,Segoe UI,Roboto,Arial,sans-serif;
+    box-shadow:0 8px 20px rgba(34,197,94,.35);
+  }
+  #pwa-install-btn[hidden]{ display:none; }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    #pwa-install-btn{ bottom: calc(16px + env(safe-area-inset-bottom)); }
+  }
+</style>
+<script>
+  (function(){
+    let deferredPrompt;
+    const btnId = "pwa-install-btn";
+    function ensureBtn(){
+      let b = document.getElementById(btnId);
+      if(!b){
+        b = document.createElement("button");
+        b.id = btnId;
+        b.textContent = "Installer";
+        document.body.appendChild(b);
+      }
+      return b;
+    }
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      const btn = ensureBtn();
+      btn.hidden = false;
+      btn.onclick = async () => {
+        btn.hidden = true;
+        deferredPrompt.prompt();
+        await deferredPrompt.userChoice;
+        deferredPrompt = null;
+      };
+    });
+    if (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) {
+      const btn = document.getElementById(btnId);
+      if(btn) btn.hidden = true;
+    }
+  })();
+</script>
+  <!-- Auth UI minimal -->
+<style>
+  .auth-box{position:fixed; top:12px; right:12px; z-index:9998; background:#ffffff; color:#111827; border-radius:12px; padding:10px 12px; box-shadow:0 10px 24px rgba(0,0,0,.12); font:500 14px system-ui,Segoe UI,Roboto,Arial}
+  .auth-box h4{margin:0 0 6px; font-size:14px}
+  .auth-box form{display:flex; gap:6px; flex-wrap:wrap; align-items:center}
+  .auth-box input{padding:6px 8px; border:1px solid #e5e7eb; border-radius:8px}
+  .auth-box button{background:#22c55e; color:#fff; border:none; padding:6px 10px; border-radius:8px; cursor:pointer}
+  .auth-box .row{display:flex; gap:6px; flex-wrap:wrap}
+  .views-badge{position:fixed; left:12px; bottom:12px; z-index:9998; background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px; font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)}
+</style><!-- Admin link (visible only when logged-in) -->
+<style>
+  .admin-link{
+    position:fixed; right:16px; bottom:88px; z-index:9998;
+    display:none; align-items:center; gap:8px;
+    padding:10px 14px; border-radius:999px; text-decoration:none;
+    background:#111827; color:#fff; font:600 14px system-ui,Segoe UI,Roboto,Arial;
+    box-shadow:0 8px 20px rgba(0,0,0,.3);
+    border:1px solid rgba(255,255,255,.1);
+  }
+  body.logged-in .admin-link{ display:inline-flex; }
+  .admin-link:hover{ filter:brightness(1.1); }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    .admin-link{ bottom: calc(88px + env(safe-area-inset-bottom)); }
+  }
+</style>
+<a href="admin.html" class="admin-link" title="Tableau de bord">Admin</a>
+  <script type="module" src="assets/firebase-app.js"></script>
+  <script>window.autoCountAndBind && window.autoCountAndBind();</script>
+  
+<!-- Floating Auth Button + Modal -->
+<style>
+  #auth-fab{
+    position:fixed; right:16px; bottom:68px; z-index:9998;
+    width:48px; height:48px; border-radius:999px; border:none; cursor:pointer;
+    background:#111827; color:#fff; display:grid; place-items:center;
+    box-shadow:0 8px 20px rgba(0,0,0,.35); border:1px solid rgba(255,255,255,.1);
+  }
+  body.logged-in #auth-fab::after{ content:"✓"; }
+  #auth-fab::after{ content:"👤"; font-size:20px; }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    #auth-fab{ bottom: calc(68px + env(safe-area-inset-bottom)); }
+  }
+  .views-badge{
+    position:fixed; left:12px; bottom:12px; z-index:9998; 
+    background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px;
+    font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)
+  }
+  dialog#auth-modal{
+    border:none; border-radius:16px; padding:0; width:min(90vw,420px);
+    box-shadow:0 24px 72px rgba(0,0,0,.35); overflow:hidden;
+  }
+  dialog::backdrop{ background:rgba(0,0,0,.4); }
+  .auth-modal-head{background:#0f172a; color:#fff; padding:12px 16px; display:flex; justify-content:space-between; align-items:center}
+  .auth-modal-body{padding:16px; background:#111827; color:#e5e7eb}
+  .auth-modal-body label{display:block; font-size:13px; margin-top:8px; opacity:.9}
+  .auth-modal-body input{width:100%; padding:10px 12px; border-radius:10px; border:1px solid #1f2937; background:#0b1021; color:#e5e7eb}
+  .auth-actions{display:flex; gap:8px; margin-top:14px}
+  .btn{border:none; border-radius:10px; padding:10px 12px; cursor:pointer; font-weight:600}
+  .btn-primary{background:#22c55e; color:white}
+  .btn-ghost{background:transparent; color:#e5e7eb; border:1px solid #374151}
+  .muted{opacity:.8}
+</style>
+
+<button id="auth-fab" title="Connexion / Compte"></button>
+<div class="views-badge">Vues : <span id="viewCounter">0</span></div>
+
+<dialog id="auth-modal">
+  <div class="auth-modal-head">
+    <strong>Connexion</strong>
+    <button class="btn btn-ghost" id="auth-close" aria-label="Fermer">✕</button>
+  </div>
+  <div class="auth-modal-body">
+    <p class="muted">Connecte-toi pour accéder à l’admin et une meilleure expérience.</p>
+    <label>Email</label>
+    <input type="email" id="auth-email" placeholder="email@exemple.com" required>
+    <label>Mot de passe</label>
+    <input type="password" id="auth-pass" placeholder="••••••••" required>
+    <div class="auth-actions">
+      <button class="btn btn-primary" id="btn-login">Connexion</button>
+      <button class="btn btn-ghost" id="btn-register">Créer un compte</button>
+      <button class="btn btn-ghost" id="btn-logout">Déconnexion</button>
+    </div>
+    <div id="auth-msg" class="muted" style="margin-top:8px;"></div>
+  </div>
+</dialog>
+
+<script type="module">
+  import { authRegister, authLogin, authLogout } from "./assets/firebase-app.js";
+
+  const fab = document.getElementById("auth-fab");
+  const modal = document.getElementById("auth-modal");
+  const closeBtn = document.getElementById("auth-close");
+  const email = document.getElementById("auth-email");
+  const pass = document.getElementById("auth-pass");
+  const msg  = document.getElementById("auth-msg");
+  const btnLogin = document.getElementById("btn-login");
+  const btnRegister = document.getElementById("btn-register");
+  const btnLogout = document.getElementById("btn-logout");
+
+  function openModal(){ try{ modal.showModal(); }catch{ modal.setAttribute("open",""); } }
+  function closeModal(){ modal.close?.(); modal.removeAttribute("open"); }
+
+  fab?.addEventListener("click", openModal);
+  closeBtn?.addEventListener("click", closeModal);
+
+  async function handle(run){
+    msg.textContent = "";
+    try{
+      await run(email.value.trim(), pass.value);
+      msg.textContent = "✅ Opération réussie.";
+      setTimeout(()=>{ closeModal(); }, 500);
+    }catch(e){
+      console.error(e);
+      msg.textContent = "❌ " + (e?.message || "Erreur");
+    }
+  }
+
+  btnLogin?.addEventListener("click", () => handle(authLogin));
+  btnRegister?.addEventListener("click", () => handle(authRegister));
+  btnLogout?.addEventListener("click", async () => {
+    msg.textContent = "";
+    try{ await authLogout(); msg.textContent = "✅ Déconnecté."; }catch(e){ msg.textContent = "❌ " + (e?.message||"Erreur"); }
+  });
+</script>
+
+
+<!-- Per-card view counters -->
+<style>
+  .card-views-badge{
+    position:absolute; top:8px; right:8px;
+    background:rgba(17,24,39,.9); color:#fff;
+    padding:4px 8px; border-radius:999px; font:600 12px system-ui,Segoe UI,Roboto,Arial;
+    box-shadow:0 6px 14px rgba(0,0,0,.25);
+    pointer-events:none;
+  }
+  .card-views-wrap{ position:relative; }
+</style>
+<script type="module">
+  import { getViewCount } from "./assets/firebase-app.js";
+  function basename(href){
+    try{ const u = new URL(href, location.href);
+         const file = u.pathname.split('/').pop() || 'index.html';
+         return file.replace(/\.html$/i,''); }
+    catch{ return (href.split('/').pop()||'index.html').replace(/\.html$/i,''); }
+  }
+  async function attachCounterTo(el, docId){
+    let container = el.closest('.card, .item, .panel, .box, .article, .doc, .tile');
+    if(!container){ container = el.parentElement; }
+    if(container && !container.classList.contains('card-views-wrap')){
+      container.classList.add('card-views-wrap');
+    }
+    const host = container || el;
+    if(host.querySelector('.card-views-badge[data-doc="'+docId+'"]')) return;
+    const badge = document.createElement('span');
+    badge.className = 'card-views-badge';
+    badge.dataset.doc = docId;
+    badge.textContent = 'Vues: …';
+    host.appendChild(badge);
+    try{ const n = await getViewCount(docId);
+         badge.textContent = 'Vues: ' + n; }
+    catch{ badge.textContent = 'Vues: —'; }
+  }
+  async function initCardCounters(){
+    const links = Array.from(document.querySelectorAll('[data-doc-id], a[href$=".html"]'))
+      .filter(a => {
+        const id = a.getAttribute('data-doc-id') || basename(a.getAttribute('href')||'');
+        return id && !['index','admin','offline'].includes(id.toLowerCase());
+      });
+    const handled = new Set();
+    for(const a of links){
+      const id = a.getAttribute('data-doc-id') || basename(a.getAttribute('href')||'');
+      if(!id || handled.has(id)) continue;
+      handled.add(id);
+      attachCounterTo(a, id);
+    }
+  }
+  initCardCounters();
+  const obs = new MutationObserver(()=>initCardCounters());
+  obs.observe(document.body, { childList:true, subtree:true });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,2312 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statut de la Police Nationale de Côte d'Ivoire</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Raleway:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+    :root {
+        /* Nouveau thème Police Nationale - couleurs officielles */
+        --primary-color: #1a4e8e;    /* Bleu police */
+        --secondary-color: #d4af37;  /* Or pour les détails */
+        --accent-color: #b22234;     /* Rouge pour les accents importants */
+        --light-color: #f5f5f5;      /* Gris très clair */
+        --dark-color: #2c3e50;       /* Bleu foncé pour le texte */
+        --success-color: #2e8b57;    /* Vert pour validation */
+        --badge-color: #d4af37;      /* Couleur des insignes */
+        
+        --transition: all 0.3s ease;
+        --text-color: #2c3e50;
+        --bg-color: #f9f9f9;
+        --article-bg: #ffffff;
+        --header-bg: linear-gradient(135deg, var(--primary-color), #0d2d5e);
+        --border-color: rgba(26, 78, 142, 0.2);
+        --shadow-color: rgba(26, 78, 142, 0.1);
+        
+        /* Nouveaux motifs d'arrière-plan */
+        --bg-pattern: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h100v100H0z' fill='%231a4e8e' fill-opacity='0.03'/%3E%3Cpath d='M50 50L0 25L50 0L100 25L50 50Z' fill='%231a4e8e10' /%3E%3Cpath d='M20 20l60 60M80 20L20 80' stroke='%231a4e8e05' stroke-width='2'/%3E%3C/svg%3E");
+    }
+        
+    .dark-mode {
+        --primary-color: #2a5ca0;
+        --secondary-color: #c19b2e;
+        --accent-color: #c42b3c;
+        --light-color: #2c3e50;
+        --dark-color: #ecf0f1;
+        --success-color: #3da76a;
+        --badge-color: #c19b2e;
+        --text-color: #ecf0f1;
+        --bg-color: #1e2a38;
+        --article-bg: #253447;
+        --header-bg: linear-gradient(135deg, #2a5ca0, #15315f);
+        --bg-pattern: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h100v100H0z' fill='%23ffffff' fill-opacity='0.02'/%3E%3Cpath d='M50 50L0 25L50 0L100 25L50 50Z' fill='%23ffffff05' /%3E%3Cpath d='M20 20l60 60M80 20L20 80' stroke='%23ffffff03' stroke-width='2'/%3E%3C/svg%3E");
+    }
+        
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+        
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        line-height: 1.6;
+        padding: 20px;
+        background-image: var(--bg-pattern);
+        transition: var(--transition);
+    }
+        
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+        background: var(--article-bg);
+        border-radius: 10px;
+        box-shadow: 0 5px 20px var(--shadow-color);
+        overflow: hidden;
+        border: 1px solid var(--primary-color);
+        transition: var(--transition);
+        position: relative;
+    }
+    
+    /* Ajout d'un bandeau officiel en haut */
+    .container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+        background: linear-gradient(90deg, var(--primary-color) 50%, var(--accent-color) 50%);
+        z-index: 10;
+    }
+        
+    header {
+        background: var(--header-bg);
+        color: white;
+        padding: 30px;
+        text-align: center;
+        border-bottom: 5px solid var(--secondary-color);
+        position: relative;
+        transition: var(--transition);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+        
+    header::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, transparent, var(--secondary-color), transparent);
+    }
+    
+    .logo-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+    
+    .logo {
+        width: 100px;
+        height: 100px;
+        background: white;
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        border: 3px solid var(--secondary-color);
+        padding: 5px;
+    }
+    
+    .logo-text {
+        text-align: center;
+        line-height: 1.2;
+        font-weight: bold;
+        color: var(--primary-color);
+        font-size: 12px;
+    }
+    
+    .logo-text span {
+        display: block;
+    }
+    
+    .logo-text .police {
+        font-size: 16px;
+        font-weight: 800;
+        margin-bottom: 2px;
+    }
+    
+    .logo-text .rci {
+        font-size: 14px;
+        letter-spacing: 1px;
+        margin: 2px 0;
+    }
+    
+    .logo-text .selfwide {
+        font-size: 10px;
+        margin-top: 3px;
+        color: var(--accent-color);
+        font-weight: 700;
+    }
+        
+    h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.2rem;
+        margin-bottom: 10px;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        letter-spacing: 0.5px;
+    }
+
+    .subtitle {
+        font-style: italic;
+        opacity: 0.9;
+        font-size: 1.1rem;
+        margin-top: 10px;
+        font-weight: 300;
+    }
+        
+    .content {
+        padding: 30px;
+    }
+        
+    .section {
+        margin-bottom: 30px;
+        scroll-margin-top: 20px;
+        position: relative;
+    }
+        
+    h2 {
+        font-family: 'Georgia', serif;
+        font-size: 1.8rem;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--secondary-color);
+        position: relative;
+        transition: var(--transition);
+        padding-right: 30px;
+        padding-left: 15px;
+    }
+
+    /* Ajout d'un fond discret pour les titres de chapitres */
+    h2::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 5px;
+        background: var(--primary-color);
+        border-radius: 2px;
+    }
+
+    /* Icônes représentant la fonction publique */
+    h2::after {
+        content: "👮‍♂️"; /* Symbole de policier */
+        position: absolute;
+        right: 0;
+        bottom: 10px;
+    }
+
+    .section:nth-child(2n) h2::after {
+        content: "📋"; /* Symbole de dossier administratif */
+    }
+        
+    .section:nth-child(3n) h2::after {
+        content: "⚖️"; /* Balance de la justice */
+    }
+        
+    .section:nth-child(4n) h2::after {
+        content: "🎖️"; /* Médaille pour distinction */
+    }
+        
+    .section:nth-child(5n) h2::after {
+        content: "📜"; /* Parchemin des documents officiels */
+    }
+
+    .articleX {
+        background: var(--article-bg);
+        border-left: 4px solid var(--primary-color);
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 0 8px 8px 0;
+        box-shadow: 0 3px 10px var(--shadow-color);
+        scroll-margin-top: 20px;
+        position: relative;
+        transition: var(--transition);
+        cursor: pointer;
+    }
+        
+    .articleX::before {
+        content: "🔹"; /* Symbole plus sobre */
+        position: absolute;
+        left: -15px;
+        top: 15px;
+        background: var(--article-bg);
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid var(--primary-color);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        transition: var(--transition);
+        font-size: 14px;
+    }
+        
+    .article-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.4rem;
+        color: var(--dark-color);
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        transition: var(--transition);
+    }
+        
+    .article-title::before {
+        content: "🔸"; /* Symbole plus sobre */
+        margin-right: 10px;
+        color: var(--secondary-color);
+        font-size: 1.2rem;
+    }
+        
+    .article-content {
+        color: var(--text-color);
+        line-height: 1.7;
+        transition: var(--transition);
+    }
+
+    /* Boutons de contrôle - style plus professionnel */
+    .control-buttons {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        display: flex;
+        gap: 10px;
+        z-index: 1000;
+    }
+        
+    .control-btn {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: var(--transition);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+        
+    .control-btn:hover {
+        transform: scale(1.1);
+        background: var(--accent-color);
+    }
+        
+    /* Boutons défilement */
+    #scrollTopBtn, #scrollBottomBtn {
+        position: fixed;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        border: none;
+        border-radius: 50%;
+        background-color: var(--primary-color);
+        color: white;
+        cursor: pointer;
+        font-size: 18px;
+        z-index: 99;
+        display: none;
+        transition: opacity 0.3s, transform 0.3s;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    #scrollTopBtn {
+        bottom: 140px;
+    }
+
+    #scrollBottomBtn {
+        bottom: 80px;
+    }
+        
+    #scrollTopBtn:hover, #scrollBottomBtn:hover {
+        background-color: var(--accent-color);
+        transform: scale(1.05);
+    }
+        
+    .show-buttons {
+        display: block !important;
+        opacity: 1;
+    }
+        
+    .hide-buttons {
+        opacity: 0;
+        display: none !important;
+    }
+        
+    /* Modal plein écran */
+    .article-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 2000;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+        
+    .article-modal.active {
+        opacity: 1;
+        display: flex;
+    }
+        
+    .modal-content {
+        background: var(--article-bg);
+        width: 90%;
+        max-width: 800px;
+        max-height: 80vh;
+        overflow-y: auto;
+        padding: 30px;
+        border-radius: 15px;
+        position: relative;
+        transform: translateY(20px);
+        transition: transform 0.4s ease;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        border: 1px solid var(--primary-color);
+    }
+        
+    .article-modal.active .modal-content {
+        transform: translateY(0);
+    }
+        
+    .modal-close {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--dark-color);
+        transition: var(--transition);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+        
+    .modal-close:hover {
+        color: var(--primary-color);
+        background-color: var(--light-color);
+    }
+        
+    /* Contrôles de lecture vocale */
+    .voice-controls {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%); 
+        display: flex;
+        gap: 10px;
+        background: var(--primary-color);
+        padding: 10px 15px;
+        border-radius: 30px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        opacity: 0.9;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+        
+    .voice-btn {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.2rem;
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: var(--transition);
+    }
+        
+    .voice-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+        
+    /* Curseur de luminosité */
+    .brightness-control {
+        position: fixed;
+        top: 80px;
+        left: 20px;
+        background: var(--article-bg);
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        border: 1px solid var(--border-color);
+    }
+        
+    .brightness-control.active {
+        display: flex;
+    }
+        
+    .brightness-slider {
+        width: 150px;
+        appearance: none;
+        -webkit-appearance: none;
+        height: 8px;
+        border-radius: 5px;
+        background: var(--secondary-color);
+        outline: none;
+    }
+        
+    .brightness-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: var(--primary-color);
+        cursor: pointer;
+        border: 2px solid white;
+        box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    }
+        
+    /* Bouton sommaire mobile */
+    .mobile-sommaire-btn {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: var(--header-bg);
+        color: white;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        z-index: 1001;
+        cursor: pointer;
+        transition: var(--transition);
+        border: 2px solid var(--secondary-color);
+    }
+        
+    .mobile-sommaire-btn:hover {
+        transform: scale(1.05);
+    }
+        
+    /* Sommaire plein écran pour mobile */
+    .mobile-sommaire {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(26, 78, 142, 0.95);
+        z-index: 1002;
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+        
+    .mobile-sommaire.active {
+        opacity: 1;
+        display: flex;
+    }
+        
+    .mobile-sommaire-content {
+        background: var(--article-bg);
+        width: 90%;
+        max-width: 500px;
+        max-height: 80vh;
+        overflow-y: auto;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        transform: translateY(20px);
+        transition: transform 0.4s ease;
+        border: 2px solid var(--secondary-color);
+    }
+        
+    .mobile-sommaire.active .mobile-sommaire-content {
+        transform: translateY(0);
+    }
+        
+    .mobile-sommaire-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 2px solid var(--secondary-color);
+    }
+        
+    .mobile-sommaire-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--dark-color);
+    }
+        
+    .mobile-sommaire-close {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--dark-color);
+        transition: var(--transition);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+        
+    .mobile-sommaire-close:hover {
+        color: var(--primary-color);
+        background-color: var(--light-color);
+    }
+        
+    .sommaire-list {
+        list-style: none;
+    }
+        
+    .sommaire-item {
+        margin-bottom: 12px;
+        padding: 15px;
+        border-radius: 8px;
+        transition: var(--transition);
+        background-color: var(--light-color);
+        border-left: 3px solid var(--accent-color);
+    }
+        
+    .sommaire-item:hover {
+        background-color: var(--secondary-color);
+        transform: translateX(5px);
+    }
+        
+    .sommaire-item a {
+        text-decoration: none;
+        color: var(--dark-color);
+        font-weight: 500;
+        display: block;
+        transition: var(--transition);
+    }
+        
+    .sommaire-item:hover a {
+        color: white;
+    }
+        
+    footer {
+        text-align: center;
+        padding: 20px;
+        color: var(--dark-color);
+        font-size: 0.9rem;
+        background: var(--primary-color);
+        color: white;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        transition: var(--transition);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .footer-logo {
+        margin-bottom: 15px;
+        filter: brightness(0) invert(1);
+        opacity: 0.8;
+    }
+        
+    /* Indicateur de navigation */
+    .nav-indicator {
+        position: fixed;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 8px;
+        z-index: 999;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 8px 12px;
+        border-radius: 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+        
+    .nav-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--secondary-color);
+        transition: var(--transition);
+    }
+        
+    .nav-dot.active {
+        background: var(--primary-color);
+        transform: scale(1.3);
+    }
+        
+    /* Mode lecture plein écran */
+    .fullscreen-mode {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--article-bg);
+        z-index: 3000;
+        overflow: auto;
+        padding: 20px;
+        display: none;
+    }
+
+    .fullscreen-mode.active { display: block; }
+
+    .fullscreen-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 2px solid var(--secondary-color);
+        padding-right: 50px;
+    }
+
+    .fullscreen-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.8rem;
+        color: var(--dark-color);
+    }
+
+    .fullscreen-close {
+        background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--dark-color);
+        transition: var(--transition); width: 40px; height: 40px; border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+    }
+
+    .fullscreen-close:hover {
+        color: var(--primary-color);
+        background-color: var(--light-color);
+    }
+
+    .fullscreen-content { font-size: 1.2rem; line-height: 1.8; }
+
+    .fullscreen-nav {
+        display: flex; justify-content: space-between; margin-top: 30px;
+        padding-top: 15px; border-top: 1px solid var(--secondary-color);
+    }
+
+    .fullscreen-nav-btn {
+        background: var(--primary-color); color: white; border: none; padding: 10px 20px;
+        border-radius: 5px; cursor: pointer; transition: var(--transition);
+    }
+
+    .fullscreen-nav-btn:hover { background: var(--accent-color); }
+    .fullscreen-nav-btn:disabled { background: var(--secondary-color); cursor: not-allowed; }
+
+    /* Contrôles vocaux en mode plein écran */
+    .fullscreen-voice-controls {
+        display: flex; justify-content: center; gap: 15px; margin: 20px 0;
+    }
+
+    .fullscreen-voice-btn {
+        background: var(--primary-color); color: white; border: none; width: 50px;
+        height: 50px; border-radius: 50%; display: flex; justify-content: center;
+        align-items: center; font-size: 1.2rem; cursor: pointer; transition: var(--transition);
+    }
+
+    .fullscreen-voice-btn:hover { background: var(--accent-color); }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .mobile-sommaire-btn { display: flex; }
+        .control-buttons { top: 90px; left: 10px; flex-direction: column; }
+        .voice-controls { width: calc(100% - 40px); justify-content: center; }
+        header { padding: 20px; }
+        h1 { font-size: 1.8rem; }
+        .section, .articleX { scroll-margin-top: 80px; }
+        .logo { width: 80px; height: 80px; }
+        .logo-text .police { font-size: 14px; }
+        .logo-text .rci { font-size: 12px; }
+        .logo-text .selfwide { font-size: 9px; }
+    }
+
+    /* Styles pour l'interface de recherche */
+    #searchInput:focus {
+        outline: none;
+        border-color: var(--primary-color) !important;
+    }
+    
+    /* Styles pour les articles existants */
+    .article {
+        margin-bottom: 25px;
+        padding: 20px;
+        background: var(--article-bg);
+        border-radius: 8px;
+        box-shadow: 0 2px 8px var(--shadow-color);
+        border-left: 4px solid var(--primary-color);
+    }
+    
+    .article h3 {
+        color: var(--primary-color);
+        margin-bottom: 15px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid var(--border-color);
+    }
+    
+    .article ul {
+        padding-left: 20px;
+        margin: 10px 0;
+    }
+    
+    .article li {
+        margin-bottom: 8px;
+        position: relative;
+    }
+    
+    .article li::before {
+        content: "•";
+        color: var(--secondary-color);
+        font-weight: bold;
+        display: inline-block;
+        width: 1em;
+        margin-left: -1em;
+    }
+    
+    .article strong {
+        color: var(--accent-color);
+    }
+    </style>
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#22c55e">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<!-- HIDE AUTH/VIEWS WIDGETS OUTSIDE HOME (safe) -->
+<style>
+  #auth-fab, .views-badge, #auth-modal, .card-views-badge { display: none !important; }
+</style>
+
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Décret d'application du Statut des Personnel de la Police Nationale</h1>
+            <p class="subtitle">DECRET N° 2001-783 du 14 décembre 2001</p>
+        </header>
+        
+        <div class="content">
+            <div class="control-buttons">
+                <button class="control-btn" id="themeToggle" title="Mode nuit/jour">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="control-btn" id="brightnessBtn" title="Contrôle de luminosité">
+                    <i class="fas fa-sun"></i>
+                </button>
+                <button class="control-btn" id="fullscreenToggle" title="Mode lecture plein écran">
+                    <i class="fas fa-expand"></i>
+                </button>
+                <button class="control-btn" id="searchBtn" title="Rechercher">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            
+            <div class="brightness-control" id="brightnessControl">
+                <label for="brightnessSlider">Luminosité</label>
+                <input type="range" min="50" max="150" value="100" class="brightness-slider" id="brightnessSlider">
+            </div>
+            
+            <button id="scrollTopBtn" title="Aller en haut">↑</button>
+            <button id="scrollBottomBtn" title="Aller en bas">↓</button>
+            
+            <div class="article-modal" id="articleModal">
+                <div class="modal-content">
+                    <button class="modal-close" id="modalClose">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <div id="modalArticleContent"></div>
+                </div>
+            </div>
+
+            <div class="fullscreen-mode" id="fullscreenMode">
+              <div class="fullscreen-header">
+                  <h2 class="fullscreen-title" id="fullscreenTitle"></h2>
+                  <button class="fullscreen-close" id="fullscreenClose">
+                      <i class="fas fa-times"></i>
+                  </button>
+              </div>
+              <div class="fullscreen-content" id="fullscreenContent"></div>
+              <div class="fullscreen-voice-controls">
+                  <button class="fullscreen-voice-btn" id="fullscreenPlayBtn" title="Lire"><i class="fas fa-play"></i></button>
+                  <button class="fullscreen-voice-btn" id="fullscreenPauseBtn" title="Pause"><i class="fas fa-pause"></i></button>
+                  <button class="fullscreen-voice-btn" id="fullscreenStopBtn" title="Arrêter"><i class="fas fa-stop"></i></button>
+              </div>
+              <div class="fullscreen-nav">
+                  <button class="fullscreen-nav-btn" id="prevArticleBtn" disabled>Précédent</button>
+                  <button class="fullscreen-nav-btn" id="nextArticleBtn">Suivant</button>
+              </div>
+          </div>
+            
+            <div class="voice-controls" id="mainVoiceControls">
+                <button class="voice-btn" id="mainPlayBtn" title="Lire l'article visible"><i class="fas fa-play"></i></button>
+                <button class="voice-btn" id="mainPlayContinuousBtn" title="Lecture continue"><i class="fas fa-forward"></i></button>
+                <button class="voice-btn" id="mainPauseBtn" title="Pause"><i class="fas fa-pause"></i></button>
+                <button class="voice-btn" id="mainStopBtn" title="Arrêter"><i class="fas fa-stop"></i></button>
+            </div>
+            
+            <div id="articlesContainer"></div>
+            
+            <div class="nav-indicator" id="navIndicator"></div>
+        </div>
+        
+        <footer>
+            <div class="logo footer-logo">
+                <div class="logo-text">
+                    <span class="police">POLICE</span>
+                    <span class="rci">R</span>
+                    <span class="rci">C</span>
+                    <span class="rci">I</span>
+                    <span class="selfwide">SELFWIDE</span>
+                </div>
+            </div>
+            <p>République de Côte d'Ivoire - Ministère de l'Intérieur et de la Sécurité</p>
+            <p>© 2023 - Tous droits réservés</p>
+        </footer>
+    </div>
+    
+    <div class="mobile-sommaire-btn" id="mobileSommaireBtn"><i class="fas fa-bars"></i></div>
+    <div class="mobile-sommaire" id="mobileSommaire">
+        <div class="mobile-sommaire-content">
+            <div class="mobile-sommaire-header">
+                <h3 class="mobile-sommaire-title">Sommaire</h3>
+                <button class="mobile-sommaire-close" id="mobileSommaireClose"><i class="fas fa-times"></i></button>
+            </div>
+            <ul class="sommaire-list" id="sommaireList"></ul>
+        </div>
+    </div>
+    <script>
+    // Variables globales
+    let isDarkMode = false;
+    let currentArticleIndex = 0;
+    let isAutoReading = false;
+    let articles = [];
+    
+
+       // Données de la loi
+    const lawData = {
+    title: "Décret d'application du Statut des Personnels de la Police Nationale",
+    subtitle: "Décret N°2001-783 du 14 décembre 2001",
+    chapters: [
+
+        {
+            title: "CHAPITRE PREMIER - DISPOSITIONS GENERALES",
+            articles: [
+                {
+                    id: "article1",
+                    title: "Article Premier",
+                    content: "Les personnels de la Police Nationale sont assimilés quant à leur statut aux militaires des Forces Armées Nationales et sont répartis en trois (03) Corps :</br>- Corps des Sous-Officiers de Police ;</br>- Corps des Officiers de Police ;</br>- Corps des Commissaires de Police.</br></br>Ils relèvent de la compétence de la Justice militaire dans les mêmes conditions que les militaires des Forces Armées Nationales et les gendarmes de la Gendarmerie Nationale."
+                },
+                {
+                    id: "article2",
+                    title: "Article 2",
+                    content: "Les personnels de la Police Nationale ont pour missions de :</br>- protéger les personnes et les biens ;</br>- protéger les Institutions de la République ;</br>- combattre la criminalité et la délinquance ;</br>- constater les infractions, rechercher, arrêter les auteurs et les mettre à la disposition de la Justice ;</br>- rechercher les renseignements nécessaires à l'information du Gouvernement ;</br>- prévenir les atteintes à l'ordre public ;</br>- maintenir l'ordre public.</br></br>Ils doivent exécuter leurs missions dans le respect des Institutions, des lois et règlements de la République, des droits humains, ainsi que du Code de Déontologie de la Police Nationale. L'exigence d'une bonne moralité doit être permanente pour tout agent de Police."
+                },
+                {
+                    id: "article3",
+                    title: "Article 3",
+                    content: "Les effectifs maximum à recruter chaque année dans chacun des Corps sont fixés dans la loi de finances."
+                }
+            ]
+        },
+        {
+            title: "CHAPITRE II - LE RECRUTEMENT ET LA FORMATION DES PERSONNELS DES DIFFERENTS CORPS DE LA POLICE NATIONALE",
+            articles: [
+                {
+                    id: "article4",
+                    title: "Article 4",
+                    content: "Tout candidat de l'un ou l'autre sexe peut postuler à un emploi à la Police Nationale, à condition de :</br>- être de nationalité ivoirienne ;</br>- jouir de ses droits civiques et être de bonne moralité ;</br>- avoir l'âge requis ;</br>- remplir les conditions d'aptitude physique et intellectuelle exigées pour l'exercice de la fonction de Policier, et être reconnu indemne de toute affection grave ou contagieuse, notamment : tuberculeuse, cancéreuse, lépreuse, neurologique, mentale ou de toute affection au VIH.</br></br>Les conditions de recrutement et de formation sont fixées par décret pris en conseil des Ministres."
+                },
+                {
+                    id: "article5",
+                    title: "Article 5",
+                    content: "Selon les besoins de la Police Nationale, il peut être recruté par voie de concours spécial, du personnel technique, dans les Corps des Sous-Officiers, Officiers et Commissaires de Police destinés aux services techniques.</br></br>Sont considérés comme services techniques de la Police Nationale :</br>- le Service de la Police Scientifique ;</br>- le Service de Santé ;</br>- le Service de l'Intendance ;</br>- le Service des Télécommunications et de l'Informatique ;</br>- le Service de la Musique de la Police Nationale ;</br>- les Emplois Spécialisés déterminés par Décret.</br></br>Les conditions de recrutement et de formation du personnel technique sont déterminées par décret pris en conseil des Ministres."
+                },
+                {
+                    id: "article6",
+                    title: "Article 6",
+                    content: "Les Personnels de la Police Nationale bénéficient d'une formation initiale et d'une formation continue.</br></br>Les programmes de formation et les moyens d'encadrement doivent tenir compte des exigences et des spécificités des missions dévolues aux Personnels de chaque Corps, ainsi que des spécialités."
+                },
+                {
+                    id: "article7",
+                    title: "Article 7",
+                    content: "Une enquête de moralité est effectuée sur tous les candidats, avant et pendant leur formation. Elle prend fin à la titularisation du Policier."
+                }
+            ]
+        },
+        {
+            title: "CHAPITRE III - LA HIERARCHIE DES GRADES",
+            articles: [
+                {
+                    id: "article8",
+                    title: "Article 8",
+                    content: "Dans l'exercice de leurs fonctions, les Policiers sont régis par un Ordre hiérarchique. La hiérarchie indique l'ordre des grades dans les différents corps. Elle définit le rang de chaque Policier et son niveau de responsabilité."
+                },
+                {
+                    id: "article9",
+                    title: "Article 9",
+                    content: "Le grade est le titre attribué à chacun des degrés de La hiérarchie. Il s'acquiert par nomination ou par promotion.</br></br>La qualité de membres des Corps des Commissaires de Police et des Officiers de Police, est conférée par décret du Président de la République.</br></br>La qualité de membres du Corps des Sous-Officiers de Police est conférée par arrêté du Ministre chargé de la Police Nationale."
+                },
+                {
+                    id: "article10",
+                    title: "Article 10",
+                    content: "Des droits et prérogatives sont attachés au Corps et au grade. Des obligations et responsabilités en découlent."
+                },
+                {
+                    id: "article11",
+                    title: "Article 11",
+                    content: "La qualité de membre d'un des trois (03) Corps est Perdue d'office pour l'une des causes suivantes :</br>- perte de la nationalité ivoirienne ;</br>- condamnation à l'indignité nationale ;</br>- condamnation à une peine afflictive ou infamante ;</br>- destitution prononcée par un jugement pénal rendu à titre définitif ;</br>- radiation pour motifs disciplinaires.</br></br>Cette qualité peut également être perdue par la démission qui, si elle est acceptée par l'autorité compétente, est irrévocable."
+                },
+                {
+                    id: "article12",
+                    title: "Article 12",
+                    content: "En cas d'amnistie, la réintégration d'un Policier ne peut avoir lieu que si loi l'a formellement prescrite ; cette réintégration s'opérera au grade qui sera fixé par les autorités compétentes et qui ne peut, en tout état de cause, être supérieur au grade qu'il avait au moment de sa radiation des effectifs."
+                },
+                {
+                    id: "article13",
+                    title: "Article 13",
+                    content: "La hiérarchie dans chacun des trois (03) Corps de la Police Nationale comporte les grades suivants :</br></br>a) - Corps des Sous-Officiers de Police :</br>- Elève Sous-Officier ;</br>- Sous-Officier stagiaire ;</br>- Sergent ;</br>- Sergent-Chef ;</br>- Adjudant ;</br>- Adjudant-Chef ;</br>- Adjudant-Chef Major</br></br>b) - Corps des Officiers de Police :</br>- Elève Officier ;</br>- Officier Stagiaire ;</br>- Sous-Lieutenant ;</br>- Lieutenant ;</br>- Capitaine ;</br>- Capitaine-Major ;</br></br>c) - Corps des Commissaires de Police :</br>- Elève Commissaire ;</br>- Commissaire Stagiaire ;</br>- Commissaire de 2ème Classe ;</br>- Commissaire de 1ère Classe ;</br>- Commissaire Principal ;</br>- Commissaire Divisionnaire ;</br>- Commissaire Divisionnaire-Major ;</br>- Contrôleur Général."
+                },
+                {
+                    id: "article14",
+                    title: "Article 14",
+                    content: "Le Policier issu du concours direct ne peut être Titularisé qu'après une année de service effectif, dite année probatoire.</br></br>Si au terme de l'année probatoire, les résultats ne sont pas probants, le Policier stagiaire peut exceptionnellement être autorisé à effectuer une deuxième année probatoire.</br></br>Si à l'issue de cette deuxième année de stage les résultats ne sont toujours pas probants, le Policier stagiaire est radié des effectifs de la Police Nationale."
+                },
+                {
+                    id: "article15",
+                    title: "Article 15",
+                    content: "L'ancienneté dans le grade est le temps passé en activité de service dans le grade. Pour chaque grade, le rang est déterminé par l'ancienneté dans le grade. A égalité d'ancienneté de grade, la priorité du rang se détermine par l'ancienneté dans le grade immédiatement inférieur. En cas de nouvelle égalité, l'âge déterminera l'ancienneté."
+                },
+                {
+                    id: "article16",
+                    title: "Article 16",
+                    content: "Le grade confère à son détenteur, en position d'activité, le droit d'occuper une des fonctions qui lui sont réservées.</br></br>Une échelle des fonctions en rapport avec les grades des différents Corps ou profil de carrière est établie par décret pour les mutations ou nominations.</br></br>A grade égal, le détenteur du pouvoir de nomination peut choisir le fonctionnaire présentant le plus de garantie de loyauté, de compétence et de bonne moralité."
+                }
+            ]
+        },
+        {
+            title: "CHAPITRE IV : L'AVANCEMENT",
+            articles: [
+                {
+                    id: "article17",
+                    title: "Article 17",
+                    content: "L'avancement est une promotion à un échelon ou à un grade supérieur. L'avancement dans les différents grades de la Police Nationale s'effectue par Corps.</br></br>Les nominations et les promotions sont prononcées dans la limite des postes budgétaires prévus, au premier jour de chaque trimestre, dans le cadre d'un tableau d'avancement annuel.</br></br>Pour tous les Corps, les avancements aux grades s'effectuent uniquement au choix, et les avancements aux échelons à l'ancienneté.</br></br>Des concours spéciaux, en vue de l'inscription sur une liste d'aptitude pourront être organisés dans le Corps, dans les conditions qui seront fixées par décret pris en Conseil des Ministres."
+                },
+                {
+                    id: "article18",
+                    title: "Article 18",
+                    content: "Le Président de la République arrête les tableaux d'avancement des Commissaires et Officiers de Police et prononce par décret, leur nomination, promotion ou changement de situation statutaire, sur proposition de la Commission d'avancement après avis du Ministre chargé de la Police Nationale.</br></br>Le Ministre chargé de la Police Nationale arrête le tableau d'avancement des Sous-Officiers de police et prononce par arrêté leur nomination, promotion ou changement de situation statutaire, sur proposition de la Commission d'avancement."
+                },
+                {
+                    id: "article19",
+                    title: "Article 19",
+                    content: "Des nominations et promotions de grades résultant d'un acte caractérisé de bravoure exceptionnelle ou d'une blessure grave, ou d'une invalidité permanente reçue à l'occasion du service ou dans un intérêt public, en exposant sa vie pour sauver celle d'autres personnes, peuvent être prononcées à titre exceptionnel, mais uniquement à l'intérieur d'un même Corps :</br>- par arrêté du Ministre chargé de la Police Nationale pour les Sous-Officiers de Police ;</br>- par décret pris en conseil des Ministres pour les Commissaires et Officiers de Police.</br></br>Le Policier du grade d'Adjudant-Chef Major ou de Capitaine-Major peut, dans les mêmes conditions, être promu immédiatement au Corps supérieur.</br></br>Dans ces cas, une promotion à titre posthume peut être admise."
+                },
+                {
+                    id: "article20",
+                    title: "Article 20",
+                    content: "Aucun Policier ne peut bénéficier de deux promotions par concours spécial au cours de sa carrière."
+                }
+            ]
+        },
+        {
+            title: "CHAPITRE V - LES POSITIONS",
+            articles: [
+                {
+                    id: "article22",
+                    title: "Article 22",
+                    content: "Tout agent de Police Nationale est placé dans l'une Des positions suivantes :</br>- l'activité ;</br>- le détachement ;</br>- la non-activité."
+                },
+            {
+              id: "article23",
+              title: "Article 23",
+              content: "Le commissaire de Police de 2e classe a vocation à occuper les fonctions ci-après:<ul><li>Adjoint au Chef de District;</li><li>Adjoint au Commandant d'Unité d'Intervention:</li><li>Commissaire de Circonscription de 1e et 2e catégorie:</li><li>Commissaire d'Arrondissement de 1e et 2e catégorie:</li><li>Adjoint au commissaire de Circonscription:</li><li>Adjoint au commissaire d'Arrondissement.</li></ul>"
+            },
+            {
+              id: "article24",
+              title: "Article 24",
+              content: "Nonobstant les dispositions des articles 6 à 9, 13 à 16 et 20 à 23, le ministre chargé de la Sécurité peut nommer un fonctionnaire de Police à des fonctions immédiatement supérieures à son grade lorsque les nécessités du service l'exigent."
+            },
+            {
+              id: "article25",
+              title: "Article 25",
+              content: "Les indices de traitement affectés à chacun des grades et échelons de la hiérarchie du corps des commissaires de Police sont ceux indiqués en annexe au présent décret."
+            }
+          ]
+    },
+    {
+      title: "TITRE III : POSITIONS",
+      articles: []},
+        {
+          title: "CHAPITRE PREMIER : Positions d'activité",
+          articles: [
+            {
+              id: "article26",
+              title: "Article 26",
+              content: "L'activité est la position normale du fonctionnaire de Police qui, régulièrement nommé dans un grade, exerce effectivement les fonctions d'un des emplois de ce grade. Dans cette position, le fonctionnaire de Police bénéficie d'avantages sociaux, notamment:<ul><li>De permissions et autorisations d'absence selon les dispositions de l'article 27 du présent décret:</li><li>De congés de maladie et de longue durée selon les dispositions de l'article 32 du présent décret;</li><li>De congés de maternité et périodes de repos pour couches et allaitement selon les dispositions de l'article 38 du présent décret.</li></ul>"
+            }
+          ]
+        },
+            {
+              title: "Section 1 : Permissions et autorisations d'absence",
+              articles: [
+                {
+                  id: "article27",
+                  title: "Article 27",
+                  content: "Des autorisations spéciales d'absence avec traitement n'entrant pas en compte dans le calcul de la permission annuelle peuvent être accordées aux fonctionnaires de Police:<ul><li>Désignés par le ministre chargé de la Sécurité pour représenter auprès d'instances internationales pendant les sessions de ces Organismes :</li><li>Membres d'organes consultatifs;</li><li>Candidats à des concours ou examens dans le cadre de la promotion hiérarchique ou de la formation professionnelle.</li></ul><p>La durée des autorisations spéciales d'absence prévue ci-dessus est limitée à la durée des sessions des Organismes ou des épreuves de concours ou examens et augmentée, le cas échéant, des délais de route normaux, aller et retour.</p>"
+                },
+                {
+                  id: "article28",
+                  title: "Article 28",
+                  content: "Les fonctionnaires de Police peuvent également bénéficier de permissions spéciales, avec traitement, pour événements familiaux résultant:<ul><li>Du décès d'un ascendant ou d'un descendant en ligne directe: trois jours, y compris le délai de route;</li><li>Du mariage de l'agent ou d'un enfant de l'agent: trois jours, y compris le délai de route;</li><li>D'un congé de paternité trois jours;</li><li>D'un congé de maternité dont les conditions de jouissance sont déterminées par les dispositions du Statut général de la Fonction publique.</li></ul>"
+                },
+                {
+                  id: "article29",
+                  title: "Article 29",
+                  content: "Le fonctionnaire de Police a droit à un congé annuel d'une durée de trente jours. Pour l'ouverture du droit à la permission annuelle, sont considérés comme service accompli:<ul><li>Le congé accordé au fonctionnaire de Police pour accomplir une période d'instruction militaire;</li><li>Les périodes passées en stage de Formation professionnelle conformément à la réglementation applicable en la matière;</li><li>Les autorisations spéciales et permissions d'absence visées à l'article 27 ci-dessus;</li><li>Le maintien par ordre sans affectation.</li></ul>"
+                },
+                {
+                  id: "article30",
+                  title: "Article 30",
+                  content: "La Police nationale a toute liberté pour échelonner ou fractionner, compte tenu des nécessités du service, les départs en permission, elle peut, pour les mêmes motifs, s'opposer à tout fractionnement de permission. Les fonctionnaires de Police, chefs de famille, bénéficient d'une priorité pour le choix des périodes de permission annuelle. La permission afférente à deux années consécutives de service peut être cumulée, à titre exceptionnel, avec l'autorisation du ministre chargé de la Sécurité, sur la demande motivée du fonctionnaire de Police."
+                },
+                {
+                  id: "article31",
+                  title: "Article 31",
+                  content: "Sauf décision contraire de l'autorité compétente, le fonctionnaire de Police bénéficiaire d'un congé annuel de trente jours rejoint son poste d'affectation à l'expiration de celui-ci."
+                }
+              ]
+            },
+            {
+              title: "Section 2 : Congé de maladie et congé exceptionnel de maladie",
+              articles: [
+                {
+                  id: "article32",
+                  title: "Article 32",
+                  content: "Le fonctionnaire de Police a droit à un congé de maladie, à un congé de maladie de longue durée, à un congé exceptionnel de maladie conformément aux dispositions du Statut général de la Fonction publique."
+                },
+                {
+                  id: "article33",
+                  title: "Article 33",
+                  content: "La durée du congé exceptionnel de maladie est portée à quatre-vingt-seize mois au cours desquels le bénéficiaire perçoit l'intégralité de sa rémunération et le remboursement des honoraires et des frais médicaux entraînés par l'accident ou la maladie. Au terme de cette période, le fonctionnaire de Police est admis à faire valoir ses droits à la retraite si son état de santé ne lui permet pas de reprendre son service conformément à l'avis de la Commission de Réforme."
+                },
+                {
+                  id: "article34",
+                  title: "Article 34",
+                  content: "Le ministre chargé de la Sécurité prend toutes mesures pour provoquer, en temps opportun, la comparution du fonctionnaire de Police devant la Commission de Réforme:<ul><li>Pour la transformation d'un congé de maladie en congé de longue durée;</li><li>Pour la transformation d'un congé de maladie de longue durée en congé exceptionnel de maladie;</li><li>Pour le renouvellement de chacun des congés susvisés:</li><li>Pour la reconnaissance de l'aptitude du fonctionnaire de Police à reprendre son service à l'issue de la période de congé.</li></ul><p>Sauf cas d'urgence, aucune évacuation sanitaire hors de la Côte d'Ivoire ne peut être décidée si elle n'est pas proposée par la Commission de Réforme.</p>"
+                },
+                {
+                  id: "article35",
+                  title: "Article 35",
+                  content: "Le bénéficiaire d'un congé de maladie, d'un congé exceptionnel de maladie ou d'un congé de longue durée, doit cesser tout travail, sauf les activités éventuellement ordonnées et contrôlées médicalement au titre de la réadaptation. Il est tenu éventuellement de signaler ses changements de résidence successifs au service de Police dont il dépend. Le ministre chargé de la Sécurité s'assure que le titulaire du congé n'exerce aucune activité sauf celle ordonnée ou contrôlée médicalement. En cas de violation de cette interdiction, la rémunération du fonctionnaire de Police est suspendue jusqu'au jour où l'intéressé cesse l'activité interdite sans préjudice de sanctions disciplinaires qui peuvent être prises à son encontre. Sous peine de suspension de sa rémunération, le bénéficiaire d'un congé exceptionnel de maladie ou de longue durée doit également se soumettre sous le contrôle de la Commission de Réforme, aux prescriptions que son état exige."
+                },
+                {
+                  id: "article36",
+                  title: "Article 36",
+                  content: "Le temps passé en congé de maladie, en congé exceptionnel de maladie ou en congé de longue durée, avec traitement ou demi-traitement, entre en ligne de compte pour pouvoir prétendre à un avancement."
+                },
+                {
+                  id: "article37",
+                  title: "Article 37",
+                  content: "Tout fonctionnaire de Police qui a bénéficié d'un congé pour raison de santé doit, après sa reprise de service, se soumettre aux visites et examens de contrôle que la Commission de Réforme peut éventuellement prescrire. Le refus répété et sans motif de se soumettre à ces visites peut entraîner, en cas de rechute, la perte du bénéfice d'un nouveau congé."
+                }
+              ]
+            },
+            {
+              title: "Section 3 : Congé de maternité et périodes de repos pour couches et allaitement",
+              articles: [
+                {
+                  id: "article38",
+                  title: "Article 38",
+                  content: "Un congé de maternité et des périodes de repos pour couches et allaitement sont accordés au fonctionnaire de Police de sexe féminin conformément au Statut général de la Fonction publique."
+                },
+                {
+                  id: "article39",
+                  title: "Article 39",
+                  content: "La durée du congé de maternité et de la période de repos pour couches et allaitement est déterminée conformément aux dispositions prévues par le Statut général de la Fonction publique."
+                }
+              ]
+            },
+            {
+              title: "Section 4 : Détachement",
+              articles: [
+                {
+                  id: "article40",
+                  title: "Article 40",
+                  content: "Le détachement est la position du fonctionnaire de Police autorisé à interrompre temporairement ses fonctions pour exercer une fonction publique autre que policière. Le détachement ne peut se faire que:<ul><li>a) Auprès d'une Administration ou Etablissement public de l'Etat, des Forces Armées nationales de Côte d'Ivoire (FANCI), dans un emploi ouvrant droit à pension au titre du régime général applicable aux fonctionnaires de l'Etat ;</li><li>b) Auprès d'une Administration ou Etablissement public, d'une Collectivité territoriale;</li><li>c) Auprès d'une Administration ou entreprise publique dans un emploi ne conduisant pas à pension au titre du régime général applicable aux fonctionnaires de l'Etat;</li><li>d) Pour exercer un enseignement ou remplir une mission publique auprès d'une ambassade de la République de Côte d'Ivoire;</li><li>e) Pour exercer les fonctions de membre de Gouvernement;</li></ul>"
+                },
+                {
+                  id: "article41",
+                  title: "Article 41",
+                  content: "Le détachement est autorisé, sur la demande du fonctionnaire de Police, par arrêté du ministre chargé de la Sécurité, en ce qui concerne les officiers et sous-officiers de Police. Le détachement des commissaires de Police est autorisé, à leur demande, par décret. Le détachement peut être prononcé d'office dans les cas prévus à l'article 40, à condition que le nouvel emploi donne droit à un traitement au moins égal à celui de l'ancien."
+                },
+                {
+                  id: "article42",
+                  title: "Article 42",
+                  content: "Il existe deux sortes de détachements:<ul><li>Le détachement de courte durée ou délégation;</li><li>Le détachement de longue durée.</li></ul>"
+                },
+                {
+                  id: "article43",
+                  title: "Article 43",
+                  content: "Le détachement de courte durée ne peut excéder six mois, ni faire l'objet d'aucun renouvellement; le fonctionnaire de Police détaché dans ces conditions n'est remplacé dans son emploi que si les nécessités du service l'exigent. A l'expiration du détachement de courte durée, il est obligatoirement réintégré dans son emploi antérieur ou dans un emploi équivalent."
+                },
+                {
+                  id: "article44",
+                  title: "Article 44",
+                  content: "Le détachement de longue durée ne peut excéder cinq années et peut être renouvelé une fois par période de cinq années. Le fonctionnaire de Police qui fait l'objet d'un détachement de longue durée peut être aussitôt remplacé dans son emploi. A l'expiration du détachement de longue durée, le fonctionnaire de Police est obligatoirement réintégré à la première vacance, dans son corps d'origine, par le ministre chargé de la Sécurité."
+                },
+                {
+                  id: "article45",
+                  title: "Article 45",
+                  content: "A l'expiration d'un détachement de longue durée, le fonctionnaire de Police qui remplit les conditions prévues par les dispositions statutaires régissant l'accès aux corps militaires ou dans l'emploi civil de l'Institution de détachement peut, sur sa demande, y être définitivement intégré. Cette intégration est subordonnée à l'acceptation de la démission de l'intéressé par le ministre chargé de la Sécurité."
+                },
+                {
+                  id: "article46",
+                  title: "Article 46",
+                  content: "Le fonctionnaire de Police bénéficiant d'un détachement de longue durée est noté par l'autorité dont il dépend, dans l'Administration ou le service où il est détaché. En cas de détachement de courte durée, l'autorité dont dépend le fonctionnaire de Police transmet au ministre chargé de la Sécurité, à l'expiration du détachement, une appréciation sur l'activité du fonctionnaire de Police détaché."
+                },
+                {
+                  id: "article47",
+                  title: "Article 47",
+                  content: "Le fonctionnaire de Police détaché continue à percevoir la rémunération afférente à son grade et échelon dans son corps d'origine si le nouvel emploi occupé comporte une rémunération moindre. Dans tous les autres cas, le fonctionnaire de Police détaché perçoit pendant le temps de cette situation, le traitement et les indemnités afférentes au nouvel emploi qu'il exerce. Il supporte, sur le traitement d'activité afférent à son grade et échelon dans son corps d'origine, la retenue pour pension prévue par la réglementation en vigueur. La Collectivité ou l'Organisme auprès duquel le fonctionnaire de Police est détaché, est redevable envers le Trésor public de la contribution complémentaire de l'employeur fixée à 12% du traitement du fonctionnaire de Police dans son corps d'origine. Le fonctionnaire de Police détaché ne peut, sauf dans le cas où le détachement a été prononcé auprès d'Organismes internationaux, être affilié au régime de retraite dont relève la fonction de détachement."
+                },
+                {
+                  id: "article48",
+                  title: "Article 48",
+                  content: "Il peut être également mis fin au détachement avant le terme fixé, à la demande soit de l'Administration d'accueil, soit de l'intéressé, soit du ministère de tutelle. Lorsqu'il est mis fin dans ces conditions au détachement, à la demande de l'Administration ou de l'Organisme d'accueil, le fonctionnaire de Police continue à être rémunéré par cette structure jusqu'à ce qu'il réintègre son corps d'origine. Le nombre de fonctionnaires de Police détachés ne peut dépasser 10% des personnels dans chacun des corps de la Police nationale."
+                }
+              ]
+        },
+        {
+          title: "CHAPITRE 2 : Positions de non-activité",
+          articles: [
+            {
+              id: "article49",
+              title: "Article 49",
+              content: "La non-activité est la position du fonctionnaire de Police qui se trouve dans l'une des situations suivantes :<ul><li>La suspension;</li><li>La disponibilité.</li></ul>"
+            }
+            ]
+            },
+            {
+              title: "Section 1 : Suspension",
+              articles: [
+                {
+                  id: "article50",
+                  title: "Article 50",
+                  content: "La suspension est une mesure administrative prise par le ministre chargé de la Sécurité à l'encontre d'un fonctionnaire de Police, dans le cadre ou à l'issue d'une procédure disciplinaire. Elle comprend:<ul><li>La privation d'emploi;</li><li>Le retrait d'emploi.</li></ul>"
+                },
+                {
+                  id: "article51",
+                  title: "Article 51",
+                  content: "La privation d'emploi est une mesure conservatoire prise d'autorité par le ministre chargé de la Sécurité à l'encontre du fonctionnaire de Police avant sa comparution devant le Conseil d'enquête. La durée de la privation d'emploi ne peut excéder quatre mois. A l'issue de ce délai, le fonctionnaire de Police qui n'est pas convoqué devant le Conseil d'enquête doit être réintégré dans ses fonctions avec rétablissement automatique de son salaire."
+                },
+                {
+                  id: "article52",
+                  title: "Article 52",
+                  content: "Le retrait d'emploi qui est une sanction prise à l'encontre du fonctionnaire de Police convaincu d'une faute disciplinaire, est prononcé par arrêté du ministre chargé de la Sécurité, après avis du Conseil d'enquête. La durée du retrait d'emploi ne peut excéder dix mois. Le fonctionnaire de Police frappé de retrait d'emploi est suspendu de ses fonctions et perd le bénéfice de sa solde pendant la durée de la sanction. Toutefois, le fonctionnaire de Police continue de percevoir la totalité des prestations familiales."
+                },
+                {
+                  id: "article53",
+                  title: "Article 53",
+                  content: "A l'expiration de la durée indiquée dans l'arrêté de privation ou de retrait d'emploi, le fonctionnaire de Police sanctionné doit être réintégré dans ses droits et fonctions par l'autorité compétente."
+                },
+                {
+                  id: "article54",
+                  title: "Article 54",
+                  content: "Les arrêtés de privation d'emploi, de retrait d'emploi et de réintégration doivent être notifiés personnellement au fonctionnaire de Police concerné."
+                },
+                {
+                  id: "article55",
+                  title: "Article 55",
+                  content: "Le détail des fautes susceptibles d'entraîner le retrait d'emploi est déterminé par le décret portant règlement de discipline générale (R.D.G.)."
+                }
+              ]
+            },
+            {
+              title: "Section 2 : Disponibilité",
+              articles: [
+                {
+                  id: "article56",
+                  title: "Article 56",
+                  content: "La disponibilité est la position du fonctionnaire de Police dont l'activité est suspendue pour une durée déterminée, soit à sa demande, soit d'office, dans l'intérêt du service. Le fonctionnaire de Police en position de disponibilité cesse de bénéficier de ses droits à l'avancement et à la retraite. Il ne perçoit aucune rémunération."
+                },
+                {
+                  id: "article57",
+                  title: "Article 57",
+                  content: "La disponibilité peut être accordée au fonctionnaire de Police pour l'une des causes ci-après:<ul><li>a) Pour convenances personnelles;</li><li>b) Pour suivre son conjoint, lorsque celui-ci est astreint à établir sa résidence habituelle en un autre lieu du territoire national pour raison professionnelle;</li><li>c) Pour élever un enfant de moins de huit ans;</li><li>d) Pour créer ou diriger une entreprise susceptible d'apporter une contribution au développement économique de la Côte d'Ivoire;</li><li>e) Pour exercer une activité professionnelle non salariée;</li><li>f) Pour suivre un stage de formation professionnelle;</li><li>g) Pour maladie ou infirmité grave du conjoint, d'un enfant ou d'un ascendant;</li><li>h) Pour études ou recherches présentant un intérêt général;</li><li>i) Pour exercer un mandat électif local ou national;</li><li>j) Pour exercer des fonctions dans une Organisation internationale.</li></ul>"
+                },
+                {
+                  id: "article58",
+                  title: "Article 58",
+                  content: "La disponibilité d'office est prononcée par arrêté du ministre chargé de la Sécurité, dans l'intérêt du service, lorsque le fonctionnaire de Police ne peut être utilement employé dans son corps d'origine. La durée de la disponibilité d'office ne peut excéder trois années. Elle est renouvelable une fois par période de trois années."
+                },
+                {
+                  id: "article59",
+                  title: "Article 59",
+                  content: "La disponibilité sur demande est accordée par arrêté du ministre chargé de la Sécurité, pour une durée d'un an, renouvelable deux fois, sans que la durée totale de la disponibilité puisse excéder trois années. Toutefois, la disponibilité accordée pour suivre le conjoint, pour élever un enfant de moins de huit ans ou pour maladie ou infirmité grave du conjoint, d'un enfant ou d'un ascendant, est accordée pour une durée de trois années, renouvelable deux fois, sans que la durée totale de la disponibilité puisse excéder neuf années."
+                },
+                {
+                  id: "article60",
+                  title: "Article 60",
+                  content: "Le fonctionnaire de Police en position de disponibilité peut, à tout moment, être réintégré d'office, soit dans son corps d'origine, soit dans un corps équivalent, par arrêté du ministre chargé de la Sécurité. Le fonctionnaire de Police en position de disponibilité peut également être réintégré à sa demande, dans la limite des emplois disponibles. La réintégration est de droit à l'expiration de la période de disponibilité."
+                },
+                {
+                  id: "article61",
+                  title: "Article 61",
+                  content: "Le fonctionnaire de Police en position de disponibilité qui n'a pas été réintégré à l'expiration de la période de disponibilité, est radié des cadres par arrêté du ministre chargé de la Sécurité."
+                }
+              ]
+            },
+    {
+      title: "TITRE IV : AVANCEMENT",
+      articles: []},
+        {
+          title: "CHAPITRE PREMIER : Dispositions générales",
+          articles: [
+            {
+              id: "article62",
+              title: "Article 62",
+              content: "L'avancement a pour objet d'assurer l'élévation des fonctionnaires de Police dans la hiérarchie des grades de leur corps. Il est fonction de l'ancienneté, des notes et appréciations, des diplômes et de la valeur professionnelle."
+            },
+            {
+              id: "article63",
+              title: "Article 63",
+              content: "L'avancement comprend:<ul><li>L'avancement de grade;</li><li>L'avancement d'échelon.</li></ul>"
+            },
+            {
+              id: "article64",
+              title: "Article 64",
+              content: "L'avancement de grade a pour objet de permettre au fonctionnaire de Police d'accéder à un grade supérieur à celui qu'il détient. L'avancement d'échelon a pour objet de permettre au fonctionnaire de Police d'accéder à un échelon supérieur à celui qu'il occupe dans son grade."
+            },
+            {
+              id: "article65",
+              title: "Article 65",
+              content: "L'avancement de grade s'opère par voie d'inscription à un tableau d'avancement, après avis de la Commission administrative paritaire compétente. L'avancement d'échelon s'opère selon les règles de l'ancienneté."
+            }
+          ]
+        },
+        {
+          title: "CHAPITRE 2 : Avancement d'échelon",
+          articles: [
+            {
+              id: "article66",
+              title: "Article 66",
+              content: "L'avancement d'échelon est accordé automatiquement, en fonction de l'ancienneté, sauf si l'intéressé a fait l'objet d'une sanction disciplinaire du 3e groupe ou d'une sanction plus grave. La durée requise dans chaque échelon pour accéder à l'échelon supérieur est fixée par arrêté du ministre chargé de la Sécurité."
+            },
+            {
+              id: "article67",
+              title: "Article 67",
+              content: "L'avancement d'échelon ne peut être accordé au fonctionnaire de Police qui se trouve dans l'une des positions suivantes :<ul><li>Disponibilité;</li><li>Suspension.</li></ul>"
+            }
+          ]
+        },
+        {
+          title: "CHAPITRE 3 : Avancement de grade",
+          articles: [
+            {
+              id: "article68",
+              title: "Article 68",
+              content: "L'avancement de grade s'opère par voie de choix, de concours professionnel ou d'examen professionnel. L'avancement de grade par voie de choix est prononcé par arrêté du ministre chargé de la Sécurité, après avis de la Commission administrative paritaire compétente, sur la base d'un tableau d'avancement établi chaque année. L'avancement de grade par voie de concours professionnel ou d'examen professionnel est prononcé par arrêté du ministre chargé de la Sécurité, sur la base des résultats du concours ou de l'examen."
+            },
+            {
+              id: "article69",
+              title: "Article 69",
+              content: "L'avancement de grade par voie de choix est subordonné à des conditions d'ancienneté dans le grade. Les conditions d'ancienneté requises pour l'accès à chaque grade sont fixées par arrêté du ministre chargé de la Sécurité."
+            },
+            {
+              id: "article70",
+              title: "Article 70",
+              content: "L'avancement de grade par voie de concours professionnel ou d'examen professionnel est ouvert aux fonctionnaires de Police qui justifient d'une certaine ancienneté dans leur grade. Les conditions d'ancienneté et les modalités d'organisation des concours et examens professionnels sont fixées par arrêté du ministre chargé de la Sécurité."
+            },
+            {
+              id: "article71",
+              title: "Article 71",
+              content: "Les fonctionnaires de Police qui ont été promus à un grade supérieur par voie de choix, de concours professionnel ou d'examen professionnel, sont tenus de suivre une formation de perfectionnement ou de recyclage, dans les conditions fixées par arrêté du ministre chargé de la Sécurité."
+            }
+          ]
+        },
+    {
+      title: "TITRE V : DISCIPLINE",
+      articles: []},
+        {
+          title: "CHAPITRE PREMIER : Dispositions générales",
+          articles: [
+            {
+              id: "article72",
+              title: "Article 72",
+              content: "Les fonctionnaires de Police sont soumis aux règles de discipline générale définies par le décret portant règlement de discipline générale (R.D.G.)."
+            },
+            {
+              id: "article73",
+              title: "Article 73",
+              content: "Les sanctions disciplinaires applicables aux fonctionnaires de Police sont celles prévues par le Statut général de la Fonction publique. Elles sont classées en quatre groupes, par ordre de gravité croissante :<ul><li>Premier groupe: l'avertissement et le blâme;</li><li>Deuxième groupe: la radiation du tableau d'avancement, l'abaissement d'échelon, l'exclusion temporaire de fonctions pour une durée maximale de quinze jours, le déplacement d'office;</li><li>Troisième groupe: la rétrogradation, l'exclusion temporaire de fonctions pour une durée de trois mois à deux ans;</li><li>Quatrième groupe: la mise à la retraite d'office, la révocation.</li></ul>"
+            },
+            {
+              id: "article74",
+              title: "Article 74",
+              content: "Les sanctions disciplinaires sont prononcées par l'autorité investie du pouvoir de nomination, après avis du Conseil d'enquête. Toutefois, l'avertissement et le blâme peuvent être prononcés sans avis du Conseil d'enquête."
+            }
+          ]
+        },
+        {
+          title: "CHAPITRE 2 : Procédure disciplinaire",
+          articles: [
+            {
+              id: "article75",
+              title: "Article 75",
+              content: "Aucune sanction disciplinaire ne peut être infligée à un fonctionnaire de Police sans que celui-ci ait été informé des griefs retenus contre lui et sans qu'il ait été mis à même de présenter sa défense oralement ou par écrit."
+            },
+            {
+              id: "article76",
+              title: "Article 76",
+              content: "Le fonctionnaire de Police poursuivi disciplinairement a le droit de se faire assister par un défenseur de son choix, appartenant à la Police nationale ou à un autre corps de la Fonction publique."
+            },
+            {
+              id: "article77",
+              title: "Article 77",
+              content: "Le Conseil d'enquête est composé de trois membres désignés par le ministre chargé de la Sécurité. Il comprend un président, qui doit avoir au moins le grade de commissaire de Police, et deux assesseurs, dont l'un doit avoir au moins le grade de l'intéressé."
+            },
+            {
+              id: "article78",
+              title: "Article 78",
+              content: "Le Conseil d'enquête entend le fonctionnaire de Police poursuivi, ainsi que les témoins. Il peut ordonner toute mesure d'instruction qu'il juge utile. Le procès-verbal des débats est dressé par le secrétaire du Conseil d'enquête."
+            },
+            {
+              id: "article79",
+              title: "Article 79",
+              content: "Le Conseil d'enquête émet un avis motivé sur la culpabilité du fonctionnaire de Police et, le cas échéant, sur la sanction à infliger. Cet avis est transmis à l'autorité investie du pouvoir de nomination."
+            },
+            {
+              id: "article80",
+              title: "Article 80",
+              content: "La décision disciplinaire doit être motivée et notifiée au fonctionnaire de Police concerné. Elle mentionne les voies et délais de recours."
+            }
+          ]
+        },
+        {
+          title: "CHAPITRE 3 : Recours",
+          articles: [
+            {
+              id: "article81",
+              title: "Article 81",
+              content: "Le fonctionnaire de Police frappé d'une sanction disciplinaire peut former un recours gracieux auprès de l'autorité qui a pris la décision, dans un délai de trente jours à compter de la notification de la sanction."
+            },
+            {
+              id: "article82",
+              title: "Article 82",
+              content: "Il peut également former un recours contentieux devant la juridiction administrative compétente, dans les conditions de droit commun."
+            },
+            {
+              id: "article83",
+              title: "Article 83",
+              content: "Le recours gracieux ou contentieux n'est pas suspensif, sauf si la sanction entraîne la cessation définitive des fonctions."
+            }
+          ]
+        },
+    {
+      title: "TITRE VI : CESSATION DEFINITIVE DES FONCTIONS",
+      articles: []},
+        {
+          title: "CHAPITRE PREMIER : Dispositions générales",
+          articles: [
+            {
+              id: "article84",
+              title: "Article 84",
+              content: "La cessation définitive des fonctions des personnels de la Police nationale intervient dans les cas suivants :<ul><li>La démission;</li><li>La radiation des cadres pour invalidité;</li><li>La mise à la retraite d'office;</li><li>La révocation;</li><li>La limite d'âge.</li></ul>"
+            }
+          ]
+        },
+        {
+          title: "CHAPITRE 2 : Démission",
+          articles: [
+            {
+              id: "article85",
+              title: "Article 85",
+              content: "La démission est l'acte par lequel le fonctionnaire de Police met fin volontairement à ses fonctions. Elle doit être adressée par écrit à l'autorité investie du pouvoir de nomination."
+            },
+            {
+              id: "article86",
+              title: "Article 86",
+              content: "La démission n'est définitive qu'après son acceptation par l'autorité compétente. Jusqu'à cette acceptation, le fonctionnaire de Police peut retirer sa demande de démission."
+            },
+            {
+              id: "article87",
+              title: "Article 87",
+              content: "L'acceptation de la démission est prononcée par arrêté du ministre chargé de la Sécurité. La démission acceptée prend effet à la date fixée par l'arrêté."
+            }
+          ]
+        },
+        {
+          title: "CHAPITRE 3 : Radiation des cadres pour invalidité",
+          articles: [
+            {
+              id: "article88",
+              title: "Article 88",
+              content: "La radiation des cadres pour invalidité est prononcée lorsque le fonctionnaire de Police est reconnu définitivement inapte à l'exercice de ses fonctions par la Commission de Réforme."
+            },
+            {
+              id: "article89",
+              title: "Article 89",
+              content: "La radiation des cadres pour invalidité donne droit à une pension d'invalidité, dans les conditions prévues par la réglementation sur les pensions des fonctionnaires."
+            }
+          ]
+        },
+        {
+          title: "CHAPITRE 4 : Mise à la retraite d'office",
+          articles: [
+            {
+              id: "article90",
+              title: "Article 90",
+              content: "La mise à la retraite d'office est une sanction disciplinaire du quatrième groupe. Elle peut être prononcée à l'encontre du fonctionnaire de Police qui a commis une faute grave."
+            },
+            {
+              id: "article91",
+              title: "Article 91",
+              content: "La mise à la retraite d'office donne droit à une pension de retraite, calculée conformément à la réglementation en vigueur, sous réserve des dispositions relatives à la sanction."
+            }
+          ]
+        },
+        {
+          title: "CHAPITRE 5 : Révocation",
+          articles: [
+            {
+              id: "article92",
+              title: "Article 92",
+              content: "La révocation est la sanction disciplinaire la plus grave. Elle entraîne la perte de la qualité de fonctionnaire de Police et la radiation des cadres."
+            },
+            {
+              id: "article93",
+              title: "Article 93",
+              content: "La révocation peut être prononcée avec ou sans suspension des droits à pension. Dans ce dernier cas, le fonctionnaire de Police révoqué perd tous ses droits à pension."
+            }
+          ]
+        },
+        {
+          title: "CHAPITRE 6 : Limite d'âge",
+          articles: [
+            {
+              id: "article94",
+              title: "Article 94",
+              content: "La limite d'âge pour les personnels de la Police nationale est fixée à :<ul><li>Cinquante-cinq (55) ans pour les sous-officiers de Police ;</li><li>Cinquante-huit (58) ans pour les officiers de Police ;</li><li>Soixante (60) ans pour les commissaires de Police.</li></ul>"
+            },
+            {
+              id: "article95",
+              title: "Article 95",
+              content: "Le fonctionnaire de Police atteint par la limite d'âge est mis à la retraite d'office. Il bénéficie d'une pension de retraite calculée conformément à la réglementation en vigueur."
+            }
+          ]
+          },
+    {
+      title: "TITRE VII : DISPOSITIONS DIVERSES ET TRANSITOIRES",
+      articles: [
+        {
+          id: "article96",
+          title: "Article 96",
+          content: "Les modalités d'application du présent décret sont fixées, en tant que de besoin, par arrêté du ministre chargé de la Sécurité."
+        },
+        {
+          id: "article97",
+          title: "Article 97",
+          content: "Le présent décret abroge toutes dispositions antérieures contraires."
+        },
+        {
+          id: "article98",
+          title: "Article 98",
+          content: "Le présent décret sera publié au Journal officiel de la République de Côte d'Ivoire."
+        }
+      ]
+    }
+  ]
+}
+
+           
+// Initialisation générale
+    document.addEventListener('DOMContentLoaded', function() {
+        initArticles();
+        initScrollButtons();
+        initVoiceControls();
+        initThemeToggle();
+        initBrightnessControl();
+        initArticleClickModal();
+        initMobileSommaire();
+        initNavIndicator();
+        initFullscreenMode();
+        initSpeechEvents();
+        initAutoCloseSommaire();
+        disableSelectionAndCopyPaste();
+        initSearchFeature();
+    });
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        // Vos autres initialisations...
+        initFullscreenMode();
+    });
+
+    function initArticles() {
+        const articlesContainer = document.getElementById('articlesContainer');
+        const sommaireList = document.getElementById('sommaireList');
+        
+        lawData.chapters.forEach(chapter => {
+            const section = document.createElement('div');
+            section.className = 'section';
+            const chapterTitle = document.createElement('h2');
+            chapterTitle.className = 'article-title';
+            chapterTitle.id = chapter.title.replace(/\s+/g, '-').toLowerCase();
+            chapterTitle.textContent = chapter.title;
+            section.appendChild(chapterTitle);
+            
+            chapter.articles.forEach(articleData => {
+                const article = document.createElement('div');
+                article.className = 'articleX';
+                article.id = articleData.id;
+                const title = document.createElement('h3');
+                title.textContent = articleData.title;
+                const content = document.createElement('div');
+                content.className = 'article-content';
+                content.innerHTML = articleData.content;
+                article.appendChild(title);
+                article.appendChild(content);
+                section.appendChild(article);
+                
+                const listItem = document.createElement('li');
+                listItem.className = 'sommaire-item';
+                listItem.innerHTML = `<a href="#${articleData.id}">${articleData.title}</a>`;
+                sommaireList.appendChild(listItem);
+            });
+            articlesContainer.appendChild(section);
+        });
+        articles = document.querySelectorAll('.articleX');
+    }
+    
+    function initScrollButtons() {
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        const scrollBottomBtn = document.getElementById('scrollBottomBtn');
+        window.addEventListener('scroll', function() {
+            scrollTopBtn.classList.toggle('show-buttons', window.scrollY > 300);
+            scrollBottomBtn.classList.toggle('show-buttons', (window.innerHeight + window.scrollY) < document.body.offsetHeight - 300);
+        });
+        scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        scrollBottomBtn.addEventListener('click', () => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }));
+    }
+    
+    function initVoiceControls() {
+        const playBtn = document.getElementById('mainPlayBtn');
+        const playContinuousBtn = document.getElementById('mainPlayContinuousBtn');
+        const pauseBtn = document.getElementById('mainPauseBtn');
+        const stopBtn = document.getElementById('mainStopBtn');
+
+        if (!('speechSynthesis' in window)) {
+            [playBtn, playContinuousBtn, pauseBtn, stopBtn].forEach(btn => btn && (btn.disabled = true));
+            return;
+        }
+
+        if (playBtn) {
+            playBtn.addEventListener('click', function() {
+                isAutoReading = false;
+                if (speechSynthesis.paused) {
+                    speechSynthesis.resume();
+                } else if (!speechSynthesis.speaking) {
+                    const visibleArticle = getVisibleArticle();
+                    if (visibleArticle) readArticle(visibleArticle);
+                }
+            });
+        }
+        if (playContinuousBtn) playContinuousBtn.addEventListener('click', startContinuousReading);
+        if (pauseBtn) pauseBtn.addEventListener('click', () => speechSynthesis.pause());
+        if (stopBtn) {
+            stopBtn.addEventListener('click', function() {
+                isAutoReading = false;
+                speechSynthesis.cancel();
+            });
+        }
+    }
+
+    function startContinuousReading() {
+        speechSynthesis.cancel(); 
+        isAutoReading = true; 
+        const startArticle = getVisibleArticle();
+        if (startArticle) {
+            readArticle(startArticle); 
+        } else if (articles.length > 0) {
+            currentArticleIndex = 0;
+            scrollToArticle(0);
+            readArticle(articles[0]);
+        }
+    }
+
+    function getVisibleArticle() {
+        let mostVisibleArticle = null;
+        let maxVisibility = 0;
+        articles.forEach((article, index) => {
+            const rect = article.getBoundingClientRect();
+            const visibleHeight = Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0);
+            const visibilityRatio = visibleHeight / rect.height;
+            if (visibilityRatio > maxVisibility && visibilityRatio > 0.3) {
+                maxVisibility = visibilityRatio;
+                mostVisibleArticle = article;
+                currentArticleIndex = index;
+            }
+        });
+        return mostVisibleArticle;
+    }
+
+     function readArticle(article) {
+        speechSynthesis.cancel();
+        const title = article.querySelector('h3').textContent;
+        const content = article.querySelector('.article-content').textContent;
+        const utterance = new SpeechSynthesisUtterance(`${title}. ${content}`);
+        utterance.lang = 'fr-FR';
+        
+        // Mettre à jour les métadonnées de session média
+        updateMediaSession(article);
+
+        utterance.onend = function() {
+            if (isAutoReading && currentArticleIndex < articles.length - 1) {
+                // Passer à l'article suivant
+                currentArticleIndex++;
+                
+                // Si en mode plein écran, mettre à jour l'affichage
+                if (document.getElementById('fullscreenMode').classList.contains('active')) {
+                    loadArticleIntoFullscreen(); // Appel à la fonction du mode plein écran
+                } else {
+                    scrollToArticle(currentArticleIndex);
+                }
+                
+                // Lire l'article suivant après un court délai
+                setTimeout(() => readArticle(articles[currentArticleIndex]), 500);
+            } else {
+                isAutoReading = false;
+            }
+        };
+        
+        speechSynthesis.speak(utterance);
+    }
+      
+    function initSpeechEvents() {
+        const fsPlayBtn = document.getElementById('fullscreenPlayBtn');
+        const fsPauseBtn = document.getElementById('fullscreenPauseBtn');
+        const fsStopBtn = document.getElementById('fullscreenStopBtn');
+        
+        fsPlayBtn.addEventListener('click', () => {
+            isAutoReading = true; // Activer la lecture continue
+            if (speechSynthesis.paused) {
+                speechSynthesis.resume();
+            } else if (!speechSynthesis.speaking) {
+                readArticle(articles[currentArticleIndex]);
+            }
+        });
+        fsPauseBtn.addEventListener('click', () => speechSynthesis.pause());
+        fsStopBtn.addEventListener('click', () => {
+            isAutoReading = false; // Désactiver la lecture continue
+            speechSynthesis.cancel();
+        });
+    }
+    
+    function initThemeToggle() {
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            isDarkMode = !isDarkMode;
+            document.body.classList.toggle('dark-mode', isDarkMode);
+            themeToggle.querySelector('i').className = `fas ${isDarkMode ? 'fa-sun' : 'fa-moon'}`;
+        });
+    }
+    
+    function initBrightnessControl() {
+        const brightnessBtn = document.getElementById('brightnessBtn');
+        const brightnessControl = document.getElementById('brightnessControl');
+        brightnessBtn.addEventListener('click', () => brightnessControl.classList.toggle('active'));
+        document.getElementById('brightnessSlider').addEventListener('input', function() {
+            document.body.style.filter = `brightness(${this.value}%)`;
+        });
+    }
+    
+    function initArticleClickModal() {
+        const modal = document.getElementById('articleModal');
+        articles.forEach(article => {
+            article.addEventListener('click', function() {
+                document.getElementById('modalArticleContent').innerHTML = `<h3>${this.querySelector('h3').textContent}</h3><div>${this.querySelector('.article-content').innerHTML}</div>`;
+                modal.classList.add('active');
+            });
+        });
+        document.getElementById('modalClose').addEventListener('click', () => modal.classList.remove('active'));
+    }
+    
+    function initMobileSommaire() {
+        const mobileSommaire = document.getElementById('mobileSommaire');
+        document.getElementById('mobileSommaireBtn').addEventListener('click', () => mobileSommaire.classList.add('active'));
+        document.getElementById('mobileSommaireClose').addEventListener('click', () => mobileSommaire.classList.remove('active'));
+    }
+
+    function initAutoCloseSommaire() {
+        const mobileSommaire = document.getElementById('mobileSommaire');
+        document.querySelectorAll('.sommaire-item a').forEach(link => {
+            link.addEventListener('click', () => setTimeout(() => mobileSommaire.classList.remove('active'), 300));
+        });
+    }
+    
+    function initNavIndicator() {
+        const navIndicator = document.getElementById('navIndicator');
+        articles.forEach((_, i) => {
+            const dot = document.createElement('div');
+            dot.className = 'nav-dot';
+            dot.addEventListener('click', () => scrollToArticle(i));
+            navIndicator.appendChild(dot);
+        });
+        window.addEventListener('scroll', () => {
+            if (isAutoReading) return;
+            const visibleArticle = getVisibleArticle();
+            if (visibleArticle) updateNavIndicator(Array.from(articles).indexOf(visibleArticle));
+        });
+    }
+    
+    function updateNavIndicator(index) {
+        document.querySelectorAll('.nav-dot').forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
+        });
+    }
+
+    function scrollToArticle(index) {
+        if (articles[index]) {
+            articles[index].scrollIntoView({ behavior: 'smooth', block: 'center' });
+            updateNavIndicator(index);
+        }
+    }
+    
+    function initFullscreenMode() {
+        const fullscreenMode = document.getElementById('fullscreenMode');
+        const fullscreenToggle = document.getElementById('fullscreenToggle');
+        const fullscreenClose = document.getElementById('fullscreenClose');
+        const fullscreenTitle = document.getElementById('fullscreenTitle');
+        const fullscreenContent = document.getElementById('fullscreenContent');
+        const prevBtn = document.getElementById('prevArticleBtn');
+        const nextBtn = document.getElementById('nextArticleBtn');
+        const fsPlayBtn = document.getElementById('fullscreenPlayBtn');
+        const fsPauseBtn = document.getElementById('fullscreenPauseBtn');
+        const fsStopBtn = document.getElementById('fullscreenStopBtn');
+
+        // Charger l'article dans le mode plein écran
+        function loadArticleIntoFullscreen() {
+            const article = articles[currentArticleIndex];
+            fullscreenTitle.textContent = article.querySelector('h3').textContent;
+            fullscreenContent.innerHTML = article.querySelector('.article-content').innerHTML;
+            
+            // Mettre à jour l'état des boutons de navigation
+            prevBtn.disabled = currentArticleIndex === 0;
+            nextBtn.disabled = currentArticleIndex === articles.length - 1;
+            
+            // Arrêter toute lecture en cours
+            speechSynthesis.cancel();
+        }
+
+        // Ouvrir le mode plein écran
+        fullscreenToggle.addEventListener('click', () => {
+            // Trouver l'article actuellement visible
+            getVisibleArticle();
+            loadArticleIntoFullscreen();
+            fullscreenMode.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        // Fermer le mode plein écran
+        fullscreenClose.addEventListener('click', () => {
+            fullscreenMode.classList.remove('active');
+            document.body.style.overflow = '';
+            isAutoReading = false; // Désactiver la lecture continue en sortant du mode plein écran
+            speechSynthesis.cancel(); // Arrêter la lecture vocale
+        });
+
+        // Navigation vers l'article précédent
+        prevBtn.addEventListener('click', () => {
+            if (currentArticleIndex > 0) {
+                currentArticleIndex--;
+                loadArticleIntoFullscreen();
+                
+                // Si la lecture continue est activée, lire l'article
+                if (isAutoReading) {
+                    setTimeout(() => readArticle(articles[currentArticleIndex]), 500);
+                }
+            }
+        });
+
+        // Navigation vers l'article suivant
+        nextBtn.addEventListener('click', () => {
+            if (currentArticleIndex < articles.length - 1) {
+                currentArticleIndex++;
+                loadArticleIntoFullscreen();
+                
+                // Si la lecture continue est activée, lire l'article
+                if (isAutoReading) {
+                    setTimeout(() => readArticle(articles[currentArticleIndex]), 500);
+                }
+            }
+        });
+
+        // Contrôles vocaux en mode plein écran
+        fsPlayBtn.addEventListener('click', () => {
+            isAutoReading = true; // Activer la lecture continue
+            if (speechSynthesis.paused) {
+                speechSynthesis.resume();
+            } else if (!speechSynthesis.speaking) {
+                readArticle(articles[currentArticleIndex]);
+            }
+        });
+
+        fsPauseBtn.addEventListener('click', () => {
+            speechSynthesis.pause();
+        });
+
+        fsStopBtn.addEventListener('click', () => {
+            isAutoReading = false; // Désactiver la lecture continue
+            speechSynthesis.cancel();
+        });
+
+        // Navigation par balayage (swipe)
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        fullscreenMode.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, false);
+
+        fullscreenMode.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, false);
+        
+        function handleSwipe() {
+            const minSwipeDistance = 50; // Distance minimale pour considérer un balayage
+            
+            if (touchStartX - touchEndX > minSwipeDistance) {
+                // Balayage vers la gauche = article suivant
+                if (nextBtn && !nextBtn.disabled) {
+                    nextBtn.click();
+                }
+            } else if (touchEndX - touchStartX > minSwipeDistance) {
+                // Balayage vers la droite = article précédent
+                if (prevBtn && !prevBtn.disabled) {
+                    prevBtn.click();
+                }
+            }
+        }
+
+        // Navigation au clavier en mode plein écran
+        document.addEventListener('keydown', function(e) {
+            if (!fullscreenMode.classList.contains('active')) return;
+            
+            switch(e.key) {
+                case 'ArrowLeft':
+                    if (prevBtn && !prevBtn.disabled) prevBtn.click();
+                    break;
+                case 'ArrowRight':
+                    if (nextBtn && !nextBtn.disabled) nextBtn.click();
+                    break;
+                case 'Escape':
+                    fullscreenClose.click();
+                    break;
+            }
+        });
+    }
+
+    function disableSelectionAndCopyPaste() {
+        document.body.style.userSelect = 'none';
+        ['contextmenu', 'copy', 'paste', 'selectstart'].forEach(event => {
+            window.addEventListener(event, e => e.preventDefault());
+        });
+    }
+    
+    // --- Fonctionnalité de lecture en arrière-plan (Media Session API) ---
+    function updateMediaSession(article) {
+        if (!('mediaSession' in navigator)) return;
+        const title = article.querySelector('h3').textContent;
+        const chapter = article.closest('.section').querySelector('h2').textContent;
+        navigator.mediaSession.metadata = new MediaMetadata({
+            title: title, artist: chapter, album: 'Loi relative à la filiation',
+            artwork: [{ src: 'https://img.icons8.com/ios-filled/128/000000/law.png', sizes: '128x128', type: 'image/png' }]
+        });
+        navigator.mediaSession.setActionHandler('play', () => { isAutoReading = true; speechSynthesis.resume(); });
+        navigator.mediaSession.setActionHandler('pause', () => speechSynthesis.pause());
+        navigator.mediaSession.setActionHandler('nexttrack', playNextArticle);
+        navigator.mediaSession.setActionHandler('previoustrack', playPreviousArticle);
+    }
+    function playNextArticle() {
+        if (currentArticleIndex < articles.length - 1) {
+            currentArticleIndex++; isAutoReading = true;
+            scrollToArticle(currentArticleIndex); readArticle(articles[currentArticleIndex]);
+        }
+    }
+    function playPreviousArticle() {
+        if (currentArticleIndex > 0) {
+            currentArticleIndex--; isAutoReading = true;
+            scrollToArticle(currentArticleIndex); readArticle(articles[currentArticleIndex]);
+        }
+    }
+
+    // --- Fonctionnalité de recherche (MODIFIÉE) ---
+    function initSearchFeature() {
+        const searchBtn = document.createElement('button');
+        searchBtn.className = 'control-btn';
+        searchBtn.id = 'searchBtn';
+        searchBtn.title = 'Rechercher';
+        searchBtn.innerHTML = '<i class="fas fa-search"></i>';
+        document.querySelector('.control-buttons').appendChild(searchBtn);
+        
+        const searchInterface = document.createElement('div');
+        searchInterface.id = 'searchInterface';
+        searchInterface.style.cssText = `
+            position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+            width: calc(100% - 40px); max-width: 550px; background: var(--article-bg);
+            padding: 10px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 1000; display: none; align-items: center; gap: 5px; transition: var(--transition);
+        `;
+        searchInterface.innerHTML = `
+            <input type="text" id="searchInput" placeholder="Rechercher..." style="flex-grow: 1; padding: 8px; border: 1px solid var(--secondary-color); border-radius: 5px;">
+            <button id="searchPrevBtn" class="control-btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-up"></i></button>
+            <button id="searchNextBtn" class="control-btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-down"></i></button>
+            <span id="searchResultsCount" style="flex-shrink: 0; padding: 0 5px; min-width: 40px; text-align: center;"></span>
+            <button id="closeSearchBtn" class="control-btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-times"></i></button>
+        `;
+        document.body.appendChild(searchInterface);
+
+        let searchResults = [];
+        let currentSearchIndex = -1;
+        let originalContents = new Map();
+
+        function performSearch() {
+            const searchTerm = document.getElementById('searchInput').value.trim();
+            if (!originalContents.size) {
+                document.querySelectorAll('.article-content, h3').forEach(el => originalContents.set(el, el.innerHTML));
+            }
+            originalContents.forEach((content, el) => el.innerHTML = content);
+            searchResults = [];
+            currentSearchIndex = -1;
+            if (!searchTerm) { updateSearchUI(); return; }
+
+            const regex = new RegExp(searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+            originalContents.forEach((content, element) => {
+                element.innerHTML = content.replace(regex, match => `<mark>${match}</mark>`);
+            });
+            searchResults = Array.from(document.querySelectorAll('mark'));
+            if (searchResults.length > 0) navigateResults(true, false);
+            updateSearchUI();
+        }
+
+        function navigateResults(isNext, shouldWrap = true) {
+            if (!searchResults.length) return;
+            searchResults.forEach(mark => mark.style.backgroundColor = '');
+            if (shouldWrap) {
+                currentSearchIndex = isNext ? (currentSearchIndex + 1) % searchResults.length : (currentSearchIndex - 1 + searchResults.length) % searchResults.length;
+            } else {
+                currentSearchIndex = 0;
+            }
+            const currentMark = searchResults[currentSearchIndex];
+            currentMark.style.backgroundColor = 'var(--gold-color)';
+            currentMark.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            updateSearchUI();
+        }
+
+        function updateSearchUI() {
+            document.getElementById('searchResultsCount').textContent = searchResults.length > 0 ? `${currentSearchIndex + 1}/${searchResults.length}` : '0/0';
+        }
+        
+        function resetSearch() {
+            originalContents.forEach((content, el) => el.innerHTML = content);
+            originalContents.clear();
+            document.getElementById('searchInput').value = '';
+            searchResults = []; currentSearchIndex = -1;
+            updateSearchUI();
+        }
+
+        searchBtn.addEventListener('click', () => {
+            const isVisible = searchInterface.style.display === 'flex';
+            searchInterface.style.display = isVisible ? 'none' : 'flex';
+            if (isVisible) resetSearch(); else document.getElementById('searchInput').focus();
+        });
+        document.getElementById('searchInput').addEventListener('input', performSearch);
+        document.getElementById('searchNextBtn').addEventListener('click', () => navigateResults(true));
+        document.getElementById('searchPrevBtn').addEventListener('click', () => navigateResults(false));
+        document.getElementById('closeSearchBtn').addEventListener('click', () => {
+            searchInterface.style.display = 'none';
+            resetSearch();
+        });
+    }
+    </script>
+  <script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js"));
+  }
+</script>
+  <!-- PWA Install Button -->
+<button id="pwa-install-btn" aria-label="Installer l'application" hidden>Installer</button>
+<style>
+  #pwa-install-btn{
+    position:fixed; right:16px; bottom:16px; z-index:9999;
+    padding:10px 14px; border:none; border-radius:999px;
+    background:#22c55e; color:white; font:600 14px system-ui,Segoe UI,Roboto,Arial,sans-serif;
+    box-shadow:0 8px 20px rgba(34,197,94,.35);
+  }
+  #pwa-install-btn[hidden]{ display:none; }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    #pwa-install-btn{ bottom: calc(16px + env(safe-area-inset-bottom)); }
+  }
+</style>
+<script>
+  (function(){
+    let deferredPrompt;
+    const btnId = "pwa-install-btn";
+    function ensureBtn(){
+      let b = document.getElementById(btnId);
+      if(!b){
+        b = document.createElement("button");
+        b.id = btnId;
+        b.textContent = "Installer";
+        document.body.appendChild(b);
+      }
+      return b;
+    }
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      const btn = ensureBtn();
+      btn.hidden = false;
+      btn.onclick = async () => {
+        btn.hidden = true;
+        deferredPrompt.prompt();
+        await deferredPrompt.userChoice;
+        deferredPrompt = null;
+      };
+    });
+    if (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) {
+      const btn = document.getElementById(btnId);
+      if(btn) btn.hidden = true;
+    }
+  })();
+</script>
+  <!-- Auth UI minimal -->
+<style>
+  .auth-box{position:fixed; top:12px; right:12px; z-index:9998; background:#ffffff; color:#111827; border-radius:12px; padding:10px 12px; box-shadow:0 10px 24px rgba(0,0,0,.12); font:500 14px system-ui,Segoe UI,Roboto,Arial}
+  .auth-box h4{margin:0 0 6px; font-size:14px}
+  .auth-box form{display:flex; gap:6px; flex-wrap:wrap; align-items:center}
+  .auth-box input{padding:6px 8px; border:1px solid #e5e7eb; border-radius:8px}
+  .auth-box button{background:#22c55e; color:#fff; border:none; padding:6px 10px; border-radius:8px; cursor:pointer}
+  .auth-box .row{display:flex; gap:6px; flex-wrap:wrap}
+  .views-badge{position:fixed; left:12px; bottom:12px; z-index:9998; background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px; font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)}
+</style><!-- Admin link (visible only when logged-in) -->
+<style>
+  .admin-link{
+    position:fixed; right:16px; bottom:88px; z-index:9998;
+    display:none; align-items:center; gap:8px;
+    padding:10px 14px; border-radius:999px; text-decoration:none;
+    background:#111827; color:#fff; font:600 14px system-ui,Segoe UI,Roboto,Arial;
+    box-shadow:0 8px 20px rgba(0,0,0,.3);
+    border:1px solid rgba(255,255,255,.1);
+  }
+  body.logged-in .admin-link{ display:inline-flex; }
+  .admin-link:hover{ filter:brightness(1.1); }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    .admin-link{ bottom: calc(88px + env(safe-area-inset-bottom)); }
+  }
+</style>
+<a href="admin.html" class="admin-link" title="Tableau de bord">Admin</a>
+  <script type="module" src="assets/firebase-app.js"></script>
+  <script>window.autoCountAndBind && window.autoCountAndBind();</script>
+  
+<!-- Floating Auth Button + Modal -->
+<style>
+  #auth-fab{
+    position:fixed; right:16px; bottom:68px; z-index:9998;
+    width:48px; height:48px; border-radius:999px; border:none; cursor:pointer;
+    background:#111827; color:#fff; display:grid; place-items:center;
+    box-shadow:0 8px 20px rgba(0,0,0,.35); border:1px solid rgba(255,255,255,.1);
+  }
+  body.logged-in #auth-fab::after{ content:"✓"; }
+  #auth-fab::after{ content:"👤"; font-size:20px; }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    #auth-fab{ bottom: calc(68px + env(safe-area-inset-bottom)); }
+  }
+  .views-badge{
+    position:fixed; left:12px; bottom:12px; z-index:9998; 
+    background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px;
+    font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)
+  }
+  dialog#auth-modal{
+    border:none; border-radius:16px; padding:0; width:min(90vw,420px);
+    box-shadow:0 24px 72px rgba(0,0,0,.35); overflow:hidden;
+  }
+  dialog::backdrop{ background:rgba(0,0,0,.4); }
+  .auth-modal-head{background:#0f172a; color:#fff; padding:12px 16px; display:flex; justify-content:space-between; align-items:center}
+  .auth-modal-body{padding:16px; background:#111827; color:#e5e7eb}
+  .auth-modal-body label{display:block; font-size:13px; margin-top:8px; opacity:.9}
+  .auth-modal-body input{width:100%; padding:10px 12px; border-radius:10px; border:1px solid #1f2937; background:#0b1021; color:#e5e7eb}
+  .auth-actions{display:flex; gap:8px; margin-top:14px}
+  .btn{border:none; border-radius:10px; padding:10px 12px; cursor:pointer; font-weight:600}
+  .btn-primary{background:#22c55e; color:white}
+  .btn-ghost{background:transparent; color:#e5e7eb; border:1px solid #374151}
+  .muted{opacity:.8}
+</style>
+
+<button id="auth-fab" title="Connexion / Compte"></button>
+<div class="views-badge">Vues : <span id="viewCounter">0</span></div>
+
+<dialog id="auth-modal">
+  <div class="auth-modal-head">
+    <strong>Connexion</strong>
+    <button class="btn btn-ghost" id="auth-close" aria-label="Fermer">✕</button>
+  </div>
+  <div class="auth-modal-body">
+    <p class="muted">Connecte-toi pour accéder à l’admin et une meilleure expérience.</p>
+    <label>Email</label>
+    <input type="email" id="auth-email" placeholder="email@exemple.com" required>
+    <label>Mot de passe</label>
+    <input type="password" id="auth-pass" placeholder="••••••••" required>
+    <div class="auth-actions">
+      <button class="btn btn-primary" id="btn-login">Connexion</button>
+      <button class="btn btn-ghost" id="btn-register">Créer un compte</button>
+      <button class="btn btn-ghost" id="btn-logout">Déconnexion</button>
+    </div>
+    <div id="auth-msg" class="muted" style="margin-top:8px;"></div>
+  </div>
+</dialog>
+
+<script type="module">
+  import { authRegister, authLogin, authLogout } from "./assets/firebase-app.js";
+
+  const fab = document.getElementById("auth-fab");
+  const modal = document.getElementById("auth-modal");
+  const closeBtn = document.getElementById("auth-close");
+  const email = document.getElementById("auth-email");
+  const pass = document.getElementById("auth-pass");
+  const msg  = document.getElementById("auth-msg");
+  const btnLogin = document.getElementById("btn-login");
+  const btnRegister = document.getElementById("btn-register");
+  const btnLogout = document.getElementById("btn-logout");
+
+  function openModal(){ try{ modal.showModal(); }catch{ modal.setAttribute("open",""); } }
+  function closeModal(){ modal.close?.(); modal.removeAttribute("open"); }
+
+  fab?.addEventListener("click", openModal);
+  closeBtn?.addEventListener("click", closeModal);
+
+  async function handle(run){
+    msg.textContent = "";
+    try{
+      await run(email.value.trim(), pass.value);
+      msg.textContent = "✅ Opération réussie.";
+      setTimeout(()=>{ closeModal(); }, 500);
+    }catch(e){
+      console.error(e);
+      msg.textContent = "❌ " + (e?.message || "Erreur");
+    }
+  }
+
+  btnLogin?.addEventListener("click", () => handle(authLogin));
+  btnRegister?.addEventListener("click", () => handle(authRegister));
+  btnLogout?.addEventListener("click", async () => {
+    msg.textContent = "";
+    try{ await authLogout(); msg.textContent = "✅ Déconnecté."; }catch(e){ msg.textContent = "❌ " + (e?.message||"Erreur"); }
+  });
+</script>
+
+
+<!-- Per-card view counters -->
+<style>
+  .card-views-badge{
+    position:absolute; top:8px; right:8px;
+    background:rgba(17,24,39,.9); color:#fff;
+    padding:4px 8px; border-radius:999px; font:600 12px system-ui,Segoe UI,Roboto,Arial;
+    box-shadow:0 6px 14px rgba(0,0,0,.25);
+    pointer-events:none;
+  }
+  .card-views-wrap{ position:relative; }
+</style>
+<script type="module">
+  import { getViewCount } from "./assets/firebase-app.js";
+  function basename(href){
+    try{ const u = new URL(href, location.href);
+         const file = u.pathname.split('/').pop() || 'index.html';
+         return file.replace(/\.html$/i,''); }
+    catch{ return (href.split('/').pop()||'index.html').replace(/\.html$/i,''); }
+  }
+  async function attachCounterTo(el, docId){
+    let container = el.closest('.card, .item, .panel, .box, .article, .doc, .tile');
+    if(!container){ container = el.parentElement; }
+    if(container && !container.classList.contains('card-views-wrap')){
+      container.classList.add('card-views-wrap');
+    }
+    const host = container || el;
+    if(host.querySelector('.card-views-badge[data-doc="'+docId+'"]')) return;
+    const badge = document.createElement('span');
+    badge.className = 'card-views-badge';
+    badge.dataset.doc = docId;
+    badge.textContent = 'Vues: …';
+    host.appendChild(badge);
+    try{ const n = await getViewCount(docId);
+         badge.textContent = 'Vues: ' + n; }
+    catch{ badge.textContent = 'Vues: —'; }
+  }
+  async function initCardCounters(){
+    const links = Array.from(document.querySelectorAll('[data-doc-id], a[href$=".html"]'))
+      .filter(a => {
+        const id = a.getAttribute('data-doc-id') || basename(a.getAttribute('href')||'');
+        return id && !['index','admin','offline'].includes(id.toLowerCase());
+      });
+    const handled = new Set();
+    for(const a of links){
+      const id = a.getAttribute('data-doc-id') || basename(a.getAttribute('href')||'');
+      if(!id || handled.has(id)) continue;
+      handled.add(id);
+      attachCounterTo(a, id);
+    }
+  }
+  initCardCounters();
+  const obs = new MutationObserver(()=>initCardCounters());
+  obs.observe(document.body, { childList:true, subtree:true });
+</script>
+
+</body>
+</html>

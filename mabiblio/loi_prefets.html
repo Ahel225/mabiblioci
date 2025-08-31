@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Statut Général de la Fonction Publique — Lecteur</title><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/><style>:root{--bg:#e6f6ec;--paper:#ffffff;--ink:#0e2a1b;--primary:#0a7f3f;--primary-700:#074d2a;--accent:#ff9a3c;--accent-2:#fff4e8;--muted:#d9f0e3;--shadow:0 12px 28px rgba(0,0,0,.08);--radius:18px;--transition:.25s ease;--article-bg:#ffffff;--icon-orange:#ff9a3c;}*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.6}header{position:sticky;top:0;z-index:60;background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(255,255,255,.9));backdrop-filter:saturate(1.1) blur(8px);border-bottom:1px solid #d7eadd}.container{max-width:1120px;margin:0 auto;padding:14px 16px;display:flex;align-items:center;gap:12px}.logo{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:radial-gradient(circle at 30% 30%, #d9ffe7, #b9f6cf);color:#074d2a;box-shadow:var(--shadow);font-size:18px;border:1px solid #b5e4c7}h1{margin:0;font-family:'Playfair Display',serif;font-size:20px;color:#074d2a}.sub{color:#355a46;font-size:12px;margin-top:2px}.control-buttons{margin-left:auto;display:flex;gap:8px;align-items:center}.btn{min-width:38px;height:38px;border-radius:12px;border:1px solid #cfe6d8;background:#fff;color:#074d2a;display:grid;place-items:center;cursor:pointer;box-shadow:var(--shadow);transition:var(--transition)}.btn:hover{transform:translateY(-1px)}.wrapper{max-width:1120px;margin:16px auto;padding:0 12px}.group{background:var(--paper);border:1px solid #d7eadd;border-radius:var(--radius);box-shadow:var(--shadow);margin:14px 0;overflow:hidden}.group>h2{margin:0;padding:14px 16px;background:linear-gradient(180deg,#ffffff,#eef9f2);border-bottom:1px solid #d7eadd;color:#074d2a;font-size:18px;font-family:'Playfair Display',serif}.article{margin:10px 10px 14px 10px;padding:12px 14px;border-left:6px solid var(--primary);background:var(--article-bg);border-radius:14px;box-shadow:0 1px 0 rgba(0,0,0,.03)}.article-header{display:flex; align-items:center; gap:10px; margin:0 0 8px 0;}.article-header h3{margin:0; color:#074d2a; display:flex; align-items:center; gap:8px;}.article .open-fs{ margin-left:auto; width:34px; height:34px; border:1px solid #d7eadd; background:#fff; border-radius:10px; cursor:pointer; }.article .article-icon{ width:28px; height:28px; border-radius:8px; display:grid; place-items:center; background:var(--accent-2); color:#d26b00; border:1px solid #ffd6a8; }.article-content p{margin:.5rem 0}.article-content ul,.article-content ol{margin:.5rem 0 .8rem 1.25rem}.article-content ol>li, .article-content ul>li{ padding:8px 0; line-height:1.7; border-bottom:1px solid #edf7f0; }.article-content ol>li:last-child, .article-content ul>li:last-child{ border-bottom:0; }.article-content li > ol > li, .article-content li > ul > li{ padding:6px 0; border-bottom:1px dashed #edf7f0; }.article-content li > ol > li:last-child, .article-content li > ul > li:last-child{ border-bottom:0; }.reading{ outline:2px solid #c7ffdf; outline-offset:2px; border-left-color:#8ce4a9 !important; background:linear-gradient(180deg,#fff, #f0fff6) }mark{background:#fff0d6}#tocFloatBtn{position:fixed; right:14px; bottom:120px; width:46px; height:46px; border-radius:50%; border:none; background:var(--primary); color:#fff; display:grid; place-items:center; box-shadow:0 10px 24px rgba(0,0,0,.25); z-index:1500;}#tocPanel{position:fixed; top:0; right:0; height:100%; width:86%; max-width:420px; background:#fff; border-left:1px solid #d7eadd; box-shadow:-16px 0 35px rgba(0,0,0,.2); transform:translateX(100%); transition:transform .25s ease; z-index:1600; overflow:auto;}#tocOverlay{position:fixed; inset:0; background:rgba(0,0,0,.28); backdrop-filter:blur(2px); display:none; z-index:1590}#tocPanel.open{ transform:none } #tocOverlay.show{ display:block }#tocPanel header{position:sticky; top:0; background:#fff; padding:12px 14px; border-bottom:1px solid #d7eadd}#tocPanel h3{margin:0; color:#074d2a} #tocPanel .toc-list{padding:12px 14px}#tocPanel .toc-list a{display:block; padding:6px 0; color:#074d2a; text-decoration:none}#tocPanel .toc-sub{margin-left:10px; border-left:2px solid #eaf6ee; padding-left:8px}#voiceBar{position:fixed; left:50%; transform:translateX(-50%); bottom:14px; background:#074d2a; color:#fff; z-index:1550; border-radius:22px; padding:8px 12px; display:flex; gap:10px; align-items:center; box-shadow:0 12px 28px rgba(0,0,0,.3)}#voiceBar button{width:34px; height:34px; border-radius:10px; border:1px solid #cfe3f5; background:transparent; color:#eaf0f6; display:grid; place-items:center; cursor:pointer}#voiceBar .now{font-size:12px; max-width:52vw; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:#f1f5f9}#fsOverlay{ position:fixed; inset:0; background:#fff; z-index:1700; display:none; }#fsOverlay.show{ display:block } #fsHeader{ position:sticky; top:0; background:#fff; padding:10px 14px; border-bottom:1px solid #d7eadd; display:flex; align-items:center; gap:10px }#fsHeader .ttl{ font-weight:700; color:#074d2a; flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis }#fsHeader button{ width:36px; height:36px; border-radius:10px; border:1px solid #d7eadd; background:#fff; }#fsBody{ padding:14px; height:calc(100% - 58px); overflow:auto } #fsBody .article-content{ font-size:1.04rem }#fsNavPrev,#fsNavNext{ position:fixed; top:50%; transform:translateY(-50%); width:42px; height:42px; border-radius:50%; border:none; background:var(--primary); color:#fff; display:grid; place-items:center; z-index:1710; opacity:.9 }#fsNavPrev{ left:10px } #fsNavNext{ right:10px }footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#3d5c4a;font-size:12px}/* Anti-sélection / anti-copie */
+.no-select, .no-select *:not(input):not(textarea):not(.selectable){-webkit-user-select:none!important;-moz-user-select:none!important;-ms-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important;}
+/* Sommaire flottant complet : Titre → Chapitre → Section → Article */
+.floating-toc{position:fixed; right:16px; bottom:78px; width:380px; max-height:70vh; overflow:auto; background:#ffffff; border:1px solid #d7eadd; border-radius:14px; box-shadow:0 16px 40px rgba(0,0,0,.18); padding:8px 10px; z-index:1600}
+.floating-toc.is-hidden{display:none}
+.toc-header{display:flex; align-items:center; justify-content:space-between; font-weight:800; color:#074d2a; padding:6px 4px 8px 6px; border-bottom:1px solid #eef6f2}
+.toc-close{border:none; background:transparent; cursor:pointer; padding:6px; border-radius:8px}
+.toc-close:hover{background:#f7f7f7}
+.floating-toc ul{list-style:none; margin:0; padding-left:10px}
+.floating-toc .toc-item{margin:4px 0}
+.floating-toc a{display:block; text-decoration:none; color:#074d2a; line-height:1.35}
+.floating-toc .l2 > a{font-weight:800; font-size:14px; margin-top:6px}
+.floating-toc .l3 > a{padding-left:6px; font-weight:700; font-size:13px}
+.floating-toc .l4 > a{padding-left:12px; font-weight:600; font-size:12.5px}
+.floating-toc .l5 > a{padding-left:18px; font-size:12px}
+.toc-toggle{position:fixed; right:16px; bottom:16px; width:48px; height:48px; border-radius:50%; border:none; background:linear-gradient(135deg,#0a7f3f,#0c9250); color:#fff; display:grid; place-items:center; box-shadow:0 10px 24px rgba(0,0,0,.25); z-index:1700; cursor:pointer}
+.toc-toggle:active{transform:scale(.98)}
+@media (max-width: 980px){
+  .floating-toc{right:8px; left:8px; bottom:74px; width:auto; max-height:55vh;}
+  .toc-toggle{right:12px; bottom:12px;}
+}
+
+/* Sommaire flottant complet : Titre → Chapitre → Section → Article */
+.floating-toc{position:fixed; right:16px; bottom:78px; width:380px; max-height:70vh; overflow:auto; background:#ffffff; border:1px solid #d7eadd; border-radius:14px; box-shadow:0 16px 40px rgba(0,0,0,.18); padding:8px 10px; z-index:1600}
+.floating-toc.is-hidden{display:none}
+.toc-header{display:flex; align-items:center; justify-content:space-between; font-weight:800; color:#074d2a; padding:6px 4px 8px 6px; border-bottom:1px solid #eef6f2}
+.toc-close{border:none; background:transparent; cursor:pointer; padding:6px; border-radius:8px}
+.toc-close:hover{background:#f7f7f7}
+.floating-toc ul{list-style:none; margin:0; padding-left:10px}
+.floating-toc .toc-item{margin:4px 0}
+.floating-toc a{display:block; text-decoration:none; color:#074d2a; line-height:1.35}
+.floating-toc .l2 > a{font-weight:800; font-size:14px; margin-top:6px}
+.floating-toc .l3 > a{padding-left:6px; font-weight:700; font-size:13px}
+.floating-toc .l4 > a{padding-left:12px; font-weight:600; font-size:12.5px}
+.floating-toc .l5 > a{padding-left:18px; font-size:12px}
+.toc-toggle{position:fixed; right:16px; bottom:16px; width:48px; height:48px; border-radius:50%; border:none; background:linear-gradient(135deg,#0a7f3f,#0c9250); color:#fff; display:grid; place-items:center; box-shadow:0 10px 24px rgba(0,0,0,.25); z-index:1700; cursor:pointer}
+.toc-toggle:active{transform:scale(.98)}
+@media (max-width: 980px){
+  .floating-toc{right:8px; left:8px; bottom:74px; width:auto; max-height:55vh;}
+  .toc-toggle{right:12px; bottom:12px;}
+}
+
+.chapter-title{margin-left: 12px;}
+.section-title{margin-left: 24px;}
+/* TOC */
+.floating-toc{position:fixed; right:16px; bottom:78px; width:380px; max-height:70vh; overflow:auto; background:#ffffff; border:1px solid #d7eadd; border-radius:14px; box-shadow:0 16px 40px rgba(0,0,0,.18); padding:8px 10px; z-index:1600}
+.floating-toc.is-hidden{display:none}
+.toc-header{display:flex; align-items:center; justify-content:space-between; font-weight:800; color:#074d2a; padding:6px 4px 8px 6px; border-bottom:1px solid #eef6f2}
+.toc-close{border:none; background:transparent; cursor:pointer; padding:6px; border-radius:8px}
+.toc-close:hover{background:#f7f7f7}
+.floating-toc ul{list-style:none; margin:0; padding-left:10px}
+.floating-toc .toc-item{margin:4px 0}
+.floating-toc a{display:block; text-decoration:none; color:#074d2a; line-height:1.35}
+.floating-toc .l2 > a{font-weight:800; font-size:14px; margin-top:6px}
+.floating-toc .l3 > a{padding-left:6px; font-weight:700; font-size:13px}
+.floating-toc .l4 > a{padding-left:12px; font-weight:600; font-size:12.5px}
+.floating-toc .l5 > a{padding-left:18px; font-size:12px}
+.toc-toggle{position:fixed; right:16px; bottom:16px; width:48px; height:48px; border-radius:50%; border:none; background:linear-gradient(135deg,#0a7f3f,#0c9250); color:#fff; display:grid; place-items:center; box-shadow:0 10px 24px rgba(0,0,0,.25); z-index:1700; cursor:pointer}
+.toc-toggle:active{transform:scale(.98)}
+@media (max-width: 980px){
+  .floating-toc{right:8px; left:8px; bottom:74px; width:auto; max-height:55vh;}
+  .toc-toggle{right:12px; bottom:12px;}
+}
+
+/* Floating TOC + Toggle */
+.floating-toc{position:fixed; right:16px; bottom:78px; width:380px; max-height:70vh; overflow:auto; background:#ffffff; border:1px solid #d7eadd; border-radius:14px; box-shadow:0 16px 40px rgba(0,0,0,.18); padding:8px 10px; z-index:1600}
+.floating-toc.is-hidden{display:none}
+.toc-header{display:flex; align-items:center; justify-content:space-between; font-weight:800; color:#074d2a; padding:6px 4px 8px 6px; border-bottom:1px solid #eef6f2}
+.toc-close{border:none; background:transparent; cursor:pointer; padding:6px; border-radius:8px}
+.toc-close:hover{background:#f7f7f7}
+.toc-toggle{position:fixed; right:16px; bottom:16px; width:48px; height:48px; border-radius:50%; border:none; background:linear-gradient(135deg,#0a7f3f,#0c9250); color:#fff; display:grid; place-items:center; box-shadow:0 10px 24px rgba(0,0,0,.25); z-index:1700; cursor:pointer}
+.toc-toggle:active{transform:scale(.98)}
+@media (max-width: 980px){
+  .floating-toc{right:8px; left:8px; bottom:74px; width:auto; max-height:55vh;}
+  .toc-toggle{right:12px; bottom:12px;}
+}
+
+/* Force clickable TOC toggle */
+#tocToggle, #floatingTOC{ pointer-events:auto !important; }
+#tocToggle{ z-index: 100000 !important; }
+#floatingTOC{ z-index: 99999 !important; }
+
+.article-content p{margin:0 0 10px 0;}
+.article-content ul, .article-content ol{margin: 8px 0 12px 24px;}
+.article-content li{margin: 4px 0;}
+</style>  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#22c55e">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<!-- HIDE AUTH/VIEWS WIDGETS OUTSIDE HOME (safe) -->
+<style>
+  #auth-fab, .views-badge, #auth-modal, .card-views-badge { display: none !important; }
+</style>
+
+</head><body><header><div class="container"><div class="logo"><i class="fa-solid fa-shield-halved"></i></div><div><h1>Statut du Corps préfectoral</h1><div class="sub">Thème vert élégant • Icônes orange • Sommaire • Recherche • Lecture continue • Plein écran</div></div><div class="control-buttons"><button class="btn" id="tocHeaderBtn" title="Sommaire"><i class="fa-solid fa-list-ul"></i></button><button class="btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Haut de page"><i class="fa-solid fa-angles-up"></i></button></div></div></header><main class="wrapper"><h2 id="statut-du-corps-prefectoral">Statut du Corps préfectoral</h2><h2 id="titre-premier---dispositions-generales">TITRE PREMIER - DISPOSITIONS GÉNÉRALES</h2><div class="article" id="article-1"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-shield-halved"></i></span><h3 id="article-1">Article 1</h3></div><div class="article-content">
+<span class="article-number">Article premier</span>Le présent statut s'applique aux membres du corps préfectoral qui ont la qualité de fonctionnaires et sont, vis-à-vis de l'Administration, dans une situation statutaire et réglementaire.
+    </div></div><h3 class="chapter-title" id="chapitre-premier---composition-du-corps-prefectoral">CHAPITRE PREMIER - COMPOSITION DU CORPS PRÉFECTORAL</h3><div class="article" id="article-2"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-landmark"></i></span><h3 id="article-2">Article 2</h3></div><div class="article-content">
+<span class="article-number"></span>Le Corps préfectoral est constitué par les préfets de Région, les préfets de Département, les secrétaires généraux de Préfecture et les sous-préfets.
+    </div></div><div class="article" id="article-3"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-scale-balanced"></i></span><h3 id="article-3">Article 3</h3></div><div class="article-content">
+<span class="article-number"></span>Le Corps préfectoral comprend quatre grades qui sont:
+        <ul>
+<li>le hors grade ;</li>
+<li>le grade I ;</li>
+<li>le grade II ;</li>
+<li>le grade III.</li>
+</ul>
+        Chacun des grades comporte trois échelons.
+    </div></div><h3 class="chapter-title" id="chapitre-ii---missions-du-corps-prefectoral">CHAPITRE II - MISSIONS DU CORPS PRÉFECTORAL</h3><div class="article" id="article-4"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-sitemap"></i></span><h3 id="article-4">Article 4</h3></div><div class="article-content">
+<span class="article-number"></span>Les attributions du Préfet de Région et du préfet de Département sont définies par les lois n°61-84 du 10 avril 1961 relative au fonctionnement des départements, préfectures et sous-préfectures et n°2001-476 du 09 août 2001 d'orientation sur l'organisation générale de l'Administration territoriale.
+        <br/><br/>
+        Le Préfet de Région et le préfet de Département sont placés sous l'autorité hiérarchique du ministre chargé de l'intérieur.
+        <br/><br/>
+        Le Préfet de Région représente le pouvoir exécutif dans sa circonscription. Il est, à ce titre, le délégué du Gouvernement et le représentant direct de chacun des ministres.
+        <br/><br/>
+        Il est chargé d'une mission générale de Développement et d'Administration de la Région. A ce titre, il rassemble et exploite toutes informations à caractère économique, social et culturel et préside les Commissions régionales de Développement.
+        <br/><br/>
+        Il coordonne et contrôle les activités des préfets des Départements ainsi que les services administratifs et techniques de la Région et, d'une manière générale, de l'ensemble des services administratifs civils de l'État intervenant dans la Région.
+        <br/><br/>
+        Le Préfet de Département est également représentant du pouvoir exécutif dans le Département. Il est, en qualité de délégué du Gouvernement, le représentant de chacun des ministres. Il représente les intérêts nationaux et veille à l'exécution des lois et règlements.
+        <br/><br/>
+        Il assure, sous l'autorité du préfet de Région et des ministres compétents, la direction générale de l'activité des fonctionnaires civils de l'État dans son Département et la coordination des actions entreprises par les différents services.
+        <br/><br/>
+        Toutefois, les juridictions judiciaires et administratives ne sont pas soumises à l'autorité hiérarchique du Corps préfectoral.
+        <br/><br/>
+        Le Préfet est assisté dans sa circonscription administrative par le secrétaire général de Préfecture et le sous-préfet.
+    </div></div><div class="article" id="article-5"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-gavel"></i></span><h3 id="article-5">Article 5</h3></div><div class="article-content">
+<span class="article-number"></span>Le Secrétaire général de Préfecture est chargé; sous l'autorité du préfet, de la direction des services préfectoraux et de la coordination des actions entreprises par les différents services extérieurs dans les domaines administratifs, économique et social. Il assure de plein droit l'Administration du Département en cas d'absence du préfet.
+    </div></div><div class="article" id="article-6"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-scroll"></i></span><h3 id="article-6">Article 6</h3></div><div class="article-content">
+<span class="article-number"></span>Le Sous-préfet est le représentant de l'État dans la sous-préfecture. Il agit à ce titre sur délégation du Préfet dont il dépend.
+    </div></div><div class="article" id="article-7"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-file-lines"></i></span><h3 id="article-7">Article 7</h3></div><div class="article-content">
+<span class="article-number"></span>Les Préfets de Région, Préfets de département, Secrétaires généraux de préfecture et Sous-préfets peuvent, outre les attributions prévues par la loi, exercer des fonctions de direction et de contrôle dans une Administration centrale, après accord du Ministre chargé de l'intérieur.
+    </div></div><h2 id="statut-du-corps-prefectoral-loi">Statut du corps préfectoral (loi)</h2><h3 class="chapter-title" id="chapitre-iii---conditions-dacces">CHAPITRE III - CONDITIONS D'ACCÈS</h3><div class="article" id="article-8"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-diagram-project"></i></span><h3 id="article-8">Article 8</h3></div><div class="article-content">
+<span class="article-number"></span>Pour accéder au corps préfectoral, il faut:
+        <ul>
+<li>Être de nationalité ivoirienne;</li>
+<li>Avoir 21 ans révolus;</li>
+<li>Jouir de ses droits civiques et d'une bonne moralité;</li>
+<li>Être en position régulière au regard des lois sur le recrutement dans l'Armée;</li>
+<li>Remplir les conditions d'aptitude physique et mentale exigées pour occuper l'emploi;</li>
+<li>Être reconnu indemne de toute affection grave ou contagieuse, conformément à une liste d'affections arrêtée par un décret en Conseil des Ministres ;</li>
+<li>Être administrateur civil.</li>
+</ul>
+</div></div><div class="article" id="article-9"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-shield-halved"></i></span><h3 id="article-9">Article 9</h3></div><div class="article-content">
+<span class="article-number"></span>Pour l'accès au corps préfectoral, aucune distinction ne doit être faite entre l'homme et la femme.
+    </div></div><h2 id="titre-ii---nomination---notation-avancement---discipline---traitement---avantages-sociaux">TITRE II - NOMINATION - NOTATION-AVANCEMENT - DISCIPLINE - TRAITEMENT - AVANTAGES SOCIAUX</h2><h3 class="chapter-title" id="chapitre-premier---nomination">CHAPITRE PREMIER - NOMINATION</h3><div class="article" id="article-10"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-landmark"></i></span><h3 id="article-10">Article 10</h3></div><div class="article-content">
+<span class="article-number"></span>Les Préfets de Région sont nommés parmi les hors grade.
+    </div></div><div class="article" id="article-11"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-scale-balanced"></i></span><h3 id="article-11">Article 11</h3></div><div class="article-content">
+<span class="article-number"></span>Les Préfets de département sont nommés parmi les Secrétaires généraux de préfecture ayant accédé au grade I.
+    </div></div><div class="article" id="article-12"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-sitemap"></i></span><h3 id="article-12">Article 12</h3></div><div class="article-content">
+<span class="article-number"></span>Les Secrétaires généraux de préfecture sont nommés parmi les Sous-préfets ayant accédé au grade II.
+    </div></div><div class="article" id="article-13"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-gavel"></i></span><h3 id="article-13">Article 13</h3></div><div class="article-content">
+<span class="article-number"></span>Les Sous-préfets sont nommés parmi les administrateurs civils en service dans une préfecture ou dans une administration centrale du ministère chargé de l'intérieur et totalisant au moins deux années d'ancienneté.
+        <br/><br/>
+        Dès leur nomination, ils accèdent au grade III.
+    </div></div><div class="article" id="article-14"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-scroll"></i></span><h3 id="article-14">Article 14</h3></div><div class="article-content">
+<span class="article-number"></span>Les nominations dans les fonctions de Préfet, de Secrétaire général de préfecture et de Sous-préfet sont faites par décret pris en Conseil des Ministres sur proposition du Ministre chargé de l'intérieur.
+        <br/><br/>
+        Toutefois, le Président de la République peut, de façon discrétionnaire, dans la proportion de cinq pour cent (5%) de l'effectif du corps, procéder à des nominations dans les fonctions de Préfets de Région, Préfets de département, Secrétaires généraux de préfecture et Sous-préfets. Ces nominations n'emportent pas intégration, de droit, dans le corps préfectoral.
+        <br/><br/>
+        La nomination comporte affectation soit à un poste de commandement territorial soit à un poste de direction dans une Administration centrale après accord du Ministre chargé de l'intérieur.
+        <br/><br/>
+        Les Préfets, Secrétaires généraux de préfecture ou Sous-préfets nommés dans une Administration centrale bénéficient de tous les avantages et indemnités attachés à leur qualité.
+    </div></div><h3 class="chapter-title" id="chapitre-ii---notation-avancement-et-discipline">CHAPITRE II - NOTATION, AVANCEMENT ET DISCIPLINE</h3><div class="article" id="article-15"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-file-lines"></i></span><h3 id="article-15">Article 15</h3></div><div class="article-content">
+<span class="article-number"></span>Il est attribué chaque année à tout membre du corps préfectoral, en activité ou en service détaché, une note chiffrée de 1 à 5 suivie d'une appréciation générale sur sa valeur professionnelle.
+        <br/><br/>
+        Les modalités de notation des membres du corps préfectoral obéissent aux critères tels que définis par le décret d'application.
+    </div></div><div class="article" id="article-16"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-diagram-project"></i></span><h3 id="article-16">Article 16</h3></div><div class="article-content">
+<span class="article-number"></span>Il est institué auprès du Ministre chargé de l'intérieur une commission dénommée « Commission d'avancement et de Discipline », qui connaît des questions relatives à l'avancement et à la discipline des membres du corps préfectoral.
+        <br/><br/>
+        La composition, les attributions et le fonctionnement de cette commission sont déterminés par décret pris en Conseil des Ministres.
+    </div></div><div class="article" id="article-17"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-shield-halved"></i></span><h3 id="article-17">Article 17</h3></div><div class="article-content">
+<span class="article-number"></span>La Commission d'avancement et de Discipline est compétente pour connaître des fautes commises par le membre du corps préfectoral dans l'exercice de ses fonctions.
+        <br/><br/>
+        En cas de faute grave commise par un membre du corps préfectoral, le Ministre chargé de l'intérieur peut suspendre l'intéressé de ses fonctions, avant la saisine de la Commission d'avancement et de Discipline.
+        <br/><br/>
+        Il peut, sur rapport de la Commission d'avancement et de discipline, prononcer l'une des sanctions suivantes :
+        <ul>
+<li>l'avertissement;</li>
+<li>le blâme ;</li>
+<li>la réprimande avec inscription au dossier;</li>
+<li>la radiation du tableau d'avancement;</li>
+</ul>
+        Lorsque la gravité de la faute le requiert, le Président de la République peut prononcer, sur proposition du Ministre chargé de l'intérieur, l'une des sanctions ci-dessous.
+    </div></div><div class="article" id="article-2"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-landmark"></i></span><h3 id="article-2">Article 2</h3></div><div class="article-content">
+<ul>
+<li>le retrait des fonctions de commandement;</li>
+<li>l'abaissement d'échelon ou de grade;</li>
+<li>l'exclusion temporaire du corps préfectoral avec perte de tous les avantages y afférents;</li>
+<li>l'exclusion définitive du corps préfectoral avec perte de tous les avantages y afférents;</li>
+</ul>
+        En cas de faute particulièrement grave justifiant une exclusion définitive de la fonction publique, le Ministre chargé de la Fonction Publique, à la demande du Ministre chargé de l'intérieur et après accord du Conseil des Ministres, peut prononcer, à l'encontre du membre du corps préfectoral, la sanction de révocation, avec ou sans suspension des droits à pension.
+    </div></div><div class="article" id="article-18"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-scale-balanced"></i></span><h3 id="article-18">Article 18</h3></div><div class="article-content">
+<span class="article-number"></span>L'avancement comprend l'avancement d'échelon et l'avancement de grade qui ont lieu de façon continue d'échelon à échelon et de grade à grade, à l'intérieur de la même échelle de traitement.
+    </div></div><div class="article" id="article-19"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-sitemap"></i></span><h3 id="article-19">Article 19</h3></div><div class="article-content">
+<span class="article-number"></span>L'avancement d'échelon est fonction à la fois de l'ancienneté et de la notation.
+        <br/><br/>
+        Un décret pris en Conseil des Ministres fixe les modalités d'avancement et la hiérarchie des grades, le nombre d'échelons dans chaque grade, les échelles de traitement et l'ancienneté moyenne exigée pour l'avancement.
+    </div></div><h3 class="chapter-title" id="chapitre-iii---remuneration-indemnites-et-avantages">CHAPITRE III - RÉMUNÉRATION INDEMNITÉS ET AVANTAGES</h3><div class="article" id="article-20"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-gavel"></i></span><h3 id="article-20">Article 20</h3></div><div class="article-content">
+<span class="article-number"></span>Les fonctionnaires actuellement délégués dans les fonctions de Préfet de Région, Préfet de Département, Secrétaire général de préfecture, Sous-préfet, ainsi que ceux du grade A4 exerçant une fonction de direction et de contrôle au Ministère d'État, Ministère de l'intérieur et de la Décentralisation, feront, dès l'entrée en vigueur de la présente loi, l'objet d'un reclassement indiciaire déterminé par décret.
+        <br/><br/>
+        Les nouveaux membres du corps bénéficieront du même reclassement dès leur nomination.
+        <br/><br/>
+        En contrepartie du service fait, les membres du corps préfectoral perçoivent une rémunération qui comprend :
+        <ul>
+<li>le traitement soumis à retenue pour pension et ses accessoires ;</li>
+<li>l'indemnité de logement pour tous ceux qui ne bénéficient pas de la gratuité du logement ;</li>
+<li>toutes autres indemnités pour prestations diverses instituées par un texte législatif ou réglementaire.</li>
+</ul>
+        Les traitements appliqués à chacun des grades et échelons sont fixés par décret pris en Conseil des Ministres.
+    </div></div><div class="article" id="article-21"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-scroll"></i></span><h3 id="article-21">Article 21</h3></div><div class="article-content">
+<span class="article-number"></span>Outre les avantages sociaux définis par le Statut général de la Fonction publique, les membres du corps préfectoral exerçant en Administration territoriale bénéficient de la gratuité de logement, d'un budget de réception et de représentation et des avantages en nature qui sont déterminés par décret pris en Conseil des Ministres.
+        <br/><br/>
+        A leur retraite, les préfets hors grade bénéficient d'une rente viagère selon des conditions et modalités qui seront définies par décret pris en Conseil des ministres.
+    </div></div><div class="article" id="article-22"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-file-lines"></i></span><h3 id="article-22">Article 22</h3></div><div class="article-content">
+<span class="article-number"></span>Le membre du corps préfectoral, victime d'un accident ou d'une maladie professionnelle survenue dans l'exercice ou à l'occasion de l'exercice de ses fonctions, a droit à un congé exceptionnel maladie, après avis du Conseil de Santé.
+        <br/><br/>
+        Ce congé est limité à soixante (60) mois au cours desquels il perçoit l'intégralité de sa rémunération telle que définie à l'article précédent et le remboursement des honoraires des frais médicaux entraînés par l'accident ou la maladie et mis à sa charge personnelle.
+    </div></div><div class="article" id="article-23"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-diagram-project"></i></span><h3 id="article-23">Article 23</h3></div><div class="article-content">
+<span class="article-number"></span>Au terme de cette période de soixante (60) mois, le membre du corps préfectoral est admis à faire valoir ses droits à la retraite si son état de santé ne lui permet pas de reprendre son service conformément à l'avis du Conseil de Santé.
+        <br/><br/>
+        Le membre du corps préfectoral atteint d'une invalidité résultant d'un accident ou d'une maladie professionnelle telle que définie à l'article 22 ci-dessus ayant entraîné une incapacité permanente, a droit à une allocation temporaire d'invalidité cumulable avec sa rémunération.
+    </div></div><div class="article" id="article-24"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-shield-halved"></i></span><h3 id="article-24">Article 24</h3></div><div class="article-content">
+<span class="article-number"></span>Les conditions d'attribution ainsi que les modalités de concession, de liquidation, de paiement et de révision de l'allocation temporaire d'invalidité sont fixées par décret en Conseil des ministres.
+    </div></div><h2 id="titre-iii---positions---activite-detachement-et-disponibilite">TITRE III - POSITIONS - ACTIVITÉ DÉTACHEMENT ET DISPONIBILITÉ</h2><div class="article" id="article-25"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-landmark"></i></span><h3 id="article-25">Article 25</h3></div><div class="article-content">
+<span class="article-number"></span>Tout membre du corps préfectoral est placé dans l'une des positions suivantes:
+        <ol>
+<li>activité ;</li>
+<li>détachement;</li>
+<li>disponibilité.</li>
+</ol>
+</div></div><h3 class="chapter-title" id="chapitre-premier---lactivite-et-le-detachement">CHAPITRE PREMIER - L'ACTIVITÉ ET LE DÉTACHEMENT</h3><div class="article" id="article-26"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-scale-balanced"></i></span><h3 id="article-26">Article 26</h3></div><div class="article-content">
+<span class="article-number"></span>L'activité est la position du membre du corps préfectoral qui, régulièrement titularisé, occupe effectivement un emploi.
+        <br/><br/>
+        Sont également considérés comme étant en activité, les membres du corps préfectoral en congé ou en stage de formation ou bénéficiant d'une autorisation d'absence avec traitement.
+        <br/><br/>
+        Peuvent également être considérés comme étant en activité, les membres du corps préfectoral obligés de suivre leur conjoint fonctionnaire affecté(e) à l'étranger. Dans ce cas, ils bénéficient d'un traitement dont les modalités sont fixées par décret pris en Conseil des Ministres.
+    </div></div><div class="article" id="article-27"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-sitemap"></i></span><h3 id="article-27">Article 27</h3></div><div class="article-content">
+<span class="article-number"></span>Le détachement est la position dans laquelle le membre du corps préfectoral est autorisé, après accord du Conseil des Ministres, à interrompre temporairement ses fonctions pour exercer un emploi ou un mandat public national ou international, une fonction ministérielle ou toute autre fonction dont l'exercice est incompatible avec la qualité de fonctionnaire.
+        <br/><br/>
+        Les membres du corps préfectoral peuvent également être placés dans la position de détachement auprès d'une entreprise privée après autorisation du Conseil des Ministres pour une période de cinq années maximum, renouvelable une seule fois.
+        <br/><br/>
+        A l'issue de la période autorisée, le membre du corps préfectoral doit réintégrer son corps d'origine, ou rendre sa démission.
+        <br/><br/>
+        Le détachement est prononcé à la demande du membre du corps préfectoral ou d'office. Il est révocable.
+        <br/><br/>
+        Dans cette position, les membres du corps préfectoral continuent à bénéficier de leurs droits à l'avancement et à la retraite, à l'exclusion de tout autre avantage lié au corps.
+        <br/><br/>
+        Les conditions du détachement ainsi que les modalités de réintégration des membres du corps préfectoral sont déterminées par décret en Conseil des Ministres.
+    </div></div><div class="article" id="article-28"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-gavel"></i></span><h3 id="article-28">Article 28</h3></div><div class="article-content">
+<span class="article-number"></span>A l'expiration de la période de détachement, le membre du corps préfectoral est remis à la disposition du Ministère chargé de l'intérieur et nommé selon les besoins du service à un poste vacant correspondant à son grade.
+        <br/><br/>
+        Les membres du corps préfectoral détachés sont soumis aux règles régissant l'emploi pour lequel ils ont été détachés, nonobstant toutes dispositions législatives, réglementaires ou conventionnelles.
+    </div></div><div class="article" id="article-29"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-scroll"></i></span><h3 id="article-29">Article 29</h3></div><div class="article-content">
+<span class="article-number"></span>Les membres du corps préfectoral détachés, remis à la disposition du ministère chargé de l'intérieur avant terme, pour une cause autre qu'une faute commises dans l'exercice de leurs fonctions, continuent d'être rémunérés par l'organisme de détachement jusqu'à leur réintégration.
+        <br/><br/>
+        En cas de défaillance dudit organisme, ils réintègrent de plein droit leur corps d'origine.
+        <br/><br/>
+        En cas de faute grave ou de faute professionnelle, l'organisme de détachement est tenu de saisir sans délai; par rapport circonstancié, le Ministre chargé de l'intérieur qui en informe le Ministre chargé de la Fonction Publique.
+    </div></div><div class="article" id="article-30"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-file-lines"></i></span><h3 id="article-30">Article 30</h3></div><div class="article-content">
+<span class="article-number"></span>Les membres du corps préfectoral détachés ne peuvent, sauf au cas où le détachement a été prononcé auprès d'organismes internationaux ou pour exercer une fonction publique élective ou une fonction ministérielle, être affiliés au régime de retraite dont relève l'Organisme auprès duquel ils sont détachés, ni acquérir à ce titre, de droit quelconque à pension ou allocation, sous peine de suspension de la pension de l'État.
+    </div></div><div class="article" id="article-31"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-diagram-project"></i></span><h3 id="article-31">Article 31</h3></div><div class="article-content">
+<span class="article-number"></span>Sous réserve des dérogations fixées par décret pris en Conseil des ministres, la collectivité ou l'organisme auprès duquel un fonctionnaire est détaché is redevable, envers la Caisse générale de Retraite des Agents de l'État, d'une contribution pour la constitution des droits à pension de l'intéressé.
+        <br/><br/>
+        Le taux de cette contribution est fixé par décret pris en Conseil des Ministres.
+    </div></div><h3 class="chapter-title" id="chapitre-ii---la-disponibilite">CHAPITRE II - LA DISPONIBILITÉ</h3><div class="article" id="article-32"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-shield-halved"></i></span><h3 id="article-32">Article 32</h3></div><div class="article-content">
+<span class="article-number"></span>La disponibilité est la position du membre du corps préfectoral dont l'activité est suspendue temporairement, à sa demande, pour des raisons personnelles telles que précisées à l'article 35 alinéa premier.
+    </div></div><div class="article" id="article-35"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-landmark"></i></span><h3 id="article-35">Article 35</h3></div><div class="article-content">
+        La durée de la disponibilité ne pourra excéder une année renouvelable une seule fois, sauf dérogations prévues à l'article 35.
+    </div></div><div class="article" id="article-33"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-scale-balanced"></i></span><h3 id="article-33">Article 33</h3></div><div class="article-content">
+<span class="article-number"></span>A l'expiration de la période de la disponibilité, le membre du corps préfectoral est remis à la disposition du ministère chargé de l'intérieur et nommé selon les besoins du service à un poste vacant correspondant à son grade.
+    </div></div><div class="article" id="article-34"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-sitemap"></i></span><h3 id="article-34">Article 34</h3></div><div class="article-content">
+<span class="article-number"></span>Le Préfet, Secrétaire général de préfecture ou Sous-préfet en disponibilité n'a droit à aucune rémunération et à aucun avantage. Il cesse également de bénéficier de ses droits à l'avancement. Toutefois, il peut continuer de payer sa cotisation à la Caisse de retraite. Dans ce cas, il lui est fait obligation d'assumer la totalité de la cotisation.
+        <br/><br/>
+        Néanmoins, le membre du corps préfectoral, chef de famille, placé en disponibilité pour accident ou maladie d'un enfant, perçoit la totalité des allocations familiales.
+    </div></div><div class="article" id="article-35"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-gavel"></i></span><h3 id="article-35">Article 35</h3></div><div class="article-content">
+<span class="article-number"></span>La disponibilité ne peut être accordée que dans les cas suivants:
+        <ul>
+<li>Accident ou maladie grave du conjoint ou d'un enfant;
+                <br/>Dans ce cas, la durée de la disponibilité ne peut excéder une année; mais elle est renouvelable, après avis du Conseil de Santé ;</li>
+<li>Nécessité de suivre un conjoint fonctionnaire en service ou affecté à l'étranger, la durée est également d'une année renouvelable à la demande motivée de l'intéressé ;</li>
+<li>besoin de suivre un conjoint non fonctionnaire ; la durée est alors d'une année renouvelable une seule fois ;</li>
+<li>convenances personnelles; la durée est d'un an renouvelable une seule fois.</li>
+</ul>
+</div></div><div class="article" id="article-36"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-scroll"></i></span><h3 id="article-36">Article 36</h3></div><div class="article-content">
+<span class="article-number"></span>Un décret pris en Conseil des Ministres détermine les modalités de la mise en disponibilité et de la réintégration des membres du corps préfectoral intéressés.
+    </div></div><h2 id="titre-iv---dispositions-speciales">TITRE IV - DISPOSITIONS SPÉCIALES</h2><div class="article" id="article-37"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-file-lines"></i></span><h3 id="article-37">Article 37</h3></div><div class="article-content">
+<span class="article-number"></span>Sous réserve des prorogations pouvant résulter des textes applicables à l'ensemble des agents de l'État, la limite d'âge des agents du corps préfectoral est fixée à soixante ans.
+    </div></div><div class="article" id="article-38"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-diagram-project"></i></span><h3 id="article-38">Article 38</h3></div><div class="article-content">
+<span class="article-number"></span>Les Préfets, Secrétaires généraux de préfecture et Sous-préfets en fonction sont astreints à résider dans leur lieu d'affectation et au port d'un uniforme dont les spécifications sont fixées par décret.
+    </div></div><div class="article" id="article-39"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-shield-halved"></i></span><h3 id="article-39">Article 39</h3></div><div class="article-content">
+<span class="article-number"></span>La fonction de Préfet, Secrétaire général de préfecture et Sous-préfet est incompatible avec:
+        <ul>
+<li>l'exercice d'un mandat électif ;</li>
+<li>l'appartenance à un parti politique;</li>
+<li>la participation à toutes associations autres que celles constituées au sein du corps préfectoral ou ayant un caractère de développement économique, social, culturel ou sportif ;</li>
+<li>la qualité de membre du Conseil Économique et Social;</li>
+</ul>
+</div></div><div class="article" id="article-40"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-landmark"></i></span><h3 id="article-40">Article 40</h3></div><div class="article-content">
+<span class="article-number"></span>Les membres du corps préfectoral ont le droit de vote.
+        <br/>Ils sont libres de leurs opinions ou croyances philosophiques, religieuses ou politiques.
+        <br/>Toutefois, ils sont soumis à l'obligation de réserve qu'exige leur qualité.
+    </div></div><div class="article" id="article-41"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-scale-balanced"></i></span><h3 id="article-41">Article 41</h3></div><div class="article-content">
+<span class="article-number"></span>Le membre du corps préfectoral reste lié par l'obligation de réserve et de discrétion pour tout ce qui concerne les faits et informations dont il a eu connaissance dans l'exercice de ses fonctions.
+    </div></div><div class="article" id="article-42"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-sitemap"></i></span><h3 id="article-42">Article 42</h3></div><div class="article-content">
+<span class="article-number"></span>Le droit syndical n'est pas reconnu aux membres du corps préfectoral.
+        <br/>De même, leur est interdite toute action concertée de nature à arrêter ou entraver le fonctionnement de l'Administration territoriale.
+    </div></div><div class="article" id="article-43"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-gavel"></i></span><h3 id="article-43">Article 43</h3></div><div class="article-content">
+<span class="article-number"></span>Les dispositions de la présente loi ne font pas obstacle à l'application de celles prévues por le Statut général de la Fonction publique en ses articles 23 à 28 se rapportant aux obligations du fonctionnaire.
+    </div></div><div class="article" id="article-44"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-scroll"></i></span><h3 id="article-44">Article 44</h3></div><div class="article-content">
+<span class="article-number"></span>A la retraite, les Préfets hors grade peuvent se voir conférer l'honorariat par l'autorité investie du pouvoir de nomination.
+        <br/><br/>
+        Le titre ainsi conféré ne donne droit à aucun avantage matériel et financier.
+        <br/><br/>
+        Les préfets honoraires jouissent cependant des honneurs et privilèges attachés à leur état, notamment le port de l'uniforme dans les cérémonies officielles et la préséance par rapport aux autres membres du corps préfectoral de même grade.
+        <br/><br/>
+        Un décret pris en Conseil des Ministres fixera les conditions d'octroi de ce titre.
+    </div></div><div class="article" id="article-45"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-file-lines"></i></span><h3 id="article-45">Article 45</h3></div><div class="article-content">
+<span class="article-number"></span>Les préfets honoraires sont tenus à la réserve qui s'impose à cette qualité.
+        <br/><br/>
+        L'honorariat peut leur être retiré en cas de faute portant atteinte à l'honneur et à la dignité du corps.
+    </div></div><h2 id="titre-v---dispositions-relatives-a-la-constitution-initiale-du-corps-prefectoral">TITRE V - DISPOSITIONS RELATIVES A LA CONSTITUTION INITIALE DU CORPS PRÉFECTORAL</h2><div class="article" id="article-46"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-diagram-project"></i></span><h3 id="article-46">Article 46</h3></div><div class="article-content">
+<span class="article-number"></span>Pour la constitution initiale du corps préfectoral, pourront être intégrés :
+        <br/><br/>
+        1°) les fonctionnaires de catégorie A grade A4 ou plus, délégués dans les fonctions de Préfet de Région, Préfet de département, Secrétaire général de préfecture et Sous-préfet, en activité à la date d'entrée en vigueur de la présente loi;
+        <br/><br/>
+        2°- les fonctionnaires de catégorie A, grade A3, exerçant les fonctions de Sous-préfets à la date d'entrée en vigueur de la présente loi; cependant, le passage de ces derniers au grade supérieur est subordonné à leur admission au concours d'intégration dans l'emploi d'administrateur civil;
+        <br/><br/>
+        3°- les administrateurs civils de grade A4 ou plus, exerçant, depuis au moins deux années en qualité de sous-directeur ou en ayant le rang, dans une Administration centrale au Ministère chargé de l'intérieur;
+        <br/><br/>
+        4°- les administrateurs civils de grade A4 au moins du ministère chargé de l'intérieur, occupant des fonctions de directeurs d'Administration centrale ou assimilées.
+        <br/><br/>
+        Les modalités d'intégration des personnels ci-dessus énumérés dans les différents grades du corps préfectoral seront déterminées por décret pris en Conseil des Ministres.
+        <br/><br/>
+        Les officiers des forces armées nationales de Côte d'Ivoire (FANCI) exerçant les fonctions de directeur d'Administration centrale au Ministère chargé de l'Intérieur, de Préfet de Région, de Préfet de département, de Secrétaire général de préfecture ou de sous-préfet, demeurent délégués dans ces fonctions.
+    </div></div><h2 id="titre-vi---cessation-definitive-de-fonction">TITRE VI - CESSATION DÉFINITIVE DE FONCTION</h2><div class="article" id="article-47"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-shield-halved"></i></span><h3 id="article-47">Article 47</h3></div><div class="article-content">
+<span class="article-number"></span>Les modalités relatives à la cessation définitive de fonction et à la liquidation de la pension de retraite des membres du corps préfectoral sont les mêmes que celles définies par le Statut général de la Fonction Publique.
+    </div></div><h2 id="titre-vii---protection-civile-et-penale">TITRE VII - PROTECTION CIVILE ET PÉNALE</h2><div class="article" id="article-48"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-landmark"></i></span><h3 id="article-48">Article 48</h3></div><div class="article-content">
+<span class="article-number"></span>Les Préfets, Secrétaires généraux de préfecture et sous-préfets, bénéficient, dans l'exercice de leur fonction, d'une protection assurée par l'État conformément aux règles fixées par le Code pénal.
+    </div></div><div class="article" id="article-49"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-scale-balanced"></i></span><h3 id="article-49">Article 49</h3></div><div class="article-content">
+<span class="article-number"></span>Les Préfets, Secrétaires généraux de préfecture et Sous-préfets ne peuvent être poursuivis, recherchés, arrêtés, détenus ou jugés à l'occasion des opinions émises par eux dans l'exercice de leurs fonctions.
+    </div></div><div class="article" id="article-50"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-sitemap"></i></span><h3 id="article-50">Article 50</h3></div><div class="article-content">
+<span class="article-number"></span>Aucune poursuite pénale ne peut être engagée contre un Préfet, Secrétaire général de préfecture ou Sous-préfet, sans l'autorisation du Conseil des Ministres.
+        <br/><br/>
+        Toutefois, en cas de flagrant délit, le Préfet, Secrétaire général de préfecture ou Sous-préfet peut être arrêté. Le Procureur de la République en informe immédiatement le Ministre chargé de l'intérieur qui en réfère au Conseil des Ministres.
+    </div></div><div class="article" id="article-51"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-gavel"></i></span><h3 id="article-51">Article 51</h3></div><div class="article-content">
+<span class="article-number"></span>La procédure de poursuite engagée contre un Préfet, Secrétaire général de préfecture ou Sous-préfet, est suspendue s'il est établi que les faits qui lui sont reprochés ont été commis dans l'exercice de ses fonctions.
+    </div></div><h2 id="titre-viii---dispositions-finales">TITRE VIII - DISPOSITIONS FINALES</h2><div class="article" id="article-52"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-scroll"></i></span><h3 id="article-52">Article 52</h3></div><div class="article-content">
+<span class="article-number"></span>Les conditions d'application de la présente loi seront fixées par décret pris en Conseil des Ministres.
+    </div></div><div class="article" id="article-53"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-file-lines"></i></span><h3 id="article-53">Article 53</h3></div><div class="article-content">
+<span class="article-number"></span>La présente loi qui abroge toutes dispositions antérieures contraires sera enregistrée, publiée selon la procédure d'urgence et insérée au Journal Officiel de la République de Côte d'Ivoire.
+    </div></div></main><div aria-label="Lecteur vocal" id="voiceBar" role="region"><button id="vPrev" title="Article précédent"><i class="fas fa-backward"></i></button><button id="vPlay" title="Lire / Reprendre"><i class="fas fa-play"></i></button><button id="vPause" title="Pause"><i class="fas fa-pause"></i></button><button id="vStop" title="Arrêter"><i class="fas fa-stop"></i></button><button id="vNext" title="Article suivant"><i class="fas fa-forward"></i></button><span class="now" id="vNow">—</span></div><div id="fsOverlay"><div id="fsHeader"><button id="fsClose" title="Fermer"><i class="fas fa-xmark"></i></button><div class="ttl" id="fsTitle"></div><button id="fsPlay" title="Lecture"><i class="fas fa-play"></i></button></div><div id="fsBody"><article class="article"><div class="article-content" id="fsContent"></div></article></div><button id="fsNavPrev" title="Précédent"><i class="fas fa-chevron-left"></i></button><button id="fsNavNext" title="Suivant"><i class="fas fa-chevron-right"></i></button></div><script>
+// --- Fonctionnalité de recherche (MODIFIÉE) ---
+function initSearchFeature() {
+    const searchBtn = document.createElement('button');
+    searchBtn.className = 'btn';
+    searchBtn.id = 'searchBtn';
+    searchBtn.title = 'Rechercher';
+    searchBtn.innerHTML = '<i class="fas fa-search"></i>';
+    document.querySelector('.control-buttons').appendChild(searchBtn);
+    
+    const searchInterface = document.createElement('div');
+    searchInterface.id = 'searchInterface';
+    searchInterface.style.cssText = `
+        position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+        width: calc(100% - 40px); max-width: 550px; background: var(--article-bg);
+        padding: 10px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        z-index: 1800; display: none; align-items: center; gap: 5px; transition: var(--transition);
+    `;
+    searchInterface.innerHTML = `
+        <input type="text" id="searchInput" placeholder="Rechercher..." style="flex-grow: 1; padding: 8px; border: 1px solid #cfe6d8; border-radius: 5px;">
+        <button id="searchPrevBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-up"></i></button>
+        <button id="searchNextBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-down"></i></button>
+        <span id="searchResultsCount" style="flex-shrink: 0; padding: 0 5px; min-width: 40px; text-align: center;"></span>
+        <button id="closeSearchBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-times"></i></button>
+    `;
+    document.body.appendChild(searchInterface);
+
+    let searchResults = [];
+    let currentSearchIndex = -1;
+    let originalContents = new Map();
+
+    function performSearch() {
+        const searchTerm = document.getElementById('searchInput').value.trim();
+        if (!originalContents.size) {
+            document.querySelectorAll('.article-content, h2, h3').forEach(el => originalContents.set(el, el.innerHTML));
+        }
+        originalContents.forEach((content, el) => el.innerHTML = content);
+        searchResults = [];
+        currentSearchIndex = -1;
+        if (!searchTerm) { updateSearchUI(); return; }
+
+        const regex = new RegExp(searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+        originalContents.forEach((content, element) => {
+            element.innerHTML = content.replace(regex, match => `<mark>${match}</mark>`);
+        });
+        searchResults = Array.from(document.querySelectorAll('mark'));
+        if (searchResults.length > 0) navigateResults(true, false);
+        updateSearchUI();
+        window.dispatchEvent(new Event('reflowArticles'));
+    }
+
+    function navigateResults(isNext, shouldWrap = true) {
+        if (!searchResults.length) return;
+        searchResults.forEach(mark => mark.style.backgroundColor = '');
+        if (shouldWrap) {
+            currentSearchIndex = isNext ? (currentSearchIndex + 1) % searchResults.length : (currentSearchIndex - 1 + searchResults.length) % searchResults.length;
+        } else {
+            currentSearchIndex = 0;
+        }
+        const currentMark = searchResults[currentSearchIndex];
+        currentMark.style.backgroundColor = 'var(--accent)';
+        currentMark.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        updateSearchUI();
+    }
+
+    function updateSearchUI() {
+        document.getElementById('searchResultsCount').textContent = searchResults.length > 0 ? `${currentSearchIndex + 1}/${searchResults.length}` : '0/0';
+    }
+    
+    function resetSearch() {
+        originalContents.forEach((content, el) => el.innerHTML = content);
+        originalContents.clear();
+        document.getElementById('searchInput').value = '';
+        searchResults = []; currentSearchIndex = -1;
+        updateSearchUI();
+    }
+
+    searchBtn.addEventListener('click', () => {
+        const isVisible = searchInterface.style.display === 'flex';
+        searchInterface.style.display = isVisible ? 'none' : 'flex';
+        if (isVisible) resetSearch(); else document.getElementById('searchInput').focus();
+    });
+    document.getElementById('searchInput').addEventListener('input', performSearch);
+    document.getElementById('searchNextBtn').addEventListener('click', () => navigateResults(true));
+    document.getElementById('searchPrevBtn').addEventListener('click', () => navigateResults(false));
+    document.getElementById('closeSearchBtn').addEventListener('click', () => {
+        searchInterface.style.display = 'none';
+        resetSearch();
+    });
+}
+</script><script>(function(){function extractEnumeration(s){const re=/(\d{1,2})(?:\s*°)?(?:\))?(?:\.)?\s+/g;const matches=[];let m;while((m=re.exec(s))){const idx=m.index;const prev=idx>0?s.charAt(idx-1):' ';if(/\d/.test(prev))continue;matches.push({num:parseInt(m[1],10),start:idx,end:re.lastIndex});}if(matches.length<2)return null;for(let i=1;i<matches.length;i++){if(matches[i].num!==matches[i-1].num+1)return null;}const intro=s.slice(0,matches[0].start).trim().replace(/[:;,-]\s*$/,'');const items=[];for(let i=0;i<matches.length;i++){const st=matches[i].end;const en=(i+1<matches.length)?matches[i+1].start:s.length;let seg=s.slice(st,en).trim().replace(/^[;,:-]\s*/,'').replace(/[;,\s]+$/,'');items.push(seg);}return{intro,start:matches[0].num,items};}function transformNode(node){if(node.querySelector('ol'))return;const plain=node.textContent.replace(/\s+/g,' ').trim();const res=extractEnumeration(plain);if(!res)return;const frag=document.createElement('div');if(res.intro){const p=document.createElement('p');p.textContent=res.intro;frag.appendChild(p);}const ol=document.createElement('ol');if(res.start!==1)ol.setAttribute('start',String(res.start));res.items.forEach(it=>{const li=document.createElement('li');li.textContent=it;ol.appendChild(li);});frag.appendChild(ol);node.innerHTML=frag.innerHTML;}function run(){document.querySelectorAll('.article-content').forEach(transformNode);}window.addEventListener('DOMContentLoaded',()=>setTimeout(run,60));window.addEventListener('reflowArticles',run);})();</script><script>(function(){const $=s=>document.querySelector(s);const $$=s=>Array.from(document.querySelectorAll(s));function buildTOC(){const toc=document.getElementById('tocList');if(!toc)return;toc.innerHTML='';$$('.group').forEach((grp,gi)=>{const gh=grp.querySelector('h2')?.textContent.trim()||`Groupe ${gi+1}`;const gl=document.createElement('a');gl.textContent=gh;gl.href='#';gl.style.fontWeight='700';gl.addEventListener('click',e=>{e.preventDefault();grp.scrollIntoView({behavior:'smooth',block:'start'});hideTOC();});toc.appendChild(gl);const sub=document.createElement('div');sub.className='toc-sub';grp.querySelectorAll('.article').forEach((art,ai)=>{const at=art.querySelector('.article-header h3')?.textContent.trim()||`Article ${ai+1}`;const a=document.createElement('a');a.textContent=at;a.href='#';a.addEventListener('click',e=>{e.preventDefault();art.scrollIntoView({behavior:'smooth',block:'start'});hideTOC();});sub.appendChild(a);if(!art.querySelector('.open-fs')){const btn=document.createElement('button');btn.className='open-fs';btn.innerHTML='<i class="fas fa-maximize"></i>';btn.title='Plein écran';btn.addEventListener('click',()=>openFS(artIndex(art)));art.querySelector('.article-header')?.appendChild(btn);} });toc.appendChild(sub);});}function showTOC(){document.getElementById('tocOverlay').classList.add('show');document.getElementById('tocPanel').classList.add('open');}function hideTOC(){document.getElementById('tocOverlay').classList.remove('show');document.getElementById('tocPanel').classList.remove('open');}document.addEventListener('DOMContentLoaded',()=>{const floatBtn=document.getElementById('tocFloatBtn');if(floatBtn)floatBtn.addEventListener('click',showTOC);const overlay=document.getElementById('tocOverlay');if(overlay)overlay.addEventListener('click',hideTOC);const headerBtn=document.getElementById('tocHeaderBtn');if(headerBtn)headerBtn.addEventListener('click',showTOC);});const articles=$$('.article');function artIndex(el){return articles.indexOf(el);}function getArticle(i){return articles[Math.max(0,Math.min(articles.length-1,i))];}function artTitle(i){const el=getArticle(i);return el?(el.querySelector('.article-header h3')?.textContent.trim()||''):'';}function artText(i){const el=getArticle(i);return el?(el.querySelector('.article-content')?.innerText.trim()||''):'';}const synth=window.speechSynthesis;let current=0,utter=null,playing=false,paused=false,inFS=false;function speakIndex(i){stopSpeak();current=i;const text=artText(i);if(!text){nextArticle();return;}utter=new SpeechSynthesisUtterance(text);utter.lang='fr-FR';utter.rate=1;utter.pitch=1;utter.onend=()=>{if(playing&&!paused){nextArticle();}};try{synth.speak(utter);}catch(e){}playing=true;paused=false;updateUI();highlightCurrent();}function highlightCurrent(){articles.forEach(a=>a.classList.remove('reading'));const el=getArticle(current);if(el){el.classList.add('reading');if(!inFS)el.scrollIntoView({behavior:'smooth',block:'center'});}document.getElementById('vNow').textContent=artTitle(current)||'—';}function pauseSpeak(){if(synth&&synth.speaking){synth.pause();paused=true;playing=true;}}function resumeSpeak(){if(synth&&paused){synth.resume();paused=false;}else{speakIndex(current);}updateUI();}function stopSpeak(){if(synth){try{synth.cancel();}catch(e){}}playing=false;paused=false;updateUI();}function prevArticle(){current=Math.max(0,current-1);if(playing){speakIndex(current);}else{highlightCurrent();}if(inFS)openFS(current);}function nextArticle(){current=Math.min(articles.length-1,current+1);if(playing){speakIndex(current);}else{highlightCurrent();}if(inFS)openFS(current);}document.addEventListener('DOMContentLoaded',()=>{document.getElementById('vPrev').addEventListener('click',prevArticle);document.getElementById('vPlay').addEventListener('click',()=>{if(!playing||paused){resumeSpeak();}else{pauseSpeak();}});document.getElementById('vPause').addEventListener('click',()=>pauseSpeak());document.getElementById('vStop').addEventListener('click',()=>{stopSpeak();});document.getElementById('vNext').addEventListener('click',nextArticle);});function updateUI(){document.getElementById('vPlay').innerHTML=paused||!playing?'<i class="fas fa-play"></i>':'<i class="fas fa-pause"></i>'; }function openFS(i){inFS=true;current=i;document.getElementById('fsTitle').textContent=artTitle(i);document.getElementById('fsContent').textContent=artText(i);document.getElementById('fsOverlay').classList.add('show');document.body.style.overflow='hidden';speakIndex(i);}function closeFS(){inFS=false;document.getElementById('fsOverlay').classList.remove('show');document.body.style.overflow='';}document.addEventListener('DOMContentLoaded',()=>{document.getElementById('fsClose').addEventListener('click',()=>{closeFS();});document.getElementById('fsPlay').addEventListener('click',()=>{if(!playing||paused){resumeSpeak();}else{pauseSpeak();}});document.getElementById('fsNavPrev').addEventListener('click',()=>{prevArticle();});document.getElementById('fsNavNext').addEventListener('click',()=>{nextArticle();});document.querySelectorAll('.article .open-fs').forEach((btn,idx)=>btn.addEventListener('click',()=>openFS(idx)));document.querySelectorAll('.article').forEach((art,idx)=>art.addEventListener('dblclick',()=>openFS(idx)));document.getElementById('fsOverlay').addEventListener('touchstart',(e)=>{window.__touchX=e.changedTouches[0].clientX;},{passive:true});document.getElementById('fsOverlay').addEventListener('touchend',(e)=>{const dx=e.changedTouches[0].clientX-(window.__touchX||0);const TH=50;if(dx<-TH){nextArticle();}else if(dx>TH){prevArticle();}}, {passive:true});});window.addEventListener('reflowArticles',()=>{buildTOC();});buildTOC();})();</script><script>initSearchFeature(); window.dispatchEvent(new Event('reflowArticles'));</script><footer>Source : sgfpapublier.html</footer><script>(function(){function isInteractive(el){if(!el)return false;if(el.tagName){const tag=el.tagName.toLowerCase();if(['input','textarea','select'].includes(tag))return true;}if(el.isContentEditable)return true;if(el.closest&&el.closest('#searchInterface'))return true;return false;}document.addEventListener('DOMContentLoaded',()=>{document.body.classList.add('no-select');});document.addEventListener('contextmenu',e=>{if(!isInteractive(e.target))e.preventDefault();},{capture:true});document.addEventListener('selectstart',e=>{if(!isInteractive(e.target))e.preventDefault();},{capture:true});['copy','cut','paste','dragstart'].forEach(type=>{document.addEventListener(type,e=>{if(!isInteractive(document.activeElement))e.preventDefault();},{capture:true});});document.addEventListener('keydown',e=>{const k=(e.key||'').toLowerCase();const combo=(e.ctrlKey||e.metaKey)&&['c','x','a','s','p','insert'].includes(k);if(combo&&!isInteractive(document.activeElement)){e.preventDefault();e.stopPropagation();}},{capture:true});})();</script>
+<script>
+(function(){
+  var toc = document.querySelector('.floating-toc');
+  var toggle = document.querySelector('.toc-toggle');
+  var close = document.querySelector('.floating-toc .toc-close');
+  function toggleTOC(){ if(toc){ toc.classList.toggle('is-hidden'); } }
+  if(toggle){ toggle.addEventListener('click', toggleTOC); }
+  if(close){ close.addEventListener('click', function(){ toc && toc.classList.add('is-hidden'); }); }
+  document.addEventListener('click', function(e){
+    if(!toc || toc.classList.contains('is-hidden')) return;
+    if(!toc.contains(e.target) && !toggle.contains(e.target)){ toc.classList.add('is-hidden'); }
+  }, true);
+})();
+</script><script>
+(function(){
+  var toc = document.querySelector('.floating-toc');
+  var toggle = document.querySelector('.toc-toggle');
+  var close = document.querySelector('.floating-toc .toc-close');
+  function toggleTOC(){ if(toc){ toc.classList.toggle('is-hidden'); } }
+  if(toggle){ toggle.addEventListener('click', toggleTOC); }
+  if(close){ close.addEventListener('click', function(){ toc && toc.classList.add('is-hidden'); }); }
+  document.addEventListener('click', function(e){
+    if(!toc || toc.classList.contains('is-hidden')) return;
+    if(!toc.contains(e.target) && !toggle.contains(e.target)){ toc.classList.add('is-hidden'); }
+  }, true);
+})();
+</script><script>
+(function(){
+  var toc = document.querySelector('.floating-toc');
+  var toggle = document.querySelector('.toc-toggle');
+  var close = document.querySelector('.floating-toc .toc-close');
+  function toggleTOC(){ if(toc){ toc.classList.toggle('is-hidden'); } }
+  if(toggle){ toggle.addEventListener('click', toggleTOC); }
+  if(close){ close.addEventListener('click', function(){ toc && toc.classList.add('is-hidden'); }); }
+  document.addEventListener('click', function(e){
+    if(!toc || toc.classList.contains('is-hidden')) return;
+    if(!toc.contains(e.target) && !toggle.contains(e.target)){ toc.classList.add('is-hidden'); }
+  }, true);
+})();
+</script><nav aria-label="Sommaire" class="floating-toc is-hidden" id="floatingTOC"><div class="toc-header">Sommaire<button class="toc-close" onclick="(function(e){e.stopPropagation();var t=document.getElementById('floatingTOC');if(t){t.classList.add('is-hidden');}})(event)" title="Fermer"><i class="fas fa-times"></i></button></div><ul class="toc-level2"><li class="toc-item l2"><a href="#statut-du-corps-prefectoral">Statut du Corps préfectoral</a><ul class="toc-level3"></ul></li><li class="toc-item l2"><a href="#titre-premier---dispositions-generales">TITRE PREMIER - DISPOSITIONS GÉNÉRALES</a><ul class="toc-level3"><li class="toc-item l3"><a href="#chapitre-premier---composition-du-corps-prefectoral">CHAPITRE PREMIER - COMPOSITION DU CORPS PRÉFECTORAL</a><ul class="toc-level4"><li class="toc-item l5"><a href="#article-2">Article 2</a></li><li class="toc-item l5"><a href="#article-3">Article 3</a></li></ul></li><li class="toc-item l3"><a href="#chapitre-ii---missions-du-corps-prefectoral">CHAPITRE II - MISSIONS DU CORPS PRÉFECTORAL</a><ul class="toc-level4"><li class="toc-item l5"><a href="#article-4">Article 4</a></li><li class="toc-item l5"><a href="#article-5">Article 5</a></li><li class="toc-item l5"><a href="#article-6">Article 6</a></li><li class="toc-item l5"><a href="#article-7">Article 7</a></li></ul></li></ul></li><li class="toc-item l2"><a href="#statut-du-corps-prefectoral-loi">Statut du corps préfectoral (loi)</a><ul class="toc-level3"><li class="toc-item l3"><a href="#chapitre-iii---conditions-dacces">CHAPITRE III - CONDITIONS D'ACCÈS</a><ul class="toc-level4"><li class="toc-item l5"><a href="#article-8">Article 8</a></li><li class="toc-item l5"><a href="#article-9">Article 9</a></li></ul></li></ul></li><li class="toc-item l2"><a href="#titre-ii---nomination---notation-avancement---discipline---traitement---avantages-sociaux">TITRE II - NOMINATION - NOTATION-AVANCEMENT - DISCIPLINE - TRAITEMENT - AVANTAGES SOCIAUX</a><ul class="toc-level3"><li class="toc-item l3"><a href="#chapitre-premier---nomination">CHAPITRE PREMIER - NOMINATION</a><ul class="toc-level4"><li class="toc-item l5"><a href="#article-10">Article 10</a></li><li class="toc-item l5"><a href="#article-11">Article 11</a></li><li class="toc-item l5"><a href="#article-12">Article 12</a></li><li class="toc-item l5"><a href="#article-13">Article 13</a></li><li class="toc-item l5"><a href="#article-14">Article 14</a></li></ul></li><li class="toc-item l3"><a href="#chapitre-ii---notation-avancement-et-discipline">CHAPITRE II - NOTATION, AVANCEMENT ET DISCIPLINE</a><ul class="toc-level4"><li class="toc-item l5"><a href="#article-15">Article 15</a></li><li class="toc-item l5"><a href="#article-16">Article 16</a></li><li class="toc-item l5"><a href="#article-17">Article 17</a></li><li class="toc-item l5"><a href="#article-2">Article 2</a></li><li class="toc-item l5"><a href="#article-18">Article 18</a></li><li class="toc-item l5"><a href="#article-19">Article 19</a></li></ul></li><li class="toc-item l3"><a href="#chapitre-iii---remuneration-indemnites-et-avantages">CHAPITRE III - RÉMUNÉRATION INDEMNITÉS ET AVANTAGES</a><ul class="toc-level4"><li class="toc-item l5"><a href="#article-20">Article 20</a></li><li class="toc-item l5"><a href="#article-21">Article 21</a></li><li class="toc-item l5"><a href="#article-22">Article 22</a></li><li class="toc-item l5"><a href="#article-23">Article 23</a></li><li class="toc-item l5"><a href="#article-24">Article 24</a></li><li class="toc-item l5"><a href="#article-25">Article 25</a></li></ul></li></ul></li><li class="toc-item l2"><a href="#titre-iii---positions---activite-detachement-et-disponibilite">TITRE III - POSITIONS - ACTIVITÉ DÉTACHEMENT ET DISPONIBILITÉ</a><ul class="toc-level3"><li class="toc-item l3"><a href="#chapitre-premier---lactivite-et-le-detachement">CHAPITRE PREMIER - L'ACTIVITÉ ET LE DÉTACHEMENT</a><ul class="toc-level4"><li class="toc-item l5"><a href="#article-26">Article 26</a></li><li class="toc-item l5"><a href="#article-27">Article 27</a></li><li class="toc-item l5"><a href="#article-28">Article 28</a></li><li class="toc-item l5"><a href="#article-29">Article 29</a></li><li class="toc-item l5"><a href="#article-30">Article 30</a></li><li class="toc-item l5"><a href="#article-31">Article 31</a></li></ul></li><li class="toc-item l3"><a href="#chapitre-ii---la-disponibilite">CHAPITRE II - LA DISPONIBILITÉ</a><ul class="toc-level4"><li class="toc-item l5"><a href="#article-32">Article 32</a></li><li class="toc-item l5"><a href="#article-35">Article 35</a></li><li class="toc-item l5"><a href="#article-33">Article 33</a></li><li class="toc-item l5"><a href="#article-34">Article 34</a></li><li class="toc-item l5"><a href="#article-35">Article 35</a></li><li class="toc-item l5"><a href="#article-36">Article 36</a></li><li class="toc-item l5"><a href="#article-37">Article 37</a></li><li class="toc-item l5"><a href="#article-38">Article 38</a></li><li class="toc-item l5"><a href="#article-39">Article 39</a></li><li class="toc-item l5"><a href="#article-40">Article 40</a></li><li class="toc-item l5"><a href="#article-41">Article 41</a></li><li class="toc-item l5"><a href="#article-42">Article 42</a></li><li class="toc-item l5"><a href="#article-43">Article 43</a></li><li class="toc-item l5"><a href="#article-44">Article 44</a></li><li class="toc-item l5"><a href="#article-45">Article 45</a></li><li class="toc-item l5"><a href="#article-46">Article 46</a></li><li class="toc-item l5"><a href="#article-47">Article 47</a></li><li class="toc-item l5"><a href="#article-48">Article 48</a></li><li class="toc-item l5"><a href="#article-49">Article 49</a></li><li class="toc-item l5"><a href="#article-50">Article 50</a></li><li class="toc-item l5"><a href="#article-51">Article 51</a></li><li class="toc-item l5"><a href="#article-52">Article 52</a></li><li class="toc-item l5"><a href="#article-53">Article 53</a></li></ul></li></ul></li><li class="toc-item l2"><a href="#titre-iv---dispositions-speciales">TITRE IV - DISPOSITIONS SPÉCIALES</a><ul class="toc-level3"></ul></li><li class="toc-item l2"><a href="#titre-v---dispositions-relatives-a-la-constitution-initiale-du-corps-prefectoral">TITRE V - DISPOSITIONS RELATIVES A LA CONSTITUTION INITIALE DU CORPS PRÉFECTORAL</a><ul class="toc-level3"></ul></li><li class="toc-item l2"><a href="#titre-vi---cessation-definitive-de-fonction">TITRE VI - CESSATION DÉFINITIVE DE FONCTION</a><ul class="toc-level3"></ul></li><li class="toc-item l2"><a href="#titre-vii---protection-civile-et-penale">TITRE VII - PROTECTION CIVILE ET PÉNALE</a><ul class="toc-level3"></ul></li><li class="toc-item l2"><a href="#titre-viii---dispositions-finales">TITRE VIII - DISPOSITIONS FINALES</a><ul class="toc-level3"></ul></li></ul></nav><button class="toc-toggle" id="tocToggle" onclick="(function(e){e.stopPropagation();var t=document.getElementById('floatingTOC');if(t){t.classList.toggle('is-hidden');}})(event)" title="Sommaire"><i class="fas fa-list"></i></button><script>
+(function(){
+  function init(){
+    var toc = document.getElementById('floatingTOC');
+    var btn = document.getElementById('tocToggle');
+    var close = toc ? toc.querySelector('.toc-close') : null;
+    if(btn){
+      btn.addEventListener('click', function(e){ e.stopPropagation(); toc && toc.classList.toggle('is-hidden'); });
+    }
+    if(close){
+      close.addEventListener('click', function(e){ e.stopPropagation(); toc && toc.classList.add('is-hidden'); });
+    }
+    if(toc){
+      toc.addEventListener('click', function(e){ e.stopPropagation(); });
+    }
+    document.addEventListener('click', function(){
+      if(toc && !toc.classList.contains('is-hidden')) toc.classList.add('is-hidden');
+    }, true);
+  }
+  if(document.readyState === 'loading'){ document.addEventListener('DOMContentLoaded', init); }
+  else { init(); }
+  window.addEventListener('load', init);
+})();
+</script>  <script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js"));
+  }
+</script>
+  <!-- PWA Install Button -->
+<button id="pwa-install-btn" aria-label="Installer l'application" hidden>Installer</button>
+<style>
+  #pwa-install-btn{
+    position:fixed; right:16px; bottom:16px; z-index:9999;
+    padding:10px 14px; border:none; border-radius:999px;
+    background:#22c55e; color:white; font:600 14px system-ui,Segoe UI,Roboto,Arial,sans-serif;
+    box-shadow:0 8px 20px rgba(34,197,94,.35);
+  }
+  #pwa-install-btn[hidden]{ display:none; }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    #pwa-install-btn{ bottom: calc(16px + env(safe-area-inset-bottom)); }
+  }
+</style>
+<script>
+  (function(){
+    let deferredPrompt;
+    const btnId = "pwa-install-btn";
+    function ensureBtn(){
+      let b = document.getElementById(btnId);
+      if(!b){
+        b = document.createElement("button");
+        b.id = btnId;
+        b.textContent = "Installer";
+        document.body.appendChild(b);
+      }
+      return b;
+    }
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      const btn = ensureBtn();
+      btn.hidden = false;
+      btn.onclick = async () => {
+        btn.hidden = true;
+        deferredPrompt.prompt();
+        await deferredPrompt.userChoice;
+        deferredPrompt = null;
+      };
+    });
+    if (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) {
+      const btn = document.getElementById(btnId);
+      if(btn) btn.hidden = true;
+    }
+  })();
+</script>
+  <!-- Auth UI minimal -->
+<style>
+  .auth-box{position:fixed; top:12px; right:12px; z-index:9998; background:#ffffff; color:#111827; border-radius:12px; padding:10px 12px; box-shadow:0 10px 24px rgba(0,0,0,.12); font:500 14px system-ui,Segoe UI,Roboto,Arial}
+  .auth-box h4{margin:0 0 6px; font-size:14px}
+  .auth-box form{display:flex; gap:6px; flex-wrap:wrap; align-items:center}
+  .auth-box input{padding:6px 8px; border:1px solid #e5e7eb; border-radius:8px}
+  .auth-box button{background:#22c55e; color:#fff; border:none; padding:6px 10px; border-radius:8px; cursor:pointer}
+  .auth-box .row{display:flex; gap:6px; flex-wrap:wrap}
+  .views-badge{position:fixed; left:12px; bottom:12px; z-index:9998; background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px; font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)}
+</style><!-- Admin link (visible only when logged-in) -->
+<style>
+  .admin-link{
+    position:fixed; right:16px; bottom:88px; z-index:9998;
+    display:none; align-items:center; gap:8px;
+    padding:10px 14px; border-radius:999px; text-decoration:none;
+    background:#111827; color:#fff; font:600 14px system-ui,Segoe UI,Roboto,Arial;
+    box-shadow:0 8px 20px rgba(0,0,0,.3);
+    border:1px solid rgba(255,255,255,.1);
+  }
+  body.logged-in .admin-link{ display:inline-flex; }
+  .admin-link:hover{ filter:brightness(1.1); }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    .admin-link{ bottom: calc(88px + env(safe-area-inset-bottom)); }
+  }
+</style>
+<a href="admin.html" class="admin-link" title="Tableau de bord">Admin</a>
+  <script type="module" src="assets/firebase-app.js"></script>
+  <script>window.autoCountAndBind && window.autoCountAndBind();</script>
+  
+<!-- Floating Auth Button + Modal -->
+<style>
+  #auth-fab{
+    position:fixed; right:16px; bottom:68px; z-index:9998;
+    width:48px; height:48px; border-radius:999px; border:none; cursor:pointer;
+    background:#111827; color:#fff; display:grid; place-items:center;
+    box-shadow:0 8px 20px rgba(0,0,0,.35); border:1px solid rgba(255,255,255,.1);
+  }
+  body.logged-in #auth-fab::after{ content:"✓"; }
+  #auth-fab::after{ content:"👤"; font-size:20px; }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    #auth-fab{ bottom: calc(68px + env(safe-area-inset-bottom)); }
+  }
+  .views-badge{
+    position:fixed; left:12px; bottom:12px; z-index:9998; 
+    background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px;
+    font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)
+  }
+  dialog#auth-modal{
+    border:none; border-radius:16px; padding:0; width:min(90vw,420px);
+    box-shadow:0 24px 72px rgba(0,0,0,.35); overflow:hidden;
+  }
+  dialog::backdrop{ background:rgba(0,0,0,.4); }
+  .auth-modal-head{background:#0f172a; color:#fff; padding:12px 16px; display:flex; justify-content:space-between; align-items:center}
+  .auth-modal-body{padding:16px; background:#111827; color:#e5e7eb}
+  .auth-modal-body label{display:block; font-size:13px; margin-top:8px; opacity:.9}
+  .auth-modal-body input{width:100%; padding:10px 12px; border-radius:10px; border:1px solid #1f2937; background:#0b1021; color:#e5e7eb}
+  .auth-actions{display:flex; gap:8px; margin-top:14px}
+  .btn{border:none; border-radius:10px; padding:10px 12px; cursor:pointer; font-weight:600}
+  .btn-primary{background:#22c55e; color:white}
+  .btn-ghost{background:transparent; color:#e5e7eb; border:1px solid #374151}
+  .muted{opacity:.8}
+</style>
+
+<button id="auth-fab" title="Connexion / Compte"></button>
+<div class="views-badge">Vues : <span id="viewCounter">0</span></div>
+
+<dialog id="auth-modal">
+  <div class="auth-modal-head">
+    <strong>Connexion</strong>
+    <button class="btn btn-ghost" id="auth-close" aria-label="Fermer">✕</button>
+  </div>
+  <div class="auth-modal-body">
+    <p class="muted">Connecte-toi pour accéder à l’admin et une meilleure expérience.</p>
+    <label>Email</label>
+    <input type="email" id="auth-email" placeholder="email@exemple.com" required>
+    <label>Mot de passe</label>
+    <input type="password" id="auth-pass" placeholder="••••••••" required>
+    <div class="auth-actions">
+      <button class="btn btn-primary" id="btn-login">Connexion</button>
+      <button class="btn btn-ghost" id="btn-register">Créer un compte</button>
+      <button class="btn btn-ghost" id="btn-logout">Déconnexion</button>
+    </div>
+    <div id="auth-msg" class="muted" style="margin-top:8px;"></div>
+  </div>
+</dialog>
+
+<script type="module">
+  import { authRegister, authLogin, authLogout } from "./assets/firebase-app.js";
+
+  const fab = document.getElementById("auth-fab");
+  const modal = document.getElementById("auth-modal");
+  const closeBtn = document.getElementById("auth-close");
+  const email = document.getElementById("auth-email");
+  const pass = document.getElementById("auth-pass");
+  const msg  = document.getElementById("auth-msg");
+  const btnLogin = document.getElementById("btn-login");
+  const btnRegister = document.getElementById("btn-register");
+  const btnLogout = document.getElementById("btn-logout");
+
+  function openModal(){ try{ modal.showModal(); }catch{ modal.setAttribute("open",""); } }
+  function closeModal(){ modal.close?.(); modal.removeAttribute("open"); }
+
+  fab?.addEventListener("click", openModal);
+  closeBtn?.addEventListener("click", closeModal);
+
+  async function handle(run){
+    msg.textContent = "";
+    try{
+      await run(email.value.trim(), pass.value);
+      msg.textContent = "✅ Opération réussie.";
+      setTimeout(()=>{ closeModal(); }, 500);
+    }catch(e){
+      console.error(e);
+      msg.textContent = "❌ " + (e?.message || "Erreur");
+    }
+  }
+
+  btnLogin?.addEventListener("click", () => handle(authLogin));
+  btnRegister?.addEventListener("click", () => handle(authRegister));
+  btnLogout?.addEventListener("click", async () => {
+    msg.textContent = "";
+    try{ await authLogout(); msg.textContent = "✅ Déconnecté."; }catch(e){ msg.textContent = "❌ " + (e?.message||"Erreur"); }
+  });
+</script>
+
+
+<!-- Per-card view counters -->
+<style>
+  .card-views-badge{
+    position:absolute; top:8px; right:8px;
+    background:rgba(17,24,39,.9); color:#fff;
+    padding:4px 8px; border-radius:999px; font:600 12px system-ui,Segoe UI,Roboto,Arial;
+    box-shadow:0 6px 14px rgba(0,0,0,.25);
+    pointer-events:none;
+  }
+  .card-views-wrap{ position:relative; }
+</style>
+<script type="module">
+  import { getViewCount } from "./assets/firebase-app.js";
+  function basename(href){
+    try{ const u = new URL(href, location.href);
+         const file = u.pathname.split('/').pop() || 'index.html';
+         return file.replace(/\.html$/i,''); }
+    catch{ return (href.split('/').pop()||'index.html').replace(/\.html$/i,''); }
+  }
+  async function attachCounterTo(el, docId){
+    let container = el.closest('.card, .item, .panel, .box, .article, .doc, .tile');
+    if(!container){ container = el.parentElement; }
+    if(container && !container.classList.contains('card-views-wrap')){
+      container.classList.add('card-views-wrap');
+    }
+    const host = container || el;
+    if(host.querySelector('.card-views-badge[data-doc="'+docId+'"]')) return;
+    const badge = document.createElement('span');
+    badge.className = 'card-views-badge';
+    badge.dataset.doc = docId;
+    badge.textContent = 'Vues: …';
+    host.appendChild(badge);
+    try{ const n = await getViewCount(docId);
+         badge.textContent = 'Vues: ' + n; }
+    catch{ badge.textContent = 'Vues: —'; }
+  }
+  async function initCardCounters(){
+    const links = Array.from(document.querySelectorAll('[data-doc-id], a[href$=".html"]'))
+      .filter(a => {
+        const id = a.getAttribute('data-doc-id') || basename(a.getAttribute('href')||'');
+        return id && !['index','admin','offline'].includes(id.toLowerCase());
+      });
+    const handled = new Set();
+    for(const a of links){
+      const id = a.getAttribute('data-doc-id') || basename(a.getAttribute('href')||'');
+      if(!id || handled.has(id)) continue;
+      handled.add(id);
+      attachCounterTo(a, id);
+    }
+  }
+  initCardCounters();
+  const obs = new MutationObserver(()=>initCardCounters());
+  obs.observe(document.body, { childList:true, subtree:true });
+</script>
+
+</body></html>

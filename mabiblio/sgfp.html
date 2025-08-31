@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Statut Général de la Fonction Publique — Lecteur</title><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/><style>:root{--bg:#e6f6ec;--paper:#ffffff;--ink:#0e2a1b;--primary:#0a7f3f;--primary-700:#074d2a;--accent:#ff9a3c;--accent-2:#fff4e8;--muted:#d9f0e3;--shadow:0 12px 28px rgba(0,0,0,.08);--radius:18px;--transition:.25s ease;--article-bg:#ffffff;--icon-orange:#ff9a3c;}*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.6}header{position:sticky;top:0;z-index:60;background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(255,255,255,.9));backdrop-filter:saturate(1.1) blur(8px);border-bottom:1px solid #d7eadd}.container{max-width:1120px;margin:0 auto;padding:14px 16px;display:flex;align-items:center;gap:12px}.logo{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:radial-gradient(circle at 30% 30%, #d9ffe7, #b9f6cf);color:#074d2a;box-shadow:var(--shadow);font-size:18px;border:1px solid #b5e4c7}h1{margin:0;font-family:'Playfair Display',serif;font-size:20px;color:#074d2a}.sub{color:#355a46;font-size:12px;margin-top:2px}.control-buttons{margin-left:auto;display:flex;gap:8px;align-items:center}.btn{min-width:38px;height:38px;border-radius:12px;border:1px solid #cfe6d8;background:#fff;color:#074d2a;display:grid;place-items:center;cursor:pointer;box-shadow:var(--shadow);transition:var(--transition)}.btn:hover{transform:translateY(-1px)}.wrapper{max-width:1120px;margin:16px auto;padding:0 12px}.group{background:var(--paper);border:1px solid #d7eadd;border-radius:var(--radius);box-shadow:var(--shadow);margin:14px 0;overflow:hidden}.group>h2{margin:0;padding:14px 16px;background:linear-gradient(180deg,#ffffff,#eef9f2);border-bottom:1px solid #d7eadd;color:#074d2a;font-size:18px;font-family:'Playfair Display',serif}.article{margin:10px 10px 14px 10px;padding:12px 14px;border-left:6px solid var(--primary);background:var(--article-bg);border-radius:14px;box-shadow:0 1px 0 rgba(0,0,0,.03)}.article-header{display:flex; align-items:center; gap:10px; margin:0 0 8px 0;}.article-header h3{margin:0; color:#074d2a; display:flex; align-items:center; gap:8px;}.article .open-fs{ margin-left:auto; width:34px; height:34px; border:1px solid #d7eadd; background:#fff; border-radius:10px; cursor:pointer; }.article .article-icon{ width:28px; height:28px; border-radius:8px; display:grid; place-items:center; background:var(--accent-2); color:#d26b00; border:1px solid #ffd6a8; }.article-content p{margin:.5rem 0}.article-content ul,.article-content ol{margin:.5rem 0 .8rem 1.25rem}.article-content ol>li, .article-content ul>li{ padding:8px 0; line-height:1.7; border-bottom:1px solid #edf7f0; }.article-content ol>li:last-child, .article-content ul>li:last-child{ border-bottom:0; }.article-content li > ol > li, .article-content li > ul > li{ padding:6px 0; border-bottom:1px dashed #edf7f0; }.article-content li > ol > li:last-child, .article-content li > ul > li:last-child{ border-bottom:0; }.reading{ outline:2px solid #c7ffdf; outline-offset:2px; border-left-color:#8ce4a9 !important; background:linear-gradient(180deg,#fff, #f0fff6) }mark{background:#fff0d6}#tocFloatBtn{position:fixed; right:14px; bottom:120px; width:46px; height:46px; border-radius:50%; border:none; background:var(--primary); color:#fff; display:grid; place-items:center; box-shadow:0 10px 24px rgba(0,0,0,.25); z-index:1500;}#tocPanel{position:fixed; top:0; right:0; height:100%; width:86%; max-width:420px; background:#fff; border-left:1px solid #d7eadd; box-shadow:-16px 0 35px rgba(0,0,0,.2); transform:translateX(100%); transition:transform .25s ease; z-index:1600; overflow:auto;}#tocOverlay{position:fixed; inset:0; background:rgba(0,0,0,.28); backdrop-filter:blur(2px); display:none; z-index:1590}#tocPanel.open{ transform:none } #tocOverlay.show{ display:block }#tocPanel header{position:sticky; top:0; background:#fff; padding:12px 14px; border-bottom:1px solid #d7eadd}#tocPanel h3{margin:0; color:#074d2a} #tocPanel .toc-list{padding:12px 14px}#tocPanel .toc-list a{display:block; padding:6px 0; color:#074d2a; text-decoration:none}#tocPanel .toc-sub{margin-left:10px; border-left:2px solid #eaf6ee; padding-left:8px}#voiceBar{position:fixed; left:50%; transform:translateX(-50%); bottom:14px; background:#074d2a; color:#fff; z-index:1550; border-radius:22px; padding:8px 12px; display:flex; gap:10px; align-items:center; box-shadow:0 12px 28px rgba(0,0,0,.3)}#voiceBar button{width:34px; height:34px; border-radius:10px; border:1px solid #cfe3f5; background:transparent; color:#eaf0f6; display:grid; place-items:center; cursor:pointer}#voiceBar .now{font-size:12px; max-width:52vw; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:#f1f5f9}#fsOverlay{ position:fixed; inset:0; background:#fff; z-index:1700; display:none; }#fsOverlay.show{ display:block } #fsHeader{ position:sticky; top:0; background:#fff; padding:10px 14px; border-bottom:1px solid #d7eadd; display:flex; align-items:center; gap:10px }#fsHeader .ttl{ font-weight:700; color:#074d2a; flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis }#fsHeader button{ width:36px; height:36px; border-radius:10px; border:1px solid #d7eadd; background:#fff; }#fsBody{ padding:14px; height:calc(100% - 58px); overflow:auto } #fsBody .article-content{ font-size:1.04rem }#fsNavPrev,#fsNavNext{ position:fixed; top:50%; transform:translateY(-50%); width:42px; height:42px; border-radius:50%; border:none; background:var(--primary); color:#fff; display:grid; place-items:center; z-index:1710; opacity:.9 }#fsNavPrev{ left:10px } #fsNavNext{ right:10px }footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#3d5c4a;font-size:12px}/* Anti-sélection / anti-copie */
+.no-select, .no-select *:not(input):not(textarea):not(.selectable){-webkit-user-select:none!important;-moz-user-select:none!important;-ms-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important;}
+/* Sommaire flottant complet : Titre → Chapitre → Section → Article */
+.floating-toc{position:fixed; right:16px; bottom:78px; width:380px; max-height:70vh; overflow:auto; background:#ffffff; border:1px solid #d7eadd; border-radius:14px; box-shadow:0 16px 40px rgba(0,0,0,.18); padding:8px 10px; z-index:1600}
+.floating-toc.is-hidden{display:none}
+.toc-header{display:flex; align-items:center; justify-content:space-between; font-weight:800; color:#074d2a; padding:6px 4px 8px 6px; border-bottom:1px solid #eef6f2}
+.toc-close{border:none; background:transparent; cursor:pointer; padding:6px; border-radius:8px}
+.toc-close:hover{background:#f7f7f7}
+.floating-toc ul{list-style:none; margin:0; padding-left:10px}
+.floating-toc .toc-item{margin:4px 0}
+.floating-toc a{display:block; text-decoration:none; color:#074d2a; line-height:1.35}
+.floating-toc .l2 > a{font-weight:800; font-size:14px; margin-top:6px}
+.floating-toc .l3 > a{padding-left:6px; font-weight:700; font-size:13px}
+.floating-toc .l4 > a{padding-left:12px; font-weight:600; font-size:12.5px}
+.floating-toc .l5 > a{padding-left:18px; font-size:12px}
+.toc-toggle{position:fixed; right:16px; bottom:16px; width:48px; height:48px; border-radius:50%; border:none; background:linear-gradient(135deg,#0a7f3f,#0c9250); color:#fff; display:grid; place-items:center; box-shadow:0 10px 24px rgba(0,0,0,.25); z-index:1700; cursor:pointer}
+.toc-toggle:active{transform:scale(.98)}
+@media (max-width: 980px){
+  .floating-toc{right:8px; left:8px; bottom:74px; width:auto; max-height:55vh;}
+  .toc-toggle{right:12px; bottom:12px;}
+}
+
+/* Sommaire flottant complet : Titre → Chapitre → Section → Article */
+.floating-toc{position:fixed; right:16px; bottom:78px; width:380px; max-height:70vh; overflow:auto; background:#ffffff; border:1px solid #d7eadd; border-radius:14px; box-shadow:0 16px 40px rgba(0,0,0,.18); padding:8px 10px; z-index:1600}
+.floating-toc.is-hidden{display:none}
+.toc-header{display:flex; align-items:center; justify-content:space-between; font-weight:800; color:#074d2a; padding:6px 4px 8px 6px; border-bottom:1px solid #eef6f2}
+.toc-close{border:none; background:transparent; cursor:pointer; padding:6px; border-radius:8px}
+.toc-close:hover{background:#f7f7f7}
+.floating-toc ul{list-style:none; margin:0; padding-left:10px}
+.floating-toc .toc-item{margin:4px 0}
+.floating-toc a{display:block; text-decoration:none; color:#074d2a; line-height:1.35}
+.floating-toc .l2 > a{font-weight:800; font-size:14px; margin-top:6px}
+.floating-toc .l3 > a{padding-left:6px; font-weight:700; font-size:13px}
+.floating-toc .l4 > a{padding-left:12px; font-weight:600; font-size:12.5px}
+.floating-toc .l5 > a{padding-left:18px; font-size:12px}
+.toc-toggle{position:fixed; right:16px; bottom:16px; width:48px; height:48px; border-radius:50%; border:none; background:linear-gradient(135deg,#0a7f3f,#0c9250); color:#fff; display:grid; place-items:center; box-shadow:0 10px 24px rgba(0,0,0,.25); z-index:1700; cursor:pointer}
+.toc-toggle:active{transform:scale(.98)}
+@media (max-width: 980px){
+  .floating-toc{right:8px; left:8px; bottom:74px; width:auto; max-height:55vh;}
+  .toc-toggle{right:12px; bottom:12px;}
+}
+
+.chapter-title{margin-left: 12px;}
+.section-title{margin-left: 24px;}
+/* TOC */
+.floating-toc{position:fixed; right:16px; bottom:78px; width:380px; max-height:70vh; overflow:auto; background:#ffffff; border:1px solid #d7eadd; border-radius:14px; box-shadow:0 16px 40px rgba(0,0,0,.18); padding:8px 10px; z-index:1600}
+.floating-toc.is-hidden{display:none}
+.toc-header{display:flex; align-items:center; justify-content:space-between; font-weight:800; color:#074d2a; padding:6px 4px 8px 6px; border-bottom:1px solid #eef6f2}
+.toc-close{border:none; background:transparent; cursor:pointer; padding:6px; border-radius:8px}
+.toc-close:hover{background:#f7f7f7}
+.floating-toc ul{list-style:none; margin:0; padding-left:10px}
+.floating-toc .toc-item{margin:4px 0}
+.floating-toc a{display:block; text-decoration:none; color:#074d2a; line-height:1.35}
+.floating-toc .l2 > a{font-weight:800; font-size:14px; margin-top:6px}
+.floating-toc .l3 > a{padding-left:6px; font-weight:700; font-size:13px}
+.floating-toc .l4 > a{padding-left:12px; font-weight:600; font-size:12.5px}
+.floating-toc .l5 > a{padding-left:18px; font-size:12px}
+.toc-toggle{position:fixed; right:16px; bottom:16px; width:48px; height:48px; border-radius:50%; border:none; background:linear-gradient(135deg,#0a7f3f,#0c9250); color:#fff; display:grid; place-items:center; box-shadow:0 10px 24px rgba(0,0,0,.25); z-index:1700; cursor:pointer}
+.toc-toggle:active{transform:scale(.98)}
+@media (max-width: 980px){
+  .floating-toc{right:8px; left:8px; bottom:74px; width:auto; max-height:55vh;}
+  .toc-toggle{right:12px; bottom:12px;}
+}
+
+/* Floating TOC + Toggle */
+.floating-toc{position:fixed; right:16px; bottom:78px; width:380px; max-height:70vh; overflow:auto; background:#ffffff; border:1px solid #d7eadd; border-radius:14px; box-shadow:0 16px 40px rgba(0,0,0,.18); padding:8px 10px; z-index:1600}
+.floating-toc.is-hidden{display:none}
+.toc-header{display:flex; align-items:center; justify-content:space-between; font-weight:800; color:#074d2a; padding:6px 4px 8px 6px; border-bottom:1px solid #eef6f2}
+.toc-close{border:none; background:transparent; cursor:pointer; padding:6px; border-radius:8px}
+.toc-close:hover{background:#f7f7f7}
+.toc-toggle{position:fixed; right:16px; bottom:16px; width:48px; height:48px; border-radius:50%; border:none; background:linear-gradient(135deg,#0a7f3f,#0c9250); color:#fff; display:grid; place-items:center; box-shadow:0 10px 24px rgba(0,0,0,.25); z-index:1700; cursor:pointer}
+.toc-toggle:active{transform:scale(.98)}
+@media (max-width: 980px){
+  .floating-toc{right:8px; left:8px; bottom:74px; width:auto; max-height:55vh;}
+  .toc-toggle{right:12px; bottom:12px;}
+}
+
+/* Force clickable TOC toggle */
+#tocToggle, #floatingTOC{ pointer-events:auto !important; }
+#tocToggle{ z-index: 100000 !important; }
+#floatingTOC{ z-index: 99999 !important; }
+
+/* Scrollspy active state */
+.floating-toc a.is-active{ font-weight:800; text-decoration:underline; }
+.floating-toc .l3 > a.is-active{ text-decoration:underline; }
+.floating-toc .l4 > a.is-active{ text-decoration:underline; }
+.floating-toc .l5 > a.is-active{ text-decoration:underline; }
+</style>  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#22c55e">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<!-- HIDE AUTH/VIEWS WIDGETS OUTSIDE HOME (safe) -->
+<style>
+  #auth-fab, .views-badge, #auth-modal, .card-views-badge { display: none !important; }
+</style>
+
+</head><body><header><div class="container"><div class="logo"><i class="fa-solid fa-seedling"></i></div><div><h1>Statut Général de la Fonction Publique</h1><div class="sub">Thème vert élégant • Icônes orange • Sommaire • Recherche • Lecture continue • Plein écran</div></div><div class="control-buttons"><button class="btn" id="tocHeaderBtn" title="Sommaire"><i class="fa-solid fa-list-ul"></i></button><button class="btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Haut de page"><i class="fa-solid fa-angles-up"></i></button></div></div></header><main class="wrapper"><section class="group"><h2 id="titre-i--organisation-des-emplois-droits-et-obligations-du-fonctionnaire">TITRE I : ORGANISATION DES EMPLOIS, DROITS ET OBLIGATIONS DU FONCTIONNAIRE</h2><h3 class="chapter-title" id="chapitre-preliminaire--champ-dapplication">CHAPITRE PRÉLIMINAIRE : CHAMP D'APPLICATION</h3><div class="article" id="article-1"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-scale-balanced"></i></span><h3 id="article-1">Article 1</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Le présent statut s'applique aux personnes qui, nommées à titre permanent pour occuper un emploi dans l'Administration Centrale de l'État, les services extérieurs qui en dépendent et les Établissements Publics de l'État, ont été titularisées après un stage probatoire dans un grade de la hiérarchie administrative.</p>
+<p>Toutefois, les fonctionnaires bénéficiaires d'un statut particulier dérogent à la présente loi.</p>
+<p>A l'exception des questions liées à la rémunération, cette dérogation ne saurait avoir pour effet d'introduire des conditions plus favorables au profit de ces personnels au regard des principes énoncés dans le présent statut.</p>
+<p>Les personnes visées dans le présent article ont vocation à servir l'État et occupent, à cet effet, un emploi public au sein de l'Administration sur un poste de travail identifié et codifié.</p>
+</div></div><h3 class="chapter-title" id="chapitre-i--le-fonctionnaire">CHAPITRE I : LE FONCTIONNAIRE</h3><div class="article" id="article-2"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-id-card-clip"></i></span><h3 id="article-2">Article 2</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Les personnes soumises aux dispositions du présent statut ont la qualité de fonctionnaire.</p>
+</div></div><div class="article" id="article-3"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-briefcase"></i></span><h3 id="article-3">Article 3</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Le fonctionnaire appartient à une famille d'emplois.</p>
+<p>La famille d'emplois désigne un ensemble cohérent de spécialités relevant d'un même domaine général d'activité.</p>
+</div></div><div class="article" id="article-4"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-users"></i></span><h3 id="article-4">Article 4</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Les conditions d'âge pour l'accès à l'un des emplois de la Fonction Publique sont fixées par décret pris en Conseil des Ministres.</p>
+</div></div><div class="article" id="article-5"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-clipboard-check"></i></span><h3 id="article-5">Article 5</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Des décrets pris en Conseil des Ministres déterminent :</p>
+<p>1° les modalités d'application du présent statut, communes à l'ensemble des personnes visées à l'article premier ;</p>
+<p>2° les modalités particulières applicables aux fonctionnaires des différentes catégories, et notamment les conditions de nomination et de classement dans les différents grades ;</p>
+<p>3° les familles d'emplois.</p>
+</div></div><div class="article" id="article-6"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-sitemap"></i></span><h3 id="article-6">Article 6</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Le fonctionnaire est vis-à-vis de l'Administration dans une situation statutaire et réglementaire.</p>
+</div></div><h3 class="chapter-title" id="chapitre-ii--classification-et-profil-de-carriere-des-fonctionnaires">CHAPITRE II : CLASSIFICATION ET PROFIL DE CARRIÈRE DES FONCTIONNAIRES</h3><div class="article" id="article-7"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-building-columns"></i></span><h3 id="article-7">Article 7</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Les emplois de la Fonction Publique sont classés en quatre catégories désignées dans l'ordre hiérarchique décroissant : A, B, C et D.</p>
+<p>Les fonctionnaires sont classés dans ces catégories en fonction de leurs diplômes, de leurs qualifications et expériences professionnelles.</p>
+</div></div><div class="article" id="article-8"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-shield-halved"></i></span><h3 id="article-8">Article 8</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Aux catégories correspondent des fonctions de différents niveaux :</p>
+<p>- à la catégorie A, les fonctions d'études générales, de conception, de direction et de supervision ;</p>
+<p>- à la catégorie B, les fonctions d'application, consistant à traduire en mesures particulières les principes généraux arrêtés ;</p>
+<p>- à la catégorie C et à la catégorie D, les fonctions d'exécution.</p>
+</div></div><div class="article" id="article-9"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-handshake"></i></span><h3 id="article-9">Article 9</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>A chaque catégorie sont rattachés des grades.</p>
+</div></div><div class="article" id="article-10"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-diagram-project"></i></span><h3 id="article-10">Article 10</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Le grade est le titre acquis par le fonctionnaire, à l'intérieur de sa catégorie, et qui lui donne vocation à occuper un emploi dans sa spécialité et dans la hiérarchie administrative.</p>
+<p>A chacun des grades correspond une échelle de traitement qui comprend des classes et des échelons.</p>
+<p>Le grade est distinct de l'emploi.</p>
+</div></div><div class="article" id="article-11"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-scale-balanced"></i></span><h3 id="article-11">Article 11</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>L'emploi est la profession exercée par le fonctionnaire en rapport à une qualification acquise suite à une formation initiale ou continue.</p>
+</div></div><div class="article" id="article-12"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-id-card-clip"></i></span><h3 id="article-12">Article 12</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Les emplois sont créés ou supprimés, en tenant compte des besoins de l'Administration, par décret pris en Conseil des Ministres.</p>
+</div></div><div class="article" id="article-13"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-briefcase"></i></span><h3 id="article-13">Article 13</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Tous les fonctionnaires dans leur famille d'emplois ont un profil de carrière fixé par décret pris en Conseil des Ministres.</p>
+</div></div><div class="article" id="article-14"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-users"></i></span><h3 id="article-14">Article 14</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Les différents grades et les échelles de traitement sont fixés par décret pris en Conseil des Ministres.</p>
+</div></div><h3 class="chapter-title" id="chapitre-iii--emploi-et-mobilite-professionnelle">CHAPITRE III : EMPLOI ET MOBILITÉ PROFESSIONNELLE</h3><div class="article" id="article-15"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-clipboard-check"></i></span><h3 id="article-15">Article 15</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Le fonctionnaire peut changer d'emploi au cours de sa carrière, en fonction des besoins de l'Administration, de la nécessité d'une reconversion professionnelle ou à sa demande.</p>
+<p>Le fonctionnaire, reconnu inapte par le Conseil de Santé et Sécurité au Travail de la Fonction Publique à exercer un emploi actif, peut être nommé à un emploi sédentaire de son grade.</p>
+<p>Les modalités de la mobilité professionnelle sont déterminées par décret pris en Conseil des Ministres.</p>
+</div></div><div class="article" id="article-16"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-sitemap"></i></span><h3 id="article-16">Article 16</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>L'accès à un emploi en qualité de fonctionnaire ne peut se faire que dans les conditions fixées par le présent statut.</p>
+<p>Toutefois, les nominations aux emplois supérieurs, au sens de l'article 71 de la Constitution, dont la liste est fixée par la loi portant établissement de la liste des emplois supérieurs de l'État, sont laissées à la discrétion du Gouvernement, compte tenu des critères fixés par décret.</p>
+<p>La nomination de non fonctionnaires à ces emplois n'entraîne pas leur titularisation dans un grade.</p>
+<p>Les nominations aux emplois supérieurs visés au présent article sont révocables, aussi bien pour les fonctionnaires que pour les non fonctionnaires.</p>
+</div></div><div class="article" id="article-17"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-building-columns"></i></span><h3 id="article-17">Article 17</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Pour l'accès à la Fonction Publique, la gestion de la carrière et l'admission à la retraite, aucune discrimination ne doit être faite entre les candidats ou les fonctionnaires en raison de leur race, ethnie, clan ou tribu, de leur couleur de peau, de leur sexe, opinion politique ou philosophique, leur origine, leur appartenance syndicale, religieuse, sociale ou leur handicap.</p>
+<p>Les modalités d'application du présent article sont déterminées par décret pris en Conseil des Ministres.</p>
+</div></div><h3 class="chapter-title" id="chapitre-iv--les-agents-contractuels">CHAPITRE IV : LES AGENTS CONTRACTUELS</h3><div class="article" id="article-18"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-shield-halved"></i></span><h3 id="article-18">Article 18</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Les emplois civils de l'État et des Établissements Publics visés à l'article premier sont occupés par des fonctionnaires.</p>
+<p>Par dérogation à ce principe, des agents non fonctionnaires peuvent être recrutés pour :</p>
+<p>- occuper des emplois de la catégorie A, lorsque la nature des fonctions et les besoins des services le justifient ;</p>
+<p>- exercer des fonctions dans un Cabinet ministériel.</p>
+<p>Les agents visés au premier tiret de l'alinéa précèdent sont engagés par contrat pour une durée déterminée qui ne peut excéder deux ans. Ce contrat n'est renouvelable qu'une seule fois.</p>
+</div></div><div class="article" id="article-19"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-handshake"></i></span><h3 id="article-19">Article 19</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>En cas de postes vacants dans des spécialités de l'Enseignement Supérieur, le Ministre chargé de la Fonction Publique, sur saisine du Ministre chargé de l'Enseignement Supérieur, peut autoriser les Universités à recruter, par contrat d'assimilation, lorsque leur qualification le requiert, des enseignants du supérieur de rang A.</p>
+</div></div><div class="article" id="article-20"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-diagram-project"></i></span><h3 id="article-20">Article 20</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>La nomination d'un agent recruté en qualité de contractuel n'entraîne pas sa titularisation dans un grade de la Fonction Publique.</p>
+</div></div><h3 class="chapter-title" id="chapitre-v--droits-et-obligations-des-fonctionnaires">CHAPITRE V : DROITS ET OBLIGATIONS DES FONCTIONNAIRES</h3><h4 class="section-title" id="section-i--les-droits-du-fonctionnaire">SECTION I : LES DROITS DU FONCTIONNAIRE</h4><div class="article" id="article-21"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-scale-balanced"></i></span><h3 id="article-21">Article 21</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>La liberté d'opinion est reconnue aux fonctionnaires. Aucune distinction ne peut être faite entre ceux-ci en raison de leurs opinions politiques, philosophiques ou religieuses.</p>
+<p>Toutefois, l'expression de ces opinions ne peut mettre en cause les principes affirmés par la Constitution et par le présent statut. Elle ne peut être faite qu'en dehors du service, avec la réserve appropriée aux fonctions qu'exerce l'intéressé.</p>
+</div></div><div class="article" id="article-22"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-id-card-clip"></i></span><h3 id="article-22">Article 22</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Il ne peut être fait état dans le dossier du fonctionnaire prévu à l'article 48 du présent statut, de même que dans tout document administratif, des opinions ou des activités politiques, syndicales, religieuses ou philosophiques de l'intéressé.</p>
+</div></div><div class="article" id="article-23"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-briefcase"></i></span><h3 id="article-23">Article 23</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Le droit syndical est reconnu aux fonctionnaires. Les syndicats professionnels de fonctionnaires ainsi que la question de leur représentativité sont régis par les dispositions de la loi portant Code du Travail.</p>
+</div></div><div class="article" id="article-24"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-users"></i></span><h3 id="article-24">Article 24</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Le droit de grève est reconnue aux fonctionnaires pour la défense de leurs intérêts professionnels individuels et collectifs.</p>
+<p>Il s'exerce sous réserve du respect de la liberté du travail, de l'épuisement de toutes les voies de négociations et de la garantie d'un service minimum dans les secteurs définis par décret pris en Conseil des Ministres.</p>
+<p>L'absence de service fait par suite de grève entraîne une réduction proportionnelle du traitement ou salaire et de ses compléments, conformément aux dispositions de la loi relative aux modalités de la grève dans les services publics.</p>
+</div></div><div class="article" id="article-25"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-clipboard-check"></i></span><h3 id="article-25">Article 25</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Toute organisation syndicale de fonctionnaires est tenue d'effectuer, dans le mois de sa création, le dépôt de ses statuts et la liste de ses administrateurs auprès du Ministre chargé de l'Administration du Territoire.</p>
+<p>Une copie du récépissé de déclaration et la liste de ses administrateurs doivent être déposées auprès du Ministre chargé de la Fonction Publique.</p>
+<p>Les syndicats professionnels de fonctionnaires peuvent exercer un recours pour excès de pouvoir contre les actes réglementaires concernant le statut du personnel et contre les décisions individuelles et collectives portant atteinte aux intérêts individuels et collectifs de leurs membres.</p>
+</div></div><div class="article" id="article-26"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-sitemap"></i></span><h3 id="article-26">Article 26</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Il est accordé une protection ainsi qu'une décharge partielle de travail aux responsables syndicaux pour l'exercice de leurs activités syndicales dans les conditions fixées par la loi portant Code du Travail.</p>
+</div></div><div class="article" id="article-27"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-building-columns"></i></span><h3 id="article-27">Article 27</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Les fonctionnaires bénéficient, dans l'exercice de leurs fonctions, d'une protection assurée par la collectivité publique dont ils dépendent, conformément aux règles fixées par le Code pénal et les lois spéciales.</p>
+<p>Lorsqu'un fonctionnaire est poursuivi par un tiers pour faute de service, la collectivité publique est responsable des condamnations civiles prononcées contre lui, dans la mesure où une faute personnelle détachable du service ne lui est pas imputable.</p>
+</div></div><div class="article" id="article-28"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-shield-halved"></i></span><h3 id="article-28">Article 28</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>La collectivité publique est tenue de protéger les fonctionnaires contre les menaces, violences, voies de fait, injures, diffamations ou outrages dont ils sont victimes dans l'exercice de leurs fonctions et de réparer, le cas échéant, le préjudice qui en est résulté.</p>
+<p>La collectivité publique est subrogée dans les droits de la victime pour obtenir des auteurs des faits et actes prévus à l'alinéa précédent, la restitution des sommes versées au fonctionnaire concerné.</p>
+<p>Elle dispose, en outre, aux mêmes fins, d'une action directe qu'elle peut exercer au besoin par voie de constitution de partie civile devant la juridiction pénale.</p>
+<p>La collectivité publique dispose de la possibilité d'exercer une action contre son agent lorsqu'elle a été condamnée au versement de dommages et intérêts à raison d'une faute détachable du service commise par l'agent.</p>
+<p>Le non-respect des obligations sus-indiquées engage la responsabilité de la collectivité publique.</p>
+</div></div><div class="article" id="article-29"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-handshake"></i></span><h3 id="article-29">Article 29</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Le fonctionnaire a, en outre, droit à :</p>
+<p>- une rémunération pour service fait ;</p>
+<p>- un congé annuel ;</p>
+<p>- des autorisations spéciales d'absence ;</p>
+<p>- des permissions spéciales d'absence pour événements familiaux ;</p>
+<p>- des congés de maladie ;</p>
+<p>- des congés parentaux ;</p>
+<p>- des congés de maternité et des périodes de repos pour allaitement s'agissant des femmes ;</p>
+<p>- un congé de paternité ;</p>
+<p>- une visite médicale annuelle de contrôle, à la charge de l'État ;</p>
+<p>- une couverture sociale ;</p>
+<p>- la formation continue ;</p>
+<p>- la promotion.</p>
+<p>Les modalités d'octroi de ces droits sont fixées par décret pris en Conseil des Ministres.</p>
+</div></div><div class="article" id="article-30"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-diagram-project"></i></span><h3 id="article-30">Article 30</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>L'État assure au fonctionnaire des conditions de travail adéquates pour l'accomplissement de sa mission de service public.</p>
+</div></div><div class="article" id="article-31"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-scale-balanced"></i></span><h3 id="article-31">Article 31</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Les conditions de travail sont relatives notamment à l'environnement, aux moyens, à la santé et à la sécurité au travail.</p>
+<p>Les modalités d'application du présent paragraphe sont déterminées par décret pris en Conseil des Ministres.</p>
+</div></div><h4 class="section-title" id="section-ii--les-obligations-du-fonctionnaire">SECTION II : LES OBLIGATIONS DU FONCTIONNAIRE</h4><div class="article" id="article-32"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-id-card-clip"></i></span><h3 id="article-32">Article 32</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Le fonctionnaire doit servir l'État avec loyauté, dignité, intégrité et dévouement. Il doit consacrer l'intégralité de son temps de travail aux tâches qui lui sont confiées.</p>
+<p>Le fonctionnaire ne peut exercer, à titre professionnel, une activité privée lucrative de quelque nature que ce soit, sauf dérogation accordée par décret pris en Conseil des Ministres.</p>
+</div></div><div class="article" id="article-33"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-briefcase"></i></span><h3 id="article-33">Article 33</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Le fonctionnaire ne peut prendre des intérêts, par lui-même ou par personne interposée, dans une entreprise soumise au contrôle de l'Administration à laquelle il appartient ou en relation avec cette dernière.</p>
+<p>Lorsque le conjoint d'un fonctionnaire exerce, à titre professionnel, une activité privée lucrative, déclaration doit en être faite à l'Administration ou au service dont relève le fonctionnaire. L'autorité compétente prend, s'il y a lieu, des mesures propres à sauvegarder les intérêts de l'État.</p>
+</div></div><div class="article" id="article-34"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-users"></i></span><h3 id="article-34">Article 34</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Le fonctionnaire ne peut solliciter ni recevoir directement ou par personne interposée, dans l'exercice de ses fonctions ou en raison de celles-ci, des dons, des gratifications ou avantages quelconques.</p>
+</div></div><div class="article" id="article-35"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-clipboard-check"></i></span><h3 id="article-35">Article 35</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Sauf dispositions légales contraires, le fonctionnaire est tenu au secret professionnel.</p>
+<p>Le fonctionnaire doit faire preuve de discrétion professionnelle pour tous les faits, informations ou documents dont il a connaissance dans l'exercice ou à l'occasion de l'exercice de ses fonctions.</p>
+<p>En dehors des cas expressément prévus par les textes en vigueur, notamment en matière d'accès à l'information d'intérêt public, le fonctionnaire ne peut être délié de cette obligation de discrétion professionnelle que par décision expresse du Ministre dont il relève.</p>
+<p>Le fonctionnaire est également tenu à l'obligation de réserve.</p>
+</div></div><div class="article" id="article-36"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-sitemap"></i></span><h3 id="article-36">Article 36</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Le fonctionnaire a le devoir de satisfaire aux demandes d'information du public dans le respect des règles mentionnées à l'article précédent.</p>
+</div></div><div class="article" id="article-37"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-building-columns"></i></span><h3 id="article-37">Article 37</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Tout fonctionnaire, quel que soit son rang dans la hiérarchie administrative, est responsable de l'exécution des tâches qui lui sont confiées. Il doit se conformer aux instructions de son supérieur hiérarchique.</p>
+<p>Il n'est dégagé d'aucune des responsabilités qui lui incombent par la responsabilité propre de ses subordonnés.</p>
+</div></div><div class="article" id="article-38"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-shield-halved"></i></span><h3 id="article-38">Article 38</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Le manquement à l'une des obligations mentionnées dans la présente section constitue une faute disciplinaire, sans préjudice, le cas échéant, d'autres manquements non énumérés dans la présente loi mais constitutifs de faute disciplinaire.</p>
+</div></div><h3 class="chapter-title" id="chapitre-vi--les-organismes-consultatifs">CHAPITRE VI : LES ORGANISMES CONSULTATIFS</h3><h4 class="section-title" id="section-ii--les-obligations-du-fonctionnaire">SECTION II : LES OBLIGATIONS DU FONCTIONNAIRE</h4><div class="article" id="article-39"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-handshake"></i></span><h3 id="article-39">Article 39</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Les organismes consultatifs auprès du Ministre chargé de la Fonction Publique sont :</p>
+<p>- le Comité Consultatif de la Fonction Publique ;</p>
+<p>- la Commission de Réforme ;</p>
+<p>- la Commission Administrative de Recours ;</p>
+<p>- le Conseil de Santé et Sécurité au Travail de la Fonction Publique ;</p>
+<p>- le Conseil de Discipline de la Fonction Publique.</p>
+</div></div><div class="article" id="article-40"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-diagram-project"></i></span><h3 id="article-40">Article 40</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Le Comité Consultatif de la Fonction Publique connaît de toute question d'ordre général intéressant les fonctionnaires. Il est saisi par écrit, soit par le Ministre chargé de la Fonction Publique, soit par le tiers de ses membres, soit par une centrale syndicale.</p>
+</div></div><div class="article" id="article-41"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-scale-balanced"></i></span><h3 id="article-41">Article 41</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>La Commission de Réforme donne un avis sur les allocations temporaires d'invalidité, les demandes de rentes en cas d'accident du travail ou de maladies professionnelles, d'admission à la retraite pour invalidité.</p>
+</div></div><div class="article" id="article-42"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-id-card-clip"></i></span><h3 id="article-42">Article 42</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>La Commission Administrative de Recours donne son avis sur :</p>
+<p>- le tableau annuel d'avancement de classe ;</p>
+<p>- les propositions de licenciement pour insuffisance professionnelle ;</p>
+<p>- les propositions de retenues sur pension.</p>
+</div></div><div class="article" id="article-43"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-briefcase"></i></span><h3 id="article-43">Article 43</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Le Conseil de Santé et Sécurité au Travail de la Fonction Publique donne son avis sur :</p>
+<p>- les demandes de congés de maladie ;</p>
+<p>- l'inaptitude physique ou mentale des fonctionnaires ;</p>
+<p>- l'invalidité ;</p>
+<p>- la reprise de service, après un congé de maladie.</p>
+</div></div><div class="article" id="article-44"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-users"></i></span><h3 id="article-44">Article 44</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Le Conseil de Discipline de la Fonction Publique donne son avis sur les sanctions disciplinaires de second degré et sur les demandes de retrait de sanctions disciplinaires.</p>
+</div></div><div class="article" id="article-45"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-clipboard-check"></i></span><h3 id="article-45">Article 45</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Des décrets pris en Conseil des Ministres fixent les attributions, la composition, l'organisation et le fonctionnement des organismes consultatifs.</p>
+</div></div></section><section class="group"><h2 id="titre-ii--gestion-de-la-carriere-du-fonctionnaire">TITRE II : GESTION DE LA CARRIÈRE DU FONCTIONNAIRE</h2><h3 class="chapter-title" id="chapitre-i--recrutement-et-titularisation">CHAPITRE I : RECRUTEMENT ET TITULARISATION</h3><h4 class="section-title" id="section-i--le-recrutement">SECTION I : LE RECRUTEMENT</h4><div class="article" id="article-46"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-sitemap"></i></span><h3 id="article-46">Article 46</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Les fonctionnaires sont recrutés en tenant compte des besoins de l'État, dans la limite des ressources disponibles.</p>
+</div></div><div class="article" id="article-47"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-building-columns"></i></span><h3 id="article-47">Article 47</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Les fonctionnaires sont recrutés par voie de concours ou à titre dérogatoire, par décret.</p>
+<p>Les concours de recrutement sont ouverts aux candidats non fonctionnaires justifiant de certains diplômes ou titres.</p>
+<p>Ces concours donnent lieu à l'établissement de listes classant par ordre de mérite les candidats admis.</p>
+</div></div><div class="article" id="article-48"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-shield-halved"></i></span><h3 id="article-48">Article 48</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Pour être recruté en qualité de fonctionnaire, il faut :</p>
+<p>- avoir la nationalité ivoirienne ;</p>
+<p>- remplir les conditions d'âge pour l'accès à la Fonction Publique ;</p>
+<p>- jouir de ses droits civiques et être d'une bonne moralité ;</p>
+<p>- remplir les conditions d'aptitude physique et mentale exigées pour occuper l'emploi ;</p>
+<p>- être reconnu indemne de toute affection grave ou contagieuse, conformément à une liste de pathologies arrêtée par décret pris en Conseil des Ministres.</p>
+<p>Il est tenu un dossier individuel par fonctionnaire.</p>
+</div></div><div class="article" id="article-49"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-handshake"></i></span><h3 id="article-49">Article 49</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Les modalités de chaque concours sont fixées par voie réglementaire.</p>
+</div></div><div class="article" id="article-50"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-diagram-project"></i></span><h3 id="article-50">Article 50</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Les actes portant nomination font l'objet d'une publication au Journal Officiel de la République de Côte d'Ivoire.</p>
+</div></div><h4 class="section-title" id="section-ii--la-titularisation">SECTION II : LA TITULARISATION</h4><div class="article" id="article-51"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-scale-balanced"></i></span><h3 id="article-51">Article 51</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>La titularisation est la situation qui confère un grade à titre définitif dans la hiérarchie administrative. Elle confère au bénéficiaire les droits attachés à ce grade par le présent statut et lui ouvre le droit à poursuivre une carrière dans le service public.</p>
+</div></div><div class="article" id="article-52"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-id-card-clip"></i></span><h3 id="article-52">Article 52</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Toute personne admise à occuper un emploi public en qualité de fonctionnaire est soumise à un stage probatoire d'une année.</p>
+<p>L'acte de nomination dans l'emploi prescrit la période du stage probatoire. A l'issue de ce stage, si les résultats sont probants, le fonctionnaire stagiaire est titularisé d'office. Dans le cas contraire, il est autorisé à effectuer une seconde année de stage. Si, à l'issue de cette deuxième année, les résultats ne sont pas probants, il est mis fin à son engagement.</p>
+<p>La fin de l'engagement est constatée par arrêté du Ministre chargé de la Fonction Publique.</p>
+</div></div><h3 class="chapter-title" id="chapitre-ii--les-positions">CHAPITRE II : LES POSITIONS</h3><h4 class="section-title" id="section-ii--la-titularisation">SECTION II : LA TITULARISATION</h4><div class="article" id="article-53"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-briefcase"></i></span><h3 id="article-53">Article 53</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Tout fonctionnaire est placé dans l'une des positions suivantes :</p>
+<p>1. Activité ;</p>
+<p>2. Détachement ;</p>
+<p>3. Disponibilité ;</p>
+<p>4. Sous les drapeaux.</p>
+</div></div><h4 class="section-title" id="section-i--lactivite">SECTION I : L'ACTIVITÉ</h4><div class="article" id="article-54"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-users"></i></span><h3 id="article-54">Article 54</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>L'activité est la position du fonctionnaire qui, régulièrement titularisé, occupe effectivement un emploi.</p>
+<p>Sont également considérés comme étant en activité, les fonctionnaires en congé, en stage, en formation ou bénéficiant d'une autorisation spéciale ou d'une permission spéciale d'absence.</p>
+</div></div><h4 class="section-title" id="section-ii--le-detachement">SECTION II : LE DÉTACHEMENT</h4><div class="article" id="article-55"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-clipboard-check"></i></span><h3 id="article-55">Article 55</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Le détachement est la position du fonctionnaire autorisé à interrompre temporairement ses fonctions, pour exercer un emploi ou un mandat public national ou international, un mandat syndical, ou pour exercer une fonction ministérielle ou un mandat social à la tête d'une société d'État.</p>
+<p>Le fonctionnaire peut également être placé dans la position de détachement auprès d'une entreprise privée après autorisation du Conseil des Ministres pour une période non renouvelable.</p>
+<p>Dans cette position, le fonctionnaire continue à bénéficier de ses droits à la formation, à l'avancement, à la promotion et à la retraite.</p>
+<p>Le détachement est prononcé à la demande du fonctionnaire ou d'office. Il est révocable.</p>
+<p>Le fonctionnaire détaché est soumis aux règles régissant l'emploi pour lequel il a été détaché, à l'exception de toute disposition législative, réglementaire ou conventionnelle prévoyant le versement d'indemnité de licenciement ou de fin de carrière.</p>
+</div></div><div class="article" id="article-56"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-sitemap"></i></span><h3 id="article-56">Article 56</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Le fonctionnaire détaché, remis à la disposition de son administration d'origine, avant le terme, pour une cause autre qu'une faute commise dans l'exercice de ses fonctions, et qui ne peut être réintégré faute d'emploi vacant, continue d'être rémunéré par l'organisme de détachement jusqu'à sa réintégration.</p>
+<p>En cas de faute grave ou d'infraction de droit commun, l'organisme de détachement est tenue de saisir sans délai le Ministre chargé de la Fonction Publique d'un rapport circonstancié.</p>
+</div></div><div class="article" id="article-57"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-building-columns"></i></span><h3 id="article-57">Article 57</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Le fonctionnaire détaché ne peut, sauf au cas où le détachement a été prononcé auprès d'organismes internationaux ou pour exercer une fonction publique élective ou une fonction ministérielle, être affilié au régime de retraite dont relève l'organisme auprès duquel il est détaché, ni acquérir, à ce titre, de droit quelconque à pension ou allocation, sous peine de suspension de la pension de l'État.</p>
+</div></div><div class="article" id="article-58"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-shield-halved"></i></span><h3 id="article-58">Article 58</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Sous réserve des dérogations fixées par décret pris en Conseil des Ministres, la collectivité ou l'organisme auprès duquel un fonctionnaire est détaché est redevable, envers l'Institution de Prévoyance Sociale, d'une contribution pour la constitution des droits à pension de l'intéressé.</p>
+<p>Le taux de cette contribution est fixé par décret pris en Conseil des Ministres.</p>
+</div></div><div class="article" id="article-59"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-handshake"></i></span><h3 id="article-59">Article 59</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Sous réserve des dérogations prévues par décret ou convention spéciale, le fonctionnaire détaché est rémunéré par l'organisme ou le service de détachement.</p>
+<p>La rémunération doit être au moins équivalente à celle perçue dans son administration d'origine.</p>
+<p>Elle ne peut être inférieure à la rétribution globale payée au personnel de l'organisme de détachement exerçant des fonctions similaires ou d'un même niveau de qualification.</p>
+<p>Elle doit tenir compte, le cas échéant, de la revalorisation du traitement liée à l'ancienneté.</p>
+</div></div><div class="article" id="article-60"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-diagram-project"></i></span><h3 id="article-60">Article 60</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Les conditions et la durée du détachement ainsi que les modalités de réintégration des fonctionnaires sont déterminées par décret pris en Conseil des Ministres.</p>
+</div></div><h4 class="section-title" id="section-iii--la-disponibilite">SECTION III : LA DISPONIBILITÉ</h4><div class="article" id="article-61"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-scale-balanced"></i></span><h3 id="article-61">Article 61</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>La disponibilité est la position du fonctionnaire dont l'activité est suspendue temporairement, à sa demande, pour des raisons personnelles telles que précisées à l'article 63.</p>
+</div></div><div class="article" id="article-62"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-id-card-clip"></i></span><h3 id="article-62">Article 62</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Le fonctionnaire en disponibilité n'a droit à aucune rémunération. Il cesse également de bénéficier de ses droits à la formation, à l'avancement, à la promotion et à la retraite.</p>
+</div></div><div class="article" id="article-63"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-briefcase"></i></span><h3 id="article-63">Article 63</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>La disponibilité ne peut être accordée que dans les cas suivants :</p>
+<p>- accident ou maladie grave du conjoint ou d'un enfant. Dans ce cas, la durée de la disponibilité ne peut excéder un an, mais elle est renouvelable après avis du Conseil de Santé et Sécurité au Travail de la Fonction Publique ;</p>
+<p>- pour suivre un conjoint fonctionnaire en service ou affecté à l'étranger. La durée est également d'un an renouvelable à la demande motivée de l'intéressé ;</p>
+<p>- pour suivre un conjoint non fonctionnaire, la durée est alors d'un an renouvelable une seule fois ;</p>
+<p>- pour convenances personnelles, la durée est d'un an renouvelable une seule fois.</p>
+</div></div><div class="article" id="article-64"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-users"></i></span><h3 id="article-64">Article 64</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Le fonctionnaire placé en disponibilité pour accident ou maladie d'un enfant perçoit la totalité des allocations familiales.</p>
+</div></div><div class="article" id="article-65"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-clipboard-check"></i></span><h3 id="article-65">Article 65</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Un décret pris en Conseil des Ministres détermine les modalités de la mise en disponibilité et de la réintégration des fonctionnaires concernés.</p>
+</div></div><h4 class="section-title" id="section-iv--la-position-sous-les-drapeaux">SECTION IV : LA POSITION SOUS LES DRAPEAUX</h4><div class="article" id="article-66"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-sitemap"></i></span><h3 id="article-66">Article 66</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Le fonctionnaire incorporé dans une formation militaire, pour y accomplir son temps de service légal, est placé dans la position « sous les drapeaux ».</p>
+<p>Il perd sa rémunération d'activité et ne perçoit que sa solde militaire.</p>
+<p>La situation des fonctionnaires rappelés ou maintenus sous les drapeaux, fait l'objet de dispositions spéciales prévues par décret pris en Conseil des Ministres.</p>
+</div></div><div class="article" id="article-67"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-building-columns"></i></span><h3 id="article-67">Article 67</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Le fonctionnaire qui accomplit une période d'instruction militaire, est mis en congé, avec son traitement d'activité, pour la durée de cette période.</p>
+</div></div><h3 class="chapter-title" id="chapitre-iii--evaluation--avancement--formation-continue--promotion--distinction-honorifique">CHAPITRE III : ÉVALUATION – AVANCEMENT – FORMATION CONTINUE – PROMOTION – DISTINCTION HONORIFIQUE</h3><h4 class="section-title" id="section-i--levaluation">SECTION I : L'ÉVALUATION</h4><div class="article" id="article-68"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-shield-halved"></i></span><h3 id="article-68">Article 68</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Le fonctionnaire est soumis à un système d'évaluation permanent.</p>
+</div></div><div class="article" id="article-69"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-handshake"></i></span><h3 id="article-69">Article 69</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Il est attribué chaque année à tout fonctionnaire en activité ou en service détaché, une note chiffrée, suivie d'une appréciation générale exprimant sa valeur professionnelle et son mérite.</p>
+<p>Le pouvoir d'évaluation appartient au Président de l'Institution, au Ministre, au Préfet ou au Directeur de l'Établissement Public dont dépend l'intéressé.</p>
+<p>Le résultat de l'évaluation est notifié au fonctionnaire par tous moyens.</p>
+</div></div><div class="article" id="article-70"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-diagram-project"></i></span><h3 id="article-70">Article 70</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Les modalités de l'évaluation des fonctionnaires sont fixées par décret pris en Conseil des Ministres.</p>
+</div></div><h4 class="section-title" id="section-ii--lavancement">SECTION II : L'AVANCEMENT</h4><div class="article" id="article-71"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-scale-balanced"></i></span><h3 id="article-71">Article 71</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>L'avancement des fonctionnaires comprend l'avancement d'échelon et l'avancement de classe qui ont lieu de façon continue d'échelon à échelon et de classe à classe, à l'intérieur de l'échelle de traitement.</p>
+<p>L'avancement d'échelon tient compte à la fois de l'ancienneté et de l'évaluation.</p>
+<p>L'avancement de classe a lieu uniquement au profit de fonctionnaires inscrits en raison de leur mérite à un tableau annuel d'avancement.</p>
+<p>La hiérarchie des classes, le nombre d'échelons dans les différentes échelles de traitement ainsi que l'ancienneté moyenne exigée pour l'avancement sont fixés par décret pris en Conseil des Ministres.</p>
+</div></div><div class="article" id="article-72"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-id-card-clip"></i></span><h3 id="article-72">Article 72</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>La durée moyenne de l'avancement d'échelon peut être :</p>
+<p>a) réduite en faveur des fonctionnaires particulièrement méritants ou ayant reçu une distinction dans l'ordre du mérite de la Fonction Publique ;</p>
+<p>b) majorée pour les fonctionnaires qui reçoivent au cours d'une des deux années de référence une note inférieure à un niveau fixé par décret.</p>
+<p>Le fonctionnaire qui reçoit pendant les deux années consécutives une note inférieure à un niveau fixé par décret ne peut bénéficier d'avancement.</p>
+</div></div><div class="article" id="article-73"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-briefcase"></i></span><h3 id="article-73">Article 73</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>L'avancement des fonctionnaires placés dans la position de détachement pour exercer un mandat public électif ou un mandat syndical ou une fonction ministérielle, a lieu d'office sur la base de l'ancienneté nécessaire pour l'avancement.</p>
+</div></div><h4 class="section-title" id="section-iii--la-formation-continue">SECTION III : LA FORMATION CONTINUE</h4><div class="article" id="article-74"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-users"></i></span><h3 id="article-74">Article 74</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>La formation continue est un ensemble d'actions de formation ou de perfectionnement suivies par un fonctionnaire en cours de carrière en vue d'accroître ses performances, son efficacité et son rendement professionnel.</p>
+</div></div><div class="article" id="article-75"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-clipboard-check"></i></span><h3 id="article-75">Article 75</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>La formation continue du fonctionnaire comprend les formations de promotion, les stages ou les séminaires de renforcement des capacités organisés en Côte d'Ivoire ou à l'étranger.</p>
+</div></div><div class="article" id="article-76"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-sitemap"></i></span><h3 id="article-76">Article 76</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>La formation continue est un droit pour le fonctionnaire.</p>
+<p>L'État est tenu d'assurer au fonctionnaire en activité une formation continue.</p>
+<p>Un décret pris en Conseil des Ministres détermine les modalités d'organisation de la formation continue.</p>
+</div></div><h4 class="section-title" id="section-iv--la-promotion">SECTION IV : LA PROMOTION</h4><div class="article" id="article-77"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-building-columns"></i></span><h3 id="article-77">Article 77</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>La promotion est le passage du fonctionnaire de son grade au grade immédiatement supérieur. Elle est faite par voie de concours internes ou exceptionnellement par décret.</p>
+</div></div><div class="article" id="article-78"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-shield-halved"></i></span><h3 id="article-78">Article 78</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Les modalités des concours, qui doivent prendre en compte l'ensemble des éléments d'appréciation de la valeur professionnelle du fonctionnaire, sont fixées par voie réglementaire.</p>
+</div></div><div class="article" id="article-79"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-handshake"></i></span><h3 id="article-79">Article 79</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>L'acquisition d'un diplôme, d'un titre ou d'une attestation de fin de formation par un fonctionnaire au cours de sa carrière peut, dans des conditions déterminées par décret pris en Conseil des Ministres, donner droit à promotion.</p>
+</div></div><h4 class="section-title" id="section-v--les-distinctions-honorifiques">SECTION V : LES DISTINCTIONS HONORIFIQUES</h4><div class="article" id="article-80"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-diagram-project"></i></span><h3 id="article-80">Article 80</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Les fonctionnaires méritants, en activité ou à la retraite, peuvent recevoir une distinction honorifique.</p>
+<p>A titre exceptionnel, des distinctions peuvent être décernées aux fonctionnaires à titre posthume.</p>
+<p>Les conditions d'attribution de ces distinctions et les avantages qui y sont liés sont précisés par décret pris en Conseil des Ministres.</p>
+</div></div><h3 class="chapter-title" id="chapitre-iv--remuneration-et-avantages-sociaux">CHAPITRE IV : RÉMUNÉRATION ET AVANTAGES SOCIAUX</h3><h4 class="section-title" id="section-i--la-remuneration">SECTION I : LA REMUNERATION</h4><div class="article" id="article-81"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-scale-balanced"></i></span><h3 id="article-81">Article 81</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Le fonctionnaire a droit à une rémunération, en contrepartie du service fait.</p>
+<p>La rémunération du fonctionnaire comporte :</p>
+<p>- le traitement soumis à retenue pour pension ;</p>
+<p>- l'indemnité de résidence ;</p>
+<p>- l'indemnité contributive au logement pour les fonctionnaires ne bénéficiant ni de baux administratifs, ni de l'occupation de bâtiments administratifs ;</p>
+<p>- les allocations familiales.</p>
+<p>La rémunération peut comporter des primes, indemnités et prestations diverses telles qu'instituées par un texte législatif ou un décret pris en Conseil des Ministres.</p>
+<p>Le montant du traitement soumis à retenue pour pension est fixé par décret en fonction du grade, de la classe et de l'échelon du fonctionnaire.</p>
+</div></div><div class="article" id="article-82"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-id-card-clip"></i></span><h3 id="article-82">Article 82</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Le traitement soumis à retenue pour pension est l'élément principal de la rémunération. Il est déterminé par application de la valeur du point d'indice à chacun des indices de la grille des traitements.</p>
+<p>L'échelonnement de la grille de traitement et la valeur du point d'indice sont fixés par décret pris en Conseil des Ministres.</p>
+</div></div><div class="article" id="article-83"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-briefcase"></i></span><h3 id="article-83">Article 83</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Les primes sont des suppléments de traitement destinées à rétribuer l'accomplissement de prestations spéciales indispensables au service public, la manière exemplaire de servir ou certaines sujétions ou conditions particulièrement exigeantes à l'exercice des fonctions.</p>
+<p>Les indemnités ont pour objet de compenser certaines charges ou aléas professionnels excédant les conditions normales de l'emploi, de rembourser les frais exposés ou susceptibles d'être exposés du fait des fonctions exercées.</p>
+<p>Les prestations diverses peuvent être des avantages pécuniaires, en nature ou des prestations sociales.</p>
+</div></div><div class="article" id="article-84"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-users"></i></span><h3 id="article-84">Article 84</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>L'indemnité de résidence est un élément accessoire de la rémunération, non soumis à retenue pour pension. Elle est proportionnelle au montant du traitement soumis à retenue pour pension.</p>
+<p>Le taux de l'indemnité de résidence est fixé par décret pris en Conseil des Ministres.</p>
+</div></div><div class="article" id="article-85"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-clipboard-check"></i></span><h3 id="article-85">Article 85</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>L'indemnité contributive au logement est un élément accessoire de la rémunération, non soumis à retenue pour pension.</p>
+</div></div><div class="article" id="article-86"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-sitemap"></i></span><h3 id="article-86">Article 86</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Elle est accordée dans les conditions énoncées à l'article 81 pour aider le fonctionnaire à se loger.</p>
+<p>Le régime de l'indemnité contributive au logement est fixé par décret pris en Conseil des Ministres.</p>
+</div></div><div class="article" id="article-87"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-building-columns"></i></span><h3 id="article-87">Article 87</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Des allocations familiales sont accordées aux fonctionnaires en considération du nombre d'enfants à charge. Leurs taux ne sont pas hiérarchisés. Le nombre d'enfants y donnant droit ne peut être supérieur à six.</p>
+<p>Les modalités d'attribution et le montant des allocations familiales sont fixés par décret pris en Conseil des Ministres.</p>
+</div></div><div class="article" id="article-88"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-shield-halved"></i></span><h3 id="article-88">Article 88</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Les primes et indemnités de toute nature ainsi que les allocations familiales ne sont pas soumises à retenue pour pension.</p>
+<p>Toutefois, les primes peuvent subir des retenues le cas échéant dans des conditions définies par décret pris en Conseil des Ministres.</p>
+</div></div><div class="article" id="article-89"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-handshake"></i></span><h3 id="article-89">Article 89</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>A l'exclusion des cas de prélèvements obligatoires, notamment les impôts et taxes assimilés, les ordres de recettes, la cotisation pour constitution des droits à pension et toutes autres retenues prévues par des textes en vigueur, il ne peut être fait de retenues sur la rémunération du fonctionnaire que par saisie des rémunérations ou cession volontaire, conformément aux lois et règlements prévus en la matière.</p>
+<p>Toutefois, la quotité saisissable ou cessible ne peut excéder les taux de la rémunération du fonctionnaire concerné tels que fixés par le décret relatif au régime de la quotité cessible et de la quotité saisissable.</p>
+</div></div><h4 class="section-title" id="section-ii--les-avantages-sociaux">SECTION II : LES AVANTAGES SOCIAUX</h4><div class="article" id="article-90"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-diagram-project"></i></span><h3 id="article-90">Article 90</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Le fonctionnaire en activité a droit à un congé annuel d'une durée de trente jours calendaires avec rémunération.</p>
+<p>Le droit au congé annuel s'exerce en prenant en compte les nécessités du service.</p>
+</div></div><div class="article" id="article-91"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-scale-balanced"></i></span><h3 id="article-91">Article 91</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Le fonctionnaire a droit à un congé de maladie de courte durée de six mois maximum, sur une période de douze mois consécutifs.</p>
+<p>Il conserve l'intégralité de sa rémunération pendant cette période.</p>
+</div></div><div class="article" id="article-92"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-id-card-clip"></i></span><h3 id="article-92">Article 92</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Au terme de la période de six mois, si l'état de santé du fonctionnaire exige la poursuite de soins, sur proposition du Conseil de Santé et Sécurité au Travail de la Fonction Publique, il est mis en congé de maladie de longue durée ne pouvant excéder trente-six mois y compris les six premiers mois de congé de maladie de courte durée.</p>
+</div></div><div class="article" id="article-93"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-briefcase"></i></span><h3 id="article-93">Article 93</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Le fonctionnaire perçoit l'intégralité de sa rémunération durant les douze premiers mois du congé maladie de longue durée. A l'issue de cette période, la rémunération est réduite de moitié.</p>
+<p>Si au terme des trente-six mois, l'état de santé du fonctionnaire ne lui permet toujours pas de reprendre son service, son dossier est soumis à l'avis de la Commission de Réforme en vue de sa reconversion ou de son admission à la retraite, le cas échéant, après avis du Conseil de Santé et Sécurité au Travail de la Fonction Publique.</p>
+</div></div><div class="article" id="article-94"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-users"></i></span><h3 id="article-94">Article 94</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Le fonctionnaire victime d'un accident ou d'une maladie professionnelle qui survient dans l'exercice ou à l'occasion de l'exercice de ses fonctions, a droit à un congé exceptionnel de maladie résultant de son incapacité dument constatée par la Commission de Réforme, après avis du Conseil de Santé et Sécurité au Travail de la Fonction Publique.</p>
+<p>Ce congé est limité à soixante mois au cours desquels il perçoit l'intégralité de sa rémunération et le remboursement des honoraires et des frais médicaux entraînés par la maladie ou l'accident.</p>
+<p>Au terme de la période de soixante mois indiquée à l'alinéa précédent, le fonctionnaire, est admis à faire valoir ses droits à la retraite si son état de santé ne lui permet pas de reprendre son service et après avis du Conseil de Santé et Sécurité au Travail de la Fonction Publique et de la Commission de Réforme.</p>
+</div></div><div class="article" id="article-95"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-clipboard-check"></i></span><h3 id="article-95">Article 95</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Le fonctionnaire atteint d'une invalidité résultant d'un accident de travail ayant entraîné une incapacité permanente, ou atteint d'une maladie professionnelle, a droit à une allocation temporaire d'invalidité cumulable avec sa rémunération.</p>
+<p>Les conditions d'attribution ainsi que les modalités de concession, de liquidation, de paiement et de révision de l'allocation temporaire d'invalidité sont fixées par décret pris en Conseil des Ministres.</p>
+</div></div><div class="article" id="article-96"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-sitemap"></i></span><h3 id="article-96">Article 96</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>La liste des maladies d'origine professionnelle indemnisables est fixée conjointement par voie règlementaire des Ministres chargés de la Fonction Publique, de la Santé et du Travail.</p>
+</div></div><div class="article" id="article-97"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-building-columns"></i></span><h3 id="article-97">Article 97</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Un congé de maternité et des périodes de repos pour allaitement, avec rémunération, sont accordés à la femme fonctionnaire.</p>
+<p>Un congé de paternité est accordé au fonctionnaire à l'occasion de la naissance de son enfant.</p>
+<p>Les modalités d'octroi des congés de maternité, de paternité et des périodes de repos pour allaitement sont prévues par décret pris en Conseil des Ministres.</p>
+</div></div><div class="article" id="article-98"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-shield-halved"></i></span><h3 id="article-98">Article 98</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Le fonctionnaire a droit à un congé parental pour s'occuper de son enfant.</p>
+<p>Le régime du congé parental est déterminé par décret pris en Conseil des Ministres.</p>
+</div></div><div class="article" id="article-99"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-handshake"></i></span><h3 id="article-99">Article 99</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Le fonctionnaire en activité a droit à des autorisations spéciales d'absence et des permissions spéciales d'absence pour événements familiaux dans les conditions fixées par décret pris en Conseil des Ministres.</p>
+</div></div><div class="article" id="article-100"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-diagram-project"></i></span><h3 id="article-100">Article 100</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Le fonctionnaire est d'office affilié à l'Institution de Prévoyance Sociale - Caisse Générale de Retraite.</p>
+<p>Il supporte, par prélèvement sur son traitement, les retenues prévues par les textes en vigueur, pour les régimes des pensions civiles et exigibles en vue de la constitution du droit à pension.</p>
+</div></div><h3 class="chapter-title" id="chapitre-v--la-discipline">CHAPITRE V : LA DISCIPLINE</h3><h4 class="section-title" id="section-ii--les-avantages-sociaux">SECTION II : LES AVANTAGES SOCIAUX</h4><div class="article" id="article-101"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-scale-balanced"></i></span><h3 id="article-101">Article 101</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Toute faute commise par un fonctionnaire dans l'exercice de ses fonctions l'expose à une sanction disciplinaire.</p>
+<p>En cas de manquement à ses obligations professionnelles ou d'infraction de droit commun commise dans le cadre professionnel, le fonctionnaire peut faire l'objet d'une sanction disciplinaire indépendamment des poursuites pénales susceptibles d'être engagées contre lui.</p>
+<p>En cas de faute grave résultant d'une infraction de droit commun commise hors l'exercice de ses fonctions, la situation administrative du fonctionnaire n'est réglée qu'après la décision définitive de la juridiction saisie.</p>
+</div></div><div class="article" id="article-102"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-id-card-clip"></i></span><h3 id="article-102">Article 102</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Les sanctions disciplinaires sont de deux ordres :</p>
+<p>a) Les sanctions du premier degré :</p>
+<p>- l'avertissement ;</p>
+<p>- le blâme ;</p>
+<p>- le déplacement d'office ;</p>
+<p>- la radiation du tableau d'avancement pour la période de référence ;</p>
+<p>- la réduction du traitement dans la proportion maximum de 25 % et pour une durée ne pouvant excéder trente jours ;</p>
+<p>b) Les sanctions du second degré :</p>
+<p>- la réduction du traitement de 50% pour une période ne pouvant excéder trois mois ;</p>
+<p>- l'exclusion temporaire pour une durée ne pouvant excéder six mois ;</p>
+<p>- l'abaissement d'échelon ;</p>
+<p>- l'abaissement de classe ;</p>
+<p>- la rétrogradation ;</p>
+<p>- la révocation avec ou sans suspension des droits à pension.</p>
+<p>L'exclusion temporaire entraîne la perte de toute rémunération, à l'exception des prestations familiales.</p>
+<p>La décision de sanction doit être motivée.</p>
+</div></div><div class="article" id="article-103"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-briefcase"></i></span><h3 id="article-103">Article 103</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Le pouvoir disciplinaire en ce qui concerne les sanctions de premier degré est reconnu au Président de l'Institution, au Ministre technique, au Préfet ou au Directeur de l'Établissement Public.</p>
+<p>Sauf dispositions législatives contraires, le pouvoir disciplinaire appartient en ce qui concerne les sanctions de second degré au Ministre chargé de la Fonction Publique, qui l'exerce, sur saisine du Président de l'Institution, du Ministre technique, du Préfet ou du Directeur de l'Établissement public, après communication au fonctionnaire fautif de son dossier individuel et consultation du Conseil de Discipline de la Fonction Publique.</p>
+<p>Toutefois, la révocation est prononcée par le Ministre chargé de la Fonction Publique.</p>
+<p>Le Ministre chargé de la Fonction Publique dispose, en outre, sous réserve de dispositions législatives contraires, d'une compétence universelle en matière disciplinaire. À ce titre, lorsqu'aucune action disciplinaire n'est engagée contre le fonctionnaire auteur d'une faute, il s'auto-saisit.</p>
+</div></div><div class="article" id="article-104"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-users"></i></span><h3 id="article-104">Article 104</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>En cas de faute grave commise par un fonctionnaire, qu'il s'agisse d'un manquement à ses obligations professionnelles ou d'une infraction de droit commun, l'auteur de cette faute peut être immédiatement suspendu par le Président de l'Institution ou le Ministre technique. Il peut être également suspendu par le Directeur de l'Établissement Public ou par le Préfet en ce qui concerne les fonctionnaires en service dans son département, après en avoir informé le Ministre technique intéressé.</p>
+<p>Le fonctionnaire suspendu de ses fonctions ne peut prétendre à aucune rémunération. Toutefois, il continue à percevoir la totalité des prestations familiales.</p>
+<p>La situation du fonctionnaire suspendu en application des dispositions des alinéas précédents du présent article doit être définitivement réglée dans un délai de trois mois à compter du jour où la décision de suspension a pris effet. Lorsqu'aucune décision n'est intervenue au bout de trois mois, l'intéressé reçoit à nouveau l'intégralité de sa rémunération sauf s'il est l'objet de poursuites pénales.</p>
+<p>Toutefois, la procédure disciplinaire engagée contre lui devant le Conseil de Discipline de la Fonction Publique se poursuit jusqu'à la prise d'une éventuelle sanction.</p>
+<p>Sous peine de nullité, la décision de suspension accompagnée de toutes les pièces justificatives doit être transmise au Ministre chargé de la Fonction Publique dans un délai maximum de trente jours à compter de la date d'effet de la décision.</p>
+</div></div><div class="article" id="article-105"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-clipboard-check"></i></span><h3 id="article-105">Article 105</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Quelle que soit l'issue de la procédure disciplinaire, aucune rémunération n'est versée au fonctionnaire, au titre de la période de suspension.</p>
+</div></div><div class="article" id="article-106"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-sitemap"></i></span><h3 id="article-106">Article 106</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Constitue une faute grave, tous faits imputables au fonctionnaire dans les conditions cumulatives ci-après :</p>
+<p>- les faits doivent être directement et personnellement commis par le fonctionnaire ;</p>
+<p>- les faits doivent constituer une violation d'une obligation statutaire ou un manquement aux règles de discipline, d'éthique et de déontologie de l'Administration ;</p>
+<p>- les faits doivent être d'une telle gravité qu'ils empêchent le maintien du fonctionnaire dans le service.</p>
+</div></div><div class="article" id="article-107"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-building-columns"></i></span><h3 id="article-107">Article 107</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>La procédure disciplinaire est déterminée par décret pris en Conseil des Ministres.</p>
+</div></div><h3 class="chapter-title" id="chapitre-vi--la-cessation-definitive-de-fonctions">CHAPITRE VI : LA CESSATION DÉFINITIVE DE FONCTIONS</h3><h4 class="section-title" id="section-ii--les-avantages-sociaux">SECTION II : LES AVANTAGES SOCIAUX</h4><div class="article" id="article-108"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-shield-halved"></i></span><h3 id="article-108">Article 108</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>La cessation définitive de fonctions entraînant perte de la qualité de fonctionnaire résulte :</p>
+<p>- de la démission ;</p>
+<p>- du licenciement ;</p>
+<p>- de la révocation ;</p>
+<p>- de l'admission à la retraite ;</p>
+<p>- du décès.</p>
+</div></div><div class="article" id="article-109"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-handshake"></i></span><h3 id="article-109">Article 109</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>La démission est l'acte par lequel le fonctionnaire marque sa volonté non équivoque de quitter définitivement son emploi. Lorsqu'elle est régulièrement acceptée par le Ministre chargé de la Fonction Publique, la démission devient irrévocable.</p>
+<p>Le fonctionnaire qui démissionne ne peut prétendre qu'au remboursement de ses cotisations effectuées au titre de la constitution du droit à pension.</p>
+<p>Le fonctionnaire démissionnaire ne peut en aucun cas être recruté à la Fonction Publique pour exercer l'emploi duquel il a démissionné.</p>
+</div></div><div class="article" id="article-110"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-diagram-project"></i></span><h3 id="article-110">Article 110</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Le licenciement est une mesure administrative non disciplinaire prononcée par arrêté du Ministre chargé de la Fonction Publique pour l'un des motifs ci-après :</p>
+<p>- inaptitude physique ou mentale, après avis du Conseil de Santé et Sécurité au Travail de la Fonction Publique ;</p>
+<p>- insuffisance professionnelle notoire, après avis de la Commission Administrative de Recours et conformément aux dispositions relatives à l'évaluation des fonctionnaires ;</p>
+<p>- perte de la nationalité.</p>
+<p>Le fonctionnaire, licencié pour inaptitude physique ou mentale ou pour insuffisance professionnelle notoire, reçoit une indemnité, dans les conditions fixées par décret pris en Conseil des Ministres.</p>
+</div></div><div class="article" id="article-111"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-scale-balanced"></i></span><h3 id="article-111">Article 111</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Dans les cas prévus à l'article précédent pour le licenciement, le fonctionnaire est admis à la retraite s'il remplit les conditions d'ouverture du droit à pension.</p>
+</div></div><div class="article" id="article-112"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-id-card-clip"></i></span><h3 id="article-112">Article 112</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>En dehors des cas prévus à l'article 107, la cessation définitive de fonctions entraînant perte de la qualité de fonctionnaire, ne peut intervenir qu'en vertu de dispositions législatives spécifiques de dégagement des cadres, prévoyant notamment les conditions de préavis et d'indemnisation.</p>
+</div></div><div class="article" id="article-113"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-briefcase"></i></span><h3 id="article-113">Article 113</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Le fonctionnaire ne peut être maintenu en service au-delà de la limite d'âge applicable à son emploi.</p>
+<p>Par dérogation à ce principe, le fonctionnaire peut être maintenu en activité pour nécessité de service, par décret, pour une durée ne pouvant excéder deux ans, renouvelable une seule fois.</p>
+<p>Le régime des limites d'âge ainsi que les modalités de maintien en activité sont fixés par décrets pris en Conseil des Ministres.</p>
+</div></div><div class="article" id="article-114"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-users"></i></span><h3 id="article-114">Article 114</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>L'admission d'office du fonctionnaire à la retraite a lieu :</p>
+<p>a) soit à la date à laquelle il atteint la limite d'âge qui lui est applicable selon sa catégorie, son grade et son emploi ;</p>
+<p>b) soit en cas d'invalidité.</p>
+</div></div><div class="article" id="article-115"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-clipboard-check"></i></span><h3 id="article-115">Article 115</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Dans les conditions fixées par les dispositions légales et réglementaires en vigueur, les fonctionnaires peuvent à leur demande, être admis à la retraite par anticipation.</p>
+</div></div><h3 class="chapter-title" id="chapitre-vii--la-pension">CHAPITRE VII : LA PENSION</h3><h4 class="section-title" id="section-ii--les-avantages-sociaux">SECTION II : LES AVANTAGES SOCIAUX</h4><div class="article" id="article-116"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-sitemap"></i></span><h3 id="article-116">Article 116</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>En cas d'admission à la retraite, le fonctionnaire a droit à une pension dans les conditions fixées par les lois et règlements en vigueur.</p>
+</div></div><div class="article" id="article-117"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-building-columns"></i></span><h3 id="article-117">Article 117</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>Sous réserve des exceptions prévues par décret pris en Conseil des Ministres, le cumul d'une pension de retraite et d'une rémunération publique donnant lieu à un prélèvement pour pension de retraite est interdit.</p>
+</div></div><h3 class="chapter-title" id="chapitre-viii--dispositions-finales">CHAPITRE VIII : DISPOSITIONS FINALES</h3><h4 class="section-title" id="section-ii--les-avantages-sociaux">SECTION II : LES AVANTAGES SOCIAUX</h4><div class="article" id="article-118"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-shield-halved"></i></span><h3 id="article-118">Article 118</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>La présente loi abroge toutes dispositions antérieures contraires, notamment la loi n° 92-570 du 11 septembre 1992 portant statut général de la Fonction Publique.</p>
+</div></div><div class="article" id="article-119"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-handshake"></i></span><h3 id="article-119">Article 119</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">
+<p>La présente loi sera publiée au Journal officiel de la République de Côte d'Ivoire et exécutée comme loi de l'État.</p>
+</div></div></section></main><div aria-label="Lecteur vocal" id="voiceBar" role="region"><button id="vPrev" title="Article précédent"><i class="fas fa-backward"></i></button><button id="vPlay" title="Lire / Reprendre"><i class="fas fa-play"></i></button><button id="vPause" title="Pause"><i class="fas fa-pause"></i></button><button id="vStop" title="Arrêter"><i class="fas fa-stop"></i></button><button id="vNext" title="Article suivant"><i class="fas fa-forward"></i></button><span class="now" id="vNow">—</span></div><div id="fsOverlay"><div id="fsHeader"><button id="fsClose" title="Fermer"><i class="fas fa-xmark"></i></button><div class="ttl" id="fsTitle"></div><button id="fsPlay" title="Lecture"><i class="fas fa-play"></i></button></div><div id="fsBody"><article class="article"><div class="article-content" id="fsContent"></div></article></div><button id="fsNavPrev" title="Précédent"><i class="fas fa-chevron-left"></i></button><button id="fsNavNext" title="Suivant"><i class="fas fa-chevron-right"></i></button></div><script>
+// --- Fonctionnalité de recherche (MODIFIÉE) ---
+function initSearchFeature() {
+    const searchBtn = document.createElement('button');
+    searchBtn.className = 'btn';
+    searchBtn.id = 'searchBtn';
+    searchBtn.title = 'Rechercher';
+    searchBtn.innerHTML = '<i class="fas fa-search"></i>';
+    document.querySelector('.control-buttons').appendChild(searchBtn);
+    
+    const searchInterface = document.createElement('div');
+    searchInterface.id = 'searchInterface';
+    searchInterface.style.cssText = `
+        position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+        width: calc(100% - 40px); max-width: 550px; background: var(--article-bg);
+        padding: 10px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        z-index: 1800; display: none; align-items: center; gap: 5px; transition: var(--transition);
+    `;
+    searchInterface.innerHTML = `
+        <input type="text" id="searchInput" placeholder="Rechercher..." style="flex-grow: 1; padding: 8px; border: 1px solid #cfe6d8; border-radius: 5px;">
+        <button id="searchPrevBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-up"></i></button>
+        <button id="searchNextBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-down"></i></button>
+        <span id="searchResultsCount" style="flex-shrink: 0; padding: 0 5px; min-width: 40px; text-align: center;"></span>
+        <button id="closeSearchBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-times"></i></button>
+    `;
+    document.body.appendChild(searchInterface);
+
+    let searchResults = [];
+    let currentSearchIndex = -1;
+    let originalContents = new Map();
+
+    function performSearch() {
+        const searchTerm = document.getElementById('searchInput').value.trim();
+        if (!originalContents.size) {
+            document.querySelectorAll('.article-content, h2, h3').forEach(el => originalContents.set(el, el.innerHTML));
+        }
+        originalContents.forEach((content, el) => el.innerHTML = content);
+        searchResults = [];
+        currentSearchIndex = -1;
+        if (!searchTerm) { updateSearchUI(); return; }
+
+        const regex = new RegExp(searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+        originalContents.forEach((content, element) => {
+            element.innerHTML = content.replace(regex, match => `<mark>${match}</mark>`);
+        });
+        searchResults = Array.from(document.querySelectorAll('mark'));
+        if (searchResults.length > 0) navigateResults(true, false);
+        updateSearchUI();
+        window.dispatchEvent(new Event('reflowArticles'));
+    }
+
+    function navigateResults(isNext, shouldWrap = true) {
+        if (!searchResults.length) return;
+        searchResults.forEach(mark => mark.style.backgroundColor = '');
+        if (shouldWrap) {
+            currentSearchIndex = isNext ? (currentSearchIndex + 1) % searchResults.length : (currentSearchIndex - 1 + searchResults.length) % searchResults.length;
+        } else {
+            currentSearchIndex = 0;
+        }
+        const currentMark = searchResults[currentSearchIndex];
+        currentMark.style.backgroundColor = 'var(--accent)';
+        currentMark.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        updateSearchUI();
+    }
+
+    function updateSearchUI() {
+        document.getElementById('searchResultsCount').textContent = searchResults.length > 0 ? `${currentSearchIndex + 1}/${searchResults.length}` : '0/0';
+    }
+    
+    function resetSearch() {
+        originalContents.forEach((content, el) => el.innerHTML = content);
+        originalContents.clear();
+        document.getElementById('searchInput').value = '';
+        searchResults = []; currentSearchIndex = -1;
+        updateSearchUI();
+    }
+
+    searchBtn.addEventListener('click', () => {
+        const isVisible = searchInterface.style.display === 'flex';
+        searchInterface.style.display = isVisible ? 'none' : 'flex';
+        if (isVisible) resetSearch(); else document.getElementById('searchInput').focus();
+    });
+    document.getElementById('searchInput').addEventListener('input', performSearch);
+    document.getElementById('searchNextBtn').addEventListener('click', () => navigateResults(true));
+    document.getElementById('searchPrevBtn').addEventListener('click', () => navigateResults(false));
+    document.getElementById('closeSearchBtn').addEventListener('click', () => {
+        searchInterface.style.display = 'none';
+        resetSearch();
+    });
+}
+</script><script>(function(){function extractEnumeration(s){const re=/(\d{1,2})(?:\s*°)?(?:\))?(?:\.)?\s+/g;const matches=[];let m;while((m=re.exec(s))){const idx=m.index;const prev=idx>0?s.charAt(idx-1):' ';if(/\d/.test(prev))continue;matches.push({num:parseInt(m[1],10),start:idx,end:re.lastIndex});}if(matches.length<2)return null;for(let i=1;i<matches.length;i++){if(matches[i].num!==matches[i-1].num+1)return null;}const intro=s.slice(0,matches[0].start).trim().replace(/[:;,-]\s*$/,'');const items=[];for(let i=0;i<matches.length;i++){const st=matches[i].end;const en=(i+1<matches.length)?matches[i+1].start:s.length;let seg=s.slice(st,en).trim().replace(/^[;,:-]\s*/,'').replace(/[;,\s]+$/,'');items.push(seg);}return{intro,start:matches[0].num,items};}function transformNode(node){if(node.querySelector('ol'))return;const plain=node.textContent.replace(/\s+/g,' ').trim();const res=extractEnumeration(plain);if(!res)return;const frag=document.createElement('div');if(res.intro){const p=document.createElement('p');p.textContent=res.intro;frag.appendChild(p);}const ol=document.createElement('ol');if(res.start!==1)ol.setAttribute('start',String(res.start));res.items.forEach(it=>{const li=document.createElement('li');li.textContent=it;ol.appendChild(li);});frag.appendChild(ol);node.innerHTML=frag.innerHTML;}function run(){document.querySelectorAll('.article-content').forEach(transformNode);}window.addEventListener('DOMContentLoaded',()=>setTimeout(run,60));window.addEventListener('reflowArticles',run);})();</script><script>(function(){const $=s=>document.querySelector(s);const $$=s=>Array.from(document.querySelectorAll(s));function buildTOC(){const toc=document.getElementById('tocList');if(!toc)return;toc.innerHTML='';$$('.group').forEach((grp,gi)=>{const gh=grp.querySelector('h2')?.textContent.trim()||`Groupe ${gi+1}`;const gl=document.createElement('a');gl.textContent=gh;gl.href='#';gl.style.fontWeight='700';gl.addEventListener('click',e=>{e.preventDefault();grp.scrollIntoView({behavior:'smooth',block:'start'});hideTOC();});toc.appendChild(gl);const sub=document.createElement('div');sub.className='toc-sub';grp.querySelectorAll('.article').forEach((art,ai)=>{const at=art.querySelector('.article-header h3')?.textContent.trim()||`Article ${ai+1}`;const a=document.createElement('a');a.textContent=at;a.href='#';a.addEventListener('click',e=>{e.preventDefault();art.scrollIntoView({behavior:'smooth',block:'start'});hideTOC();});sub.appendChild(a);if(!art.querySelector('.open-fs')){const btn=document.createElement('button');btn.className='open-fs';btn.innerHTML='<i class="fas fa-maximize"></i>';btn.title='Plein écran';btn.addEventListener('click',()=>openFS(artIndex(art)));art.querySelector('.article-header')?.appendChild(btn);} });toc.appendChild(sub);});}function showTOC(){document.getElementById('tocOverlay').classList.add('show');document.getElementById('tocPanel').classList.add('open');}function hideTOC(){document.getElementById('tocOverlay').classList.remove('show');document.getElementById('tocPanel').classList.remove('open');}document.addEventListener('DOMContentLoaded',()=>{const floatBtn=document.getElementById('tocFloatBtn');if(floatBtn)floatBtn.addEventListener('click',showTOC);const overlay=document.getElementById('tocOverlay');if(overlay)overlay.addEventListener('click',hideTOC);const headerBtn=document.getElementById('tocHeaderBtn');if(headerBtn)headerBtn.addEventListener('click',showTOC);});const articles=$$('.article');function artIndex(el){return articles.indexOf(el);}function getArticle(i){return articles[Math.max(0,Math.min(articles.length-1,i))];}function artTitle(i){const el=getArticle(i);return el?(el.querySelector('.article-header h3')?.textContent.trim()||''):'';}function artText(i){const el=getArticle(i);return el?(el.querySelector('.article-content')?.innerText.trim()||''):'';}const synth=window.speechSynthesis;let current=0,utter=null,playing=false,paused=false,inFS=false;function speakIndex(i){stopSpeak();current=i;const text=artText(i);if(!text){nextArticle();return;}utter=new SpeechSynthesisUtterance(text);utter.lang='fr-FR';utter.rate=1;utter.pitch=1;utter.onend=()=>{if(playing&&!paused){nextArticle();}};try{synth.speak(utter);}catch(e){}playing=true;paused=false;updateUI();highlightCurrent();}function highlightCurrent(){articles.forEach(a=>a.classList.remove('reading'));const el=getArticle(current);if(el){el.classList.add('reading');if(!inFS)el.scrollIntoView({behavior:'smooth',block:'center'});}document.getElementById('vNow').textContent=artTitle(current)||'—';}function pauseSpeak(){if(synth&&synth.speaking){synth.pause();paused=true;playing=true;}}function resumeSpeak(){if(synth&&paused){synth.resume();paused=false;}else{speakIndex(current);}updateUI();}function stopSpeak(){if(synth){try{synth.cancel();}catch(e){}}playing=false;paused=false;updateUI();}function prevArticle(){current=Math.max(0,current-1);if(playing){speakIndex(current);}else{highlightCurrent();}if(inFS)openFS(current);}function nextArticle(){current=Math.min(articles.length-1,current+1);if(playing){speakIndex(current);}else{highlightCurrent();}if(inFS)openFS(current);}document.addEventListener('DOMContentLoaded',()=>{document.getElementById('vPrev').addEventListener('click',prevArticle);document.getElementById('vPlay').addEventListener('click',()=>{if(!playing||paused){resumeSpeak();}else{pauseSpeak();}});document.getElementById('vPause').addEventListener('click',()=>pauseSpeak());document.getElementById('vStop').addEventListener('click',()=>{stopSpeak();});document.getElementById('vNext').addEventListener('click',nextArticle);});function updateUI(){document.getElementById('vPlay').innerHTML=paused||!playing?'<i class="fas fa-play"></i>':'<i class="fas fa-pause"></i>'; }function openFS(i){inFS=true;current=i;document.getElementById('fsTitle').textContent=artTitle(i);document.getElementById('fsContent').textContent=artText(i);document.getElementById('fsOverlay').classList.add('show');document.body.style.overflow='hidden';speakIndex(i);}function closeFS(){inFS=false;document.getElementById('fsOverlay').classList.remove('show');document.body.style.overflow='';}document.addEventListener('DOMContentLoaded',()=>{document.getElementById('fsClose').addEventListener('click',()=>{closeFS();});document.getElementById('fsPlay').addEventListener('click',()=>{if(!playing||paused){resumeSpeak();}else{pauseSpeak();}});document.getElementById('fsNavPrev').addEventListener('click',()=>{prevArticle();});document.getElementById('fsNavNext').addEventListener('click',()=>{nextArticle();});document.querySelectorAll('.article .open-fs').forEach((btn,idx)=>btn.addEventListener('click',()=>openFS(idx)));document.querySelectorAll('.article').forEach((art,idx)=>art.addEventListener('dblclick',()=>openFS(idx)));document.getElementById('fsOverlay').addEventListener('touchstart',(e)=>{window.__touchX=e.changedTouches[0].clientX;},{passive:true});document.getElementById('fsOverlay').addEventListener('touchend',(e)=>{const dx=e.changedTouches[0].clientX-(window.__touchX||0);const TH=50;if(dx<-TH){nextArticle();}else if(dx>TH){prevArticle();}}, {passive:true});});window.addEventListener('reflowArticles',()=>{buildTOC();});buildTOC();})();</script><script>initSearchFeature(); window.dispatchEvent(new Event('reflowArticles'));</script><footer>Source : sgfpapublier.html</footer><script>(function(){function isInteractive(el){if(!el)return false;if(el.tagName){const tag=el.tagName.toLowerCase();if(['input','textarea','select'].includes(tag))return true;}if(el.isContentEditable)return true;if(el.closest&&el.closest('#searchInterface'))return true;return false;}document.addEventListener('DOMContentLoaded',()=>{document.body.classList.add('no-select');});document.addEventListener('contextmenu',e=>{if(!isInteractive(e.target))e.preventDefault();},{capture:true});document.addEventListener('selectstart',e=>{if(!isInteractive(e.target))e.preventDefault();},{capture:true});['copy','cut','paste','dragstart'].forEach(type=>{document.addEventListener(type,e=>{if(!isInteractive(document.activeElement))e.preventDefault();},{capture:true});});document.addEventListener('keydown',e=>{const k=(e.key||'').toLowerCase();const combo=(e.ctrlKey||e.metaKey)&&['c','x','a','s','p','insert'].includes(k);if(combo&&!isInteractive(document.activeElement)){e.preventDefault();e.stopPropagation();}},{capture:true});})();</script>
+<script>
+(function(){
+  var toc = document.querySelector('.floating-toc');
+  var toggle = document.querySelector('.toc-toggle');
+  var close = document.querySelector('.floating-toc .toc-close');
+  function toggleTOC(){ if(toc){ toc.classList.toggle('is-hidden'); } }
+  if(toggle){ toggle.addEventListener('click', toggleTOC); }
+  if(close){ close.addEventListener('click', function(){ toc && toc.classList.add('is-hidden'); }); }
+  document.addEventListener('click', function(e){
+    if(!toc || toc.classList.contains('is-hidden')) return;
+    if(!toc.contains(e.target) && !toggle.contains(e.target)){ toc.classList.add('is-hidden'); }
+  }, true);
+})();
+</script><script>
+(function(){
+  var toc = document.querySelector('.floating-toc');
+  var toggle = document.querySelector('.toc-toggle');
+  var close = document.querySelector('.floating-toc .toc-close');
+  function toggleTOC(){ if(toc){ toc.classList.toggle('is-hidden'); } }
+  if(toggle){ toggle.addEventListener('click', toggleTOC); }
+  if(close){ close.addEventListener('click', function(){ toc && toc.classList.add('is-hidden'); }); }
+  document.addEventListener('click', function(e){
+    if(!toc || toc.classList.contains('is-hidden')) return;
+    if(!toc.contains(e.target) && !toggle.contains(e.target)){ toc.classList.add('is-hidden'); }
+  }, true);
+})();
+</script><script>
+(function(){
+  var toc = document.querySelector('.floating-toc');
+  var toggle = document.querySelector('.toc-toggle');
+  var close = document.querySelector('.floating-toc .toc-close');
+  function toggleTOC(){ if(toc){ toc.classList.toggle('is-hidden'); } }
+  if(toggle){ toggle.addEventListener('click', toggleTOC); }
+  if(close){ close.addEventListener('click', function(){ toc && toc.classList.add('is-hidden'); }); }
+  document.addEventListener('click', function(e){
+    if(!toc || toc.classList.contains('is-hidden')) return;
+    if(!toc.contains(e.target) && !toggle.contains(e.target)){ toc.classList.add('is-hidden'); }
+  }, true);
+})();
+</script><nav aria-label="Sommaire" class="floating-toc is-hidden" id="floatingTOC"><div class="toc-header">Sommaire<button class="toc-close" onclick="(function(e){e.stopPropagation();var t=document.getElementById('floatingTOC');if(t){t.classList.add('is-hidden');}})(event)" title="Fermer"><i class="fas fa-times"></i></button></div><ul class="toc-level2"><li class="toc-item l2"><a href="#titre-i--organisation-des-emplois-droits-et-obligations-du-fonctionnaire">TITRE I : ORGANISATION DES EMPLOIS, DROITS ET OBLIGATIONS DU FONCTIONNAIRE</a><ul class="toc-level3"><li class="toc-item l3"><a href="#chapitre-preliminaire--champ-dapplication">CHAPITRE PRÉLIMINAIRE : CHAMP D'APPLICATION</a><ul class="toc-level4"><li class="toc-item l5"><a href="#article-1">Article 1</a></li></ul></li><li class="toc-item l3"><a href="#chapitre-i--le-fonctionnaire">CHAPITRE I : LE FONCTIONNAIRE</a><ul class="toc-level4"><li class="toc-item l5"><a href="#article-2">Article 2</a></li><li class="toc-item l5"><a href="#article-3">Article 3</a></li><li class="toc-item l5"><a href="#article-4">Article 4</a></li><li class="toc-item l5"><a href="#article-5">Article 5</a></li><li class="toc-item l5"><a href="#article-6">Article 6</a></li></ul></li><li class="toc-item l3"><a href="#chapitre-ii--classification-et-profil-de-carriere-des-fonctionnaires">CHAPITRE II : CLASSIFICATION ET PROFIL DE CARRIÈRE DES FONCTIONNAIRES</a><ul class="toc-level4"><li class="toc-item l5"><a href="#article-7">Article 7</a></li><li class="toc-item l5"><a href="#article-8">Article 8</a></li><li class="toc-item l5"><a href="#article-9">Article 9</a></li><li class="toc-item l5"><a href="#article-10">Article 10</a></li><li class="toc-item l5"><a href="#article-11">Article 11</a></li><li class="toc-item l5"><a href="#article-12">Article 12</a></li><li class="toc-item l5"><a href="#article-13">Article 13</a></li><li class="toc-item l5"><a href="#article-14">Article 14</a></li></ul></li><li class="toc-item l3"><a href="#chapitre-iii--emploi-et-mobilite-professionnelle">CHAPITRE III : EMPLOI ET MOBILITÉ PROFESSIONNELLE</a><ul class="toc-level4"><li class="toc-item l5"><a href="#article-15">Article 15</a></li><li class="toc-item l5"><a href="#article-16">Article 16</a></li><li class="toc-item l5"><a href="#article-17">Article 17</a></li></ul></li><li class="toc-item l3"><a href="#chapitre-iv--les-agents-contractuels">CHAPITRE IV : LES AGENTS CONTRACTUELS</a><ul class="toc-level4"><li class="toc-item l5"><a href="#article-18">Article 18</a></li><li class="toc-item l5"><a href="#article-19">Article 19</a></li><li class="toc-item l5"><a href="#article-20">Article 20</a></li></ul></li><li class="toc-item l3"><a href="#chapitre-v--droits-et-obligations-des-fonctionnaires">CHAPITRE V : DROITS ET OBLIGATIONS DES FONCTIONNAIRES</a><ul class="toc-level4"><li class="toc-item l4"><a href="#section-i--les-droits-du-fonctionnaire">SECTION I : LES DROITS DU FONCTIONNAIRE</a><ul class="toc-level5"><li class="toc-item l5"><a href="#article-21">Article 21</a></li><li class="toc-item l5"><a href="#article-22">Article 22</a></li><li class="toc-item l5"><a href="#article-23">Article 23</a></li><li class="toc-item l5"><a href="#article-24">Article 24</a></li><li class="toc-item l5"><a href="#article-25">Article 25</a></li><li class="toc-item l5"><a href="#article-26">Article 26</a></li><li class="toc-item l5"><a href="#article-27">Article 27</a></li><li class="toc-item l5"><a href="#article-28">Article 28</a></li><li class="toc-item l5"><a href="#article-29">Article 29</a></li><li class="toc-item l5"><a href="#article-30">Article 30</a></li><li class="toc-item l5"><a href="#article-31">Article 31</a></li></ul></li><li class="toc-item l4"><a href="#section-ii--les-obligations-du-fonctionnaire">SECTION II : LES OBLIGATIONS DU FONCTIONNAIRE</a><ul class="toc-level5"><li class="toc-item l5"><a href="#article-32">Article 32</a></li><li class="toc-item l5"><a href="#article-33">Article 33</a></li><li class="toc-item l5"><a href="#article-34">Article 34</a></li><li class="toc-item l5"><a href="#article-35">Article 35</a></li><li class="toc-item l5"><a href="#article-36">Article 36</a></li><li class="toc-item l5"><a href="#article-37">Article 37</a></li><li class="toc-item l5"><a href="#article-38">Article 38</a></li></ul></li></ul></li><li class="toc-item l3"><a href="#chapitre-vi--les-organismes-consultatifs">CHAPITRE VI : LES ORGANISMES CONSULTATIFS</a><ul class="toc-level4"><li class="toc-item l4"><a href="#section-ii--les-obligations-du-fonctionnaire">SECTION II : LES OBLIGATIONS DU FONCTIONNAIRE</a><ul class="toc-level5"><li class="toc-item l5"><a href="#article-39">Article 39</a></li><li class="toc-item l5"><a href="#article-40">Article 40</a></li><li class="toc-item l5"><a href="#article-41">Article 41</a></li><li class="toc-item l5"><a href="#article-42">Article 42</a></li><li class="toc-item l5"><a href="#article-43">Article 43</a></li><li class="toc-item l5"><a href="#article-44">Article 44</a></li><li class="toc-item l5"><a href="#article-45">Article 45</a></li></ul></li></ul></li></ul></li><li class="toc-item l2"><a href="#titre-ii--gestion-de-la-carriere-du-fonctionnaire">TITRE II : GESTION DE LA CARRIÈRE DU FONCTIONNAIRE</a><ul class="toc-level3"><li class="toc-item l3"><a href="#chapitre-i--recrutement-et-titularisation">CHAPITRE I : RECRUTEMENT ET TITULARISATION</a><ul class="toc-level4"><li class="toc-item l4"><a href="#section-i--le-recrutement">SECTION I : LE RECRUTEMENT</a><ul class="toc-level5"><li class="toc-item l5"><a href="#article-46">Article 46</a></li><li class="toc-item l5"><a href="#article-47">Article 47</a></li><li class="toc-item l5"><a href="#article-48">Article 48</a></li><li class="toc-item l5"><a href="#article-49">Article 49</a></li><li class="toc-item l5"><a href="#article-50">Article 50</a></li></ul></li><li class="toc-item l4"><a href="#section-ii--la-titularisation">SECTION II : LA TITULARISATION</a><ul class="toc-level5"><li class="toc-item l5"><a href="#article-51">Article 51</a></li><li class="toc-item l5"><a href="#article-52">Article 52</a></li></ul></li></ul></li><li class="toc-item l3"><a href="#chapitre-ii--les-positions">CHAPITRE II : LES POSITIONS</a><ul class="toc-level4"><li class="toc-item l4"><a href="#section-ii--la-titularisation">SECTION II : LA TITULARISATION</a><ul class="toc-level5"><li class="toc-item l5"><a href="#article-53">Article 53</a></li></ul></li><li class="toc-item l4"><a href="#section-i--lactivite">SECTION I : L'ACTIVITÉ</a><ul class="toc-level5"><li class="toc-item l5"><a href="#article-54">Article 54</a></li></ul></li><li class="toc-item l4"><a href="#section-ii--le-detachement">SECTION II : LE DÉTACHEMENT</a><ul class="toc-level5"><li class="toc-item l5"><a href="#article-55">Article 55</a></li><li class="toc-item l5"><a href="#article-56">Article 56</a></li><li class="toc-item l5"><a href="#article-57">Article 57</a></li><li class="toc-item l5"><a href="#article-58">Article 58</a></li><li class="toc-item l5"><a href="#article-59">Article 59</a></li><li class="toc-item l5"><a href="#article-60">Article 60</a></li></ul></li><li class="toc-item l4"><a href="#section-iii--la-disponibilite">SECTION III : LA DISPONIBILITÉ</a><ul class="toc-level5"><li class="toc-item l5"><a href="#article-61">Article 61</a></li><li class="toc-item l5"><a href="#article-62">Article 62</a></li><li class="toc-item l5"><a href="#article-63">Article 63</a></li><li class="toc-item l5"><a href="#article-64">Article 64</a></li><li class="toc-item l5"><a href="#article-65">Article 65</a></li></ul></li><li class="toc-item l4"><a href="#section-iv--la-position-sous-les-drapeaux">SECTION IV : LA POSITION SOUS LES DRAPEAUX</a><ul class="toc-level5"><li class="toc-item l5"><a href="#article-66">Article 66</a></li><li class="toc-item l5"><a href="#article-67">Article 67</a></li></ul></li></ul></li><li class="toc-item l3"><a href="#chapitre-iii--evaluation--avancement--formation-continue--promotion--distinction-honorifique">CHAPITRE III : ÉVALUATION – AVANCEMENT – FORMATION CONTINUE – PROMOTION – DISTINCTION HONORIFIQUE</a><ul class="toc-level4"><li class="toc-item l4"><a href="#section-i--levaluation">SECTION I : L'ÉVALUATION</a><ul class="toc-level5"><li class="toc-item l5"><a href="#article-68">Article 68</a></li><li class="toc-item l5"><a href="#article-69">Article 69</a></li><li class="toc-item l5"><a href="#article-70">Article 70</a></li></ul></li><li class="toc-item l4"><a href="#section-ii--lavancement">SECTION II : L'AVANCEMENT</a><ul class="toc-level5"><li class="toc-item l5"><a href="#article-71">Article 71</a></li><li class="toc-item l5"><a href="#article-72">Article 72</a></li><li class="toc-item l5"><a href="#article-73">Article 73</a></li></ul></li><li class="toc-item l4"><a href="#section-iii--la-formation-continue">SECTION III : LA FORMATION CONTINUE</a><ul class="toc-level5"><li class="toc-item l5"><a href="#article-74">Article 74</a></li><li class="toc-item l5"><a href="#article-75">Article 75</a></li><li class="toc-item l5"><a href="#article-76">Article 76</a></li></ul></li><li class="toc-item l4"><a href="#section-iv--la-promotion">SECTION IV : LA PROMOTION</a><ul class="toc-level5"><li class="toc-item l5"><a href="#article-77">Article 77</a></li><li class="toc-item l5"><a href="#article-78">Article 78</a></li><li class="toc-item l5"><a href="#article-79">Article 79</a></li></ul></li><li class="toc-item l4"><a href="#section-v--les-distinctions-honorifiques">SECTION V : LES DISTINCTIONS HONORIFIQUES</a><ul class="toc-level5"><li class="toc-item l5"><a href="#article-80">Article 80</a></li></ul></li></ul></li><li class="toc-item l3"><a href="#chapitre-iv--remuneration-et-avantages-sociaux">CHAPITRE IV : RÉMUNÉRATION ET AVANTAGES SOCIAUX</a><ul class="toc-level4"><li class="toc-item l4"><a href="#section-i--la-remuneration">SECTION I : LA REMUNERATION</a><ul class="toc-level5"><li class="toc-item l5"><a href="#article-81">Article 81</a></li><li class="toc-item l5"><a href="#article-82">Article 82</a></li><li class="toc-item l5"><a href="#article-83">Article 83</a></li><li class="toc-item l5"><a href="#article-84">Article 84</a></li><li class="toc-item l5"><a href="#article-85">Article 85</a></li><li class="toc-item l5"><a href="#article-86">Article 86</a></li><li class="toc-item l5"><a href="#article-87">Article 87</a></li><li class="toc-item l5"><a href="#article-88">Article 88</a></li><li class="toc-item l5"><a href="#article-89">Article 89</a></li></ul></li><li class="toc-item l4"><a href="#section-ii--les-avantages-sociaux">SECTION II : LES AVANTAGES SOCIAUX</a><ul class="toc-level5"><li class="toc-item l5"><a href="#article-90">Article 90</a></li><li class="toc-item l5"><a href="#article-91">Article 91</a></li><li class="toc-item l5"><a href="#article-92">Article 92</a></li><li class="toc-item l5"><a href="#article-93">Article 93</a></li><li class="toc-item l5"><a href="#article-94">Article 94</a></li><li class="toc-item l5"><a href="#article-95">Article 95</a></li><li class="toc-item l5"><a href="#article-96">Article 96</a></li><li class="toc-item l5"><a href="#article-97">Article 97</a></li><li class="toc-item l5"><a href="#article-98">Article 98</a></li><li class="toc-item l5"><a href="#article-99">Article 99</a></li><li class="toc-item l5"><a href="#article-100">Article 100</a></li></ul></li></ul></li><li class="toc-item l3"><a href="#chapitre-v--la-discipline">CHAPITRE V : LA DISCIPLINE</a><ul class="toc-level4"><li class="toc-item l4"><a href="#section-ii--les-avantages-sociaux">SECTION II : LES AVANTAGES SOCIAUX</a><ul class="toc-level5"><li class="toc-item l5"><a href="#article-101">Article 101</a></li><li class="toc-item l5"><a href="#article-102">Article 102</a></li><li class="toc-item l5"><a href="#article-103">Article 103</a></li><li class="toc-item l5"><a href="#article-104">Article 104</a></li><li class="toc-item l5"><a href="#article-105">Article 105</a></li><li class="toc-item l5"><a href="#article-106">Article 106</a></li><li class="toc-item l5"><a href="#article-107">Article 107</a></li></ul></li></ul></li><li class="toc-item l3"><a href="#chapitre-vi--la-cessation-definitive-de-fonctions">CHAPITRE VI : LA CESSATION DÉFINITIVE DE FONCTIONS</a><ul class="toc-level4"><li class="toc-item l4"><a href="#section-ii--les-avantages-sociaux">SECTION II : LES AVANTAGES SOCIAUX</a><ul class="toc-level5"><li class="toc-item l5"><a href="#article-108">Article 108</a></li><li class="toc-item l5"><a href="#article-109">Article 109</a></li><li class="toc-item l5"><a href="#article-110">Article 110</a></li><li class="toc-item l5"><a href="#article-111">Article 111</a></li><li class="toc-item l5"><a href="#article-112">Article 112</a></li><li class="toc-item l5"><a href="#article-113">Article 113</a></li><li class="toc-item l5"><a href="#article-114">Article 114</a></li><li class="toc-item l5"><a href="#article-115">Article 115</a></li></ul></li></ul></li><li class="toc-item l3"><a href="#chapitre-vii--la-pension">CHAPITRE VII : LA PENSION</a><ul class="toc-level4"><li class="toc-item l4"><a href="#section-ii--les-avantages-sociaux">SECTION II : LES AVANTAGES SOCIAUX</a><ul class="toc-level5"><li class="toc-item l5"><a href="#article-116">Article 116</a></li><li class="toc-item l5"><a href="#article-117">Article 117</a></li></ul></li></ul></li><li class="toc-item l3"><a href="#chapitre-viii--dispositions-finales">CHAPITRE VIII : DISPOSITIONS FINALES</a><ul class="toc-level4"><li class="toc-item l4"><a href="#section-ii--les-avantages-sociaux">SECTION II : LES AVANTAGES SOCIAUX</a><ul class="toc-level5"><li class="toc-item l5"><a href="#article-118">Article 118</a></li><li class="toc-item l5"><a href="#article-119">Article 119</a></li></ul></li></ul></li></ul></li></ul></nav><button class="toc-toggle" id="tocToggle" onclick="(function(e){e.stopPropagation();var t=document.getElementById('floatingTOC');if(t){t.classList.toggle('is-hidden');}})(event)" title="Sommaire"><i class="fas fa-list"></i></button><script>
+(function(){
+  function init(){
+    var toc = document.getElementById('floatingTOC');
+    var btn = document.getElementById('tocToggle');
+    var close = toc ? toc.querySelector('.toc-close') : null;
+    if(btn){
+      btn.addEventListener('click', function(e){ e.stopPropagation(); toc && toc.classList.toggle('is-hidden'); });
+    }
+    if(close){
+      close.addEventListener('click', function(e){ e.stopPropagation(); toc && toc.classList.add('is-hidden'); });
+    }
+    if(toc){
+      toc.addEventListener('click', function(e){ e.stopPropagation(); });
+    }
+    document.addEventListener('click', function(){
+      if(toc && !toc.classList.contains('is-hidden')) toc.classList.add('is-hidden');
+    }, true);
+  }
+  if(document.readyState === 'loading'){ document.addEventListener('DOMContentLoaded', init); }
+  else { init(); }
+  window.addEventListener('load', init);
+})();
+</script><script>
+(function(){
+  function initScrollSpy(){
+    var toc = document.querySelector('.floating-toc');
+    if(!toc) return;
+    // Map target IDs -> corresponding TOC link
+    var links = toc.querySelectorAll('a[href^="#"]');
+    var map = {};
+    links.forEach(function(a){
+      var id = a.getAttribute('href').slice(1);
+      if(id) map[id] = a;
+    });
+
+    // Targets: h2 + chapter/section + articles
+    var targets = [];
+    document.querySelectorAll('h2, h3.chapter-title, h4.section-title, .article[id]').forEach(function(el){
+      if(el.id && map[el.id]) targets.push(el);
+    });
+
+    if(targets.length === 0) return;
+
+    // Helper to set active
+    function setActive(id){
+      if(!id || !map[id]) return;
+      // clear
+      links.forEach(function(a){ a.classList.remove('is-active'); });
+      // set current
+      var a = map[id];
+      a.classList.add('is-active');
+      // ensure parent branches are scrolled into view inside toc if panel is open
+      var li = a.closest('li');
+      if(li && toc && !toc.classList.contains('is-hidden')){
+        // minimal auto-scroll in panel when needed
+        var rect = a.getBoundingClientRect();
+        var tocRect = toc.getBoundingClientRect();
+        if(rect.top < tocRect.top + 80 || rect.bottom > tocRect.bottom - 40){
+          a.scrollIntoView({block:'nearest'});
+        }
+      }
+    }
+
+    // IntersectionObserver
+    var activeId = null;
+    var io = new IntersectionObserver(function(entries){
+      // pick the top-most visible entry
+      var visible = entries.filter(function(e){ return e.isIntersecting; })
+                           .sort(function(a,b){ return a.boundingClientRect.top - b.boundingClientRect.top; });
+      if(visible.length > 0){
+        var id = visible[0].target.id;
+        if(id && id !== activeId){
+          activeId = id;
+          setActive(id);
+        }
+      } else {
+        // fallback: check nearest above viewport
+        var top = window.scrollY + 120;
+        var best = null, bestDist = Infinity;
+        targets.forEach(function(t){
+          var r = t.getBoundingClientRect();
+          var absTop = r.top + window.scrollY;
+          if(absTop <= top){
+            var d = top - absTop;
+            if(d < bestDist){ bestDist = d; best = t; }
+          }
+        });
+        if(best && best.id && best.id !== activeId){
+          activeId = best.id;
+          setActive(best.id);
+        }
+      }
+    }, {root: null, rootMargin: "-20% 0px -60% 0px", threshold: [0, 0.1, 0.25]});
+
+    targets.forEach(function(t){ io.observe(t); });
+
+    // Initial run
+    setTimeout(function(){
+      var nearest = null, dist = Infinity;
+      var top = window.scrollY + 120;
+      targets.forEach(function(t){
+        var y = t.getBoundingClientRect().top + window.scrollY;
+        if(Math.abs(y - top) < dist){ dist = Math.abs(y - top); nearest = t; }
+      });
+      if(nearest) setActive(nearest.id);
+    }, 50);
+
+    // Update on hash change
+    window.addEventListener('hashchange', function(){
+      var id = (location.hash||'').slice(1);
+      if(id) setActive(id);
+    });
+  }
+
+  if(document.readyState === 'loading'){ document.addEventListener('DOMContentLoaded', initScrollSpy); }
+  else { initScrollSpy(); }
+  window.addEventListener('load', initScrollSpy);
+})();
+</script>  <script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js"));
+  }
+</script>
+  <!-- PWA Install Button -->
+<button id="pwa-install-btn" aria-label="Installer l'application" hidden>Installer</button>
+<style>
+  #pwa-install-btn{
+    position:fixed; right:16px; bottom:16px; z-index:9999;
+    padding:10px 14px; border:none; border-radius:999px;
+    background:#22c55e; color:white; font:600 14px system-ui,Segoe UI,Roboto,Arial,sans-serif;
+    box-shadow:0 8px 20px rgba(34,197,94,.35);
+  }
+  #pwa-install-btn[hidden]{ display:none; }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    #pwa-install-btn{ bottom: calc(16px + env(safe-area-inset-bottom)); }
+  }
+</style>
+<script>
+  (function(){
+    let deferredPrompt;
+    const btnId = "pwa-install-btn";
+    function ensureBtn(){
+      let b = document.getElementById(btnId);
+      if(!b){
+        b = document.createElement("button");
+        b.id = btnId;
+        b.textContent = "Installer";
+        document.body.appendChild(b);
+      }
+      return b;
+    }
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      const btn = ensureBtn();
+      btn.hidden = false;
+      btn.onclick = async () => {
+        btn.hidden = true;
+        deferredPrompt.prompt();
+        await deferredPrompt.userChoice;
+        deferredPrompt = null;
+      };
+    });
+    if (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) {
+      const btn = document.getElementById(btnId);
+      if(btn) btn.hidden = true;
+    }
+  })();
+</script>
+  <!-- Auth UI minimal -->
+<style>
+  .auth-box{position:fixed; top:12px; right:12px; z-index:9998; background:#ffffff; color:#111827; border-radius:12px; padding:10px 12px; box-shadow:0 10px 24px rgba(0,0,0,.12); font:500 14px system-ui,Segoe UI,Roboto,Arial}
+  .auth-box h4{margin:0 0 6px; font-size:14px}
+  .auth-box form{display:flex; gap:6px; flex-wrap:wrap; align-items:center}
+  .auth-box input{padding:6px 8px; border:1px solid #e5e7eb; border-radius:8px}
+  .auth-box button{background:#22c55e; color:#fff; border:none; padding:6px 10px; border-radius:8px; cursor:pointer}
+  .auth-box .row{display:flex; gap:6px; flex-wrap:wrap}
+  .views-badge{position:fixed; left:12px; bottom:12px; z-index:9998; background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px; font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)}
+</style><!-- Admin link (visible only when logged-in) -->
+<style>
+  .admin-link{
+    position:fixed; right:16px; bottom:88px; z-index:9998;
+    display:none; align-items:center; gap:8px;
+    padding:10px 14px; border-radius:999px; text-decoration:none;
+    background:#111827; color:#fff; font:600 14px system-ui,Segoe UI,Roboto,Arial;
+    box-shadow:0 8px 20px rgba(0,0,0,.3);
+    border:1px solid rgba(255,255,255,.1);
+  }
+  body.logged-in .admin-link{ display:inline-flex; }
+  .admin-link:hover{ filter:brightness(1.1); }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    .admin-link{ bottom: calc(88px + env(safe-area-inset-bottom)); }
+  }
+</style>
+<a href="admin.html" class="admin-link" title="Tableau de bord">Admin</a>
+  <script type="module" src="assets/firebase-app.js"></script>
+  <script>window.autoCountAndBind && window.autoCountAndBind();</script>
+  
+<!-- Floating Auth Button + Modal -->
+<style>
+  #auth-fab{
+    position:fixed; right:16px; bottom:68px; z-index:9998;
+    width:48px; height:48px; border-radius:999px; border:none; cursor:pointer;
+    background:#111827; color:#fff; display:grid; place-items:center;
+    box-shadow:0 8px 20px rgba(0,0,0,.35); border:1px solid rgba(255,255,255,.1);
+  }
+  body.logged-in #auth-fab::after{ content:"✓"; }
+  #auth-fab::after{ content:"👤"; font-size:20px; }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    #auth-fab{ bottom: calc(68px + env(safe-area-inset-bottom)); }
+  }
+  .views-badge{
+    position:fixed; left:12px; bottom:12px; z-index:9998; 
+    background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px;
+    font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)
+  }
+  dialog#auth-modal{
+    border:none; border-radius:16px; padding:0; width:min(90vw,420px);
+    box-shadow:0 24px 72px rgba(0,0,0,.35); overflow:hidden;
+  }
+  dialog::backdrop{ background:rgba(0,0,0,.4); }
+  .auth-modal-head{background:#0f172a; color:#fff; padding:12px 16px; display:flex; justify-content:space-between; align-items:center}
+  .auth-modal-body{padding:16px; background:#111827; color:#e5e7eb}
+  .auth-modal-body label{display:block; font-size:13px; margin-top:8px; opacity:.9}
+  .auth-modal-body input{width:100%; padding:10px 12px; border-radius:10px; border:1px solid #1f2937; background:#0b1021; color:#e5e7eb}
+  .auth-actions{display:flex; gap:8px; margin-top:14px}
+  .btn{border:none; border-radius:10px; padding:10px 12px; cursor:pointer; font-weight:600}
+  .btn-primary{background:#22c55e; color:white}
+  .btn-ghost{background:transparent; color:#e5e7eb; border:1px solid #374151}
+  .muted{opacity:.8}
+</style>
+
+<button id="auth-fab" title="Connexion / Compte"></button>
+<div class="views-badge">Vues : <span id="viewCounter">0</span></div>
+
+<dialog id="auth-modal">
+  <div class="auth-modal-head">
+    <strong>Connexion</strong>
+    <button class="btn btn-ghost" id="auth-close" aria-label="Fermer">✕</button>
+  </div>
+  <div class="auth-modal-body">
+    <p class="muted">Connecte-toi pour accéder à l’admin et une meilleure expérience.</p>
+    <label>Email</label>
+    <input type="email" id="auth-email" placeholder="email@exemple.com" required>
+    <label>Mot de passe</label>
+    <input type="password" id="auth-pass" placeholder="••••••••" required>
+    <div class="auth-actions">
+      <button class="btn btn-primary" id="btn-login">Connexion</button>
+      <button class="btn btn-ghost" id="btn-register">Créer un compte</button>
+      <button class="btn btn-ghost" id="btn-logout">Déconnexion</button>
+    </div>
+    <div id="auth-msg" class="muted" style="margin-top:8px;"></div>
+  </div>
+</dialog>
+
+<script type="module">
+  import { authRegister, authLogin, authLogout } from "./assets/firebase-app.js";
+
+  const fab = document.getElementById("auth-fab");
+  const modal = document.getElementById("auth-modal");
+  const closeBtn = document.getElementById("auth-close");
+  const email = document.getElementById("auth-email");
+  const pass = document.getElementById("auth-pass");
+  const msg  = document.getElementById("auth-msg");
+  const btnLogin = document.getElementById("btn-login");
+  const btnRegister = document.getElementById("btn-register");
+  const btnLogout = document.getElementById("btn-logout");
+
+  function openModal(){ try{ modal.showModal(); }catch{ modal.setAttribute("open",""); } }
+  function closeModal(){ modal.close?.(); modal.removeAttribute("open"); }
+
+  fab?.addEventListener("click", openModal);
+  closeBtn?.addEventListener("click", closeModal);
+
+  async function handle(run){
+    msg.textContent = "";
+    try{
+      await run(email.value.trim(), pass.value);
+      msg.textContent = "✅ Opération réussie.";
+      setTimeout(()=>{ closeModal(); }, 500);
+    }catch(e){
+      console.error(e);
+      msg.textContent = "❌ " + (e?.message || "Erreur");
+    }
+  }
+
+  btnLogin?.addEventListener("click", () => handle(authLogin));
+  btnRegister?.addEventListener("click", () => handle(authRegister));
+  btnLogout?.addEventListener("click", async () => {
+    msg.textContent = "";
+    try{ await authLogout(); msg.textContent = "✅ Déconnecté."; }catch(e){ msg.textContent = "❌ " + (e?.message||"Erreur"); }
+  });
+</script>
+
+
+<!-- Per-card view counters -->
+<style>
+  .card-views-badge{
+    position:absolute; top:8px; right:8px;
+    background:rgba(17,24,39,.9); color:#fff;
+    padding:4px 8px; border-radius:999px; font:600 12px system-ui,Segoe UI,Roboto,Arial;
+    box-shadow:0 6px 14px rgba(0,0,0,.25);
+    pointer-events:none;
+  }
+  .card-views-wrap{ position:relative; }
+</style>
+<script type="module">
+  import { getViewCount } from "./assets/firebase-app.js";
+  function basename(href){
+    try{ const u = new URL(href, location.href);
+         const file = u.pathname.split('/').pop() || 'index.html';
+         return file.replace(/\.html$/i,''); }
+    catch{ return (href.split('/').pop()||'index.html').replace(/\.html$/i,''); }
+  }
+  async function attachCounterTo(el, docId){
+    let container = el.closest('.card, .item, .panel, .box, .article, .doc, .tile');
+    if(!container){ container = el.parentElement; }
+    if(container && !container.classList.contains('card-views-wrap')){
+      container.classList.add('card-views-wrap');
+    }
+    const host = container || el;
+    if(host.querySelector('.card-views-badge[data-doc="'+docId+'"]')) return;
+    const badge = document.createElement('span');
+    badge.className = 'card-views-badge';
+    badge.dataset.doc = docId;
+    badge.textContent = 'Vues: …';
+    host.appendChild(badge);
+    try{ const n = await getViewCount(docId);
+         badge.textContent = 'Vues: ' + n; }
+    catch{ badge.textContent = 'Vues: —'; }
+  }
+  async function initCardCounters(){
+    const links = Array.from(document.querySelectorAll('[data-doc-id], a[href$=".html"]'))
+      .filter(a => {
+        const id = a.getAttribute('data-doc-id') || basename(a.getAttribute('href')||'');
+        return id && !['index','admin','offline'].includes(id.toLowerCase());
+      });
+    const handled = new Set();
+    for(const a of links){
+      const id = a.getAttribute('data-doc-id') || basename(a.getAttribute('href')||'');
+      if(!id || handled.has(id)) continue;
+      handled.add(id);
+      attachCounterTo(a, id);
+    }
+  }
+  initCardCounters();
+  const obs = new MutationObserver(()=>initCardCounters());
+  obs.observe(document.body, { childList:true, subtree:true });
+</script>
+
+</body></html>

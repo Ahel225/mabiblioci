@@ -1,0 +1,2030 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#e65100">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Loi relative au mariage</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Raleway:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #e65100; /* Orange profond */
+            --secondary-color: #fff3e0; /* Orange très clair */
+            --accent-color: #ff9800; /* Orange moyen */
+            --dark-color: #bf360c; /* Rouge-orange foncé */
+            --light-color: #f5f5f5; /* Blanc cassé */
+            --gold-color: #ffab00; /* Or pour les accents */
+            --transition: all 0.3s ease;
+            --text-color: #333;
+            --bg-color: #f5f5f5;
+            --article-bg: white;
+            --header-bg: linear-gradient(135deg, var(--primary-color), #d84315);
+        }
+        
+        .dark-mode {
+            --primary-color: #f57c00;
+            --secondary-color: #7b1fa2;
+            --accent-color: #ffb74d;
+            --dark-color: #ffccbc;
+            --light-color: #121212;
+            --text-color: #e0e0e0;
+            --bg-color: #1e1e1e;
+            --article-bg: #2d2d2d;
+            --header-bg: linear-gradient(135deg, #7b1fa2, #8e24aa);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Raleway', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 50L0 25L50 0L100 25L50 50Z' fill='%23e6510022' /%3E%3C/svg%3E");
+            transition: var(--transition);
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--article-bg);
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            border: 1px solid var(--secondary-color);
+            transition: var(--transition);
+        }
+        
+        header {
+            background: var(--header-bg);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-bottom: 5px solid var(--gold-color);
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        header::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold-color), transparent);
+        }
+        
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .subtitle {
+            font-style: italic;
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            scroll-margin-top: 20px;
+        }
+        
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--dark-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        h2::after {
+            content: "💍";
+            position: absolute;
+            right: 0;
+            bottom: 10px;
+        }
+
+        .articleX {
+            background: var(--article-bg);
+            border-left: 4px solid var(--primary-color);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            scroll-margin-top: 20px;
+            position: relative;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .articleX::before {
+            content: "📜";
+            position: absolute;
+            left: -15px;
+            top: 15px;
+            background: var(--article-bg);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--primary-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: var(--transition);
+        }
+        
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+        }
+        
+        .article-title::before {
+            content: "🏛️";
+            margin-right: 10px;
+            color: var(--gold-color);
+        }
+        
+        .article-content {
+            color: var(--text-color);
+            line-height: 1.7;
+            transition: var(--transition);
+        }
+
+        /* Boutons de contrôle */
+        .control-buttons {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+        
+        .control-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .control-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Boutons défilement */
+        #scrollTopBtn, #scrollBottomBtn {
+            position: fixed;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border: none;
+            border-radius: 50%;
+            background-color: rgba(230, 81, 0, 0.8);
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+            z-index: 99;
+            display: none;
+            transition: opacity 0.3s, transform 0.3s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        #scrollTopBtn {
+            bottom: 140px; /* Réhaussé */
+        }
+
+        #scrollBottomBtn {
+            bottom: 80px; /* Réhaussé */
+        }
+        
+        #scrollTopBtn:hover, #scrollBottomBtn:hover {
+            background-color: rgba(230, 81, 0, 1);
+            transform: scale(1.05);
+        }
+        
+        .show-buttons {
+            display: block !important;
+            opacity: 1;
+        }
+        
+        .hide-buttons {
+            opacity: 0;
+            display: none !important;
+        }
+        
+        /* Modal plein écran */
+        .article-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .article-modal.active {
+            opacity: 1;
+            display: flex;
+        }
+        
+        .modal-content {
+            background: var(--article-bg);
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 30px;
+            border-radius: 15px;
+            position: relative;
+            transform: translateY(20px);
+            transition: transform 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .article-modal.active .modal-content {
+            transform: translateY(0);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-color);
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-close:hover {
+            color: var(--primary-color);
+            background-color: var(--secondary-color);
+        }
+        
+        /* Contrôles de lecture vocale */
+        .voice-controls {
+            position: fixed;
+            bottom: 20px; /* Placé en bas de l'écran */
+            left: 50%;
+            transform: translateX(-50%); 
+            display: flex;
+            gap: 10px;
+            background: var(--primary-color);
+            padding: 10px 15px;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            opacity: 0.9;
+        }
+        
+        .voice-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: var(--transition);
+        }
+        
+        .voice-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Curseur de luminosité */
+        .brightness-control {
+            position: fixed;
+            top: 80px;
+            left: 20px;
+            background: var(--article-bg);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .brightness-control.active {
+            display: flex;
+        }
+        
+        .brightness-slider {
+            width: 150px;
+            appearance: none;
+            -webkit-appearance: none;
+            height: 8px;
+            border-radius: 5px;
+            background: var(--secondary-color);
+            outline: none;
+        }
+        
+        .brightness-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            cursor: pointer;
+        }
+        
+        /* Bouton sommaire mobile */
+        .mobile-sommaire-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--header-bg);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1001;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid white;
+        }
+        
+        .mobile-sommaire-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Sommaire plein écran pour mobile */
+        .mobile-sommaire {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(230, 81, 0, 0.95);
+            z-index: 1002;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .mobile-sommaire.active {
+            opacity: 1;
+            display: flex;
+        }
+        
+        .mobile-sommaire-content {
+            background: var(--article-bg);
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transform: translateY(20px);
+            transition: transform 0.4s ease;
+            border: 2px solid var(--secondary-color);
+        }
+        
+        .mobile-sommaire.active .mobile-sommaire-content {
+            transform: translateY(0);
+        }
+        
+        .mobile-sommaire-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+        
+        .mobile-sommaire-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+        
+        .mobile-sommaire-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-color);
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .mobile-sommaire-close:hover {
+            color: var(--primary-color);
+            background-color: var(--secondary-color);
+        }
+        
+        .sommaire-list {
+            list-style: none;
+        }
+        
+        .sommaire-item {
+            margin-bottom: 12px;
+            padding: 15px;
+            border-radius: 8px;
+            transition: var(--transition);
+            background-color: var(--light-color);
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .sommaire-item:hover {
+            background-color: var(--secondary-color);
+            transform: translateX(5px);
+        }
+        
+        .sommaire-item a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            display: block;
+            transition: var(--transition);
+        }
+        
+        .sommaire-item:hover a {
+            color: var(--primary-color);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--dark-color);
+            font-size: 0.9rem;
+            background: var(--secondary-color);
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+        
+        /* Indicateur de navigation */
+        .nav-indicator {
+            position: fixed;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 999;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 8px 12px;
+            border-radius: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--secondary-color);
+            transition: var(--transition);
+        }
+        
+        .nav-dot.active {
+            background: var(--primary-color);
+            transform: scale(1.3);
+        }
+        
+        /* Mode lecture plein écran */
+        .fullscreen-mode {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--article-bg);
+            z-index: 3000;
+            overflow: auto;
+            padding: 20px;
+            display: none;
+        }
+
+        .fullscreen-mode.active { display: block; }
+
+        .fullscreen-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .fullscreen-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--dark-color);
+        }
+
+        .fullscreen-close {
+            background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--dark-color);
+            transition: var(--transition); width: 40px; height: 40px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        .fullscreen-close:hover {
+            color: var(--primary-color);
+            background-color: var(--secondary-color);
+        }
+
+        .fullscreen-content { font-size: 1.2rem; line-height: 1.8; }
+
+        .fullscreen-nav {
+            display: flex; justify-content: space-between; margin-top: 30px;
+            padding-top: 15px; border-top: 1px solid var(--secondary-color);
+        }
+
+        .fullscreen-nav-btn {
+            background: var(--primary-color); color: white; border: none; padding: 10px 20px;
+            border-radius: 5px; cursor: pointer; transition: var(--transition);
+        }
+
+        .fullscreen-nav-btn:hover { background: var(--dark-color); }
+        .fullscreen-nav-btn:disabled { background: var(--secondary-color); cursor: not-allowed; }
+
+        /* Contrôles vocaux en mode plein écran */
+        .fullscreen-voice-controls {
+            display: flex; justify-content: center; gap: 15px; margin: 20px 0;
+        }
+
+        .fullscreen-voice-btn {
+            background: var(--primary-color); color: white; border: none; width: 50px;
+            height: 50px; border-radius: 50%; display: flex; justify-content: center;
+            align-items: center; font-size: 1.2rem; cursor: pointer; transition: var(--transition);
+        }
+
+        .fullscreen-voice-btn:hover { background: var(--dark-color); }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .mobile-sommaire-btn { display: flex; }
+            .control-buttons { top: 90px; left: 10px; flex-direction: column; }
+            .voice-controls { width: calc(100% - 40px); justify-content: center; }
+            header { padding: 20px; }
+            h1 { font-size: 2rem; }
+            .section, .articleX { scroll-margin-top: 80px; }
+            .fullscreen-toggle { bottom: 200px; } /* Ajusté pour mobile */
+        }
+
+        /* Styles pour l'interface de recherche */
+        #searchInput:focus {
+            outline: none;
+            border-color: var(--primary-color) !important;
+        }
+    </style>
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#22c55e">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+
+<!-- HIDE AUTH/VIEWS WIDGETS OUTSIDE HOME (safe) -->
+<style>
+  #auth-fab, .views-badge, #auth-modal, .card-views-badge { display: none !important; }
+</style>
+
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Loi relative au mariage</h1>
+            <p class="subtitle">Loi N° 2019-570 du 26 juin 2019</p>
+        </header>
+        
+         <div class="content">
+            <div class="control-buttons">
+                <button class="control-btn" id="themeToggle" title="Mode nuit/jour">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="control-btn" id="brightnessBtn" title="Contrôle de luminosité">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
+            
+            <div class="brightness-control" id="brightnessControl">
+                <label for="brightnessSlider">Luminosité</label>
+                <input type="range" min="50" max="150" value="100" class="brightness-slider" id="brightnessSlider">
+            </div>
+            
+            <button id="scrollTopBtn" title="Aller en haut">↑</button>
+            <button id="scrollBottomBtn" title="Aller en bas">↓</button>
+            <button class="fullscreen-toggle" id="fullscreenToggle" title="Mode lecture plein écran">
+                <i class="fas fa-expand"></i>
+            </button>
+            
+            <div class="article-modal" id="articleModal">
+                <div class="modal-content">
+                    <button class="modal-close" id="modalClose">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <div id="modalArticleContent"></div>
+                </div>
+            </div>
+            
+            <div class="fullscreen-mode" id="fullscreenMode">
+                <div class="fullscreen-header">
+                    <h2 class="fullscreen-title" id="fullscreenTitle"></h2>
+                    <button class="fullscreen-close" id="fullscreenClose">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="fullscreen-content" id="fullscreenContent"></div>
+                <div class="fullscreen-voice-controls">
+                    <button class="fullscreen-voice-btn" id="fullscreenPlayBtn" title="Lire"><i class="fas fa-play"></i></button>
+                    <button class="fullscreen-voice-btn" id="fullscreenPauseBtn" title="Pause"><i class="fas fa-pause"></i></button>
+                    <button class="fullscreen-voice-btn" id="fullscreenStopBtn" title="Arrêter"><i class="fas fa-stop"></i></button>
+                </div>
+                <div class="fullscreen-nav">
+                    <button class="fullscreen-nav-btn" id="prevArticleBtn" disabled>Précédent</button>
+                    <button class="fullscreen-nav-btn" id="nextArticleBtn">Suivant</button>
+                </div>
+            </div>
+            
+            <div class="voice-controls" id="mainVoiceControls">
+                <button class="voice-btn" id="mainPlayBtn" title="Lire l'article visible"><i class="fas fa-play"></i></button>
+                <button class="voice-btn" id="mainPlayContinuousBtn" title="Lecture continue"><i class="fas fa-forward"></i></button>
+                <button class="voice-btn" id="mainPauseBtn" title="Pause"><i class="fas fa-pause"></i></button>
+                <button class="voice-btn" id="mainStopBtn" title="Arrêter"><i class="fas fa-stop"></i></button>
+            </div>
+            
+            <div id="articlesContainer"></div>
+            
+            <div class="nav-indicator" id="navIndicator"></div>
+        </div>
+        
+        <footer>
+            <p>© 2023 - Ministère de la Justice - République de Côte d'Ivoire</p>
+        </footer>
+    </div>
+    
+    <div class="mobile-sommaire-btn" id="mobileSommaireBtn"><i class="fas fa-bars"></i></div>
+    <div class="mobile-sommaire" id="mobileSommaire">
+        <div class="mobile-sommaire-content">
+            <div class="mobile-sommaire-header">
+                <h3 class="mobile-sommaire-title">Sommaire</h3>
+                <button class="mobile-sommaire-close" id="mobileSommaireClose"><i class="fas fa-times"></i></button>
+            </div>
+            <ul class="sommaire-list" id="sommaireList"></ul>
+        </div>
+    </div>
+<script>
+    // Variables globales
+    let isDarkMode = false;
+    let currentArticleIndex = 0;
+    let isAutoReading = false;
+    let articles = [];
+    
+    // Structure des données (CONTENU RETIRÉ)
+ 
+    
+    // Structure des données (CONTENU RETIRÉ)
+ const lawData = {
+  title: "Loi relative au mariage Loi N° 2019-570 du 26 juin 2019", 
+  subtitle: "Loi N° 2019-570 du 26 juin 2019",
+  chapters: [
+    {
+      title: "CHAPITRE 1 - Dispositions générales",
+      articles: [
+        {
+          id: "article1",
+          title: "Article 1",
+          content: "<p>Le mariage est l’union d’un homme et d’une femme célébrée par devant l’officier de l’état civil.</p>"
+        }
+      ]
+    },
+    {
+      title: "CHAPITRE 2 - Des conditions à réunir pour pouvoir contracter mariage",
+      articles: []
+    },
+    {
+      title: "Section 1",
+      articles: [
+        {
+          id: "article2",
+          title: "Article 2",
+          content: "<p>L’homme et la femme avant dix-huit ans révolus ne peuvent contracter mariage.</p>"
+        },
+        {
+          id: "article3",
+          title: "Article 3",
+          content: "<p>Nul ne peut contracter un nouveau mariage avant la dissolution du précédent constatée soit par une décision devenue définitive, soit par un acte de décès. Au cas où le mariage est dissous par le divorce ou annulé, une nouvelle union ne peut être contractée avant l’accomplissement des formalités de mention en marge de l’acte de mariage et des actes de naissance des époux, du dispositif du jugement ou de l’arrêt qui prononce le divorce ou l’annulation du mariage.</p>"
+        },
+        {
+          id: "article4",
+          title: "Article 4",
+          content: "<p>Chacun des futurs époux doit consentir personnellement au mariage. Le consentement n’est pas valable s’il a été extorqué par la violence ou s’il n’a été donné que par suite d’une erreur sur l’identité physique ou civile de la personne. Le consentement n’est pas non plus valable, si celui qui l’a donné ignorait l’incapacité physique de consommer le mariage ou l’impossibilité de procréer de l’autre époux, connue par ce dernier avant le mariage.</p>"
+        },
+        {
+          id: "article5",
+          title: "Article 5",
+          content: "<p>L’homme et la femme consentent seuls à leur mariage.</p>"
+        }
+      ]
+    },
+    {
+      title: "Section 2 - Des empêchements au mariage",
+      articles: [
+        {
+          id: "article6",
+          title: "Article 6",
+          content: "<p>La femme ne peut se remarier qu’à l’expiration du délai de viduité de trois cent jours à compter de la dissolution du précédent mariage. Toutefois, le président du tribunal du lieu de son domicile ou de sa résidence peut, par ordonnance sur requête, après conclusions écrites du ministère public, abréger le délai de viduité, lorsqu’il résulte des circonstances que depuis trois cent jours, le précédent mari n’a pas cohabité avec la femme ou lorsqu’il est établi par un médecin que la femme n’est pas en état de grossesse. La décision du président du tribunal est susceptible d’appel. Ce délai prend fin en cas d’accouchement.</p>"
+        },
+        {
+          id: "article7",
+          title: "Article 7",
+          content: "<p>Est prohibé le mariage entre :</p><p>1) en ligne directe, les ascendants et descendants et les alliés dans la même ligne ;</p><p>2) en ligne collatérale, frère et sœur, oncle et nièce, neveu et tante et entre alliés au degré de beau-frère et belle-sœur, lorsque le mariage qui produisait l’alliance a été dissous par le divorce ;</p> <p>3) l’homme et la femme qui l’a nourri au sein ;</p> <p>4) l’homme et la fille de son ancienne épouse née d’une autre union ;</p> <p>5) la femme et le fils de son ancien époux né d’une autre union ;</p> <p>6) l’homme et l’ancienne épouse de ses ascendants en ligne directe et collatérale ;</p> <p>7) la femme et l’ancien époux de ses ascendantes en ligne directe et collatérale ;</p> <p>8) l’adoptant et l’adopté ;</p> <p>9) l’adopté et les enfants de l’adoptant ;</p> <p>10) l’adopté et le conjoint de l’adoptant et réciproquement entre l’adoptant et le conjoint de l’adopté ;</p> <p>11) les enfants adoptifs de la même personne. Néanmoins, le procureur de la République, saisi par toute personne intéressée, peut lever les prohibitions pour causes graves entre alliés en ligne directe et en ligne collatérale au degré de beau-frère et de belle-sœur, lorsque la personne qui a créé l’alliance est décédée.</p>"
+        }
+      ]
+    },
+    {
+      title: "CHAPITRE 3 - Des oppositions au mariage",
+      articles: [
+        {
+          id: "article8",
+          title: "Article 8",
+          content: "<p>Lorsqu’un fait, susceptible de constituer un empêchement au mariage, est porté à la connaissance de l’officier de l’état civil compétent pour procéder à la célébration, il doit surseoir à celle-ci et en aviser, dans les quarante-huit heures, le procureur de la République lequel peut, soit lui demander de passer outre, soit s’opposer au mariage. Le procureur de la République peut également former opposition au mariage lorsqu’un empêchement est porté directement à sa connaissance.</p>"
+        },
+        {
+          id: "article9",
+          title: "Article 9",
+          content: "<p>Le ministère public notifie l’opposition par voie administrative à l’officier de l’état civil qui en dresse acte. Celui-ci notifie l’opposition aux futurs époux et les renvoie à se pourvoir devant le tribunal compétent.</p>"
+        },
+        {
+          id: "article10",
+          title: "Article 10",
+          content: "<p>Mainlevée de l’opposition peut être demandée par les futurs époux qui adressent à cet effet requête au tribunal dans le ressort duquel le mariage doit être célébré. La juridiction saisie statue dans les dix jours. La cour statue dans le mois de l’appel des futurs époux ou du ministère public.</p>"
+        },
+        {
+          id: "article11",
+          title: "Article 11",
+          content: "<p>Nulle autre opposition, pour la même cause, ne peut être faite à un mariage lorsqu’il a été donné mainlevée d’une première opposition.</p>"
+        },
+        {
+          id: "article12",
+          title: "Article 12",
+          content: "<p>L’officier de l’état civil saisi de l’opposition ne peut procéder à la célébration du mariage tant que la mainlevée n’en a pas été prononcée. Lorsque la décision de mainlevée est devenue irrévocable, elle est notifiée à l’officier de l’état civil, par le procureur de la République, en la forme administrative, ou par les intéressés, par acte extrajudiciaire.</p>"
+        }
+      ]
+    },
+    {
+      title: "CHAPITRE 4 - Formalités du mariage",
+      articles: [
+        {
+          id: "article13",
+          title: "Article 13",
+          content: "<p>Le mariage est obligatoirement célébré par un officier de l’état civil.</p>"
+        },
+        {
+          id: "article14",
+          title: "Article 14",
+          content: "<p>Seul le mariage célébré par un officier de l’état civil a des effets légaux.</p>"
+        }
+      ]
+    },
+    {
+      title: "Section 1 - Des formalités préléminaires",
+      articles: [
+        {
+          id: "article15",
+          title: "Article 15",
+          content: "<p>Dix jours francs au moins avant la date fixée pour la célébration du mariage, chacun des futurs époux doit remettre à l’officier de l’état civil compétent pour y procéder :</p><p>1) un extrait de son acte de naissance ou une copie du jugement supplétif en tenant lieu datant de moins de trois mois ; </p><p>2) la copie des actes accordant des dispenses, dans les cas prévus par la loi ;</p><p>3) toutes autres pièces qui pourraient lui être réclamées et propres à établir que les conditions du mariage sont réunies.</p>"
+        },
+        {
+          id: "article16",
+          title: "Article 16",
+          content: "<p>Lorsque les futurs époux se présentent devant l’officier de l’état civil, comme il est dit à l’article précédent, pour y déposer leurs actes de naissance, celui-ci doit leur demander la présentation soit de l’acte de décès du précédent conjoint, soit l’expédition du jugement déclaratif d’absence, soit la preuve de l’accomplissement des formalités prévues à l’article 3 alinéa 2, s’ils ont déjà été mariés.</p>"
+        },
+        {
+          id: "article17",
+          title: "Article 17",
+          content: "<p>L’officier de l’état civil doit, en outre, interpeler les futurs époux d’avoir à déclarer s’ils optent pour le régime de la communauté de biens ou celui de la séparation de biens, ou s’ils ont conclu un contrat de mariage. Si les époux ont convenu des règles relatives à leur régime matrimonial par acte notarié, l’officier d’état civil reçoit l’acte. L’officier de l’état civil donne acte aux futurs époux de leur choix.</p>"
+        },
+        {
+          id: "article18",
+          title: "Article 18",
+          content: "<p>Un mois avant la célébration du mariage, l’officier de l’état civil fait une publication par voie d’affichage au siège de la circonscription de l’état civil du lieu de célébration du mariage et de celui de la résidence de chacun des futurs époux.</p>"
+        },
+        {
+          id: "article19",
+          title: "Article 19",
+          content: "<p>Avant de procéder à la célébration du mariage, l’officier de l’état civil s’assure que les conditions de fond et de forme exigées par la loi sont remplies. S’il constate qu’elles ne le sont pas, il refuse de célébrer le mariage et procède comme il est dit à l’article 8.</p>"
+        },
+      ]
+    },
+    {
+      title: "Section 2 - Célébration du mariage",
+      articles: [
+        {
+          id: "article20",
+          title: "Article 20",
+          content: "<p>Le mariage est célébré publiquement au siège de la circonscription ou du centre d’état civil du domicile ou de la résidence de l’un des futurs époux. La résidence est établie par un mois au moins d’habitation continue, à la date de la célébration. Le procureur de la République du domicile ou de la résidence de l’un des futurs époux peut toutefois, s’il y a de justes motifs, autoriser la célébration du mariage par l’officier de l’état civil dans un lieu de sa circonscription ou du centre d’état civil autre que ceux mentionnés à l’alinéa premier. L’autorisation est notifiée administrativement, par le magistrat qui l’a ordonnée, à l’officier de l’état civil chargé de procéder à la célébration, et copie en est remise aux futurs époux. Lecture de cette autorisation doit être faite au début de la célébration et mention de cette autorisation doit en être faite dans l’acte de mariage.</p>"
+        },
+        {
+          id: "article21",
+          title: "Article 21",
+          content: "<p>En cas d’empêchements graves, le procureur de la République peut requérir l’officier de l’état civil de se transporter au domicile ou à la résidence de l’un des futurs époux, situé dans le ressort territorial de la circonscription ou du centre d’état civil, pour célébrer le mariage. Lecture de cette réquisition doit être faite au début de la célébration et mention de la réquisition doit en être faite dans l’acte de mariage.</p>"
+        },
+        {
+          id: "article22",
+          title: "Article 22",
+          content: "<p>En cas de péril imminent de mort de l’un des futurs époux, dûment constaté par un certificat médical, l’officier de l’état civil, après en avoir avisé le procureur de la République, peut : </p><p>1) se transporter avant toute réquisition ou autorisation du procureur de la République, au domicile ou à la résidence de l’un des futurs époux ou en tout autre lieu, pour y célébrer le mariage ; </p><p>2) procéder à cette célébration, même dans le cas où la résidence n’est pas établie par un mois d’habitation continue. Il fait parvenir, dans les quarante-huit heures, au procureur de la République, copie de l’acte de mariage et de toutes pièces justifiant que les conditions et formalités exigées pour le mariage sont remplies.</p>"
+        },
+        {
+          id: "article23",
+          title: "Article 23",
+          content: "<p>Le jour fixé pour la célébration du mariage, l’officier de l’état civil en présence de deux témoins majeurs, parents ou non, fait lecture aux futurs époux, personnellement présents, du projet d’acte de mariage, du régime matrimonial choisi si les époux n’ont pas fait de contrat de mariage, ainsi que des articles 45, 51, 52 et 56. Il reçoit de chacun d’eux, l’un après l’autre, la déclaration qu’ils se prennent pour mari et femme. Il déclare, au nom de la loi qu’ils sont unis par le mariage et il en dresse acte sur-le-champ.</p>"
+        },
+        {
+          id: "article24",
+          title: "Article 24",
+          content: "<p>Il est délivré aux époux un livret de famille et un certificat de célébration civile établi conformément aux dispositions réglementaires en vigueur. Ces documents sont remis à celui d’entre eux désignés par les époux.</p>"
+        }
+      ]
+    },
+    {
+      title: "Section 3 - Des mariages contractés en pays étranger",
+      articles: [
+        {
+          id: "article25",
+          title: "Article 25",
+          content: "<p>Le mariage contracté en pays étranger entre ivoiriens ou entre un ivoirien et un étranger est valable s’il a été célébré dans les formes usitées dans le pays considéré, à condition que l’ivoirien n’ait point contrevenu aux dispositions de fond exigées par la loi ivoirienne.</p> <p>Il en est de même du mariage contracté en pays étranger entre ivoiriens ou entre un ivoirien et un étranger s’il a été célébré par les agents diplomatiques ou les consuls de la Côte d’Ivoire conformément à la loi ivoirienne.</p>"
+        },
+    ]
+    },
+    {
+      title: "CHAPITRE 5 - Des nullités du mariage",
+     articles:[]
+    },
+    {
+      title: "Section 1 - Nullité absolue",
+      articles: [
+        {
+          id: "article26",
+          title: "Article 26",
+          content: "<p>Doivent être annulés, les mariages célébrés :</p> <p>1) au mépris des règles fixées par les articles 1, 2, 3 alinéa 1, 4 alinéa 1 et 7 ;</p> <p>2) en violation de l’article 20.</p>"
+        },
+        {
+          id: "article27",
+          title: "Article 27",
+          content: "<p>L’action en nullité fondée sur les dispositions de l’article précédent est exercée :</p> <p>1) par les époux eux-mêmes ;</p> <p>2) par toute personne qui y a intérêt ;</p><p>3) par le ministère public. Dans tous les cas, le ministère public ne peut agir que du vivant des époux.</p>"
+        },
+        {
+          id: "article28",
+          title: "Article 28",
+          content: "<p>Le mariage atteint d’une nullité absolue ne peut se confirmer ni expressément, ni tacitement, non plus que par l’écoulement d’un laps de temps.</p>"
+        },
+        {
+          id: "article29",
+          title: "Article 29",
+          content: "<p>Nonobstant son caractère absolu, la nullité est couverte :</p> <p>1) en cas de violation de l’article 2, lorsque l’époux ou les époux ont atteint l’âge requis ;</p> <p>2) en cas de violation de l’article 20, lorsque les époux ont la possession d’état continue d’époux et qu’ils représentent un acte de célébration du mariage devant l’officier de l’état civil.</p>"
+        },
+      ]
+    },
+    {
+      title: "Section 2 - Des nullités relatives",
+      articles: [
+        {
+          id: "article30",
+          title: "Article 30",
+          content: "<p>Peuvent être annulés les mariages célébrés au mépris des règles fixées par l’article 4</p>"
+        },
+        {
+          id: "article31",
+          title: "Article 31",
+          content: "<p>L’action en nullité appartient, en cas de violation des dispositions de l’article 4 alinéa 2 et 3, à celui des époux dont le consentement a été vicié. L’action en nullité se prescrit par trente ans.</p>"
+        },
+        {
+          id: "article32",
+          title: "Article 32",
+          content: "<p>L’action en nullité fondée sur le vice du consentement cesse d’être recevable, s’il y a eu cohabitation continue pendant six mois, depuis que l’époux a acquis sa pleine liberté ou que l’erreur a été par lui découverte. L’action en nullité fondée sur le défaut de consentement est couverte lorsque l’époux a atteint dix-neuf ans révolus, sans avoir fait de réclamation.</p>"
+        }
+      ]
+    },
+    {
+      title: "Section 3 - Des effets des nullités",
+      articles: [
+        {
+          id: "article33",
+          title: "Article 33",
+          content: "<p>Lorsque les deux époux ont été mis en cause, le jugement prononçant la nullité du mariage possède l’autorité de la chose jugée à l’égard de tous.</p>"
+        },
+        {
+          id: "article34",
+          title: "Article 34",
+          content: "<p>Le dispositif de la décision prononçant la nullité, devenue irrévocable, est transcrit à la diligence du ministère public sur les registres de l’état civil du lieu où le mariage a été célébré, et mention en est faite en marge de l’acte de mariage et des actes de naissance des époux. Si le mariage a été célébré à l’étranger, le dispositif est transcrit sur les registres de l’état civil du lieu de naissance de chacun des époux et sur le Registre du Commerce et du crédit mobilier si l’un des époux est commerçant.</p>"
+        },
+        {
+          id: "article35",
+          title: "Article 35",
+          content: "<p>À l’exception des mariages célébrés en violation de l’</p>"
+        },
+        {
+          id: "article1",
+          title: "Article 1",
+          content: "<p>, le mariage nul produit ses effets, comme s’il avait été valable, jusqu’au jour où la décision prononçant la nullité est devenue irrévocable. Il est réputé dissous à compter de ce jour. En ce qui concerne les biens, la dissolution remonte, quant à ses effets entre les époux, au jour de la demande, mais n’est opposable aux tiers que du jour de la transcription prévue à l’article précédent.</p>"
+        },
+        {
+          id: "article36",
+          title: "Article 36",
+          content: "<p>La décision prononçant la nullité doit également statuer sur la bonne foi de l’un et l’autre des époux. La bonne foi est présumée.</p>"
+        },
+        {
+          id: "article37",
+          title: "Article 37",
+          content: "<p>Si les deux époux sont déclarés de mauvaise foi, le mariage est réputé n’avoir jamais existé, tant dans les rapports des époux entre eux, que dans leur rapport avec les tiers. Les enfants issus du mariage ou légitimés conservent, vis-à-vis de leurs auteurs, la qualité qui leur avait été conférée par le mariage, mais les époux ne peuvent se prévaloir de cette qualité à leur encontre.</p>"
+        },
+        {
+          id: "article38",
+          title: "Article 38",
+          content: "<p>Si un seul des époux est déclaré de mauvaise foi, le mariage nul est réputé n’avoir jamais existé à son égard. L’autre époux bénéficie des dispositions de l’article 35.</p><p>Les enfants issus du mariage ou légitimés conservent la qualité qui leur avait été conférée par le mariage, mais l’époux de mauvaise foi ne peut se prévaloir de cette qualité à leur encontre.</p>"
+        },
+      ]
+           
+    },
+    {
+      title: "CHAPITRE 6  - Preuve du mariage",
+      articles: [
+        {
+          id: "article39",
+          title: "Article 39",
+          content: "<p>Nul ne peut réclamer le titre d’époux et les effets civils du mariage, s’il ne représente un acte de célébration, sauf les exceptions prévues par la loi en cas de perte ou de destruction totale ou partielle des registres.</p>"
+        },
+        {
+          id: "article40",
+          title: "Article 40",
+          content: "<p>La possession d’état ne peut dispenser les prétendus époux qui l’invoquent de représenter l’acte de célébration du mariage.</p>"
+        },
+        {
+          id: "article41",
+          title: "Article 41",
+          content: "<p>La possession d’état d’époux s’établit par une réunion suffisante de faits qui supposent l’existence du lien matrimonial, notamment : </p><p>1) que l’homme et la femme portent le même nom ; </p><p>2) qu’ils se traitent comme mari et femme ; </p><p>3) qu’ils sont reconnus comme tels par la famille et dans la société.</p>"
+        },
+        {
+          id: "article42",
+          title: "Article 42",
+          content: "<p>Lorsqu’il y a possession d’état et que l’acte de célébration est représenté, nul ne peut se prévaloir des irrégularités de cet acte.</p>"
+        },
+        {
+          id: "article43",
+          title: "Article 43",
+          content: "<p>Nul ne peut contester la légitimité d’un enfant, dont le père ou la mère est décédé, toutes les fois que cette légitimité est prouvée par une possession d’état qui n’est point contredite par l’acte de naissance.</p>"
+        }
+      ]
+    
+    },
+    {
+      title: "CHAPITRE 7 - Des effets personnel du mariage",
+      articles: [
+        {
+          id: "article44",
+          title: "Article 44",
+          content: "<p>Le mariage crée la famille légitime.</p>"
+        },
+        {
+          id: "article45",
+          title: "Article 45",
+          content: "<p>Les époux s’obligent à la communauté de vie. Ils se doivent mutuellement respect, fidélité, secours et assistance.</p>"
+        },
+        {
+          id: "article46",
+          title: "Article 46",
+          content: "<p>Dans le cas où la cohabitation présente un danger d’ordre physique ou moral pour l’un des époux, celui-ci peut demander à être autorisé à résider séparément pour une durée déterminée, par ordonnance du président du tribunal ou d’un juge qu’il délègue à cet effet, statuant en chambre du conseil, dans la huitaine de sa saisine, suivant la procédure de référé. Cette ordonnance est signifiée par un commissaire de Justice commis d’office par le juge saisi. L’ordonnance du président du tribunal ou du juge qu’il délègue peut faire l’objet d’appel dans un délai de huit jours. Le délai entre la date de signification de l’acte d’appel et celle fixée pour l’audience est de huit jours au moins sans pouvoir excéder quinze jours. La Cour d’Appel statue dans un délai de quinze jours à compter de sa saisine.</p>"
+        },
+        {
+          id: "article47",
+          title: "Article 47",
+          content: "<p>Les époux contractent ensemble par le seul fait du mariage, obligation de nourrir, entretenir et éduquer leurs enfants.</p>"
+        },
+        {
+          id: "article48",
+          title: "Article 48",
+          content: "<p>L’enfant doit des aliments à ses père et mère ou autres ascendants qui sont dans le besoin. Les gendres et belles-filles doivent également, dans les mêmes circonstances des aliments à leurs beaux-pères et belles-mères. Cette obligation cesse lorsque celui des époux qui créait le lien et l’enfant issu de son union avec l’autre époux sont décédés. Il en est de même lorsque les époux sont divorcés. Les obligations résultant de ces dispositions sont réciproques.</p>"
+        },
+        {
+          id: "article49",
+          title: "Article 49",
+          content: "<p>Les aliments ne sont accordés que dans la proportion des besoins de celui qui en est bénéficiaire et des ressources de celui qui les doit. Lorsque celui qui fournit ou celui qui reçoit les aliments est replacé dans un état tel que l’un ne puisse plus en donner ou que l’autre n’en n’ait plus besoin, en tout ou partie, la décharge ou la réduction peut être demandée.</p>"
+        },
+        {
+          id: "article50",
+          title: "Article 50",
+          content: "<p>La juridiction compétente est celle du lieu de résidence du débiteur de l’obligation alimentaire.</p>"
+        },
+        {
+          id: "article51",
+          title: "Article 51",
+          content: "<p>La famille est gérée conjointement par les époux dans l’intérêt du ménage et des enfants. Ils assurent ensemble la direction morale et matérielle de la famille, pourvoient à l’éducation des enfants et préparent leur avenir.</p>"
+        },
+        {
+          id: "article52",
+          title: "Article 52",
+          content: "<p>Les époux contribuent aux charges du ménage à proportion de leurs facultés respectives. Chacun des époux s’acquitte de sa contribution sur les ressources dont il a l’administration ou par son activité au foyer. Si l’un des époux ne s’acquitte pas de sa contribution sur les ressources dont il a l’administration, l’autre époux peut obtenir, par ordonnance du président du tribunal du lieu de résidence, l’autorisation de procéder à la saisie des salaires ou rémunérations et de percevoir, dans la proportion des besoins du ménage, une partie du salaire, du produit du travail ou des revenus de son conjoint.</p>"
+        },
+        {
+          id: "article53",
+          title: "Article 53",
+          content: "<p>Un époux ne peut, sans le consentement de l’autre, disposer des droits par lesquels est assuré le logement de la famille ni des meubles meublants dont il est garni. L’époux qui n’a pas donné son consentement à l’acte peut en demander l’annulation. L’action en nullité lui est ouverte dans l’année à partir du jour où il a eu connaissance de l’acte, sans pouvoir jamais être intentée plus d’un an après que le régime matrimonial a été dissous.</p>"
+        },
+        {
+          id: "article54",
+          title: "Article 54",
+          content: "<p>Si l’un des époux manque gravement à son obligation de contribuer aux charges du ménage et met en péril les intérêts de la famille, le tribunal peut prescrire toutes les mesures urgentes que requiert la protection de ces intérêts. Il peut notamment interdire à cet époux de faire des actes de disposition sur ses biens meubles ou immeubles sans le consentement de l’autre. Le tribunal peut également interdire le déplacement des meubles, sauf à spécifier ceux dont il attribue l’usage personnel à l’un ou à l’autre des conjoints. La durée des mesures prévues au présent article, ne peut, prolongation comprise, dépasser deux ans. Les actes accomplis en violation des mesures prises peuvent être annulés à la demande du conjoint. L’action en nullité est ouverte à l’époux intéressé pendant deux ans à compter du jour où il a eu connaissance de l’acte.</p>"
+        },
+        {
+          id: "article55",
+          title: "Article 55",
+          content: "<p>La femme a l’usage du nom du mari. Le nom de la femme mariée s’écrit ainsi qu’il suit : « Madame suivi de ses nom et prénoms de jeune fille, épouse suivi du nom du mari ».</p>"
+        },
+        {
+          id: "article56",
+          title: "Article 56",
+          content: "<p>Le domicile de la famille est choisi d’un commun accord par les époux. En cas de désaccord, le domicile de la famille est fixé par le tribunal en tenant compte de l’intérêt de la famille.</p>"
+        },
+        {
+          id: "article57",
+          title: "Article 57",
+          content: "<p>Chacun des époux a le droit d’exercer la profession de son choix, à moins qu’il ne soit judiciairement établi que l’exercice de cette profession est contraire à l’intérêt de la famille.</p>"
+        }
+      ]
+    },
+    {
+      title: "CHAPITRE 8 - Des effets pécuniaires du mariage",
+      articles: []
+    },
+    {
+      title: "Section 1 - Des dispositions générales",
+      articles: [
+        {
+          id: "article58",
+          title: "Article 58",
+          content: "<p>Le régime matrimonial règle les effets patrimoniaux du mariage dans les rapports des époux entre eux et à l’égard des tiers. Les époux peuvent faire quant à leurs biens toutes les conventions qu’ils jugent à propos, pourvu qu’elles ne soient pas contraires aux bonnes mœurs, à l’ordre public, ou aux dispositions de la présente loi. Toutes les conventions matrimoniales seront rédigées par acte notarié avant la célébration du mariage et ne prendront effet qu’à dater de cette célébration.</p>"
+        },
+        {
+          id: "article59",
+          title: "Article 59",
+          content: "<p>Le mariage crée entre les époux soit le régime de la communauté de biens, soit celui de la séparation de biens, si les époux n’ont pas réglé les effets pécuniaires de leur mariage par convention.</p>"
+        },
+        {
+          id: "article60",
+          title: "Article 60",
+          content: "<p>Les époux ne peuvent, par convention, déroger ni aux devoirs ni aux droits qui résultent pour eux du régime matrimonial qu’ils ont choisi.</p>"
+        },
+        {
+          id: "article61",
+          title: "Article 61",
+          content: "<p>Lorsque le mariage est célébré, il ne peut être apporté de changement au régime matrimonial adopté par les époux que dans le seul intérêt de la famille.</p>"
+        },
+        {
+          id: "article62",
+          title: "Article 62",
+          content: "<p>La requête en changement de régime matrimonial peut être présentée par les deux époux ou par l’un des époux après deux années d’application du régime adopté. Elle est introduite suivant les formes de droit commun devant le tribunal du domicile ou de la résidence des époux.</p>"
+        },
+        {
+          id: "article63",
+          title: "Article 63",
+          content: "<p>L’affaire est instruite en chambre du conseil. Le jugement est rendu en audience publique.</p>"
+        },
+        {
+          id: "article64",
+          title: "Article 64",
+          content: "<p>Le dispositif de la décision prononçant le changement de régime matrimonial est publié dans un journal d’annonces légales et au Registre du Commerce et du Crédit mobilier si l’un des époux est commerçant. Il est notifié à la diligence du ministère public à l’officier de l’état civil aux fins de mention sur les actes de naissance et de mariage.</p>"
+        },
+        {
+          id: "article65",
+          title: "Article 65",
+          content: "<p>Le changement de régime matrimonial a effet entre les parties à partir du jugement. Il n’a d’effet à l’égard des tiers qu’à compter de sa publication dans le journal d’annonces légales et au Registre du Commerce et du crédit mobilier si l’un des époux est commerçant.</p>"
+        },
+      ]
+    },
+    {
+      title: "Section 2 - Dispositions communes aux régimes matrimoniaux",
+      articles: [
+        {
+          id: "article66",
+          title: "Article 66",
+          content: "<p>Chaque époux a la pleine capacité juridique. Toutefois, ses droits et pouvoirs sont limités par l’effet du régime matrimonial et les dispositions ci-après.</p>"
+        },
+        {
+          id: "article67",
+          title: "Article 67",
+          content: "<p>Chacun des époux perçoit ses gains et revenus mais ne peut en disposer librement qu’après s’être acquitté des charges du ménage.</p>"
+        },
+        {
+          id: "article68",
+          title: "Article 68",
+          content: "<p>Chacun des époux peut ouvrir sans le consentement de l’autre tout compte de dépôt ou de titres en son nom. L’époux titulaire du compte est réputé, à l’égard du dépositaire, avoir la libre administration des fonds et des titres en dépôt.</p>"
+        },
+        {
+          id: "article69",
+          title: "Article 69",
+          content: "<p>Si l’un des époux se trouve hors d’état de manifester sa volonté, l’autre peut se faire habiliter en justice à le représenter, d’une manière générale ou pour certains actes particuliers, dans l’exercice des pouvoirs résultant du régime matrimonial. Les conditions et l’étendue de cette représentation sont fixées par le tribunal. À défaut de pouvoir légal, de mandat ou d’habilitation en justice, les actes faits par un époux en représentation de l’autre, ont effet à l’égard de celui-ci suivant les règles de la gestion d’affaires.</p>"
+        },
+        {
+          id: "article70",
+          title: "Article 70",
+          content: "<p>Un époux peut être autorisé par justice à passer seul un acte pour lequel le concours ou le consentement de son conjoint est nécessaire, si celui-ci est hors d’état de manifester sa volonté ou si son refus n’est pas justifié par l’intérêt de la famille. L’acte passé dans les conditions fixées par l’autorisation de justice est opposable à l’époux dont le concours ou le consentement a fait défaut.</p>"
+        },
+        {
+          id: "article71",
+          title: "Article 71",
+          content: "<p>Chacun des époux a pouvoir pour passer seul les contrats qui ont pour objet l’entretien du ménage et l’éducation des enfants. Toute dette ainsi contractée par l’un oblige solidairement l’autre. Néanmoins, la solidarité n’a pas lieu pour des dépenses manifestement excessives eu égard au train de vie du ménage ou à l’utilité de l’opération. L’absence de solidarité n’est pas opposable aux tiers contractant de bonne foi.</p>"
+        },
+      ]
+    },
+    {
+      title: "section 3 - Régime de la communauté des biens",
+      articles: []
+    },
+    {
+      title: "sous-section 1 - Actif de la communauté",
+      articles: [
+        {
+          id: "article72",
+          title: "Article 72",
+          content: "<p>L’actif de la communauté se compose : </p><p>1) des gains et revenus des époux ; </p><p>2) des biens acquis par les époux à titre onéreux pendant le mariage, à l’exclusion des biens visés à l’article 73, </p><p>3) des biens légués ou donnés conjointement aux deux époux.</p>"
+        },
+        {
+          id: "article73",
+          title: "Article 73",
+          content: "<p>Sont propres :</p><p>1) les biens que les époux possèdent à la date de leur mariage ou qu’ils acquièrent postérieurement au mariage par succession ou donation ;</p><p>2) les biens acquis à titre onéreux pendant le mariage, lorsque cette acquisition a été faite avec des deniers propres ou provenant de l’aliénation d’un bien propre ;</p><p>3) les vêtements et linges à usage personnels de l’un des époux, les actions en réparation d’un dommage corporel ou moral, les créances et pensions incessibles et généralement tous les biens qui ont un caractère personnel et les droits exclusivement attachés à la personne ;</p>   <p>4) les biens acquis à titre d’accessoire d’un bien propre avec des deniers propres ainsi que les valeurs nouvelles et autres accroissements se rattachant à des valeurs mobilières propres ;</p> <p>5) les instruments de travail nécessaires à la profession d’un des époux à moins qu’ils soient l’accessoire d’un fonds de commerce ou d’une exploitation faisant partie de la communauté et sous réserve des dispositions de l’article 80.</p>"
+        },
+        {
+          id: "article74",
+          title: "Article 74",
+          content: "<p>Tout bien est présumé commun si l’un des époux ne prouve qu’il lui est propre.</p>"
+        },
+      ]
+    },
+    {
+      title: "sous-section 2 - Passif de la communauté",
+      articles: [
+        {
+          id: "article75",
+          title: "Article 75",
+          content: "<p>Le passif de la communauté se compose des dettes contractées par les époux pour l’entretien du ménage, l’éducation des enfants ou toutes autres dettes nées dans l’intérêt de la communauté.</p>"
+        },
+        {
+          id: "article76",
+          title: "Article 76",
+          content: "<p>Les dettes contractées par chacun des époux peuvent être poursuivies : </p><p>1) sur les biens communs et sur les biens propres tant de l’un que de l’autre si elles portent sur les besoins et les charges du ménage ; </p><p>2) sur les biens propres de l’époux qui les a contractées si elles ne portent pas sur les besoins et charges du ménage, et, en cas d’insuffisance, sur les biens communs.</p>"
+        },
+        {
+          id: "article77",
+          title: "Article 77",
+          content: "<p>Les dettes contractées par les époux agissant ensemble et de concert, qu’elles l’aient été dans l’intérêt commun ou dans l’intérêt de l’un d’eux seulement, peuvent être poursuivies sur les biens communs et sur les biens propres de chacun des époux.</p>"
+        },
+        {
+          id: "article78",
+          title: "Article 78",
+          content: "<p>Les dettes dont les époux étaient tenus au jour de la célébration de leur mariage, ou dont se trouvent grevées les successions et libéralités qui leur échoient durant le mariage, leur demeurent personnelles, tant en capitaux qu’en arrérages ou intérêts. Les créanciers de l’un ou l’autre époux ne peuvent poursuivre leur paiement que sur les biens propres et les revenus de leur débiteur.</p>"
+        },
+        {
+          id: "article79",
+          title: "Article 79",
+          content: "<p>Les dettes d’aliments autres que celles ayant trait aux besoins de la famille sont propres à l’époux débiteur. Elles ne peuvent être poursuivies que sur ses biens propres.</p>"
+        },
+        {
+          id: "article80",
+          title: "Article 80",
+          content: "<p>Une indemnité est accordée à un époux s’il établit que les biens propres de son conjoint se sont enrichis au détriment de ses biens propres ou des biens communs.</p>"
+        },
+    ]
+    },
+    {
+        title: "sous-section 3 - Administration de la communauté",
+        articles: [
+        {
+          id: "article81",
+          title: "Article 81",
+          content: "<p>Chacun des époux administre seul ses gains et revenus provenant de l’exercice de son activité professionnelle.</p>"
+        },
+        {
+          id: "article82",
+          title: "Article 82",
+          content: "<p>Les biens communs autres que les gains et revenus des époux sont administrés par l’un ou l’autre des époux. Les actes accomplis sans fraude par un conjoint sont opposables à l’autre. Toutefois, l’accord des deux époux est nécessaire pour :</p> <p>1) aliéner ou grever de droits réels un immeuble, un fonds de commerce ou une exploitation dépendant de la communauté ;</p> <p>2) aliéner des titres dépendant de la communauté inscrits au nom du mari ou de la femme ;</p> <p>3) disposer des biens communs entre vifs à titre gratuit ; <p>4) donner à bail un immeuble commercial dépendant de la communauté ou passer un bail excédant trois années sur un immeuble dépendant de la communauté ;</p> <p>5) cautionner une dette d’un tiers ;</p> <p>6) contracter un emprunt.</p> <p>Dans les cas prévus aux 1), 2), 3) et 4) de l’alinéa précédent, l’époux qui n’a pas donné son consentement à l’acte, peut en demander l’annulation à moins qu’il ne l’ait confirmé. <p>L’action en nullité est ouverte au conjoint pendant l’année qui suit le jour où il a eu connaissance de l’acte. Elle ne peut en aucun cas être exercée postérieurement à un délai d’un an après la dissolution de la communauté.</p> <p>Dans les cas prévus aux 5) et 6) de l’alinéa 2 du présent article, l’époux contractant est seul obligé et n’en supporte la charge que sur ses biens propres, s’il n’a pas obtenu le consentement de l’autre.</p>"
+        },
+        {
+          id: "article83",
+          title: "Article 83",
+          content: "<p>Chacun des époux administre ses biens propres et en perçoit les revenus.</p>"
+        },
+        {
+          id: "article84",
+          title: "Article 84",
+          content: "<p>Si l’un des époux se trouve hors d’état de manifester sa volonté, ou si sa gestion de la communauté ou de ses biens propres met en péril les intérêts de la famille, l’autre conjoint peut demander au tribunal, soit de prescrire les mesures de protection prévues par l’article 54 soit de prononcer le changement de régime matrimonial.</p>"
+        },
+        {
+          id: "article85",
+          title: "Article 85",
+          content: "<p>Si, pendant le mariage, l’un des époux confie à l’autre l’administration de ses biens propres, les règles du mandat sont applicables. Quand l’un des époux gère les biens propres de l’autre sans opposition de celui-ci, il est censé avoir reçu un mandat tacite ne couvrant que les actes d’administration.</p>"
+        },
+        {
+          id: "article86",
+          title: "Article 86",
+          content: "<p>L’époux qui, au mépris d’une opposition, s’immisce dans la gestion des biens de l’autre, est responsable de toutes les conséquences dommageables qui en résultent.</p>"
+        },
+        {
+          id: "article87",
+          title: "Article 87",
+          content: "<p>La communauté se dissout par :</p> <p>1) le décès ou le jugement définitif déclaratif d’absence ou de décès en cas de disparition de l’un des époux ;</p><p>2) le divorce ou la séparation de corps ;</p> <p>3) l’annulation du mariage ;</p> <p>4) le changement du régime de la communauté de biens en régime de la séparation de biens.</p></p>"
+        },
+        {
+          id: "article88",
+          title: "Article 88",
+          content: "<p>Le dispositif de la décision de dissolution de la communauté de biens ou de toute mesure provisoire prononcée par le juge est publié conformément à l’article 64.</p>"
+        },
+        {
+          id: "article89",
+          title: "Article 89",
+          content: "<p>La décision qui prononce la dissolution du régime de la communauté de biens remonte, quant à ses effets entre époux, au jour de la demande.</p>"
+        },
+        {
+          id: "article90",
+          title: "Article 90",
+          content: "<p>La dissolution de la communauté entraîne la liquidation des intérêts des époux et place les conjoints sous le régime de la séparation de biens.</p>"
+        },
+        {
+          id: "article91",
+          title: "Article 91",
+          content: "<p>La communauté dissoute, chacun des époux reprend en nature les biens qui lui sont propres ou ceux qui ont été acquis en remploi, en justifiant qu’il en est le propriétaire.</p>"
+        },
+        {
+          id: "article92",
+          title: "Article 92",
+          content: "<p>Il est établi au nom de chaque époux un compte des récompenses que la communauté lui doit et des récompenses qu’il doit à la communauté. Si, balance faite, le compte présente un solde en faveur de l’époux, celui-ci a le choix soit de prélever sur la masse commune le montant de ce qui lui est dû, soit de prélever des biens communs jusqu’à due concurrence. S’il présente un solde en faveur de la communauté, l’époux en rapporte le montant à la masse commune. Les récompenses dues par la communauté ou à la communauté portent intérêts de plein droit du jour du partage.</p>"
+        },
+        {
+          id: "article93",
+          title: "Article 93",
+          content: "<p>Les prélèvements se font de commun accord entre les époux ou leurs ayants droit ; en cas de litige, le tribunal statue à la requête de la partie intéressée.</p>"
+        },
+        {
+          id: "article94",
+          title: "Article 94",
+          content: "<p>En cas d’insuffisance de la communauté due à la faute de l’un des époux, l’autre peut exercer les prélèvements sur les biens propres de l’époux responsable.</p>"
+        },
+        {
+          id: "article95",
+          title: "Article 95",
+          content: "<p>Les dispositions des règles sur les successions relatives aux modalités de partage et aux droits des créanciers après le partage, sont applicables au partage des biens communs.</p>"
+        },
+        {
+          id: "article96",
+          title: "Article 96",
+          content: "<p>Si la dissolution de la communauté résulte du décès, du jugement déclaratif d’absence ou du jugement déclaratif de décès en cas de disparition de l’un des époux, le conjoint survivant a la faculté d’opter pour le maintien de l’indivision, ou de se faire attribuer à titre préférentiel sur estimation d’expert, l’entreprise professionnelle commerciale, industrielle, artisanale ou agricole dont l’exploitation était assurée par lui-même ou par son conjoint si, au jour de la dissolution de la communauté, il participait, directement ou indirectement, à cette exploitation. Si l’époux survivant opte pour l’attribution à titre préférentiel, il indemnise les héritiers à concurrence de la part dont ils auraient hérité si la communauté avait été liquidée. Le conjoint survivant peut se faire attribuer, sur estimation d’expert, l’immeuble ou la partie d’immeuble servant effectivement d’habitation aux époux ou le droit au bail des locaux leur servant effectivement d’habitation. L’estimation et l’attribution préférentielle se font à l’amiable. En cas de litige, le tribunal statue à la requête de la partie intéressée. La décision qui en résulte est exécutoire par provision.</p>"
+        },
+        {
+          id: "article97",
+          title: "Article 97",
+          content: "<p>.\nCelui des époux qui a diverti quelque effet de la communauté est privé de sa portion dans ledit effet.</p>"
+        }
+      ]
+    },
+    {
+      title: "Section 4 - Régime de la séparation de biens",
+      articles: [
+        {
+          id: "article98",
+          title: "Article 98",
+          content: "<p>Chacun des époux conserve l’administration, la jouissance et la libre disposition de ses biens propres, sous réserve d’assurer sa contribution aux charges du ménage. Chaque époux reste seul tenu des dettes nées de son chef avant ou pendant le mariage sous réserve de celles résultant des charges du ménage.</p>"
+        },
+        {
+          id: "article99",
+          title: "Article 99",
+          content: "<p>Un époux peut prouver, par tous moyens, tant à l’égard de son conjoint qu’à celui des tiers, qu’il est propriétaire exclusif d’un bien, sous réserve des dispositions spéciales en matière d’immeubles.</p>"
+        },
+        {
+          id: "article100",
+          title: "Article 100",
+          content: "<p>Les biens sur lesquels aucun des époux ne peut justifier sa propriété exclusive sont réputés leur appartenir indivisément, chacun pour moitié. Toutefois, d’après leur nature et leur destination, les biens meubles qui ont un caractère personnel et les droits exclusivement attachés à la personne, sont présumés appartenir à l’un ou à l’autre époux. La preuve contraire peut être rapportée par tous moyens.</p>"
+        },
+        {
+          id: "article101",
+          title: "Article 101",
+          content: "<p>Les époux qui optent pour le régime de la séparation de biens peuvent, par une convention homologuée par le président du tribunal compétent ou passée pardevant notaire, organiser leurs rapports patrimoniaux.</p>"
+        },
+        {
+          id: "article102",
+          title: "Article 102",
+          content: "<p>Les dispositions des articles 85 et 86 s’appliquent par analogie au régime de la séparation de biens.</p>"
+        }
+      ]
+    },
+    {
+      title: "CHAPITRE 9 - Dissolution du mariage",
+      articles: [
+        {
+          id: "article103",
+          title: "Article 103",
+          content: "<p>Le mariage se dissout par :</p> <p>1) le décès de l’un des époux ; </p><p>2) le divorce ;</p><p>3) l’absence judiciairement déclarée de l’un des époux ;</p> <p>4) le décès judiciairement déclaré en cas de disparition ;</p> <p>5) l’annulation du mariage.</p>"
+        }
+      ]
+    },
+    {
+      title: "CHAPITRE 10 - Dispositions finales",
+      articles: [
+        {
+          id: "article104",
+          title: "Article 104",
+          content: "<p>La présente loi abroge la loi n° 64-375 du 7 octobre 1964 relative au mariage modifiée par les lois n° 83-800 du 2 août 1983 et n° 2013-33 du 25 janvier 2013 et la loi n° 64-381 du 7 octobre 1964 relative aux dispositions diverses applicables aux matières régies par la loi sur le mariage et aux dispositions particulières applicables à la dot.</p>"
+        },
+        {
+          id: "article105",
+          title: "Article 105",
+          content: "<p>La présente loi sera publiée au Journal officiel de la République de Côte d’Ivoire et exécutée comme loi de l’Etat.</p>"
+        }
+      ]
+    
+    },
+        
+  ]
+}
+
+
+
+
+
+
+    // Initialisation générale
+    document.addEventListener('DOMContentLoaded', function() {
+        initArticles();
+        initScrollButtons();
+        initVoiceControls();
+        initThemeToggle();
+        initBrightnessControl();
+        initArticleClickModal();
+        initMobileSommaire();
+        initNavIndicator();
+        initFullscreenMode();
+        initSpeechEvents();
+        initAutoCloseSommaire();
+        disableSelectionAndCopyPaste();
+        initSearchFeature();
+    });
+    
+    function initArticles() {
+        const articlesContainer = document.getElementById('articlesContainer');
+        const sommaireList = document.getElementById('sommaireList');
+        
+        lawData.chapters.forEach(chapter => {
+            const section = document.createElement('div');
+            section.className = 'section';
+            const chapterTitle = document.createElement('h2');
+            chapterTitle.className = 'article-title';
+            chapterTitle.id = chapter.title.replace(/\s+/g, '-').toLowerCase();
+            chapterTitle.textContent = chapter.title;
+            section.appendChild(chapterTitle);
+            
+            chapter.articles.forEach(articleData => {
+                const article = document.createElement('div');
+                article.className = 'articleX';
+                article.id = articleData.id;
+                const title = document.createElement('h3');
+                title.textContent = articleData.title;
+                const content = document.createElement('div');
+                content.className = 'article-content';
+                content.innerHTML = articleData.content;
+                article.appendChild(title);
+                article.appendChild(content);
+                section.appendChild(article);
+                
+                const listItem = document.createElement('li');
+                listItem.className = 'sommaire-item';
+                listItem.innerHTML = `<a href="#${articleData.id}">${articleData.title}</a>`;
+                sommaireList.appendChild(listItem);
+            });
+            articlesContainer.appendChild(section);
+        });
+        articles = document.querySelectorAll('.articleX');
+    }
+    
+    function initScrollButtons() {
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        const scrollBottomBtn = document.getElementById('scrollBottomBtn');
+        window.addEventListener('scroll', function() {
+            scrollTopBtn.classList.toggle('show-buttons', window.scrollY > 300);
+            scrollBottomBtn.classList.toggle('show-buttons', (window.innerHeight + window.scrollY) < document.body.offsetHeight - 300);
+        });
+        scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        scrollBottomBtn.addEventListener('click', () => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }));
+    }
+    
+    function initVoiceControls() {
+        const playBtn = document.getElementById('mainPlayBtn');
+        const playContinuousBtn = document.getElementById('mainPlayContinuousBtn');
+        const pauseBtn = document.getElementById('mainPauseBtn');
+        const stopBtn = document.getElementById('mainStopBtn');
+
+        if (!('speechSynthesis' in window)) {
+            [playBtn, playContinuousBtn, pauseBtn, stopBtn].forEach(btn => btn && (btn.disabled = true));
+            return;
+        }
+
+        if (playBtn) {
+            playBtn.addEventListener('click', function() {
+                isAutoReading = false;
+                if (speechSynthesis.paused) {
+                    speechSynthesis.resume();
+                } else if (!speechSynthesis.speaking) {
+                    const visibleArticle = getVisibleArticle();
+                    if (visibleArticle) readArticle(visibleArticle);
+                }
+            });
+        }
+        if (playContinuousBtn) playContinuousBtn.addEventListener('click', startContinuousReading);
+        if (pauseBtn) pauseBtn.addEventListener('click', () => speechSynthesis.pause());
+        if (stopBtn) {
+            stopBtn.addEventListener('click', function() {
+                isAutoReading = false;
+                speechSynthesis.cancel();
+            });
+        }
+    }
+
+    function startContinuousReading() {
+        speechSynthesis.cancel(); 
+        isAutoReading = true; 
+        const startArticle = getVisibleArticle();
+        if (startArticle) {
+            readArticle(startArticle); 
+        } else if (articles.length > 0) {
+            currentArticleIndex = 0;
+            scrollToArticle(0);
+            readArticle(articles[0]);
+        }
+    }
+
+    function getVisibleArticle() {
+        let mostVisibleArticle = null;
+        let maxVisibility = 0;
+        articles.forEach((article, index) => {
+            const rect = article.getBoundingClientRect();
+            const visibleHeight = Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0);
+            const visibilityRatio = visibleHeight / rect.height;
+            if (visibilityRatio > maxVisibility && visibilityRatio > 0.3) {
+                maxVisibility = visibilityRatio;
+                mostVisibleArticle = article;
+                currentArticleIndex = index;
+            }
+        });
+        return mostVisibleArticle;
+    }
+
+    function readArticle(article) {
+        speechSynthesis.cancel();
+        const title = article.querySelector('h3').textContent;
+        const content = article.querySelector('.article-content').textContent;
+        const utterance = new SpeechSynthesisUtterance(`${title}. ${content}`);
+        utterance.lang = 'fr-FR';
+        updateMediaSession(article);
+
+        utterance.onend = function() {
+            if (isAutoReading && currentArticleIndex < articles.length - 1) {
+                currentArticleIndex++;
+                scrollToArticle(currentArticleIndex);
+                setTimeout(() => readArticle(articles[currentArticleIndex]), 500);
+            } else {
+                isAutoReading = false;
+            }
+        };
+        speechSynthesis.speak(utterance);
+    }
+    
+    function initSpeechEvents() {
+        const fsPlayBtn = document.getElementById('fullscreenPlayBtn');
+        const fsPauseBtn = document.getElementById('fullscreenPauseBtn');
+        const fsStopBtn = document.getElementById('fullscreenStopBtn');
+        
+        fsPlayBtn.addEventListener('click', () => {
+            if (speechSynthesis.paused) {
+                speechSynthesis.resume();
+            } else if (!speechSynthesis.speaking) {
+                const text = document.getElementById('fullscreenContent').textContent;
+                speechSynthesis.speak(new SpeechSynthesisUtterance(text));
+            }
+        });
+        fsPauseBtn.addEventListener('click', () => speechSynthesis.pause());
+        fsStopBtn.addEventListener('click', () => speechSynthesis.cancel());
+    }
+    
+    function initThemeToggle() {
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            isDarkMode = !isDarkMode;
+            document.body.classList.toggle('dark-mode', isDarkMode);
+            themeToggle.querySelector('i').className = `fas ${isDarkMode ? 'fa-sun' : 'fa-moon'}`;
+        });
+    }
+    
+    function initBrightnessControl() {
+        const brightnessBtn = document.getElementById('brightnessBtn');
+        const brightnessControl = document.getElementById('brightnessControl');
+        brightnessBtn.addEventListener('click', () => brightnessControl.classList.toggle('active'));
+        document.getElementById('brightnessSlider').addEventListener('input', function() {
+            document.body.style.filter = `brightness(${this.value}%)`;
+        });
+    }
+    
+    function initArticleClickModal() {
+        const modal = document.getElementById('articleModal');
+        articles.forEach(article => {
+            article.addEventListener('click', function() {
+                document.getElementById('modalArticleContent').innerHTML = `<h3>${this.querySelector('h3').textContent}</h3><div>${this.querySelector('.article-content').innerHTML}</div>`;
+                modal.classList.add('active');
+            });
+        });
+        document.getElementById('modalClose').addEventListener('click', () => modal.classList.remove('active'));
+    }
+    
+    function initMobileSommaire() {
+        const mobileSommaire = document.getElementById('mobileSommaire');
+        document.getElementById('mobileSommaireBtn').addEventListener('click', () => mobileSommaire.classList.add('active'));
+        document.getElementById('mobileSommaireClose').addEventListener('click', () => mobileSommaire.classList.remove('active'));
+    }
+
+    function initAutoCloseSommaire() {
+        const mobileSommaire = document.getElementById('mobileSommaire');
+        document.querySelectorAll('.sommaire-item a').forEach(link => {
+            link.addEventListener('click', () => setTimeout(() => mobileSommaire.classList.remove('active'), 300));
+        });
+    }
+    
+    function initNavIndicator() {
+        const navIndicator = document.getElementById('navIndicator');
+        articles.forEach((_, i) => {
+            const dot = document.createElement('div');
+            dot.className = 'nav-dot';
+            dot.addEventListener('click', () => scrollToArticle(i));
+            navIndicator.appendChild(dot);
+        });
+        window.addEventListener('scroll', () => {
+            if (isAutoReading) return;
+            const visibleArticle = getVisibleArticle();
+            if (visibleArticle) updateNavIndicator(Array.from(articles).indexOf(visibleArticle));
+        });
+    }
+    
+    function updateNavIndicator(index) {
+        document.querySelectorAll('.nav-dot').forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
+        });
+    }
+
+    function scrollToArticle(index) {
+        if (articles[index]) {
+            articles[index].scrollIntoView({ behavior: 'smooth', block: 'center' });
+            updateNavIndicator(index);
+        }
+    }
+    
+    function initFullscreenMode() {
+        const fullscreenMode = document.getElementById('fullscreenMode');
+        const prevBtn = document.getElementById('prevArticleBtn');
+        const nextBtn = document.getElementById('nextArticleBtn');
+
+        function loadArticleIntoFullscreen() {
+            const article = articles[currentArticleIndex];
+            document.getElementById('fullscreenTitle').textContent = article.querySelector('h3').textContent;
+            document.getElementById('fullscreenContent').innerHTML = article.querySelector('.article-content').innerHTML;
+            prevBtn.disabled = currentArticleIndex === 0;
+            nextBtn.disabled = currentArticleIndex === articles.length - 1;
+            speechSynthesis.cancel();
+        }
+        
+        document.getElementById('fullscreenToggle').addEventListener('click', () => {
+            getVisibleArticle();
+            loadArticleIntoFullscreen();
+            fullscreenMode.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        document.getElementById('fullscreenClose').addEventListener('click', () => {
+            fullscreenMode.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+        
+        prevBtn.addEventListener('click', () => { if(currentArticleIndex > 0) { currentArticleIndex--; loadArticleIntoFullscreen(); } });
+        nextBtn.addEventListener('click', () => { if(currentArticleIndex < articles.length - 1) { currentArticleIndex++; loadArticleIntoFullscreen(); } });
+    }
+
+    function disableSelectionAndCopyPaste() {
+        document.body.style.userSelect = 'none';
+        ['contextmenu', 'copy', 'paste', 'selectstart'].forEach(event => {
+            window.addEventListener(event, e => e.preventDefault());
+        });
+    }
+    
+    // --- Fonctionnalité de lecture en arrière-plan (Media Session API) ---
+    function updateMediaSession(article) {
+        if (!('mediaSession' in navigator)) return;
+        const title = article.querySelector('h3').textContent;
+        const chapter = article.closest('.section').querySelector('h2').textContent;
+        navigator.mediaSession.metadata = new MediaMetadata({
+            title: title, artist: chapter, album: 'Loi relative à la filiation',
+            artwork: [{ src: 'https://img.icons8.com/ios-filled/128/000000/law.png', sizes: '128x128', type: 'image/png' }]
+        });
+        navigator.mediaSession.setActionHandler('play', () => { isAutoReading = true; speechSynthesis.resume(); });
+        navigator.mediaSession.setActionHandler('pause', () => speechSynthesis.pause());
+        navigator.mediaSession.setActionHandler('nexttrack', playNextArticle);
+        navigator.mediaSession.setActionHandler('previoustrack', playPreviousArticle);
+    }
+    function playNextArticle() {
+        if (currentArticleIndex < articles.length - 1) {
+            currentArticleIndex++; isAutoReading = true;
+            scrollToArticle(currentArticleIndex); readArticle(articles[currentArticleIndex]);
+        }
+    }
+    function playPreviousArticle() {
+        if (currentArticleIndex > 0) {
+            currentArticleIndex--; isAutoReading = true;
+            scrollToArticle(currentArticleIndex); readArticle(articles[currentArticleIndex]);
+        }
+    }
+
+    // --- Fonctionnalité de recherche (MODIFIÉE) ---
+    function initSearchFeature() {
+        const searchBtn = document.createElement('button');
+        searchBtn.className = 'control-btn';
+        searchBtn.id = 'searchBtn';
+        searchBtn.title = 'Rechercher';
+        searchBtn.innerHTML = '<i class="fas fa-search"></i>';
+        document.querySelector('.control-buttons').appendChild(searchBtn);
+        
+        const searchInterface = document.createElement('div');
+        searchInterface.id = 'searchInterface';
+        searchInterface.style.cssText = `
+            position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+            width: calc(100% - 40px); max-width: 550px; background: var(--article-bg);
+            padding: 10px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 1000; display: none; align-items: center; gap: 5px; transition: var(--transition);
+        `;
+        searchInterface.innerHTML = `
+            <input type="text" id="searchInput" placeholder="Rechercher..." style="flex-grow: 1; padding: 8px; border: 1px solid var(--secondary-color); border-radius: 5px;">
+            <button id="searchPrevBtn" class="control-btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-up"></i></button>
+            <button id="searchNextBtn" class="control-btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-down"></i></button>
+            <span id="searchResultsCount" style="flex-shrink: 0; padding: 0 5px; min-width: 40px; text-align: center;"></span>
+            <button id="closeSearchBtn" class="control-btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-times"></i></button>
+        `;
+        document.body.appendChild(searchInterface);
+
+        let searchResults = [];
+        let currentSearchIndex = -1;
+        let originalContents = new Map();
+
+        function performSearch() {
+            const searchTerm = document.getElementById('searchInput').value.trim();
+            if (!originalContents.size) {
+                document.querySelectorAll('.article-content, h3').forEach(el => originalContents.set(el, el.innerHTML));
+            }
+            originalContents.forEach((content, el) => el.innerHTML = content);
+            searchResults = [];
+            currentSearchIndex = -1;
+            if (!searchTerm) { updateSearchUI(); return; }
+
+            const regex = new RegExp(searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+            originalContents.forEach((content, element) => {
+                element.innerHTML = content.replace(regex, match => `<mark>${match}</mark>`);
+            });
+            searchResults = Array.from(document.querySelectorAll('mark'));
+            if (searchResults.length > 0) navigateResults(true, false);
+            updateSearchUI();
+        }
+
+        function navigateResults(isNext, shouldWrap = true) {
+            if (!searchResults.length) return;
+            searchResults.forEach(mark => mark.style.backgroundColor = '');
+            if (shouldWrap) {
+                currentSearchIndex = isNext ? (currentSearchIndex + 1) % searchResults.length : (currentSearchIndex - 1 + searchResults.length) % searchResults.length;
+            } else {
+                currentSearchIndex = 0;
+            }
+            const currentMark = searchResults[currentSearchIndex];
+            currentMark.style.backgroundColor = 'var(--gold-color)';
+            currentMark.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            updateSearchUI();
+        }
+
+        function updateSearchUI() {
+            document.getElementById('searchResultsCount').textContent = searchResults.length > 0 ? `${currentSearchIndex + 1}/${searchResults.length}` : '0/0';
+        }
+        
+        function resetSearch() {
+            originalContents.forEach((content, el) => el.innerHTML = content);
+            originalContents.clear();
+            document.getElementById('searchInput').value = '';
+            searchResults = []; currentSearchIndex = -1;
+            updateSearchUI();
+        }
+
+        searchBtn.addEventListener('click', () => {
+            const isVisible = searchInterface.style.display === 'flex';
+            searchInterface.style.display = isVisible ? 'none' : 'flex';
+            if (isVisible) resetSearch(); else document.getElementById('searchInput').focus();
+        });
+        document.getElementById('searchInput').addEventListener('input', performSearch);
+        document.getElementById('searchNextBtn').addEventListener('click', () => navigateResults(true));
+        document.getElementById('searchPrevBtn').addEventListener('click', () => navigateResults(false));
+        document.getElementById('closeSearchBtn').addEventListener('click', () => {
+            searchInterface.style.display = 'none';
+            resetSearch();
+        });
+    }
+</script>
+  <script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js"));
+  }
+</script>
+  <!-- PWA Install Button -->
+<button id="pwa-install-btn" aria-label="Installer l'application" hidden>Installer</button>
+<style>
+  #pwa-install-btn{
+    position:fixed; right:16px; bottom:16px; z-index:9999;
+    padding:10px 14px; border:none; border-radius:999px;
+    background:#22c55e; color:white; font:600 14px system-ui,Segoe UI,Roboto,Arial,sans-serif;
+    box-shadow:0 8px 20px rgba(34,197,94,.35);
+  }
+  #pwa-install-btn[hidden]{ display:none; }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    #pwa-install-btn{ bottom: calc(16px + env(safe-area-inset-bottom)); }
+  }
+</style>
+<script>
+  (function(){
+    let deferredPrompt;
+    const btnId = "pwa-install-btn";
+    function ensureBtn(){
+      let b = document.getElementById(btnId);
+      if(!b){
+        b = document.createElement("button");
+        b.id = btnId;
+        b.textContent = "Installer";
+        document.body.appendChild(b);
+      }
+      return b;
+    }
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      const btn = ensureBtn();
+      btn.hidden = false;
+      btn.onclick = async () => {
+        btn.hidden = true;
+        deferredPrompt.prompt();
+        await deferredPrompt.userChoice;
+        deferredPrompt = null;
+      };
+    });
+    if (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) {
+      const btn = document.getElementById(btnId);
+      if(btn) btn.hidden = true;
+    }
+  })();
+</script>
+  <!-- Auth UI minimal -->
+<style>
+  .auth-box{position:fixed; top:12px; right:12px; z-index:9998; background:#ffffff; color:#111827; border-radius:12px; padding:10px 12px; box-shadow:0 10px 24px rgba(0,0,0,.12); font:500 14px system-ui,Segoe UI,Roboto,Arial}
+  .auth-box h4{margin:0 0 6px; font-size:14px}
+  .auth-box form{display:flex; gap:6px; flex-wrap:wrap; align-items:center}
+  .auth-box input{padding:6px 8px; border:1px solid #e5e7eb; border-radius:8px}
+  .auth-box button{background:#22c55e; color:#fff; border:none; padding:6px 10px; border-radius:8px; cursor:pointer}
+  .auth-box .row{display:flex; gap:6px; flex-wrap:wrap}
+  .views-badge{position:fixed; left:12px; bottom:12px; z-index:9998; background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px; font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)}
+</style><!-- Admin link (visible only when logged-in) -->
+<style>
+  .admin-link{
+    position:fixed; right:16px; bottom:88px; z-index:9998;
+    display:none; align-items:center; gap:8px;
+    padding:10px 14px; border-radius:999px; text-decoration:none;
+    background:#111827; color:#fff; font:600 14px system-ui,Segoe UI,Roboto,Arial;
+    box-shadow:0 8px 20px rgba(0,0,0,.3);
+    border:1px solid rgba(255,255,255,.1);
+  }
+  body.logged-in .admin-link{ display:inline-flex; }
+  .admin-link:hover{ filter:brightness(1.1); }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    .admin-link{ bottom: calc(88px + env(safe-area-inset-bottom)); }
+  }
+</style>
+<a href="admin.html" class="admin-link" title="Tableau de bord">Admin</a>
+  <script type="module" src="assets/firebase-app.js"></script>
+  <script>window.autoCountAndBind && window.autoCountAndBind();</script>
+  
+<!-- Floating Auth Button + Modal -->
+<style>
+  #auth-fab{
+    position:fixed; right:16px; bottom:68px; z-index:9998;
+    width:48px; height:48px; border-radius:999px; border:none; cursor:pointer;
+    background:#111827; color:#fff; display:grid; place-items:center;
+    box-shadow:0 8px 20px rgba(0,0,0,.35); border:1px solid rgba(255,255,255,.1);
+  }
+  body.logged-in #auth-fab::after{ content:"✓"; }
+  #auth-fab::after{ content:"👤"; font-size:20px; }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    #auth-fab{ bottom: calc(68px + env(safe-area-inset-bottom)); }
+  }
+  .views-badge{
+    position:fixed; left:12px; bottom:12px; z-index:9998; 
+    background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px;
+    font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)
+  }
+  dialog#auth-modal{
+    border:none; border-radius:16px; padding:0; width:min(90vw,420px);
+    box-shadow:0 24px 72px rgba(0,0,0,.35); overflow:hidden;
+  }
+  dialog::backdrop{ background:rgba(0,0,0,.4); }
+  .auth-modal-head{background:#0f172a; color:#fff; padding:12px 16px; display:flex; justify-content:space-between; align-items:center}
+  .auth-modal-body{padding:16px; background:#111827; color:#e5e7eb}
+  .auth-modal-body label{display:block; font-size:13px; margin-top:8px; opacity:.9}
+  .auth-modal-body input{width:100%; padding:10px 12px; border-radius:10px; border:1px solid #1f2937; background:#0b1021; color:#e5e7eb}
+  .auth-actions{display:flex; gap:8px; margin-top:14px}
+  .btn{border:none; border-radius:10px; padding:10px 12px; cursor:pointer; font-weight:600}
+  .btn-primary{background:#22c55e; color:white}
+  .btn-ghost{background:transparent; color:#e5e7eb; border:1px solid #374151}
+  .muted{opacity:.8}
+</style>
+
+<button id="auth-fab" title="Connexion / Compte"></button>
+<div class="views-badge">Vues : <span id="viewCounter">0</span></div>
+
+<dialog id="auth-modal">
+  <div class="auth-modal-head">
+    <strong>Connexion</strong>
+    <button class="btn btn-ghost" id="auth-close" aria-label="Fermer">✕</button>
+  </div>
+  <div class="auth-modal-body">
+    <p class="muted">Connecte-toi pour accéder à l’admin et une meilleure expérience.</p>
+    <label>Email</label>
+    <input type="email" id="auth-email" placeholder="email@exemple.com" required>
+    <label>Mot de passe</label>
+    <input type="password" id="auth-pass" placeholder="••••••••" required>
+    <div class="auth-actions">
+      <button class="btn btn-primary" id="btn-login">Connexion</button>
+      <button class="btn btn-ghost" id="btn-register">Créer un compte</button>
+      <button class="btn btn-ghost" id="btn-logout">Déconnexion</button>
+    </div>
+    <div id="auth-msg" class="muted" style="margin-top:8px;"></div>
+  </div>
+</dialog>
+
+<script type="module">
+  import { authRegister, authLogin, authLogout } from "./assets/firebase-app.js";
+
+  const fab = document.getElementById("auth-fab");
+  const modal = document.getElementById("auth-modal");
+  const closeBtn = document.getElementById("auth-close");
+  const email = document.getElementById("auth-email");
+  const pass = document.getElementById("auth-pass");
+  const msg  = document.getElementById("auth-msg");
+  const btnLogin = document.getElementById("btn-login");
+  const btnRegister = document.getElementById("btn-register");
+  const btnLogout = document.getElementById("btn-logout");
+
+  function openModal(){ try{ modal.showModal(); }catch{ modal.setAttribute("open",""); } }
+  function closeModal(){ modal.close?.(); modal.removeAttribute("open"); }
+
+  fab?.addEventListener("click", openModal);
+  closeBtn?.addEventListener("click", closeModal);
+
+  async function handle(run){
+    msg.textContent = "";
+    try{
+      await run(email.value.trim(), pass.value);
+      msg.textContent = "✅ Opération réussie.";
+      setTimeout(()=>{ closeModal(); }, 500);
+    }catch(e){
+      console.error(e);
+      msg.textContent = "❌ " + (e?.message || "Erreur");
+    }
+  }
+
+  btnLogin?.addEventListener("click", () => handle(authLogin));
+  btnRegister?.addEventListener("click", () => handle(authRegister));
+  btnLogout?.addEventListener("click", async () => {
+    msg.textContent = "";
+    try{ await authLogout(); msg.textContent = "✅ Déconnecté."; }catch(e){ msg.textContent = "❌ " + (e?.message||"Erreur"); }
+  });
+</script>
+
+
+<!-- Per-card view counters -->
+<style>
+  .card-views-badge{
+    position:absolute; top:8px; right:8px;
+    background:rgba(17,24,39,.9); color:#fff;
+    padding:4px 8px; border-radius:999px; font:600 12px system-ui,Segoe UI,Roboto,Arial;
+    box-shadow:0 6px 14px rgba(0,0,0,.25);
+    pointer-events:none;
+  }
+  .card-views-wrap{ position:relative; }
+</style>
+<script type="module">
+  import { getViewCount } from "./assets/firebase-app.js";
+  function basename(href){
+    try{ const u = new URL(href, location.href);
+         const file = u.pathname.split('/').pop() || 'index.html';
+         return file.replace(/\.html$/i,''); }
+    catch{ return (href.split('/').pop()||'index.html').replace(/\.html$/i,''); }
+  }
+  async function attachCounterTo(el, docId){
+    let container = el.closest('.card, .item, .panel, .box, .article, .doc, .tile');
+    if(!container){ container = el.parentElement; }
+    if(container && !container.classList.contains('card-views-wrap')){
+      container.classList.add('card-views-wrap');
+    }
+    const host = container || el;
+    if(host.querySelector('.card-views-badge[data-doc="'+docId+'"]')) return;
+    const badge = document.createElement('span');
+    badge.className = 'card-views-badge';
+    badge.dataset.doc = docId;
+    badge.textContent = 'Vues: …';
+    host.appendChild(badge);
+    try{ const n = await getViewCount(docId);
+         badge.textContent = 'Vues: ' + n; }
+    catch{ badge.textContent = 'Vues: —'; }
+  }
+  async function initCardCounters(){
+    const links = Array.from(document.querySelectorAll('[data-doc-id], a[href$=".html"]'))
+      .filter(a => {
+        const id = a.getAttribute('data-doc-id') || basename(a.getAttribute('href')||'');
+        return id && !['index','admin','offline'].includes(id.toLowerCase());
+      });
+    const handled = new Set();
+    for(const a of links){
+      const id = a.getAttribute('data-doc-id') || basename(a.getAttribute('href')||'');
+      if(!id || handled.has(id)) continue;
+      handled.add(id);
+      attachCounterTo(a, id);
+    }
+  }
+  initCardCounters();
+  const obs = new MutationObserver(()=>initCardCounters());
+  obs.observe(document.body, { childList:true, subtree:true });
+</script>
+
+</body>
+</html>

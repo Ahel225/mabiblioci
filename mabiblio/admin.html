@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Admin — Stats documents</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#22c55e">
+  <style>
+    body{font-family:system-ui,Segoe UI,Roboto,Arial;margin:0;background:#0b1021;color:#e5e7eb}
+    header{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:#0f172a;position:sticky;top:0}
+    h1{font-size:18px;margin:0}
+    .container{padding:16px;max-width:1100px;margin:0 auto}
+    table{width:100%;border-collapse:collapse;background:#111827;border-radius:12px;overflow:hidden}
+    th,td{padding:10px 12px;border-bottom:1px solid #1f2937}
+    th{background:#0f172a;text-align:left}
+    tr:hover{background:#0f172a}
+    .btn{background:#22c55e;color:#fff;border:none;padding:8px 12px;border-radius:8px;cursor:pointer}
+    .muted{opacity:.8}
+  </style>
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<!-- HIDE AUTH/VIEWS WIDGETS OUTSIDE HOME (safe) -->
+<style>
+  #auth-fab, .views-badge, #auth-modal, .card-views-badge { display: none !important; }
+</style>
+
+</head>
+<body>
+  <header>
+    <h1>Tableau de bord — Vues des documents</h1>
+    <div>
+      <span id="whoami" class="muted">Anonyme</span>
+      <button class="btn" onclick="authLogout()">Déconnexion</button>
+    </div>
+  </header>
+  <div class="container">
+    <p class="muted">Seuls les utilisateurs connectés peuvent voir cette page.</p>
+    <table id="stats">
+      <thead>
+        <tr><th>Document</th><th>Vues</th><th>Dernier accès</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <script type="module">
+    import { db, auth, authLogout, getViewCount } from "./assets/firebase-app.js";
+    import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+    import { collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+    onAuthStateChanged(auth, (user) => {
+      if (!user) location.href = "./index.html";
+    });
+
+    async function loadStats(){
+      const tbody = document.querySelector("#stats tbody");
+      tbody.innerHTML = "<tr><td class='muted'>Chargement…</td><td></td><td></td></tr>";
+      const docsRef = collection(db, "documents");
+      const snap = await getDocs(docsRef);
+      const rows = [];
+      for (const d of snap.docs){
+        const id = d.id;
+        const data = d.data();
+        const title = data.title || id;
+        const updatedAt = data.updatedAt?.toDate?.() || null;
+        const views = await getViewCount(id);
+        rows.push({ id, title, views, updatedAt });
+      }
+      rows.sort((a,b)=> b.views - a.views);
+      tbody.innerHTML = rows.map(r => `
+        <tr>
+          <td><a href="./${r.id}.html" target="_blank">${r.title}</a></td>
+          <td>${r.views}</td>
+          <td>${r.updatedAt ? r.updatedAt.toLocaleString() : "-"}</td>
+        </tr>
+      `).join("") || "<tr><td colspan='3' class='muted'>Aucun document encore connu.</td></tr>";
+    }
+    loadStats();
+    window.authLogout = authLogout;
+  </script>
+  <script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js"));
+  }
+</script>
+  <!-- PWA Install Button -->
+<button id="pwa-install-btn" aria-label="Installer l'application" hidden>Installer</button>
+<style>
+  #pwa-install-btn{
+    position:fixed; right:16px; bottom:16px; z-index:9999;
+    padding:10px 14px; border:none; border-radius:999px;
+    background:#22c55e; color:white; font:600 14px system-ui,Segoe UI,Roboto,Arial,sans-serif;
+    box-shadow:0 8px 20px rgba(34,197,94,.35);
+  }
+  #pwa-install-btn[hidden]{ display:none; }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    #pwa-install-btn{ bottom: calc(16px + env(safe-area-inset-bottom)); }
+  }
+</style>
+<script>
+  (function(){
+    let deferredPrompt;
+    const btnId = "pwa-install-btn";
+    function ensureBtn(){
+      let b = document.getElementById(btnId);
+      if(!b){
+        b = document.createElement("button");
+        b.id = btnId;
+        b.textContent = "Installer";
+        document.body.appendChild(b);
+      }
+      return b;
+    }
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      const btn = ensureBtn();
+      btn.hidden = false;
+      btn.onclick = async () => {
+        btn.hidden = true;
+        deferredPrompt.prompt();
+        await deferredPrompt.userChoice;
+        deferredPrompt = null;
+      };
+    });
+    if (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) {
+      const btn = document.getElementById(btnId);
+      if(btn) btn.hidden = true;
+    }
+  })();
+</script>
+  <!-- Auth UI minimal -->
+<style>
+  .auth-box{position:fixed; top:12px; right:12px; z-index:9998; background:#ffffff; color:#111827; border-radius:12px; padding:10px 12px; box-shadow:0 10px 24px rgba(0,0,0,.12); font:500 14px system-ui,Segoe UI,Roboto,Arial}
+  .auth-box h4{margin:0 0 6px; font-size:14px}
+  .auth-box form{display:flex; gap:6px; flex-wrap:wrap; align-items:center}
+  .auth-box input{padding:6px 8px; border:1px solid #e5e7eb; border-radius:8px}
+  .auth-box button{background:#22c55e; color:#fff; border:none; padding:6px 10px; border-radius:8px; cursor:pointer}
+  .auth-box .row{display:flex; gap:6px; flex-wrap:wrap}
+  .views-badge{position:fixed; left:12px; bottom:12px; z-index:9998; background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px; font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)}
+</style>
+<div class="auth-box">
+  <h4>Utilisateur : <span id="whoami">Anonyme</span></h4>
+  <form onsubmit="event.preventDefault(); authLogin(this.email.value, this.password.value)">
+    <div class="row">
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="password" name="password" placeholder="Mot de passe" required>
+      <button type="submit">Connexion</button>
+      <button type="button" onclick="authRegister(this.form.email.value, this.form.password.value)">Créer</button>
+      <button type="button" onclick="authLogout()">Déconnexion</button>
+    </div>
+  </form>
+</div>
+<div class="views-badge">Vues : <span id="viewCounter">0</span></div>
+  <script type="module" src="assets/firebase-app.js"></script>
+  <script>window.autoCountAndBind && window.autoCountAndBind();</script>
+</body>
+</html>

@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Loi relative à la profession d'architecte — Lecteur</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f8fb; --paper:#ffffff; --ink:#1a2433;
+  --primary:#2f4858; --primary-700:#1f2e39; --accent:#ffb100;
+  --muted:#e6ecf2; --shadow:0 12px 28px rgba(0,0,0,.08); --radius:18px; --transition:.25s ease;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.6}
+header{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(255,255,255,.88));backdrop-filter:saturate(1.1) blur(8px);border-bottom:1px solid #e9eff5}
+.container{max-width:1120px;margin:0 auto;padding:14px 16px;display:flex;align-items:center;gap:12px}
+.logo{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:radial-gradient(circle at 30% 30%, var(--accent), #ffe199);color:#253646;box-shadow:var(--shadow);font-size:18px}
+h1{margin:0;font-family:'Playfair Display',serif;font-size:20px;color:var(--primary-700)}
+.sub{color:#526173;font-size:12px;margin-top:2px}
+.control-buttons{margin-left:auto;display:flex;gap:8px;align-items:center}
+.btn{min-width:38px;height:38px;border-radius:12px;border:1px solid #d4dee9;background:#fff;color:var(--primary-700);display:grid;place-items:center;cursor:pointer;box-shadow:var(--shadow);transition:var(--transition)}
+.btn:hover{transform:translateY(-1px)}
+.wrapper{max-width:1120px;margin:16px auto;padding:0 12px}
+.group{background:var(--paper);border:1px solid #e2eaf1;border-radius:var(--radius);box-shadow:var(--shadow);margin:14px 0;overflow:hidden}
+.group>h2{margin:0;padding:14px 16px;background:linear-gradient(180deg,#ffffff,#f4f8fb);border-bottom:1px solid #e2eaf1;color:var(--primary);font-size:18px;font-family:'Playfair Display',serif}
+.article{margin:10px 10px 14px 10px;padding:12px 14px;border-left:6px solid var(--primary);background:#fff;border-radius:14px;box-shadow:0 1px 0 rgba(0,0,0,.03)}
+.article-header{display:flex; align-items:center; gap:8px; margin:0 0 6px 0;}
+.article-header h3{margin:0; color:var(--primary-700);}
+.article .open-fs{ order:2; margin-left:auto; width:34px; height:34px; border:1px solid #d6e2ef; background:#fff; border-radius:10px; cursor:pointer; }
+.article-content p{margin:.4rem 0}.article-content ul,.article-content ol{margin:.5rem 0 .8rem 1.25rem}
+.article-content ol>li, .article-content ul>li{ padding:8px 0; line-height:1.7; border-bottom:1px solid #e9eff5; }
+.article-content ol>li:last-child, .article-content ul>li:last-child{ border-bottom:0; }
+.article-content li > ol > li, .article-content li > ul > li{ padding:6px 0; border-bottom:1px dashed #e9eff5; }
+.article-content li > ol > li:last-child, .article-content li > ul > li:last-child{ border-bottom:0; }
+.reading{ outline:2px solid var(--accent); outline-offset:2px; border-left-color:var(--accent) !important }
+mark{background:rgba(255,177,0,.35)}
+/* Floating TOC */
+#tocFloatBtn{position:fixed; right:14px; bottom:120px; width:46px; height:46px; border-radius:50%; border:none; background:var(--primary); color:#fff; display:grid; place-items:center; box-shadow:0 10px 24px rgba(0,0,0,.25); z-index:2000;}
+#tocPanel{position:fixed; top:0; right:0; height:100%; width:86%; max-width:420px; background:#fff; border-left:1px solid #e2eaf1; box-shadow:-16px 0 35px rgba(0,0,0,.2); transform:translateX(100%); transition:transform .25s ease; z-index:1600; overflow:auto;}
+#tocOverlay{position:fixed; inset:0; background:rgba(0,0,0,.28); backdrop-filter:blur(2px); display:none; z-index:1590}
+#tocPanel.open{ transform:none } #tocOverlay.show{ display:block }
+#tocPanel header{position:sticky; top:0; background:#fff; padding:12px 14px; border-bottom:1px solid #e2eaf1}
+#tocPanel h3{margin:0; color:var(--primary)} #tocPanel .toc-list{padding:12px 14px}
+#tocPanel .toc-list a{display:block; padding:6px 0; color:#1f2e39; text-decoration:none}
+#tocPanel .toc-sub{margin-left:10px; border-left:2px solid #eef3f8; padding-left:8px}
+/* Voice bar */
+#voiceBar{position:fixed; left:50%; transform:translateX(-50%); bottom:14px; background:var(--primary-700); color:#fff; z-index:1550; border-radius:22px; padding:8px 12px; display:flex; gap:10px; align-items:center; box-shadow:0 12px 28px rgba(0,0,0,.3)}
+#voiceBar button{width:34px; height:34px; border-radius:10px; border:1px solid #cfd9e6; background:transparent; color:#eaf0f6; display:grid; place-items:center; cursor:pointer}
+#voiceBar .now{font-size:12px; max-width:52vw; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:#f1f5f9}
+/* Fullscreen */
+#fsOverlay{ position:fixed; inset:0; background:#fff; z-index:1700; display:none; }
+#fsOverlay.show{ display:block } #fsHeader{ position:sticky; top:0; background:#fff; padding:10px 14px; border-bottom:1px solid #e2eaf1; display:flex; align-items:center; gap:10px }
+#fsHeader .ttl{ font-weight:700; color:#1f2e39; flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
+#fsHeader button{ width:36px; height:36px; border-radius:10px; border:1px solid #d6e2ef; background:#fff; }
+#fsBody{ padding:14px; height:calc(100% - 58px); overflow:auto } #fsBody .article-content{ font-size:1.04rem }
+#fsNavPrev,#fsNavNext{ position:fixed; top:50%; transform:translateY(-50%); width:42px; height:42px; border-radius:50%; border:none; background:var(--primary); color:#fff; display:grid; place-items:center; z-index:1710; opacity:.9 }
+#fsNavPrev{ left:10px } #fsNavNext{ right:10px }
+footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#5b6c7f;font-size:12px}
+
+/* ===== Anti-sélection / anti-copie ===== */
+.no-select, .no-select *:not(input):not(textarea):not(.selectable){
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  -webkit-touch-callout: none !important;
+}
+</style>
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#22c55e">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<!-- HIDE AUTH/VIEWS WIDGETS OUTSIDE HOME (safe) -->
+<style>
+  #auth-fab, .views-badge, #auth-modal, .card-views-badge { display: none !important; }
+</style>
+
+</head>
+<body>
+<header>
+  <div class="container">
+    <div class="logo"><i class="fa-solid fa-drafting-compass"></i></div>
+    <div>
+      <h1>Loi relative à la profession d'architecte</h1>
+      <div class="sub">Lecteur optimisé (slate & amber) • Sommaire • Recherche • Lecture continue • Plein écran</div>
+    </div>
+    <div class="control-buttons">
+      <button class="btn" id="tocHeaderBtn" title="Sommaire"><i class="fa-solid fa-sitemap"></i></button>
+      <button class="btn" title="Haut de page" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fa-solid fa-angles-up"></i></button>
+    </div>
+  </div>
+</header>
+<main class="wrapper"><section class="group"><h2>Table des matières</h2></section><section class="group"><h2>TITRE I - DISPOSITIONS GÉNÉRALES</h2><div class="article" id="Article_1"><div class="article-header"><h3>Article 1</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">Au sens de la présente loi, on entend par :
+        <ul>
+<li>Conseil national de l'Ordre, le Conseil national de l'Ordre des architectes de Côte d'Ivoire ;</li>
+<li>Droit d'établissement, droit reconnu aux ressortissants de l'UEMOA par l'article 92 de son Traité ;</li>
+<li>Etat membre, tout État partie prenante au Traité modifié de l'UEMOA ;</li>
+<li>Liberté de circulation, la liberté reconnue aux ressortissants de l'UEMOA par l'article 91 de son Traité ;</li>
+<li>Ordre des architectes ou Ordre, l'Ordre des architectes de Côte d'Ivoire ;</li>
+<li>Pays d'origine, pays de l'espace UEMOA au sein duquel l'architecte exerce sa profession et en possède la nationalité ;</li>
+<li>Pays de provenance, pays de l'espace UEMOA au sein duquel l'architecte postulant exerce sa profession sans en avoir la nationalité ;</li>
+<li>Pays d'accueil, pays de l'espace UEMOA au sein duquel l'architecte postulant souhaite exercer sa profession ;</li>
+<li>Tableau de l'Ordre, le Tableau dressé et publié par l'Ordre des architectes de Côte d'Ivoire, comportant la liste de tous les architectes inscrits à l'Ordre ;</li>
+<li>UIA, Union internationale des Architectes.</li>
+</ul></div></div><div class="article" id="Article_2"><div class="article-header"><h3>Article 2</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">L'architecture est une expression de la culture. La création architecturale, la qualité des constructions et le respect des paysages naturels ou urbains ainsi que du patrimoine, sont d'intérêt public.</div></div><div class="article" id="Article_3"><div class="article-header"><h3>Article 3</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">L'architecte, exerçant la profession à titre libéral, individuellement, en association ou en société est, dans l'art de bâtir, le créateur artistique exclusif de tout ouvrage.
+        <br/><br/>
+        L'œuvre architecturale bénéficie de la protection de la propriété intellectuelle et artistique, conformément aux dispositions de la loi n° 96-564 du 25 juillet 1996 relative à la protection des œuvres de l'esprit et à l'accord de Bangui du 2 mars 1977 révisé, instituant une Organisation africaine de la Propriété intellectuelle, en abrégé OAPI.
+        <br/><br/>
+        L'architecte conserve la propriété artistique et intellectuelle de ses œuvres dont aucune ne peut être reproduite sans son autorisation et sans référence à son nom.</div></div><div class="article" id="Article_4"><div class="article-header"><h3>Article 4</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">Le projet architectural définit par des plans et documents écrits, l'implantation des bâtiments, leur composition, leur organisation et l'expression de leur volume, ainsi que le choix des matériaux et des couleurs.
+        <br/><br/>
+        Tout projet d'architecture doit comporter la signature de l'architecte, de l'association d'architectes ou de la société d'architectes qui en est l'auteur, ainsi que la mention des architectes, mêmes stagiaires, ayant contribué à son élaboration.
+        <br/><br/>
+        La signature de complaisance est interdite et passible des sanctions disciplinaires prévues à l'article 27 de la présente loi.</div></div><div class="article" id="Article_5"><div class="article-header"><h3>Article 5</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">La mission de base de l'architecte comprend :
+        <ul>
+<li>les études d'esquisse ;</li>
+<li>les études d'avant-projet ;</li>
+<li>le projet architectural à savoir le dossier de consultation des entreprises ;</li>
+<li>l'assistance à la passation de marchés de travaux ;</li>
+<li>les études d'exécution ou leur visa si elles sont réalisées par un autre prestataire ;</li>
+<li>la direction de travaux ;</li>
+<li>l'assistance apportée au maître d'ouvrage lors des opérations de réception et pendant la garantie de parfait achèvement.</li>
+</ul>
+        Quiconque désire entreprendre des travaux soumis à une autorisation de construire, doit obligatoirement faire appel à un architecte inscrit au Tableau de l'Ordre national des Architectes, pour élaborer les documents relevant de sa compétence, quels que soient le montant et la surface cumulée de planchers de l'ouvrage, sans préjudice du recours à l'architecte pour des missions plus étendues telles que définies à l'alinéa 1 ci-dessus.
+        <br/><br/>
+        Cette obligation n'exclut pas le recours à l'architecte pour des missions complémentaires, telles que l'ordonnancement, la programmation et la coordination des travaux, ainsi que la mission de synthèse.
+        <br/><br/>
+        Même si l'architecte n'assure pas la direction des travaux, le maître d'ouvrage doit le mettre en mesure dans des conditions fixées par le contrat, de s'assurer que les documents d'exécution et les ouvrages en cours de réalisation respectent les dispositions du projet architectural élaboré par ses soins. Si ces dispositions ne sont pas respectées, l'architecte en avertit le maître d'ouvrage.</div></div><div class="article" id="Article_6"><div class="article-header"><h3>Article 6</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">La conception des œuvres architecturales tient compte des impératifs de développement durable.
+        <br/><br/>
+        Les projets architecturaux s'élaborent dans le respect des principes d'intégration dans le site, de préservation de l'environnement et d'efficacité énergétique.</div></div><div class="article" id="Article_7"><div class="article-header"><h3>Article 7</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">La profession d'architecte est une profession libérale et non commerciale.
+        <br/><br/>
+        L'architecte a pour mission de concevoir, d'organiser l'agencement des espaces et de diriger la réalisation d'œuvres architecturales et urbanistiques. Il est le maître d'œuvre chargé de la conception architecturale et urbanistique, de l'élaboration des pièces graphiques et écrites y afférentes, de l'organisation de leur réalisation et du contrôle permanent de la conformité de l'exécution de l'ouvrage.
+        <br/><br/>
+        Il est également sollicité pour la vérification, le règlement des comptes et dépenses relatifs à la réalisation des travaux relevant des actes précités.
+        <br/><br/>
+        A ce titre, il est chargé notamment :
+        <ul>
+<li>de la maîtrise d'œuvre ;</li>
+<li>de la programmation architecturale ;</li>
+<li>de la conception générale des projets et dossiers de consultation des entreprises ;</li>
+<li>à titre exclusif, de l'élaboration, la signature des documents relevant de sa compétence et exigés dans la constitution du dossier de permis de construire ;</li>
+<li>de la direction, du contrôle, du suivi, de la coordination, la gestion et la comptabilité des travaux ;</li>
+<li>de l'expertise et l'assistance à la maîtrise d'ouvrage ;</li>
+<li>de l'aménagement d'espaces urbains ;</li>
+<li>de la formation, l'enseignement et la recherche.</li>
+</ul></div></div><div class="article" id="Article_8"><div class="article-header"><h3>Article 8</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">Les personnes physiques ou morales inscrites au Tableau de l'Ordre, conformément aux dispositions des articles 40 et suivants de la présente loi, peuvent seules porter le titre d'architecte ou de société d'architectes et exercer la mission définie à l'article 5 de la présente loi.
+        <br/><br/>
+        L'exercice de la profession, à titre libéral, en association, ou en société est subordonné à l'inscription préalable du postulant au Tableau de l'Ordre, à sa prestation de serment et à l'obtention de l'agrément préalable du Conseil de l'Ordre des architectes, donné dans les conditions définies à l'article ci-après.
+        <br/><br/>
+        Les professionnels des services de l'Etat titulaires d'un diplôme d'architecte agréé par le Gouvernement, peuvent cependant prêter leur concours aux établissements et collectivités publics pour l'étude des plans et projets, conformément aux règlements en vigueur.</div></div></section><section class="group"><h2>TITRE II - L&#x27;ORDRE DES ARCHITECTES</h2><div class="article" id="Article_9"><div class="article-header"><h3>Article 9</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">L'Ordre des architectes regroupe les personnes habilitées à porter le titre d'architecte et à exercer la profession d'architecte dans les conditions fixées par la présente loi.
+        <br/><br/>
+        L'Ordre des architectes est une organisation professionnelle de droit public, à but non lucratif, dotée de la personnalité morale et de l'autonomie financière.</div></div><div class="article" id="Article_10"><div class="article-header"><h3>Article 10</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">L'Ordre des architectes a pour mission :
+        <ul>
+<li>de protéger l'intérêt général en veillant sur la qualité, la responsabilité, la déontologie professionnelle ;</li>
+<li>de veiller, dans le respect des principes de moralité, de dignité, de probité, au respect par ses membres des lois, règlements et usages qui régissent l'exercice de la profession ;</li>
+<li>de veiller à l'épanouissement et au perfectionnement professionnel de ses membres.</li>
+</ul>
+        Les pouvoirs publics, toute entité régionale ou internationale, consultent l'Ordre des architectes sur toutes les questions relevant de la profession ou son exercice, notamment :
+        <ul>
+<li>l'organisation de l'enseignement de l'architecture ;</li>
+<li>la reconnaissance des diplômes ;</li>
+<li>l'aménagement du territoire ;</li>
+<li>les règles de construction, d'urbanisme, d'habitat et d'environnement.</li>
+</ul>
+        L'Ordre des architectes propose et encourage, en concertation avec les autorités compétentes, toute action visant la mise en valeur ou la sauvegarde du patrimoine architectural et des sites protégés ou à protéger.</div></div><div class="article" id="Article_11"><div class="article-header"><h3>Article 11</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">L'Ordre des architectes dispose d'un patrimoine propre provenant, notamment des cotisations et contributions de ses membres, des dons, legs et subventions.</div></div><div class="article" id="Article_12"><div class="article-header"><h3>Article 12</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">L'Ordre des architectes apporte une assistance architecturale à la demande des personnes physiques qui disposent de faibles ressources et qui déclarent sur l'honneur vouloir édifier pour elles-mêmes, une habitation dont la surface cumulée de plancher n'excède pas 55 mètres carrés.
+        <br/><br/>
+        Les honoraires relevant de l'assistance architecturale sont forfaitisés et limités à 3 % du coût de l'ouvrage.</div></div><div class="article" id="Article_13"><div class="article-header"><h3>Article 13</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">L'Ordre des architectes établit le règlement intérieur approuvé par le Commissaire du Gouvernement et le Code de déontologie institué par décret.</div></div><div class="article" id="Article_14"><div class="article-header"><h3>Article 14</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">L'Ordre des architectes comprend trois organes :
+        <ul>
+<li>l'Assemblée générale ;</li>
+<li>le Conseil national de l'Ordre ;</li>
+<li>le Conseil de discipline.</li>
+</ul></div></div><div class="article" id="Article_15"><div class="article-header"><h3>Article 15</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">L'Assemblée générale de l'Ordre est composée exclusivement d'architectes, personnes physiques, inscrit(e)s au Tableau de l'Ordre des architectes.
+        <br/><br/>
+        Chaque membre de l'Assemblée générale dispose du droit de vote.</div></div><div class="article" id="Article_16"><div class="article-header"><h3>Article 16</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">L'Assemblée générale de l'Ordre a compétence pour :
+        <ul>
+<li>élire le président de l'Ordre et les membres du Conseil national de l'Ordre ;</li>
+<li>approuver les comptes annuels de l'Ordre, sur présentation du rapport moral et financier du Conseil national de l'Ordre ;</li>
+<li>se prononcer, à titre consultatif, sur toutes questions soumises par le Conseil national de l'Ordre, ou par un architecte inscrit, à condition qu'il en informe le Conseil quinze jours au moins à l'avance.</li>
+</ul></div></div><div class="article" id="Article_17"><div class="article-header"><h3>Article 17</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">L'Assemblée générale se réunit, à titre ordinaire, au moins une fois par an, selon les conditions et modalités fixées par le règlement intérieur.
+        <br/><br/>
+        Elle est présidée par le président de l'Ordre ou le vice-président.</div></div><div class="article" id="Article_18"><div class="article-header"><h3>Article 18</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">L'Assemblée générale se réunit, à titre extraordinaire, en cas de nécessité, selon les conditions et modalités fixées par le règlement intérieur.</div></div><div class="article" id="Article_19"><div class="article-header"><h3>Article 19</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">Le Conseil national de l'Ordre est l'organe d'administration et de gestion de l'Ordre.</div></div><div class="article" id="Article_20"><div class="article-header"><h3>Article 20</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">Il surveille les conditions d'exercice de la profession d'architecte, veille au contrôle et au maintien de la qualité de membre de l'Ordre. Il veille au respect des lois et règlements, ainsi que des devoirs professionnels par les membres de l'Ordre.
+        <br/><br/>
+        Il statue sur les demandes d'inscription, reçoit la prestation de serment des membres et procède à l'inscription au Tableau des architectes, après avoir vérifié qu'ils remplissent les conditions requises.
+        <br/><br/>
+        Il assure la tenue du Tableau et sa mise à jour au moins une fois par an.
+        <br/><br/>
+        Il assure la défense des intérêts matériels de l'Ordre et en gère les biens.
+        <br/><br/>
+        Il fixe le taux des cotisations à verser par les membres de l'Ordre.
+        <br/><br/>
+        Il veille à la discipline au sein de l'Ordre et au perfectionnement professionnel.</div></div><div class="article" id="Article_21"><div class="article-header"><h3>Article 21</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">Le Conseil national de l'Ordre des architectes est composé de quinze membres au plus dont le président, et de neuf membres au moins, élus par l'Assemblée générale parmi les architectes, personnes physiques inscrites au Tableau de l'Ordre. Les formes et conditions de l'élection des membres du Conseil, ainsi que les modalités de fonctionnement du Conseil sont fixées par le règlement intérieur.
+        <br/><br/>
+        Le Conseil est élu pour trois ans et ses membres sont rééligibles.</div></div><div class="article" id="Article_22"><div class="article-header"><h3>Article 22</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">Le président du Conseil de l'Ordre des architectes est élu par l'Assemblée générale ordinaire de l'Ordre en même temps que les membres du Conseil national de l'Ordre, parmi les architectes, personnes physiques inscrites au Tableau et agrées pour l'exercice en nom propre et sous leur responsabilité, de la profession.
+        <br/><br/>
+        Le président du Conseil de l'Ordre est élu pour une durée de trois ans. Il est rééligible une fois.</div></div><div class="article" id="Article_23"><div class="article-header"><h3>Article 23</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">Le président du Conseil de l'Ordre :
+        <ul>
+<li>préside les réunions du Conseil national de l'Ordre, du Conseil de discipline et celles de l'Assemblée générale ;</li>
+<li>organise et dirige les travaux du Conseil et veille à l'exécution des décisions du Conseil ;</li>
+<li>s'assure du fonctionnement régulier de l'Ordre ;</li>
+<li>représente l'Ordre dans ses rapports avec les pouvoirs publics, les tiers et la justice, ainsi que dans les actes de la vie civile et les cérémonies publiques ;</li>
+<li>rend compte de l'accomplissement de sa mission et de celle du Conseil, devant l'Assemblée générale.</li>
+</ul>
+        Le président du Conseil de l'Ordre exerce une action conciliatrice dans les incidents d'ordre professionnel qu'il ne juge pas devoir porter devant le Conseil de discipline.
+        <br/><br/>
+        Il peut accorder des délégations partielles de ses attributions à tout membre du Conseil national de l'Ordre.</div></div><div class="article" id="Article_24"><div class="article-header"><h3>Article 24</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">Les différends professionnels entre architectes doivent être soumis au Conseil national de l'Ordre, en vue d'une tentative de conciliation obligatoire, avant toute action judiciaire ou disciplinaire engagée contre des confrères.</div></div><div class="article" id="Article_25"><div class="article-header"><h3>Article 25</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">Le Conseil de discipline est composé, outre le président de l'Ordre, de quatre membres, élus par le Conseil national de l'Ordre en son sein. Il est présidé de droit, par le président de l'Ordre, ou le vice-président en cas d'absence du président.
+        <br/><br/>
+        Les membres du Conseil de discipline exercent leur mission pour la durée de leur mandat de membres du Conseil de l'Ordre et sont rééligibles.</div></div><div class="article" id="Article_26"><div class="article-header"><h3>Article 26</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">Le Conseil de discipline poursuit et réprime les manquements aux règles et devoirs de la profession commis par un architecte ou un ancien architecte, dès lors qu'à l'époque des faits ce dernier était inscrit au Tableau.</div></div><div class="article" id="Article_27"><div class="article-header"><h3>Article 27</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">L'Architecte inscrit au tableau de l'Ordre est soumis au contrôle disciplinaire du Conseil de discipline. Tout manquement aux devoirs de la profession rend son auteur passible d'une sanction disciplinaire.
+        <br/><br/>
+        Les peines disciplinaires prononcées par le Conseil de discipline à l'encontre d'un architecte sont les suivantes :
+        <ul>
+<li>l'avertissement ;</li>
+<li>le blâme ;</li>
+<li>la suspension pour une durée maximum d'un an ;</li>
+<li>la radiation de l'Ordre.</li>
+</ul>
+        Toute sanction prononcée contre un architecte membre du Conseil national de l'Ordre entraîne déchéance de cette qualité.</div></div><div class="article" id="Article_28"><div class="article-header"><h3>Article 28</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">Sont nuls et de nul effet tous actes, traités ou conventions tendant à permettre, directement ou indirectement, l'exercice de tout ou partie des actes professionnels des architectes suspendus ou radiés.</div></div><div class="article" id="Article_29"><div class="article-header"><h3>Article 29</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">L'Ordre national des architectes est placé sous la tutelle du ministère en charge de la Construction et de l'Urbanisme.
+        <br/><br/>
+        La tutelle est informée de la tenue du Tableau et du registre d'accueil.</div></div><div class="article" id="Article_30"><div class="article-header"><h3>Article 30</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">Le commissaire du Gouvernement est nommé par décret sur proposition du ministre chargé de la Construction et de l'Urbanisme. Il est choisi parmi les personnalités connues pour leur droiture, leur intégrité et leur expérience avérée en matière juridique ou architecturale.
+        <br/><br/>
+        Il représente les pouvoirs publics auprès de l'Ordre.
+        <br/><br/>
+        Le commissaire du Gouvernement est le garant de l'intérêt public dans l'organisation et le fonctionnement de l'Ordre.
+        <br/><br/>
+        Le commissaire du Gouvernement :
+        <ul>
+<li>s'assure du respect des engagements pris dans le cadre des politiques communautaires, essentiellement, le respect des principes de libre circulation et de droit d'établissement ;</li>
+<li>veille à la communication des informations entre les différents Ordres d'architectes des Etats membres de l'UEMOA et à la mise en œuvre des mesures d'accompagnement prises au niveau communautaire pour la facilitation des politiques d'intégration entre les Etats membres dans le cadre de la libre circulation et du droit d'établissement de l'architecte.</li>
+</ul></div></div><div class="article" id="Article_31"><div class="article-header"><h3>Article 31</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">Le commissaire du Gouvernement est tenu régulièrement informé des activités de l'Ordre, et peut assister sur invitation du Conseil, aux réunions du Conseil national de l'Ordre, sans voix délibérative.
+        <br/><br/>
+        Il assiste aux prestations de serment.
+        <br/><br/>
+        Le commissaire du Gouvernement assiste aux réunions du Conseil de discipline sans voix délibérative. Il peut introduire devant le Conseil, toute action contre les personnes physiques et morales exerçant illégalement la profession d'architecte.
+        <br/><br/>
+        Son avis est requis pour le Conseil de discipline, le règlement intérieur et le Code des devoirs professionnels établis par le Conseil.</div></div><div class="article" id="Article_32"><div class="article-header"><h3>Article 32</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">Le Conseil national de l'Ordre peut, dès lors que quinze architectes au moins exercent la profession dans une région, se faire représenter dans cette région par un Conseil régional.
+        <br/><br/>
+        Le Conseil régional est composé de six membres élus parmi les architectes inscrits au Tableau de l'Ordre exerçant la profession dans une région.
+        <br/><br/>
+        L'élection du président, des membres et le renouvellement du Conseil régional se déroulent sous la supervision du président du Conseil national de l'Ordre et dans les mêmes conditions que celles du Conseil national de l'Ordre des architectes.
+        <br/><br/>
+        Le Conseil régional est compétent pour toutes missions assumées par le Conseil national de l'Ordre, à l'exception de l'inscription au Tableau, de l'agrément en vue de l'exercice de la profession, de l'examen des dossiers disciplinaires, de la fixation et l'encaissement des cotisations.</div></div></section><section class="group"><h2>TITRE III - DE L&#x27;EXERCICE DE LA PROFESSION D&#x27;ARCHITECTE</h2><div class="article" id="Article_33"><div class="article-header"><h3>Article 33</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">La formation d'architecte comprend au moins cinq années d'études à temps plein, en architecture après le baccalauréat, dans une université ou une grande école d'architecture reconnue par les Etats membres de l'UEMOA.
+        <br/><br/>
+        Cette formation doit être sanctionnée par l'obtention du diplôme d'architecte reconnu par l'UNESCO, l'UIA et les Etats membres de l'UEMOA.
+        <br/><br/>
+        Cet enseignement, de niveau universitaire et dont l'architecture constitue la matière principale, doit maintenir un équilibre entre les aspects théoriques et pratiques de la formation en architecture et assurer l'acquisition des connaissances et des compétences requises.</div></div><div class="article" id="Article_34"><div class="article-header"><h3>Article 34</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">L'exercice à titre libéral de la profession d'architecte est subordonné à l'accomplissement d'un stage professionnel de vingt-quatre mois rémunérés et à la satisfaction des exigences prévues aux articles 36 et 44 de la présente loi.
+        <br/><br/>
+        Ce stage, effectué dans les conditions fixées par l'Ordre, sous la supervision d'une structure reconnue par l'Ordre, est sanctionné par une attestation délivrée par cette dernière.
+        <br/><br/>
+        Il doit maintenir un équilibre entre les compétences théoriques, pratiques de l'architecture et assurer l'acquisition des connaissances administratives.
+        <br/><br/>
+        Le stagiaire est inscrit au Tableau de l'Ordre en qualité d'architecte stagiaire.</div></div><div class="article" id="Article_35"><div class="article-header"><h3>Article 35</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">Les structures en charge de la supervision du stage d'architecte, mentionnées à l'article 34 ci-dessus, sont désignées par décisions du Conseil national de l'Ordre.
+        <br/><br/>
+        Est considéré comme équivalente au stage prévu à l'article 34 de la présente loi, la formation initiale dénommée "Habilitation à la maîtrise d'œuvre en son nom propre", en abrégé HMONP qui permet d'obtenir une qualification professionnelle reconnue par la branche des entreprises d'architecture, composée d'une formation théorique en école d'architecture, et d'une mise en situation professionnelle d'au minimum six mois au sein d'une agence d'architecture.</div></div><div class="article" id="Article_36"><div class="article-header"><h3>Article 36</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">Le Conseil national de l'Ordre tient un registre d'accueil spécialement destiné à l'enregistrement de tout architecte ou société d'architectes ressortissant d'un Etat membre de l'UEMOA, en possession d'une attestation d'inscription dans l'un des Etats membres, et souhaitant faire usage de son droit de libre circulation en Côte d'Ivoire.
+        <br/><br/>
+        L'attestation d'inscription délivrée par l'Ordre du pays d'origine ou de provenance doit comporter au moins toutes les mentions obligatoires figurant sur le Tableau de l'Ordre.
+        <br/><br/>
+        Ces mentions doivent être retranscrits dans le registre d'accueil avec délivrance d'un récépissé.
+        <br/><br/>
+        L'inscription au registre d'accueil ne dispense pas l'architecte ou la société d'architectes concernée des formalités d'inscription au Tableau de l'Ordre et d'agrément préalable prévues aux articles 40 et 44 de la présente loi.</div></div><div class="article" id="Article_37"><div class="article-header"><h3>Article 37</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">Nul ne peut être inscrit au Tableau de l'Ordre en qualité d'architecte, s'il ne remplit les conditions suivantes :
+        <ul>
+<li>être titulaire d'un diplôme d'architecte reconnu par l'Etat de Côte d'Ivoire, le CAMES, l'UNESCO et l'UIA ou par l'un des Etats membres de l'UEMOA ;</li>
+<li>être de nationalité ivorienne ou ressortissant d'un Etat membre de l'UEMOA ou d'un Etat partie à un accord de libre circulation et d'établissement des personnes avec la Côte d'Ivoire ;</li>
+<li>n'avoir pas été condamné définitivement pour des infractions en matière économique et financière ou contre les biens ;</li>
+<li>n'avoir été ni déclaré en faillite ni mis en état de liquidation judiciaire ;</li>
+<li>être âgé de vingt et un ans minimum ;</li>
+<li>présenter toutes les garanties de moralité justifiées par une enquête interne diligentée par le Conseil de l'Ordre.</li>
+</ul>
+        En outre, les architectes étrangers ressortissants d'Etats membres de l'UEMOA ou d'Etats parties à un accord de libre circulation et d'établissement des personnes avec la Côte d'Ivoire, doivent produire un extrait de casier judiciaire et une attestation de non-condamnation délivrée par les tribunaux du pays d'origine.</div></div><div class="article" id="Article_38"><div class="article-header"><h3>Article 38</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">Le Tableau de l'Ordre est dressé et tenu à jour par le Conseil national de l'Ordre.
+        <br/><br/>
+        Le Tableau de l'Ordre est publié au moins une fois par an au Journal officiel de la République de Côte d'Ivoire.</div></div><div class="article" id="Article_39"><div class="article-header"><h3>Article 39</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">Le Tableau de l'Ordre comporte les mentions suivantes :
+        <ul>
+<li>les nom, prénoms, date et lieu de naissance, nationalité, adresse professionnelle, numéro de téléphone, adresse électronique de l'architecte ;</li>
+<li>le numéro d'inscription au Tableau de l'Ordre ;</li>
+<li>le cas échéant, le nom de la société d'architectes, son adresse, son numéro de téléphone, son adresse électronique, son numéro d'inscription au Tableau de l'Ordre et le nom de l'architecte associé ou gérant ;</li>
+<li>le cas échéant, la mention de la radiation, de la suspension, de la démission ou du décès ;</li>
+<li>le cas échéant, la mention de l'inscription au registre d'accueil.</li>
+</ul></div></div><div class="article" id="Article_40"><div class="article-header"><h3>Article 40</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">L'inscription au Tableau de l'Ordre est prononcée par le Conseil national de l'Ordre, après vérification des conditions prévues à l'article 37 de la présente loi.
+        <br/><br/>
+        La décision d'inscription est notifiée au demandeur dans un délai de trente jours à compter de la date de réception de la demande.
+        <br/><br/>
+        L'inscription au Tableau de l'Ordre est subordonnée à la prestation de serment devant le Conseil de l'Ordre, en présence du commissaire du Gouvernement.</div></div><div class="article" id="Article_41"><div class="article-header"><h3>Article 41</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">La prestation de serment est la suivante :
+        <br/><br/>
+        "Je jure de respecter la Constitution, les lois et règlements de la République de Côte d'Ivoire, de remplir avec conscience, loyauté et probité les devoirs de ma profession, de respecter le secret professionnel et de ne jamais m'en servir contre l'intérêt général."</div></div><div class="article" id="Article_42"><div class="article-header"><h3>Article 42</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">Le Conseil national de l'Ordre statue sur les demandes d'inscription au Tableau de l'Ordre, après avis du commissaire du Gouvernement.
+        <br/><br/>
+        La décision de refus d'inscription doit être motivée et notifiée au demandeur.
+        <br/><br/>
+        Le demandeur peut, dans un délai de trente jours à compter de la notification de la décision de refus, former un recours devant la juridiction compétente.</div></div><div class="article" id="Article_43"><div class="article-header"><h3>Article 43</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">L'inscription au Tableau de l'Ordre est valable pour une durée de cinq ans renouvelable.
+        <br/><br/>
+        Le renouvellement de l'inscription est subordonné au paiement des cotisations et à la justification de la participation à des actions de formation continue.</div></div><div class="article" id="Article_44"><div class="article-header"><h3>Article 44</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">L'exercice de la profession d'architecte est subordonné à l'obtention d'un agrément délivré par le Conseil national de l'Ordre, après avis du commissaire du Gouvernement.
+        <br/><br/>
+        L'agrément est délivré pour une durée de cinq ans renouvelable.
+        <br/><br/>
+        Le Conseil national de l'Ordre statue sur la demande d'agrément dans un délai de soixante jours à compter de la date de réception de la demande complète.
+        <br/><br/>
+        La décision de refus d'agrément doit être motivée et notifiée au demandeur.
+        <br/><br/>
+        Le demandeur peut, dans un délai de trente jours à compter de la notification de la décision de refus, former un recours devant la juridiction compétente.</div></div><div class="article" id="Article_45"><div class="article-header"><h3>Article 45</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">L'architecte peut exercer sa profession :
+        <ul>
+<li>à titre individuel ;</li>
+<li>en association avec d'autres architectes ;</li>
+<li>en société d'architectes.</li>
+</ul>
+        L'architecte peut également exercer en qualité de salarié d'une personne morale de droit privé ou public, sous réserve des dispositions de l'article 8 de la présente loi.</div></div><div class="article" id="Article_46"><div class="article-header"><h3>Article 46</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">L'architecte exerçant à titre individuel est une personne physique inscrite au Tableau de l'Ordre et titulaire de l'agrément prévu à l'article 44 de la présente loi.
+        <br/><br/>
+        Il exerce sa profession sous sa propre responsabilité et en son nom propre.</div></div><div class="article" id="Article_47"><div class="article-header"><h3>Article 47</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">L'association d'architectes est un groupement de deux ou plusieurs architectes exerçant en commun la profession d'architecte, sans constituer une personne morale distincte de celle de ses membres.
+        <br/><br/>
+        Chaque architecte associé exerce sa profession sous sa propre responsabilité et en son nom propre.
+        <br/><br/>
+        L'association d'architectes doit être déclarée au Conseil national de l'Ordre.</div></div><div class="article" id="Article_48"><div class="article-header"><h3>Article 48</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">La société d'architectes est une personne morale constituée sous forme de société civile professionnelle, de société en nom collectif, de société à responsabilité limitée ou de société anonyme, dont l'objet social est l'exercice de la profession d'architecte.
+        <br/><br/>
+        La majorité des parts sociales ou des actions de la société d'architectes doit être détenue par des architectes inscrits au Tableau de l'Ordre.
+        <br/><br/>
+        La majorité des membres des organes de direction, d'administration et de surveillance de la société d'architectes doit être composée d'architectes inscrits au Tableau de l'Ordre.
+        <br/><br/>
+        La société d'architectes doit être inscrite au Tableau de l'Ordre et être titulaire de l'agrément prévu à l'article 44 de la présente loi.</div></div></section><section class="group"><h2>TITRE IV - DES DROITS ET DEVOIRS DES ARCHITECTES</h2><div class="article" id="Article_49"><div class="article-header"><h3>Article 49</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">L'architecte exerce sa profession en toute indépendance et dignité.
+        <br/><br/>
+        Il doit faire preuve de probité, de loyauté et de désintéressement dans l'exercice de sa profession.
+        <br/><br/>
+        Il est tenu au secret professionnel dans les conditions prévues par la loi.</div></div><div class="article" id="Article_50"><div class="article-header"><h3>Article 50</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">L'architecte doit souscrire une assurance de responsabilité civile professionnelle couvrant les conséquences pécuniaires de sa responsabilité civile professionnelle.
+        <br/><br/>
+        Le montant minimal de la garantie est fixé par décret.</div></div><div class="article" id="Article_51"><div class="article-header"><h3>Article 51</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">L'architecte doit respecter les règles de l'art et les dispositions législatives et réglementaires en vigueur en matière de construction, d'urbanisme, d'habitat et d'environnement.</div></div><div class="article" id="Article_52"><div class="article-header"><h3>Article 52</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">L'architecte doit entretenir et perfectionner ses connaissances professionnelles par une formation continue.
+        <br/><br/>
+        Le Conseil national de l'Ordre organise des actions de formation continue à l'intention des architectes.</div></div><div class="article" id="Article_53"><div class="article-header"><h3>Article 53</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">Les honoraires de l'architecte sont librement convenus entre l'architecte et son client.
+        <br/><br/>
+        Ils peuvent être fixés selon les modalités suivantes :
+        <ul>
+<li>un pourcentage du coût des travaux ;</li>
+<li>un forfait ;</li>
+<li>des honoraires horaires ou journaliers ;</li>
+<li>un salaire.</li>
+</ul>
+        En l'absence d'accord entre les parties, les honoraires sont fixés selon les usages de la profession.</div></div></section><section class="group"><h2>TITRE V - DISPOSITIONS FINALES</h2><div class="article" id="Article_54"><div class="article-header"><h3>Article 54</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">Les infractions aux dispositions de la présente loi sont sanctionnées conformément aux textes en vigueur.</div></div><div class="article" id="Article_55"><div class="article-header"><h3>Article 55</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">Les modalités d'application de la présente loi sont fixées par décret.</div></div><div class="article" id="Article_56"><div class="article-header"><h3>Article 56</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">La présente loi abroge toutes dispositions antérieures contraires, notamment la loi n° 98-603 du 15 octobre 1998 relative à la profession d'architecte.</div></div><div class="article" id="Article_57"><div class="article-header"><h3>Article 57</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content">La présente loi sera exécutée comme loi de l'Etat.</div></div></section></main>
+<button id="tocFloatBtn" title="Sommaire" class="btn"><i class="fa-solid fa-list"></i></button>
+<div id="tocOverlay"></div>
+<aside id="tocPanel"><header><h3><i class="fa-solid fa-building-columns"></i> Sommaire</h3></header><div class="toc-list" id="tocList"></div></aside>
+<div id="voiceBar" role="region" aria-label="Lecteur vocal">
+  <button id="vPrev" title="Article précédent"><i class="fas fa-backward"></i></button>
+  <button id="vPlay" title="Lire / Reprendre"><i class="fas fa-play"></i></button>
+  <button id="vPause" title="Pause"><i class="fas fa-pause"></i></button>
+  <button id="vStop" title="Arrêter"><i class="fas fa-stop"></i></button>
+  <button id="vNext" title="Article suivant"><i class="fas fa-forward"></i></button>
+  <span class="now" id="vNow">—</span>
+</div>
+<div id="fsOverlay">
+  <div id="fsHeader">
+    <button id="fsClose" title="Fermer"><i class="fas fa-xmark"></i></button>
+    <div class="ttl" id="fsTitle"></div>
+    <button id="fsPlay" title="Lecture"><i class="fas fa-play"></i></button>
+  </div>
+  <div id="fsBody"><article class="article"><div class="article-content" id="fsContent"></div></article></div>
+  <button id="fsNavPrev" title="Précédent"><i class="fas fa-chevron-left"></i></button>
+  <button id="fsNavNext" title="Suivant"><i class="fas fa-chevron-right"></i></button>
+</div>
+
+<script>
+// --- Fonctionnalité de recherche (MODIFIÉE) ---
+function initSearchFeature() {
+    const searchBtn = document.createElement('button');
+    searchBtn.className = 'btn';
+    searchBtn.id = 'searchBtn';
+    searchBtn.title = 'Rechercher';
+    searchBtn.innerHTML = '<i class="fas fa-search"></i>';
+    document.querySelector('.control-buttons').appendChild(searchBtn);
+    
+    const searchInterface = document.createElement('div');
+    searchInterface.id = 'searchInterface';
+    searchInterface.style.cssText = `
+        position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+        width: calc(100% - 40px); max-width: 550px; background: #fff;
+        padding: 10px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        z-index: 1800; display: none; align-items: center; gap: 5px; transition: .25s ease;
+    `;
+    searchInterface.innerHTML = `
+        <input type="text" id="searchInput" placeholder="Rechercher..." style="flex-grow: 1; padding: 8px; border: 1px solid #d6e2ef; border-radius: 5px;">
+        <button id="searchPrevBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-up"></i></button>
+        <button id="searchNextBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-down"></i></button>
+        <span id="searchResultsCount" style="flex-shrink: 0; padding: 0 5px; min-width: 40px; text-align: center;"></span>
+        <button id="closeSearchBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-times"></i></button>
+    `;
+    document.body.appendChild(searchInterface);
+
+    let searchResults = [];
+    let currentSearchIndex = -1;
+    let originalContents = new Map();
+
+    function performSearch() {
+        const searchTerm = document.getElementById('searchInput').value.trim();
+        if (!originalContents.size) {
+            document.querySelectorAll('.article-content, h2, h3').forEach(el => originalContents.set(el, el.innerHTML));
+        }
+        originalContents.forEach((content, el) => el.innerHTML = content);
+        searchResults = [];
+        currentSearchIndex = -1;
+        if (!searchTerm) { updateSearchUI(); return; }
+
+        const regex = new RegExp(searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\\\$&'), 'gi');
+        originalContents.forEach((content, element) => {
+            element.innerHTML = content.replace(regex, match => `<mark>${match}</mark>`);
+        });
+        searchResults = Array.from(document.querySelectorAll('mark'));
+        if (searchResults.length > 0) navigateResults(true, false);
+        updateSearchUI();
+        window.dispatchEvent(new Event('reflowArticles'));
+    }
+
+    function navigateResults(isNext, shouldWrap = true) {
+        if (!searchResults.length) return;
+        searchResults.forEach(mark => mark.style.backgroundColor = '');
+        if (shouldWrap) {
+            currentSearchIndex = isNext ? (currentSearchIndex + 1) % searchResults.length : (currentSearchIndex - 1 + searchResults.length) % searchResults.length;
+        } else {
+            currentSearchIndex = 0;
+        }
+        const currentMark = searchResults[currentSearchIndex];
+        currentMark.style.backgroundColor = 'var(--accent)';
+        currentMark.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        updateSearchUI();
+    }
+
+    function updateSearchUI() {
+        document.getElementById('searchResultsCount').textContent = searchResults.length > 0 ? `${currentSearchIndex + 1}/${searchResults.length}` : '0/0';
+    }
+    
+    function resetSearch() {
+        originalContents.forEach((content, el) => el.innerHTML = content);
+        originalContents.clear();
+        document.getElementById('searchInput').value = '';
+        searchResults = []; currentSearchIndex = -1;
+        updateSearchUI();
+    }
+
+    searchBtn.addEventListener('click', () => {
+        const isVisible = searchInterface.style.display === 'flex';
+        searchInterface.style.display = isVisible ? 'none' : 'flex';
+        if (isVisible) resetSearch(); else document.getElementById('searchInput').focus();
+    });
+    document.getElementById('searchInput').addEventListener('input', performSearch);
+    document.getElementById('searchNextBtn').addEventListener('click', () => navigateResults(true));
+    document.getElementById('searchPrevBtn').addEventListener('click', () => navigateResults(false));
+    document.getElementById('closeSearchBtn').addEventListener('click', () => {
+        searchInterface.style.display = 'none';
+        resetSearch();
+    });
+}
+</script>
+
+
+<script>
+(function(){
+  function extractEnumeration(s){
+    const re = /(\d{1,2})(?:\s*°)?(?:\))?(?:\.)?\s+/g; const matches = []; let m;
+    while ((m = re.exec(s))){ const idx=m.index; const prev = idx>0 ? s.charAt(idx-1) : " "; if (/\d/.test(prev)) continue; matches.push({num:parseInt(m[1],10), start:idx, end:re.lastIndex}); }
+    if (matches.length < 2) return null;
+    for (let i=1;i<matches.length;i++){ if (matches[i].num !== matches[i-1].num + 1) return null; }
+    const intro = s.slice(0, matches[0].start).trim().replace(/[:;,\-]\s*$/, ""); const items = [];
+    for (let i=0;i<matches.length;i++){ const st=matches[i].end; const en=(i+1<matches.length)?matches[i+1].start:s.length; let seg = s.slice(st,en).trim().replace(/^[;,:-]\s*/,"").replace(/[;,\s]+$/,""); items.push(seg); }
+    return {intro, start: matches[0].num, items};
+  }
+  function transformNode(node){
+    if (node.querySelector('ol')) return;
+    const plain = node.textContent.replace(/\s+/g,' ').trim(); const res = extractEnumeration(plain); if (!res) return;
+    const frag = document.createElement('div'); if (res.intro){ const p=document.createElement('p'); p.textContent=res.intro; frag.appendChild(p); }
+    const ol=document.createElement('ol'); if (res.start!==1) ol.setAttribute('start', String(res.start));
+    res.items.forEach(it=>{ const li=document.createElement('li'); li.textContent=it; ol.appendChild(li); });
+    frag.appendChild(ol); node.innerHTML=frag.innerHTML;
+  }
+  function run(){ document.querySelectorAll('.article-content').forEach(transformNode);
+    document.querySelectorAll('.article-content li').forEach(li=>{
+      const s = li.textContent.replace(/\s+/g,' ').trim(); const res = extractEnumeration(s);
+      if (res){ li.innerHTML=''; if (res.intro){ const span=document.createElement('span'); span.textContent=res.intro+' :'; li.appendChild(span); }
+        const ol=document.createElement('ol'); if (res.start!==1) ol.setAttribute('start', String(res.start));
+        res.items.forEach(it=>{ const li2=document.createElement('li'); li2.textContent=it; ol.appendChild(li2); }); li.appendChild(ol); }
+    });
+  }
+  window.addEventListener('DOMContentLoaded', ()=>setTimeout(run, 60));
+  window.addEventListener('reflowArticles', run);
+})();
+</script>
+
+
+<script>
+(function(){
+  const $ = s=>document.querySelector(s);
+  const $$ = s=>Array.from(document.querySelectorAll(s));
+  function buildTOC(){
+    const toc = document.getElementById('tocList'); if(!toc) return; toc.innerHTML='';
+    $$('.group').forEach((grp, gi)=>{
+      const gh = grp.querySelector('h2')?.textContent.trim() || `Groupe ${gi+1}`;
+      const gl = document.createElement('a'); gl.textContent=gh; gl.href='#'; gl.style.fontWeight='700';
+      gl.addEventListener('click', e=>{ e.preventDefault(); grp.scrollIntoView({behavior:'smooth', block:'start'}); hideTOC(); });
+      toc.appendChild(gl);
+      const sub = document.createElement('div'); sub.className='toc-sub';
+      grp.querySelectorAll('.article').forEach((art, ai)=>{
+        const at = art.querySelector('.article-header h3')?.textContent.trim() || `Article ${ai+1}`;
+        const a = document.createElement('a'); a.textContent=at; a.href='#';
+        a.addEventListener('click', e=>{ e.preventDefault(); art.scrollIntoView({behavior:'smooth', block:'start'}); hideTOC(); });
+        sub.appendChild(a);
+        if (!art.querySelector('.open-fs')){
+          const btn = document.createElement('button'); btn.className='open-fs'; btn.innerHTML='<i class="fas fa-maximize"></i>';
+          btn.title='Plein écran'; btn.addEventListener('click', ()=>openFS(artIndex(art))); art.querySelector('.article-header')?.appendChild(btn);
+        }
+      });
+      toc.appendChild(sub);
+    });
+  }
+  function showTOC(){ document.getElementById('tocOverlay').classList.add('show'); document.getElementById('tocPanel').classList.add('open'); }
+  function hideTOC(){ document.getElementById('tocOverlay').classList.remove('show'); document.getElementById('tocPanel').classList.remove('open'); }
+  // Floating & Header buttons
+  document.addEventListener('DOMContentLoaded', ()=>{
+    const floatBtn = document.getElementById('tocFloatBtn');
+    if (floatBtn) floatBtn.addEventListener('click', showTOC);
+    const overlay = document.getElementById('tocOverlay');
+    if (overlay) overlay.addEventListener('click', hideTOC);
+    const headerBtn = document.getElementById('tocHeaderBtn');
+    if (headerBtn) headerBtn.addEventListener('click', showTOC);
+  });
+  const articles = $$('.article');
+  function artIndex(el){ return articles.indexOf(el); }
+  function getArticle(i){ return articles[Math.max(0, Math.min(articles.length-1, i))]; }
+  function artTitle(i){ const el=getArticle(i); return el? (el.querySelector('.article-header h3')?.textContent.trim()||'') : ''; }
+  function artText(i){ const el=getArticle(i); return el? (el.querySelector('.article-content')?.innerText.trim()||'') : ''; }
+  const synth = window.speechSynthesis;
+  let current = 0, utter = null, playing = false, paused = false, inFS=false;
+  function speakIndex(i){ stopSpeak(); current=i; const text=artText(i); if(!text){ nextArticle(); return; }
+    utter = new SpeechSynthesisUtterance(text); utter.lang='fr-FR'; utter.rate=1; utter.pitch=1;
+    utter.onend = ()=>{ if(playing && !paused){ nextArticle(); } };
+    try{ synth.speak(utter);}catch(e){ console.warn(e); }
+    playing=true; paused=false; updateUI(); highlightCurrent(); }
+  function highlightCurrent(){ articles.forEach(a=>a.classList.remove('reading')); const el=getArticle(current); if(el){ el.classList.add('reading'); if(!inFS) el.scrollIntoView({behavior:'smooth', block:'center'}); } document.getElementById('vNow').textContent = artTitle(current) || '—'; }
+  function pauseSpeak(){ if(synth && synth.speaking){ synth.pause(); paused=true; playing=true; } }
+  function resumeSpeak(){ if(synth && paused){ synth.resume(); paused=false; } else { speakIndex(current); } updateUI(); }
+  function stopSpeak(){ if(synth){ try{synth.cancel();}catch(e){} } playing=false; paused=false; updateUI(); }
+  function prevArticle(){ current=Math.max(0,current-1); if(playing){ speakIndex(current);} else {highlightCurrent();} if(inFS) openFS(current); }
+  function nextArticle(){ current=Math.min(articles.length-1,current+1); if(playing){ speakIndex(current);} else {highlightCurrent();} if(inFS) openFS(current); }
+  document.addEventListener('DOMContentLoaded', ()=>{
+    document.getElementById('vPlay').addEventListener('click', ()=>{ if(!playing || paused){ resumeSpeak(); } else { pauseSpeak(); } });
+    document.getElementById('vPause').addEventListener('click', ()=>pauseSpeak());
+    document.getElementById('vStop').addEventListener('click', ()=>{ stopSpeak(); });
+    document.getElementById('vPrev').addEventListener('click', prevArticle);
+    document.getElementById('vNext').addEventListener('click', nextArticle);
+  });
+  function updateUI(){ document.getElementById('vPlay').innerHTML = paused || !playing ? '<i class="fas fa-play"></i>' : '<i class="fas fa-pause"></i>'; }
+  let touchStartX=null;
+  function openFS(i){ inFS=true; current=i; document.getElementById('fsTitle').textContent=artTitle(i); document.getElementById('fsContent').textContent=artText(i); document.getElementById('fsOverlay').classList.add('show'); document.body.style.overflow='hidden'; speakIndex(i); }
+  function closeFS(){ inFS=false; document.getElementById('fsOverlay').classList.remove('show'); document.body.style.overflow=''; }
+  document.addEventListener('DOMContentLoaded', ()=>{
+    document.getElementById('fsClose').addEventListener('click', ()=>{ closeFS(); });
+    document.getElementById('fsPlay').addEventListener('click', ()=>{ if(!playing || paused){ resumeSpeak(); } else { pauseSpeak(); } });
+    document.getElementById('fsNavPrev').addEventListener('click', ()=>{ prevArticle(); });
+    document.getElementById('fsNavNext').addEventListener('click', ()=>{ nextArticle(); });
+    $$('.article .open-fs').forEach((btn, idx)=> btn.addEventListener('click', ()=>openFS(idx)));
+    $$('.article').forEach((art, idx)=> art.addEventListener('dblclick', ()=>openFS(idx)));
+    document.getElementById('fsOverlay').addEventListener('touchstart', (e)=>{ touchStartX = e.changedTouches[0].clientX; }, {passive:true});
+    document.getElementById('fsOverlay').addEventListener('touchend', (e)=>{ if(touchStartX==null) return; const dx=e.changedTouches[0].clientX - touchStartX; const TH=50; if(dx<-TH){ nextArticle(); } else if(dx>TH){ prevArticle(); } touchStartX=null; }, {passive:true});
+  });
+  window.addEventListener('reflowArticles', ()=>{ buildTOC(); });
+  buildTOC();
+})();
+</script>
+
+<script>initSearchFeature(); window.dispatchEvent(new Event('reflowArticles'));</script>
+<footer>Source HTML structurée par vos soins, mise en forme selon le modèle. Thème architecture (slate & amber).</footer>
+
+<script>
+(function(){
+  function isInteractive(el){
+    if (!el) return false;
+    if (el.tagName){
+      const tag = el.tagName.toLowerCase();
+      if (tag === 'input' || tag === 'textarea' || tag === 'select') return true;
+    }
+    if (el.isContentEditable) return true;
+    if (el.closest && el.closest('#searchInterface')) return true;
+    return false;
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    document.body.classList.add('no-select');
+  });
+  document.addEventListener('contextmenu', function(e){
+    if (!isInteractive(e.target)) e.preventDefault();
+  }, {capture:true});
+  document.addEventListener('selectstart', function(e){
+    if (!isInteractive(e.target)) e.preventDefault();
+  }, {capture:true});
+  ['copy','cut','paste','dragstart'].forEach(function(type){
+    document.addEventListener(type, function(e){
+      if (!isInteractive(document.activeElement)) e.preventDefault();
+    }, {capture:true});
+  });
+  document.addEventListener('keydown', function(e){
+    const k = (e.key || '').toLowerCase();
+    const combo = (e.ctrlKey || e.metaKey) && ['c','x','a','s','p','insert'].includes(k);
+    if (combo && !isInteractive(document.activeElement)) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  }, {capture:true});
+})();
+</script>
+
+  <script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js"));
+  }
+</script>
+  <!-- PWA Install Button -->
+<button id="pwa-install-btn" aria-label="Installer l'application" hidden>Installer</button>
+<style>
+  #pwa-install-btn{
+    position:fixed; right:16px; bottom:16px; z-index:9999;
+    padding:10px 14px; border:none; border-radius:999px;
+    background:#22c55e; color:white; font:600 14px system-ui,Segoe UI,Roboto,Arial,sans-serif;
+    box-shadow:0 8px 20px rgba(34,197,94,.35);
+  }
+  #pwa-install-btn[hidden]{ display:none; }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    #pwa-install-btn{ bottom: calc(16px + env(safe-area-inset-bottom)); }
+  }
+</style>
+<script>
+  (function(){
+    let deferredPrompt;
+    const btnId = "pwa-install-btn";
+    function ensureBtn(){
+      let b = document.getElementById(btnId);
+      if(!b){
+        b = document.createElement("button");
+        b.id = btnId;
+        b.textContent = "Installer";
+        document.body.appendChild(b);
+      }
+      return b;
+    }
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      const btn = ensureBtn();
+      btn.hidden = false;
+      btn.onclick = async () => {
+        btn.hidden = true;
+        deferredPrompt.prompt();
+        await deferredPrompt.userChoice;
+        deferredPrompt = null;
+      };
+    });
+    if (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) {
+      const btn = document.getElementById(btnId);
+      if(btn) btn.hidden = true;
+    }
+  })();
+</script>
+  <!-- Auth UI minimal -->
+<style>
+  .auth-box{position:fixed; top:12px; right:12px; z-index:9998; background:#ffffff; color:#111827; border-radius:12px; padding:10px 12px; box-shadow:0 10px 24px rgba(0,0,0,.12); font:500 14px system-ui,Segoe UI,Roboto,Arial}
+  .auth-box h4{margin:0 0 6px; font-size:14px}
+  .auth-box form{display:flex; gap:6px; flex-wrap:wrap; align-items:center}
+  .auth-box input{padding:6px 8px; border:1px solid #e5e7eb; border-radius:8px}
+  .auth-box button{background:#22c55e; color:#fff; border:none; padding:6px 10px; border-radius:8px; cursor:pointer}
+  .auth-box .row{display:flex; gap:6px; flex-wrap:wrap}
+  .views-badge{position:fixed; left:12px; bottom:12px; z-index:9998; background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px; font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)}
+</style><!-- Admin link (visible only when logged-in) -->
+<style>
+  .admin-link{
+    position:fixed; right:16px; bottom:88px; z-index:9998;
+    display:none; align-items:center; gap:8px;
+    padding:10px 14px; border-radius:999px; text-decoration:none;
+    background:#111827; color:#fff; font:600 14px system-ui,Segoe UI,Roboto,Arial;
+    box-shadow:0 8px 20px rgba(0,0,0,.3);
+    border:1px solid rgba(255,255,255,.1);
+  }
+  body.logged-in .admin-link{ display:inline-flex; }
+  .admin-link:hover{ filter:brightness(1.1); }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    .admin-link{ bottom: calc(88px + env(safe-area-inset-bottom)); }
+  }
+</style>
+<a href="admin.html" class="admin-link" title="Tableau de bord">Admin</a>
+  <script type="module" src="assets/firebase-app.js"></script>
+  <script>window.autoCountAndBind && window.autoCountAndBind();</script>
+  
+<!-- Floating Auth Button + Modal -->
+<style>
+  #auth-fab{
+    position:fixed; right:16px; bottom:68px; z-index:9998;
+    width:48px; height:48px; border-radius:999px; border:none; cursor:pointer;
+    background:#111827; color:#fff; display:grid; place-items:center;
+    box-shadow:0 8px 20px rgba(0,0,0,.35); border:1px solid rgba(255,255,255,.1);
+  }
+  body.logged-in #auth-fab::after{ content:"✓"; }
+  #auth-fab::after{ content:"👤"; font-size:20px; }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    #auth-fab{ bottom: calc(68px + env(safe-area-inset-bottom)); }
+  }
+  .views-badge{
+    position:fixed; left:12px; bottom:12px; z-index:9998; 
+    background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px;
+    font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)
+  }
+  dialog#auth-modal{
+    border:none; border-radius:16px; padding:0; width:min(90vw,420px);
+    box-shadow:0 24px 72px rgba(0,0,0,.35); overflow:hidden;
+  }
+  dialog::backdrop{ background:rgba(0,0,0,.4); }
+  .auth-modal-head{background:#0f172a; color:#fff; padding:12px 16px; display:flex; justify-content:space-between; align-items:center}
+  .auth-modal-body{padding:16px; background:#111827; color:#e5e7eb}
+  .auth-modal-body label{display:block; font-size:13px; margin-top:8px; opacity:.9}
+  .auth-modal-body input{width:100%; padding:10px 12px; border-radius:10px; border:1px solid #1f2937; background:#0b1021; color:#e5e7eb}
+  .auth-actions{display:flex; gap:8px; margin-top:14px}
+  .btn{border:none; border-radius:10px; padding:10px 12px; cursor:pointer; font-weight:600}
+  .btn-primary{background:#22c55e; color:white}
+  .btn-ghost{background:transparent; color:#e5e7eb; border:1px solid #374151}
+  .muted{opacity:.8}
+</style>
+
+<button id="auth-fab" title="Connexion / Compte"></button>
+<div class="views-badge">Vues : <span id="viewCounter">0</span></div>
+
+<dialog id="auth-modal">
+  <div class="auth-modal-head">
+    <strong>Connexion</strong>
+    <button class="btn btn-ghost" id="auth-close" aria-label="Fermer">✕</button>
+  </div>
+  <div class="auth-modal-body">
+    <p class="muted">Connecte-toi pour accéder à l’admin et une meilleure expérience.</p>
+    <label>Email</label>
+    <input type="email" id="auth-email" placeholder="email@exemple.com" required>
+    <label>Mot de passe</label>
+    <input type="password" id="auth-pass" placeholder="••••••••" required>
+    <div class="auth-actions">
+      <button class="btn btn-primary" id="btn-login">Connexion</button>
+      <button class="btn btn-ghost" id="btn-register">Créer un compte</button>
+      <button class="btn btn-ghost" id="btn-logout">Déconnexion</button>
+    </div>
+    <div id="auth-msg" class="muted" style="margin-top:8px;"></div>
+  </div>
+</dialog>
+
+<script type="module">
+  import { authRegister, authLogin, authLogout } from "./assets/firebase-app.js";
+
+  const fab = document.getElementById("auth-fab");
+  const modal = document.getElementById("auth-modal");
+  const closeBtn = document.getElementById("auth-close");
+  const email = document.getElementById("auth-email");
+  const pass = document.getElementById("auth-pass");
+  const msg  = document.getElementById("auth-msg");
+  const btnLogin = document.getElementById("btn-login");
+  const btnRegister = document.getElementById("btn-register");
+  const btnLogout = document.getElementById("btn-logout");
+
+  function openModal(){ try{ modal.showModal(); }catch{ modal.setAttribute("open",""); } }
+  function closeModal(){ modal.close?.(); modal.removeAttribute("open"); }
+
+  fab?.addEventListener("click", openModal);
+  closeBtn?.addEventListener("click", closeModal);
+
+  async function handle(run){
+    msg.textContent = "";
+    try{
+      await run(email.value.trim(), pass.value);
+      msg.textContent = "✅ Opération réussie.";
+      setTimeout(()=>{ closeModal(); }, 500);
+    }catch(e){
+      console.error(e);
+      msg.textContent = "❌ " + (e?.message || "Erreur");
+    }
+  }
+
+  btnLogin?.addEventListener("click", () => handle(authLogin));
+  btnRegister?.addEventListener("click", () => handle(authRegister));
+  btnLogout?.addEventListener("click", async () => {
+    msg.textContent = "";
+    try{ await authLogout(); msg.textContent = "✅ Déconnecté."; }catch(e){ msg.textContent = "❌ " + (e?.message||"Erreur"); }
+  });
+</script>
+
+
+<!-- Per-card view counters -->
+<style>
+  .card-views-badge{
+    position:absolute; top:8px; right:8px;
+    background:rgba(17,24,39,.9); color:#fff;
+    padding:4px 8px; border-radius:999px; font:600 12px system-ui,Segoe UI,Roboto,Arial;
+    box-shadow:0 6px 14px rgba(0,0,0,.25);
+    pointer-events:none;
+  }
+  .card-views-wrap{ position:relative; }
+</style>
+<script type="module">
+  import { getViewCount } from "./assets/firebase-app.js";
+  function basename(href){
+    try{ const u = new URL(href, location.href);
+         const file = u.pathname.split('/').pop() || 'index.html';
+         return file.replace(/\.html$/i,''); }
+    catch{ return (href.split('/').pop()||'index.html').replace(/\.html$/i,''); }
+  }
+  async function attachCounterTo(el, docId){
+    let container = el.closest('.card, .item, .panel, .box, .article, .doc, .tile');
+    if(!container){ container = el.parentElement; }
+    if(container && !container.classList.contains('card-views-wrap')){
+      container.classList.add('card-views-wrap');
+    }
+    const host = container || el;
+    if(host.querySelector('.card-views-badge[data-doc="'+docId+'"]')) return;
+    const badge = document.createElement('span');
+    badge.className = 'card-views-badge';
+    badge.dataset.doc = docId;
+    badge.textContent = 'Vues: …';
+    host.appendChild(badge);
+    try{ const n = await getViewCount(docId);
+         badge.textContent = 'Vues: ' + n; }
+    catch{ badge.textContent = 'Vues: —'; }
+  }
+  async function initCardCounters(){
+    const links = Array.from(document.querySelectorAll('[data-doc-id], a[href$=".html"]'))
+      .filter(a => {
+        const id = a.getAttribute('data-doc-id') || basename(a.getAttribute('href')||'');
+        return id && !['index','admin','offline'].includes(id.toLowerCase());
+      });
+    const handled = new Set();
+    for(const a of links){
+      const id = a.getAttribute('data-doc-id') || basename(a.getAttribute('href')||'');
+      if(!id || handled.has(id)) continue;
+      handled.add(id);
+      attachCounterTo(a, id);
+    }
+  }
+  initCardCounters();
+  const obs = new MutationObserver(()=>initCardCounters());
+  obs.observe(document.body, { childList:true, subtree:true });
+</script>
+
+</body>
+</html>

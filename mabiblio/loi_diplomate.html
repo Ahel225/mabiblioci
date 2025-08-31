@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Statut du Corps Diplomatique — Olive/Ivoire (FINAL)</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Raleway:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --gold-color: #c8a444;
+      --primary-color: #3d5a2a;
+      --secondary-color: #b59b4c;
+      --accent-color: #e67e22;
+      --light-color: #f4f1e6;
+      --dark-color: #1f2937;
+      --text-color: #253238;
+      --bg-color: #f6f6f2;
+      --article-bg: #ffffff;
+      --header-bg: linear-gradient(135deg, #3d5a2a, #27411b);
+      --border-color: rgba(61,90,42,.18);
+      --shadow-color: rgba(61,90,42,.12);
+      --transition: all .3s ease;
+    }
+    .dark-mode{
+      --primary-color: #4b7433;
+      --secondary-color: #c6aa63;
+      --accent-color: #f39c12;
+      --light-color: #23261f;
+      --dark-color: #e5e7eb;
+      --text-color: #e5e7eb;
+      --bg-color: #0f120f;
+      --article-bg: #151a15;
+      --header-bg: linear-gradient(135deg, #27411b, #1b2b12);
+      --border-color: rgba(255,255,255,.08);
+      --shadow-color: rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Raleway',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg-color);color:var(--text-color);line-height:1.65;padding:20px;transition:var(--transition);
+      background-image:radial-gradient(900px 550px at -10% -10%, rgba(61,90,42,.08), transparent 60%),radial-gradient(800px 520px at 110% 0%, rgba(181,155,76,.08), transparent 60%);}
+    .container{max-width:980px;margin:0 auto;background:var(--article-bg);border-radius:12px;box-shadow:0 8px 24px var(--shadow-color);overflow:hidden;border:1px solid var(--border-color);position:relative;}
+    .container::before{content:"";position:absolute;inset:0 auto auto 0;height:8px;width:100%;background:linear-gradient(90deg,#f0771b 0 33.33%,#fff 33.33% 66.66%,#0b6a4a 66.66% 100%);}
+    header{background:var(--header-bg);color:#fff;padding:30px 24px 24px;text-align:center;border-bottom:5px solid var(--secondary-color);}
+    h1{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,1.1rem + 2vw,2.5rem);letter-spacing:.2px;text-shadow:0 1px 2px rgba(0,0,0,.35);}
+    .subtitle{opacity:.95;margin-top:10px;font-style:italic;}
+    .ribbon{margin-top:14px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+    .chip{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.16);backdrop-filter: blur(6px);font-weight:600;}
+    .content{padding:28px 22px 40px;}
+    .section{margin-bottom:28px;scroll-margin-top:80px;}
+    h2{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--primary-color);margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--secondary-color);position:relative;padding-left:16px;}
+    h2::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--primary-color);border-radius:2px;}
+    .article{margin-bottom:22px;padding:18px 18px 14px;background:var(--article-bg);border-radius:10px;box-shadow:0 2px 10px var(--shadow-color);border-left:4px solid var(--primary-color);}
+    .article .article-title{font-family:'Playfair Display',serif;font-weight:700;color:var(--dark-color);margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+    .article .article-title i{color:var(--secondary-color);}
+    
+    h3.heading-chapitre{font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--primary-color);margin:8px 0 10px;border-left:4px solid var(--secondary-color);padding-left:10px;}
+    h4.heading-section{font-family:'Raleway',sans-serif;font-size:1.05rem;color:#555;margin:6px 0 10px;letter-spacing:.2px;text-transform:none;}
+
+    
+    /* Alinéa (mise en page type PDF) */
+    .alinea{ margin:6px 0; padding-left:18px; text-indent:-12px; }
+    .alinea::before{ content:"— "; color: var(--secondary-color); font-weight:700; }
+
+    .article ul{padding-left:22px;margin:8px 0} .article li{margin:6px 0}
+    .control-buttons{position:fixed;top:20px;left:20px;display:flex;gap:10px;z-index:2000;}
+    .control-btn{width:46px;height:46px;border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;background:var(--primary-color);box-shadow:0 4px 12px rgba(0,0,0,.25);transition:var(--transition);border:1px solid rgba(255,255,255,.3);}
+    .control-btn:hover{transform:scale(1.08);background:var(--accent-color);}
+    .brightness-control{position:fixed;top:80px;left:20px;background:var(--article-bg);padding:12px 14px;border-radius:10px;border:1px solid var(--border-color);box-shadow:0 6px 20px var(--shadow-color);display:none;flex-direction:column;gap:8px;z-index:2000;}
+    .brightness-control.active{display:flex}
+    .brightness-slider{width:160px;height:8px;appearance:none;background:var(--secondary-color);border-radius:6px;}
+    .brightness-slider::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--primary-color);border:2px solid #fff;}
+    #scrollTopBtn,#scrollBottomBtn{position:fixed;right:20px;width:50px;height:50px;border-radius:50%;border:none;color:#fff;background:var(--primary-color);cursor:pointer;display:none;font-size:18px;z-index:1999;box-shadow:0 4px 14px rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.3);}
+    #scrollTopBtn{bottom:140px} #scrollBottomBtn{bottom:80px} #scrollTopBtn:hover,#scrollBottomBtn:hover{background:var(--accent-color);transform:scale(1.05)}
+    .mobile-sommaire-btn{position:fixed;top:20px;right:20px;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;background:var(--header-bg);z-index:2001;border:2px solid var(--secondary-color);cursor:pointer;box-shadow:0 4px 15px rgba(0,0,0,.3);}
+    .mobile-sommaire{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;opacity:0;transition:.3s;z-index:2000}
+    .mobile-sommaire.active{display:flex;opacity:1;align-items:center;justify-content:center;padding:20px}
+    .mobile-sommaire-content{background:var(--article-bg);width:92%;max-width:520px;max-height:80vh;overflow:auto;padding:22px;border-radius:14px;border:2px solid var(--secondary-color);transform:translateY(16px);transition:transform .35s ease;}
+    .mobile-sommaire.active .mobile-sommaire-content{transform:translateY(0)}
+    .mobile-sommaire-header{display:flex;align-items:center;justify-content:space-between;padding-bottom:10px;border-bottom:2px solid var(--secondary-color)}
+    .mobile-sommaire-title{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--dark-color)}
+    .sommaire-list{list-style:none;margin-top:14px} .sommaire-item{margin-bottom:10px;padding:12px;background:var(--light-color);border-left:3px solid var(--accent-color);border-radius:8px;}
+    .sommaire-item a{text-decoration:none;color:var(--dark-color);font-weight:600} .sommaire-item:hover{background:var(--secondary-color)} .sommaire-item:hover a{color:#fff}
+    .mobile-sommaire-close{background:none;border:none;font-size:1.3rem;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--dark-color);}
+    .fullscreen-mode{position:fixed;inset:0;background:var(--article-bg);z-index:3000;display:none;overflow:auto;padding:20px} .fullscreen-mode.active{display:block}
+    .fullscreen-header{display:flex;align-items:center;justify-content:space-between;padding-bottom:10px;border-bottom:2px solid var(--secondary-color)}
+    .fullscreen-title{font-family:'Playfair Display',serif;color:var(--dark-color)} .fullscreen-close{background:none;border:none;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer}
+    .fullscreen-content{font-size:1.1rem;line-height:1.8;margin-top:10px} .fullscreen-nav{display:flex;justify-content:space-between;gap:10px;margin-top:18px;padding-top:12px;border-top:1px solid var(--border-color)}
+    .fullscreen-nav-btn{background:var(--primary-color);border:none;color:#fff;padding:10px 18px;border-radius:8px;cursor:pointer} .fullscreen-nav-btn:disabled{background:var(--secondary-color);cursor:not-allowed}
+    .fullscreen-voice-controls{display:flex;justify-content:center;gap:12px;margin:14px 0} .fullscreen-voice-btn{font-size:18px;background:var(--primary-color);color:#fff;border:none;width:50px;height:50px;border-radius:50%;cursor:pointer}
+    .voice-controls{
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 20px;
+      display: flex;
+      gap: 10px;
+      background: var(--primary-color);
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 999px;
+      z-index: 3002;
+      border: 1px solid rgba(255,255,255,.3);
+      box-shadow: 0 4px 12px rgba(0,0,0,.25);
+    }
+    .voice-btn{ font-size: 18px; background:none; border:none; color:#fff; width:40px; height:40px; border-radius:50%; cursor:pointer }
+    .nav-indicator{
+      position: fixed; left:50%; transform: translateX(-50%);
+      bottom: 8px; display:flex; gap:6px; background: rgba(255,255,255,.9); padding:6px 10px; border-radius:999px;
+      box-shadow: 0 2px 10px rgba(0,0,0,.15); z-index:2000;
+    }
+    .nav-dot{ width:10px; height:10px; border-radius:50%; background: var(--secondary-color); }
+    .nav-dot.active{ background: var(--primary-color); transform: scale(1.2) }
+    /* Désactivation de la sélection globale (sauf champs de saisie) */
+    .no-select, .no-select *:not(input, textarea) {
+      -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-touch-callout: none;
+    }
+    @media (max-width:768px){.control-buttons{top:90px;left:10px;flex-direction:column} .section{scroll-margin-top:100px} header{padding:22px} h1{font-size:1.6rem}}
+  </style>
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#22c55e">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<!-- HIDE AUTH/VIEWS WIDGETS OUTSIDE HOME (safe) -->
+<style>
+  #auth-fab, .views-badge, #auth-modal, .card-views-badge { display: none !important; }
+</style>
+
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Statut du Corps Diplomatique</h1>
+      <p class="subtitle">Loi-cre — Missions, Accès, Hiérarchie et Dispositions Générales</p>
+      <div class="ribbon">
+        <span class="chip"><i class="fas fa-globe-africa"></i> Diplomatie</span>
+        <span class="chip"><i class="fas fa-shield-alt"></i> Lecture confortable</span>
+        <span class="chip"><i class="fas fa-moon"></i> Mode sombre</span>
+      </div>
+    </header>
+
+    <div class="content">
+      <div class="control-buttons">
+        <button class="control-btn" id="themeToggle" title="Mode nuit/jour"><i class="fas fa-moon"></i></button>
+        <button class="control-btn" id="brightnessBtn" title="Contrôle de luminosité"><i class="fas fa-sun"></i></button>
+        <button class="control-btn" id="fullscreenToggle" title="Mode lecture plein écran"><i class="fas fa-expand"></i></button>
+      </div>
+
+      <div class="brightness-control" id="brightnessControl">
+        <label for="brightnessSlider">Luminosité</label>
+        <input type="range" min="50" max="150" value="100" class="brightness-slider" id="brightnessSlider">
+      </div>
+
+      <button id="scrollTopBtn" title="Aller en haut">↑</button>
+      <button id="scrollBottomBtn" title="Aller en bas">↓</button>
+
+      <!-- Plein écran -->
+      <div class="fullscreen-mode" id="fullscreenMode">
+        <div class="fullscreen-header">
+          <h2 class="fullscreen-title" id="fullscreenTitle"></h2>
+          <button class="fullscreen-close" id="fullscreenClose"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="fullscreen-content" id="fullscreenContent"></div>
+
+        <div class="fullscreen-voice-controls">
+          <button class="fullscreen-voice-btn" id="fullscreenPlayBtn" title="Lire">▶</button>
+          <button class="fullscreen-voice-btn" id="fullscreenPlayContinuousBtn" title="Lecture continue">⏩</button>
+          <button class="fullscreen-voice-btn" id="fullscreenPauseBtn" title="Pause">⏸</button>
+          <button class="fullscreen-voice-btn" id="fullscreenStopBtn" title="Arrêter">■</button>
+        </div>
+
+        <div class="fullscreen-nav">
+          <button class="fullscreen-nav-btn" id="prevArticleBtn" disabled>Précédent</button>
+          <button class="fullscreen-nav-btn" id="nextArticleBtn">Suivant</button>
+        </div>
+      </div>
+
+      <!-- Sommaire mobile -->
+      <div class="mobile-sommaire-btn" id="mobileSommaireBtn"><i class="fas fa-bars"></i></div>
+      <div class="mobile-sommaire" id="mobileSommaire">
+        <div class="mobile-sommaire-content">
+          <div class="mobile-sommaire-header">
+            <h3 class="mobile-sommaire-title">Sommaire</h3>
+            <button class="mobile-sommaire-close" id="mobileSommaireClose"><i class="fas fa-times"></i></button>
+          </div>
+          <ul class="sommaire-list" id="sommaireList"></ul>
+        </div>
+      </div>
+
+      <div id="articlesContainer"></div>
+
+      <!-- Barre lecteur vocal (mode normal) -->
+      <div class="voice-controls" id="mainVoiceControls">
+        <button class="voice-btn" id="mainPlayBtn" title="Lire l'article visible">▶</button>
+        <button class="voice-btn" id="mainPlayContinuousBtn" title="Lecture continue">⏩</button>
+        <button class="voice-btn" id="mainPauseBtn" title="Pause">⏸</button>
+        <button class="voice-btn" id="mainStopBtn" title="Arrêter">■</button>
+      </div>
+
+      <div class="nav-indicator" id="navIndicator"></div>
+    </div>
+
+    <footer style="text-align:center; background: var(--primary-color); color:#fff; padding: 20px">
+      <p>République de Côte d'Ivoire — Ministère d'État, Ministère des Affaires Étrangères</p>
+      <p>© 2025 — Présentation non-officielle à usage pédagogique</p>
+    </footer>
+  </div>
+
+  <script>
+  // lawData — exact block from your file (contents unchanged)
+  const lawData = {
+  "title": "Statut du Corps Diplomatique",
+  "subtitle": "Loi-cadre — Côte d'Ivoire",
+  "chapters": [
+    {
+      "title": "TITRE I : DISPOSITIONS GENERALES — CHAPITRE I : DOMAINE D'APPLICATION",
+      "articles": [
+        {
+          "id": "article1",
+          "title": "Article 1",
+          "content": "La présente loi fixe les règles générales relatives au Statut du Corps Diplomatique."
+        },
+        {
+          "id": "article2",
+          "title": "Article 2",
+          "content": "Le présent statut s'applique aux membres du corps Diplomatique, tel que défini aux articles 3 et 15. Il s'applique également, dans certaines de ses dispositions, aux personnes autres que les membres du Corps Diplomatique qui sont nommées dans les fonctions d'Ambassadeur."
+        },
+        {
+          "id": "article3",
+          "title": "Article 3",
+          "content": "Est membre du Corps Diplomatique, aux termes de la présente loi, toute personne nommée à titre permanent dans un emploi à caractère diplomatique et titularisée dans l'un des Grades de la hiérarchie du Corps Diplomatique."
+        }
+      ]
+    },
+    {
+      "title": "TITRE I : DISPOSITIONS GENERALES — CHAPITRE II : COMPOSITION DU CORPS DIPLOMATIQUE ET MISSIONS DES MEMBRES DU CORPS DIPLOMATIQUE",
+      "articles": [
+        {
+          "id": "article4",
+          "title": "Article 4",
+          "content": "Le Corps Diplomatique est constitué des emplois suivants :<ul><li>Ambassadeur ;</li><li>Ministre Plénipotentiaire ;</li><li>Secrétaire des Affaires Etrangères.</li></ul>"
+        },
+        {
+          "id": "article5",
+          "title": "Article 5",
+          "content": "Les membres du Corps Diplomatique ont pour mission, sous la haute autorité du Président de la République et sous le contrôle du Ministre en charge des Affaires Etrangères, de mettre en œuvre la politique extérieure de la Côte d'Ivoire et, notamment :<ul><li>de représenter auprès de l'Etat d'accréditation et des Organisations et Institutions Internationales, l'Etat de Côte d'Ivoire et son Gouvernement;</li><li>de protéger dans les Etats d'accréditation, les intérêts de l'Etat de Côte d'Ivoire et ceux de ses ressortissants ;</li><li>de négocier au nom de la Côte d'Ivoire avec les autres Etats et avec les Organisations et Institutions Internationales ;</li><li>d'informer le Gouvernement sur les évènements survenant dans les Etats d'accréditation ;</li><li>de promouvoir les relations d'amitié et de coopération et de développer les relations économiques avec l'étranger ;</li><li>de préserver et de promouvoir l'image de la Côte d'Ivoire à l'extérieur. En outre, ils sont appelés à accomplir toutes les missions qui leur sont confiées par l'Etat.</li></ul>"
+        }
+      ]
+    },
+    {
+      "title": "TITRE II : ACCES AU CORPS DIPLOMATIQUE ET PROFIL DE CARRIERE — CHAPITRE I : ACCES AU CORPS DIPLOMATIQUE",
+      "articles": [
+        {
+          "id": "article6",
+          "title": "Article 6",
+          "content": "Est membre du Corps Diplomatique, toute personne nommée et titularisée par décret dans l'un des emplois à caractère diplomatique."
+        }
+      ]
+    },
+    {
+      "title": "TITRE II : ACCES AU CORPS DIPLOMATIQUE ET PROFIL DE CARRIERE — CHAPITRE II : PROFIL DE CARRIERE — Section 1 : Grades de la hiérarchie du Corps Diplomatique",
+      "articles": [
+        {
+          "id": "article7",
+          "title": "Article 7",
+          "content": "Les Grades de la hiérarchie du Corps Diplomatique sont :<ul><li>le Hors Grade : Ambassadeur;</li><li>le Grade I : Ministre Plénipotentiaire ;</li><li>le Grade II : Conseiller des Affaires Etrangères ;</li><li>le Grade III : Secrétaire des Affaires Etrangères.</li></ul>"
+        },
+        {
+          "id": "article8",
+          "title": "Article 8",
+          "content": "Des échelons d'ancienneté sont établis dans chacun des grades."
+        }
+      ]
+    },
+    {
+      "title": "TITRE II : ACCES AU CORPS DIPLOMATIQUE ET PROFIL DE CARRIERE — CHAPITRE II : PROFIL DE CARRIERE — Section 2 : Nomination dans les emplois du corps Diplomatique",
+      "articles": [
+        {
+          "id": "article9",
+          "title": "Article 9",
+          "content": "Les Ambassadeurs Hors Grade sont nommés parmi les Ministres Plénipotentiaires."
+        },
+        {
+          "id": "article10",
+          "title": "Article 10",
+          "content": "Les Ministres Plénipotentiaires sont nommés parmi les Conseillers des Affaires Etrangères."
+        },
+        {
+          "id": "article11",
+          "title": "Article 11",
+          "content": "Les Conseillers des Affaires Etrangères sont nommés parmi les Secrétaires des Affaires Etrangères."
+        },
+        {
+          "id": "article12",
+          "title": "Article 12",
+          "content": "Les Secrétaires des Affaires Etrangères sont nommés parmi les titulaires du Diplôme du Cycle supérieur de l'Ecole Nationale d'Administration de Côte d'Ivoire."
+        },
+        {
+          "id": "article13",
+          "title": "Article 13",
+          "content": "La nomination dans les emplois d'Ambassadeur, de Ministre Plénipotentiaire, de Conseiller des Affaires Etrangères et de Secrétaire des Affaires Etrangères est faite par décret pris en Conseil des Ministres."
+        },
+        {
+          "id": "article14",
+          "title": "Article 14",
+          "content": "Les conditions de nomination dans chacun des grades de la hiérarchie du Corps Diplomatique et la détermination des échelons d'ancienneté sont fixées par décret pris en Conseil des Ministres."
+        },
+        {
+          "id": "article15",
+          "title": "Article 15",
+          "content": "Le Président de la République peut, de façon discrétionnaire, nommer, à titre exceptionnel, par décret, dans l'un des emplois du Corps Diplomatique. Toutefois, ces nominations ne peuvent excéder, par an, 25% du nombre total de l'effectif des élèves de la filière diplomatique en formation."
+        },
+        {
+          "id": "article16",
+          "title": "Article 16",
+          "content": "En Côte d'Ivoire, le membre du Corps Diplomatique peut occuper, outre les fonctions à caractère diplomatique et consulaire, toute autre fonction, selon les conditions de nomination et d'exercice de ces fonctions définies par décret pris en Conseil des Ministres."
+        },
+        {
+          "id": "article17",
+          "title": "Article 17",
+          "content": "Les nominations des membres du Corps Diplomatique, pour l'exercice à l'étranger des fonctions d'Ambassadeur, Chef de Mission Diplomatique, de Représentant Permanent, de Délégué Permanent, de Consul Général, de Représentant Permanent Adjoint, de Délégué Permanent Adjoint ou de Chargé d'Affaires en Pied, sont faites par décret pris en Conseil des Ministres, sur proposition du Ministre en charge des Affaires Etrangères. Toutefois, le Président de la République peut nommer, dans les fonctions d'Ambassadeur, Chef de Mission Diplomatique, de Représentant Permanent, de Délégué Permanent, de Consul Général, de Représentant Permanent Adjoint, de Délégué Permanent Adjoint ou de Chargé d'Affaires en Pied, toute personnalité de son choix n'ayant pas la qualité de membre du Corps Diplomatique. Pendant la durée de leurs fonctions à l'étranger, les personnalités nommées conformément à l'alinéa 2 ci-dessus, bénéficient des droits et avantages prévus par le présent statut du corps Diplomatique. Elles sont également soumises aux devoirs, obligations et incompatibilités prévus par la présente loi. Ces nominations ne confèrent pas la qualité de membre du corps diplomatique aux personnalités concernées, qui réintégreront leurs emplois ou organismes d'origine à la fin de leurs fonctions. Les conditions de nomination et d'exercice de ces fonctions sont définies par décret pris en Conseil des Ministres."
+        },
+        {
+          "id": "article18",
+          "title": "Article 18",
+          "content": "Les nominations des membres du Corps Diplomatique, pour l'exercice à l'étranger des fonctions de Ministre Conseiller, de Premier Conseiller, de Chargé d'Affaires ad intérim, de Conseiller, de Consul, de Vice-Consul et de Premier Secrétaire, sont faites par arrêté ou décision du Ministre en charge des Affaires Etrangères. Les conditions de nomination et d'exercice de ces fonctions sont définies par décret pris en Conseil des Ministres."
+        }
+      ]
+    },
+    {
+      "title": "TITRE III : DROITS, AVANTAGES, OBLIGATIONS ET INCOMPATIBILITES — CHAPITRE I : DROITS ET AVANTAGES — Section 1 : Droits et avantages de toutes natures",
+      "articles": [
+        {
+          "id": "article19",
+          "title": "Article 19",
+          "content": "Les membres du Corps Diplomatique bénéficient des droits reconnus aux fonctionnaires et agents de l'Etat par le Statut Général de la Fonction Publique ainsi que des droits spécifiques énoncés dans les décrets d'application du présent statut."
+        },
+        {
+          "id": "article20",
+          "title": "Article 20",
+          "content": "Le conjoint de l'Ambassadeur, Chef de Mission Diplomatique ou de Poste Consulaire, du Représentant Permanent, du Délégué Permanent, du Consul Général, du Représentant Permanent Adjoint, du Délégué Permanent Adjoint ou du Chargé d'Affaires en Pied, non fonctionnaire, qui est amené à suivre celui-ci ou celle-ci à l'étranger, perçoit une indemnité de conjoint mensuelle."
+        },
+        {
+          "id": "article21",
+          "title": "Article 21",
+          "content": "Le fonctionnaire, conjoint de l'Ambassadeur, Chef de Mission Diplomatique ou de Poste Consulaire, du Représentant Permanent, du Délégué Permanent, du Consul Général, du Représentant Permanent Adjoint, du Délégué Permanent Adjoint ou du Chargé d'Affaires en Pied, exerçant au Ministère en charge des Affaires Etrangères et qui est amené à suivre celui-ci ou celle-ci à l'étranger, est considéré comme étant en activité. Il continue de percevoir le salaire qui lui est versé en Côte d'Ivoire et conserve ses droits à l'avancement, à la promotion et à la retraite Le fonctionnaire, conjoint du membre du Corps Diplomatique, exerçant dans une autre Administration et qui est amené à suivre celui-ci à l'étranger, est mis, à sa demande, à la disposition du Ministère en charge des Affaires Etrangères et est considéré comme étant en activité et continue de percevoir la rémunération qui lui est versée en Côte d'Ivoire. Il conserve ses droits à l'avancement, à la promotion et à la retraite."
+        },
+        {
+          "id": "article22",
+          "title": "Article 22",
+          "content": "Toutefois, lorsque le salaire des fonctionnaires visés aux alinéas 1 et 3 du présent article, est inférieur à l'indemnité de conjoint mensuelle, un complément mensuel leur est versé."
+        },
+        {
+          "id": "article23",
+          "title": "Article 23",
+          "content": "L'Ambassadeur, conjoint de l'Ambassadeur, Chef de Mission Diplomatique ou de Poste Consulaire, du Représentant Permanent, du Délégué Permanent, du Consul Général, du Représentant Permanent Adjoint, du Délégué Permanent Adjoint ou du Chargé d'Affaires en Pied, a droit au déroulement normal de sa carrière. Il bénéficie, à l'occasion du mouvement diplomatique, du droit d'être nommé dans un poste proche du pays de résidence de son conjoint, Chef de Mission Diplomatique ou de Poste Consulaire, Représentant Permanent, Délégué Permanent, Consul Général, Représentant Permanent Adjoint, Délégué Permanent Adjoint ou Chargé d'Affaires en Pied."
+        },
+        {
+          "id": "article24",
+          "title": "Article 24",
+          "content": "Lorsque le conjoint de l'Ambassadeur, Chef de Mission Diplomatique ou de Poste Consulaire, du Représentant Permanent, du Délégué Permanent, du Consul Général, du Représentant Permanent Adjoint, du Délégué Permanent Adjoint ou du Chargé d'Affaires en Pied, est membre du Corps Diplomatique, mais n'a pas le Grade d'Ambassadeur, il bénéficie d'une affectation régulière en même temps que son conjoint, dans le poste le plus proche du pays de résidence de celui-ci ou de celle-ci."
+        },
+        {
+          "id": "article25",
+          "title": "Article 25",
+          "content": "Le fonctionnaire, conjoint d'un membre du Corps Diplomatique, autre que l'Ambassadeur, exerçant au Ministère des Affaires Etrangères, bénéficie d'une affectation régulière en même temps que le membre du Corps Diplomatique dans le même poste. Le fonctionnaire, conjoint du membre du Corps Diplomatique, exerçant dans une autre Administration et qui est amené à suivre celui-ci à l'étranger, est mis à la disposition du Ministère en charge des Affaires Etrangères et maintenu en position d'activité. Il continue de percevoir la rémunération qui lui est versée en Côte d'Ivoire. Il conserve ses droits à l'avancement, à la promotion et à la retraite."
+        },
+        {
+          "id": "article26",
+          "title": "Article 26",
+          "content": "Le membre du Corps Diplomatique en service à l'étranger a droit à un congé de soixante (60) jours à passer en Côte d'Ivoire, au terme de deux années de service effectif. Durant ce congé, il conserve l'intégralité de son traitement indexé."
+        },
+        {
+          "id": "article27",
+          "title": "Article 27",
+          "content": "A l'étranger, le membre du Corps Diplomatique bénéficie de la protection de l'Etat contre les faits de guerre, les voies de fait, la destruction de ses biens, toute autre agression, les accidents ou les catastrophes naturelles. Il bénéficie d'une réparation des préjudices qui en résultent."
+        },
+        {
+          "id": "article28",
+          "title": "Article 28",
+          "content": "Le membre du Corps Diplomatique, qui retourne en Côte d'Ivoire pour faits de guerre, fermeture provisoire ou définitive de la Mission Diplomatique ou du Poste Consulaire, de la Représentation Permanente, de la Délégation Permanente ou du Consulat Général, continue de percevoir l'intégralité de sa rémunération à l'étranger, de bénéficier de la prise en charge de ses frais médicaux, de ceux de sa famille, ainsi que de la prise en charge des frais de scolarité de ses enfants jusqu'à son rappel effectif à l'Administration centrale."
+        },
+        {
+          "id": "article29",
+          "title": "Article 29",
+          "content": "En cas de décès à l'étranger d'un membre du Corps Diplomatique ou d'un membre de sa famille, l'Etat apporte une assistance aux ayants droit du membre du Corps Diplomatique. L'Etat prend en charge l'intégralité des frais relatifs au traitement, à la conservation et au transfert du corps du défunt en Côte d'Ivoire jusqu'au lieu de l'inhumation. Les ayants droit du membre du Corps Diplomatique défunt perçoivent, jusqu'à leur rapatriement, une assistance financière équivalente à l'intégralité du salaire mensuel du défunt à l'étranger. Le rapatriement de la famille du membre du Corps Diplomatique défunt n'intervient qu'à la fin de l'année scolaire et universitaire. Les modalités de cette assistance sont définies par décret pris en Conseil des Ministres."
+        },
+        {
+          "id": "article30",
+          "title": "Article 30",
+          "content": "Le membre du Corps Diplomatique rappelé à l'Administration centrale après un séjour dans une Mission Diplomatique ou un Poste Consulaire bénéficie des avantages et exonérations déterminés par décret pris en Conseil des Ministres."
+        },
+        {
+          "id": "article31",
+          "title": "Article 31",
+          "content": "A son rappel à l'Administration centrale, le membre du Corps Diplomatique a droit à trois mois de congé pour le service accompli en poste à l'étranger. Pendant ces trois mois de congé pour services accomplis en poste à l'étranger, le membre du Corps Diplomatique perçoit, chaque mois, la contre-valeur en monnaie locale de l'intégralité du dernier traitement auquel il a eu droit durant son séjour à l'étranger."
+        }
+      ]
+    },
+    {
+      "title": "TITRE III : DROITS, AVANTAGES, OBLIGATIONS ET INCOMPATIBILITES — CHAPITRE I : DROITS ET AVANTAGES — Section 2 : Traitements, prime et Indemnités",
+      "articles": [
+        {
+          "id": "article32",
+          "title": "Article 32",
+          "content": "Le membre du Corps Diplomatique en fonction au Département central perçoit une rémunération qui comprend le traitement soumis à retenue pour pension et fiscalités ainsi que des indemnités tenant compte des sujétions spéciales inhérentes à l'exercice de ses fonctions. Il peut également percevoir une prime."
+        },
+        {
+          "id": "article33",
+          "title": "Article 33",
+          "content": "Le membre du Corps Diplomatique en fonction dans les Services Extérieurs perçoit une rémunération qui comprend le traitement soumis à retenue pour pension et fiscalités ainsi que des indemnités affectées d'un coefficient de correction, tenant compte des sujétions spéciales résultant de son expatriation."
+        },
+        {
+          "id": "article34",
+          "title": "Article 34",
+          "content": "Les indices de traitement, les montants de la prime, les taux des indemnités et le coefficient de correction sont définis par décret pris en Conseil des Ministres."
+        }
+      ]
+    },
+    {
+      "title": "TITRE III : DROITS, AVANTAGES, OBLIGATIONS ET INCOMPATIBILITES — CHAPITRE II : OBLIGATIONS",
+      "articles": [
+        {
+          "id": "article35",
+          "title": "Article 35",
+          "content": "Outre les obligations découlant des Conventions de Vienne sur les Relations diplomatiques et consulaires ainsi que celles définies par le Statut Général de la Fonction Publique, le membre du Corps Diplomatique est soumis aux obligations particulières énoncées aux articles 35 à 40 de la présente loi."
+        },
+        {
+          "id": "article36",
+          "title": "Article 36",
+          "content": "Le membre du Corps Diplomatique doit s'abstenir de toute activité qui pourrait entraver son indépendance et porter atteinte à son impartialité. Il lui est, en particulier, interdit d'organiser des manifestations d'hostilité aux principes ou à la forme du Gouvernement de la République ou de participer à de telles manifestations."
+        },
+        {
+          "id": "article37",
+          "title": "Article 37",
+          "content": "Le membre du Corps Diplomatique en poste à l'étranger doit, dans le service comme dans sa vie privée, s'abstenir de tout comportement de nature à porter atteinte aux intérêts, à l'honneur et au prestige de son pays, de même qu'à la noblesse de sa fonction. Il est tenu de faire observer cette obligation par les membres de sa famille et toute autre personne à son service ou sous sa responsabilité."
+        },
+        {
+          "id": "article38",
+          "title": "Article 38",
+          "content": "Avant de rejoindre son poste d'affectation, l'Ambassadeur, Chef de Mission Diplomatique ou de Poste Consulaire, prête serment devant le Président de la République au cours d'une cérémonie. Les modalités d'organisation de cette cérémonie sont fixées par décret pris en Conseil des Ministres."
+        },
+        {
+          "id": "article39",
+          "title": "Article 39",
+          "content": "Le membre du Corps Diplomatique en service dans une Mission Diplomatique ou Poste Consulaire est astreint à résider, sauf cas de force majeure, dans la localité où il exerce ses fonctions. Le Chef de Mission Diplomatique ou de Poste Consulaire, le Représentant Permanent, le Délégué Permanent, le Consul Général, le Représentant Permanent Adjoint, le Délégué Permanent Adjoint ou le Chargé d'Affaires en Pied ne peut se déplacer en dehors du territoire de sa circonscription, qu'avec l'autorisation préalable du Ministre en charge des Affaires Etrangères. Les autres membres de la Mission ne le peuvent qu'avec l'autorisation du Chef de Mission Diplomatique ou de Poste Consulaire, en lui indiquant leurs destinations et la durée de leurs déplacements."
+        },
+        {
+          "id": "article40",
+          "title": "Article 40",
+          "content": "Le membre du Corps Diplomatique ne peut contracter mariage sans avoir au préalable requis l'autorisation du Ministre en charge des Affaires Etrangères, lorsque le futur conjoint est de nationalité étrangère. La demande doit être déposée six mois au moins avant la date de la célébration."
+        }
+      ]
+    },
+    {
+      "title": "TITRE IV : NOTATION, AVANCEMENT ET PROMOTION",
+      "articles": [
+        {
+          "id": "article41",
+          "title": "Article 41",
+          "content": "Il est créé une Commission d'Avancement, de Promotion et de Discipline (CAPD), dont les attributions, la composition, l'organisation et le fonctionnement sont déterminés par décret pris en Conseil des Ministres."
+        }
+      ]
+    },
+    {
+      "title": "TITRE IV : NOTATION, AVANCEMENT ET PROMOTION — CHAPITRE I : NOTATION",
+      "articles": [
+        {
+          "id": "article42",
+          "title": "Article 42",
+          "content": "Il est attribué, chaque année, à tout membre du Corps Diplomatique en activité ou en détachement, une note formulée dans un bulletin individuel de notation en vue, notamment, de son appréciation et de son inscription au tableau d'avancement et sur les listes d'aptitude. Les modalités de notation sont déterminées par décret pris en Conseil des Ministres."
+        }
+      ]
+    },
+    {
+      "title": "TITRE IV : NOTATION, AVANCEMENT ET PROMOTION — CHAPITRE II : AVANCEMENT ET PROMOTION",
+      "articles": [
+        {
+          "id": "article43",
+          "title": "Article 43",
+          "content": "L'avancement est le passage d'un échelon à un autre échelon à l'intérieur du même grade. L'avancement est fonction de la notation et de l'ancienneté."
+        },
+        {
+          "id": "article44",
+          "title": "Article 44",
+          "content": "La promotion est le passage d'un Grade au Grade immédiatement supérieur. La promotion est fonction de la notation, de l'ancienneté et de l'inscription sur une liste d'aptitude établie par la Commission d'Avancement, de Promotion et de Discipline."
+        }
+      ]
+    },
+    {
+      "title": "TITRE V : MOUVEMENT DIPLOMATIQUE",
+      "articles": [
+        {
+          "id": "article45",
+          "title": "Article 45",
+          "content": "Le mouvement diplomatique est le redéploiement régulier et statutaire du membre du Corps Diplomatique entre les Services de l'Administration centrale et les Missions Diplomatiques et Postes Consulaires, d'une part, et entre les services Extérieurs, d'autre part. Il s'agit notamment de l'affectation, de la mutation et du rappel. Le mouvement diplomatique a lieu tous les ans. Les règles et modalités d'exécution du mouvement diplomatique sont fixées par décret pris en Conseil des Ministres."
+        }
+      ]
+    },
+    {
+      "title": "TITRE VI : POSITIONS DES MEMBRES DU CORPS DIPLOMATIQUE",
+      "articles": [
+        {
+          "id": "article46",
+          "title": "Article 46",
+          "content": "Tout membre du Corps Diplomatique est placé dans l'une des positions suivantes : <ul><li>activité ;</li><li>détachement;</li><li>disponibilité.</li></ul>"
+        }
+      ]
+    },
+    {
+      "title": "TITRE VI : POSITIONS DES MEMBRES DU CORPS DIPLOMATIQUE — Section 1 : L'activité",
+      "articles": [
+        {
+          "id": "article47",
+          "title": "Article 47",
+          "content": "L'activité est la position du membre du Corps Diplomatique qui occupe effectivement un emploi. Est également considéré comme étant en activité, le membre du Corps Diplomatique en congé, en stage, en formation ou bénéficiant d'une autorisation d'absence avec traitement. Le membre du Corps Diplomatique amené à suivre son conjoint fonctionnaire affecté à l'étranger est également considéré comme étant en activité."
+        }
+      ]
+    },
+    {
+      "title": "TITRE VI : POSITIONS DES MEMBRES DU CORPS DIPLOMATIQUE — Section 2 : Le détachement",
+      "articles": [
+        {
+          "id": "article48",
+          "title": "Article 48",
+          "content": "Le détachement est la position du membre du Corps Diplomatique autorisé à interrompre temporairement ses fonctions, pour exercer un emploi ou un mandat public national ou international ou pour exercer une fonction ministérielle ou toute autre fonction auprès d'une société d'Etat ou d'une entreprise Privée. Dans cette position, le membre du Corps Diplomatique continue à bénéficier de ses droits à l'avancement et à la retraite."
+        },
+        {
+          "id": "article49",
+          "title": "Article 49",
+          "content": "Le détachement est prononcé à la demande du membre du Corps Diplomatique ou d'office. Il est révocable. Le membre du Corps Diplomatique détaché est soumis aux règles régissant l'emploi pour lequel il a été détaché, à l'exception de toute disposition législative, réglementaire ou conventionnelle, prévoyant le versement d'indemnité de licenciement ou de fin de carrière."
+        },
+        {
+          "id": "article50",
+          "title": "Article 50",
+          "content": "Aucun membre du Corps Diplomatique ne peut être placé en position de détachement s'il n'a accompli cinq années de services effectifs dans le Corps Diplomatique depuis sa nomination, sauf en cas de détachement d'office. Le membre du Corps Diplomatique détaché, remis à la disposition de son administration d'origine, avant le terme, pour une cause autre qu'une faute commise dans l'exercice de ses fonctions, continue d'être rémunéré par l'organisme de détachement jusqu'à sa réintégration. En cas de faute grave ou de faute professionnelle, l'organisme de détachement est tenu de saisir, sans délai, le Ministre chargé des Affaires Etrangères d'un rapport circonstancié. Le membre du Corps Diplomatique détaché ne peut, sauf au cas où le détachement a été prononcé auprès d'organismes internationaux ou pour exercer une fonction ministérielle, être affilié au régime de retraite de l'organisme auprès duquel il est détaché, ni prétendre à quelque pension ou allocation, sous peine de suspension de la pension de l'Etat."
+        },
+        {
+          "id": "article51",
+          "title": "Article 51",
+          "content": "Sous réserve des dérogations prévues par décret ou convention spéciale, le membre du Corps Diplomatique détaché est rémunéré par l'organisme de détachement. La rémunération doit être au moins équivalente à celle perçue dans son administration d'origine. Elle ne peut être inférieure à la rétribution globale payée au personnel de l'organisme du détachement exerçant des fonctions similaires. Elle doit tenir compte, le cas échéant, de la revalorisation du traitement liée à l'ancienneté. Sous réserve des dérogations fixées par décret pris en Conseil des Ministres, la collectivité ou l'organisme auprès duquel un membre du Corps Diplomatique est détaché, est redevable, envers la Caisse Générale de Retraite des Agents de l'Etat, d'une contribution pour la constitution des droits à pension de l'intéressé. Le taux de cette contribution est fixé par décret pris en Conseil des Ministres."
+        },
+        {
+          "id": "article52",
+          "title": "Article 52",
+          "content": "Les conditions et la durée du détachement ainsi que les modalités de réintégration des membres du Corps Diplomatique sont déterminées par décret pris en Conseil des Ministres."
+        }
+      ]
+    },
+    {
+      "title": "TITRE VI : POSITIONS DES MEMBRES DU CORPS DIPLOMATIQUE — Section 3 : La disponibilité",
+      "articles": [
+        {
+          "id": "article53",
+          "title": "Article 53",
+          "content": "La disponibilité est la position du membre du Corps Diplomatique dont l'activité est suspendue temporairement, à sa demande, pour des raisons personnelles telles que précisées à l'article 55."
+        },
+        {
+          "id": "article54",
+          "title": "Article 54",
+          "content": "Le membre du Corps Diplomatique en disponibilité n'a droit à aucune rémunération. Il cesse également de bénéficier de ses droits à l'avancement et à la retraite."
+        },
+        {
+          "id": "article55",
+          "title": "Article 55",
+          "content": "La disponibilité ne peut être accordée que dans les cas suivants :<ul> <li>accident ou maladie grave du conjoint ou d'un enfant, après avis du Conseil de Santé. Dans ce cas, la durée de la disponibilité est d'un (01) an renouvelable une seule fois ;</li> <li>pour suivre un(e) conjoint(e) fonctionnaire en service ou affecté à l'étranger. La durée est également d'une année renouvelable une seule fois, à la demande motivée de l'intéressé ;</li> <li>pour suivre un(e) conjoint(e) non fonctionnaire, la durée est alors d'un an renouvelable une seule fois ;</li> <li>pour convenances personnelles, la durée est d'un an renouvelable une seule fois.</li></ul>"
+        },
+        {
+          "id": "article56",
+          "title": "Article 56",
+          "content": "Le membre du Corps Diplomatique placé en disponibilité pour accident ou maladie de son conjoint ou d'un enfant perçoit la totalité des allocations familiales et garde l'intégralité de sa rémunération. Les modalités de la mise en disponibilité et de la réintégration des membres du Corps Diplomatique concernés sont fixées par décret pris en Conseil des Ministres."
+        }
+      ]
+    },
+    {
+      "title": "TITRE VII : REGIME DISCIPLINAIRE",
+      "articles": [
+        {
+          "id": "article57",
+          "title": "Article 57",
+          "content": "Toute faute commise par un membre du Corps Diplomatique à l'occasion de l'exercice de ses fonctions ou en dehors de celles-ci, mais ayant un lien avec le service, l'expose aux sanctions disciplinaires prévues par le Statut Général de la Fonction Publique, sauf sanctions spécifiques au Corps Diplomatique."
+        },
+        {
+          "id": "article58",
+          "title": "Article 58",
+          "content": "Les sanctions, les modalités et les procédures disciplinaires sont fixées par le décret d'application du présent Statut."
+        }
+      ]
+    },
+    {
+      "title": "TITRE VIII : CESSATION DEFINITIVE DES FONCTIONS, RETRAITE, PENSION ET ALLOCATION VIAGERE — CHAPITRE I : CESSATION DEFINITIVE DES FONCTIONS",
+      "articles": [
+        {
+          "id": "article59",
+          "title": "Article 59",
+          "content": "La cessation définitive des fonctions du membre du Corps Diplomatique résulte :<ul> <li>de la démission écrite acceptée et de ce fait irrévocable ;</li><li>de l'exclusion définitive ;</li><li>de la révocation ;</li><li>de l'admission à la retraite ;</li><li>du décès.</li></ul>"
+        }
+      ]
+    },
+    {
+      "title": "TITRE VIII : CESSATION DEFINITIVE DES FONCTIONS, RETRAITE, PENSION ET ALLOCATION VIAGERE — CHAPITRE II : RETRAITE, PENSION ET ALLOCATION VIAGERE",
+      "articles": [
+        {
+          "id": "article60",
+          "title": "Article 60",
+          "content": "Les conditions, les modalités et les procédures relatives au départ à la retraite sont fixées par décret pris en Conseil des Ministres."
+        },
+        {
+          "id": "article61",
+          "title": "Article 61",
+          "content": "A leur retraite, les membres du Corps Diplomatique ont droit à une pension dans les conditions fixées par la règlementation en vigueur."
+        },
+        {
+          "id": "article62",
+          "title": "Article 62",
+          "content": "Outre la pension visée à l'article précédent, l'Ambassadeur admis à faire valoir ses droits à la retraite, bénéficie d'une allocation viagère."
+        },
+        {
+          "id": "article63",
+          "title": "Article 63",
+          "content": "Peuvent prétendre à l'allocation viagère, les Ambassadeurs, membres du Corps Diplomatique, ayant exercé à l'Administration Centrale ou à l'étranger, en qualité de Secrétaire Général, de Directeur de Cabinet, d'Inspecteur Général, de Secrétaire Général Adjoint, de Directeur de Cabinet Adjoint, de Chef de Cabinet, d'Inspecteur Général Adjoint, de Directeur Général, d'Inspecteur, de Directeur d'Administration Centrale, de Conseiller Technique, de Conseiller Diplomatique auprès des Institutions de la République et des Ministères Techniques, d'Ambassadeur Itinérant, de Chef de Mission Diplomatique ou de Poste Consulaire, de Représentant Permanent, de Consul Général, de Délégué Permanent, de Représentant Permanent Adjoint, de Délégué Permanent Adjoint ou de Chargé d'Affaires en Pied. Les dépenses résultant du paiement des allocations viagères des Ambassadeurs font l'objet d'une gestion séparée de celle des autres régimes de pension."
+        },
+        {
+          "id": "article64",
+          "title": "Article 64",
+          "content": "L'allocation viagère visée à l'article précédent est acquise d'office au conjoint survivant et aux ayants droit survivants, en cas de décès de l'Ambassadeur bénéficiaire à la suite d'accident de travail, de faits de guerre, de voies de fait, d'actes terroristes ou d'extrémismes violents, de catastrophes naturelles ou de circonstances liées à des conflits armés survenus au cours de l'exercice de ses fonctions."
+        },
+        {
+          "id": "article65",
+          "title": "Article 65",
+          "content": "Nonobstant les dispositions régissant la Caisse Générale de Retraite des Agents de l'Etat, l'assiette de calcul de l'allocation viagère de l'Ambassadeur visé à l'article précédent, de son conjoint survivant et de ses ayants droit survivants est constituée par la somme des éléments constitutifs du traitement de l'Ambassadeur."
+        },
+        {
+          "id": "article66",
+          "title": "Article 66",
+          "content": "Le taux de l'allocation viagère est égal à un pourcentage, par annuité du salaire de base, sans toutefois pouvoir excéder un certain pourcentage de ce dernier. Ces deux pourcentages sont fixés par décret. Le nombre d'annuités à prendre en compte pour le calcul de l'allocation viagère est de dix (10) années correspondant à la durée des fonctions exercées à l'Administration Centrale ou à l'étranger."
+        },
+        {
+          "id": "article67",
+          "title": "Article 67",
+          "content": "Les Ambassadeurs en fonction à l'Administration Centrale ou à l'étranger supportent une retenue égale à un pourcentage, fixé par décret, de leur salaire de base, pour le financement du présent régime. Le budget employeur verse une contribution, fixée par décret, égale à un autre pourcentage du même salaire de base. Ces retenues seront effectuées et comptabilisées dans un compte de gestion séparée, destiné au financement exclusif du régime de retraite des anciens Ambassadeurs."
+        },
+        {
+          "id": "article68",
+          "title": "Article 68",
+          "content": "L'allocation viagère est réversible sur la tête des ayants cause dans les conditions suivantes :<ul><li>un premier pourcentage, fixé par décret, pour le conjoint survivant ;</li><li>un autre pourcentage, également fixé par décret, par enfant mineur, sans que le montant attribué au conjoint survivant et aux enfants mineurs, puisse excéder l'allocation principale.</li></ul>"
+        },
+        {
+          "id": "article69",
+          "title": "Article 69",
+          "content": "L'allocation viagère est cumulable avec toute autre pension. Toutefois, si son bénéficiaire est nommé dans une fonction ou dans un emploi rémunéré par les budgets de l'Etat, des Collectivités Territoriales, des Sociétés d'Etat et Etablissements publics et d'une manière générale par tout budget de sociétés à participation de l'Etat ou d'établissements publics, l'allocation viagère ne peut se cumuler avec les émoluments afférents au nouvel emploi que dans la limite d'un pourcentage, fixé par décret, de son montant, pendant toute la durée de l'exercice des fonctions dans ces organismes."
+        },
+        {
+          "id": "article70",
+          "title": "Article 70",
+          "content": "Les conditions et les modalités de jouissance de cette allocation sont fixées par décret pris en Conseil des Ministres."
+        }
+      ]
+    },
+    {
+      "title": "TITRE IX : DISPOSITIONS TRANSITOIRES",
+      "articles": [
+        {
+          "id": "article71",
+          "title": "Article 71",
+          "content": "La pension de retraite du membre du Corps Diplomatique admis à faire valoir ses droits à la retraite après la promulgation de la présente loi, sera calculée sur la base des dispositions du présent Statut du Corps Diplomatique. L'allocation viagère de l'Ambassadeur admis à faire valoir ses droits à la retraite après la promulgation de la présente loi, sera calculée sur la base des dispositions du présent Statut du Corps Diplomatique."
+        },
+        {
+          "id": "article72",
+          "title": "Article 72",
+          "content": "Le membre du Corps Diplomatique atteint par la limite d'âge statutaire avant l'entrée en vigueur de la présente loi, mais maintenu en activité pour nécessités de service, bénéficie des dispositions du présent Statut du Corps Diplomatique."
+        }
+      ]
+    },
+    {
+      "title": "TITRE X : DISPOSITIONS FINALES",
+      "articles": [
+        {
+          "id": "article73",
+          "title": "Article 73",
+          "content": "Les dispositions du Statut Général de la Fonction publique relatives notamment au régime des congés des fonctionnaires et agents de l'Etat sont applicables aux membres du Corps Diplomatique."
+        },
+        {
+          "id": "article74",
+          "title": "Article 74",
+          "content": "La présente loi abroge la loi n° 2007-669 du 27 décembre 2007 portant Statut du Corps Diplomatique."
+        },
+        {
+          "id": "article75",
+          "title": "Article 75",
+          "content": "La présente loi sera publiée au Journal officiel de la République de Côte d'Ivoire."
+        }
+      ]
+    }
+  ]
+};
+
+  // Utilitaire pour n'afficher que le niveau le plus précis (Section/Sous-section/Paragraphe -> Chapitre -> Titre)
+  function pickDeepestHeading(fullTitle){
+    if(!fullTitle) return '';
+    const parts = fullTitle.split('—').map(s => s.trim()).filter(Boolean);
+    const prefOrder = [/^(sous[-\s]?section)\b/i, /^(section)\b/i, /^(paragraphe)\b/i];
+    for(const rx of prefOrder){
+      const found = [...parts].reverse().find(p => rx.test(p));
+      if(found) return found.replace(/\s+/g,' ').replace(/^./, c => c.toUpperCase());
+    }
+    const chap = [...parts].reverse().find(p => /^chap(itre|\.)\b/i.test(p)); if(chap) return chap.replace(/\s+/g,' ').replace(/^./, c => c.toUpperCase());
+    const tit = [...parts].reverse().find(p => /^titre\b/i.test(p)); if(tit) return tit.replace(/\s+/g,' ').replace(/^./, c => c.toUpperCase());
+    return parts.length ? parts[parts.length-1] : fullTitle;
+  }
+
+  
+  // Analyse "TITRE — CHAPITRE — SECTION" et retourne { titre, chapitre, section, reste[] }
+  function parseHeadingParts(fullTitle){
+    const parts = (fullTitle || '').split('—').map(s => s.trim()).filter(Boolean);
+    let titre=null, chapitre=null, section=null, others=[];
+    for(const part of parts){
+      const p = part.replace(/\s+/g,' ').trim();
+      if(/^\s*titre\b/i.test(p))      { titre = p; continue; }
+      if(/^\s*chap(itre|\.)\b/i.test(p)){ chapitre = p; continue; }
+      if(/^\s*sous[-\s]?section\b/i.test(p)){ section = p; continue; }
+      if(/^\s*section\b/i.test(p))    { section = p; continue; }
+      if(/^\s*paragraphe\b/i.test(p)) { section = section ? section : p; continue; }
+      others.push(p);
+    }
+    return { titre, chapitre, section, others };
+  }
+
+  
+  // Convertit le texte brut d'un article en alinéas (sans toucher aux <ul>/<ol> existants)
+  function applyAlineaLayout(el){
+    if(!el) return;
+    const html = el.innerHTML;
+    if(/<(ul|ol)\b/i.test(html)) return; // déjà listé
+    const txt = el.innerText.trim();
+    if(!txt) return;
+
+    // Heuristique : on coupe après '.' ou ';' suivi d'une majuscule (début d'alinéa), sans casser les sigles usuels
+    const parts = txt.split(/(?<=[.;])\s+(?=[A-ZÉÈÀÂÙÎÔÇ][a-zéèêàâôîûç])/g).map(s=>s.trim()).filter(Boolean);
+
+    if(parts.length <= 1) return; // rien à faire si une seule phrase
+
+    // Reconstruire en faux paragraphes d'alinéa
+    const rebuilt = parts.map(p => `<div class="alinea">${p}</div>`).join("");
+    el.innerHTML = rebuilt;
+  }
+
+  // State & refs
+  let currentArticleIndex = 0;
+  let isAutoReading = false;       // mode normal
+  let isAutoReadingFs = false;     // mode plein écran
+  let articles = [];
+  const container = document.getElementById('articlesContainer');
+
+  // Rendu
+  
+  function renderArticles(){
+    container.innerHTML = '';
+    articles = [];
+    let last = { titre:null, chapitre:null, section:null };
+
+    lawData.chapters.forEach((ch)=>{
+      const {titre, chapitre, section} = parseHeadingParts(ch.title);
+
+      // Ouvre une section de rendu par groupe ch (contiendra ses sous-titres + articles)
+      const block = document.createElement('section');
+      block.className = 'section';
+
+      // TITRE (H2) si changement
+      if(titre && titre !== last.titre){
+        const h2 = document.createElement('h2');
+        h2.textContent = titre;
+        block.appendChild(h2);
+        last.titre = titre;
+        // On remet à zéro les niveaux inférieurs
+        last.chapitre = null; last.section = null;
+      }
+
+      // CHAPITRE (H3) si changement
+      if(chapitre && chapitre !== last.chapitre){
+        const h3 = document.createElement('h3');
+        h3.className = 'heading-chapitre';
+        h3.textContent = chapitre;
+        block.appendChild(h3);
+        last.chapitre = chapitre;
+        // On remet la section
+        last.section = null;
+      }
+
+      // SECTION (H4) si changement
+      if(section && section !== last.section){
+        const h4 = document.createElement('h4');
+        h4.className = 'heading-section';
+        h4.textContent = section;
+        block.appendChild(h4);
+        last.section = section;
+      }
+
+      // Articles du groupe
+      ch.articles.forEach((art)=>{
+        const article = document.createElement('article');
+        article.className = 'article'; article.id = art.id;
+        article.innerHTML = `<div class="article-title"><i class="fas fa-feather"></i>${art.title}</div><div class="article-content">${art.content}</div>`;
+        applyAlineaLayout(article.querySelector('.article-content'));
+        block.appendChild(article);
+        articles.push({ id: art.id, title: art.title, node: article });
+      article.addEventListener('click', ()=> openFullscreenById(art.id));
+    });
+
+    container.appendChild(block);
+  });
+
+  buildSommaire();
+  buildNavDots();
+  updateScrollButtons();
+}
+
+  // Sommaire
+  const sommaireList = document.getElementById('sommaireList');
+  function buildSommaire(){
+    sommaireList.innerHTML = '';
+    lawData.chapters.forEach((ch)=>{ ch.articles.forEach((art)=>{
+      const li = document.createElement('li'); li.className = 'sommaire-item';
+      li.innerHTML = `<a href="#${art.id}">${art.title}</a>`;
+      li.addEventListener('click', ()=> document.getElementById('mobileSommaire').classList.remove('active'));
+      sommaireList.appendChild(li);
+    }) });
+  }
+
+  // Pastilles
+  const navIndicator = document.getElementById('navIndicator');
+  function buildNavDots(){
+    navIndicator.innerHTML = '';
+    articles.forEach((a,i)=>{
+      const dot = document.createElement('div'); dot.className = 'nav-dot'; if(i===0) dot.classList.add('active');
+      dot.addEventListener('click', ()=> document.getElementById(a.id).scrollIntoView({behavior:'smooth',block:'start'}));
+      navIndicator.appendChild(dot);
+    });
+  }
+  function setActiveDot(){
+    const dots = [...navIndicator.querySelectorAll('.nav-dot')];
+    let idx = 0;
+    for(let i=0;i<articles.length;i++){ const rect = articles[i].node.getBoundingClientRect(); if(rect.top >= 0 && rect.top < window.innerHeight*0.6){ idx = i; break; } }
+    dots.forEach(d=>d.classList.remove('active')); if(dots[idx]) dots[idx].classList.add('active');
+  }
+
+  // Plein écran
+  const fullscreen = document.getElementById('fullscreenMode');
+  const fullscreenTitle = document.getElementById('fullscreenTitle');
+  const fullscreenContent = document.getElementById('fullscreenContent');
+  const prevBtn = document.getElementById('prevArticleBtn');
+  const nextBtn = document.getElementById('nextArticleBtn');
+  function openFullscreenById(id){ const idx = articles.findIndex(a=>a.id===id); if(idx>=0) openFullscreen(idx); }
+  function openFullscreen(index){
+    currentArticleIndex = Math.max(0, Math.min(index, articles.length-1));
+    const art = articles[currentArticleIndex];
+    fullscreenTitle.textContent = art.title;
+    fullscreenContent.innerHTML = art.node.querySelector('.article-content').innerHTML;
+    fullscreen.classList.add('active');
+    prevBtn.disabled = currentArticleIndex === 0; nextBtn.disabled = currentArticleIndex === articles.length-1;
+  }
+
+  // TTS
+  const synth = window.speechSynthesis; let currentUtterance = null;
+  function speak(text){ stopSpeak(); currentUtterance = new SpeechSynthesisUtterance(text); currentUtterance.lang='fr-FR'; synth.speak(currentUtterance); }
+  function pauseSpeak(){ if(synth && synth.speaking) synth.paused ? synth.resume() : synth.pause(); }
+  function stopSpeak(){ if(synth){ synth.cancel(); currentUtterance=null; } }
+
+  // Lecture continue en plein écran
+  function startFullscreenContinuous(){
+    isAutoReadingFs = true;
+    const playCurrent = ()=>{
+      if(!isAutoReadingFs) return;
+      stopSpeak();
+      const txt = fullscreenContent.innerText;
+      const u = new SpeechSynthesisUtterance(txt);
+      u.lang = 'fr-FR';
+      u.onend = ()=>{
+        if(!isAutoReadingFs) return;
+        if(currentArticleIndex < articles.length - 1){ openFullscreen(currentArticleIndex + 1); setTimeout(playCurrent, 150); }
+        else { isAutoReadingFs = false; }
+      };
+      synth.speak(u);
+    };
+    playCurrent();
+  }
+
+  // Recherche (ta version modifiée)
+  function initSearchFeature(){
+    const controls = document.querySelector('.control-buttons');
+    const searchBtn = document.createElement('button');
+    searchBtn.className = 'control-btn'; searchBtn.id = 'searchBtn'; searchBtn.title = 'Rechercher'; searchBtn.textContent = '🔎';
+    controls.appendChild(searchBtn);
+    const searchInterface = document.createElement('div');
+    searchInterface.id = 'searchInterface';
+    searchInterface.style.cssText = 'position: fixed; top: 20px; left: 50%; transform: translateX(-50%); width: calc(100% - 40px); max-width: 550px; background: var(--article-bg); padding: 10px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 3001; display: none; align-items: center; gap: 5px; transition: var(--transition);';
+    searchInterface.innerHTML = `
+      <input type="text" id="searchInput" placeholder="Rechercher..." style="flex-grow: 1; padding: 8px; border: 1px solid var(--secondary-color); border-radius: 5px;">
+      <button id="searchPrevBtn" class="control-btn" style="width: 35px; height: 35px; flex-shrink: 0;">▲</button>
+      <button id="searchNextBtn" class="control-btn" style="width: 35px; height: 35px; flex-shrink: 0;">▼</button>
+      <span id="searchResultsCount" style="flex-shrink: 0; padding: 0 5px; min-width: 40px; text-align: center;"></span>
+      <button id="closeSearchBtn" class="control-btn" style="width: 35px; height: 35px; flex-shrink: 0;">✖</button>
+    `;
+    document.body.appendChild(searchInterface);
+    let searchResults = []; let currentSearchIndex = -1; let originalContents = new Map();
+    function performSearch(){
+      const searchTerm = document.getElementById('searchInput').value.trim();
+      if (!originalContents.size) { document.querySelectorAll('.article-content, h3').forEach(el => originalContents.set(el, el.innerHTML)); }
+      originalContents.forEach((content, el) => el.innerHTML = content);
+      searchResults = []; currentSearchIndex = -1;
+      if (!searchTerm) { updateSearchUI(); return; }
+      const regex = new RegExp(searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+      originalContents.forEach((content, element) => { element.innerHTML = content.replace(regex, match => `<mark>${match}</mark>`); });
+      searchResults = Array.from(document.querySelectorAll('mark'));
+      if (searchResults.length > 0) navigateResults(true, false);
+      updateSearchUI();
+    }
+    function navigateResults(isNext, shouldWrap = true){
+      if (!searchResults.length) return;
+      searchResults.forEach(mark => mark.style.backgroundColor = '');
+      if (shouldWrap) { currentSearchIndex = isNext ? (currentSearchIndex + 1) % searchResults.length : (currentSearchIndex - 1 + searchResults.length) % searchResults.length; }
+      else { currentSearchIndex = 0; }
+      const currentMark = searchResults[currentSearchIndex];
+      currentMark.style.backgroundColor = 'var(--gold-color)';
+      currentMark.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      updateSearchUI();
+    }
+    function updateSearchUI(){
+      document.getElementById('searchResultsCount').textContent = searchResults.length > 0 ? `${currentSearchIndex + 1}/${searchResults.length}` : '0/0';
+    }
+    function resetSearch(){
+      originalContents.forEach((content, el) => el.innerHTML = content);
+      originalContents.clear();
+      document.getElementById('searchInput').value = '';
+      searchResults = []; currentSearchIndex = -1; updateSearchUI();
+    }
+    searchBtn.addEventListener('click', () => { const isVisible = searchInterface.style.display === 'flex'; searchInterface.style.display = isVisible ? 'none' : 'flex'; if (isVisible) resetSearch(); else document.getElementById('searchInput').focus(); });
+    document.getElementById('searchInput').addEventListener('input', performSearch);
+    document.getElementById('searchNextBtn').addEventListener('click', () => navigateResults(true));
+    document.getElementById('searchPrevBtn').addEventListener('click', () => navigateResults(false));
+    document.getElementById('closeSearchBtn').addEventListener('click', () => { searchInterface.style.display = 'none'; resetSearch(); });
+  }
+
+  // Divers contrôles
+  const themeToggle = document.getElementById('themeToggle');
+  const brightnessControl = document.getElementById('brightnessControl');
+  const brightnessBtn = document.getElementById('brightnessBtn');
+  const slider = document.getElementById('brightnessSlider');
+  const btnTop = document.getElementById('scrollTopBtn');
+  const btnBot = document.getElementById('scrollBottomBtn');
+
+  function updateScrollButtons(){
+    const y = window.scrollY || document.documentElement.scrollTop;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    btnTop.style.display = y > 200 ? 'block' : 'none';
+    btnBot.style.display = y < max - 200 ? 'block' : 'none';
+  }
+
+  document.addEventListener('DOMContentLoaded', ()=>{
+    // Désactiver sélection & copier/coller (sauf recherche)
+    document.body.classList.add('no-select');
+    const guard = (e)=>{ const el = e.target; if (el && el.closest && el.closest('#searchInterface')) return; e.preventDefault(); };
+    ['copy','cut','paste','contextmenu'].forEach(evt => document.addEventListener(evt, guard));
+
+    // Rendu + UI
+    renderArticles();
+    initSearchFeature();
+    updateScrollButtons();
+
+    // Mobile sommaire
+    document.getElementById('mobileSommaireBtn').addEventListener('click', ()=> document.getElementById('mobileSommaire').classList.add('active'));
+    document.getElementById('mobileSommaireClose').addEventListener('click', ()=> document.getElementById('mobileSommaire').classList.remove('active'));
+
+    // Thème & luminosité
+    themeToggle.addEventListener('click', ()=> document.body.classList.toggle('dark-mode'));
+    brightnessBtn.addEventListener('click', ()=> brightnessControl.classList.toggle('active'));
+    slider.addEventListener('input', (e)=>{ const v = Number(e.target.value)/100; document.documentElement.style.filter = `brightness(${v})`; });
+
+    // Scroll buttons
+    btnTop.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
+    btnBot.addEventListener('click', ()=> window.scrollTo({top: document.documentElement.scrollHeight, behavior:'smooth'}));
+
+    // Fullscreen controls
+    document.getElementById('fullscreenToggle').addEventListener('click', ()=> openFullscreen(0));
+    document.getElementById('fullscreenClose').addEventListener('click', ()=> fullscreen.classList.remove('active'));
+    document.getElementById('fullscreenPlayBtn').addEventListener('click', ()=> speak(fullscreenContent.innerText));
+    document.getElementById('fullscreenPlayContinuousBtn').addEventListener('click', startFullscreenContinuous);
+    document.getElementById('fullscreenPauseBtn').addEventListener('click', pauseSpeak);
+    document.getElementById('fullscreenStopBtn').addEventListener('click', ()=>{ isAutoReadingFs=false; stopSpeak(); });
+    document.getElementById('prevArticleBtn').addEventListener('click', ()=> openFullscreen(currentArticleIndex-1));
+    document.getElementById('nextArticleBtn').addEventListener('click', ()=> openFullscreen(currentArticleIndex+1));
+
+    // Barre lecteur (mode normal)
+    document.getElementById('mainPlayBtn').addEventListener('click', ()=>{
+      const vis = articles.find(a=> a.node.getBoundingClientRect().top >= 0 && a.node.getBoundingClientRect().top < window.innerHeight*0.6) || articles[0];
+      if(vis) speak(vis.node.innerText);
+    });
+    document.getElementById('mainPlayContinuousBtn').addEventListener('click', ()=>{
+      isAutoReading = true;
+      let i = Math.max(0, articles.findIndex(a=> a.node.getBoundingClientRect().top >= 0));
+      function readNext(){
+        if(!isAutoReading || i >= articles.length) return;
+        const el = articles[i].node;
+        const txt = el.innerText;
+        el.scrollIntoView({behavior:'smooth', block:'start'});
+        const u = new SpeechSynthesisUtterance(txt);
+        u.lang = 'fr-FR';
+        u.onend = ()=>{ i++; readNext(); };
+        speechSynthesis.speak(u);
+      }
+      readNext();
+    });
+    document.getElementById('mainPauseBtn').addEventListener('click', pauseSpeak);
+    document.getElementById('mainStopBtn').addEventListener('click', ()=>{ isAutoReading=false; stopSpeak(); });
+  });
+
+  // Scroll listener
+  document.addEventListener('scroll', ()=>{ updateScrollButtons(); setActiveDot(); });
+  </script>
+  <script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js"));
+  }
+</script>
+  <!-- PWA Install Button -->
+<button id="pwa-install-btn" aria-label="Installer l'application" hidden>Installer</button>
+<style>
+  #pwa-install-btn{
+    position:fixed; right:16px; bottom:16px; z-index:9999;
+    padding:10px 14px; border:none; border-radius:999px;
+    background:#22c55e; color:white; font:600 14px system-ui,Segoe UI,Roboto,Arial,sans-serif;
+    box-shadow:0 8px 20px rgba(34,197,94,.35);
+  }
+  #pwa-install-btn[hidden]{ display:none; }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    #pwa-install-btn{ bottom: calc(16px + env(safe-area-inset-bottom)); }
+  }
+</style>
+<script>
+  (function(){
+    let deferredPrompt;
+    const btnId = "pwa-install-btn";
+    function ensureBtn(){
+      let b = document.getElementById(btnId);
+      if(!b){
+        b = document.createElement("button");
+        b.id = btnId;
+        b.textContent = "Installer";
+        document.body.appendChild(b);
+      }
+      return b;
+    }
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      const btn = ensureBtn();
+      btn.hidden = false;
+      btn.onclick = async () => {
+        btn.hidden = true;
+        deferredPrompt.prompt();
+        await deferredPrompt.userChoice;
+        deferredPrompt = null;
+      };
+    });
+    if (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) {
+      const btn = document.getElementById(btnId);
+      if(btn) btn.hidden = true;
+    }
+  })();
+</script>
+  <!-- Auth UI minimal -->
+<style>
+  .auth-box{position:fixed; top:12px; right:12px; z-index:9998; background:#ffffff; color:#111827; border-radius:12px; padding:10px 12px; box-shadow:0 10px 24px rgba(0,0,0,.12); font:500 14px system-ui,Segoe UI,Roboto,Arial}
+  .auth-box h4{margin:0 0 6px; font-size:14px}
+  .auth-box form{display:flex; gap:6px; flex-wrap:wrap; align-items:center}
+  .auth-box input{padding:6px 8px; border:1px solid #e5e7eb; border-radius:8px}
+  .auth-box button{background:#22c55e; color:#fff; border:none; padding:6px 10px; border-radius:8px; cursor:pointer}
+  .auth-box .row{display:flex; gap:6px; flex-wrap:wrap}
+  .views-badge{position:fixed; left:12px; bottom:12px; z-index:9998; background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px; font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)}
+</style><!-- Admin link (visible only when logged-in) -->
+<style>
+  .admin-link{
+    position:fixed; right:16px; bottom:88px; z-index:9998;
+    display:none; align-items:center; gap:8px;
+    padding:10px 14px; border-radius:999px; text-decoration:none;
+    background:#111827; color:#fff; font:600 14px system-ui,Segoe UI,Roboto,Arial;
+    box-shadow:0 8px 20px rgba(0,0,0,.3);
+    border:1px solid rgba(255,255,255,.1);
+  }
+  body.logged-in .admin-link{ display:inline-flex; }
+  .admin-link:hover{ filter:brightness(1.1); }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    .admin-link{ bottom: calc(88px + env(safe-area-inset-bottom)); }
+  }
+</style>
+<a href="admin.html" class="admin-link" title="Tableau de bord">Admin</a>
+  <script type="module" src="assets/firebase-app.js"></script>
+  <script>window.autoCountAndBind && window.autoCountAndBind();</script>
+  
+<!-- Floating Auth Button + Modal -->
+<style>
+  #auth-fab{
+    position:fixed; right:16px; bottom:68px; z-index:9998;
+    width:48px; height:48px; border-radius:999px; border:none; cursor:pointer;
+    background:#111827; color:#fff; display:grid; place-items:center;
+    box-shadow:0 8px 20px rgba(0,0,0,.35); border:1px solid rgba(255,255,255,.1);
+  }
+  body.logged-in #auth-fab::after{ content:"✓"; }
+  #auth-fab::after{ content:"👤"; font-size:20px; }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    #auth-fab{ bottom: calc(68px + env(safe-area-inset-bottom)); }
+  }
+  .views-badge{
+    position:fixed; left:12px; bottom:12px; z-index:9998; 
+    background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px;
+    font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)
+  }
+  dialog#auth-modal{
+    border:none; border-radius:16px; padding:0; width:min(90vw,420px);
+    box-shadow:0 24px 72px rgba(0,0,0,.35); overflow:hidden;
+  }
+  dialog::backdrop{ background:rgba(0,0,0,.4); }
+  .auth-modal-head{background:#0f172a; color:#fff; padding:12px 16px; display:flex; justify-content:space-between; align-items:center}
+  .auth-modal-body{padding:16px; background:#111827; color:#e5e7eb}
+  .auth-modal-body label{display:block; font-size:13px; margin-top:8px; opacity:.9}
+  .auth-modal-body input{width:100%; padding:10px 12px; border-radius:10px; border:1px solid #1f2937; background:#0b1021; color:#e5e7eb}
+  .auth-actions{display:flex; gap:8px; margin-top:14px}
+  .btn{border:none; border-radius:10px; padding:10px 12px; cursor:pointer; font-weight:600}
+  .btn-primary{background:#22c55e; color:white}
+  .btn-ghost{background:transparent; color:#e5e7eb; border:1px solid #374151}
+  .muted{opacity:.8}
+</style>
+
+<button id="auth-fab" title="Connexion / Compte"></button>
+<div class="views-badge">Vues : <span id="viewCounter">0</span></div>
+
+<dialog id="auth-modal">
+  <div class="auth-modal-head">
+    <strong>Connexion</strong>
+    <button class="btn btn-ghost" id="auth-close" aria-label="Fermer">✕</button>
+  </div>
+  <div class="auth-modal-body">
+    <p class="muted">Connecte-toi pour accéder à l’admin et une meilleure expérience.</p>
+    <label>Email</label>
+    <input type="email" id="auth-email" placeholder="email@exemple.com" required>
+    <label>Mot de passe</label>
+    <input type="password" id="auth-pass" placeholder="••••••••" required>
+    <div class="auth-actions">
+      <button class="btn btn-primary" id="btn-login">Connexion</button>
+      <button class="btn btn-ghost" id="btn-register">Créer un compte</button>
+      <button class="btn btn-ghost" id="btn-logout">Déconnexion</button>
+    </div>
+    <div id="auth-msg" class="muted" style="margin-top:8px;"></div>
+  </div>
+</dialog>
+
+<script type="module">
+  import { authRegister, authLogin, authLogout } from "./assets/firebase-app.js";
+
+  const fab = document.getElementById("auth-fab");
+  const modal = document.getElementById("auth-modal");
+  const closeBtn = document.getElementById("auth-close");
+  const email = document.getElementById("auth-email");
+  const pass = document.getElementById("auth-pass");
+  const msg  = document.getElementById("auth-msg");
+  const btnLogin = document.getElementById("btn-login");
+  const btnRegister = document.getElementById("btn-register");
+  const btnLogout = document.getElementById("btn-logout");
+
+  function openModal(){ try{ modal.showModal(); }catch{ modal.setAttribute("open",""); } }
+  function closeModal(){ modal.close?.(); modal.removeAttribute("open"); }
+
+  fab?.addEventListener("click", openModal);
+  closeBtn?.addEventListener("click", closeModal);
+
+  async function handle(run){
+    msg.textContent = "";
+    try{
+      await run(email.value.trim(), pass.value);
+      msg.textContent = "✅ Opération réussie.";
+      setTimeout(()=>{ closeModal(); }, 500);
+    }catch(e){
+      console.error(e);
+      msg.textContent = "❌ " + (e?.message || "Erreur");
+    }
+  }
+
+  btnLogin?.addEventListener("click", () => handle(authLogin));
+  btnRegister?.addEventListener("click", () => handle(authRegister));
+  btnLogout?.addEventListener("click", async () => {
+    msg.textContent = "";
+    try{ await authLogout(); msg.textContent = "✅ Déconnecté."; }catch(e){ msg.textContent = "❌ " + (e?.message||"Erreur"); }
+  });
+</script>
+
+
+<!-- Per-card view counters -->
+<style>
+  .card-views-badge{
+    position:absolute; top:8px; right:8px;
+    background:rgba(17,24,39,.9); color:#fff;
+    padding:4px 8px; border-radius:999px; font:600 12px system-ui,Segoe UI,Roboto,Arial;
+    box-shadow:0 6px 14px rgba(0,0,0,.25);
+    pointer-events:none;
+  }
+  .card-views-wrap{ position:relative; }
+</style>
+<script type="module">
+  import { getViewCount } from "./assets/firebase-app.js";
+  function basename(href){
+    try{ const u = new URL(href, location.href);
+         const file = u.pathname.split('/').pop() || 'index.html';
+         return file.replace(/\.html$/i,''); }
+    catch{ return (href.split('/').pop()||'index.html').replace(/\.html$/i,''); }
+  }
+  async function attachCounterTo(el, docId){
+    let container = el.closest('.card, .item, .panel, .box, .article, .doc, .tile');
+    if(!container){ container = el.parentElement; }
+    if(container && !container.classList.contains('card-views-wrap')){
+      container.classList.add('card-views-wrap');
+    }
+    const host = container || el;
+    if(host.querySelector('.card-views-badge[data-doc="'+docId+'"]')) return;
+    const badge = document.createElement('span');
+    badge.className = 'card-views-badge';
+    badge.dataset.doc = docId;
+    badge.textContent = 'Vues: …';
+    host.appendChild(badge);
+    try{ const n = await getViewCount(docId);
+         badge.textContent = 'Vues: ' + n; }
+    catch{ badge.textContent = 'Vues: —'; }
+  }
+  async function initCardCounters(){
+    const links = Array.from(document.querySelectorAll('[data-doc-id], a[href$=".html"]'))
+      .filter(a => {
+        const id = a.getAttribute('data-doc-id') || basename(a.getAttribute('href')||'');
+        return id && !['index','admin','offline'].includes(id.toLowerCase());
+      });
+    const handled = new Set();
+    for(const a of links){
+      const id = a.getAttribute('data-doc-id') || basename(a.getAttribute('href')||'');
+      if(!id || handled.has(id)) continue;
+      handled.add(id);
+      attachCounterTo(a, id);
+    }
+  }
+  initCardCounters();
+  const obs = new MutationObserver(()=>initCardCounters());
+  obs.observe(document.body, { childList:true, subtree:true });
+</script>
+
+</body>
+</html>

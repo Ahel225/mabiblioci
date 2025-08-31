@@ -1,0 +1,148 @@
+        /* Reset et styles de base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .juridoc-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .juridoc-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: linear-gradient(135deg, #2c3e50 0%, #1a2530 100%);
+            border-radius: 10px;
+            color: white;
+        }
+        
+        .juridoc-title {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .juridoc-subtitle {
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 15px;
+        }
+        
+        .juridoc-description {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .juridoc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .juridoc-card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        
+        .juridoc-card-link:hover {
+            transform: translateY(-5px);
+        }
+        
+        .juridoc-card {
+            background: var(--header-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem 2rem;
+            width: 350px;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .juridoc-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #2c76c9, #1a4e8e);
+        }
+        
+        .juridoc-card:hover {
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .juridoc-card h2 {
+            color: #2c3e50;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+            padding-right: 30px;
+        }
+        
+        .juridoc-meta {
+            color: #2c76c9;
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: inline-block;
+            padding: 5px 12px;
+            background-color: rgba(44, 118, 201, 0.1);
+            border-radius: 5px;
+        }
+        
+        .juridoc-card p:last-child {
+            color: #555;
+            margin-top: auto;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+        
+        .juridoc-icon {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            color: #e8f0fe;
+            font-size: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .juridoc-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .juridoc-title {
+                font-size: 2rem;
+            }
+            
+            .juridoc-subtitle {
+                font-size: 1.5rem;
+            }
+            
+            .juridoc-card {
+                padding: 20px;
+            }
+        }

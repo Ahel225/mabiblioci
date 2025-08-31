@@ -1,0 +1,1707 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0S7XLZ1LS6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0S7XLZ1LS6');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#4a8cff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Code de l'Enfance - Loi relative à la minorité</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Source+Serif+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4a8cff; /* Bleu enfantin */
+            --secondary-color: #e0f0ff; /* Bleu très clair */
+            --accent-color: #ff9e40; /* Orange vif */
+            --dark-color: #1a3c78; /* Bleu foncé */
+            --light-color: #f8fbff; /* Blanc bleuté */
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Source Serif Pro', serif;
+            background-color: var(--light-color);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 50L0 25L50 0L100 25L50 50Z' fill='%234a8cff22' /%3E%3C/svg%3E");
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(26, 60, 120, 0.1);
+            overflow: hidden;
+            border: 1px solid var(--secondary-color);
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), #3a74d6);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-bottom: 5px solid var(--dark-color);
+        }
+        
+        h1 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        
+        .subtitle {
+            font-style: italic;
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            scroll-margin-top: 20px;
+        }
+        
+        h2 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.8rem;
+            color: var(--dark-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+        
+         #scrollTopBtn, #scrollBottomBtn {
+            position: fixed;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border: none;
+            border-radius: 50%;
+            background-color: rgba(26, 60, 120, 0.4);
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+            z-index: 99;
+            display: none;
+            transition: opacity 0.3s;
+        }
+
+        #scrollTopBtn {
+            bottom: 80px;
+        }
+        
+        #scrollBottomBtn {
+            bottom: 20px;
+        }
+        
+        #scrollTopBtn:hover, #scrollBottomBtn:hover {
+            background-color: rgba(26, 60, 120, 0.4);
+        }
+
+         .show-buttons {
+            display: block !important;
+            opacity: 1;
+        }
+        
+        .hide-buttons {
+            opacity: 0;
+            display: none !important;
+        }
+        
+        #scrollTopBtn {
+            bottom: 80px;
+        }
+        
+        #scrollBottomBtn {
+            bottom: 20px;
+        }
+        
+        #scrollTopBtn:hover, #scrollBottomBtn:hover {
+            background-color: rgba(26, 60, 120, 0.4);
+        }
+
+        .articleX {
+            background: var(--light-color);
+            border-left: 4px solid var(--primary-color);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 3px 10px rgba(26, 60, 120, 0.08);
+            scroll-margin-top: 20px;
+        }
+        
+        .article-title {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.4rem;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .article-title::before {
+            content: "🧒";
+            margin-right: 10px;
+            color: var(--accent-color);
+        }
+        
+        .article-content {
+            color: #333;
+            line-height: 1.7;
+        }
+        
+        /* Bouton sommaire mobile */
+        .mobile-sommaire-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--primary-color), #3a74d6);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            box-shadow: 0 4px 15px rgba(26, 60, 120, 0.3);
+            z-index: 1001;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid white;
+        }
+        
+        .mobile-sommaire-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(26, 60, 120, 0.4);
+        }
+        
+        /* Sommaire plein écran pour mobile */
+        .mobile-sommaire {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(74, 140, 255, 0.95);
+            z-index: 1002;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .mobile-sommaire.active {
+            opacity: 1;
+        }
+        
+        .mobile-sommaire-content {
+            background: white;
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(26, 60, 120, 0.3);
+            transform: translateY(20px);
+            transition: transform 0.4s ease;
+            border: 2px solid var(--secondary-color);
+        }
+        
+        .mobile-sommaire.active .mobile-sommaire-content {
+            transform: translateY(0);
+        }
+        
+        .mobile-sommaire-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+        
+        .mobile-sommaire-title {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+        
+        .mobile-sommaire-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-color);
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .mobile-sommaire-close:hover {
+            color: var(--primary-color);
+            background-color: var(--secondary-color);
+        }
+        
+        .sommaire-list {
+            list-style: none;
+        }
+        
+        .sommaire-item {
+            margin-bottom: 12px;
+            padding: 15px;
+            border-radius: 8px;
+            transition: var(--transition);
+            background-color: var(--light-color);
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .sommaire-item:hover {
+            background-color: var(--secondary-color);
+            transform: translateX(5px);
+        }
+        
+        .sommaire-item a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            display: block;
+            transition: var(--transition);
+            font-family: 'Source Serif Pro', serif;
+        }
+        
+        .sommaire-item:hover a {
+            color: var(--primary-color);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--dark-color);
+            font-size: 0.9rem;
+            background: var(--secondary-color);
+            border-top: 1px solid rgba(26, 60, 120, 0.1);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .mobile-sommaire-btn {
+                display: flex;
+            }
+            
+            header {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .section, .article {
+                scroll-margin-top: 80px;
+            }
+        }
+    </style>
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#22c55e">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+
+<!-- HIDE AUTH/VIEWS WIDGETS OUTSIDE HOME (safe) -->
+<style>
+  #auth-fab, .views-badge, #auth-modal, .card-views-badge { display: none !important; }
+</style>
+
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Code de l'Enfance</h1>
+            <p class="subtitle">Loi n° 2019-572 du 26 juin 2019 relative à la minorité</p>
+        </header>
+        
+        <div class="content">
+            <button id="scrollTopBtn" title="Aller en haut">↑</button>
+            <button id="scrollBottomBtn" title="Aller en bas">↓</button>
+            <div class="section">
+                <div class="article">
+                    <h2 class="article-title" id="chapitre1">CHAPITRE 1 : Dispositions générales</h2>
+                    <div id="article1" class="articleX">
+                        <h3>Article 1</h3>
+                        <p>Est mineure, la personne qui n'a pas encore atteint l'âge de dix-huit ans accomplis.</p>
+                    </div>
+                    <div id="article2" class="articleX">
+                        <h3>Article 2</h3>
+                        <p>L'enfant, à tout âge, doit honneur et respect à ses père et mère et à ses autres ascendants. Jusqu'à sa majorité ou à son émancipation, il leur doit obéissance.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="article">
+                    <h2 class="article-title" id="chapitre2">CHAPITRE 2 : Autorité parentale</h2>
+                    <h3 id="section1-chapitre2">Section 1 : Généralités</h3>
+                    <div id="article3" class="articleX">
+                        <h3>Article 3</h3>
+                        <p>L'autorité parentale est l'ensemble des droits et obligations reconnus aux père et mère sur la personne et les biens de leur enfant mineur et ayant pour finalité l'intérêt de celui-ci.</p>
+                    </div>
+                    <div id="article4" class="articleX">
+                        <h3>Article 4</h3>
+                        <p>L'autorité parentale comporte à l'égard du mineur des droits et obligations notamment :</p>
+                        <ol>
+                            <li>assurer la garde, la direction, la surveillance, l'entretien, l'instruction et l'éducation de l'enfant ;</li>
+                            <li>faire prendre à l'égard de celui-ci toute mesure d'assistance éducative ;</li>
+                            <li>consentir à son adoption, à son émancipation dans les conditions fixées par la loi ;</li>
+                            <li>administrer ses biens et disposer des revenus desdits biens.</li>
+                        </ol>
+                        <p>L'autorité parentale comporte, en outre, le droit pour le survivant des père et mère de choisir un tuteur pour son enfant mineur, dans le cas où il viendrait à décéder.</p>
+                    </div>
+                    
+                    <h3 id="section2-chapitre2">Section 2 : Exercice de l'autorité parentale</h3>
+                    <div id="article5" class="articleX">
+                        <h3>Article 5</h3>
+                        <p>Durant le mariage, l'autorité parentale est exercée en commun par les père et mère, sauf décision judiciaire contraire.</p>
+                        <p>S'il s'élève un conflit relativement à l'exercice de l'autorité parentale, le juge statue en considérant l'intérêt de l'enfant. Il est saisi par l'époux le plus diligent.</p>
+                        <p>A l'égard des tiers de bonne foi, chacun des époux est réputé agir avec l'accord de l'autre et dans le seul intérêt de l'enfant, quand il accomplit seul un acte usuel de l'autorité parentale.</p>
+                    </div>
+                    <div id="article6" class="articleX">
+                        <h3>Article 6</h3>
+                        <p>Si les père et mère sont divorcés, séparés de corps ou en résidence séparée, l'autorité parentale est exercée par celui d'entre eux à qui le juge a confié la garde de l'enfant.</p>
+                        <p>Toutefois, le parent qui n'en a pas la garde conserve les droits de visite et de surveillance et le droit de consentir à l'adoption ou à l'émancipation de l'enfant mineur.</p>
+                    </div>
+                    <div id="article7" class="articleX">
+                        <h3>Article 7</h3>
+                        <p>Lorsque la garde a été confiée à un tiers, les autres attributs de l'autorité parentale continuent d'être exercés par les père et mère.</p>
+                        <p>Toutefois, le tiers investi de la garde de l'enfant accomplit les actes usuels relatifs à sa surveillance et à son éducation.</p>
+                    </div>
+                    <div id="article8" class="articleX">
+                        <h3>Article 8</h3>
+                        <p>Si celui des père et mère ayant été investi de la garde de l'enfant décède ou s'il se trouve dans l'un des cas prévus à l'article 11, l'autorité parentale est dévolue de plein droit à l'autre parent. Toutefois, dans l'intérêt exclusif de l'enfant, le juge peut décider, à la requête de tout intéressé, de confier sa garde à toute autre personne.</p>
+                    </div>
+                    <div id="article9" class="articleX">
+                        <h3>Article 9</h3>
+                        <p>L'autorité parentale sur les enfants nés hors mariage est exercée par celui des père et mère à l'égard duquel la filiation est établie.</p>
+                        <p>Lorsque la filiation est établie à l'égard de la mère et du père, l'autorité parentale est exercée par les deux parents.</p>
+                        <p>S'il s'élève un conflit entre les père et mère relativement à l'exercice de l'autorité parentale, le juge, saisi par le parent le plus diligent, statue en considérant l'intérêt de l'enfant.</p>
+                        <p>Les dispositions de l'article 5 alinéa 3 sont applicables aux père et mère.</p>
+                    </div>
+                    <div id="article10" class="articleX">
+                        <h3>Article 10</h3>
+                        <p>L'autorité parentale sur l'enfant mineur adopté s'exerce conformément aux règles applicables en matière d'adoption.</p>
+                    </div>
+                    <div id="article11" class="articleX">
+                        <h3>Article 11</h3>
+                        <p>Perd l'exercice de l'autorité parentale, celui qui est hors d'état de manifester sa volonté en raison de son incapacité ou de toute autre cause.</p>
+                        <p>Est provisoirement privé de l'exercice de l'autorité parentale, celui qui consent une délégation de ses droits selon les règles établies à la section 3 ci-après.</p>
+                    </div>
+                    <div id="article12" class="articleX">
+                        <h3>Article 12</h3>
+                        <p>Si l'un des père et mère décède ou se trouve dans l'un des cas énumérés par l'article précédent, l'exercice de l'autorité parentale est dévolu uniquement à l'autre.</p>
+                    </div>
+                    
+                    <h3 id="section3-chapitre2">Section 3 : Délégation de l'autorité parentale</h3>
+                    <h4 id="sous-section1-chapitre2">Sous-section 1 : Délégation volontaire</h4>
+                    <div id="article13" class="articleX">
+                        <h3>Article 13</h3>
+                        <p>Ceux qui exercent l'autorité parentale peuvent, dans l'intérêt du mineur, déléguer volontairement et temporairement à une personne physique jouissant de ses droits civils, les droits qu'ils détiennent et les obligations qui leur incombent relatifs, tant à la garde du mineur, qu'à son instruction, son éducation et sa surveillance.</p>
+                    </div>
+                    <div id="article14" class="articleX">
+                        <h3>Article 14</h3>
+                        <p>La délégation volontaire s'opère par déclaration conjointe des parties intéressées, reçues par le juge des tutelles. En cas de dissentiment entre les parents ayant tous deux les droits de l'autorité parentale, le juge des tutelles statue.</p>
+                        <p>La délégation volontaire prend fin à l'expiration du délai convenu, ou par déclaration reçue dans les conditions prévues à l'alinéa précédent.</p>
+                    </div>
+                    <div id="article15" class="articleX">
+                        <h3>Article 15</h3>
+                        <p>Le juge des tutelles, à la requête des parties intéressées agissant conjointement, peut, en outre, décider qu'il y a lieu, dans l'intérêt de l'enfant, de déléguer à la personne visée à l'article 13, tout ou partie des droits qui ne lui avaient pas été conférés.</p>
+                    </div>
+                    
+                    <h4 id="sous-section2-chapitre2">Sous-section 2 : Délégation ordonnée par voie de justice</h4>
+                    <div id="article16" class="articleX">
+                        <h3>Article 16</h3>
+                        <p>Lorsqu'une personne physique ou morale a recueilli un enfant mineur, sans l'intervention des père, mère ou tuteur, déclaration doit en être faite dans les soixante-douze heures au juge des tutelles de la résidence parents ou le tuteur de l'enfant.</p>
+                        <p>La non-déclaration est punie d'un emprisonnement d'un à trois mois et d'une amende de 100.000 francs à 500.000 francs, ou de l'une de ces deux peines seulement. S'il s'agit d'une personne morale, les poursuites sont engagées et la peine prononcée contre le représentant de cette personne, habilité à recevoir l'enfant.</p>
+                    </div>
+                    <div id="article17" class="articleX">
+                        <h3>Article 17</h3>
+                        <p>Si dans les trois mois à compter de la déclaration, les père, mère ou tuteur n'ont pas réclamé l'enfant, celui qui l'a recueilli peut demander au juge des tutelles que, dans l'intérêt de l'enfant, l'exercice de tout ou partie des droits de l'autorité parentale lui soit confié.</p>
+                        <p>Dans le cas où il ne confère au requérant qu'une partie des droits de l'autorité parentale, le juge des tutelles ordonne que les autres droits sont dévolus au service chargé de la protection judiciaire de l'enfance, sans préjudice des dispositions de l'article 60.</p>
+                    </div>
+                    <div id="article18" class="articleX">
+                        <h3>Article 18</h3>
+                        <p>Le droit de consentir à l'adoption du mineur ne peut être délégué.</p>
+                    </div>
+                    <div id="article19" class="articleX">
+                        <h3>Article 19</h3>
+                        <p>Dans les cas visés aux articles 13 à 17, les père, mère ou tuteur peuvent demander au juge des tutelles que le mineur leur soit rendu. S'il estime qu'il y a lieu, dans l'intérêt de l'enfant, de rejeter la demande, le juge peut accorder au demandeur un droit de visite dont il fixe les modalités.</p>
+                        <p>La décision du juge est susceptible d'appel.</p>
+                        <p>Une nouvelle demande ne peut être formulée qu'à l'expiration du délai d'un an à compter du jour où la décision de rejet est devenue irrévocable.</p>
+                    </div>
+                    <div id="article20" class="articleX">
+                        <h3>Article 20</h3>
+                        <p>Si la personne à laquelle l'enfant a été confié dans les conditions fixées aux articles précédents décède ou si l'intérêt de l'enfant l'exige, le juge des tutelles statue d'office ou sur requête de tout intéressé sur le sort du mineur.</p>
+                    </div>
+                    
+                    <h3 id="section4-chapitre2">Section 4 : Déchéance de l'autorité parentale et retrait partiel des droits qui s'y rattachent</h3>
+                    <h4 id="sous-section1-section4-chapitre2">Sous-section 1 : Conditions et effets de la déchéance et du retrait</h4>
+                    <div id="article21" class="articleX">
+                        <h3>Article 21</h3>
+                        <p>Les père et mère sont déchus de plein droit, à l'égard de tous leurs enfants, de l'autorité parentale, ensemble de tous les droits qui s'y rattachent, par décision du juge des tutelles, d'office, à la demande du ministère public ou de toute partie intéressée, dans les cas ci-après :</p>
+                        <ol>
+                            <li>s'ils sont condamnés pour proxénétisme et si la ou les victimes sont leurs enfants ou des enfants à l'égard de qui ils sont investis de l'autorité parentale ;</li>
+                            <li>s'ils sont condamnés comme auteurs ou complices d'un crime ou délit commis sur la personne de leur enfant ou d'un enfant à l'égard duquel ils sont investis de l'autorité parentale ;</li>
+                            <li>s'ils sont condamnés comme complices d'un crime ou délit commis par un ou plusieurs de leurs enfants ou d'un enfant à l'égard duquel ils sont investis de l'autorité parentale.</li>
+                        </ol>
+                        <p>Toutefois, l'obligation de subvenir à l'entretien et à l'éducation de l'enfant reste à la charge du parent déchu.</p>
+                    </div>
+                    <div id="article22" class="articleX">
+                        <h3>Article 22</h3>
+                        <p>Peuvent être déchues de l'autorité parentale, l'ensemble de tous les droits qui s'y rattachent, ou peuvent être seulement privées de partie de ces droits à l'égard de l'un ou quelques-uns de leurs enfants, en dehors de toute condamnation pénale, les personnes exerçant l'autorité parentale qui mettent en danger le plein épanouissement, la sécurité, la santé ou la moralité de l'enfant, notamment :</p>
+                        <ol>
+                            <li>par de mauvais traitements ;</li>
+                            <li>par une consommation habituelle et excessive de boisson alcooliques, de stupéfiants ou de toutes autres substances nocives ;</li>
+                            <li>par des exemples pernicieux d'ivrognerie habituelle, d'inconduite notoire ou de délinquance ;</li>
+                            <li>par un défaut de soins ou un manque de direction ;</li>
+                            <li>par un désintérêt de plus d'un an, sans justes motifs.</li>
+                        </ol>
+                    </div>
+                    <div id="article23" class="articleX">
+                        <h3>Article 23</h3>
+                        <p>Sous réserve d'une décision judiciaire contraire, la déchéance ou le retrait partiel des droits de l'autorité parentale ne dispense pas le ou les enfants des obligations alimentaires auxquelles ils sont astreints, par la loi, à l'égard de leur père et mère dans le besoin.</p>
+                    </div>
+                    <div id="article24" class="articleX">
+                        <h3>Article 24</h3>
+                        <p>Les père et mère à l'encontre desquels a été prononcée une décision de déchéance de l'autorité parentale dans les cas prévus à l'article 21, ne peuvent obtenir restitution de leurs droits qu'après leur réhabilitation.</p>
+                    </div>
+                    <div id="article25" class="articleX">
+                        <h3>Article 25</h3>
+                        <p>Dans les cas prévus à l'article 22, ils peuvent demander que l'exercice de l'autorité parentale ou des droits retirés leur soit restitué.</p>
+                        <p>L'action ne peut être introduite avant l'expiration d'un délai d'un an à compter du jour où la décision de déchéance ou de retrait est devenue irrévocable.</p>
+                        <p>La demande en restitution de l'exercice de l'autorité parentale ou des droits retirés, qui a été rejetée en tout ou en partie, ne peut être réintroduite avant l'expiration du délai d'un an à compter du jour où la décision de rejet est devenue irrévocable.</p>
+                    </div>
+                    <div id="article26" class="articleX">
+                        <h3>Article 26</h3>
+                        <p>Lorsqu'une demande de restitution de l'exercice de l'autorité parentale ou des droits retirés n'a pas été présentée dans le délai de trois ans qui suit le jour à partir duquel la demande aurait pu être faite, les père et mère ne peuvent plus obtenir cette restitution, sauf pour eux à justifier d'un empêchement résultant d'un cas de force majeure.</p>
+                        <p>Le délai visé à l'alinéa précédent ne s'applique pas au cas où la tutelle a été déférée à l'Etat.</p>
+                    </div>
+                    
+                    <h3 id="section5-chapitre2">Section 5 : Mesures de protection ou d'assistance éducative</h3>
+                    <div id="article27" class="articleX">
+                        <h3>Article 27</h3>
+                        <p>Les mineurs peuvent faire l'objet de mesures de protection lorsque leur santé, leur moralité ou leur éducation sont compromises ou insuffisamment sauvegardées en raison de l'immoralité ou de l'incapacité des père et mère ou de la personne investie du droit de garde.</p>
+                        <p>Ils peuvent taire l'objet d'assistance éducative lorsqu'ils donnent à leurs parents ou à la personne investie du droit de garde des sujets de mécontentement très graves, par leur inconduite ou leur indiscipline.</p>
+                        <p>Ces mesures sont prises à la requête soit des père et mère ou l'un d'eux, soit du tuteur ou du ministère public.</p>
+                    </div>
+                    <div id="article28" class="articleX">
+                        <h3>Article 28</h3>
+                        <p>Chaque fois qu'il est possible, le mineur doit être maintenu dans son milieu habituel de vie. Dans ce cas, le juge des tutelles désigne une personne qualifiée ou un service d'assistance sociale ou d'éducation ou un service de protection judiciaire de l'enfance pour apporter aide et conseil à la famille, afin de suivre le développement de l'enfant et de lui en faire périodiquement rapport.</p>
+                        <p>Le juge peut également subordonner le maintien de l'enfant dans son milieu à des obligations particulières telles que celles de fréquenter régulièrement un établissement sanitaire ou d'éducation ou un service de protection judiciaire de l'enfance ou d'exercer une activité professionnelle.</p>
+                    </div>
+                    <div id="article29" class="articleX">
+                        <h3>Article 29</h3>
+                        <p>S'il est nécessaire de retirer l'enfant de son milieu de vie actuel, le juge des tutelles peut décider de confier tout ou partie des droits de l'autorité parentale :</p>
+                        <ol>
+                            <li>à celui des père et mère qui n'a pas l'exercice du droit de garde ;</li>
+                            <li>à un autre membre de la famille ou à un tiers digne de confiance ;</li>
+                            <li>à un établissement public d'assistance sociale ou d'éducation, à un établissement public relevant du service d'aide à l'enfance ou un établissement de protection judiciaire de l'enfance ou un établissement privé habilité.</p>
+                        </ol>
+                    </div>
+                    <div id="article30" class="articleX">
+                        <h3>Article 30</h3>
+                        <p>Le juge des tutelles peut, à tout moment, soit d'office, soit à la requête des père et mère ou de l'un d'eux, de la personne ou du service à qui l'enfant a été confié, du tuteur, du mineur lui-même ou du ministère public, modifier ou rapporter les décisions prises en matière de protection ou d'assistance éducative.</p>
+                    </div>
+                    <div id="article31" class="articleX">
+                        <h3>Article 31</h3>
+                        <p>Les frais d'entretien, d'instruction, d'éducation, de rééducation et de réinsertion du mineur qui a fait l'objet d'une ou de plusieurs mesures d'assistance éducative incombent aux père et mère.</p>
+                        <p>Toutefois, lorsque les père et mère ne peuvent supporter la charge totale de ces frais, la décision fixe le montant de leur participation ou déclare qu'en raison de leur indigence, il ne leur sera imposé aucune part contributive.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="article">
+                    <h2 class="article-title" id="chapitre3">CHAPITRE 3 : Incapacité du mineur</h2>
+                    <div id="article32" class="articleX">
+                        <h3>Article 32</h3>
+                        <p>Le mineur est incapable d'accomplir seul les actes de la vie civile.</p>
+                    </div>
+                    <div id="article33" class="articleX">
+                        <h3>Article 33</h3>
+                        <p>Le mineur a nécessairement un représentant pour tous les actes de la vie civile. Celui-ci est soit un administrateur légal, soit un tuteur.</p>
+                        <p>Toutefois, les actes qui intéressent personnellement le mineur âgé de plus de seize ans, notamment ceux qui concernent son état ou qui engagent sa personne physique, ne peuvent être conclus qu'avec son consentement. Le mineur ne peut agir ou défendre en personne, qu'assisté de son représentant légal dans toutes les instances ayant le même objet.</p>
+                    </div>
+                    <div id="article34" class="articleX">
+                        <h3>Article 34</h3>
+                        <p>Par dérogation aux dispositions prévues aux articles 32 et 33 et dans les autres cas prévus par la loi, le mineur peut accomplir, seul, tous les actes conservatoires sur son patrimoine.</p>
+                    </div>
+                    <div id="article35" class="articleX">
+                        <h3>Article 35</h3>
+                        <p>A partir de l'âge de seize ans, le mineur conclut et rompt son contrat de travail avec l'assistance de son représentant légal.</p>
+                    </div>
+                    <div id="article36" class="articleX">
+                        <h3>Article 36</h3>
+                        <p>Le mineur engage son patrimoine par ses délits, ses quasi-délits, et son enrichissement sans cause.</p>
+                    </div>
+                    <div id="article37" class="articleX">
+                        <h3>Article 37</h3>
+                        <p>L'acte accompli par le mineur est valable, si cet acte est de ceux que son représentant légal aurait pu faire seul.</p>
+                        <p>Toutefois, l'acte est rescindable en faveur du mineur, pour cause de lésion, quelle que soit son importance, sauf si cette lésion résulte d'un événement imprévu.</p>
+                        <p>Si cet acte est de ceux que le représentant légal n'aurait pu faire qu'avec une autorisation, il est nul de plein droit.</p>
+                    </div>
+                    <div id="article38" class="articleX">
+                        <h3>Article 38</h3>
+                        <p>La nullité des actes accomplis irrégulièrement par le mineur ou son représentant légal est une nullité relative.</p>
+                        <p>Les personnes capables de s'engager ne peuvent opposer l'incapacité du mineur avec qui elles ont contracté.</p>
+                    </div>
+                    <div id="article39" class="articleX">
+                        <h3>Article 39</h3>
+                        <p>Le mineur devenu majeur ou émancipé ne peut plus attaquer l'acte nul ou rescindable qu'il a souscrit, lorsqu'il l'a ratifié après sa majorité ou son émancipation.</p>
+                        <p>La ratification peut être expresse ou tacite.</p>
+                    </div>
+                    <div id="article40" class="articleX">
+                        <h3>Article 40</h3>
+                        <p>L'action en nullité ou en rescision se prescrit par cinq ans, à compter du jour de la majorité ou de l'émancipation.</p>
+                    </div>
+                    <div id="article41" class="articleX">
+                        <h3>Article 41</h3>
+                        <p>Lorsque l'action en nullité ou rescision a été déclarée fondée, le mineur n'est tenu au remboursement de ce qui lui a été payé que s'il est prouvé que ce qu'il a reçu a tourné à son profit.</p>
+                        <p>Dans le cas contraire, il n'est tenu de restituer que ce dont il s'est enrichi.</p>
+                    </div>
+                    <div id="article42" class="articleX">
+                        <h3>Article 42</h3>
+                        <p>Le mineur ne peut être admis à faire un testament qu'à partir de l'âge de seize ans révolus.</p>
+                        <p>Le testament du mineur ne peut porter que sur la moitié des biens dont la loi permet au majeur de disposer.</p>
+                    </div>
+                    <div id="article43" class="articleX">
+                        <h3>Article 43</h3>
+                        <p>Le mineur ne peut être donataire ou légataire universel, ni recevoir à titre universel.</p>
+                        <p>Il ne peut recevoir des libéralités particulières qu'avec l'assistance de son représentant légal.</p>
+                    </div>
+                    <div id="article44" class="articleX">
+                        <h3>Article 44</h3>
+                        <p>Le mineur ne peut être témoin dans les actes de l'état civil.</p>
+                    </div>
+                    <div id="article45" class="articleX">
+                        <h3>Article 45</h3>
+                        <p>Le mineur ne peut être partie à une procédure de divorce ou de séparation de corps.</p>
+                    </div>
+                    <div id="article46" class="articleX">
+                        <h3>Article 46</h3>
+                        <p>Le mineur ne peut être nommé tuteur.</p>
+                    </div>
+                    <div id="article47" class="articleX">
+                        <h3>Article 47</h3>
+                        <p>Le mineur ne peut être élu ou nommé à une fonction publique.</p>
+                    </div>
+                    <div id="article48" class="articleX">
+                        <h3>Article 48</h3>
+                        <p>Le mineur ne peut être commerçant.</p>
+                    </div>
+                    <div id="article49" class="articleX">
+                        <h3>Article 49</h3>
+                        <p>Le mineur ne peut être associé d'une société commerciale.</p>
+                    </div>
+                    <div id="article50" class="articleX">
+                        <h3>Article 50</h3>
+                        <p>Le mineur ne peut être membre d'une coopérative.</p>
+                    </div>
+                </div>
+            </div>
+
+        <div class="section">
+            <div class="article">
+        <h2 class="article-title" id="chapitre5">CHAPITRE 5 : Tutelle</h2>
+        <h3 id="section1-chapitre5">Section 1 : Généralités</h3>
+        <div id="article52" class="articleX">
+            <h3>Article 52</h3>
+            <p>La tutelle est un régime de protection de l'enfant. Elle est une charge publique et personnelle.</p>
+            <p>Nul ne peut refuser de l'exercer sauf dérogations prévues par les articles 63 et 64.</p>
+            <p>La tutelle ne se transmet ni au conjoint ni aux héritiers du tuteur. Toutefois, les héritiers sont responsables de la gestion de leur auteur.</p>
+        </div>
+        <h3 id="sous-section1-chapitre5">Sous-section 1. — Cas d'ouverture</h3>
+        <div id="article53" class="articleX">
+            <h3>Article 53</h3>
+            <p>La tutelle s'ouvre :</p>
+            <ol>
+                <li>lorsque le père et la mère sont tous deux décédés ou hors d'état de manifester leur volonté en raison de leur incapacité, de leur absence, de leur éloignement ou de toute autre cause ;</li>
+                <li>lorsqu'ils sont tous deux déchus des droits de l'autorité parentale ;</li>
+                <li>lorsque le survivant est déchu des droits de l'autorité parentale ;</li>
+                <li>lorsque tous deux ont été condamnés pour abandon de famille dans le cas où la victime de cet abandon est un de leurs enfants, et même si la déchéance de l'autorité parentale n'a pas été prononcée ;</li>
+                <li>lorsque la filiation de l'enfant n'est pas établie à l'égard de ses parents.</li>
+            </ol>
+        </div>
+        <div id="article54" class="articleX">
+            <h3>Article 54</h3>
+            <p>Si la filiation d'un enfant vient à être établie à l'égard d'un de ses parents après l'ouverture de la tutelle, le juge des tutelles peut, à la requête de ce parent, substituer à la tutelle l'administration légale sous contrôle du juge des tutelles, sur une période probatoire de deux ans.</p>
+            <p>A l'expiration de ce délai, l'administration légale devient pure et simple. Toutefois, en cas de défaillance de l'administrateur légal, la tutelle de l'enfant est ouverte.</p>
+        </div>
+        <h3 id="section2-chapitre5">Section 2 : Juge des tutelles</h3>
+        <div id="article55" class="articleX">
+            <h3>Article 55</h3>
+            <p>Les fonctions de juge des tutelles sont exercées par un juge nommé à cet effet. En l'absence de juge des tutelles nommé, un juge peut être désigné par le président du tribunal pour exercer provisoirement les fonctions de juge des tutelles. Le juge des tutelles compétent est celui du ressort du domicile ou à défaut celui de la résidence du mineur.</p>
+            <p>Si le domicile ou la résidence du mineur est transporté dans un autre lieu, le ministère public, l'administrateur légal, le tuteur ou toute personne intéressée, y compris le mineur, en donne aussitôt avis au juge des tutelles du nouveau domicile ou de la nouvelle résidence et au juge antérieurement saisi. Ce dernier transmet sans délai le dossier au juge des tutelles du nouveau domicile ou de la nouvelle résidence. Mention de cette transmission est conservée au greffe du tribunal de la juridiction.</p>
+        </div>
+        <div id="article56" class="articleX">
+            <h3>Article 56</h3>
+            <p>Le juge des tutelles exerce une surveillance générale sur les administrations légales et les tutelles de son ressort.</p>
+            <p>Il peut convoquer les administrateurs légaux, tuteurs et autres organes tutélaires, leur réclamanter des éclaircissements, leur adresser des observations et prononcer contre eux des injonctions.</p>
+            <p>Le fait de ne pas déférer aux injonctions du juge des tutelles sans excuse légitime, est puni d'un emprisonnement d'un à trois mois et d'une amende de 100.000 à 500.000 francs, ou de l'une de ces deux peines seulement.</p>
+        </div>
+        <h3 id="section3-chapitre5">Section 3 : Tuteur</h3>
+        <div id="article57" class="articleX">
+            <h3>Article 57</h3>
+            <p>Le dernier mourant des père et mère, s'il a conservé au jour de sa mort l'exercice de l'administration légale, peut choisir un tuteur à ses enfants mineurs.</p>
+            <p>Le choix ne peut être fait que par testament ou par une déclaration spéciale soit devant notaire, soit devant le juge des tutelles.</p>
+        </div>
+        <div id="article58" class="articleX">
+            <h3>Article 58</h3>
+            <p>S'il n'y a pas de tuteur désigné par le dernier mourant des père et mère, ou si celui qui avait été désigné vient à cesser ses fonctions, un tuteur est donné au mineur par le conseil de famille.</p>
+        </div>
+        <div id="article59" class="articleX">
+            <h3>Article 59</h3>
+            <p>Toute personne peut dénoncer au juge des tutelles le fait qui donne lieu à la désignation d'un tuteur.</p>
+        </div>
+        <div id="article60" class="articleX">
+            <h3>Article 60</h3>
+            <p>Le conseil de famille est convoqué par le juge des tutelles, comme il est dit à l'article 74.</p>
+        </div>
+        <div id="article61" class="articleX">
+            <h3>Article 61</h3>
+            <p>Si la tutelle reste vacante, le juge des tutelles la défère à l'Etat qui l'exerce par l'intermédiaire d'un administrateur.</p>
+        </div>
+        <div id="article62" class="articleX">
+            <h3>Article 62</h3>
+            <p>Le tuteur est désigné pour la durée de la tutelle.</p>
+            <p>Toutefois, le conseil de famille pourvoit à son remplacement en cours de tutelle soit en cas de décès, soit en cas de circonstances graves, sans préjudice des cas d'excuse, d'incapacité ou de destitution.</p>
+        </div>
+        <div id="article63" class="articleX">
+            <h3>Article 63</h3>
+            <p>Peut, nonobstant les dispositions de l'article 52, être dispensé de la fonction de tuteur celui qui, en raison de son âge, de son état de santé, de l'éloignement, de ses aptitudes, de ses occupations professionnelles ou familiales particulièrement absorbantes ou d'une tutelle antérieure, ne pourrait assurer cette charge au mieux des intérêts du mineur.</p>
+        </div>
+        <div id="article64" class="articleX">
+            <h3>Article 64</h3>
+            <p>Peut être déchargé de la fonction de tuteur, celui qui ne peut continuer à s'en acquitter en raison de l'une des causes prévues par l'article précédent, si elle est survenue depuis la nomination.</p>
+        </div>
+        <div id="article65" class="articleX">
+            <h3>Article 65</h3>
+            <p>Si le tuteur est présent à la délibération qui le désigne, il doit, dans les quinze jours, exposer les raisons de son empêchement sur lesquelles le conseil de famille délibère.</p>
+        </div>
+        <div id="article66" class="articleX">
+            <h3>Article 66</h3>
+            <p>Si le tuteur n'était pas présent, il doit, dans les quinze jours de la notification qu'il aura reçue de sa désignation, faire convoquer le conseil de famille pour délibérer sur ses excuses.</p>
+            <p>Mention du délai indiqué à l'alinéa précédent, doit figurer dans la notification.</p>
+        </div>
+        <div id="article67" class="articleX">
+            <h3>Article 67</h3>
+            <p>Le conseil de famille statue sur les excuses invoquées par the tuteur qu'il a désigné.</p>
+            <p>Le juge des tutelles statue sur les excuses proposées par le tuteur désigné par le dernier mourant des père et mère.</p>
+        </div>
+        <div id="article68" class="articleX">
+            <h3>Article 68</h3>
+            <p>Si les excuses sont rejetées, et s'il s'est régulièrement pourvu pour les faire admettre, le tuteur est tenu d'exercer fonctions jusqu'à la désignation d'un autre tuteur.</p>
+            <p>Dans ce cas, le conseil de famille doit, dans un délai de six mois mois au plus, désigner un nouveau tuteur. A défaut, la tutelle est considérée comme vacante et déférée à l'Etat.</p>
+        </div>
+        <h3 id="section4-chapitre5">Section 4 : Conseil de famille</h3>
+        <div id="article69" class="articleX">
+            <h3>Article 69</h3>
+            <p>Le conseil de famille est composé de quatre à six membres, non compris le juge des tutelles et le tuteur.</p>
+            <p>Le juge les désigne pour la durée de la tutelle. Il peut, néanmoins, sans préjudice des dispositions de l'article 75, pourvoir d'office en cas de nécessité, au remplacement d'un ou de plusieurs membres en cours de tutelle.</p>
+        </div>
+        <div id="article70" class="articleX">
+            <h3>Article 70</h3>
+            <p>Le conseil de famille est constitué par le juge des tutelles soit d'office, soit à la requête des parents et alliés des père et mère ou autres parties intéressées ou du ministère public.</p>
+        </div>
+        <div id="article71" class="articleX">
+            <h3>Article 71</h3>
+            <p>Le juge des tutelles choisit les membres du conseil de famille parmi les parents du mineur ainsi que parmi les alliés de ses père et mère, en évitant, autant que possible, de laisser une des deux lignes sans représentation.</p>
+            <p>Il a égard avant tout aux aptitudes des intéressés et aux relations habituelles que le père et la mère avaient avec leurs différents parents et alliés, ainsi qu'à l'intérêt que ces parents ou alliés ont porté ou paraissent porter à la personne de l'enfant.</p>
+        </div>
+        <div id="article72" class="articleX">
+            <h3>Article 72</h3>
+            <p>S'il n'y a plus de parents ou alliés susceptibles d'être désignés, ou s'ils sont en nombre insuffisant, dans l'une ou l'autre ligne, le juge des tutelles peut appeler pour faire partie du conseil de famille, des amis ou toutes autres personnes qui lui semblent s'intéresser à l'enfant.</p>
+        </div>
+        <div id="article73" class="articleX">
+            <h3>Article 73</h3>
+            <p>Les excuses qui dispensent ou déchargent de la tutelle peuvent être étendues aux membres du conseil de famille.</p>
+            <p>Le juge des tutelles statue sur les excuses proposées par les membres du conseil.</p>
+        </div>
+        <div id="article74" class="articleX">
+            <h3>Article 74</h3>
+            <p>Le conseil de famille est convoqué par le juge des tutelles. Il doit l'être si la convocation est requise soit par deux de ses membres, soit par le tuteur, soit par le mineur lui-même, pourvu qu'il ait seize ans révolus.</p>
+            <p>La convocation est faite huit jours au moins avant la réunion.</p>
+        </div>
+        <div id="article75" class="articleX">
+            <h3>Article 75</h3>
+            <p>Les membres du conseil de famille sont tenus de se rendre, en personne, à la réunion.</p>
+            <p>Néanmoins, en cas d'empêchement justifié, ils peuvent, sous réserve de l'accord du juge des tutelles, donner pouvoir écrit à toute personne de leur choix de les représenter.</p>
+            <p>Le fait pour un membre du conseil de famille de ne pas se rendre à la réunion ou de ne pas s'y faire valablement représenter, sans excuse légitime, est puni d'une amende civile de 50.000 francs prononcée par le juge des tutelles.</p>
+        </div>
+        <div id="article76" class="articleX">
+            <h3>Article 76</h3>
+            <p>Le conseil de famille ne peut délibérer que si la moitié au moins de ses membres sont présents ou représentés. Si ce nombre n'est pas réuni, le juge peut soit ajourner la séance, soit en cas d'urgence prendre lui-même la décision après avoir sollicité l'avis de chacun des membres présents.</p>
+        </div>
+        <div id="article77" class="articleX">
+            <h3>Article 77</h3>
+            <p>Le juge des tutelles préside le conseil de famille. Il a voix délibérative. En cas d'égalité des voix, sa voix est prépondérante.</p>
+            <p>Le tuteur doit assister à la séance du conseil de famille ; il y est entendu mais ne vote pas.</p>
+            <p>Le mineur peut, si le juge l'estime utile, assister à la séance à titre consultatif. Il y est convoqué, quand le conseil a été réuni à sa requête. Son assentiment à un acte ne décharge pas le tuteur ou le conseil de famille de leurs responsabilités.</p>
+        </div>
+        <div id="article78" class="articleX">
+            <h3>Article 78</h3>
+            <p>Est nulle toute délibération du conseil de famille prise en violation des articles 75 à 77 ainsi qu'en cas de dol ou de fraude.</p>
+            <p>L'action en nullité ne peut être exercée que par le tuteur, les membres du conseil de famille ou le ministère public.</p>
+            <p>La nullité est couverte en cas de confirmation par une nouvelle délibération prise régulièrement.</p>
+        </div>
+        <div id="article79" class="articleX">
+            <h3>Article 79</h3>
+            <p>Le mineur peut, après son émancipation ou sa majorité, exercer l'action en nullité tant contre la délibération du conseil de famille que contre les actes accomplis en vertu de cette délibération.</p>
+        </div>
+        <div id="article80" class="articleX">
+            <h3>Article 80</h3>
+            <p>L'action en nullité contre les délibérations du conseil de famille se prescrit par deux ans à compter de la délibération. À l'égard du mineur devenu majeur ou émancipé, le délai ne commence à courir qu'à compter du jour où le tuteur a rendu compte de sa gestion.</p>
+        </div>
+        <h3 id="section5-chapitre5">Section 5 : Dispositions communes aux charges tutelaires</h3>
+        <div id="article81" class="articleX">
+            <h3>Article 81</h3>
+            <p>Les différentes charges de la tutelle peuvent être remplies par toute personne, sous réserve des dispositions ci-après.</p>
+        </div>
+        <div id="article82" class="articleX">
+            <h3>Article 82</h3>
+            <p>Sont incapables d'exercer les différentes charges de la tutelle :</p>
+            <ol>
+                <li>les mineurs ;</li>
+                <li>les majeurs protégés par la loi.</li>
+            </ol>
+        </div>
+        <div id="article83" class="articleX">
+            <h3>Article 83</h3>
+            <p>Sont exclus ou destitués de plein droit des différentes charges de la tutelle :</p>
+            <ol>
+                <li>ceux qui ont été condamnés pour proxénétisme, ou condamnés pour crime ou délit commis sur la personne d'un enfant, ou condamnés comme complices d'un crime commis par un enfant ;</li>
+                <li>ceux à qui l'exercice des charges tutelaires a été interdit, conformément aux dispositions du Code pénal ;</li>
+                <li>ceux qui ont été déchus de l'autorité parentale.</li>
+            </ol>
+        </div>
+        <div id="article84" class="articleX">
+            <h3>Article 84</h3>
+            <p>Peuvent être exclues ou destituées des différentes charges de la tutelle, les personnes dont l'inconduite notoire, l'improbité, la négligence habituelle ou l'inaptitude aux affaires est manifeste.</p>
+            <p>Peuvent également être exclus ou destinés des différentes charges de la tutelle, ceux qui, personnellement ou dont les ascendants ou descendants, ont avec le mineur un litige mettant en cause l'état de celui-ci ou une partie notable de ses biens.</p>
+        </div>
+        <div id="article85" class="articleX">
+            <h3>Article 85</h3>
+            <p>Si un membre du conseil de famille est passible d'exclusion ou de destitution, le juge des tutelles statue soit d'office, soit à la demande du tuteur, d'un autre membre du conseil de famille ou du ministère public.</p>
+        </div>
+        <div id="article86" class="articleX">
+            <h3>Article 86</h3>
+            <p>Si la cause d'exclusion ou de destitution concerne le tuteur, le conseil de famille en décide. Il est convoqué par le juge des tutelles agissant d'office, soit sur réquisition des personnes mentionnées à l'article 74 ou du ministère public.</p>
+        </div>
+        <div id="article87" class="articleX">
+            <h3>Article 87</h3>
+            <p>Dans les cas visés aux articles 83 et 84, le tuteur ne peut être exclu ou destitué qu'après avoir été entendu ou appelé.</p>
+            <p>S'il adhère à la délibération, mention en est faite au procès-verbal. Dans ce cas, un nouveau tuteur est désigné.</p>
+            <p>S'il n'y adhère pas, il peut se pourvoir contre cette délibération conformément aux dispositions des articles 156 et 157. Toutefois, le juge des tutelles peut, s'il estime qu'il y a urgence, prescrire séance tenante des mesures provisoires dans l'intérêt du mineur.</p>
+        </div>
+        <h3 id="section6-chapitre5">Section 6 : Fonctionnement de la tutelle</h3>
+        <div id="article88" class="articleX">
+            <h3>Article 88</h3>
+            <p>La tutelle comporte, pour celui qui l'exerce, les droits et obligations de l'autorité parentale, sauf si la loi en dispose autrement.</p>
+        </div>
+        <div id="article89" class="articleX">
+            <h3>Article 89</h3>
+            <p>Le conseil de famille règle les conditions générales de l'entretien et de l'éducation de l'enfant, en ayant égard à la volonté que les père et mère avaient pu exprimer à ce sujet.</p>
+        </div>
+        <div id="article90" class="articleX">
+            <h3>Article 90</h3>
+            <p>Dès l'entrée en fonctionnement de la tutelle, le conseil de famille détermine la somme annuellement disponible pour l'entretien et l'éducation du mineur, ainsi qu'à l'administration des biens et, éventuellement, les indemnités qui pourront être allouées au tuteur.</p>
+        </div>
+        <div id="article91" class="articleX">
+            <h3>Article 91</h3>
+            <p>Les décisions du conseil de famille peuvent être révisées en cours de tutelle.</p>
+        </div>
+        <div id="article92" class="articleX">
+            <h3>Article 92</h3>
+            <p>Lorsque le mineur n'a pas de biens ni de revenus personnels, le tuteur pourvoit à son entretien et à son éducation en fonction de ses ressources.</p>
+        </div>
+        <div id="article93" class="articleX">
+            <h3>Article 93</h3>
+            <p>Le tuteur représente le mineur dans tous les actes civils, sauf les cas dans lesquels la loi ou les usages autorisent les mineurs à agir eux-mêmes.</p>
+            <p>Le tuteur accomplit seul, comme représentant du mineur, tous les actes d'administration.</p>
+            <p>Il peut ainsi aliéner à titre onéreux les meubles d'usage courant et les biens ayant le caractère de fruits.</p>
+            <p>Il administre les biens du mineur en bon père de famille et répond des dommages qui pourraient résulter d'une mauvaise gestion.</p>
+            <p>Il ne peut ni acheter les biens du mineur, ni les prendre à loyer ou à ferme, à moins que le conseil de famille ne l'ait autorisé à en passer bail, ni accepter la cession d'aucun droit de créance contre le mineur, ni faire des donations au nom du mineur.</p>
+        </div>
+        <div id="article94" class="articleX">
+            <h3>Article 94</h3>
+            <p>Le tuteur administre et agit en cette qualité du jour de sa nomination si elle a été faite en sa présence, sinon, du jour où elle lui a été notifiée.</p>
+            <p>Dans les quinze jours qui suivent, il requiert la levée des scellés s'ils ont été apposés et fait procéder immédiatement à l'inventaire des biens du mineur en présence du conseil de famille. Expédition de cet inventaire est transmise au juge des tutelles.</p>
+            <p>Le juge des tutelles peut autoriser le tuteur à dresser l'inventaire par acte sous peine privé. En ce cas, cet inventaire est établi en présence de deux membres du conseil de famille, désignés par le juge des tutelles. La réquisition prévue à l'alinéa précédent sera, en ce cas, faite par le juge des tutelles.</p>
+            <p>A défaut d'inventaire dans le délai prescrit, le juge des tutelles peut, d'office ou à la requête de tout intéressé, y faire procéder.</p>
+            <p>Le défaut d'inventaire autorise le mineur à faire la preuve de la valeur et de la consistance de ses biens par tous moyens, même par la commune renommée.</p>
+        </div>
+        <div id="article95" class="articleX">
+            <h3>Article 95</h3>
+            <p>Si le mineur est débiteur du tuteur, celui-ci doit le déclarer dans l'inventaire, à peine de déchéance, et ce, sur la réquisition que l'officier public est tenu de lui en faire et dont mention est portée au procès-verbal.</p>
+        </div>
+        <div id="article96" class="articleX">
+            <h3>Article 96</h3>
+            <p>Dans les trois mois qui suivent l'ouverture de la tutelle, le tuteur doit convertir en titres nominatifs ou déposer dans un compte ouvert au nom du mineur et portant mention de cette minorité soit au Trésor public, soit dans un établissement bancaire, les titres au porteur ainsi que les fonds et les valeurs appartenant au mineur, à moins qu'il ne soit autorisé à les aliéner conformément aux dispositions des articles 99 et 109.</p>
+            <p>Il doit, pareillement et sous la même réserve, convertir en titres nominatifs ou déposer à un compte bancaire les titres au porteur qui adviendront par la suite au mineur, de quelque manière que ce soit et ce, dans le délai de trois mois à partir de l'entrée en possession.</p>
+            <p>Le conseil de famille peut, s'il est nécessaire, fixer un terme plus long pour l'accomplissement de ces opérations.</p>
+        </div>
+        <div id="article97" class="articleX">
+            <h3>Article 97</h3>
+            <p>Le tuteur peut donner seul, quittance des capitaux qu'il reçoit pour le compte du mineur.</p>
+            <p>Ces capitaux sont, jusqu'à la décision de remploi, déposés par lui sur un compte ouvert au Trésor public ou dans un établissement bancaire au nom du mineur et portant mention de sa minorité.</p>
+            <p>Le dépôt doit être fait dans le délai d'un mois à compter de la date de la réception des capitaux ; ce délai passé, le tuteur est de plein droit débiteur des intérêts.</p>
+        </div>
+        <div id="article98" class="articleX">
+            <h3>Article 98</h3>
+            <p>Le conseil de famille détermine la somme à laquelle commencera pour le tuteur l'obligation d'employer les capitaux liquides du mineur, ainsi que l'excédent de ses revenus.</p>
+            <p>Il détermine également la nature des biens qui peuvent être acquis en emploi.</p>
+        </div>
+        <div id="article99" class="articleX">
+            <h3>Article 99</h3>
+            <p>Le tuteur ne peut, sans y avoir été autorisé par le conseil de famille, faire des actes de disposition au nom du mineur.</p>
+            <p>Sans cette autorisation, il ne peut notamment emprunter pour le mineur, ni aliéner ou grever de droits réels les immeubles, fonds de commerce, valeurs mobilières et autres droits incorporels, non plus que les meubles précieux ou ceux qui constitueraient une part importante du patrimoine du mineur.</p>
+            <p>Il ne peut, de même, consentir des baux de plus de trois ans. Les baux consentis par the tuteur, quelle qu'en soit la durée, ne confèrent au preneur, à l'encontre du mineur devenu majeur ou émancipé, aucun droit au renouvellement et aucun droit à se maintenir dans les lieux à l'expiration du bail, sauf dispositions légales contraires.</p>
+            <p>Ces dispositions ne sont toutefois pas applicables aux baux consentis avant l'ouverture de la tutelle et renouvelés par le tuteur.</p>
+        </div>
+        <div id="article100" class="articleX">
+            <h3>Article 100</h3>
+            <p>Le conseil de famille doit donner son autorisation en vue de l'emploi ou du remploi des capitaux du mineur.</p>
+        </div>
+
+        <div class="section">
+    <div class="article">
+        <h2 class="article-title" id="chapitre5">CHAPITRE 5 : Tutelle</h2>
+        <h3 id="section6-chapitre5">Section 6 : Fonctionnement de la tutelle</h3>
+        <div id="article101" class="articleX">
+            <h3>Article 101</h3>
+            <p>La vente des immeubles et des fonds de commerce appartenant à un mineur est faite conformément aux dispositions prévues pour les ventes judiciaires de ces biens.</p>
+            <p>Toutefois, le conseil de famille peut autoriser la vente des immeubles et des fonds de commerce à l'amiable soit par adjudication sur la mise à prix qu'il fixe, soit de gré à gré aux prix et stipulations qu'il détermine. Dans ces conditions, la valeur du bien est déterminée à dire d'expert sous peine de nullité de la vente.</p>
+            <p>En cas d'adjudication amiable, il peut toujours être fait surenchère, ainsi qu'il est fixé par les lois de procédure.</p>
+            <p>L'apport en société d'un immeuble ou d'un fonds de commerce a lieu à l'amiable. Il est autorisé par le conseil de famille. Le juge des tutelles a la faculté de désigner préalablement un expert pour faire rapport.</p>
+            <p>Les valeurs mobilières qui sont inscrites à une cote officielle sont vendues par un intermédiaire agréé.</p>
+            <p>Les autres valeurs mobilières sont vendues aux enchères. Le conseil de famille peut également en autoriser la vente de gré à gré, aux prix et stipulations qu'il détermine. Le juge des tutelles a la faculté de désigner préalablement un expert pour faire rapport.</p>
+        </div>
+        <div id="article102" class="articleX">
+            <h3>Article 102</h3>
+            <p>Lorsque le partage à l'amiable d'une succession est envisagé entre les héritiers, le projet de l'acte de partage doit être déposé, avant tout accord définitif entre les parties majeures et les mineurs représentés par le tuteur, au greffe du tribunal du ressort du juge des tutelles saisi.</p>
+            <p>Dans le délai de quinze jours de ce dépôt, le juge des tutelles convoque le conseil de famille à l'effet de consentir au partage envisagé.</p>
+            <p>Si le conseil de famille refuse de consentir au partage, il est fait application des dispositions prévues pour le partage judiciaire des successions.</p>
+            <p>Tout partage effectué sans l'accomplissement de ces formalités est considéré comme ayant porté sur les seuls revenus des biens.</p>
+        </div>
+        <div id="article103" class="articleX">
+            <h3>Article 103</h3>
+            <p>L'autorisation exigée pour l'aliénation des biens du mineur ne s'applique pas au cas de partage judiciaire prononcé par le tribunal.</p>
+        </div>
+        <div id="article104" class="articleX">
+            <h3>Article 104</h3>
+            <p>Le tuteur ne peut accepter une succession échu au mineur que sous bénéfice d'inventaire. Toutefois, le conseil de famille peut, par une déclaration spéciale, l'autoriser à accepter purement et simplement si l'actif dépasse manifestement le passif, auquel cas il sera dressé par le tuteur un inventaire des biens prévus à l'article 94.</p>
+            <p>Le tuteur ne peut répudier une succession échu au mineur sans une autorisation du conseil de famille.</p>
+        </div>
+        <div id="article105" class="articleX">
+            <h3>Article 105</h3>
+            <p>Une succession répudiée peut être reprise soit par le tuteur autorisé à cet effet par une nouvelle délibération, soit par le mineur devenu majeur, si les conditions pour accepter une succession répudiée sont réunies.</p>
+        </div>
+        <div id="article106" class="articleX">
+            <h3>Article 106</h3>
+            <p>Le tuteur peut accepter sans autorisation les donations et legs particuliers consentis au mineur, à moins qu'ils ne soient grevés de charges.</p>
+        </div>
+        <div id="article107" class="articleX">
+            <h3>Article 107</h3>
+            <p>Le tuteur peut, sans autorisation, introduire en justice une action relative aux droits patrimoniaux du mineur. Il ne peut se désister de cette action qu'avec l'autorisation du conseil de famille.</p>
+            <p>Le conseil de famille peut lui enjoindre d'introduire une action, de s'en désister ou de faire des offres aux fins de désistement, sous peine d'engager sa responsabilité.</p>
+            <p>Le juge des tutelles, saisi par un membre du conseil de famille, peut désigner un mandataire ad hoc aux fins prévues à l'alinéa précédent, lorsque l'intérêt du mineur est manifestement mis en péril, en raison de l'inaction du tuteur.</p>
+            <p>Le tuteur peut défendre seul à une action relative aux mêmes droits introduite contre le mineur ; il ne peut y acquiescer qu'avec l'autorisation du conseil de famille.</p>
+            <p>Sous réserve des dispositions de l'article 33 alinéa 2, et sauf si la loi en dispose autrement, l'autorisation du conseil de famille est requise pour les actions relatives à des droits qui ne sont pas patrimoniaux.</p>
+        </div>
+        <div id="article108" class="articleX">
+            <h3>Article 108</h3>
+            <p>Le tuteur ne peut transiger au nom du mineur qu'après avoir fait approuver, par le conseil de famille, les clauses de la transaction.</p>
+        </div>
+        <div id="article109" class="articleX">
+            <h3>Article 109</h3>
+            <p>Dans tous les cas où l'autorisation du conseil de famille est requise pour la validité d'un acte du tuteur, elle peut être suppléée par celle du juge des tutelles, si l'acte qu'il s'agit de passer porte sur des biens dont la valeur en capital n'excède pas trois millions de francs.</p>
+            <p>Le juge des tutelles peut également, à la requête du tuteur, autoriser une vente de valeurs mobilières aux lieux et place du conseil de famille, s'il lui apparaît qu'il y a urgence.</p>
+        </div>
+        <div id="article110" class="articleX">
+            <h3>Article 110</h3>
+            <p>Les prescriptions concernant les garanties instituées au profit du mineur, telles que prévues par les dispositions organisant la propriété foncière, demeurent applicables, sous réserve des dispositions du présent code et des adaptations ci-après :</p>
+            <ol>
+                <li>le conseil de famille peut toujours dispenser le tuteur tant de l'hypothèque que du gage ou du cautionnement exigé ; son silence sur ce point vaut dispense ;</li>
+                <li>la délibération du conseil de famille qui doit décider des garanties à accorder au mineur et éventuellement en déterminer les modalités d'application telles que définies par la législation en vigueur sera prise lors de la réunion au cours de laquelle est désigné le tuteur, et à défaut au cours de la tutelle ;</li>
+                <li>nonobstant les dispositions relatives à la propriété foncière, le droit à l'hypothèque résulte de la seule délibération du conseil de famille ;</li>
+                <li>la substitution du gage mobilier ou du cautionnement à l'hypothèque sera approuvée, et les conditions de la constitution du gage fixées par une délibération du conseil de famille ;</li>
+                <li>l'inscription de l'hypothèque est requise nonobstant tout recours contre la décision du conseil de famille qui l'a ordonnée. Elle peut toujours être requise par le mineur émancipé ou devenu majeur pendant le délai d'un an qui suit son émancipation ou sa majorité ;</li>
+                <li>Les demandes d'inscription de l'hypothèque sont accompagnées de la délibération du conseil de famille les ayant autorisées ;</li>
+                <li>Les frais d'inscription de l'hypothèque sont imputés au compte de la tutelle.</li>
+            </ol>
+        </div>
+        <h3 id="section7-chapitre5">Section 7 : Comptes de la tutelle et responsabilités</h3>
+        <div id="article111" class="articleX">
+            <h3>Article 111</h3>
+            <p>Le tuteur est comptable de sa gestion.</p>
+        </div>
+        <div id="article112" class="articleX">
+            <h3>Article 112</h3>
+            <p>Le conseil de famille peut appeler devant lui, à tout moment, le tuteur et l'inviter à justifier de sa gestion.</p>
+            <p>Toutefois, le tuteur ne peut être astreint à fournir plus d'un état de situation de gestion, par an.</p>
+        </div>
+        <div id="article113" class="articleX">
+            <h3>Article 113</h3>
+            <p>En cas de carence du conseil de famille, le juge des tutelles peut appeler le tuteur devant lui pour justifier de sa gestion.</p>
+            <p>Si le mineur a plus de seize ans, le juge des tutelles peut décider que le compte lui sera communiqué.</p>
+        </div>
+        <div id="article114" class="articleX">
+            <h3>Article 114</h3>
+            <p>Dans les trois mois qui suivent la fin de la tutelle, le tuteur doit rendre compte de sa gestion :</p>
+            <ol>
+                <li>au mineur émancipé ou devenu majeur ;</li>
+                <li>aux héritiers du mineur décédé.</li>
+            </ol>
+            <p>Lorsque le tuteur vient à cesser ses fonctions avant la fin de la tutelle, il doit rendre compte de sa gestion dans les trois mois qui suivent au nouveau tuteur ou à l'administrateur légal. Ceux-ci ne peuvent accepter le compte de gestion qu'avec l'autorisation soit du conseil de famille, soit du juge des tutelles.</p>
+        </div>
+        <div id="article115" class="articleX">
+            <h3>Article 115</h3>
+            <p>Le mineur émancipé ou devenu majeur ne peut approuver le compte de gestion, qu'au terme d'un délai d'un mois, après que le tuteur le lui aura remis contre récépissé.</p>
+            <p>Préalablement à cette remise, le tuteur doit soumettre ledit compte, pour avis, au conseil de famille. Cet avis doit être donné dans le mois de la remise.</p>
+            <p>Les pièces justificatives sont tenues à la disposition du mineur émancipé ou devenu majeur ou du conseil de famille par le tuteur pendant les délais ci-dessus fixés.</p>
+            <p>Si le compte donne lieu à des contestations, celles-ci sont poursuivies et jugées suivant les règles du droit commun.</p>
+        </div>
+        <div id="article116" class="articleX">
+            <h3>Article 116</h3>
+            <p>Sont nulles :</p>
+            <ol>
+                <li>approbation du compte par le mineur, en cas d'inobservation des formalités prescrites par l'article précédent ;</li>
+                <li>toute convention passée entre le mineur émancipé ou devenu majeur et celui qui a été son tuteur, si cette convention a pour effet de soustraire celui-ci, en tout ou partie, à son obligation de rendre compte ;</li>
+                <li>toute donation entre vifs consentie par le mineur émancipé ou devenu majeur, avant l'expiration du délai visé à l'article précédent.</li>
+            </ol>
+            <p>Les nullités visées au présent article ne sont pas opposables au mineur.</p>
+        </div>
+        <div id="article117" class="articleX">
+            <h3>Article 117</h3>
+            <p>L'approbation du compte ne préjudicie point aux actions en responsabilité qui peuvent appartenir au mineur contre le tuteur et les autres organes de la tutelle.</p>
+            <p>L'Etat est seul responsable à l'égard du mineur, sauf son recours s'il y a lieu, du dommage résultant d'une faute quelconque qui aurait été commise dans le fonctionnement de la tutelle soit par le juge des tutelles ou son greffier, soit par l'administrateur chargé d'une tutelle vacante en vertu de l'article 61.</p>
+        </div>
+        <div id="article118" class="articleX">
+            <h3>Article 118</h3>
+            <p>L'action du mineur contre le tuteur, les organes tutélaires ou l'Etat, relativement aux faits de la tutelle, se prescrit par cinq ans, à compter de la majorité, sauf dispositions particulières.</p>
+        </div>
+    </div>
+    <div class="article">
+        <h2 class="article-title" id="chapitre6">CHAPITRE 6 : Emancipation</h2>
+        <div id="article119" class="articleX">
+            <h3>Article 119</h3>
+            <p>L'émancipation est l'état du mineur qui est affranchi de l'autorité parentale ou de la tutelle. Il devient capable d'accomplir tous les actes de la vie civile, et de faire le commerce sous les réserves ci-après.</p>
+        </div>
+        <div id="article120" class="articleX">
+            <h3>Article 120</h3>
+            <p>Le mineur peut être émancipé par ses père et mère ou parents adoptifs, lorsqu'il aura atteint l'âge de seize ans révolus.</p>
+            <p>L'émancipation s'opère par la déclaration conjointe des parents ou de l'un d'eux en cas de désaccord. Cette déclaration est reçue par le juge des tutelles.</p>
+            <p>Si l'un des parents est dans l'impossibilité physique ou légale de manifester sa volonté, la déclaration de l'autre suffit, s'il a lu même conservé l'exercice de l'autorité parentale.</p>
+            <p>Le juge des tutelles recueille le consentement du mineur et prononce l'émancipation si elle satisfait aux intérêts du mineur et s'il y a de justes motifs.</p>
+        </div>
+        <div id="article121" class="articleX">
+            <h3>Article 121</h3>
+            <p>Dans tous les autres cas où le mineur n'est pas placé sous tutelle, le juge des tutelles peut, s'il y a de justes motifs, prononcer l'émancipation à la requête du mineur, ou de toute personne intéressée.</p>
+        </div>
+        <div id="article122" class="articleX">
+            <h3>Article 122</h3>
+            <p>En cas de tutelle, le mineur peut être émancipé si le conseil de famille, saisi à la requête du tuteur, d'un de ses membres ou du mineur, l'estime opportun en égard à la personnalité et à l'intérêt du mineur. En ce cas, l'émancipation est prononcée par le juge des tutelles au vu de la délibération qui l'a autorisée.</p>
+        </div>
+        <div id="article123" class="articleX">
+            <h3>Article 123</h3>
+            <p>Lorsque l'émancipation est prononcée, mention en est faite, à la diligence du ministère public ou de tout intéressé par acte extrajudiciaire, en marge de l'acte de naissance du mineur, dans les conditions prévues par les dispositions relatives à l'état civil.</p>
+            <p>La décision d'émancipation est publiée dans un journal d'annonces légales à la diligence du greffier en chef.</p>
+        </div>
+        <div id="article124" class="articleX">
+            <h3>Article 124</h3>
+            <p>Les père et mère ne sont pas responsables en cette qualité du dommage que le mineur peut causer à autrui postérieurement à son émancipation.</p>
+        </div>
+        <div id="article125" class="articleX">
+            <h3>Article 125</h3>
+            <p>Le mineur émancipé peut faire le commerce s'il y a été autorisé par celui de ses père et mère, ou par celui qui exerce l'autorité parentale ou par le conseil de famille.</p>
+            <p>L'autorisation de faire le commerce est donnée soit dans la décision d'émancipation, soit dans un acte postérieur pris dans les mêmes formes. Elle doit être inscrite au registre du commerce et du crédit mobilier.</p>
+        </div>
+        <div id="article126" class="articleX">
+            <h3>Article 126</h3>
+            <p>L'adoption du mineur émancipé obéit aux mêmes règles que s'il n'était pas émancipé.</p>
+        </div>
+    </div>
+    <div class="article">
+        <h2 class="article-title" id="chapitre7">CHAPITRE 7 : Règles de procédure</h2>
+        <h3 id="section1-chapitre7">Section 1 : Généralités</h3>
+        <div id="article127" class="articleX">
+            <h3>Article 127</h3>
+            <p>Le juge des tutelles compétent pour statuer est celui du domicile ou de la résidence du mineur.</p>
+            <p>Si le domicile ou la résidence du mineur est transporté dans un autre lieu, le ministère public, l'administrateur légal, le tuteur ou toute personne intéressée, y compris le mineur, en donne avis aussitôt au juge des tutelles du nouveau domicile ou de la nouvelle résidence et au juge antérieurement saisi.</p>
+            <p>Celui-ci se dessaisit et le dossier du mineur est transmis sans délai par le greffier en chef au juge des tutelles du nouveau domicile ou de la nouvelle résidence. Mention de cette transmission est conservée au greffe de la juridiction.</p>
+        </div>
+        <div id="article128" class="articleX">
+            <h3>Article 128</h3>
+            <p>Le juge des tutelles peut se saisir d'office. Il peut aussi être saisi par requête orale ou écrite ou en la forme des référés. Dans ce dernier cas, les frais de citation restent à la charge du demandeur.</p>
+        </div>
+        <div id="article129" class="articleX">
+            <h3>Article 129</h3>
+            <p>Le juge des tutelles statue, sous forme d'ordonnance, avec l'assistance d'un greffier, sauf s'il s'agit d'une décision de simple administration judiciaire. La cause est débattue en présence de toutes les parties intéressées, dûment appelées. Les débats ne sont pas publics. Les ordonnances sont toujours motivées.</p>
+            <p>Les ordonnances sont notifiées dans les cinq jours, à la diligence du juge, à l'administrateur légal ou au tuteur, et à tous ceux dont elles modifient les droits et les charges, s'ils ne sont pas présents.</p>
+        </div>
+        <div id="article130" class="articleX">
+            <h3>Article 130</h3>
+            <p>Le juge des tutelles doit statuer dans le délai d'un mois à compter de sa saisine.</p>
+        </div>
+        <div id="article131" class="articleX">
+            <h3>Article 131</h3>
+            <p>Les ordonnances du juge des tutelles ne sont pas susceptibles d'opposition.</p>
+        </div>
+        <div id="article132" class="articleX">
+            <h3>Article 132</h3>
+            <p>En toutes matières, le ministre public, l'administrateur légal, le tuteur, le mineur âgé de seize ans, et d'une manière générale, toute personne dont les droits et les charges ont été modifiés par l'ordonnance du Juge des tutelles, peuvent, dans le délai de quinze jours, interjeter appel.</p>
+            <p>Le délai d'appel court du jour de la notification ou de la signification.</p>
+            <p>L'appel est suspensif, à moins que l'exécution provisoire, pour tout ou partie de la décision, n'ait été ordonnée.</p>
+        </div>
+        <div id="article133" class="articleX">
+            <h3>Article 133</h3>
+            <p>L'appel est formé par déclaration au greffe du tribunal, inscrite sur un registre. L'appelant joint, sous peine d'inco-validité, un mémoire à l'appui de son appel.</p>
+            <p>Le dossier de la procédure, auquel est joint le mémoire déposé, est transmis à la Cour d'appel dans un délai de quinze jours à compter de l'expiration du délai d'appel. Le greffier en chef de la Cour d'appel donne avis de la date fixée pour l'audience à l'appelant et à toutes personnes qui auraient pu faire appel de l'ordonnance.</p>
+        </div>
+        <div id="article134" class="articleX">
+            <h3>Article 134</h3>
+            <p>Le registre prévu à l'article précédent doit mentionner les nom, prénoms, qualités et domicile de l'appelant, la date à laquelle l'appel a été formé, ainsi que la date de la trans- mission à la Cour d'appel.</p>
+            <p>Si la déclaration d'appel est faite par un avocat, il en est fait mention audit registre. La signature de la déclaration par un avocat vaut constitution et élection de domicile en son cabinet.</p>
+        </div>
+        <div id="article135" class="articleX">
+            <h3>Article 135</h3>
+            <p>Quand la Cour d'appel est saisie, la cause est jugée d'urgence en chambre du conseil.</p>
+            <p>La cour peut demander au juge des tutelles les renseignements qui lui paraissent utiles.</p>
+            <p>Toutes les personnes qui auraient pu faire appel de l'ordonnance peuvent intervenir devant la Cour d'appel qui peut même ordonner qu'elles seront, par citation, appelées en cause.</p>
+            <p>Lorsque la Cour d'appel a statué, le dossier de la procédure auquel est jointe une expédition sans frais de l'arrêt est renvoyé au greffe du tribunal où siège le juge des tutelles. Celui-ci notifie la décision de la Cour d'appel à toutes les parties en cause.</p>
+        </div>
+        <div id="article136" class="articleX">
+            <h3>Article 136</h3>
+            <p>En cas de pourvoi en cassation, la notification prévue à l'article précédent vaut signification.</p>
+        </div>
+        <div id="article137" class="articleX">
+            <h3>Article 137</h3>
+            <p>Les délais prévus au présent chapitre sont francs.</p>
+        </div>
+        <div id="article138" class="articleX">
+            <h3>Article 138</h3>
+            <p>Les décisions de simple administration judiciaire d'appel.</p>
+        </div>
+        <div id="article139" class="articleX">
+            <h3>Article 139</h3>
+            <p>Les notifications ou convocations prévues par les dispositions relatives à la minorité sont faites par tous moyens laissant trace écrite. Toutefois, le juge des tutelles peut, exceptionnellement, commettre un commissaire de Justice à cet effet, ou prescrire la remise par la voie administrative.</p>
+            <p>La simple remise d'une expédition, quand elle a lieu au greffe contre récépissé daté et signé, équivaut à la notification.</p>
+        </div>
+        <div id="article140" class="articleX">
+            <h3>Article 140</h3>
+            <p>Toute procédure contentieuse est précédée d'une tentative de conciliation devant le juge des tutelles.</p>
+            <p>Le juge des tutelles peut confier la tentative de conciliation au service chargé de la protection judiciaire de l'enfance près le tribunal ou à tout autre organe agissant dans le domaine de la protection de l'enfance.</p>
+            <p>Le service chargé de la protection judiciaire de l'enfance ou l'organe précité, après avoir entendu les parties, dresse un procès-verbal de conciliation ou de non-conciliation.</p>
+            <p>Ce procès-verbal est signé par les parties, ainsi que par le chef du service ou de l'organe désigné et transmis au juge des tutelles.</p>
+            <p>En cas de conciliation, le procès-verbal est homologué par le juge des tutelles. Il a force exécutoire.</p>
+            <p>En cas de non-conciliation, le juge des tutelles statue sur le mérite de la requête.</p>
+        </div>
+        <div id="article141" class="articleX">
+            <h3>Article 141</h3>
+            <p>Les actes de procédure, décisions, ordonnances et arrêts visés par la présente loi sont dispensés des formalités du timbre et de l'enregistrement.</p>
+        </div>
+        <h3 id="section2-chapitre7">Section 2 : Procédure en matière de mesures de protection ou d'assistance éducative.</h3>
+        <div id="article142" class="articleX">
+            <h3>Article 142</h3>
+            <p>Lorsqu'une procédure est engagée en vue de l'application de l'article 27, le mineur doit être assisté d'un défenseur.</p>
+            <p>A défaut de choix d'un défenseur par le mineur, ses parents ou son gardien, le juge et fut désigné par le bâtonnier un défenseur d'office ou désigne un défenseur parmi les personnels de la protection judiciaire de l'enfance.</p>
+        </div>
+        <div id="article143" class="articleX">
+            <h3>Article 143</h3>
+            <p>Le juge des tutelles fait procéder à une enquête sur la situation du mineur et son avenir. Il peut ordonner à cette fin un examen médical ou médico-psychologique et toutes mesures utiles.</p>
+            <p>Il statue après avoir entendu le mineur et son défenseur, ses parents ainsi que toute personne qui en a la garde ou dont l'audition lui paraît utile. Il doit également recueillir les conclusions écrites du ministère public.</p>
+        </div>
+        <div id="article144" class="articleX">
+            <h3>Article 144</h3>
+            <p>Le mineur peut être invité à se retirer momentanément si le juge des tutelles estime devoir lui éviter l'audition d'une partie des débats.</p>
+        </div>
+        <div id="article145" class="articleX">
+            <h3>Article 145</h3>
+            <p>Les mesures de protection ou d'assistance visées aux articles 28 et 29, peuvent à tout moment être modifiées ou rapportées par le juge des tutelles, suivant la procédure visée aux articles précédents. Celui-ci avertit le mineur, ainsi que ses parents ou gardien de la possibilité qui leur est conférée de solliciter la modification ou la révocation des mesures prévues ; mention de cet avertissement est faite dans l'ordonnance.</p>
+        </div>
+        <h3 id="section3-chapitre7">Section 3 : Procédure en matière de délégation des droits de l'autorité parentale</h3>
+        <div id="article146" class="articleX">
+            <h3>Article 146</h3>
+            <p>En cas de délégation des droits de l'autorité parentale, le juge des tutelles du domicile ou de la résidence de la personne qui recueille le mineur ou le prend en charge est compétent pour statuer conformément aux dispositions de l'article 127.</p>
+        </div>
+        <div id="article147" class="articleX">
+            <h3>Article 147</h3>
+            <p>Le juge des tutelles auquel a été faite la déclaration visée à l'article 16, procède, le cas échéant, à toutes mesures de publicité ou de recherche en vue d'identifier les parents du mineur.</p>
+        </div>
+        <h3 id="section4-chapitre7">Section 4 : Procédure en matière de déchéance, de retrait et de restitution des droits de l'autorité parentale</h3>
+        <div id="article148" class="articleX">
+            <h3>Article 148</h3>
+            <p>L'action en déchéance, en retrait ou en restitution des droits de l'autorité parentale est intentée soit devant le juge des tutelles du domicile ou de la résidence du père, de la mère ou de la personne investie de l'autorité parentale, soit devant le juge des tutelles du domicile ou de la résidence du mineur.</p>
+            <p>Toutefois, lorsque les tribunaux répressifs prononcent les condamnations prévues à l'article 21, ils statuent sur la déchéance ou sur le retrait partiel des droits de l'autorité parentale dans les conditions établies par la présente loi. Expédition de la décision de condamnation est transmise à la diligence du ministère public au juge des tutelles du domicile ou de la résidence du mineur.</p>
+        </div>
+        <div id="article149" class="articleX">
+            <h3>Article 149</h3>
+            <p>Le juge des tutelles convoque la personne contre laquelle est intentée l'action, procède à son audition et, s'il l'estime utile, à celle du mineur ou de toute autre personne. Il doit faire procéder à une enquête sociale et recueillir tous renseignements sur la famille du mineur.</p>
+            <p>Il demande, s'il y a lieu, l'avis du conseil de famille, et fait procéder, si besoin est, aux examens visés à l'article 143.</p>
+        </div>
+        <div id="article150" class="articleX">
+            <h3>Article 150</h3>
+            <p>Dans le cas d'une demande de restitution des droits de l'autorité parentale, si la tutelle est organisée, le juge des tutelles doit, avant de statuer, recueillir l'avis du conseil de famille.</p>
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+        </div>
+        
+        <footer>
+            <p>© 2023 - Code de l'Enfance - Loi relative à la minorité</p>
+        </footer>
+    </div>
+    
+    <!-- Bouton pour afficher le sommaire sur mobile -->
+    <div class="mobile-sommaire-btn" id="mobile-sommaire-btn">
+        <i class="fas fa-bars"></i>
+    </div>
+    
+    <!-- Sommaire pour mobile -->
+    <div class="mobile-sommaire" id="mobile-sommaire">
+        <div class="mobile-sommaire-content">
+            <div class="mobile-sommaire-header">
+                <h2 class="mobile-sommaire-title">Sommaire</h2>
+                <button class="mobile-sommaire-close" id="mobile-sommaire-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <ul class="sommaire-list">
+                <li class="sommaire-item"><a href="#chapitre1">CHAPITRE 1 : Dispositions générales</a></li>
+                <li class="sommaire-item"><a href="#chapitre2">CHAPITRE 2 : Autorité parentale</a></li>
+                <li class="sommaire-item"><a href="#section1-chapitre2">Section 1 : Généralités</a></li>
+                <li class="sommaire-item"><a href="#section2-chapitre2">Section 2 : Exercice de l'autorité parentale</a></li>
+                <li class="sommaire-item"><a href="#section3-chapitre2">Section 3 : Délégation de l'autorité parentale</a></li>
+                <li class="sommaire-item"><a href="#sous-section1-chapitre2">Sous-section 1 : Délégation volontaire</a></li>
+                <li class="sommaire-item"><a href="#sous-section2-chapitre2">Sous-section 2 : Délégation ordonnée par voie de justice</a></li>
+                <li class="sommaire-item"><a href="#section4-chapitre2">Section 4 : Déchéance de l'autorité parentale</a></li>
+                <li class="sommaire-item"><a href="#sous-section1-section4-chapitre2">Sous-section 1 : Conditions et effets</a></li>
+                <li class="sommaire-item"><a href="#section5-chapitre2">Section 5 : Mesures de protection</a></li>
+                <li class="sommaire-item"><a href="#chapitre3">CHAPITRE 3 : Incapacité du mineur</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <script>
+
+        function isMobileDevice() {
+            return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+        }
+        
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        const scrollBottomBtn = document.getElementById('scrollBottomBtn');
+        let buttonsVisible = false;
+        let hideTimeout;
+        
+        // Fonction pour afficher les boutons
+        function showButtons() {
+            if (!isMobileDevice()) return;
+            
+            clearTimeout(hideTimeout);
+            scrollTopBtn.classList.remove('hide-buttons');
+            scrollBottomBtn.classList.remove('hide-buttons');
+            scrollTopBtn.classList.add('show-buttons');
+            scrollBottomBtn.classList.add('show-buttons');
+            buttonsVisible = true;
+            
+            // Masquer après 2 secondes d'inactivité
+            hideTimeout = setTimeout(hideButtons, 2000);
+        }
+        
+        // Fonction pour masquer les boutons
+        function hideButtons() {
+            scrollTopBtn.classList.remove('show-buttons');
+            scrollBottomBtn.classList.remove('show-buttons');
+            scrollTopBtn.classList.add('hide-buttons');
+            scrollBottomBtn.classList.add('hide-buttons');
+            buttonsVisible = false;
+        }
+        
+        // Bouton pour aller en haut
+        scrollTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+            hideButtons();
+        });
+        
+        // Bouton pour aller en bas
+        scrollBottomBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: 'smooth'
+            });
+            hideButtons();
+        });
+        
+        // Événements tactiles
+        document.addEventListener('touchstart', function() {
+            if (!buttonsVisible) {
+                showButtons();
+            } else {
+                // Réinitialiser le timer de masquage
+                clearTimeout(hideTimeout);
+                hideTimeout = setTimeout(hideButtons, 2000);
+            }
+        });
+        
+        // Pour les écrans non mobiles, afficher toujours le bouton haut quand on scroll
+        window.addEventListener('scroll', function() {
+            if (!isMobileDevice()) {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    scrollTopBtn.style.display = "block";
+                } else {
+                    scrollTopBtn.style.display = "none";
+                }
+            }
+        });
+
+        // Gestion du sommaire mobile
+        const mobileSommaireBtn = document.getElementById('mobile-sommaire-btn');
+        const mobileSommaire = document.getElementById('mobile-sommaire');
+        const mobileSommaireClose = document.getElementById('mobile-sommaire-close');
+
+         // Le sélecteur cible maintenant correctement les liens <a> dans la liste
+        const sommaireLinks = document.querySelectorAll('.sommaire-list a');
+
+        
+        // Gère l'ouverture et la fermeture du sommaire via le bouton flottant
+        mobileSommaireBtn.addEventListener('click', () => {
+            if (mobileSommaire.style.display === 'flex') {
+                closeSommaireMenu();
+                return;
+            }
+            mobileSommaire.style.display = 'flex';
+            setTimeout(() => {
+                mobileSommaire.classList.add('active');
+            }, 10);
+        });
+        
+        mobileSommaireClose.addEventListener('click', () => {
+            mobileSommaire.classList.remove('active');
+            setTimeout(() => {
+                mobileSommaire.style.display = 'none';
+            }, 300);
+        });
+
+        // Gère la fermeture via le bouton 'X'
+        mobileSommaireClose.addEventListener('click', () => {
+            closeSommaireMenu();
+        });
+
+       // Gère la fermeture en cliquant en dehors du contenu du sommaire
+    mobileSommaire.addEventListener('click', (e) => {
+        if (e.target === mobileSommaire) {
+            closeSommaireMenu();
+        }
+    });
+
+    // Gère le clic sur un lien du sommaire
+    sommaireLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            // Empêche le saut brutal de l'ancre pour un défilement fluide
+            e.preventDefault();
+            
+            // Ferme le menu
+            closeSommaireMenu();
+            
+            // **Action ajoutée : Masque le bouton du sommaire**
+            mobileSommaireBtn.style.display = 'none';
+            
+            // Retarde la navigation pour laisser le temps à l'animation de se terminer
+            const targetId = link.getAttribute('href');
+            setTimeout(() => {
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 350); 
+        });
+    });
+
+    // Fonction réutilisable pour fermer le menu du sommaire
+    function closeSommaireMenu() {
+        mobileSommaire.classList.remove('active');
+        setTimeout(() => {
+            mobileSommaire.style.display = 'none';
+        }, 300);
+    }
+
+    // === NOUVEAU CODE À AJOUTER CI-DESSOUS ===
+
+    // Fait réapparaître le bouton dès que l'utilisateur fait défiler la page
+    window.addEventListener('scroll', () => {
+        // On vérifie si le bouton est actuellement masqué
+        if (mobileSommaireBtn.style.display === 'none') {
+            // On le réaffiche en utilisant 'flex' comme dans le CSS d'origine
+            mobileSommaireBtn.style.display = 'flex';
+        }
+    });
+
+        function disableSelectionAndCopyPaste() {
+    // Désactive la sélection de texte via CSS
+    document.body.style.userSelect = 'none';
+    document.body.style.webkitUserSelect = 'none'; // Pour Safari
+    document.body.style.mozUserSelect = 'none';    // Pour Firefox
+    document.body.style.msUserSelect = 'none';     // Pour Internet Explorer/Edge
+
+    // Bloque le menu contextuel (clic droit)
+    window.addEventListener('contextmenu', e => e.preventDefault());
+
+    // Bloque l'action de copier (ex: Ctrl+C)
+    window.addEventListener('copy', e => e.preventDefault());
+
+    // Bloque l'action de coller (ex: Ctrl+V)
+    window.addEventListener('paste', e => e.preventDefault());
+
+    // Bloque le démarrage de la sélection
+    window.addEventListener('selectstart', e => e.preventDefault());
+}
+
+// Appelle la fonction pour activer les restrictions
+disableSelectionAndCopyPaste();
+
+// Configuration - la même URL
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx0Izc8seNgKEXzuPCxRx9QwZENsGUxcw7mzL7ESfM727uWZ0D6LZSThT7O69PeRHvg/exec';
+
+// Fonction de suivi (la même que dans index.html)
+async function trackUserAction(userId, action, document) {
+  const actionData = {
+    action: 'track',
+    userId: userId,
+    userAction: action,
+    document: document,
+    timestamp: new Date().toISOString(),
+    userAgent: navigator.userAgent,
+    language: navigator.language,
+    platform: navigator.platform
+  };
+  
+  try {
+    const response = await fetch(GOOGLE_SCRIPT_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(actionData)
+    });
+    
+    if (response.ok) {
+      console.log('Action trackée avec succès');
+      return true;
+    }
+  } catch (error) {
+    console.error('Erreur lors du tracking:', error);
+    storeActionForRetry(actionData);
+  }
+  
+  return false;
+}
+
+// Au chargement de la page, tracker une consultation
+document.addEventListener('DOMContentLoaded', function() {
+  // Générer un ID utilisateur unique (simplifié)
+  const userId = localStorage.getItem('userId') || 'user-' + Math.random().toString(36).substring(2, 12);
+  localStorage.setItem('userId', userId);
+  
+  // Récupérer le nom du document depuis le titre de la page
+  const documentName = document.title.replace(' - Code de la Famille', '');
+  
+  // Envoyer le suivi de consultation
+  trackUserAction(userId, 'view', documentName);
+});
+
+// Modifier le bouton de téléchargement pour ajouter le suivi
+function downloadDocument() {
+  // Générer un ID utilisateur unique
+  const userId = localStorage.getItem('userId') || 'user-' + Math.random().toString(36).substring(2, 12);
+  localStorage.setItem('userId', userId);
+  
+  // Récupérer le nom du document
+  const documentName = document.title.replace(' - Code de la Famille', '');
+  
+  // Envoyer le suivi de téléchargement
+  trackUserAction(userId, 'download', documentName);
+  
+  // Votre logique de téléchargement existante...
+  alert("Document téléchargé avec succès !");
+}
+    </script>
+
+  <script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js"));
+  }
+</script>
+  <!-- PWA Install Button -->
+<button id="pwa-install-btn" aria-label="Installer l'application" hidden>Installer</button>
+<style>
+  #pwa-install-btn{
+    position:fixed; right:16px; bottom:16px; z-index:9999;
+    padding:10px 14px; border:none; border-radius:999px;
+    background:#22c55e; color:white; font:600 14px system-ui,Segoe UI,Roboto,Arial,sans-serif;
+    box-shadow:0 8px 20px rgba(34,197,94,.35);
+  }
+  #pwa-install-btn[hidden]{ display:none; }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    #pwa-install-btn{ bottom: calc(16px + env(safe-area-inset-bottom)); }
+  }
+</style>
+<script>
+  (function(){
+    let deferredPrompt;
+    const btnId = "pwa-install-btn";
+    function ensureBtn(){
+      let b = document.getElementById(btnId);
+      if(!b){
+        b = document.createElement("button");
+        b.id = btnId;
+        b.textContent = "Installer";
+        document.body.appendChild(b);
+      }
+      return b;
+    }
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      const btn = ensureBtn();
+      btn.hidden = false;
+      btn.onclick = async () => {
+        btn.hidden = true;
+        deferredPrompt.prompt();
+        await deferredPrompt.userChoice;
+        deferredPrompt = null;
+      };
+    });
+    if (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) {
+      const btn = document.getElementById(btnId);
+      if(btn) btn.hidden = true;
+    }
+  })();
+</script>
+  <!-- Auth UI minimal -->
+<style>
+  .auth-box{position:fixed; top:12px; right:12px; z-index:9998; background:#ffffff; color:#111827; border-radius:12px; padding:10px 12px; box-shadow:0 10px 24px rgba(0,0,0,.12); font:500 14px system-ui,Segoe UI,Roboto,Arial}
+  .auth-box h4{margin:0 0 6px; font-size:14px}
+  .auth-box form{display:flex; gap:6px; flex-wrap:wrap; align-items:center}
+  .auth-box input{padding:6px 8px; border:1px solid #e5e7eb; border-radius:8px}
+  .auth-box button{background:#22c55e; color:#fff; border:none; padding:6px 10px; border-radius:8px; cursor:pointer}
+  .auth-box .row{display:flex; gap:6px; flex-wrap:wrap}
+  .views-badge{position:fixed; left:12px; bottom:12px; z-index:9998; background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px; font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)}
+</style><!-- Admin link (visible only when logged-in) -->
+<style>
+  .admin-link{
+    position:fixed; right:16px; bottom:88px; z-index:9998;
+    display:none; align-items:center; gap:8px;
+    padding:10px 14px; border-radius:999px; text-decoration:none;
+    background:#111827; color:#fff; font:600 14px system-ui,Segoe UI,Roboto,Arial;
+    box-shadow:0 8px 20px rgba(0,0,0,.3);
+    border:1px solid rgba(255,255,255,.1);
+  }
+  body.logged-in .admin-link{ display:inline-flex; }
+  .admin-link:hover{ filter:brightness(1.1); }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    .admin-link{ bottom: calc(88px + env(safe-area-inset-bottom)); }
+  }
+</style>
+<a href="admin.html" class="admin-link" title="Tableau de bord">Admin</a>
+  <script type="module" src="assets/firebase-app.js"></script>
+  <script>window.autoCountAndBind && window.autoCountAndBind();</script>
+  
+<!-- Floating Auth Button + Modal -->
+<style>
+  #auth-fab{
+    position:fixed; right:16px; bottom:68px; z-index:9998;
+    width:48px; height:48px; border-radius:999px; border:none; cursor:pointer;
+    background:#111827; color:#fff; display:grid; place-items:center;
+    box-shadow:0 8px 20px rgba(0,0,0,.35); border:1px solid rgba(255,255,255,.1);
+  }
+  body.logged-in #auth-fab::after{ content:"✓"; }
+  #auth-fab::after{ content:"👤"; font-size:20px; }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    #auth-fab{ bottom: calc(68px + env(safe-area-inset-bottom)); }
+  }
+  .views-badge{
+    position:fixed; left:12px; bottom:12px; z-index:9998; 
+    background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px;
+    font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)
+  }
+  dialog#auth-modal{
+    border:none; border-radius:16px; padding:0; width:min(90vw,420px);
+    box-shadow:0 24px 72px rgba(0,0,0,.35); overflow:hidden;
+  }
+  dialog::backdrop{ background:rgba(0,0,0,.4); }
+  .auth-modal-head{background:#0f172a; color:#fff; padding:12px 16px; display:flex; justify-content:space-between; align-items:center}
+  .auth-modal-body{padding:16px; background:#111827; color:#e5e7eb}
+  .auth-modal-body label{display:block; font-size:13px; margin-top:8px; opacity:.9}
+  .auth-modal-body input{width:100%; padding:10px 12px; border-radius:10px; border:1px solid #1f2937; background:#0b1021; color:#e5e7eb}
+  .auth-actions{display:flex; gap:8px; margin-top:14px}
+  .btn{border:none; border-radius:10px; padding:10px 12px; cursor:pointer; font-weight:600}
+  .btn-primary{background:#22c55e; color:white}
+  .btn-ghost{background:transparent; color:#e5e7eb; border:1px solid #374151}
+  .muted{opacity:.8}
+</style>
+
+<button id="auth-fab" title="Connexion / Compte"></button>
+<div class="views-badge">Vues : <span id="viewCounter">0</span></div>
+
+<dialog id="auth-modal">
+  <div class="auth-modal-head">
+    <strong>Connexion</strong>
+    <button class="btn btn-ghost" id="auth-close" aria-label="Fermer">✕</button>
+  </div>
+  <div class="auth-modal-body">
+    <p class="muted">Connecte-toi pour accéder à l’admin et une meilleure expérience.</p>
+    <label>Email</label>
+    <input type="email" id="auth-email" placeholder="email@exemple.com" required>
+    <label>Mot de passe</label>
+    <input type="password" id="auth-pass" placeholder="••••••••" required>
+    <div class="auth-actions">
+      <button class="btn btn-primary" id="btn-login">Connexion</button>
+      <button class="btn btn-ghost" id="btn-register">Créer un compte</button>
+      <button class="btn btn-ghost" id="btn-logout">Déconnexion</button>
+    </div>
+    <div id="auth-msg" class="muted" style="margin-top:8px;"></div>
+  </div>
+</dialog>
+
+<script type="module">
+  import { authRegister, authLogin, authLogout } from "./assets/firebase-app.js";
+
+  const fab = document.getElementById("auth-fab");
+  const modal = document.getElementById("auth-modal");
+  const closeBtn = document.getElementById("auth-close");
+  const email = document.getElementById("auth-email");
+  const pass = document.getElementById("auth-pass");
+  const msg  = document.getElementById("auth-msg");
+  const btnLogin = document.getElementById("btn-login");
+  const btnRegister = document.getElementById("btn-register");
+  const btnLogout = document.getElementById("btn-logout");
+
+  function openModal(){ try{ modal.showModal(); }catch{ modal.setAttribute("open",""); } }
+  function closeModal(){ modal.close?.(); modal.removeAttribute("open"); }
+
+  fab?.addEventListener("click", openModal);
+  closeBtn?.addEventListener("click", closeModal);
+
+  async function handle(run){
+    msg.textContent = "";
+    try{
+      await run(email.value.trim(), pass.value);
+      msg.textContent = "✅ Opération réussie.";
+      setTimeout(()=>{ closeModal(); }, 500);
+    }catch(e){
+      console.error(e);
+      msg.textContent = "❌ " + (e?.message || "Erreur");
+    }
+  }
+
+  btnLogin?.addEventListener("click", () => handle(authLogin));
+  btnRegister?.addEventListener("click", () => handle(authRegister));
+  btnLogout?.addEventListener("click", async () => {
+    msg.textContent = "";
+    try{ await authLogout(); msg.textContent = "✅ Déconnecté."; }catch(e){ msg.textContent = "❌ " + (e?.message||"Erreur"); }
+  });
+</script>
+
+
+<!-- Per-card view counters -->
+<style>
+  .card-views-badge{
+    position:absolute; top:8px; right:8px;
+    background:rgba(17,24,39,.9); color:#fff;
+    padding:4px 8px; border-radius:999px; font:600 12px system-ui,Segoe UI,Roboto,Arial;
+    box-shadow:0 6px 14px rgba(0,0,0,.25);
+    pointer-events:none;
+  }
+  .card-views-wrap{ position:relative; }
+</style>
+<script type="module">
+  import { getViewCount } from "./assets/firebase-app.js";
+  function basename(href){
+    try{ const u = new URL(href, location.href);
+         const file = u.pathname.split('/').pop() || 'index.html';
+         return file.replace(/\.html$/i,''); }
+    catch{ return (href.split('/').pop()||'index.html').replace(/\.html$/i,''); }
+  }
+  async function attachCounterTo(el, docId){
+    let container = el.closest('.card, .item, .panel, .box, .article, .doc, .tile');
+    if(!container){ container = el.parentElement; }
+    if(container && !container.classList.contains('card-views-wrap')){
+      container.classList.add('card-views-wrap');
+    }
+    const host = container || el;
+    if(host.querySelector('.card-views-badge[data-doc="'+docId+'"]')) return;
+    const badge = document.createElement('span');
+    badge.className = 'card-views-badge';
+    badge.dataset.doc = docId;
+    badge.textContent = 'Vues: …';
+    host.appendChild(badge);
+    try{ const n = await getViewCount(docId);
+         badge.textContent = 'Vues: ' + n; }
+    catch{ badge.textContent = 'Vues: —'; }
+  }
+  async function initCardCounters(){
+    const links = Array.from(document.querySelectorAll('[data-doc-id], a[href$=".html"]'))
+      .filter(a => {
+        const id = a.getAttribute('data-doc-id') || basename(a.getAttribute('href')||'');
+        return id && !['index','admin','offline'].includes(id.toLowerCase());
+      });
+    const handled = new Set();
+    for(const a of links){
+      const id = a.getAttribute('data-doc-id') || basename(a.getAttribute('href')||'');
+      if(!id || handled.has(id)) continue;
+      handled.add(id);
+      attachCounterTo(a, id);
+    }
+  }
+  initCardCounters();
+  const obs = new MutationObserver(()=>initCardCounters());
+  obs.observe(document.body, { childList:true, subtree:true });
+</script>
+
+</body>
+</html>
+

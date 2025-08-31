@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Statut Général de la Fonction Publique — Lecteur</title><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/><style>:root{--bg:#e6f6ec;--paper:#ffffff;--ink:#0e2a1b;--primary:#0a7f3f;--primary-700:#074d2a;--accent:#ff9a3c;--accent-2:#fff4e8;--muted:#d9f0e3;--shadow:0 12px 28px rgba(0,0,0,.08);--radius:18px;--transition:.25s ease;--article-bg:#ffffff;--icon-orange:#ff9a3c;}*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.6}header{position:sticky;top:0;z-index:60;background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(255,255,255,.9));backdrop-filter:saturate(1.1) blur(8px);border-bottom:1px solid #d7eadd}.container{max-width:1120px;margin:0 auto;padding:14px 16px;display:flex;align-items:center;gap:12px}.logo{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:radial-gradient(circle at 30% 30%, #d9ffe7, #b9f6cf);color:#074d2a;box-shadow:var(--shadow);font-size:18px;border:1px solid #b5e4c7}h1{margin:0;font-family:'Playfair Display',serif;font-size:20px;color:#074d2a}.sub{color:#355a46;font-size:12px;margin-top:2px}.control-buttons{margin-left:auto;display:flex;gap:8px;align-items:center}.btn{min-width:38px;height:38px;border-radius:12px;border:1px solid #cfe6d8;background:#fff;color:#074d2a;display:grid;place-items:center;cursor:pointer;box-shadow:var(--shadow);transition:var(--transition)}.btn:hover{transform:translateY(-1px)}.wrapper{max-width:1120px;margin:16px auto;padding:0 12px}.group{background:var(--paper);border:1px solid #d7eadd;border-radius:var(--radius);box-shadow:var(--shadow);margin:14px 0;overflow:hidden}.group>h2{margin:0;padding:14px 16px;background:linear-gradient(180deg,#ffffff,#eef9f2);border-bottom:1px solid #d7eadd;color:#074d2a;font-size:18px;font-family:'Playfair Display',serif}.article{margin:10px 10px 14px 10px;padding:12px 14px;border-left:6px solid var(--primary);background:var(--article-bg);border-radius:14px;box-shadow:0 1px 0 rgba(0,0,0,.03)}.article-header{display:flex; align-items:center; gap:10px; margin:0 0 8px 0;}.article-header h3{margin:0; color:#074d2a; display:flex; align-items:center; gap:8px;}.article .open-fs{ margin-left:auto; width:34px; height:34px; border:1px solid #d7eadd; background:#fff; border-radius:10px; cursor:pointer; }.article .article-icon{ width:28px; height:28px; border-radius:8px; display:grid; place-items:center; background:var(--accent-2); color:#d26b00; border:1px solid #ffd6a8; }.article-content p{margin:.5rem 0}.article-content ul,.article-content ol{margin:.5rem 0 .8rem 1.25rem}.article-content ol>li, .article-content ul>li{ padding:8px 0; line-height:1.7; border-bottom:1px solid #edf7f0; }.article-content ol>li:last-child, .article-content ul>li:last-child{ border-bottom:0; }.article-content li > ol > li, .article-content li > ul > li{ padding:6px 0; border-bottom:1px dashed #edf7f0; }.article-content li > ol > li:last-child, .article-content li > ul > li:last-child{ border-bottom:0; }.reading{ outline:2px solid #c7ffdf; outline-offset:2px; border-left-color:#8ce4a9 !important; background:linear-gradient(180deg,#fff, #f0fff6) }mark{background:#fff0d6}#tocFloatBtn{position:fixed; right:14px; bottom:120px; width:46px; height:46px; border-radius:50%; border:none; background:var(--primary); color:#fff; display:grid; place-items:center; box-shadow:0 10px 24px rgba(0,0,0,.25); z-index:1500;}#tocPanel{position:fixed; top:0; right:0; height:100%; width:86%; max-width:420px; background:#fff; border-left:1px solid #d7eadd; box-shadow:-16px 0 35px rgba(0,0,0,.2); transform:translateX(100%); transition:transform .25s ease; z-index:1600; overflow:auto;}#tocOverlay{position:fixed; inset:0; background:rgba(0,0,0,.28); backdrop-filter:blur(2px); display:none; z-index:1590}#tocPanel.open{ transform:none } #tocOverlay.show{ display:block }#tocPanel header{position:sticky; top:0; background:#fff; padding:12px 14px; border-bottom:1px solid #d7eadd}#tocPanel h3{margin:0; color:#074d2a} #tocPanel .toc-list{padding:12px 14px}#tocPanel .toc-list a{display:block; padding:6px 0; color:#074d2a; text-decoration:none}#tocPanel .toc-sub{margin-left:10px; border-left:2px solid #eaf6ee; padding-left:8px}#voiceBar{position:fixed; left:50%; transform:translateX(-50%); bottom:14px; background:#074d2a; color:#fff; z-index:1550; border-radius:22px; padding:8px 12px; display:flex; gap:10px; align-items:center; box-shadow:0 12px 28px rgba(0,0,0,.3)}#voiceBar button{width:34px; height:34px; border-radius:10px; border:1px solid #cfe3f5; background:transparent; color:#eaf0f6; display:grid; place-items:center; cursor:pointer}#voiceBar .now{font-size:12px; max-width:52vw; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:#f1f5f9}#fsOverlay{ position:fixed; inset:0; background:#fff; z-index:1700; display:none; }#fsOverlay.show{ display:block } #fsHeader{ position:sticky; top:0; background:#fff; padding:10px 14px; border-bottom:1px solid #d7eadd; display:flex; align-items:center; gap:10px }#fsHeader .ttl{ font-weight:700; color:#074d2a; flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis }#fsHeader button{ width:36px; height:36px; border-radius:10px; border:1px solid #d7eadd; background:#fff; }#fsBody{ padding:14px; height:calc(100% - 58px); overflow:auto } #fsBody .article-content{ font-size:1.04rem }#fsNavPrev,#fsNavNext{ position:fixed; top:50%; transform:translateY(-50%); width:42px; height:42px; border-radius:50%; border:none; background:var(--primary); color:#fff; display:grid; place-items:center; z-index:1710; opacity:.9 }#fsNavPrev{ left:10px } #fsNavNext{ right:10px }footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#3d5c4a;font-size:12px}/* Anti-sélection / anti-copie */
+.no-select, .no-select *:not(input):not(textarea):not(.selectable){-webkit-user-select:none!important;-moz-user-select:none!important;-ms-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important;}
+/* Sommaire flottant complet : Titre → Chapitre → Section → Article */
+.floating-toc{position:fixed; right:16px; bottom:78px; width:380px; max-height:70vh; overflow:auto; background:#ffffff; border:1px solid #d7eadd; border-radius:14px; box-shadow:0 16px 40px rgba(0,0,0,.18); padding:8px 10px; z-index:1600}
+.floating-toc.is-hidden{display:none}
+.toc-header{display:flex; align-items:center; justify-content:space-between; font-weight:800; color:#074d2a; padding:6px 4px 8px 6px; border-bottom:1px solid #eef6f2}
+.toc-close{border:none; background:transparent; cursor:pointer; padding:6px; border-radius:8px}
+.toc-close:hover{background:#f7f7f7}
+.floating-toc ul{list-style:none; margin:0; padding-left:10px}
+.floating-toc .toc-item{margin:4px 0}
+.floating-toc a{display:block; text-decoration:none; color:#074d2a; line-height:1.35}
+.floating-toc .l2 > a{font-weight:800; font-size:14px; margin-top:6px}
+.floating-toc .l3 > a{padding-left:6px; font-weight:700; font-size:13px}
+.floating-toc .l4 > a{padding-left:12px; font-weight:600; font-size:12.5px}
+.floating-toc .l5 > a{padding-left:18px; font-size:12px}
+.toc-toggle{position:fixed; right:16px; bottom:16px; width:48px; height:48px; border-radius:50%; border:none; background:linear-gradient(135deg,#0a7f3f,#0c9250); color:#fff; display:grid; place-items:center; box-shadow:0 10px 24px rgba(0,0,0,.25); z-index:1700; cursor:pointer}
+.toc-toggle:active{transform:scale(.98)}
+@media (max-width: 980px){
+  .floating-toc{right:8px; left:8px; bottom:74px; width:auto; max-height:55vh;}
+  .toc-toggle{right:12px; bottom:12px;}
+}
+
+/* Sommaire flottant complet : Titre → Chapitre → Section → Article */
+.floating-toc{position:fixed; right:16px; bottom:78px; width:380px; max-height:70vh; overflow:auto; background:#ffffff; border:1px solid #d7eadd; border-radius:14px; box-shadow:0 16px 40px rgba(0,0,0,.18); padding:8px 10px; z-index:1600}
+.floating-toc.is-hidden{display:none}
+.toc-header{display:flex; align-items:center; justify-content:space-between; font-weight:800; color:#074d2a; padding:6px 4px 8px 6px; border-bottom:1px solid #eef6f2}
+.toc-close{border:none; background:transparent; cursor:pointer; padding:6px; border-radius:8px}
+.toc-close:hover{background:#f7f7f7}
+.floating-toc ul{list-style:none; margin:0; padding-left:10px}
+.floating-toc .toc-item{margin:4px 0}
+.floating-toc a{display:block; text-decoration:none; color:#074d2a; line-height:1.35}
+.floating-toc .l2 > a{font-weight:800; font-size:14px; margin-top:6px}
+.floating-toc .l3 > a{padding-left:6px; font-weight:700; font-size:13px}
+.floating-toc .l4 > a{padding-left:12px; font-weight:600; font-size:12.5px}
+.floating-toc .l5 > a{padding-left:18px; font-size:12px}
+.toc-toggle{position:fixed; right:16px; bottom:16px; width:48px; height:48px; border-radius:50%; border:none; background:linear-gradient(135deg,#0a7f3f,#0c9250); color:#fff; display:grid; place-items:center; box-shadow:0 10px 24px rgba(0,0,0,.25); z-index:1700; cursor:pointer}
+.toc-toggle:active{transform:scale(.98)}
+@media (max-width: 980px){
+  .floating-toc{right:8px; left:8px; bottom:74px; width:auto; max-height:55vh;}
+  .toc-toggle{right:12px; bottom:12px;}
+}
+
+.chapter-title{margin-left: 12px;}
+.section-title{margin-left: 24px;}
+/* TOC */
+.floating-toc{position:fixed; right:16px; bottom:78px; width:380px; max-height:70vh; overflow:auto; background:#ffffff; border:1px solid #d7eadd; border-radius:14px; box-shadow:0 16px 40px rgba(0,0,0,.18); padding:8px 10px; z-index:1600}
+.floating-toc.is-hidden{display:none}
+.toc-header{display:flex; align-items:center; justify-content:space-between; font-weight:800; color:#074d2a; padding:6px 4px 8px 6px; border-bottom:1px solid #eef6f2}
+.toc-close{border:none; background:transparent; cursor:pointer; padding:6px; border-radius:8px}
+.toc-close:hover{background:#f7f7f7}
+.floating-toc ul{list-style:none; margin:0; padding-left:10px}
+.floating-toc .toc-item{margin:4px 0}
+.floating-toc a{display:block; text-decoration:none; color:#074d2a; line-height:1.35}
+.floating-toc .l2 > a{font-weight:800; font-size:14px; margin-top:6px}
+.floating-toc .l3 > a{padding-left:6px; font-weight:700; font-size:13px}
+.floating-toc .l4 > a{padding-left:12px; font-weight:600; font-size:12.5px}
+.floating-toc .l5 > a{padding-left:18px; font-size:12px}
+.toc-toggle{position:fixed; right:16px; bottom:16px; width:48px; height:48px; border-radius:50%; border:none; background:linear-gradient(135deg,#0a7f3f,#0c9250); color:#fff; display:grid; place-items:center; box-shadow:0 10px 24px rgba(0,0,0,.25); z-index:1700; cursor:pointer}
+.toc-toggle:active{transform:scale(.98)}
+@media (max-width: 980px){
+  .floating-toc{right:8px; left:8px; bottom:74px; width:auto; max-height:55vh;}
+  .toc-toggle{right:12px; bottom:12px;}
+}
+
+/* Floating TOC + Toggle */
+.floating-toc{position:fixed; right:16px; bottom:78px; width:380px; max-height:70vh; overflow:auto; background:#ffffff; border:1px solid #d7eadd; border-radius:14px; box-shadow:0 16px 40px rgba(0,0,0,.18); padding:8px 10px; z-index:1600}
+.floating-toc.is-hidden{display:none}
+.toc-header{display:flex; align-items:center; justify-content:space-between; font-weight:800; color:#074d2a; padding:6px 4px 8px 6px; border-bottom:1px solid #eef6f2}
+.toc-close{border:none; background:transparent; cursor:pointer; padding:6px; border-radius:8px}
+.toc-close:hover{background:#f7f7f7}
+.toc-toggle{position:fixed; right:16px; bottom:16px; width:48px; height:48px; border-radius:50%; border:none; background:linear-gradient(135deg,#0a7f3f,#0c9250); color:#fff; display:grid; place-items:center; box-shadow:0 10px 24px rgba(0,0,0,.25); z-index:1700; cursor:pointer}
+.toc-toggle:active{transform:scale(.98)}
+@media (max-width: 980px){
+  .floating-toc{right:8px; left:8px; bottom:74px; width:auto; max-height:55vh;}
+  .toc-toggle{right:12px; bottom:12px;}
+}
+
+/* Force clickable TOC toggle */
+#tocToggle, #floatingTOC{ pointer-events:auto !important; }
+#tocToggle{ z-index: 100000 !important; }
+#floatingTOC{ z-index: 99999 !important; }
+
+:root{
+  --primary-color:#0ea5e9;   /* sky-500 */
+  --accent-color:#0369a1;    /* sky-800 */
+  --secondary-color:#0284c7; /* sky-600 */
+  --article-bg:#f0f9ff;
+  --gold-color:#0ea5e9;
+}
+header,.header{background:linear-gradient(90deg,#0ea5e9,#0284c7)!important}
+.article-icon i{color:var(--accent-color);}
+.control-btn:hover{background:var(--secondary-color);color:#fff}
+.toc-toggle{background:var(--primary-color);}
+</style></head><body><header><div class="container"><div class="logo"><i class="fa-solid fa-user-doctor"></i></div><div><h1>Loi — Profession de Médecin (CI)</h1><div class="sub">Thème vert élégant • Icônes orange • Sommaire • Recherche • Lecture continue • Plein écran</div></div><div class="control-buttons"><button class="btn" id="tocHeaderBtn" title="Sommaire"><i class="fa-solid fa-list-ul"></i></button><button class="btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Haut de page"><i class="fa-solid fa-angles-up"></i></button></div></div></header><main class="wrapper"><h2 id="profession-de-medecin--cote-divoire">Profession de Médecin — Côte d'Ivoire</h2><h3 class="chapter-title" id="chapitre-i--dispositions-generales">CHAPITRE I : DISPOSITIONS GÉNÉRALES</h3><div class="article" id="article-1"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-user-doctor"></i></span><h3 id="article-1">Article 1</h3></div><div class="article-content">
+<p>Au sens de la présente loi, on entend par :</p>
+<ul>
+<li><strong>Détournement des patients</strong>, toute pratique anormale consistant à diriger des malades d'une structure publique ou privée pour les orienter vers une autre structure, publique ou privée, en faveur des praticiens ;</li>
+<li><strong>Dichotomie</strong>, toute pratique illégale et marginale qui consiste pour un médecin à reverser une partie des honoraires réclamée à un patient au médecin qui lui a adressé le patient ;</li>
+<li><strong>Entreprise de santé</strong>, tout établissement œuvrant dans le domaine de la santé constitué sous forme commerciale prévue par le traité de l'OHADA ;</li>
+<li><strong>Établissement privé de santé</strong>, tout local équipé en appareils et installations utilisés pour l'exercice indépendant ou à titre privé des professionnels de santé ;</li>
+<li><strong>Établissement public de santé</strong>, toute structure définie par un statut légal, et dont les missions sont relatives aux soins, prévention, recherche médicale, enseignement, exécutées dans le cadre d'un système de valeurs et d'obligations de service public ;</li>
+<li><strong>Établissement sanitaire</strong>, tout local équipé en matériels et dispositifs médicaux, utilisé pour l'exercice des professions de santé, par un ou plusieurs praticiens, membres d'une même profession ou de professions différentes ;</li>
+<li><strong>Erreur médicale ou accident médical</strong>, tout évènement défavorable hors aléa thérapeutique pour le patient, qui n'est pas en rapport avec l'évolution naturelle, spontanée de la maladie, mais lié aux soins médicaux que sont les stratégies ou actes de prévention, de diagnostic, de traitement, de réhabilitation ou de rééducation ; L'erreur médicale ou l'accident médical considère l'obligation de moyens et non de résultats.</li>
+<li><strong>Faute professionnelle</strong>, le fait pour un médecin, dans le cadre de l'exercice de la profession médicale, de ne pas respecter les règles de l'art, les règles de déontologie, et, pour le médecin salarié, les instructions de son supérieur ou le règlement intérieur ;</li>
+<li><strong>Médecine</strong>, la science qui a pour objet l'étude, le traitement, la prévention des maladies, l'art de mettre, de maintenir ou de rétablir un être vivant dans les meilleures conditions de santé ;</li>
+<li><strong>Médecin</strong>, le titulaire du Doctorat d'État en Médecine qui est inscrit à l'Ordre National des Médecins de Côte d'Ivoire ;</li>
+<li><strong>Médecin conseil</strong>, le médecin diplômé des régimes des assurances-santé et de sécurité sociale ;</li>
+<li><strong>Médecin du secteur public</strong>, tout médecin assujetti au Statut Général de la Fonction Publique et inscrit à l'Ordre National des Médecins de Côte d'Ivoire ;</li>
+<li><strong>Médecin du secteur privé</strong>, tout médecin assujetti au Code du travail et inscrit à l'Ordre National des Médecins de Côte d'Ivoire ;</li>
+<li><strong>Médecin généraliste</strong>, le médecin qui se consacre à toutes les maladies et pathologies humaines dans leur ensemble sans en avoir choisi de spécialité particulière ;</li>
+<li><strong>Médecin spécialiste</strong>, le médecin ayant choisi une spécialité parmi les nombreuses spécialités de médecine, et ayant la qualification requise ;</li>
+<li><strong>Médecin du travail</strong>, le médecin spécialiste qui assure un service de préservation de la santé des travailleurs, la surveillance des conditions d'hygiène et les risques de contagion et de maladies professionnelles ;</li>
+<li><strong>Médecin d'entreprise</strong>, le médecin qui assure les soins d'urgence et de médecine préventive dans une entreprise et qui est chargé d'orienter les patients et les malades vers les structures sanitaires et les médecins publics ou privés adéquats ;</li>
+<li><strong>Médecine foraine</strong>, l'exercice de la médecine sans lieu d'exercice permanent, sans moyen technique adapté, les consultations étant effectuées dans des lieux divers ;</li>
+<li><strong>Permanence des soins</strong>, l'organisation pratique permettant une continuité de soins et d'urgences, de nuit comme de jour ;</li>
+<li><strong>Médical</strong>, ce qui est relatif à la médecine, à son exercice, aux médecins.</li>
+<li><strong>Organisme de tiers payant</strong>, tout organisme chargé du règlement d'un service médical ou paramédical ou d'un produit selon un conventionnement ;</li>
+<li><strong>Paramédical</strong>, ce qui a trait aux professions de santé que l'on peut exercer sans être médecin et aux soins qui sont délivrés par les personnes qui exercent ces professions ;</li>
+<li><strong>Professionnels de santé</strong>, tout professionnel intervenant d'une manière ou d'une autre dans l'administration des soins ;</li>
+<li><strong>Santé</strong>, un état de complet bien-être physique, mental et social et ne consistant pas seulement en une absence de maladie ou d'infirmité ;</li>
+<li><strong>Secret médical</strong>, l'obligation pour un professionnel de santé de ne pas divulguer des informations d'ordre médical ou privé dont la révélation à une tierce personne aurait un impact néfaste sur l'individu concerné. Le secret couvrant tout ce qui est venu à la connaissance du praticien dans l'exercice de sa profession, c'est-à-dire non seulement ce qui lui a été confié, mais aussi ce qu'il a vu, entendu ou compris.</li>
+</ul>
+</div></div><div class="article" id="article-2"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-stethoscope"></i></span><h3 id="article-2">Article 2</h3></div><div class="article-content">
+<p>La présente loi a pour objet de définir l'exercice et l'organisation de la profession de médecin.</p>
+</div></div><div class="article" id="article-3"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-briefcase-medical"></i></span><h3 id="article-3">Article 3</h3></div><div class="article-content">
+<p>Tout médecin est soumis :</p>
+<ul>
+<li>aux dispositions de la présente loi ;</li>
+<li>au secret médical ;</li>
+<li>au Code de déontologie médicale ;</li>
+<li>aux dispositions relatives à l'Ordre National des Médecins.</li>
+</ul>
+</div></div><div class="article" id="article-4"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-syringe"></i></span><h3 id="article-4">Article 4</h3></div><div class="article-content">
+<p>L'exercice de la médecine est personnel. Chaque médecin est responsable de ses décisions et de ses actes.</p>
+</div></div><div class="article" id="article-5"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-heart-pulse"></i></span><h3 id="article-5">Article 5</h3></div><div class="article-content">
+<p>Tout médecin est habilité à pratiquer tous les actes de prévention, de diagnostic et de traitement de pathologies humaines.</p>
+<p>Sauf circonstances exceptionnelles, le médecin ne doit pas entreprendre, poursuivre des soins, ni formuler des prescriptions dans des domaines dépassant ses connaissances, son expérience et les moyens dont il dispose.</p>
+</div></div><div class="article" id="article-6"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-pills"></i></span><h3 id="article-6">Article 6</h3></div><div class="article-content">
+<p>Tout médecin, quel que soit le secteur dont il relève, est tenu d'apporter son concours à l'action de l'État visant la protection de la santé publique, la promotion de la santé et l'éducation sanitaire.</p>
+</div></div><div class="article" id="article-7"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-notes-medical"></i></span><h3 id="article-7">Article 7</h3></div><div class="article-content">
+<p>Le médecin doit disposer, au lieu de son exercice, des locaux conformes à la réglementation en vigueur et de moyens techniques suffisants pour permettre le respect du secret médical en rapport avec la nature des actes qu'il pratique.</p>
+<p>Le médecin doit veiller à ce que les personnes qui l'assistent dans son exercice soient instruites de leurs obligations en matière de secret médical, et s'y conforment.</p>
+<p>Le médecin doit veiller à ce qu'aucune atteinte ne soit portée par son entourage au secret qui s'attache à sa correspondance professionnelle.</p>
+</div></div><div class="article" id="article-8"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-kit-medical"></i></span><h3 id="article-8">Article 8</h3></div><div class="article-content">
+<p>Le médecin est tenu de s'enquérir des conditions de sécurité des soins, notamment s'assurer de :</p>
+<ul>
+<li>la propreté des lieux ;</li>
+<li>la décontamination et de la stérilisation des dispositifs médicaux utilisés ;</li>
+<li>l'élimination des déchets médicaux selon les procédures réglementaires.</li>
+</ul>
+<p>Le médecin ne doit pas exercer sa profession dans des conditions de nature à compromettre la qualité des soins et des actes médicaux ou de sécurité des personnes examinées.</p>
+<p>Le médecin doit veiller à la compétence des personnes qui lui apportent leurs concours.</p>
+</div></div><div class="article" id="article-9"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-user-doctor"></i></span><h3 id="article-9">Article 9</h3></div><div class="article-content">
+<p>L'exercice de la médecine foraine est interdit.</p>
+<p>Toutefois, des dérogations peuvent être accordées dans l'intérêt de la santé publique par le Ministère en charge de la santé.</p>
+</div></div><div class="article" id="article-10"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-stethoscope"></i></span><h3 id="article-10">Article 10</h3></div><div class="article-content">
+<p>Le médecin est tenu de participer à la permanence des soins dans le respect des textes législatifs et réglementaires qui l'organisent.</p>
+<p>Lorsqu'il participe à un service d'urgence, de garde ou d'astreinte, le médecin doit prendre toute disposition pour être joint au plus vite. Il est autorisé, pour faciliter sa mission, à apposer sur son véhicule une plaque amovible portant la mention « Médecin-Urgence », à l'exclusion de toute autre. Il doit la retirer dès que sa participation à l'urgence prend fin.</p>
+</div></div><div class="article" id="article-11"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-briefcase-medical"></i></span><h3 id="article-11">Article 11</h3></div><div class="article-content">
+<p>Tout médecin est tenu de déférer à toute réquisition venant de l'autorité compétente.</p>
+<p>Les réquisitions font l'objet d'une rémunération dont le montant est fixé par décret.</p>
+</div></div><div class="article" id="article-12"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-syringe"></i></span><h3 id="article-12">Article 12</h3></div><div class="article-content">
+<p>Le médecin appelé d'urgence auprès d'un malade est tenu de rédiger à l'attention du médecin traitant, un rapport de son intervention et des prescriptions qu'il remet au malade ou adresse directement au confrère en informant le malade. Il en conserve le double.</p>
+</div></div><div class="article" id="article-13"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-heart-pulse"></i></span><h3 id="article-13">Article 13</h3></div><div class="article-content">
+<p>L'État ou le promoteur d'un établissement hospitalier privé doit garantir la sécurité du médecin sur son lieu d'exercice.</p>
+</div></div><div class="article" id="article-14"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-pills"></i></span><h3 id="article-14">Article 14</h3></div><div class="article-content">
+<p>La formation médicale continue est obligatoire pour tout médecin.</p>
+<p>Les modalités de la formation médicale continue sont précisées par décret.</p>
+</div></div><div class="article" id="article-15"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-notes-medical"></i></span><h3 id="article-15">Article 15</h3></div><div class="article-content">
+<p>Tout médecin a droit à la spécialisation.</p>
+</div></div><h3 class="chapter-title" id="chapitre-ii--conditions-dexercice-de-la-profession-de-medecin">CHAPITRE II : CONDITIONS D'EXERCICE DE LA PROFESSION DE MÉDECIN</h3><h4 class="section-title" id="section-1--dispositions-communes">Section 1 : Dispositions communes</h4><div class="article" id="article-16"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-kit-medical"></i></span><h3 id="article-16">Article 16</h3></div><div class="article-content">
+<p>Nul ne peut exercer la profession de médecin en Côte d'Ivoire s'il ne réunit les conditions cumulatives suivantes :</p>
+<ol>
+<li>Être titulaire du diplôme d'État ivoirien de docteur en médecine, d'un diplôme étranger ou d'un État membre de l'UEMOA reconnu équivalent en application des dispositions en vigueur en matière d'enseignement supérieur ;</li>
+<li>Être inscrit au tableau de l'Ordre National des Médecins.</li>
+</ol>
+<p>Les ressortissants des pays non francophones devront justifier d'une connaissance suffisante de la langue française.</p>
+</div></div><div class="article" id="article-17"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-user-doctor"></i></span><h3 id="article-17">Article 17</h3></div><div class="article-content">
+<p>Le médecin attaché aux organismes internationaux à vocation humanitaire peut exercer son activité sur le territoire ivoirien. Il ne doit exercer que dans le cadre de sa mission. Il est soumis aux conditions définies à l'article 16 de la présente loi.</p>
+<p>Les organismes internationaux à vocation humanitaire sont soumis à autorisation préalable du Ministre chargé de la Santé pour exercer en Côte d'Ivoire.</p>
+<p>Ces organismes doivent préalablement informer le Ministre chargé de la santé de la présence sur le territoire ivoirien du médecin mis en mission.</p>
+</div></div><h4 class="section-title" id="section-2--lexercice-de-la-medecine-en-clientele-privee">Section 2 : L'exercice de la médecine en clientèle privée</h4><div class="article" id="article-18"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-stethoscope"></i></span><h3 id="article-18">Article 18</h3></div><div class="article-content">
+<p>Outre les conditions prévues à l'article 16 de la présente loi, nul ne peut exercer à titre privé la profession de médecin en Côte d'Ivoire, s'il n'y est autorisé par le Ministère en charge de la santé.</p>
+<p>Nul ne peut exploiter un établissement sanitaire privé non autorisé par le Ministère en charge de la santé.</p>
+<p>Les autorisations mentionnées à l'alinéa précédent doivent être conformes à la Carte Sanitaire.</p>
+</div></div><div class="article" id="article-19"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-briefcase-medical"></i></span><h3 id="article-19">Article 19</h3></div><div class="article-content">
+<p>L'exercice de la profession de médecin en clientèle privée est incompatible avec la qualité de fonctionnaire ou d'agent contractuel de l'administration publique, sauf dans les cas prévus par la loi.</p>
+</div></div><div class="article" id="article-20"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-syringe"></i></span><h3 id="article-20">Article 20</h3></div><div class="article-content">
+<p>Outre les conditions prévues à l'article 16 de la présente loi, nul ne peut exercer en clientèle privée s'il n'a souscrit à une police d'assurance couvrant les risques professionnels auprès de compagnies d'assurance agréées.</p>
+<p>Le médecin fonctionnaire ne peut intervenir dans le privé que s'il dispose d'une convention l'y autorisant. Il doit disposer d'une assurance couvrant ses risques professionnels.</p>
+<p>Le défaut d'assurance constitue une faute passive de sanctions disciplinaires non seulement à l'encontre du médecin concerné, mais également du responsable médical de l'établissement ayant eu recours à ses prestations.</p>
+</div></div><div class="article" id="article-21"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-heart-pulse"></i></span><h3 id="article-21">Article 21</h3></div><div class="article-content">
+<p>Le médecin exerçant en clientèle privée doit, en cas d'empêchement, se faire remplacer auprès de sa clientèle par un ou plusieurs autres médecins.</p>
+</div></div><div class="article" id="article-22"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-pills"></i></span><h3 id="article-22">Article 22</h3></div><div class="article-content">
+<p>Le médecin peut se faire assister par un ou plusieurs confrères.</p>
+<p>La rémunération du médecin qui l'assiste est fixée d'accord parties.</p>
+</div></div><div class="article" id="article-23"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-notes-medical"></i></span><h3 id="article-23">Article 23</h3></div><div class="article-content">
+<p>Les médecins installés en clientèle privée dans une même localité peuvent s'associer entre eux, ou exercer leur profession sous forme de société civile professionnelle dont l'organisation et le fonctionnement sont fixés par décret.</p>
+</div></div><div class="article" id="article-24"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-kit-medical"></i></span><h3 id="article-24">Article 24</h3></div><div class="article-content">
+<p>Les demandes de remplacement temporaire, de changement de résidence professionnelle ou de l'aire géographique d'activité, de reprise d'activité après interruption à la suite d'une sanction disciplinaire, s'effectue dans le respect des dispositions en vigueur.</p>
+<p>Les conditions de remplacement temporaire, de changement de résidence professionnelle sont définies par décret.</p>
+</div></div><h4 class="section-title" id="section-3--lexercice-de-la-medecine-a-titre-prive-par-des-medecins-etrangers">Section 3 : L'exercice de la médecine à titre privé par des médecins étrangers</h4><div class="article" id="article-25"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-user-doctor"></i></span><h3 id="article-25">Article 25</h3></div><div class="article-content">
+<p>L'exercice de la médecine à titre privé par des médecins étrangers est subordonné à l'autorisation de l'Ordre National des médecins et à une convention d'exercice avec une structure sanitaire existante.</p>
+<p>Le médecin étranger bénéficiant d'une autorisation d'exercer ne peut ouvrir ou exploiter un établissement privé de santé.</p>
+<p>Les conditions d'inscription et du droit d'exercer pour les médecins étrangers bénéficiant d'une autorisation sont définies par décret.</p>
+</div></div><div class="article" id="article-26"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-stethoscope"></i></span><h3 id="article-26">Article 26</h3></div><div class="article-content">
+<p>Il est institué une commission mixte, composée des représentants du Ministère en charge de la santé et du Conseil National de l'Ordre des médecins, chargée d'assurer le suivi de l'exercice de la médecine par les étrangers bénéficiant d'une autorisation d'exercice en Côte d'Ivoire, ainsi que des conditions de leur insertion dans le système national de santé.</p>
+<p>Les attributions et le fonctionnement de la commission mixte sont définis par décret.</p>
+</div></div><h4 class="section-title" id="section-4--lexercice-de-la-medecine-a-titre-prive-par-des-medecins-non-residents">Section 4 : L'exercice de la médecine à titre privé par des médecins non-résidents</h4><div class="article" id="article-27"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-briefcase-medical"></i></span><h3 id="article-27">Article 27</h3></div><div class="article-content">
+<p>Les médecins non-résidents en Côte d'Ivoire peuvent, dans les conditions fixées à l'article 16 de la présente loi, être autorisés à exercer temporairement la médecine en Côte d'Ivoire pour une période fixée par voie réglementaire avec une convention les liant à une structure de santé publique ou privé.</p>
+<p>Outre les cas prévus ci-dessus, le médecin non résident peut être autorisé à exercer exceptionnellement la médecine en Côte d'Ivoire dans le cadre de caravanes médicales autorisées par le Ministre chargé de la santé.</p>
+<p>Les modalités d'organisation, de déroulement des caravanes médicales et d'instruction des demandes de participation de médecins non-résidents sont fixées par décret.</p>
+</div></div><h3 class="chapter-title" id="chapitre-iii--dispositions-particulieres-a-certains-modes-dexercice-de-la-medecine">CHAPITRE III : DISPOSITIONS PARTICULIÈRES À CERTAINS MODES D'EXERCICE DE LA MÉDECINE</h3><div class="article" id="article-28"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-syringe"></i></span><h3 id="article-28">Article 28</h3></div><div class="article-content">
+<p>Le capital d'un établissement sanitaire privé de santé est détenu majoritairement par des médecins. La fonction de Directeur médical scientifique est tenue par un médecin.</p>
+<p>Lorsque le capital de l'établissement privé de santé est majoritairement détenu par des actionnaires ou groupes financiers non médicaux, les actions d'un médecin ou d'un pool de médecins sont requises. Cet établissement doit disposer d'un personnel clé ayant les qualifications et les compétences requises et être dirigé par un Directeur médical disposant des pouvoirs les plus étendus pour assurer ses missions.</p>
+<p>Ce Directeur médical est le responsable des activités médico-légales de l'établissement à plein temps. Il doit être un médecin national et inscrit à l'Ordre National des médecins.</p>
+<p>La fonction de Directeur médical est incompatible avec toute autre fonction administrative dans un autre établissement public ou privé.</p>
+</div></div><div class="article" id="article-29"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-heart-pulse"></i></span><h3 id="article-29">Article 29</h3></div><div class="article-content">
+<p>Les catégories, les formes d'exploitation et les critères de cession ou de rachat des établissements privés de santé sont définis par décret.</p>
+</div></div><div class="article" id="article-30"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-pills"></i></span><h3 id="article-30">Article 30</h3></div><div class="article-content">
+<p>Les établissements privés de santé sont agréés, classés et immatriculés par le Ministère en charge de la santé.</p>
+<p>Les conditions et les règles de fonctionnement des établissements privés de santé sont définies par décret.</p>
+</div></div><div class="article" id="article-31"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-notes-medical"></i></span><h3 id="article-31">Article 31</h3></div><div class="article-content">
+<p>Les conditions selon lesquelles les personnes morales peuvent être autorisées à créer, à ouvrir et à exploiter les établissements privés de santé sont définies par décret, sans préjudice des dispositions du Code de Déontologie médicale.</p>
+</div></div><div class="article" id="article-32"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-kit-medical"></i></span><h3 id="article-32">Article 32</h3></div><div class="article-content">
+<p>Le défaut d'autorisation d'ouverture d'une structure sanitaire privée, expose le contrevenant à la fermeture par tous moyens, sans préjudice des poursuites judiciaires et des sanctions auxquelles il s'expose.</p>
+<p>Le non-respect d'une décision de retrait de l'autorisation d'ouverture expose le contrevenant aux mêmes sanctions.</p>
+</div></div><div class="article" id="article-33"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-user-doctor"></i></span><h3 id="article-33">Article 33</h3></div><div class="article-content">
+<p>L'exercice à titre privé d'une discipline médicale est subordonné à la condition de qualification reconnue par l'Ordre National des médecins. Tout médecin spécialiste installé comme tel, pratique personnellement sa spécialité. Il ne peut se faire remplacer que par un confrère, lui-même qualifié.</p>
+</div></div><div class="article" id="article-34"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-stethoscope"></i></span><h3 id="article-34">Article 34</h3></div><div class="article-content">
+<p>Le médecin exerçant en clientèle privée, titulaire d'une autorisation d'exploitation d'un établissement de santé doit en être propriétaire. Il ne peut être propriétaire que d'un seul établissement de santé.</p>
+<p>Le médecin propriétaire d'un établissement de santé exerce personnellement sa profession. Ses collaborateurs non médecins travaillent sous sa surveillance directe. Il ne peut se faire remplacer que par un confrère de la même qualification.</p>
+<p>L'autorisation d'exploitation d'un établissement de santé secondaire est donnée à titre exceptionnel dans les conditions définies par le Ministre chargé de la Santé.</p>
+</div></div><div class="article" id="article-35"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-briefcase-medical"></i></span><h3 id="article-35">Article 35</h3></div><div class="article-content">
+<p>Les médecins peuvent constituer entre eux une association ou une société en vue de l'exploitation d'un établissement médical.</p>
+<p>L'autorisation est donnée au nom de l'association ou de la société qui doit obligatoirement être dirigée par un médecin remplissant les conditions d'exercice de la profession médicale, telles que prévues par la présente loi.</p>
+<p>Le médecin associé est personnellement responsable de l'application des règles édictées dans l'intérêt de la santé publique, sans préjudice, le cas échéant, de la responsabilité solidaire de la société ou de l'association.</p>
+<p>Le fait pour un médecin d'être membre d'une association ou d'une société médicale ne saurait le soustraire pour son exercice aux conditions requises pour la pratique de la médecine en Côte d'Ivoire.</p>
+</div></div><div class="article" id="article-36"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-syringe"></i></span><h3 id="article-36">Article 36</h3></div><div class="article-content">
+<p>L'exercice de la médecine de contrôle et celui de la médecine d'expertise sont subordonnés à des qualifications précisées par l'Ordre National des Médecins de Côte d'Ivoire.</p>
+<p>Les conditions et les modalités particulières à la pratique de ces formes d'exercice de la médecine sont précisées par arrêté du Ministre chargé de la Santé.</p>
+</div></div><h3 class="chapter-title" id="chapitre-iv--honoraires-et-facturation-des-prestations-medicales">CHAPITRE IV : HONORAIRES ET FACTURATION DES PRESTATIONS MÉDICALES</h3><h4 class="section-title" id="section-1--honoraires-des-medecins">Section 1 : Honoraires des médecins</h4><div class="article" id="article-37"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-heart-pulse"></i></span><h3 id="article-37">Article 37</h3></div><div class="article-content">
+<p>Seules les autorités compétentes du Ministère en charge de la santé et les organisations professionnelles médicales qualifiées sont habilitées à élaborer les barèmes planchers des honoraires des médecins, conformément au code de déontologie médicale.</p>
+<p>Ces barèmes sont publiés par le Ministère en charge de la Santé et l'Ordre National des Médecins.</p>
+<p>Il est interdit d'accorder un forfait en dessous de ceux rendus publics.</p>
+</div></div><div class="article" id="article-38"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-pills"></i></span><h3 id="article-38">Article 38</h3></div><div class="article-content">
+<p>Le médecin doit toujours établir lui-même sa note d'honoraires. Les éléments d'appréciation sont la situation financière du malade, la notoriété du médecin et des circonstances particulières.</p>
+<p>Un médecin est tenu de donner des explications sur sa note d'honoraires à la demande du client.</p>
+</div></div><div class="article" id="article-39"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-notes-medical"></i></span><h3 id="article-39">Article 39</h3></div><div class="article-content">
+<p>Sous réserve de l'application des textes en vigueur, il est interdit à tout médecin d'abaisser ses honoraires dans un intérêt de concurrence en-dessous des barèmes en vigueur.</p>
+<p>Il est libre de donner gratuitement ses soins quand sa conscience le lui demande.</p>
+</div></div><div class="article" id="article-40"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-kit-medical"></i></span><h3 id="article-40">Article 40</h3></div><div class="article-content">
+<p>La rencontre en consultation entre un médecin traitant et un médecin consultant, légitime pour le second des honoraires spéciaux.</p>
+<p>Chaque médecin doit présenter sa note personnelle d'honoraires au patient ou à l'administration.</p>
+</div></div><div class="article" id="article-41"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-user-doctor"></i></span><h3 id="article-41">Article 41</h3></div><div class="article-content">
+<p>Toute remise d'honoraires à un médecin en vue du partage avec les autres praticiens est formellement interdite.</p>
+<p>L'acceptation, la sollicitation ou l'offre d'un partage d'honoraires, même non suivis d'effet, constitue une faute professionnelle grave.</p>
+</div></div><div class="article" id="article-42"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-stethoscope"></i></span><h3 id="article-42">Article 42</h3></div><div class="article-content">
+<p>Le chirurgien a le droit de choisir son aide ou ses aides opératoires, ainsi que l'anesthésiste. Les honoraires de ceux-ci peuvent être réclamés directement par eux ou figurer sur la note d'honoraires du chirurgien transmise à l'opéré ou à l'administration.</p>
+<p>Toutefois, lorsque le chirurgien sollicite les fonctions d'aide-opératoire ou d'anesthésiste au médecin traitant, cet anesthésiste ou aide-opératoire a droit à des honoraires.</p>
+</div></div><div class="article" id="article-43"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-briefcase-medical"></i></span><h3 id="article-43">Article 43</h3></div><div class="article-content">
+<p>La présence du médecin traitant à une opération chirurgicale lui donne droit à des honoraires spéciaux, si elle est demandée par le malade ou sa famille.</p>
+</div></div><div class="article" id="article-44"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-syringe"></i></span><h3 id="article-44">Article 44</h3></div><div class="article-content">
+<p>Tout médecin appliquant les honoraires en deçà du barème planché en vigueur s'expose à des sanctions pénales et disciplinaires pour concurrence déloyale.</p>
+</div></div><h4 class="section-title" id="section-2--facturation-des-prestations">Section 2 : Facturation des prestations</h4><div class="article" id="article-45"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-heart-pulse"></i></span><h3 id="article-45">Article 45</h3></div><div class="article-content">
+<p>Le prestataire est tenu de donner des explications sur la facture des prestations comprenant les honoraires des médecins, les frais d'hospitalisation, les actes et les prestations complémentaires à la demande du patient.</p>
+</div></div><h3 class="chapter-title" id="chapitre-v--qualifications-et-competences-des-medecins-des-secteurs-de-lassurance-sante-et-de-la-gestion-de-portefeuille-maladie">CHAPITRE V : QUALIFICATIONS ET COMPÉTENCES DES MÉDECINS DES SECTEURS DE L'ASSURANCE-SANTÉ ET DE LA GESTION DE PORTEFEUILLE MALADIE</h3><div class="article" id="article-46"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-pills"></i></span><h3 id="article-46">Article 46</h3></div><div class="article-content">
+<p>Les autorités compétentes du Ministère en charge de la santé en collaboration avec l'Ordre National des Médecins statuent sur les qualifications et les compétences des médecins des secteurs de l'assurance-santé et de la gestion de portefeuille maladie. Une commission est créée à cet effet.</p>
+</div></div><div class="article" id="article-47"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-notes-medical"></i></span><h3 id="article-47">Article 47</h3></div><div class="article-content">
+<p>Tout médecin qui s'attribue ou se fait attribuer le titre de médecin-conseil, médecin-expert, médecin-contrôleur, médecin-gestionnaire de portefeuille maladie ou de tout autre titre en relation avec les secteurs de l'assurance-santé et de la gestion de portefeuille maladie, s'expose et expose son employeur à des sanctions disciplinaires.</p>
+</div></div><div class="article" id="article-48"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-kit-medical"></i></span><h3 id="article-48">Article 48</h3></div><div class="article-content">
+<p>Les médecins relevant des secteurs de l'assurance-santé et de la gestion de portefeuille maladie actuellement en activité disposent d'un délai de douze mois pour se conformer aux dispositions du présent chapitre.</p>
+<p>Au terme de la période indiquée à l'alinéa 1 du présent article, tout médecin concerné n'ayant pas régularisé son statut, s'expose et expose son employeur à des sanctions disciplinaires.</p>
+</div></div><h3 class="chapter-title" id="chapitre-vi--medecine-dentreprise-et-exercice-salarie">CHAPITRE VI : MÉDECINE D'ENTREPRISE ET EXERCICE SALARIÉ</h3><div class="article" id="article-49"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-user-doctor"></i></span><h3 id="article-49">Article 49</h3></div><div class="article-content">
+<p>L'exercice habituel de la médecine sous quelque forme que ce soit au sein d'une entreprise, d'une collectivité, d'une institution relevant du droit privé, ainsi qu'au sein d'une société d'État et d'une société d'Économie mixte doit, dans tous les cas, faire l'objet d'un contrat écrit sauf dans les cas prévus par les lois et règlements.</p>
+<p>Le contrat définit les obligations respectives des parties et précise les moyens permettant aux médecins de respecter les dispositions de la présente loi. Ce contrat est communiqué par le médecin au Conseil National ou au Conseil régional de l'Ordre National des médecins. Il ne peut être mis en œuvre qu'après avis favorable du Conseil National de l'Ordre dans un délai de deux mois, à compter de la saisine de l'Ordre. Toutefois, le silence gardé par ces Organes vaut décision implicite d'acceptation à l'expiration du délai de deux mois, à compter de la date de réception du contrat.</p>
+<p>Les observations formulées par le Conseil National ou le Conseil régional sont adressées aux parties au contrat pour prise en compte.</p>
+</div></div><div class="article" id="article-50"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-stethoscope"></i></span><h3 id="article-50">Article 50</h3></div><div class="article-content">
+<p>Le médecin d'entreprise et le médecin du travail exercent leurs activités professionnelles, conformément aux dispositions prévues par le Code du Travail et le Code de Déontologie Médicale.</p>
+</div></div><div class="article" id="article-51"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-briefcase-medical"></i></span><h3 id="article-51">Article 51</h3></div><div class="article-content">
+<p>Lorsque l'entreprise n'est pas de taille à employer à temps plein un médecin, elle doit faire appel à tout autre médecin vacataire.</p>
+</div></div><div class="article" id="article-52"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-syringe"></i></span><h3 id="article-52">Article 52</h3></div><div class="article-content">
+<p>Le médecin d'entreprise est chargé d'assurer la médecine de travail, en l'absence d'un médecin spécialiste de médecine de travail. Il ne peut user de sa fonction pour accroître sa clientèle personnelle.</p>
+<p>Le médecin d'entreprise ne peut exercer dans plus d'une entreprise à la fois.</p>
+<p>Sauf urgence, seuls les employés de l'entreprise et leurs ayants-droits peuvent bénéficier des prestations du médecin d'entreprise.</p>
+</div></div><div class="article" id="article-53"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-heart-pulse"></i></span><h3 id="article-53">Article 53</h3></div><div class="article-content">
+<p>Le médecin privé, lié dans son exercice professionnel par un contrat à un autre médecin, une administration, une collectivité ou à tout autre organisme public ou privé, est tenu de respecter ses devoirs professionnels, le secret médical et l'indépendance de ses décisions.</p>
+<p>En aucune circonstance, le médecin ne peut accepter de limitation à son indépendance professionnelle de la part de l'entreprise ou de l'organisme qui l'emploie. Il doit toujours agir en priorité, dans l'intérêt de la santé des personnes qu'il examine et dans l'intérêt de leur sécurité au sein des entreprises ou des collectivités dont il est responsable.</p>
+</div></div><div class="article" id="article-54"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-pills"></i></span><h3 id="article-54">Article 54</h3></div><div class="article-content">
+<p>Tout médecin qui exerce dans un établissement privé ou public de soins ou de prévention ne peut user de sa fonction pour accroître sa clientèle personnelle.</p>
+</div></div><div class="article" id="article-55"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-notes-medical"></i></span><h3 id="article-55">Article 55</h3></div><div class="article-content">
+<p>Toute entreprise ou établissement non médical privé ou institutionnel employant des médecins pour la santé de leur personnel ne peut mettre à leur disposition dans les entreprises ou des établissements, des lits d'hospitalisation, du matériel spécialisé et autres équipements médicaux et paramédicaux susceptibles d'engendrer une concurrence déloyale vis-à-vis des établissements de santé privés.</p>
+<p>Ils ne peuvent qu'organiser la médecine du travail.</p>
+<p>Tout contrevenant s'expose à des sanctions.</p>
+</div></div><h3 class="chapter-title" id="chapitre-vii--dispositions-relatives-a-la-responsabilite-du-medecin">CHAPITRE VII : DISPOSITIONS RELATIVES À LA RESPONSABILITÉ DU MÉDECIN</h3><div class="article" id="article-56"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-kit-medical"></i></span><h3 id="article-56">Article 56</h3></div><div class="article-content">
+<p>Toute erreur médicale dont les conséquences sont le décès, la mise en jeu du pronostic vital, la survenue probable d'un déficit fonctionnel permanent, y compris une anomalie ou une malformation congénitale constitue un cas de faute personnelle du médecin.</p>
+</div></div><div class="article" id="article-57"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-user-doctor"></i></span><h3 id="article-57">Article 57</h3></div><div class="article-content">
+<p>Tout établissement, service et organisme dans lesquels sont réalisés des actes individuels de prévention, de diagnostic ou de soins ne sont responsables des conséquences dommageables d'actes de prévention, de diagnostic ou de soins qu'en cas de faute émanant de leur part.</p>
+</div></div><div class="article" id="article-58"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-stethoscope"></i></span><h3 id="article-58">Article 58</h3></div><div class="article-content">
+<p>Toute personne victime ou s'estimant victime d'un dommage imputable à une activité de prévention, de diagnostic ou de soins ou ses ayants-droit, si la personne est décédée, ou, le cas échéant, son représentant légal, doit être informée par le professionnel, l'établissement de santé, les services de santé ou l'organisme concerné sur les circonstances et les causes de ce dommage. Cette information lui est délivrée au plus tard dans les quinze jours suivant la découverte du dommage ou à sa demande expresse, lors d'un entretien au cours duquel la personne peut se faire assister par un médecin ou une personne de son choix.</p>
+</div></div><div class="article" id="article-59"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-briefcase-medical"></i></span><h3 id="article-59">Article 59</h3></div><div class="article-content">
+<p>Les modalités d'application du présent chapitre sont précisées par décret.</p>
+</div></div><h3 class="chapter-title" id="chapitre-viii--sanctions">CHAPITRE VIII : SANCTIONS</h3><h4 class="section-title" id="section-1--sanctions-disciplinaires">Section 1 : sanctions disciplinaires :</h4><div class="article" id="article-60"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-syringe"></i></span><h3 id="article-60">Article 60</h3></div><div class="article-content">
+<p>Les sanctions disciplinaires sont :</p>
+<ul>
+<li>l'avertissement ;</li>
+<li>le blâme ;</li>
+<li>l'interdiction temporaire d'exercer une, plusieurs ou la totalité des fonctions médicales conférées ou rétribuées par l'État, les collectivités territoriales, les établissements publics, les établissements reconnus d'utilité publique ou des fonctions médicales accomplies en application des lois sociales, cette interdiction ne pouvant excéder trois années ;</li>
+<li>l'interdiction permanente d'exercer une, plusieurs ou la totalité des fonctions médicales conférées ou rétribuées par l'État, les collectivités territoriales, les établissements publics, les établissements reconnus d'utilité publique ou des fonctions médicales accomplies en application des lois sociales ;</li>
+<li>la radiation du tableau de l'Ordre National des Médecins.</li>
+</ul>
+</div></div><h4 class="section-title" id="section-2--dispositions-administratives">Section 2 : Dispositions Administratives</h4><div class="article" id="article-61"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-heart-pulse"></i></span><h3 id="article-61">Article 61</h3></div><div class="article-content">
+<p>Sous réserve des prérogatives du Conseil National de l'Ordre des Médecins ,en matière disciplinaire, le Ministre chargé de la Santé peut prononcer l'une des sanctions administratives suivantes :</p>
+<ul>
+<li>suspension de l'autorisation d'exercice ;</li>
+<li>interdiction d'exercer toute activité de soins pendant une durée d'un à cinq ans ;</li>
+<li>confiscation de l'équipement ou du matériel objet de l'infraction ;</li>
+<li>retrait définitif de l'autorisation d'exercice ;</li>
+<li>retrait, destruction ou mise en quarantaine de l'équipement ou du matériel ;</li>
+<li>restriction provisoire ou définitive de l'autorisation d'exercice.</li>
+</ul>
+</div></div><h4 class="section-title" id="section-3--dispositions-penales">Section 3 : Dispositions pénales</h4><div class="article" id="article-62"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-pills"></i></span><h3 id="article-62">Article 62</h3></div><div class="article-content">
+<p>L'exercice illégal de la médecine est passible de sanctions pénales.</p>
+<p>Exerce illégalement la médecine :</p>
+<ul>
+<li>toute personne qui prend part habituellement ou par direction suivie, même en présence d'un médecin, à l'établissement d'un diagnostic ou d'un traitement de maladies ou d'affections chirurgicales, congénitales ou acquises, réelles ou supposées, par actes personnels, consultations verbales ou écrites ou par tout autre procédé quel qu'il soit, ou pratique l'un des actes professionnels prévus par la nomenclature des actes médicaux en vigueur, sans remplir les conditions prévues à l'article 16 de la présente loi ;</li>
+<li>le médecin qui se livre à la pratique de la médecine en violation d'une interdiction temporaire ou définitive d'exercice de la médecine ;</li>
+<li>le médecin inscrit à l'Ordre des médecins qui emploie un médecin non inscrit à l'Ordre des Médecins est complice d'exercice illégal.</li>
+</ul>
+<p>Les dispositions du présent article ne s'appliquent pas aux étudiants en médecine, aux sage- femmes, aux infirmiers et aux garde-malades lorsqu'ils agissent comme aides d'un médecin qui les place auprès de ses malades et sous son contrôle.</p>
+</div></div><div class="article" id="article-63"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-notes-medical"></i></span><h3 id="article-63">Article 63</h3></div><div class="article-content">
+<p>Est puni d'un emprisonnement d'un à cinq ans et d'une amende de 1.000.000 à 5.000.000 de francs, quiconque exerce illégalement la profession de médecin.</p>
+<p>Le juge prononce la privation des droits mentionnés à l'article 68 du Code pénal pour une durée de cinq ans au plus et la confiscation du matériel ayant servi à commettre l'infraction.</p>
+</div></div><div class="article" id="article-64"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-kit-medical"></i></span><h3 id="article-64">Article 64</h3></div><div class="article-content">
+<p>Est puni d'un emprisonnement de trois mois à un an et d'une amende de 1.000.000 à 5.000 000 de francs, tout médecin qui exerce la médecine privée sans autorisation requise.</p>
+</div></div><h3 class="chapter-title" id="chapitre-ix--dispositions-transitoires-et-finales">CHAPITRE IX : DISPOSITIONS TRANSITOIRES ET FINALES</h3><div class="article" id="article-65"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-user-doctor"></i></span><h3 id="article-65">Article 65</h3></div><div class="article-content">
+<p>Les praticiens exerçant actuellement la profession de médecin à titre libéral en Côte d'Ivoire, disposent d'un délai de douze mois, à compter de son entrée en vigueur, pour se conformer aux dispositions de la présente loi.</p>
+</div></div><div class="article" id="article-66"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-stethoscope"></i></span><h3 id="article-66">Article 66</h3></div><div class="article-content">
+<p>Des décrets fixent les modalités d'application de la présente loi.</p>
+</div></div><div class="article" id="article-67"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-briefcase-medical"></i></span><h3 id="article-67">Article 67</h3></div><div class="article-content">
+<p>La présente loi sera publiée au Journal officiel de la République de Côte d'Ivoire et exécutée comme loi de l'État.</p>
+</div></div></main><div aria-label="Lecteur vocal" id="voiceBar" role="region"><button id="vPrev" title="Article précédent"><i class="fas fa-backward"></i></button><button id="vPlay" title="Lire / Reprendre"><i class="fas fa-play"></i></button><button id="vPause" title="Pause"><i class="fas fa-pause"></i></button><button id="vStop" title="Arrêter"><i class="fas fa-stop"></i></button><button id="vNext" title="Article suivant"><i class="fas fa-forward"></i></button><span class="now" id="vNow">—</span></div><div id="fsOverlay"><div id="fsHeader"><button id="fsClose" title="Fermer"><i class="fas fa-xmark"></i></button><div class="ttl" id="fsTitle"></div><button id="fsPlay" title="Lecture"><i class="fas fa-play"></i></button></div><div id="fsBody"><article class="article"><div class="article-content" id="fsContent"></div></article></div><button id="fsNavPrev" title="Précédent"><i class="fas fa-chevron-left"></i></button><button id="fsNavNext" title="Suivant"><i class="fas fa-chevron-right"></i></button></div><script>
+// --- Fonctionnalité de recherche (MODIFIÉE) ---
+function initSearchFeature() {
+    const searchBtn = document.createElement('button');
+    searchBtn.className = 'btn';
+    searchBtn.id = 'searchBtn';
+    searchBtn.title = 'Rechercher';
+    searchBtn.innerHTML = '<i class="fas fa-search"></i>';
+    document.querySelector('.control-buttons').appendChild(searchBtn);
+    
+    const searchInterface = document.createElement('div');
+    searchInterface.id = 'searchInterface';
+    searchInterface.style.cssText = `
+        position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+        width: calc(100% - 40px); max-width: 550px; background: var(--article-bg);
+        padding: 10px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        z-index: 1800; display: none; align-items: center; gap: 5px; transition: var(--transition);
+    `;
+    searchInterface.innerHTML = `
+        <input type="text" id="searchInput" placeholder="Rechercher..." style="flex-grow: 1; padding: 8px; border: 1px solid #cfe6d8; border-radius: 5px;">
+        <button id="searchPrevBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-up"></i></button>
+        <button id="searchNextBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-down"></i></button>
+        <span id="searchResultsCount" style="flex-shrink: 0; padding: 0 5px; min-width: 40px; text-align: center;"></span>
+        <button id="closeSearchBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-times"></i></button>
+    `;
+    document.body.appendChild(searchInterface);
+
+    let searchResults = [];
+    let currentSearchIndex = -1;
+    let originalContents = new Map();
+
+    function performSearch() {
+        const searchTerm = document.getElementById('searchInput').value.trim();
+        if (!originalContents.size) {
+            document.querySelectorAll('.article-content, h2, h3').forEach(el => originalContents.set(el, el.innerHTML));
+        }
+        originalContents.forEach((content, el) => el.innerHTML = content);
+        searchResults = [];
+        currentSearchIndex = -1;
+        if (!searchTerm) { updateSearchUI(); return; }
+
+        const regex = new RegExp(searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+        originalContents.forEach((content, element) => {
+            element.innerHTML = content.replace(regex, match => `<mark>${match}</mark>`);
+        });
+        searchResults = Array.from(document.querySelectorAll('mark'));
+        if (searchResults.length > 0) navigateResults(true, false);
+        updateSearchUI();
+        window.dispatchEvent(new Event('reflowArticles'));
+    }
+
+    function navigateResults(isNext, shouldWrap = true) {
+        if (!searchResults.length) return;
+        searchResults.forEach(mark => mark.style.backgroundColor = '');
+        if (shouldWrap) {
+            currentSearchIndex = isNext ? (currentSearchIndex + 1) % searchResults.length : (currentSearchIndex - 1 + searchResults.length) % searchResults.length;
+        } else {
+            currentSearchIndex = 0;
+        }
+        const currentMark = searchResults[currentSearchIndex];
+        currentMark.style.backgroundColor = 'var(--accent)';
+        currentMark.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        updateSearchUI();
+    }
+
+    function updateSearchUI() {
+        document.getElementById('searchResultsCount').textContent = searchResults.length > 0 ? `${currentSearchIndex + 1}/${searchResults.length}` : '0/0';
+    }
+    
+    function resetSearch() {
+        originalContents.forEach((content, el) => el.innerHTML = content);
+        originalContents.clear();
+        document.getElementById('searchInput').value = '';
+        searchResults = []; currentSearchIndex = -1;
+        updateSearchUI();
+    }
+
+    searchBtn.addEventListener('click', () => {
+        const isVisible = searchInterface.style.display === 'flex';
+        searchInterface.style.display = isVisible ? 'none' : 'flex';
+        if (isVisible) resetSearch(); else document.getElementById('searchInput').focus();
+    });
+    document.getElementById('searchInput').addEventListener('input', performSearch);
+    document.getElementById('searchNextBtn').addEventListener('click', () => navigateResults(true));
+    document.getElementById('searchPrevBtn').addEventListener('click', () => navigateResults(false));
+    document.getElementById('closeSearchBtn').addEventListener('click', () => {
+        searchInterface.style.display = 'none';
+        resetSearch();
+    });
+}
+
+
+/* --- LOCK: disable selection & copy/paste/context menu --- */
+(function(){
+  const css = `
+  *:not(input):not(textarea){ -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none; }
+  body{ -webkit-touch-callout:none; }
+  `;
+  const s = document.createElement('style'); s.textContent = css; document.head.appendChild(s);
+  ['copy','cut','paste','contextmenu','selectstart','dragstart'].forEach(evt=>{
+    document.addEventListener(evt, e=>{
+      if(!(e.target instanceof HTMLInputElement) && !(e.target instanceof HTMLTextAreaElement)){
+        e.preventDefault();
+      }
+    }, {capture:true});
+  });
+})();
+
+// --- Fonctionnalité de recherche (MODIFIÉE) ---
+function initSearchFeature() {
+    const searchBtn = document.createElement('button');
+    searchBtn.className = 'control-btn';
+    searchBtn.id = 'searchBtn';
+    searchBtn.title = 'Rechercher';
+    searchBtn.innerHTML = '<i class="fas fa-search"></i>';
+    document.querySelector('.control-buttons').appendChild(searchBtn);
+    
+    const searchInterface = document.createElement('div');
+    searchInterface.id = 'searchInterface';
+    searchInterface.style.cssText = `
+        position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+        width: calc(100% - 40px); max-width: 550px; background: var(--article-bg);
+        padding: 10px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        z-index: 1000; display: none; align-items: center; gap: 5px; transition: var(--transition);
+    `;
+    searchInterface.innerHTML = `
+        <input type="text" id="searchInput" placeholder="Rechercher..." style="flex-grow: 1; padding: 8px; border: 1px solid var(--secondary-color); border-radius: 5px;">
+        <button id="searchPrevBtn" class="control-btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-up"></i></button>
+        <button id="searchNextBtn" class="control-btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-down"></i></button>
+        <span id="searchResultsCount" style="flex-shrink: 0; padding: 0 5px; min-width: 40px; text-align: center;"></span>
+        <button id="closeSearchBtn" class="control-btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-times"></i></button>
+    `;
+    document.body.appendChild(searchInterface);
+
+    let searchResults = [];
+    let currentSearchIndex = -1;
+    let originalContents = new Map();
+
+    function performSearch() {
+        const searchTerm = document.getElementById('searchInput').value.trim();
+        if (!originalContents.size) {
+            document.querySelectorAll('.article-content, h3').forEach(el => originalContents.set(el, el.innerHTML));
+        }
+        originalContents.forEach((content, el) => el.innerHTML = content);
+        searchResults = [];
+        currentSearchIndex = -1;
+        if (!searchTerm) { updateSearchUI(); return; }
+
+        const regex = new RegExp(searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+        originalContents.forEach((content, element) => {
+            element.innerHTML = content.replace(regex, match => `<mark>${match}</mark>`);
+        });
+        searchResults = Array.from(document.querySelectorAll('mark'));
+        if (searchResults.length > 0) navigateResults(true, false);
+        updateSearchUI();
+    }
+
+    function navigateResults(isNext, shouldWrap = true) {
+        if (!searchResults.length) return;
+        searchResults.forEach(mark => mark.style.backgroundColor = '');
+        if (shouldWrap) {
+            currentSearchIndex = isNext ? (currentSearchIndex + 1) % searchResults.length : (currentSearchIndex - 1 + searchResults.length) % searchResults.length;
+        } else {
+            currentSearchIndex = 0;
+        }
+        const currentMark = searchResults[currentSearchIndex];
+        currentMark.style.backgroundColor = 'var(--gold-color)';
+        currentMark.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        updateSearchUI();
+    }
+
+    function updateSearchUI() {
+        document.getElementById('searchResultsCount').textContent = searchResults.length > 0 ? `${currentSearchIndex + 1}/${searchResults.length}` : '0/0';
+    }
+    
+    function resetSearch() {
+        originalContents.forEach((content, el) => el.innerHTML = content);
+        originalContents.clear();
+        document.getElementById('searchInput').value = '';
+        searchResults = []; currentSearchIndex = -1;
+        updateSearchUI();
+    }
+
+    searchBtn.addEventListener('click', () => {
+        const isVisible = searchInterface.style.display === 'flex';
+        searchInterface.style.display = isVisible ? 'none' : 'flex';
+        if (isVisible) resetSearch(); else document.getElementById('searchInput').focus();
+    });
+    document.getElementById('searchInput').addEventListener('input', performSearch);
+    document.getElementById('searchNextBtn').addEventListener('click', () => navigateResults(true));
+    document.getElementById('searchPrevBtn').addEventListener('click', () => navigateResults(false));
+    document.getElementById('closeSearchBtn').addEventListener('click', () => {
+        searchInterface.style.display = 'none';
+        resetSearch();
+    });
+}
+document.addEventListener('DOMContentLoaded', initSearchFeature);
+</script><script>(function(){function extractEnumeration(s){const re=/(\d{1,2})(?:\s*°)?(?:\))?(?:\.)?\s+/g;const matches=[];let m;while((m=re.exec(s))){const idx=m.index;const prev=idx>0?s.charAt(idx-1):' ';if(/\d/.test(prev))continue;matches.push({num:parseInt(m[1],10),start:idx,end:re.lastIndex});}if(matches.length<2)return null;for(let i=1;i<matches.length;i++){if(matches[i].num!==matches[i-1].num+1)return null;}const intro=s.slice(0,matches[0].start).trim().replace(/[:;,-]\s*$/,'');const items=[];for(let i=0;i<matches.length;i++){const st=matches[i].end;const en=(i+1<matches.length)?matches[i+1].start:s.length;let seg=s.slice(st,en).trim().replace(/^[;,:-]\s*/,'').replace(/[;,\s]+$/,'');items.push(seg);}return{intro,start:matches[0].num,items};}function transformNode(node){if(node.querySelector('ol'))return;const plain=node.textContent.replace(/\s+/g,' ').trim();const res=extractEnumeration(plain);if(!res)return;const frag=document.createElement('div');if(res.intro){const p=document.createElement('p');p.textContent=res.intro;frag.appendChild(p);}const ol=document.createElement('ol');if(res.start!==1)ol.setAttribute('start',String(res.start));res.items.forEach(it=>{const li=document.createElement('li');li.textContent=it;ol.appendChild(li);});frag.appendChild(ol);node.innerHTML=frag.innerHTML;}function run(){document.querySelectorAll('.article-content').forEach(transformNode);}window.addEventListener('DOMContentLoaded',()=>setTimeout(run,60));window.addEventListener('reflowArticles',run);})();</script><script>(function(){const $=s=>document.querySelector(s);const $$=s=>Array.from(document.querySelectorAll(s));function buildTOC(){const toc=document.getElementById('tocList');if(!toc)return;toc.innerHTML='';$$('.group').forEach((grp,gi)=>{const gh=grp.querySelector('h2')?.textContent.trim()||`Groupe ${gi+1}`;const gl=document.createElement('a');gl.textContent=gh;gl.href='#';gl.style.fontWeight='700';gl.addEventListener('click',e=>{e.preventDefault();grp.scrollIntoView({behavior:'smooth',block:'start'});hideTOC();});toc.appendChild(gl);const sub=document.createElement('div');sub.className='toc-sub';grp.querySelectorAll('.article').forEach((art,ai)=>{const at=art.querySelector('.article-header h3')?.textContent.trim()||`Article ${ai+1}`;const a=document.createElement('a');a.textContent=at;a.href='#';a.addEventListener('click',e=>{e.preventDefault();art.scrollIntoView({behavior:'smooth',block:'start'});hideTOC();});sub.appendChild(a);if(!art.querySelector('.open-fs')){const btn=document.createElement('button');btn.className='open-fs';btn.innerHTML='<i class="fas fa-maximize"></i>';btn.title='Plein écran';btn.addEventListener('click',()=>openFS(artIndex(art)));art.querySelector('.article-header')?.appendChild(btn);} });toc.appendChild(sub);});}function showTOC(){document.getElementById('tocOverlay').classList.add('show');document.getElementById('tocPanel').classList.add('open');}function hideTOC(){document.getElementById('tocOverlay').classList.remove('show');document.getElementById('tocPanel').classList.remove('open');}document.addEventListener('DOMContentLoaded',()=>{const floatBtn=document.getElementById('tocFloatBtn');if(floatBtn)floatBtn.addEventListener('click',showTOC);const overlay=document.getElementById('tocOverlay');if(overlay)overlay.addEventListener('click',hideTOC);const headerBtn=document.getElementById('tocHeaderBtn');if(headerBtn)headerBtn.addEventListener('click',showTOC);});const articles=$$('.article');function artIndex(el){return articles.indexOf(el);}function getArticle(i){return articles[Math.max(0,Math.min(articles.length-1,i))];}function artTitle(i){const el=getArticle(i);return el?(el.querySelector('.article-header h3')?.textContent.trim()||''):'';}function artText(i){const el=getArticle(i);return el?(el.querySelector('.article-content')?.innerText.trim()||''):'';}const synth=window.speechSynthesis;let current=0,utter=null,playing=false,paused=false,inFS=false;function speakIndex(i){stopSpeak();current=i;const text=artText(i);if(!text){nextArticle();return;}utter=new SpeechSynthesisUtterance(text);utter.lang='fr-FR';utter.rate=1;utter.pitch=1;utter.onend=()=>{if(playing&&!paused){nextArticle();}};try{synth.speak(utter);}catch(e){}playing=true;paused=false;updateUI();highlightCurrent();}function highlightCurrent(){articles.forEach(a=>a.classList.remove('reading'));const el=getArticle(current);if(el){el.classList.add('reading');if(!inFS)el.scrollIntoView({behavior:'smooth',block:'center'});}document.getElementById('vNow').textContent=artTitle(current)||'—';}function pauseSpeak(){if(synth&&synth.speaking){synth.pause();paused=true;playing=true;}}function resumeSpeak(){if(synth&&paused){synth.resume();paused=false;}else{speakIndex(current);}updateUI();}function stopSpeak(){if(synth){try{synth.cancel();}catch(e){}}playing=false;paused=false;updateUI();}function prevArticle(){current=Math.max(0,current-1);if(playing){speakIndex(current);}else{highlightCurrent();}if(inFS)openFS(current);}function nextArticle(){current=Math.min(articles.length-1,current+1);if(playing){speakIndex(current);}else{highlightCurrent();}if(inFS)openFS(current);}document.addEventListener('DOMContentLoaded',()=>{document.getElementById('vPrev').addEventListener('click',prevArticle);document.getElementById('vPlay').addEventListener('click',()=>{if(!playing||paused){resumeSpeak();}else{pauseSpeak();}});document.getElementById('vPause').addEventListener('click',()=>pauseSpeak());document.getElementById('vStop').addEventListener('click',()=>{stopSpeak();});document.getElementById('vNext').addEventListener('click',nextArticle);});function updateUI(){document.getElementById('vPlay').innerHTML=paused||!playing?'<i class="fas fa-play"></i>':'<i class="fas fa-pause"></i>'; }function openFS(i){inFS=true;current=i;document.getElementById('fsTitle').textContent=artTitle(i);document.getElementById('fsContent').textContent=artText(i);document.getElementById('fsOverlay').classList.add('show');document.body.style.overflow='hidden';speakIndex(i);}function closeFS(){inFS=false;document.getElementById('fsOverlay').classList.remove('show');document.body.style.overflow='';}document.addEventListener('DOMContentLoaded',()=>{document.getElementById('fsClose').addEventListener('click',()=>{closeFS();});document.getElementById('fsPlay').addEventListener('click',()=>{if(!playing||paused){resumeSpeak();}else{pauseSpeak();}});document.getElementById('fsNavPrev').addEventListener('click',()=>{prevArticle();});document.getElementById('fsNavNext').addEventListener('click',()=>{nextArticle();});document.querySelectorAll('.article .open-fs').forEach((btn,idx)=>btn.addEventListener('click',()=>openFS(idx)));document.querySelectorAll('.article').forEach((art,idx)=>art.addEventListener('dblclick',()=>openFS(idx)));document.getElementById('fsOverlay').addEventListener('touchstart',(e)=>{window.__touchX=e.changedTouches[0].clientX;},{passive:true});document.getElementById('fsOverlay').addEventListener('touchend',(e)=>{const dx=e.changedTouches[0].clientX-(window.__touchX||0);const TH=50;if(dx<-TH){nextArticle();}else if(dx>TH){prevArticle();}}, {passive:true});});window.addEventListener('reflowArticles',()=>{buildTOC();});buildTOC();})();</script><script>initSearchFeature(); window.dispatchEvent(new Event('reflowArticles'));</script><footer>Source : sgfpapublier.html</footer><script>(function(){function isInteractive(el){if(!el)return false;if(el.tagName){const tag=el.tagName.toLowerCase();if(['input','textarea','select'].includes(tag))return true;}if(el.isContentEditable)return true;if(el.closest&&el.closest('#searchInterface'))return true;return false;}document.addEventListener('DOMContentLoaded',()=>{document.body.classList.add('no-select');});document.addEventListener('contextmenu',e=>{if(!isInteractive(e.target))e.preventDefault();},{capture:true});document.addEventListener('selectstart',e=>{if(!isInteractive(e.target))e.preventDefault();},{capture:true});['copy','cut','paste','dragstart'].forEach(type=>{document.addEventListener(type,e=>{if(!isInteractive(document.activeElement))e.preventDefault();},{capture:true});});document.addEventListener('keydown',e=>{const k=(e.key||'').toLowerCase();const combo=(e.ctrlKey||e.metaKey)&&['c','x','a','s','p','insert'].includes(k);if(combo&&!isInteractive(document.activeElement)){e.preventDefault();e.stopPropagation();}},{capture:true});})();</script>
+<script>
+(function(){
+  var toc = document.querySelector('.floating-toc');
+  var toggle = document.querySelector('.toc-toggle');
+  var close = document.querySelector('.floating-toc .toc-close');
+  function toggleTOC(){ if(toc){ toc.classList.toggle('is-hidden'); } }
+  if(toggle){ toggle.addEventListener('click', toggleTOC); }
+  if(close){ close.addEventListener('click', function(){ toc && toc.classList.add('is-hidden'); }); }
+  document.addEventListener('click', function(e){
+    if(!toc || toc.classList.contains('is-hidden')) return;
+    if(!toc.contains(e.target) && !toggle.contains(e.target)){ toc.classList.add('is-hidden'); }
+  }, true);
+})();
+</script><script>
+(function(){
+  var toc = document.querySelector('.floating-toc');
+  var toggle = document.querySelector('.toc-toggle');
+  var close = document.querySelector('.floating-toc .toc-close');
+  function toggleTOC(){ if(toc){ toc.classList.toggle('is-hidden'); } }
+  if(toggle){ toggle.addEventListener('click', toggleTOC); }
+  if(close){ close.addEventListener('click', function(){ toc && toc.classList.add('is-hidden'); }); }
+  document.addEventListener('click', function(e){
+    if(!toc || toc.classList.contains('is-hidden')) return;
+    if(!toc.contains(e.target) && !toggle.contains(e.target)){ toc.classList.add('is-hidden'); }
+  }, true);
+})();
+</script><script>
+(function(){
+  var toc = document.querySelector('.floating-toc');
+  var toggle = document.querySelector('.toc-toggle');
+  var close = document.querySelector('.floating-toc .toc-close');
+  function toggleTOC(){ if(toc){ toc.classList.toggle('is-hidden'); } }
+  if(toggle){ toggle.addEventListener('click', toggleTOC); }
+  if(close){ close.addEventListener('click', function(){ toc && toc.classList.add('is-hidden'); }); }
+  document.addEventListener('click', function(e){
+    if(!toc || toc.classList.contains('is-hidden')) return;
+    if(!toc.contains(e.target) && !toggle.contains(e.target)){ toc.classList.add('is-hidden'); }
+  }, true);
+})();
+</script><nav aria-label="Sommaire" class="floating-toc is-hidden" id="floatingTOC"><div class="toc-header">Sommaire<button class="toc-close" onclick="(function(e){e.stopPropagation();var t=document.getElementById('floatingTOC');if(t){t.classList.add('is-hidden');}})(event)" title="Fermer"><i class="fas fa-times"></i></button></div><ul class="toc-level2"><li class="toc-item l2"><a href="#profession-de-medecin--cote-divoire">Profession de Médecin — Côte d'Ivoire</a><ul class="toc-level3"><li class="toc-item l3"><a href="#chapitre-i--dispositions-generales">CHAPITRE I : DISPOSITIONS GÉNÉRALES</a><ul class="toc-level4"></ul></li><li class="toc-item l3"><a href="#chapitre-ii--conditions-dexercice-de-la-profession-de-medecin">CHAPITRE II : CONDITIONS D'EXERCICE DE LA PROFESSION DE MÉDECIN</a><ul class="toc-level4"><li class="toc-item l4"><a href="#section-1--dispositions-communes">Section 1 : Dispositions communes</a><ul class="toc-level5"><li class="toc-item l5"><a href="#article-16">Article 16</a></li><li class="toc-item l5"><a href="#article-17">Article 17</a></li></ul></li><li class="toc-item l4"><a href="#section-2--lexercice-de-la-medecine-en-clientele-privee">Section 2 : L'exercice de la médecine en clientèle privée</a><ul class="toc-level5"><li class="toc-item l5"><a href="#article-18">Article 18</a></li><li class="toc-item l5"><a href="#article-19">Article 19</a></li><li class="toc-item l5"><a href="#article-20">Article 20</a></li><li class="toc-item l5"><a href="#article-21">Article 21</a></li><li class="toc-item l5"><a href="#article-22">Article 22</a></li><li class="toc-item l5"><a href="#article-23">Article 23</a></li><li class="toc-item l5"><a href="#article-24">Article 24</a></li></ul></li><li class="toc-item l4"><a href="#section-3--lexercice-de-la-medecine-a-titre-prive-par-des-medecins-etrangers">Section 3 : L'exercice de la médecine à titre privé par des médecins étrangers</a><ul class="toc-level5"><li class="toc-item l5"><a href="#article-25">Article 25</a></li><li class="toc-item l5"><a href="#article-26">Article 26</a></li></ul></li><li class="toc-item l4"><a href="#section-4--lexercice-de-la-medecine-a-titre-prive-par-des-medecins-non-residents">Section 4 : L'exercice de la médecine à titre privé par des médecins non-résidents</a><ul class="toc-level5"><li class="toc-item l5"><a href="#article-27">Article 27</a></li><li class="toc-item l5"><a href="#article-28">Article 28</a></li><li class="toc-item l5"><a href="#article-29">Article 29</a></li><li class="toc-item l5"><a href="#article-30">Article 30</a></li><li class="toc-item l5"><a href="#article-31">Article 31</a></li><li class="toc-item l5"><a href="#article-32">Article 32</a></li><li class="toc-item l5"><a href="#article-33">Article 33</a></li><li class="toc-item l5"><a href="#article-34">Article 34</a></li><li class="toc-item l5"><a href="#article-35">Article 35</a></li><li class="toc-item l5"><a href="#article-36">Article 36</a></li></ul></li></ul></li><li class="toc-item l3"><a href="#chapitre-iii--dispositions-particulieres-a-certains-modes-dexercice-de-la-medecine">CHAPITRE III : DISPOSITIONS PARTICULIÈRES À CERTAINS MODES D'EXERCICE DE LA MÉDECINE</a><ul class="toc-level4"></ul></li><li class="toc-item l3"><a href="#chapitre-iv--honoraires-et-facturation-des-prestations-medicales">CHAPITRE IV : HONORAIRES ET FACTURATION DES PRESTATIONS MÉDICALES</a><ul class="toc-level4"><li class="toc-item l4"><a href="#section-1--honoraires-des-medecins">Section 1 : Honoraires des médecins</a><ul class="toc-level5"><li class="toc-item l5"><a href="#article-37">Article 37</a></li><li class="toc-item l5"><a href="#article-38">Article 38</a></li><li class="toc-item l5"><a href="#article-39">Article 39</a></li><li class="toc-item l5"><a href="#article-40">Article 40</a></li><li class="toc-item l5"><a href="#article-41">Article 41</a></li><li class="toc-item l5"><a href="#article-42">Article 42</a></li><li class="toc-item l5"><a href="#article-43">Article 43</a></li><li class="toc-item l5"><a href="#article-44">Article 44</a></li></ul></li><li class="toc-item l4"><a href="#section-2--facturation-des-prestations">Section 2 : Facturation des prestations</a><ul class="toc-level5"><li class="toc-item l5"><a href="#article-45">Article 45</a></li><li class="toc-item l5"><a href="#article-46">Article 46</a></li><li class="toc-item l5"><a href="#article-47">Article 47</a></li><li class="toc-item l5"><a href="#article-48">Article 48</a></li><li class="toc-item l5"><a href="#article-49">Article 49</a></li><li class="toc-item l5"><a href="#article-50">Article 50</a></li><li class="toc-item l5"><a href="#article-51">Article 51</a></li><li class="toc-item l5"><a href="#article-52">Article 52</a></li><li class="toc-item l5"><a href="#article-53">Article 53</a></li><li class="toc-item l5"><a href="#article-54">Article 54</a></li><li class="toc-item l5"><a href="#article-55">Article 55</a></li><li class="toc-item l5"><a href="#article-56">Article 56</a></li><li class="toc-item l5"><a href="#article-57">Article 57</a></li><li class="toc-item l5"><a href="#article-58">Article 58</a></li><li class="toc-item l5"><a href="#article-59">Article 59</a></li></ul></li></ul></li><li class="toc-item l3"><a href="#chapitre-v--qualifications-et-competences-des-medecins-des-secteurs-de-lassurance-sante-et-de-la-gestion-de-portefeuille-maladie">CHAPITRE V : QUALIFICATIONS ET COMPÉTENCES DES MÉDECINS DES SECTEURS DE L'ASSURANCE-SANTÉ ET DE LA GESTION DE PORTEFEUILLE MALADIE</a><ul class="toc-level4"></ul></li><li class="toc-item l3"><a href="#chapitre-vi--medecine-dentreprise-et-exercice-salarie">CHAPITRE VI : MÉDECINE D'ENTREPRISE ET EXERCICE SALARIÉ</a><ul class="toc-level4"></ul></li><li class="toc-item l3"><a href="#chapitre-vii--dispositions-relatives-a-la-responsabilite-du-medecin">CHAPITRE VII : DISPOSITIONS RELATIVES À LA RESPONSABILITÉ DU MÉDECIN</a><ul class="toc-level4"></ul></li><li class="toc-item l3"><a href="#chapitre-viii--sanctions">CHAPITRE VIII : SANCTIONS</a><ul class="toc-level4"><li class="toc-item l4"><a href="#section-1--sanctions-disciplinaires">Section 1 : sanctions disciplinaires :</a><ul class="toc-level5"><li class="toc-item l5"><a href="#article-60">Article 60</a></li></ul></li><li class="toc-item l4"><a href="#section-2--dispositions-administratives">Section 2 : Dispositions Administratives</a><ul class="toc-level5"><li class="toc-item l5"><a href="#article-61">Article 61</a></li></ul></li><li class="toc-item l4"><a href="#section-3--dispositions-penales">Section 3 : Dispositions pénales</a><ul class="toc-level5"><li class="toc-item l5"><a href="#article-62">Article 62</a></li><li class="toc-item l5"><a href="#article-63">Article 63</a></li><li class="toc-item l5"><a href="#article-64">Article 64</a></li><li class="toc-item l5"><a href="#article-65">Article 65</a></li><li class="toc-item l5"><a href="#article-66">Article 66</a></li><li class="toc-item l5"><a href="#article-67">Article 67</a></li></ul></li></ul></li><li class="toc-item l3"><a href="#chapitre-ix--dispositions-transitoires-et-finales">CHAPITRE IX : DISPOSITIONS TRANSITOIRES ET FINALES</a><ul class="toc-level4"></ul></li></ul></li></ul></nav><button class="toc-toggle" id="tocToggle" onclick="(function(e){e.stopPropagation();var t=document.getElementById('floatingTOC');if(t){t.classList.toggle('is-hidden');}})(event)" title="Sommaire"><i class="fas fa-list"></i></button><script>
+(function(){
+  function init(){
+    var toc = document.getElementById('floatingTOC');
+    var btn = document.getElementById('tocToggle');
+    var close = toc ? toc.querySelector('.toc-close') : null;
+    if(btn){
+      btn.addEventListener('click', function(e){ e.stopPropagation(); toc && toc.classList.toggle('is-hidden'); });
+    }
+    if(close){
+      close.addEventListener('click', function(e){ e.stopPropagation(); toc && toc.classList.add('is-hidden'); });
+    }
+    if(toc){
+      toc.addEventListener('click', function(e){ e.stopPropagation(); });
+    }
+    document.addEventListener('click', function(){
+      if(toc && !toc.classList.contains('is-hidden')) toc.classList.add('is-hidden');
+    }, true);
+  }
+  if(document.readyState === 'loading'){ document.addEventListener('DOMContentLoaded', init); }
+  else { init(); }
+  window.addEventListener('load', init);
+})();
+</script></body></html>

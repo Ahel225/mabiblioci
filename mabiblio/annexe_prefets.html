@@ -1,0 +1,507 @@
+
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Annexe — Décret du Corps préfectoral (Tableaux)</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+<style>
+:root{--primary:#2c7a7b;--accent:#ff7a18;--bg:#f5fffb;--card:#ffffff;--muted:#eef6f6}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:#0f2d2e}
+header{position:sticky;top:0;background:linear-gradient(90deg,var(--primary),#236060);color:#fff;padding:14px 16px;z-index:10;display:flex;align-items:center;gap:12px}
+header i{font-size:20px} h1{font-size:18px;margin:0}
+.container{padding:16px;max-width:1100px;margin:0 auto}
+.controls{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0 16px}
+.controls input, .controls select{width:100%;padding:10px 12px;border:1px solid #cbe0e0;border-radius:10px;background:#fff;outline:none}
+.card{background:var(--card);border:1px solid #d7ecec;border-radius:14px;box-shadow:0 6px 18px rgba(0,0,0,.06);padding:12px 10px;margin:14px 0}
+.card h2{margin:6px 8px 10px 8px;font-size:17px;color:#093a3c;display:flex;align-items:center;gap:8px}
+.table-wrap{overflow:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:separate;border-spacing:0;width:100%;min-width:680px}
+th,td{padding:10px 12px;border-bottom:1px solid #e6f0e0;text-align:left;font-size:14px}
+th{position:sticky;top:0;background:var(--muted);z-index:1}
+tr:hover{background:#fbfffe}
+.footer{padding:22px;color:#0f2d2e77;text-align:center}
+@media (max-width:640px){.controls{grid-template-columns:1fr} table{min-width:520px}}
+</style>  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#22c55e">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<!-- HIDE AUTH/VIEWS WIDGETS OUTSIDE HOME (safe) -->
+<style>
+  #auth-fab, .views-badge, #auth-modal, .card-views-badge { display: none !important; }
+</style>
+
+</head>
+<body>
+<header><i class="fa-solid fa-table"></i><h1>Annexe — Décret du Corps préfectoral • Tableaux</h1></header>
+<div class="container">
+<div class="controls">
+<input id="q" placeholder="Recherche rapide (toutes colonnes)…" type="search"/>
+<select id="tabSel"></select>
+</div>
+<div id="tables"></div>
+</div>
+<div id="templates" style="display:none"><div data-title="ANNEXE 1: INDICES APPLICABLES AUX MEMBRES DU CORPS PRÉFECTORAL" id="tmpl_table_0"><table>
+<thead>
+<tr>
+<th>GRADES</th>
+<th>FONCTION</th>
+<th>ECHELON</th>
+<th>INDICE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td rowspan="3">Hors grade</td>
+<td rowspan="3">préfet de région</td>
+<td>3</td>
+<td>3450</td>
+</tr>
+<tr>
+<td>2</td>
+<td>3340</td>
+</tr>
+<tr>
+<td>1</td>
+<td>3165</td>
+</tr>
+<tr>
+<td rowspan="3">Grade I</td>
+<td rowspan="3">préfet de département</td>
+<td>3</td>
+<td>2995</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2820</td>
+</tr>
+<tr>
+<td>1</td>
+<td>2645</td>
+</tr>
+<tr>
+<td rowspan="3">Grade II</td>
+<td rowspan="3">secrétaire général de préfecture</td>
+<td>3</td>
+<td>2475</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2305</td>
+</tr>
+<tr>
+<td>1</td>
+<td>2130</td>
+</tr>
+<tr>
+<td rowspan="3">Grade III</td>
+<td rowspan="3">sous-préfet</td>
+<td>3</td>
+<td>1910</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1680</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1445</td>
+</tr>
+</tbody>
+</table></div><div data-title="ANNEXE 2: VÉHICULES DE COMMANDEMENT" id="tmpl_table_1"><table>
+<thead>
+<tr>
+<th>GRADES</th>
+<th>FONCTION</th>
+<th>TYPE DE VÉHICULES</th>
+<th>PUISSANCE FISCALE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hors grade</td>
+<td>préfets de région</td>
+<td>Tout terrain</td>
+<td>17 CV</td>
+</tr>
+<tr>
+<td>Hors grade</td>
+<td>préfets de région</td>
+<td>Berline</td>
+<td>11 CV</td>
+</tr>
+<tr>
+<td>Grade I</td>
+<td>préfets de département</td>
+<td>Tout terrain</td>
+<td>17 CV</td>
+</tr>
+<tr>
+<td>Grade II</td>
+<td>secrétaires généraux</td>
+<td>Tout terrain</td>
+<td>17 CV</td>
+</tr>
+<tr>
+<td>Grade III</td>
+<td>sous-préfets</td>
+<td>Tout terrain</td>
+<td>17 CV</td>
+</tr>
+</tbody>
+</table></div><div data-title="Indemnités destinées aux membres du Corps préfectoral exerçant en administration centrale" id="tmpl_table_2"><table>
+<thead>
+<tr>
+<th>GRADES</th>
+<th>INDEMNITÉ DE LOGEMENT</th>
+<th>INDEMNITÉ COMPENSATRICE</th>
+<th>INDEMNITÉ DE DÉPLACEMENT</th>
+<th>INDEMNITÉ SPÉCIFIQUE AU CORPS PRÉFECTORAL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hors grade</td>
+<td>250 000</td>
+<td>250 000</td>
+<td>250 000</td>
+<td>450 000</td>
+</tr>
+<tr>
+<td>Grade I</td>
+<td>200 000</td>
+<td>200 000</td>
+<td>200 000</td>
+<td>375 000</td>
+</tr>
+<tr>
+<td>Grade II</td>
+<td>175 000</td>
+<td>175 000</td>
+<td>175 000</td>
+<td>300 000</td>
+</tr>
+<tr>
+<td>Grade III</td>
+<td>150 000</td>
+<td>150 000</td>
+<td>150 000</td>
+<td>250 000</td>
+</tr>
+</tbody>
+</table></div><div data-title="Indemnités destinées aux membres du Corps préfectoral exerçant en administration territoriale" id="tmpl_table_3"><table>
+<thead>
+<tr>
+<th>GRADES</th>
+<th>INDEMNITÉ DE SUJÉTION</th>
+<th>INDEMNITÉ REPRÉSENTATIVE DE FRAIS</th>
+<th>INDEMNITÉ DE SOUVERAINETÉ</th>
+<th>INDEMNITÉ DE TUTELLE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hors grade</td>
+<td>250 000</td>
+<td>250 000</td>
+<td>250 000</td>
+<td>450 000</td>
+</tr>
+<tr>
+<td>Grade I</td>
+<td>200 000</td>
+<td>200 000</td>
+<td>200 000</td>
+<td>375 000</td>
+</tr>
+<tr>
+<td>Grade II</td>
+<td>175 000</td>
+<td>175 000</td>
+<td>175 000</td>
+<td>300 000</td>
+</tr>
+<tr>
+<td>Grade III</td>
+<td>150 000</td>
+<td>150 000</td>
+<td>150 000</td>
+<td>250 000</td>
+</tr>
+</tbody>
+</table></div></div>
+<div class="footer">Thème harmonisé avec le statut • mobile-first</div>
+<script>
+window.addEventListener('DOMContentLoaded', function(){
+  const state={tables:[], active:0};
+  function normalize(s){return (s||'').toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')}
+  function renderTables(){
+    const wrap=document.getElementById('tables'); wrap.innerHTML='';
+    state.tables.forEach((card,idx)=>{
+      const cardEl=document.createElement('div'); cardEl.className='card'; cardEl.dataset.index=idx;
+      const h2=document.createElement('h2'); h2.innerHTML='<i class="fa-solid fa-diagram-project"></i> '+card.title;
+      cardEl.appendChild(h2);
+      const tw=document.createElement('div'); tw.className='table-wrap';
+      const table=card.table.cloneNode(true);
+      const q=normalize(document.getElementById('q').value);
+      if(q && table.tBodies[0]){
+        const rows=[...table.tBodies[0].rows];
+        rows.forEach(r=>{const txt=normalize(r.innerText); r.style.display = txt.includes(q)?'':'none';});
+      }
+      tw.appendChild(table); cardEl.appendChild(tw); wrap.appendChild(cardEl);
+    });
+  }
+  document.getElementById('q').addEventListener('input', renderTables);
+  function initSelector(){
+    const sel=document.getElementById('tabSel'); sel.innerHTML='';
+    state.tables.forEach((t,i)=>{const opt=document.createElement('option'); opt.value=i; opt.textContent=t.title.replace(/\s+/g,' ').trim(); sel.appendChild(opt);});
+    sel.addEventListener('change',(e)=>{
+      const idx=parseInt(e.target.value,10);
+      document.querySelectorAll('.card').forEach((c,i)=>c.style.display=(i===idx||isNaN(idx))?'':'none');
+    });
+  }
+  // Boot from templates
+  state.tables = [];
+  document.querySelectorAll('#templates > div[id^=tmpl_table_]').forEach(div=>{
+    const title = div.dataset.title || 'Tableau';
+    const table = div.querySelector('table');
+    if(table){ state.tables.push({title, table}); }
+  });
+  initSelector(); renderTables();
+});
+</script>
+  <script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js"));
+  }
+</script>
+  <!-- PWA Install Button -->
+<button id="pwa-install-btn" aria-label="Installer l'application" hidden>Installer</button>
+<style>
+  #pwa-install-btn{
+    position:fixed; right:16px; bottom:16px; z-index:9999;
+    padding:10px 14px; border:none; border-radius:999px;
+    background:#22c55e; color:white; font:600 14px system-ui,Segoe UI,Roboto,Arial,sans-serif;
+    box-shadow:0 8px 20px rgba(34,197,94,.35);
+  }
+  #pwa-install-btn[hidden]{ display:none; }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    #pwa-install-btn{ bottom: calc(16px + env(safe-area-inset-bottom)); }
+  }
+</style>
+<script>
+  (function(){
+    let deferredPrompt;
+    const btnId = "pwa-install-btn";
+    function ensureBtn(){
+      let b = document.getElementById(btnId);
+      if(!b){
+        b = document.createElement("button");
+        b.id = btnId;
+        b.textContent = "Installer";
+        document.body.appendChild(b);
+      }
+      return b;
+    }
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      const btn = ensureBtn();
+      btn.hidden = false;
+      btn.onclick = async () => {
+        btn.hidden = true;
+        deferredPrompt.prompt();
+        await deferredPrompt.userChoice;
+        deferredPrompt = null;
+      };
+    });
+    if (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) {
+      const btn = document.getElementById(btnId);
+      if(btn) btn.hidden = true;
+    }
+  })();
+</script>
+  <!-- Auth UI minimal -->
+<style>
+  .auth-box{position:fixed; top:12px; right:12px; z-index:9998; background:#ffffff; color:#111827; border-radius:12px; padding:10px 12px; box-shadow:0 10px 24px rgba(0,0,0,.12); font:500 14px system-ui,Segoe UI,Roboto,Arial}
+  .auth-box h4{margin:0 0 6px; font-size:14px}
+  .auth-box form{display:flex; gap:6px; flex-wrap:wrap; align-items:center}
+  .auth-box input{padding:6px 8px; border:1px solid #e5e7eb; border-radius:8px}
+  .auth-box button{background:#22c55e; color:#fff; border:none; padding:6px 10px; border-radius:8px; cursor:pointer}
+  .auth-box .row{display:flex; gap:6px; flex-wrap:wrap}
+  .views-badge{position:fixed; left:12px; bottom:12px; z-index:9998; background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px; font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)}
+</style><!-- Admin link (visible only when logged-in) -->
+<style>
+  .admin-link{
+    position:fixed; right:16px; bottom:88px; z-index:9998;
+    display:none; align-items:center; gap:8px;
+    padding:10px 14px; border-radius:999px; text-decoration:none;
+    background:#111827; color:#fff; font:600 14px system-ui,Segoe UI,Roboto,Arial;
+    box-shadow:0 8px 20px rgba(0,0,0,.3);
+    border:1px solid rgba(255,255,255,.1);
+  }
+  body.logged-in .admin-link{ display:inline-flex; }
+  .admin-link:hover{ filter:brightness(1.1); }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    .admin-link{ bottom: calc(88px + env(safe-area-inset-bottom)); }
+  }
+</style>
+<a href="admin.html" class="admin-link" title="Tableau de bord">Admin</a>
+  <script type="module" src="assets/firebase-app.js"></script>
+  <script>window.autoCountAndBind && window.autoCountAndBind();</script>
+  
+<!-- Floating Auth Button + Modal -->
+<style>
+  #auth-fab{
+    position:fixed; right:16px; bottom:68px; z-index:9998;
+    width:48px; height:48px; border-radius:999px; border:none; cursor:pointer;
+    background:#111827; color:#fff; display:grid; place-items:center;
+    box-shadow:0 8px 20px rgba(0,0,0,.35); border:1px solid rgba(255,255,255,.1);
+  }
+  body.logged-in #auth-fab::after{ content:"✓"; }
+  #auth-fab::after{ content:"👤"; font-size:20px; }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    #auth-fab{ bottom: calc(68px + env(safe-area-inset-bottom)); }
+  }
+  .views-badge{
+    position:fixed; left:12px; bottom:12px; z-index:9998; 
+    background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px;
+    font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)
+  }
+  dialog#auth-modal{
+    border:none; border-radius:16px; padding:0; width:min(90vw,420px);
+    box-shadow:0 24px 72px rgba(0,0,0,.35); overflow:hidden;
+  }
+  dialog::backdrop{ background:rgba(0,0,0,.4); }
+  .auth-modal-head{background:#0f172a; color:#fff; padding:12px 16px; display:flex; justify-content:space-between; align-items:center}
+  .auth-modal-body{padding:16px; background:#111827; color:#e5e7eb}
+  .auth-modal-body label{display:block; font-size:13px; margin-top:8px; opacity:.9}
+  .auth-modal-body input{width:100%; padding:10px 12px; border-radius:10px; border:1px solid #1f2937; background:#0b1021; color:#e5e7eb}
+  .auth-actions{display:flex; gap:8px; margin-top:14px}
+  .btn{border:none; border-radius:10px; padding:10px 12px; cursor:pointer; font-weight:600}
+  .btn-primary{background:#22c55e; color:white}
+  .btn-ghost{background:transparent; color:#e5e7eb; border:1px solid #374151}
+  .muted{opacity:.8}
+</style>
+
+<button id="auth-fab" title="Connexion / Compte"></button>
+<div class="views-badge">Vues : <span id="viewCounter">0</span></div>
+
+<dialog id="auth-modal">
+  <div class="auth-modal-head">
+    <strong>Connexion</strong>
+    <button class="btn btn-ghost" id="auth-close" aria-label="Fermer">✕</button>
+  </div>
+  <div class="auth-modal-body">
+    <p class="muted">Connecte-toi pour accéder à l’admin et une meilleure expérience.</p>
+    <label>Email</label>
+    <input type="email" id="auth-email" placeholder="email@exemple.com" required>
+    <label>Mot de passe</label>
+    <input type="password" id="auth-pass" placeholder="••••••••" required>
+    <div class="auth-actions">
+      <button class="btn btn-primary" id="btn-login">Connexion</button>
+      <button class="btn btn-ghost" id="btn-register">Créer un compte</button>
+      <button class="btn btn-ghost" id="btn-logout">Déconnexion</button>
+    </div>
+    <div id="auth-msg" class="muted" style="margin-top:8px;"></div>
+  </div>
+</dialog>
+
+<script type="module">
+  import { authRegister, authLogin, authLogout } from "./assets/firebase-app.js";
+
+  const fab = document.getElementById("auth-fab");
+  const modal = document.getElementById("auth-modal");
+  const closeBtn = document.getElementById("auth-close");
+  const email = document.getElementById("auth-email");
+  const pass = document.getElementById("auth-pass");
+  const msg  = document.getElementById("auth-msg");
+  const btnLogin = document.getElementById("btn-login");
+  const btnRegister = document.getElementById("btn-register");
+  const btnLogout = document.getElementById("btn-logout");
+
+  function openModal(){ try{ modal.showModal(); }catch{ modal.setAttribute("open",""); } }
+  function closeModal(){ modal.close?.(); modal.removeAttribute("open"); }
+
+  fab?.addEventListener("click", openModal);
+  closeBtn?.addEventListener("click", closeModal);
+
+  async function handle(run){
+    msg.textContent = "";
+    try{
+      await run(email.value.trim(), pass.value);
+      msg.textContent = "✅ Opération réussie.";
+      setTimeout(()=>{ closeModal(); }, 500);
+    }catch(e){
+      console.error(e);
+      msg.textContent = "❌ " + (e?.message || "Erreur");
+    }
+  }
+
+  btnLogin?.addEventListener("click", () => handle(authLogin));
+  btnRegister?.addEventListener("click", () => handle(authRegister));
+  btnLogout?.addEventListener("click", async () => {
+    msg.textContent = "";
+    try{ await authLogout(); msg.textContent = "✅ Déconnecté."; }catch(e){ msg.textContent = "❌ " + (e?.message||"Erreur"); }
+  });
+</script>
+
+
+<!-- Per-card view counters -->
+<style>
+  .card-views-badge{
+    position:absolute; top:8px; right:8px;
+    background:rgba(17,24,39,.9); color:#fff;
+    padding:4px 8px; border-radius:999px; font:600 12px system-ui,Segoe UI,Roboto,Arial;
+    box-shadow:0 6px 14px rgba(0,0,0,.25);
+    pointer-events:none;
+  }
+  .card-views-wrap{ position:relative; }
+</style>
+<script type="module">
+  import { getViewCount } from "./assets/firebase-app.js";
+  function basename(href){
+    try{ const u = new URL(href, location.href);
+         const file = u.pathname.split('/').pop() || 'index.html';
+         return file.replace(/\.html$/i,''); }
+    catch{ return (href.split('/').pop()||'index.html').replace(/\.html$/i,''); }
+  }
+  async function attachCounterTo(el, docId){
+    let container = el.closest('.card, .item, .panel, .box, .article, .doc, .tile');
+    if(!container){ container = el.parentElement; }
+    if(container && !container.classList.contains('card-views-wrap')){
+      container.classList.add('card-views-wrap');
+    }
+    const host = container || el;
+    if(host.querySelector('.card-views-badge[data-doc="'+docId+'"]')) return;
+    const badge = document.createElement('span');
+    badge.className = 'card-views-badge';
+    badge.dataset.doc = docId;
+    badge.textContent = 'Vues: …';
+    host.appendChild(badge);
+    try{ const n = await getViewCount(docId);
+         badge.textContent = 'Vues: ' + n; }
+    catch{ badge.textContent = 'Vues: —'; }
+  }
+  async function initCardCounters(){
+    const links = Array.from(document.querySelectorAll('[data-doc-id], a[href$=".html"]'))
+      .filter(a => {
+        const id = a.getAttribute('data-doc-id') || basename(a.getAttribute('href')||'');
+        return id && !['index','admin','offline'].includes(id.toLowerCase());
+      });
+    const handled = new Set();
+    for(const a of links){
+      const id = a.getAttribute('data-doc-id') || basename(a.getAttribute('href')||'');
+      if(!id || handled.has(id)) continue;
+      handled.add(id);
+      attachCounterTo(a, id);
+    }
+  }
+  initCardCounters();
+  const obs = new MutationObserver(()=>initCardCounters());
+  obs.observe(document.body, { childList:true, subtree:true });
+</script>
+
+</body></html>

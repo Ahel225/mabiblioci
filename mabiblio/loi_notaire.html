@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Loi portant Statut du Notariat — Lecteur</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f7fb; --paper:#ffffff; --ink:#162233;
+  --primary:#1f3554; --primary-700:#13243a; --accent:#caa85a; --accent-2:#ffe8a3;
+  --muted:#e6ecf2; --shadow:0 12px 28px rgba(0,0,0,.08); --radius:18px; --transition:.25s ease;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.6}
+header{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(255,255,255,.88));backdrop-filter:saturate(1.1) blur(8px);border-bottom:1px solid #e9eff5}
+.container{max-width:1120px;margin:0 auto;padding:14px 16px;display:flex;align-items:center;gap:12px}
+.logo{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:radial-gradient(circle at 30% 30%, var(--accent), #e9d6a7);color:#253646;box-shadow:var(--shadow);font-size:18px}
+h1{margin:0;font-family:'Playfair Display',serif;font-size:20px;color:var(--primary-700)}
+.sub{color:#526173;font-size:12px;margin-top:2px}
+.control-buttons{margin-left:auto;display:flex;gap:8px;align-items:center}
+.btn{min-width:38px;height:38px;border-radius:12px;border:1px solid #d4dee9;background:#fff;color:var(--primary-700);display:grid;place-items:center;cursor:pointer;box-shadow:var(--shadow);transition:var(--transition)}
+.btn:hover{transform:translateY(-1px)}
+.wrapper{max-width:1120px;margin:16px auto;padding:0 12px}
+.group{background:var(--paper);border:1px solid #e2eaf1;border-radius:var(--radius);box-shadow:var(--shadow);margin:14px 0;overflow:hidden}
+.group>h2{margin:0;padding:14px 16px;background:linear-gradient(180deg,#ffffff,#f4f8fb);border-bottom:1px solid #e2eaf1;color:var(--primary);font-size:18px;font-family:'Playfair Display',serif}
+.article{margin:10px 10px 14px 10px;padding:12px 14px;border-left:6px solid var(--primary);background:#fff;border-radius:14px;box-shadow:0 1px 0 rgba(0,0,0,.03)}
+.article-header{display:flex; align-items:center; gap:8px; margin:0 0 6px 0;}
+.article-header h3{margin:0; color:var(--primary-700);}
+.article .open-fs{ order:2; margin-left:auto; width:34px; height:34px; border:1px solid #d6e2ef; background:#fff; border-radius:10px; cursor:pointer; }
+.article-content p{margin:.4rem 0}.article-content ul,.article-content ol{margin:.5rem 0 .8rem 1.25rem}
+.article-content ol>li, .article-content ul>li{ padding:8px 0; line-height:1.7; border-bottom:1px solid #e9eff5; }
+.article-content ol>li:last-child, .article-content ul>li:last-child{ border-bottom:0; }
+.article-content li > ol > li, .article-content li > ul > li{ padding:6px 0; border-bottom:1px dashed #e9eff5; }
+.article-content li > ol > li:last-child, .article-content li > ul > li:last-child{ border-bottom:0; }
+.reading{ outline:2px solid var(--accent); outline-offset:2px; border-left-color:var(--accent) !important; background:linear-gradient(180deg,#fff, #fff7e6) }
+mark{background:rgba(202,168,90,.35)}
+/* Floating TOC */
+#tocFloatBtn{position:fixed; right:14px; bottom:120px; width:46px; height:46px; border-radius:50%; border:none; background:var(--primary); color:#fff; display:grid; place-items:center; box-shadow:0 10px 24px rgba(0,0,0,.25); z-index:2000;}
+#tocPanel{position:fixed; top:0; right:0; height:100%; width:86%; max-width:420px; background:#fff; border-left:1px solid #e2eaf1; box-shadow:-16px 0 35px rgba(0,0,0,.2); transform:translateX(100%); transition:transform .25s ease; z-index:1600; overflow:auto;}
+#tocOverlay{position:fixed; inset:0; background:rgba(0,0,0,.28); backdrop-filter:blur(2px); display:none; z-index:1590}
+#tocPanel.open{ transform:none } #tocOverlay.show{ display:block }
+#tocPanel header{position:sticky; top:0; background:#fff; padding:12px 14px; border-bottom:1px solid #e2eaf1}
+#tocPanel h3{margin:0; color:var(--primary)} #tocPanel .toc-list{padding:12px 14px}
+#tocPanel .toc-list a{display:block; padding:6px 0; color:#1f2e39; text-decoration:none}
+#tocPanel .toc-sub{margin-left:10px; border-left:2px solid #eef3f8; padding-left:8px}
+/* Voice bar */
+#voiceBar{position:fixed; left:50%; transform:translateX(-50%); bottom:14px; background:var(--primary-700); color:#fff; z-index:1550; border-radius:22px; padding:8px 12px; display:flex; gap:10px; align-items:center; box-shadow:0 12px 28px rgba(0,0,0,.3)}
+#voiceBar button{width:34px; height:34px; border-radius:10px; border:1px solid #cfd9e6; background:transparent; color:#eaf0f6; display:grid; place-items:center; cursor:pointer}
+#voiceBar .now{font-size:12px; max-width:52vw; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:#f1f5f9}
+/* Fullscreen */
+#fsOverlay{ position:fixed; inset:0; background:#fff; z-index:1700; display:none; }
+#fsOverlay.show{ display:block } #fsHeader{ position:sticky; top:0; background:#fff; padding:10px 14px; border-bottom:1px solid #e2eaf1; display:flex; align-items:center; gap:10px }
+#fsHeader .ttl{ font-weight:700; color:#1f2e39; flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
+#fsHeader button{ width:36px; height:36px; border-radius:10px; border:1px solid #d6e2ef; background:#fff; }
+#fsBody{ padding:14px; height:calc(100% - 58px); overflow:auto } #fsBody .article-content{ font-size:1.04rem }
+#fsNavPrev,#fsNavNext{ position:fixed; top:50%; transform:translateY(-50%); width:42px; height:42px; border-radius:50%; border:none; background:var(--primary); color:#fff; display:grid; place-items:center; z-index:1710; opacity:.9 }
+#fsNavPrev{ left:10px } #fsNavNext{ right:10px }
+footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#5b6c7f;font-size:12px}
+
+/* ===== Anti-sélection / anti-copie ===== */
+.no-select, .no-select *:not(input):not(textarea):not(.selectable){
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  -webkit-touch-callout: none !important;
+}
+</style>
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#22c55e">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<!-- HIDE AUTH/VIEWS WIDGETS OUTSIDE HOME (safe) -->
+<style>
+  #auth-fab, .views-badge, #auth-modal, .card-views-badge { display: none !important; }
+</style>
+
+</head>
+<body>
+<header>
+  <div class="container">
+    <div class="logo"><i class="fa-solid fa-feather-pointed"></i></div>
+    <div>
+      <h1>Loi portant Statut du Notariat</h1>
+      <div class="sub">Lecteur optimisé (bleu nuit & or) • Sommaire • Recherche • Lecture continue • Plein écran</div>
+    </div>
+    <div class="control-buttons">
+      <button class="btn" id="tocHeaderBtn" title="Sommaire"><i class="fa-solid fa-sitemap"></i></button>
+      <button class="btn" title="Haut de page" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fa-solid fa-angles-up"></i></button>
+    </div>
+  </div>
+</header>
+<main class="wrapper"><section class="group"><h2>CHAPITRE 1 : Attributions, organisation et compétence</h2><div class="article" id="Article_1"><div class="article-header"><h3>Article 1</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le notaire est un auxiliaire de justice qui a la qualité d'officier public et ministériel. Il est chargé de recevoir les actes et contrats auxquels les parties doivent ou veulent faire donner le caractère d'authenticité attachés aux actes de l'autorité publique, pour en assurer la date, en conserver le dépôt, en délivrer des grosses, expéditions, extraits et copies.</p>
+<p>Le notaire est également chargé de :</p>
+<ul>
+<li>légaliser des signatures apposées par les particuliers sur des documents sous-seing privé ;</li>
+<li>certifier la conformité de copies d'acte à leurs originaux.</li>
+</ul></div></div><div class="article" id="Article_2"><div class="article-header"><h3>Article 2</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Au siège de chaque tribunal de première instance, il peut être créé un ou plusieurs offices de notaire.</p>
+<p>Les offices de notaire sont créés par décret, sur proposition du ministre chargé de la Justice.</p></div></div><div class="article" id="Article_3"><div class="article-header"><h3>Article 3</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Au siège des juridictions où il n'a pas été créé d'office, les fonctions notariales sont exercées par les greffiers en chef des juridictions, lesquels prennent alors le titre de greffiers-notaires.</p>
+<p>Les fonctions notariales sont retirées aux greffiers-notaires à compter de l'installation du titulaire d'un office au siège de ladite juridiction auprès de laquelle il a été nommé.</p></div></div><div class="article" id="Article_4"><div class="article-header"><h3>Article 4</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le notaire exerce ses fonctions sur toute l'étendue du territoire national.</p>
+<p>Il est astreint à résider au siège de la juridiction à laquelle il appartient, sous peine d'être considéré comme démissionnaire.</p>
+<p>Le greffier-notaire exerce ses fonctions dans les limites du ressort de la juridiction à laquelle il appartient.</p></div></div><div class="article" id="Article_5"><div class="article-header"><h3>Article 5</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le notaire titulaire d'un office peut employer habituellement des collaborateurs qui concourent, sous sa direction et sa responsabilité, à la rédaction des actes, et au règlement des dossiers.</p>
+<p>Ceux-ci prennent le titre de clerc de notaire dans les conditions fixées par décret.</p></div></div></section><section class="group"><h2>CHAPITRE 2 : Nomination et cessation de fonction</h2><div class="article" id="Article_6"><div class="article-header"><h3>Article 6</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le notaire est nommé dans les conditions fixées par décret.</p>
+<p>Nul ne peut être nommé notaire s'il ne remplit les conditions cumulatives suivantes :</p>
+<ol>
+<li>être de nationalité ivoirienne ;</li>
+<li>être âgé de vingt-cinq ans révolus ;</li>
+<li>avoir la jouissance de ses droits civiques ;</li>
+<li>n'avoir pas fait l'objet de condamnation pour des faits portant atteinte à l'honneur, à la probité ou aux bonnes mœurs ;</li>
+<li>n'avoir pas été déclaré en état de faillite personnelle ou mis en état de liquidation des biens ou d'interdiction d'exercice d'une profession réglementée ;</li>
+<li>ne pas être officier public révoqué ou avocat rayé du barreau ;</li>
+<li>ne pas être fonctionnaire révoqué pour faits contraires à la probité ou aux bonnes mœurs ;</li>
+<li>être titulaire de la maîtrise ou d'un master en droit ;</li>
+<li>avoir accompli un stage pendant deux années au moins en qualité de clerc de première catégorie ;</li>
+<li>avoir subi avec succès l'examen professionnel de notaire.</li>
+</ol></div></div><div class="article" id="Article_7"><div class="article-header"><h3>Article 7</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Sont dispensés de l'examen professionnel de notaire, sous réserve d'accomplir une année de stage :</p>
+<ol>
+<li>les magistrats ayant pratiqué leur profession au moins pendant cinq années ;</li>
+<li>les enseignants docteurs en Droit ayant au moins cinq années de pratique de leur profession ;</li>
+<li>les greffiers en chef et les fonctionnaires de l'enregistrement ayant pratiqué leur profession pendant au moins cinq années ;</li>
+<li>les avocats inscrits pendant cinq ans au moins au barreau ivoirien ou d'un Etat lié à la Côte d'Ivoire par un accord de réciprocité.</li>
+</ol>
+<p>Les anciens notaires sont dispensés de l'examen professionnel de notaire et du stage.</p>
+<p>L'accomplissement du stage d'aptitude à la profession de notaire est justifié par une attestation délivrée par la Chambre des notaires, sur avis du notaire maître de stage.</p></div></div><div class="article" id="Article_8"><div class="article-header"><h3>Article 8</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Est dispensée du stage et de l'examen professionnel, la personne qui réunit les conditions prévues aux paragraphes 1° à 9° de l'article 6 de la présente loi et qui remplit les conditions cumulatives suivantes :</p>
+<ol>
+<li>justifier de diplômes, certificats ou autres titres permettant l'exercice de la profession de notaire dans un Etat tiers ;</li>
+<li>fournir une attestation émanant de l'autorité compétente de cet Etat qui a reconnu les diplômes, certificats ou autres titres, certifiant que leur titulaire a une expérience professionnelle de notariat de trois ans au moins dans cet Etat.</li>
+</ol></div></div><div class="article" id="Article_9"><div class="article-header"><h3>Article 9</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le notaire titulaire d'office n'a le droit de céder ledit office que dans les conditions déterminées par décret.</p></div></div><div class="article" id="Article_10"><div class="article-header"><h3>Article 10</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le notaire titulaire d'office est assujetti au versement d'un cautionnement constitué en espèces spécialement affecté à la garantie des condamnations susceptibles d'être prononcées contre lui à l'occasion des fautes de toute nature commises dans l'exercice de sa fonction.</p>
+<p>Lorsque le cautionnement est employé en tout ou partie, il doit être immédiatement rétabli à sa valeur initiale. Faute de rétablir l'intégralité audit cautionnement, dans les six mois suivant cet emploi, le notaire est considéré comme démissionnaire et remplacé d'office.</p>
+<p>Le montant, les modalités de paiement et l'utilisation du cautionnement sont fixés par décret.</p></div></div><div class="article" id="Article_11"><div class="article-header"><h3>Article 11</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le notaire titulaire d'office est tenu d'assurer sa responsabilité professionnelle dans les conditions fixées par décret, sous peine d'être considéré comme démissionnaire et remplacé d'office.</p></div></div><div class="article" id="Article_12"><div class="article-header"><h3>Article 12</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Il est institué une Caisse de Garantie collective des Notaires, en abrégé CGCN, gérée par la Chambre des notaires.</p>
+<p>Cette caisse est spécialement affectée à la garantie des condamnations susceptibles d'être prononcées contre les notaires à l'occasion des fautes de toute nature commises dans l'exercice de leurs fonctions.</p>
+<p>La Chambre des notaires dispose d'une action récursive contre le notaire au profit de qui la caisse de garantie est intervenue.</p>
+<p>L'organisation et le fonctionnement de cette Caisse sont fixés par arrêté du ministre de la Justice, sur proposition de la Chambre des notaires.</p></div></div><div class="article" id="Article_13"><div class="article-header"><h3>Article 13</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Avant d'entrer en fonction et, dans les trois mois de la notification de sa nomination, le notaire, à peine de déchéance, prête devant la Cour d'appel, le serment de remplir ses fonctions avec exactitude et probité.</p>
+<p>Il n'est admis au serment qu'en présentant :</p>
+<ol>
+<li>la quittance constatant le versement du cautionnement ;</li>
+<li>la justification du paiement dû au titre de la Caisse de Garantie collective des Notaires ;</li>
+<li>l'attestation d'assurance responsabilité civile souscrite auprès de la compagnie d'assurance agréée par la Chambre des notaires.</li>
+</ol>
+<p>Le notaire dépose, dans le même délai, au greffe de la Cour d'appel et au greffe de la juridiction du lieu de sa résidence, sa signature et son paraphe.</p></div></div><div class="article" id="Article_14"><div class="article-header"><h3>Article 14</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le notaire titulaire d'office, qui se trouve dans l'impossibilité de continuer convenablement l'exercice de ses fonctions par suite de l'âge, de la maladie, d'infirmité ou pour toute autre cause, est déclaré démissionnaire.</p>
+<p>Cette décision est prise dans les conditions déterminées par décret.</p></div></div><div class="article" id="Article_15"><div class="article-header"><h3>Article 15</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Outre le cas visé à l'article 14 ci-dessus, la cessation de fonction du notaire résulte :</p>
+<ol>
+<li>de la démission ;</li>
+<li>de la cession de l'office ;</li>
+<li>du décès ;</li>
+<li>de la destitution.</li>
+</ol></div></div><div class="article" id="Article_16"><div class="article-header"><h3>Article 16</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le notaire démissionnaire, décédé ou destitué est remplacé dans les conditions fixées par décret.</p></div></div><div class="article" id="Article_17"><div class="article-header"><h3>Article 17</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le notaire titulaire d'un office, qui a exercé pendant dix années consécutives, peut obtenir le titre de notaire honoraire.</p></div></div></section><section class="group"><h2>CHAPITRE 3 : Devoirs et obligations</h2><div class="article" id="Article_18"><div class="article-header"><h3>Article 18</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le notaire est tenu de prêter son ministère lorsqu'il en est requis.</p></div></div><div class="article" id="Article_19"><div class="article-header"><h3>Article 19</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le notaire ne peut recevoir des actes dans lesquels ses parents et alliés, en ligne directe à tous les degrés et en ligne collatérale jusqu'au degré d'oncle et de neveu inclusivement, sont parties ou qui contiennent quelques dispositions en leur faveur.</p></div></div><div class="article" id="Article_20"><div class="article-header"><h3>Article 20</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>A l'exception de l'hypothèse visée à l'article 3 de la présente loi, les fonctions de notaire sont incompatibles avec toute activité d'officier ministériel, d'avocat et de toute fonction publique rémunérée.</p>
+<p>Toutefois, le notaire peut, à titre subsidiaire dispenser, dans les établissements de formation, des enseignements correspondant à sa spécialité.</p></div></div><div class="article" id="Article_21"><div class="article-header"><h3>Article 21</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le notaire ne peut réclamer ni recevoir d'autres droits et honoraires que ceux fixés par décret.</p></div></div><div class="article" id="Article_22"><div class="article-header"><h3>Article 22</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le notaire est tenu de faire ouvrir un compte de dépôt bancaire affecté aux fonds reçus à l'occasion de l'exercice de son activité professionnelle.</p>
+<p>Il ne peut conserver pendant plus de six mois les sommes, effets ou valeurs qu'il détient pour le compte d'un tiers, à quelque titre que ce soit.</p>
+<p>Les sommes, effets ou valeurs qui n'ont pas été remis aux ayants droit avant l'expiration de ce délai sont versés par le notaire dans une caisse publique de dépôt.</p>
+<p>Le notaire n'est pas tenu aux obligations ci-dessus lorsqu'il s'agit des sommes versées à titre de provision sur frais d'actes à intervenir.</p></div></div><div class="article" id="Article_23"><div class="article-header"><h3>Article 23</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le notaire tient, conformément aux normes du droit comptable en vigueur, une comptabilité destinée à constater les recettes et les dépenses en espèces ainsi que les entrées et sorties des valeurs effectuées pour le compte de chaque client.</p></div></div><div class="article" id="Article_24"><div class="article-header"><h3>Article 24</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le greffier-notaire est soumis, dans l'exercice de la profession notariale, à toutes les obligations imposées au notaire titulaire d'office.</p></div></div><div class="article" id="Article_25"><div class="article-header"><h3>Article 25</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le greffier-notaire perçoit les mêmes émoluments que le titulaire d'un office notarial.</p>
+<p>Toutefois, il est tenu de reverser à l'Etat, une partie de ses émoluments.</p>
+<p>Le taux de ce reversement ainsi que les modalités de liquidation et de perception sont déterminés par décret.</p></div></div><div class="article" id="Article_26"><div class="article-header"><h3>Article 26</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>La formation professionnelle continue est obligatoire pour le notaire.</p>
+<p>Elle est organisée soit par la Chambre des notaires, soit par la Chambre des notaires en collaboration avec le ministère de la Justice.</p></div></div></section><section class="group"><h2>CHAPITRE 4 : Etablissement, conservation et délivrance des actes</h2><div class="article" id="Article_27"><div class="article-header"><h3>Article 27</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le notaire instrumente seul, même lorsque des lois particulières antérieures en disposent autrement.</p>
+<p>Toutefois, lorsque les parties déclarent ne pouvoir ou ne savoir signer, le notaire se fait assister de deux témoins majeurs sachant lire et écrire. Ceux-ci doivent, en outre, jouir de leurs droits civiques.</p>
+<p>Les parties ne pouvant ou ne sachant signer apposent l'empreinte de l'index gauche sur l'acte. Il est interdit au notaire d'accepter la croix en guise de paraphe et de signature.</p>
+<p>Le mari et la femme ne peuvent être témoins dans le même acte.</p>
+<p>Les parents ou alliés au degré prohibé par l'article 19 de la présente loi et les serviteurs ou employés soit du notaire, soit des parties, ainsi que les clercs de notaire ne peuvent être témoins.</p>
+<p>La présence des témoins n'est requise qu'au moment de la lecture de l'acte par le notaire et de la déclaration par la partie concernée de ne savoir ou ne pouvoir signer.</p>
+<p>Les testaments restent soumis aux règles qui leur sont propres.</p></div></div><div class="article" id="Article_28"><div class="article-header"><h3>Article 28</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Toutes les fois qu'une personne ne parlant pas la langue officielle est partie ou témoin, le notaire se fait assister d'un interprète assermenté. Cet interprète traduit littéralement l'acte et le signe.</p>
+<p>Les parents ou alliés, soit des parties contractantes, soit du notaire, en ligne directe à tous les degrés, et en ligne collatérale, jusqu'au degré d'oncle ou de neveu inclusivement, ne peuvent remplir les fonctions d'interprète dans les cas prévus par le présent article.</p>
+<p>Les légataires ainsi que leurs parents ou alliés jusqu'au degré de cousin germain inclusivement ne peuvent non plus servir d'interprètes.</p></div></div><div class="article" id="Article_29"><div class="article-header"><h3>Article 29</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Les formalités prescrites aux articles 27 et 28 sont portées dans l'acte, à peine de nullité.</p></div></div><div class="article" id="Article_30"><div class="article-header"><h3>Article 30</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Les noms et prénoms, l'état et le domicile des parties doivent être connu du notaire qui, à défaut, procède, sous sa responsabilité, à toute vérification nécessaire à l'effet de s'assurer de leur identité.</p></div></div><div class="article" id="Article_31"><div class="article-header"><h3>Article 31</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Tous les actes contiennent :</p>
+<ol>
+<li>les nom, prénoms et lieu de résidence du notaire ;</li>
+<li>les nom, prénoms, nationalité, date et lieu de naissance, domicile, qualité, références d'une pièce d'identité des parties ;</li>
+<li>les nom, prénoms, nationalité, date et lieu de naissance, domicile, qualité, références d'une pièce d'identité des témoins, lorsque leur présence est requise ;</li>
+<li>le lieu, les jour, mois et an de l'acte.</li>
+</ol>
+<p>Les dates et les sommes d'argent figurent en toutes lettres dans le corps des actes. Toutefois, les numéros peuvent être écrits en lettres ou en chiffres.</p>
+<p>Les actes notariés contiennent les signatures du notaire, des parties, et, le cas échéant, celles des témoins et de l'interprète.</p></div></div><div class="article" id="Article_32"><div class="article-header"><h3>Article 32</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le notaire tient un répertoire de tous les actes qu'il reçoit et un registre de dépôt des testaments olographes.</p>
+<p>Le répertoire est visé, coté et paraphé par le président du tribunal du lieu de situation de l'office notarial.</p></div></div><div class="article" id="Article_33"><div class="article-header"><h3>Article 33</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Les actes du notaire sont, sous sa responsabilité, soit écrits à la main, soit dactylographiés ou encore saisis par tous moyens informatiques et imprimés au moyen d'une encre indélébile.</p>
+<p>Ils sont, dans tous les cas, rédigés en un seul tenant, lisiblement, sans blanc, ni surcharge, ni addition dans le corps de l'acte.</p>
+<p>Les abréviations qui ne sont pas les références d'un document sont interdites.</p>
+<p>Les mots surchargés, écrits entre deux lignes ou ajoutés sont réputés non écrits.</p>
+<p>Les mots ou les chiffres qui doivent être rayés, le sont de manière que leur nombre puisse en être constaté en marge de la page correspondante ou à la fin de l'acte, et sont approuvés de la même manière que les renvois écrits en marge.</p></div></div><div class="article" id="Article_34"><div class="article-header"><h3>Article 34</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Les renvois et apostilles ne peuvent être inscrits qu'en marge. Ils sont, à peine de nullité, signés ou paraphés par le notaire et par les autres signataires.</p>
+<p>Toutefois, les renvois pour cause de mauvaise orthographe d'un mot sont paraphés du seul notaire.</p>
+<p>Si la longueur du renvoi exige qu'il soit transporté à la fin de l'acte, il sera, à peine de nullité, non seulement signé ou paraphé comme les renvois écrits en marge, mais encore expressément approuvé par les parties.</p></div></div><div class="article" id="Article_35"><div class="article-header"><h3>Article 35</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>L'acte notarié est établi en minute ou en brevet. L'acte reçu par le notaire est paraphé au bas du recto, et du verso s'il y a lieu, de chaque feuille par les parties, le notaire et les témoins s'il en est exigé.</p>
+<p>La signature des parties, du notaire, et des témoins s'il y a lieu, est apposée en dernière page.</p>
+<p>L'acte fait mention de la signature et de la lecture faite aux parties.</p>
+<p>Ces formalités sont prescrites à peine de nullité.</p></div></div><div class="article" id="Article_36"><div class="article-header"><h3>Article 36</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Chaque notaire est tenu d'avoir un sceau portant ses nom et prénoms, qualité, résidence ainsi que le type "République de Côte d'Ivoire".</p>
+<p>Les brevets, grosses, expéditions et extraits des actes portent l'empreinte de ce sceau. Celui-ci peut être physique ou électronique.</p></div></div><div class="article" id="Article_37"><div class="article-header"><h3>Article 37</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Les grosses, expéditions ou extraits sont établis de la même façon que les minutes, et selon des procédés techniques qui sont déterminés par décret.</p></div></div><div class="article" id="Article_38"><div class="article-header"><h3>Article 38</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le notaire est tenu d'annexer aux actes reçus par lui ou déposés au rang de minutes, soit l'original ou l'expédition, soit la traduction certifiée par un traducteur assermenté et signé des parties, de tous actes auxquels les nouvelles conventions se réfèrent. Une analyse sommaire desdites pièces doit, en outre, figurer dans l'acte auquel elles sont annexées ou dans l'acte fait en suite de leur dépôt au rang des minutes.</p>
+<p>Lorsque ces actes sont rédigés dans une langue étrangère, ils peuvent être annexés aux actes reçus par le notaire ou déposés aux rangs de ses minutes, à condition d'être traduits par un traducteur assermenté.</p>
+<p>Le notaire ne peut établir des pouvoirs, des délégations ou des substitutions concernant une société ayant son siège en Côte d'Ivoire, qu'après avoir pris connaissance des pièces constitutives et modificatives de ladite société, ainsi que, s'il le juge utile, des justificatifs relatifs à l'accomplissement des formalités légales, et après vérification de la régularité de ces pièces et justificatifs.</p></div></div><div class="article" id="Article_39"><div class="article-header"><h3>Article 39</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Tous les actes notariés font foi en justice de la convention qu'ils renferment, entre les parties contractantes et leurs héritiers ou ayants cause.</p>
+<p>Ils sont exécutoires sur toute l'étendue du territoire de la République.</p>
+<p>Néanmoins, en cas de plainte en faux principal, l'exécution de l'acte argué de faux est suspendue par la saisine de la juridiction compétente. En cas d'inscription de faux faite incidemment, les juridictions peuvent, suivant la gravité des circonstances, suspendue provisoirement l'exécution de l'acte.</p></div></div><div class="article" id="Article_40"><div class="article-header"><h3>Article 40</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Les actes qui ne sont pas revêtus de la signature de toutes les personnes dont la participation est requise, sont nuls, de nullité absolue.</p>
+<p>Les actes faits en contravention des articles 4, 27, 28, 30, 31 et 38 de la présente loi sont également nuls. Toutefois, l'acte revêtu de la signature de toutes les parties contractantes, vaut comme acte sous-seing privé.</p>
+<p>Les infractions aux prescriptions des articles 33, 34, 35, 36 et 37 de la présente loi peuvent donner lieu au prononcé d'une amende civile de 500.000 francs.</p>
+<p>Dans tous les cas, le notaire contrevenant peut être condamné à des dommages-intérêts envers la partie lésée, nonobstant toute sanction disciplinaire.</p>
+<p>Les poursuites judiciaires entraînant, pour le notaire en cause, condamnation à l'amende ou à des dommages-intérêts, sont portées devant la juridiction du lieu où il exerce son ministère.</p></div></div><div class="article" id="Article_41"><div class="article-header"><h3>Article 41</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le notaire est tenu de garder minute de tous les actes qu'il reçoit.</p>
+<p>Néanmoins, peuvent être établis en brevet, les procès-verbaux des déclarations du testament en cas de testament mystique, les certificats de vie, les procurations, les actes de notoriété, les quittances de fermage, de loyer, de salaire, d'arrêtages de pension, de rente, des sommes quelconques, si les parties le requièrent, et les autres actes dans le cas où la loi l'autorise.</p>
+<p>Peuvent également être passés en simple brevet ou en minute, au choix des parties, les actes relatifs à des conventions qui ne s'appliquent qu'à des objets purement mobiliers et dont la valeur n'excède pas 1.000.000 de francs, lorsqu'ils ne contiennent pas de dispositions que des tiers pourraient invoquer.</p></div></div><div class="article" id="Article_42"><div class="article-header"><h3>Article 42</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le droit de délivrer des grosses, expéditions et extraits n'appartient qu'au notaire, détenteur de la minute ou à son successeur.</p>
+<p>Néanmoins, tout notaire peut délivrer expédition, extrait ou copie de l'acte qui lui a été déposé pour minute.</p></div></div><div class="article" id="Article_43"><div class="article-header"><h3>Article 43</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le notaire ne peut se dessaisir d'aucune minute si ce n'est dans les cas prévus par la loi et en vertu d'une décision de justice. Avant de se dessaisir de la minute, il en établit et signe une copie figurée ou une reproduction qui, après avoir été certifiée par le président de la juridiction de sa résidence, est substituée à la minute dont elle tient lieu jusqu'à sa réintégration.</p></div></div><div class="article" id="Article_44"><div class="article-header"><h3>Article 44</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le notaire ne peut, sans une ordonnance du président de la juridiction de sa résidence, délivrer une expédition ni donner connaissance des actes qu'il détient qu'aux personnes intéressées en nom direct, héritiers ou ayants droit, à peine de dommages-intérêts et d'une amende civile de 1.000.000 de francs.</p>
+<p>En cas de récidive, il peut être suspendu de ses fonctions pendant trois mois.</p>
+<p>Toutefois, les présentes dispositions ne sont pas applicables dans les cas où les lois et décrets prescrivent la communication des actes et des registres aux proposés de l'enregistrement ou la délivrance d'extraits à publier à la porte de la salle d'audience des juridictions.</p></div></div><div class="article" id="Article_45"><div class="article-header"><h3>Article 45</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Les grosses sont délivrées en forme exécutoire. Elles sont intitulées et terminées dans les mêmes termes que les jugements des tribunaux.</p>
+<p>Il est fait mention sur la minute, en première page, de la délivrance de la première grosse à chacune des parties intéressées.</p>
+<p>Il ne peut leur en être délivré d'autres, à peine de nullité desdites grosses, sans préjudice de sanctions disciplinaires, sauf à procéder conformément aux règles de procédure civile.</p></div></div><div class="article" id="Article_46"><div class="article-header"><h3>Article 46</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Sauf conventions internationales contraires, lorsqu'il y a lieu de produire les actes notariés devant les autorités étrangères, la signature du notaire qui les a reçus ou qui en délivre expédition ou extrait est légalisée par le ministère de la Justice, puis par le ministère des Affaires étrangères, et par la représentation diplomatique du pays destinataire de l'acte.</p></div></div><div class="article" id="Article_47"><div class="article-header"><h3>Article 47</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Les actes et dossiers détenus par le notaire sont couverts par le secret professionnel. Ce secret professionnel ne peut être levé que sur autorisation écrite du procureur général.</p></div></div></section><section class="group"><h2>CHAPITRE 5 : Interdictions, organisation administrative et disciplinaire</h2><div class="article" id="Article_48"><div class="article-header"><h3>Article 48</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Il est interdit au notaire, soit par lui-même, soit indirectement :</p>
+<ol>
+<li>de se livrer à des spéculations en bourse ou à des opérations de commerce, de banque, d'escompte ou de courtage ;</li>
+<li>de s'immiscer dans l'administration d'une société, d'une entreprise de commerce ou d'une industrie ;</li>
+<li>de faire de la spéculation relativement à l'acquisition ou à la revente des immeubles, à la cession des créances, droits successifs, actions industrielles ou autres droits incorporels appartenant à ses clients ;</li>
+<li>de s'intéresser dans aucune affaire pour laquelle il prête son ministère ;</li>
+<li>de recevoir ou conserver des fonds à charge d'en servir l'intérêt ;</li>
+<li>de se constituer garant ou caution, à quelque titre que ce soit, des prêts à la négociation desquels il aurait participé, comme aussi de ceux dont les actes seraient dressés par lui ou avec sa participation ;</li>
+<li>d'avoir recours à un prête-nom ;</li>
+<li>de consentir avec ses deniers personnels des prêts qui ne seraient pas constatés par acte authentique ;</li>
+<li>de contracter pour son propre compte aucun emprunt par souscription de billet sous-seing privé ;</li>
+<li>d'employer même temporairement les sommes ou valeurs dont il est constitué détenteur, à un usage auquel elles ne sont pas destinées ;</li>
+<li>de retenir, même en cas d'opposition, les sommes qui doivent être versées par lui à la Caisse de Garantie collective des Notaires ;</li>
+<li>de négocier, de rédiger, faire signer les billets ou reconnaissances sous-seing privé et s'immiscer de quelque manière que ce soit dans la négociation, l'établissement ou la prorogation de tels billets ou reconnaissances ;</li>
+<li>de laisser intervenir, un membre quelconque de son étude sans un mandat écrit, dans les actes qu'il reçoit.</li>
+</ol></div></div><div class="article" id="Article_49"><div class="article-header"><h3>Article 49</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Il est institué une Chambre des notaires de Côte d'Ivoire représentant l'ensemble de la profession auprès des pouvoirs publics.</p>
+<p>La Chambre des notaires est dotée de la personnalité morale.</p>
+<p>La Chambre des notaires a des pouvoirs disciplinaires et donne son avis, chaque fois qu'elle en est requise, sur toutes les questions professionnelles.</p>
+<p>Les modalités d'organisation et de fonctionnement de la Chambre des notaires sont fixées par décret.</p></div></div><div class="article" id="Article_50"><div class="article-header"><h3>Article 50</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Tout manquement aux devoirs et aux obligations imposés aux notaires, peut être sanctionné par l'une des mesures disciplinaires ci-après :</p>
+<ol>
+<li>l'avertissement ;</li>
+<li>le blâme ;</li>
+<li>la suspension à temps pour une durée ne pouvant excéder une année ;</li>
+<li>la destitution.</li>
+</ol>
+<p>Les deux premières sanctions sont prononcées aussi bien par la Chambre des notaires que par le procureur général.</p>
+<p>La suspension et la destitution relèvent de la compétence du ministre de la Justice.</p></div></div><div class="article" id="Article_51"><div class="article-header"><h3>Article 51</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>En cas de poursuite pour infraction commise dans l'exercice de ses fonctions, aucun notaire ne peut être arrêté ni déféré sans que le président de la Chambre des notaires ou son représentant n'ait été avisé et sans que l'intéressé n'ait été entendu au préalable par le procureur général ou tout magistrat du parquet général délégué par celui-ci.</p></div></div><div class="article" id="Article_52"><div class="article-header"><h3>Article 52</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le greffier-notaire est passible des peines disciplinaires prévues par le Statut des greffiers, sans préjudice des poursuites pénales.</p></div></div></section><section class="group"><h2>CHAPITRE 6 : Modalités d&#x27;exercice de la profession</h2><div class="article" id="Article_53"><div class="article-header"><h3>Article 53</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le notaire peut exercer sa profession :</p>
+<ol>
+<li>soit à titre individuel ;</li>
+<li>soit au sein d'une société civile professionnelle ;</li>
+<li>soit en tant que notaire salarié dans un office notarial ou dans une société civile professionnelle.</li>
+</ol>
+<p>Les modalités de constitution et de fonctionnement des sociétés civiles professionnelles de notaires sont fixées par décret.</p></div></div></section><section class="group"><h2>CHAPITRE 7 : Dispositions transitoires</h2><div class="article" id="Article_54"><div class="article-header"><h3>Article 54</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le notaire titulaire d'office et le greffier-notaire, en exercice à la date d'entrée en vigueur de la présente loi, demeurent en fonction sans qu'il soit nécessaire de procéder, en ce qui les concerne, à une nouvelle nomination.</p>
+<p>Toutefois, ils exercent leur ministère conformément aux dispositions de la présente loi.</p></div></div></section><section class="group"><h2>CHAPITRE 8 : Dispositions finales</h2><div class="article" id="Article_55"><div class="article-header"><h3>Article 55</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Sont abrogées toutes dispositions antérieures contraires à la présente loi, notamment la loi n°69-372 du 12 août 1969 portant Statut du notariat, telle que modifiée et complétée par la loi n°97-513 du 4 septembre 1997.</p></div></div><div class="article" id="Article_56"><div class="article-header"><h3>Article 56</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>La présente loi sera publiée au Journal officiel de la République de Côte d'Ivoire et exécutée comme loi de l'Etat.</p></div></div></section></main>
+<button id="tocFloatBtn" title="Sommaire" class="btn"><i class="fa-solid fa-list"></i></button>
+<div id="tocOverlay"></div>
+<aside id="tocPanel"><header><h3><i class="fa-solid fa-scale-balanced"></i> Sommaire</h3></header><div class="toc-list" id="tocList"></div></aside>
+<div id="voiceBar" role="region" aria-label="Lecteur vocal">
+  <button id="vPrev" title="Article précédent"><i class="fas fa-backward"></i></button>
+  <button id="vPlay" title="Lire / Reprendre"><i class="fas fa-play"></i></button>
+  <button id="vPause" title="Pause"><i class="fas fa-pause"></i></button>
+  <button id="vStop" title="Arrêter"><i class="fas fa-stop"></i></button>
+  <button id="vNext" title="Article suivant"><i class="fas fa-forward"></i></button>
+  <span class="now" id="vNow">—</span>
+</div>
+<div id="fsOverlay">
+  <div id="fsHeader">
+    <button id="fsClose" title="Fermer"><i class="fas fa-xmark"></i></button>
+    <div class="ttl" id="fsTitle"></div>
+    <button id="fsPlay" title="Lecture"><i class="fas fa-play"></i></button>
+  </div>
+  <div id="fsBody"><article class="article"><div class="article-content" id="fsContent"></div></article></div>
+  <button id="fsNavPrev" title="Précédent"><i class="fas fa-chevron-left"></i></button>
+  <button id="fsNavNext" title="Suivant"><i class="fas fa-chevron-right"></i></button>
+</div>
+<script>/* placeholder */</script>
+
+<script>
+// --- Fonctionnalité de recherche (MODIFIÉE) ---
+function initSearchFeature() {
+    const searchBtn = document.createElement('button');
+    searchBtn.className = 'btn';
+    searchBtn.id = 'searchBtn';
+    searchBtn.title = 'Rechercher';
+    searchBtn.innerHTML = '<i class="fas fa-search"></i>';
+    document.querySelector('.control-buttons').appendChild(searchBtn);
+    
+    const searchInterface = document.createElement('div');
+    searchInterface.id = 'searchInterface';
+    searchInterface.style.cssText = `
+        position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+        width: calc(100% - 40px); max-width: 550px; background: #fff;
+        padding: 10px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        z-index: 1800; display: none; align-items: center; gap: 5px; transition: .25s ease;
+    `;
+    searchInterface.innerHTML = `
+        <input type="text" id="searchInput" placeholder="Rechercher..." style="flex-grow: 1; padding: 8px; border: 1px solid #d6e2ef; border-radius: 5px;">
+        <button id="searchPrevBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-up"></i></button>
+        <button id="searchNextBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-down"></i></button>
+        <span id="searchResultsCount" style="flex-shrink: 0; padding: 0 5px; min-width: 40px; text-align: center;"></span>
+        <button id="closeSearchBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-times"></i></button>
+    `;
+    document.body.appendChild(searchInterface);
+
+    let searchResults = [];
+    let currentSearchIndex = -1;
+    let originalContents = new Map();
+
+    function performSearch() {
+        const searchTerm = document.getElementById('searchInput').value.trim();
+        if (!originalContents.size) {
+            document.querySelectorAll('.article-content, h2, h3').forEach(el => originalContents.set(el, el.innerHTML));
+        }
+        originalContents.forEach((content, el) => el.innerHTML = content);
+        searchResults = [];
+        currentSearchIndex = -1;
+        if (!searchTerm) { updateSearchUI(); return; }
+
+        const regex = new RegExp(searchTerm.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&'), 'gi');
+        originalContents.forEach((content, element) => {
+            element.innerHTML = content.replace(regex, match => `<mark>${match}</mark>`);
+        });
+        searchResults = Array.from(document.querySelectorAll('mark'));
+        if (searchResults.length > 0) navigateResults(true, false);
+        updateSearchUI();
+        window.dispatchEvent(new Event('reflowArticles'));
+    }
+
+    function navigateResults(isNext, shouldWrap = true) {
+        if (!searchResults.length) return;
+        searchResults.forEach(mark => mark.style.backgroundColor = '');
+        if (shouldWrap) {
+            currentSearchIndex = isNext ? (currentSearchIndex + 1) % searchResults.length : (currentSearchIndex - 1 + searchResults.length) % searchResults.length;
+        } else {
+            currentSearchIndex = 0;
+        }
+        const currentMark = searchResults[currentSearchIndex];
+        currentMark.style.backgroundColor = 'var(--accent)';
+        currentMark.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        updateSearchUI();
+    }
+
+    function updateSearchUI() {
+        document.getElementById('searchResultsCount').textContent = searchResults.length > 0 ? `${currentSearchIndex + 1}/${searchResults.length}` : '0/0';
+    }
+    
+    function resetSearch() {
+        originalContents.forEach((content, el) => el.innerHTML = content);
+        originalContents.clear();
+        document.getElementById('searchInput').value = '';
+        searchResults = []; currentSearchIndex = -1;
+        updateSearchUI();
+    }
+
+    searchBtn.addEventListener('click', () => {
+        const isVisible = searchInterface.style.display === 'flex';
+        searchInterface.style.display = isVisible ? 'none' : 'flex';
+        if (isVisible) resetSearch(); else document.getElementById('searchInput').focus();
+    });
+    document.getElementById('searchInput').addEventListener('input', performSearch);
+    document.getElementById('searchNextBtn').addEventListener('click', () => navigateResults(true));
+    document.getElementById('searchPrevBtn').addEventListener('click', () => navigateResults(false));
+    document.getElementById('closeSearchBtn').addEventListener('click', () => {
+        searchInterface.style.display = 'none';
+        resetSearch();
+    });
+}
+</script>
+
+
+<script>
+(function(){
+  function extractEnumeration(s){
+    const re = /(\d{1,2})(?:\s*°)?(?:\))?(?:\.)?\s+/g; const matches = []; let m;
+    while ((m = re.exec(s))){ const idx=m.index; const prev = idx>0 ? s.charAt(idx-1) : " "; if (/\d/.test(prev)) continue; matches.push({num:parseInt(m[1],10), start:idx, end:re.lastIndex}); }
+    if (matches.length < 2) return null;
+    for (let i=1;i<matches.length;i++){ if (matches[i].num !== matches[i-1].num + 1) return null; }
+    const intro = s.slice(0, matches[0].start).trim().replace(/[:;,\-]\s*$/, ""); const items = [];
+    for (let i=0;i<matches.length;i++){ const st=matches[i].end; const en=(i+1<matches.length)?matches[i+1].start:s.length; let seg = s.slice(st,en).trim().replace(/^[;,:-]\s*/,"").replace(/[;,\s]+$/,""); items.push(seg); }
+    return {intro, start: matches[0].num, items};
+  }
+  function transformNode(node){
+    if (node.querySelector('ol')) return;
+    const plain = node.textContent.replace(/\s+/g,' ').trim(); const res = extractEnumeration(plain); if (!res) return;
+    const frag = document.createElement('div'); if (res.intro){ const p=document.createElement('p'); p.textContent=res.intro; frag.appendChild(p); }
+    const ol=document.createElement('ol'); if (res.start!==1) ol.setAttribute('start', String(res.start));
+    res.items.forEach(it=>{ const li=document.createElement('li'); li.textContent=it; ol.appendChild(li); });
+    frag.appendChild(ol); node.innerHTML=frag.innerHTML;
+  }
+  function run(){ document.querySelectorAll('.article-content').forEach(transformNode);
+    document.querySelectorAll('.article-content li').forEach(li=>{
+      const s = li.textContent.replace(/\s+/g,' ').trim(); const res = extractEnumeration(s);
+      if (res){ li.innerHTML=''; if (res.intro){ const span=document.createElement('span'); span.textContent=res.intro+' :'; li.appendChild(span); }
+        const ol=document.createElement('ol'); if (res.start!==1) ol.setAttribute('start', String(res.start));
+        res.items.forEach(it=>{ const li2=document.createElement('li'); li2.textContent=it; ol.appendChild(li2); }); li.appendChild(ol); }
+    });
+  }
+  window.addEventListener('DOMContentLoaded', ()=>setTimeout(run, 60));
+  window.addEventListener('reflowArticles', run);
+})();
+</script>
+
+
+<script>
+(function(){
+  const $ = s=>document.querySelector(s);
+  const $$ = s=>Array.from(document.querySelectorAll(s));
+  function buildTOC(){
+    const toc = document.getElementById('tocList'); if(!toc) return; toc.innerHTML='';
+    $$('.group').forEach((grp, gi)=>{
+      const gh = grp.querySelector('h2')?.textContent.trim() || `Groupe ${gi+1}`;
+      const gl = document.createElement('a'); gl.textContent=gh; gl.href='#'; gl.style.fontWeight='700';
+      gl.addEventListener('click', e=>{ e.preventDefault(); grp.scrollIntoView({behavior:'smooth', block:'start'}); hideTOC(); });
+      toc.appendChild(gl);
+      const sub = document.createElement('div'); sub.className='toc-sub';
+      grp.querySelectorAll('.article').forEach((art, ai)=>{
+        const at = art.querySelector('.article-header h3')?.textContent.trim() || `Article ${ai+1}`;
+        const a = document.createElement('a'); a.textContent=at; a.href='#';
+        a.addEventListener('click', e=>{ e.preventDefault(); art.scrollIntoView({behavior:'smooth', block:'start'}); hideTOC(); });
+        sub.appendChild(a);
+        if (!art.querySelector('.open-fs')){
+          const btn = document.createElement('button'); btn.className='open-fs'; btn.innerHTML='<i class="fas fa-maximize"></i>';
+          btn.title='Plein écran'; btn.addEventListener('click', ()=>openFS(artIndex(art))); art.querySelector('.article-header')?.appendChild(btn);
+        }
+      });
+      toc.appendChild(sub);
+    });
+  }
+  function showTOC(){ document.getElementById('tocOverlay').classList.add('show'); document.getElementById('tocPanel').classList.add('open'); }
+  function hideTOC(){ document.getElementById('tocOverlay').classList.remove('show'); document.getElementById('tocPanel').classList.remove('open'); }
+  // Floating & Header buttons
+  document.addEventListener('DOMContentLoaded', ()=>{
+    const floatBtn = document.getElementById('tocFloatBtn');
+    if (floatBtn) floatBtn.addEventListener('click', showTOC);
+    const overlay = document.getElementById('tocOverlay');
+    if (overlay) overlay.addEventListener('click', hideTOC);
+    const headerBtn = document.getElementById('tocHeaderBtn');
+    if (headerBtn) headerBtn.addEventListener('click', showTOC);
+  });
+  const articles = $$('.article');
+  function artIndex(el){ return articles.indexOf(el); }
+  function getArticle(i){ return articles[Math.max(0, Math.min(articles.length-1, i))]; }
+  function artTitle(i){ const el=getArticle(i); return el? (el.querySelector('.article-header h3')?.textContent.trim()||'') : ''; }
+  function artText(i){ const el=getArticle(i); return el? (el.querySelector('.article-content')?.innerText.trim()||'') : ''; }
+  const synth = window.speechSynthesis;
+  let current = 0, utter = null, playing = false, paused = false, inFS=false;
+  function speakIndex(i){ stopSpeak(); current=i; const text=artText(i); if(!text){ nextArticle(); return; }
+    utter = new SpeechSynthesisUtterance(text); utter.lang='fr-FR'; utter.rate=1; utter.pitch=1;
+    utter.onend = ()=>{ if(playing && !paused){ nextArticle(); } };
+    try{ synth.speak(utter);}catch(e){ console.warn(e); }
+    playing=true; paused=false; updateUI(); highlightCurrent(); }
+  function highlightCurrent(){ articles.forEach(a=>a.classList.remove('reading')); const el=getArticle(current); if(el){ el.classList.add('reading'); if(!inFS) el.scrollIntoView({behavior:'smooth', block:'center'}); } document.getElementById('vNow').textContent = artTitle(current) || '—'; }
+  function pauseSpeak(){ if(synth && synth.speaking){ synth.pause(); paused=true; playing=true; } }
+  function resumeSpeak(){ if(synth && paused){ synth.resume(); paused=false; } else { speakIndex(current); } updateUI(); }
+  function stopSpeak(){ if(synth){ try{synth.cancel();}catch(e){} } playing=false; paused=false; updateUI(); }
+  function prevArticle(){ current=Math.max(0,current-1); if(playing){ speakIndex(current);} else {highlightCurrent();} if(inFS) openFS(current); }
+  function nextArticle(){ current=Math.min(articles.length-1,current+1); if(playing){ speakIndex(current);} else {highlightCurrent();} if(inFS) openFS(current); }
+  document.addEventListener('DOMContentLoaded', ()=>{
+    document.getElementById('vPlay').addEventListener('click', ()=>{ if(!playing || paused){ resumeSpeak(); } else { pauseSpeak(); } });
+    document.getElementById('vPause').addEventListener('click', ()=>pauseSpeak());
+    document.getElementById('vStop').addEventListener('click', ()=>{ stopSpeak(); });
+    document.getElementById('vPrev').addEventListener('click', prevArticle);
+    document.getElementById('vNext').addEventListener('click', nextArticle);
+  });
+  function updateUI(){ document.getElementById('vPlay').innerHTML = paused || !playing ? '<i class="fas fa-play"></i>' : '<i class="fas fa-pause"></i>'; }
+  let touchStartX=null;
+  function openFS(i){ inFS=true; current=i; document.getElementById('fsTitle').textContent=artTitle(i); document.getElementById('fsContent').textContent=artText(i); document.getElementById('fsOverlay').classList.add('show'); document.body.style.overflow='hidden'; speakIndex(i); }
+  function closeFS(){ inFS=false; document.getElementById('fsOverlay').classList.remove('show'); document.body.style.overflow=''; }
+  document.addEventListener('DOMContentLoaded', ()=>{
+    document.getElementById('fsClose').addEventListener('click', ()=>{ closeFS(); });
+    document.getElementById('fsPlay').addEventListener('click', ()=>{ if(!playing || paused){ resumeSpeak(); } else { pauseSpeak(); } });
+    document.getElementById('fsNavPrev').addEventListener('click', ()=>{ prevArticle(); });
+    document.getElementById('fsNavNext').addEventListener('click', ()=>{ nextArticle(); });// Swipe
+    document.getElementById('fsOverlay').addEventListener('touchstart', (e)=>{ window.__touchX = e.changedTouches[0].clientX; }, {passive:true});
+    document.getElementById('fsOverlay').addEventListener('touchend', (e)=>{ const dx = e.changedTouches[0].clientX - (window.__touchX||0); const TH=50; if(dx<-TH){ nextArticle(); } else if(dx>TH){ prevArticle(); } }, {passive:true});
+    $$('.article .open-fs').forEach((btn, idx)=> btn.addEventListener('click', ()=>openFS(idx)));
+    $$('.article').forEach((art, idx)=> art.addEventListener('dblclick', ()=>openFS(idx)));
+  });
+  window.addEventListener('reflowArticles', ()=>{ buildTOC(); });
+  buildTOC();
+})();
+</script>
+
+<script>initSearchFeature(); window.dispatchEvent(new Event('reflowArticles'));</script>
+<footer>Source HTML mise en forme selon votre modèle. Thème notarial (bleu nuit & or).</footer>
+
+<script>
+(function(){
+  function isInteractive(el){
+    if (!el) return false;
+    if (el.tagName){
+      const tag = el.tagName.toLowerCase();
+      if (tag === 'input' || tag === 'textarea' || tag === 'select') return true;
+    }
+    if (el.isContentEditable) return true;
+    if (el.closest && el.closest('#searchInterface')) return true;
+    return false;
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    document.body.classList.add('no-select');
+  });
+  document.addEventListener('contextmenu', function(e){
+    if (!isInteractive(e.target)) e.preventDefault();
+  }, {capture:true});
+  document.addEventListener('selectstart', function(e){
+    if (!isInteractive(e.target)) e.preventDefault();
+  }, {capture:true});
+  ['copy','cut','paste','dragstart'].forEach(function(type){
+    document.addEventListener(type, function(e){
+      if (!isInteractive(document.activeElement)) e.preventDefault();
+    }, {capture:true});
+  });
+  document.addEventListener('keydown', function(e){
+    const k = (e.key || '').toLowerCase();
+    const combo = (e.ctrlKey || e.metaKey) && ['c','x','a','s','p','insert'].includes(k);
+    if (combo && !isInteractive(document.activeElement)) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  }, {capture:true});
+})();
+</script>
+
+  <script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js"));
+  }
+</script>
+  <!-- PWA Install Button -->
+<button id="pwa-install-btn" aria-label="Installer l'application" hidden>Installer</button>
+<style>
+  #pwa-install-btn{
+    position:fixed; right:16px; bottom:16px; z-index:9999;
+    padding:10px 14px; border:none; border-radius:999px;
+    background:#22c55e; color:white; font:600 14px system-ui,Segoe UI,Roboto,Arial,sans-serif;
+    box-shadow:0 8px 20px rgba(34,197,94,.35);
+  }
+  #pwa-install-btn[hidden]{ display:none; }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    #pwa-install-btn{ bottom: calc(16px + env(safe-area-inset-bottom)); }
+  }
+</style>
+<script>
+  (function(){
+    let deferredPrompt;
+    const btnId = "pwa-install-btn";
+    function ensureBtn(){
+      let b = document.getElementById(btnId);
+      if(!b){
+        b = document.createElement("button");
+        b.id = btnId;
+        b.textContent = "Installer";
+        document.body.appendChild(b);
+      }
+      return b;
+    }
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      const btn = ensureBtn();
+      btn.hidden = false;
+      btn.onclick = async () => {
+        btn.hidden = true;
+        deferredPrompt.prompt();
+        await deferredPrompt.userChoice;
+        deferredPrompt = null;
+      };
+    });
+    if (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) {
+      const btn = document.getElementById(btnId);
+      if(btn) btn.hidden = true;
+    }
+  })();
+</script>
+  <!-- Auth UI minimal -->
+<style>
+  .auth-box{position:fixed; top:12px; right:12px; z-index:9998; background:#ffffff; color:#111827; border-radius:12px; padding:10px 12px; box-shadow:0 10px 24px rgba(0,0,0,.12); font:500 14px system-ui,Segoe UI,Roboto,Arial}
+  .auth-box h4{margin:0 0 6px; font-size:14px}
+  .auth-box form{display:flex; gap:6px; flex-wrap:wrap; align-items:center}
+  .auth-box input{padding:6px 8px; border:1px solid #e5e7eb; border-radius:8px}
+  .auth-box button{background:#22c55e; color:#fff; border:none; padding:6px 10px; border-radius:8px; cursor:pointer}
+  .auth-box .row{display:flex; gap:6px; flex-wrap:wrap}
+  .views-badge{position:fixed; left:12px; bottom:12px; z-index:9998; background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px; font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)}
+</style><!-- Admin link (visible only when logged-in) -->
+<style>
+  .admin-link{
+    position:fixed; right:16px; bottom:88px; z-index:9998;
+    display:none; align-items:center; gap:8px;
+    padding:10px 14px; border-radius:999px; text-decoration:none;
+    background:#111827; color:#fff; font:600 14px system-ui,Segoe UI,Roboto,Arial;
+    box-shadow:0 8px 20px rgba(0,0,0,.3);
+    border:1px solid rgba(255,255,255,.1);
+  }
+  body.logged-in .admin-link{ display:inline-flex; }
+  .admin-link:hover{ filter:brightness(1.1); }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    .admin-link{ bottom: calc(88px + env(safe-area-inset-bottom)); }
+  }
+</style>
+<a href="admin.html" class="admin-link" title="Tableau de bord">Admin</a>
+  <script type="module" src="assets/firebase-app.js"></script>
+  <script>window.autoCountAndBind && window.autoCountAndBind();</script>
+  
+<!-- Floating Auth Button + Modal -->
+<style>
+  #auth-fab{
+    position:fixed; right:16px; bottom:68px; z-index:9998;
+    width:48px; height:48px; border-radius:999px; border:none; cursor:pointer;
+    background:#111827; color:#fff; display:grid; place-items:center;
+    box-shadow:0 8px 20px rgba(0,0,0,.35); border:1px solid rgba(255,255,255,.1);
+  }
+  body.logged-in #auth-fab::after{ content:"✓"; }
+  #auth-fab::after{ content:"👤"; font-size:20px; }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    #auth-fab{ bottom: calc(68px + env(safe-area-inset-bottom)); }
+  }
+  .views-badge{
+    position:fixed; left:12px; bottom:12px; z-index:9998; 
+    background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px;
+    font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)
+  }
+  dialog#auth-modal{
+    border:none; border-radius:16px; padding:0; width:min(90vw,420px);
+    box-shadow:0 24px 72px rgba(0,0,0,.35); overflow:hidden;
+  }
+  dialog::backdrop{ background:rgba(0,0,0,.4); }
+  .auth-modal-head{background:#0f172a; color:#fff; padding:12px 16px; display:flex; justify-content:space-between; align-items:center}
+  .auth-modal-body{padding:16px; background:#111827; color:#e5e7eb}
+  .auth-modal-body label{display:block; font-size:13px; margin-top:8px; opacity:.9}
+  .auth-modal-body input{width:100%; padding:10px 12px; border-radius:10px; border:1px solid #1f2937; background:#0b1021; color:#e5e7eb}
+  .auth-actions{display:flex; gap:8px; margin-top:14px}
+  .btn{border:none; border-radius:10px; padding:10px 12px; cursor:pointer; font-weight:600}
+  .btn-primary{background:#22c55e; color:white}
+  .btn-ghost{background:transparent; color:#e5e7eb; border:1px solid #374151}
+  .muted{opacity:.8}
+</style>
+
+<button id="auth-fab" title="Connexion / Compte"></button>
+<div class="views-badge">Vues : <span id="viewCounter">0</span></div>
+
+<dialog id="auth-modal">
+  <div class="auth-modal-head">
+    <strong>Connexion</strong>
+    <button class="btn btn-ghost" id="auth-close" aria-label="Fermer">✕</button>
+  </div>
+  <div class="auth-modal-body">
+    <p class="muted">Connecte-toi pour accéder à l’admin et une meilleure expérience.</p>
+    <label>Email</label>
+    <input type="email" id="auth-email" placeholder="email@exemple.com" required>
+    <label>Mot de passe</label>
+    <input type="password" id="auth-pass" placeholder="••••••••" required>
+    <div class="auth-actions">
+      <button class="btn btn-primary" id="btn-login">Connexion</button>
+      <button class="btn btn-ghost" id="btn-register">Créer un compte</button>
+      <button class="btn btn-ghost" id="btn-logout">Déconnexion</button>
+    </div>
+    <div id="auth-msg" class="muted" style="margin-top:8px;"></div>
+  </div>
+</dialog>
+
+<script type="module">
+  import { authRegister, authLogin, authLogout } from "./assets/firebase-app.js";
+
+  const fab = document.getElementById("auth-fab");
+  const modal = document.getElementById("auth-modal");
+  const closeBtn = document.getElementById("auth-close");
+  const email = document.getElementById("auth-email");
+  const pass = document.getElementById("auth-pass");
+  const msg  = document.getElementById("auth-msg");
+  const btnLogin = document.getElementById("btn-login");
+  const btnRegister = document.getElementById("btn-register");
+  const btnLogout = document.getElementById("btn-logout");
+
+  function openModal(){ try{ modal.showModal(); }catch{ modal.setAttribute("open",""); } }
+  function closeModal(){ modal.close?.(); modal.removeAttribute("open"); }
+
+  fab?.addEventListener("click", openModal);
+  closeBtn?.addEventListener("click", closeModal);
+
+  async function handle(run){
+    msg.textContent = "";
+    try{
+      await run(email.value.trim(), pass.value);
+      msg.textContent = "✅ Opération réussie.";
+      setTimeout(()=>{ closeModal(); }, 500);
+    }catch(e){
+      console.error(e);
+      msg.textContent = "❌ " + (e?.message || "Erreur");
+    }
+  }
+
+  btnLogin?.addEventListener("click", () => handle(authLogin));
+  btnRegister?.addEventListener("click", () => handle(authRegister));
+  btnLogout?.addEventListener("click", async () => {
+    msg.textContent = "";
+    try{ await authLogout(); msg.textContent = "✅ Déconnecté."; }catch(e){ msg.textContent = "❌ " + (e?.message||"Erreur"); }
+  });
+</script>
+
+
+<!-- Per-card view counters -->
+<style>
+  .card-views-badge{
+    position:absolute; top:8px; right:8px;
+    background:rgba(17,24,39,.9); color:#fff;
+    padding:4px 8px; border-radius:999px; font:600 12px system-ui,Segoe UI,Roboto,Arial;
+    box-shadow:0 6px 14px rgba(0,0,0,.25);
+    pointer-events:none;
+  }
+  .card-views-wrap{ position:relative; }
+</style>
+<script type="module">
+  import { getViewCount } from "./assets/firebase-app.js";
+  function basename(href){
+    try{ const u = new URL(href, location.href);
+         const file = u.pathname.split('/').pop() || 'index.html';
+         return file.replace(/\.html$/i,''); }
+    catch{ return (href.split('/').pop()||'index.html').replace(/\.html$/i,''); }
+  }
+  async function attachCounterTo(el, docId){
+    let container = el.closest('.card, .item, .panel, .box, .article, .doc, .tile');
+    if(!container){ container = el.parentElement; }
+    if(container && !container.classList.contains('card-views-wrap')){
+      container.classList.add('card-views-wrap');
+    }
+    const host = container || el;
+    if(host.querySelector('.card-views-badge[data-doc="'+docId+'"]')) return;
+    const badge = document.createElement('span');
+    badge.className = 'card-views-badge';
+    badge.dataset.doc = docId;
+    badge.textContent = 'Vues: …';
+    host.appendChild(badge);
+    try{ const n = await getViewCount(docId);
+         badge.textContent = 'Vues: ' + n; }
+    catch{ badge.textContent = 'Vues: —'; }
+  }
+  async function initCardCounters(){
+    const links = Array.from(document.querySelectorAll('[data-doc-id], a[href$=".html"]'))
+      .filter(a => {
+        const id = a.getAttribute('data-doc-id') || basename(a.getAttribute('href')||'');
+        return id && !['index','admin','offline'].includes(id.toLowerCase());
+      });
+    const handled = new Set();
+    for(const a of links){
+      const id = a.getAttribute('data-doc-id') || basename(a.getAttribute('href')||'');
+      if(!id || handled.has(id)) continue;
+      handled.add(id);
+      attachCounterTo(a, id);
+    }
+  }
+  initCardCounters();
+  const obs = new MutationObserver(()=>initCardCounters());
+  obs.observe(document.body, { childList:true, subtree:true });
+</script>
+
+</body>
+</html>

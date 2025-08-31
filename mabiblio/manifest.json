@@ -1,0 +1,21 @@
+{
+  "name": "Bibliothèque Juridique",
+  "short_name": "Bibliothèque",
+  "description": "Bibliothèque Juridique de la Fonction Publique Ivoirienne",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#007a4d",
+  "icons": [
+    {
+      "src": "chemin/vers/votre/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "chemin/vers/votre/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

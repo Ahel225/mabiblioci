@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0S7XLZ1LS6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0S7XLZ1LS6');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#007a4d">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Codes essentiels pour le Citoyen Ivoirien</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f9f7ff 0%, #f0e6ff 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            width: 100%;
+            max-width: 1000px;
+            padding: 25px;
+            background: linear-gradient(120deg, #6a11cb 0%, #2575fc 100%);
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(106, 17, 203, 0.3);
+            color: white;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .offline-info {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 12px 18px;
+            border-radius: 10px;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            max-width: 600px;
+            margin: 15px auto 0;
+            backdrop-filter: blur(5px);
+        }
+        
+        .offline-info i {
+            margin-right: 10px;
+            color: #ffdd59;
+        }
+        
+        .portfolio {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1200px;
+            margin-bottom: 40px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            border: 2px solid transparent;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            border-color: #6a11cb;
+        }
+        
+        .card-image {
+            height: 180px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .card:hover .card-image img {
+            transform: scale(1.15);
+        }
+        
+        .card-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .card p {
+            color: #5c6b7e;
+            margin-bottom: 20px;
+            flex-grow: 1;
+            line-height: 1.5;
+        }
+        
+        .card-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        
+        .card-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            flex: 1;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-button i {
+            margin-right: 8px;
+        }
+        
+        .card-button.primary {
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+        }
+        
+        .card-button.primary:hover {
+            box-shadow: 0 6px 12px rgba(255, 126, 95, 0.4);
+        }
+        
+        .card-button.secondary {
+            background: linear-gradient(to right, #42e695, #3bb2b8);
+        }
+        
+        .card-button.secondary:hover {
+            box-shadow: 0 6px 12px rgba(66, 230, 149, 0.4);
+        }
+        
+        .card-button.downloaded {
+            background: linear-gradient(to right, #7f8c8d, #95a5a6);
+        }
+        
+        .card-button:hover {
+            transform: translateY(-3px);
+        }
+        
+        /* Styles spécifiques pour chaque type de carte */
+        .card-marriage {
+            border-top: 5px solid #ff7e5f;
+        }
+        
+        .card-marriage .card-image {
+            background: linear-gradient(45deg, #ff7e5f, #feb47b);
+        }
+        
+        .card-divorce {
+            border-top: 5px solid #7474BF;
+        }
+        
+        .card-divorce .card-image {
+            background: linear-gradient(45deg, #7474BF, #348AC7);
+        }
+        
+        .card-minority {
+            border-top: 5px solid #3CA55C;
+        }
+        
+        .card-minority .card-image {
+            background: linear-gradient(45deg, #3CA55C, #B5AC49);
+        }
+        
+        .card-adoption {
+            border-top: 5px solid #8E44AD;
+        }
+        
+        .card-adoption .card-image {
+            background: linear-gradient(45deg, #8E44AD, #C0392B);
+        }
+        
+        .card-succession {
+            border-top: 5px solid #1A2980;
+        }
+        
+        .card-succession .card-image {
+            background: linear-gradient(45deg, #1A2980, #26D0CE);
+        }
+        
+        .card-penal-procedure {
+    border-top: 5px solid #1A2980;
+}
+
+.card-penal-procedure .card-image {
+    background: linear-gradient(45deg, #1A2980, #26D0CE);
+}
+
+.card-penal {
+    border-top: 5px solid #C0392B;
+}
+
+.card-penal .card-image {
+    background: linear-gradient(45deg, #C0392B, #E74C3C);
+}
+
+        .icon {
+            font-size: 3.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .footer {
+            margin-top: 50px;
+            text-align: center;
+            color: white;
+            font-size: 0.9rem;
+            padding: 20px;
+            width: 100%;
+            max-width: 1000px;
+            background: linear-gradient(120deg, #6a11cb 0%, #2575fc 100%);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(106, 17, 203, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .portfolio {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .card-buttons {
+                flex-direction: column;
+            }
+        }
+        
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background: linear-gradient(to right, #42e695, #3bb2b8);
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.4s ease;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+        }
+        
+        .notification i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .offline-documents {
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 15px 20px;
+            border-radius: 10px;
+            border-left: 4px solid #ffdd59;
+            backdrop-filter: blur(5px);
+        }
+        
+        .offline-documents h4 {
+            margin-bottom: 10px;
+            color: #ffdd59;
+        }
+        
+        #offline-list ul {
+            list-style: none;
+        }
+        
+        #offline-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+        }
+        
+        #offline-list li:last-child {
+            border-bottom: none;
+        }
+        
+        #offline-list i {
+            margin-right: 10px;
+            color: #ffdd59;
+        }
+    </style>
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#22c55e">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+
+<!-- HIDE AUTH/VIEWS WIDGETS OUTSIDE HOME (safe) -->
+<style>
+  #auth-fab, .views-badge, #auth-modal, .card-views-badge { display: none !important; }
+</style>
+
+</head>
+<body>
+    <div class="header">
+        <h1>Codes essentiels pour le Citoyen</h1>
+        <p>Porte-documents des textes juridiques fondamentaux</p>
+        
+        <div class="offline-info">
+            <i class="fas fa-info-circle"></i>
+            <p>Cette application fonctionne hors ligne. Les documents peuvent être téléchargés pour consultation sans connexion Internet.</p>
+        </div>
+        
+        <div class="offline-documents">
+            <h4>Documents disponibles hors ligne :</h4>
+            <div id="offline-list">
+                <p>Aucun document téléchargé pour le moment.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="portfolio">
+        <div class="card card-marriage">
+            <div class="card-image">
+                <i class="fas fa-ring icon"></i>
+            </div>
+            <div class="card-content">
+                <h2>Loi relative au mariage</h2>
+                <p>Textes juridiques régissant le mariage, les conditions de formation du lien matrimonial, les droits et obligations des époux, ainsi que les régimes matrimoniaux.</p>
+                <div class="card-buttons">
+                    <a href="loi_mariage.html" class="card-button primary"><i class="fas fa-eye"></i> Consulter</a>
+                    <button class="card-button secondary" onclick="downloadDocument('mariage')" id="btn-mariage"><i class="fas fa-download"></i> Télécharger</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card card-divorce">
+            <div class="card-image">
+                <i class="fas fa-balance-scale icon"></i>
+            </div>
+            <div class="card-content">
+                <h2>Loi relative à la séparation de corps et au divorce</h2>
+                <p>Dispositions légales concernant la dissolution du mariage, les procédures de divorce, la séparation de corps et leurs effets juridiques.</p>
+                <div class="card-buttons">
+                    <a href="document-divorce.html" class="card-button primary"><i class="fas fa-eye"></i> Consulter</a>
+                    <button class="card-button secondary" onclick="downloadDocument('divorce')" id="btn-divorce"><i class="fas fa-download"></i> Télécharger</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card card-minority">
+            <div class="card-image">
+                <i class="fas fa-child icon"></i>
+            </div>
+            <div class="card-content">
+                <h2>Loi relative à la minorité</h2>
+                <p>Textes définissant le statut du mineur, la protection de l'enfance, l'autorité parentale, l'émancipation et les droits des mineurs.</p>
+                <div class="card-buttons">
+                    <a href="loiminorite.html" class="card-button primary"><i class="fas fa-eye"></i> Consulter</a>
+                    <button class="card-button secondary" onclick="downloadDocument('minorite')" id="btn-minorite"><i class="fas fa-download"></i> Télécharger</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card card-adoption">
+            <div class="card-image">
+                <i class="fas fa-hands-helping icon"></i>
+            </div>
+            <div class="card-content">
+                <h2>Loi relative à l'adoption</h2>
+                <p>Réglementation des conditions et procédures d'adoption, les effets de l'adoption plénière et simple, et les droits des parties concernées.</p>
+                <div class="card-buttons">
+                    <a href="document-adoption.html" class="card-button primary"><i class="fas fa-eye"></i> Consulter</a>
+                    <button class="card-button secondary" onclick="downloadDocument('adoption')" id="btn-adoption"><i class="fas fa-download"></i> Télécharger</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card card-succession">
+            <div class="card-image">
+                <i class="fas fa-landmark icon"></i>
+            </div>
+            <div class="card-content">
+                <h2>Loi relative à la succession</h2>
+                <p>Règles encadrant la dévolution successorale, les testaments, les donations, la réserve héréditaire et le partage des biens.</p>
+                <div class="card-buttons">
+                    <a href="loi_succession.html" class="card-button primary"><i class="fas fa-eye"></i> Consulter</a>
+                    <button class="card-button secondary" onclick="downloadDocument('succession')" id="btn-succession"><i class="fas fa-download"></i> Télécharger</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card card-etat-civil">
+        <div class="card-image">
+            <i class="fas fa-landmark icon"></i>
+        </div>
+        <div class="card-content">
+            <h2>Loi relative à l'état civil</h2>
+            <p>Dispositions légales sur les actes de naissance, de mariage et de décès, ainsi que les procédures de rectification et de reconstitution en Côte d'Ivoire.</p>
+            <div class="card-buttons">
+                <a href="loietatcivil.html" class="card-button primary"><i class="fas fa-eye"></i> Consulter</a>
+                <button class="card-button secondary" onclick="downloadDocument()" id="btn-etat-civil"><i class="fas fa-download"></i> Télécharger</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="card card-penal-procedure">
+    <div class="card-image">
+        <i class="fas fa-gavel icon"></i>
+    </div>
+    <div class="card-content">
+        <h2>Code de Procédure Pénale</h2>
+        <p>Règles de procédure applicables aux enquêtes, poursuites et jugements des infractions pénales en Côte d'Ivoire, garantissant les droits des justiciables.</p>
+        <div class="card-buttons">
+            <a href="code_procedure_penale.html" class="card-button primary"><i class="fas fa-eye"></i> Consulter</a>
+            <button class="card-button secondary" onclick="downloadDocument('procedure_penale')" id="btn-procedure_penale"><i class="fas fa-download"></i> Télécharger</button>
+        </div>
+    </div>
+</div>
+
+<div class="card card-penal">
+    <div class="card-image">
+        <i class="fas fa-handcuffs icon"></i>
+    </div>
+    <div class="card-content">
+        <h2>Code Pénal</h2>
+        <p>Textes définissant les infractions et leurs sanctions en droit ivoirien, classification des crimes, délits et contraventions, et principes de la responsabilité pénale.</p>
+        <div class="card-buttons">
+            <a href="code_penal.html" class="card-button primary"><i class="fas fa-eye"></i> Consulter</a>
+            <button class="card-button secondary" onclick="downloadDocument('penal')" id="btn-penal"><i class="fas fa-download"></i> Télécharger</button>
+        </div>
+    </div>
+</div>
+
+    </div>
+
+    
+    
+    <div class="footer">
+        <p>© 2025 Porte-documents juridiques - L'essentiel des codes pour la Culture et l'Éducation du Citoyen</p>
+        <p>Cette application fonctionne hors ligne. Les documents téléchargés sont accessibles sans connexion Internet.</p>
+    </div>
+
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle"></i>
+        <span>Document téléchargé avec succès et disponible hors ligne !</span>
+    </div>
+
+    <script>
+        // Initialisation
+        window.addEventListener('load', () => {
+            updateDownloadButtons();
+            updateOfflineList();
+            
+            if (!navigator.onLine) {
+                showNotification("Vous êtes en mode hors ligne. Les documents téléchargés sont disponibles.", true);
+            }
+        });
+
+        // Fonction pour télécharger un document
+        function downloadDocument(type) {
+            // Enregistrer dans le localStorage que le document est téléchargé
+            const downloadedDocs = JSON.parse(localStorage.getItem('downloadedDocs') || '{}');
+            downloadedDocs[type] = true;
+            localStorage.setItem('downloadedDocs', JSON.stringify(downloadedDocs));
+            
+            // Mettre à jour l'interface
+            updateDownloadButtons();
+            updateOfflineList();
+            
+            // Afficher une notification
+            showNotification("Document téléchargé avec succès et disponible hors ligne !");
+        }
+
+        // Mettre à jour l'apparence des boutons de téléchargement
+        function updateDownloadButtons() {
+            const downloadedDocs = JSON.parse(localStorage.getItem('downloadedDocs') || '{}');
+            
+            for (const type in downloadedDocs) {
+                const button = document.getElementById(`btn-${type}`);
+                if (button) {
+                    button.innerHTML = '<i class="fas fa-check"></i> Téléchargé';
+                    button.classList.remove('secondary');
+                    button.classList.add('downloaded');
+                    button.onclick = null;
+                }
+            }
+        }
+
+        // Mettre à jour la liste des documents hors ligne
+        function updateOfflineList() {
+            const downloadedDocs = JSON.parse(localStorage.getItem('downloadedDocs') || '{}');
+            const types = {
+                'mariage': 'Loi relative au mariage',
+                'divorce': 'Loi relative au divorce',
+                'minorite': 'Loi relative à la minorité',
+                'adoption': 'Loi relative à l\'adoption',
+                'succession': 'Loi relative à la succession',
+                'procedure_penale': 'Code de Procédure Pénale',
+                'penal': 'Code Pénal'
+                
+            };
+            
+            const offlineList = document.getElementById('offline-list');
+            
+            if (Object.keys(downloadedDocs).length === 0) {
+                offlineList.innerHTML = '<p>Aucun document téléchargé pour le moment.</p>';
+                return;
+            }
+            
+            let html = '<ul>';
+            for (const type in downloadedDocs) {
+                html += `<li><i class="fas fa-file-pdf"></i> ${types[type]}</li>`;
+            }
+            html += '</ul>';
+            
+            offlineList.innerHTML = html;
+        }
+
+        // Afficher une notification
+        function showNotification(message, isWarning = false) {
+            const notification = document.getElementById('notification');
+            
+            if (isWarning) {
+                notification.style.background = 'linear-gradient(to right, #ff5e62, #ff9966)';
+                notification.innerHTML = '<i class="fas fa-exclamation-triangle"></i> <span>' + message + '</span>';
+            } else {
+                notification.style.background = 'linear-gradient(to right, #42e695, #3bb2b8)';
+                notification.innerHTML = '<i class="fas fa-check-circle"></i> <span>' + message + '</span>';
+            }
+            
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Gérer le statut de connexion
+        window.addEventListener('online', () => {
+            showNotification("Connexion Internet rétablie.");
+        });
+        
+        window.addEventListener('offline', () => {
+            showNotification("Vous êtes maintenant hors ligne. Les documents téléchargés restent accessibles.", true);
+        });
+    </script>
+  <script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js"));
+  }
+</script>
+  <!-- PWA Install Button -->
+<button id="pwa-install-btn" aria-label="Installer l'application" hidden>Installer</button>
+<style>
+  #pwa-install-btn{
+    position:fixed; right:16px; bottom:16px; z-index:9999;
+    padding:10px 14px; border:none; border-radius:999px;
+    background:#22c55e; color:white; font:600 14px system-ui,Segoe UI,Roboto,Arial,sans-serif;
+    box-shadow:0 8px 20px rgba(34,197,94,.35);
+  }
+  #pwa-install-btn[hidden]{ display:none; }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    #pwa-install-btn{ bottom: calc(16px + env(safe-area-inset-bottom)); }
+  }
+</style>
+<script>
+  (function(){
+    let deferredPrompt;
+    const btnId = "pwa-install-btn";
+    function ensureBtn(){
+      let b = document.getElementById(btnId);
+      if(!b){
+        b = document.createElement("button");
+        b.id = btnId;
+        b.textContent = "Installer";
+        document.body.appendChild(b);
+      }
+      return b;
+    }
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      const btn = ensureBtn();
+      btn.hidden = false;
+      btn.onclick = async () => {
+        btn.hidden = true;
+        deferredPrompt.prompt();
+        await deferredPrompt.userChoice;
+        deferredPrompt = null;
+      };
+    });
+    if (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) {
+      const btn = document.getElementById(btnId);
+      if(btn) btn.hidden = true;
+    }
+  })();
+</script>
+  <!-- Auth UI minimal -->
+<style>
+  .auth-box{position:fixed; top:12px; right:12px; z-index:9998; background:#ffffff; color:#111827; border-radius:12px; padding:10px 12px; box-shadow:0 10px 24px rgba(0,0,0,.12); font:500 14px system-ui,Segoe UI,Roboto,Arial}
+  .auth-box h4{margin:0 0 6px; font-size:14px}
+  .auth-box form{display:flex; gap:6px; flex-wrap:wrap; align-items:center}
+  .auth-box input{padding:6px 8px; border:1px solid #e5e7eb; border-radius:8px}
+  .auth-box button{background:#22c55e; color:#fff; border:none; padding:6px 10px; border-radius:8px; cursor:pointer}
+  .auth-box .row{display:flex; gap:6px; flex-wrap:wrap}
+  .views-badge{position:fixed; left:12px; bottom:12px; z-index:9998; background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px; font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)}
+</style><!-- Admin link (visible only when logged-in) -->
+<style>
+  .admin-link{
+    position:fixed; right:16px; bottom:88px; z-index:9998;
+    display:none; align-items:center; gap:8px;
+    padding:10px 14px; border-radius:999px; text-decoration:none;
+    background:#111827; color:#fff; font:600 14px system-ui,Segoe UI,Roboto,Arial;
+    box-shadow:0 8px 20px rgba(0,0,0,.3);
+    border:1px solid rgba(255,255,255,.1);
+  }
+  body.logged-in .admin-link{ display:inline-flex; }
+  .admin-link:hover{ filter:brightness(1.1); }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    .admin-link{ bottom: calc(88px + env(safe-area-inset-bottom)); }
+  }
+</style>
+<a href="admin.html" class="admin-link" title="Tableau de bord">Admin</a>
+  <script type="module" src="assets/firebase-app.js"></script>
+  <script>window.autoCountAndBind && window.autoCountAndBind();</script>
+  
+<!-- Floating Auth Button + Modal -->
+<style>
+  #auth-fab{
+    position:fixed; right:16px; bottom:68px; z-index:9998;
+    width:48px; height:48px; border-radius:999px; border:none; cursor:pointer;
+    background:#111827; color:#fff; display:grid; place-items:center;
+    box-shadow:0 8px 20px rgba(0,0,0,.35); border:1px solid rgba(255,255,255,.1);
+  }
+  body.logged-in #auth-fab::after{ content:"✓"; }
+  #auth-fab::after{ content:"👤"; font-size:20px; }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    #auth-fab{ bottom: calc(68px + env(safe-area-inset-bottom)); }
+  }
+  .views-badge{
+    position:fixed; left:12px; bottom:12px; z-index:9998; 
+    background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px;
+    font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)
+  }
+  dialog#auth-modal{
+    border:none; border-radius:16px; padding:0; width:min(90vw,420px);
+    box-shadow:0 24px 72px rgba(0,0,0,.35); overflow:hidden;
+  }
+  dialog::backdrop{ background:rgba(0,0,0,.4); }
+  .auth-modal-head{background:#0f172a; color:#fff; padding:12px 16px; display:flex; justify-content:space-between; align-items:center}
+  .auth-modal-body{padding:16px; background:#111827; color:#e5e7eb}
+  .auth-modal-body label{display:block; font-size:13px; margin-top:8px; opacity:.9}
+  .auth-modal-body input{width:100%; padding:10px 12px; border-radius:10px; border:1px solid #1f2937; background:#0b1021; color:#e5e7eb}
+  .auth-actions{display:flex; gap:8px; margin-top:14px}
+  .btn{border:none; border-radius:10px; padding:10px 12px; cursor:pointer; font-weight:600}
+  .btn-primary{background:#22c55e; color:white}
+  .btn-ghost{background:transparent; color:#e5e7eb; border:1px solid #374151}
+  .muted{opacity:.8}
+</style>
+
+<button id="auth-fab" title="Connexion / Compte"></button>
+<div class="views-badge">Vues : <span id="viewCounter">0</span></div>
+
+<dialog id="auth-modal">
+  <div class="auth-modal-head">
+    <strong>Connexion</strong>
+    <button class="btn btn-ghost" id="auth-close" aria-label="Fermer">✕</button>
+  </div>
+  <div class="auth-modal-body">
+    <p class="muted">Connecte-toi pour accéder à l’admin et une meilleure expérience.</p>
+    <label>Email</label>
+    <input type="email" id="auth-email" placeholder="email@exemple.com" required>
+    <label>Mot de passe</label>
+    <input type="password" id="auth-pass" placeholder="••••••••" required>
+    <div class="auth-actions">
+      <button class="btn btn-primary" id="btn-login">Connexion</button>
+      <button class="btn btn-ghost" id="btn-register">Créer un compte</button>
+      <button class="btn btn-ghost" id="btn-logout">Déconnexion</button>
+    </div>
+    <div id="auth-msg" class="muted" style="margin-top:8px;"></div>
+  </div>
+</dialog>
+
+<script type="module">
+  import { authRegister, authLogin, authLogout } from "./assets/firebase-app.js";
+
+  const fab = document.getElementById("auth-fab");
+  const modal = document.getElementById("auth-modal");
+  const closeBtn = document.getElementById("auth-close");
+  const email = document.getElementById("auth-email");
+  const pass = document.getElementById("auth-pass");
+  const msg  = document.getElementById("auth-msg");
+  const btnLogin = document.getElementById("btn-login");
+  const btnRegister = document.getElementById("btn-register");
+  const btnLogout = document.getElementById("btn-logout");
+
+  function openModal(){ try{ modal.showModal(); }catch{ modal.setAttribute("open",""); } }
+  function closeModal(){ modal.close?.(); modal.removeAttribute("open"); }
+
+  fab?.addEventListener("click", openModal);
+  closeBtn?.addEventListener("click", closeModal);
+
+  async function handle(run){
+    msg.textContent = "";
+    try{
+      await run(email.value.trim(), pass.value);
+      msg.textContent = "✅ Opération réussie.";
+      setTimeout(()=>{ closeModal(); }, 500);
+    }catch(e){
+      console.error(e);
+      msg.textContent = "❌ " + (e?.message || "Erreur");
+    }
+  }
+
+  btnLogin?.addEventListener("click", () => handle(authLogin));
+  btnRegister?.addEventListener("click", () => handle(authRegister));
+  btnLogout?.addEventListener("click", async () => {
+    msg.textContent = "";
+    try{ await authLogout(); msg.textContent = "✅ Déconnecté."; }catch(e){ msg.textContent = "❌ " + (e?.message||"Erreur"); }
+  });
+</script>
+
+
+<!-- Per-card view counters -->
+<style>
+  .card-views-badge{
+    position:absolute; top:8px; right:8px;
+    background:rgba(17,24,39,.9); color:#fff;
+    padding:4px 8px; border-radius:999px; font:600 12px system-ui,Segoe UI,Roboto,Arial;
+    box-shadow:0 6px 14px rgba(0,0,0,.25);
+    pointer-events:none;
+  }
+  .card-views-wrap{ position:relative; }
+</style>
+<script type="module">
+  import { getViewCount } from "./assets/firebase-app.js";
+  function basename(href){
+    try{ const u = new URL(href, location.href);
+         const file = u.pathname.split('/').pop() || 'index.html';
+         return file.replace(/\.html$/i,''); }
+    catch{ return (href.split('/').pop()||'index.html').replace(/\.html$/i,''); }
+  }
+  async function attachCounterTo(el, docId){
+    let container = el.closest('.card, .item, .panel, .box, .article, .doc, .tile');
+    if(!container){ container = el.parentElement; }
+    if(container && !container.classList.contains('card-views-wrap')){
+      container.classList.add('card-views-wrap');
+    }
+    const host = container || el;
+    if(host.querySelector('.card-views-badge[data-doc="'+docId+'"]')) return;
+    const badge = document.createElement('span');
+    badge.className = 'card-views-badge';
+    badge.dataset.doc = docId;
+    badge.textContent = 'Vues: …';
+    host.appendChild(badge);
+    try{ const n = await getViewCount(docId);
+         badge.textContent = 'Vues: ' + n; }
+    catch{ badge.textContent = 'Vues: —'; }
+  }
+  async function initCardCounters(){
+    const links = Array.from(document.querySelectorAll('[data-doc-id], a[href$=".html"]'))
+      .filter(a => {
+        const id = a.getAttribute('data-doc-id') || basename(a.getAttribute('href')||'');
+        return id && !['index','admin','offline'].includes(id.toLowerCase());
+      });
+    const handled = new Set();
+    for(const a of links){
+      const id = a.getAttribute('data-doc-id') || basename(a.getAttribute('href')||'');
+      if(!id || handled.has(id)) continue;
+      handled.add(id);
+      attachCounterTo(a, id);
+    }
+  }
+  initCardCounters();
+  const obs = new MutationObserver(()=>initCardCounters());
+  obs.observe(document.body, { childList:true, subtree:true });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+/* Styles pour l'effet de survol desktop et mobile */
+#select-doc12 {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    min-height: 200px;
+    cursor: pointer; /* Indique que la carte est cliquable */
+}
+
+#select-doc12::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('logo_police.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+    border-radius: 8px;
+}
+
+#select-doc12:hover::before,
+#select-doc12:active::before,
+#select-doc12.touch-active::before { /* Classe pour l'état tactile */
+    opacity: 0.9;
+}
+
+.doc-card-content {
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s ease;
+    background: transparent;
+    padding: 15px;
+    border-radius: 5px;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+#select-doc12:hover .doc-card-content,
+#select-doc12:active .doc-card-content,
+#select-doc12.touch-active .doc-card-content {
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+}
+
+#select-doc12:hover h2,
+#select-doc12:active h2,
+#select-doc12.touch-active h2 {
+    color: white;
+    border-bottom-color: rgba(255, 255, 255, 0.5);
+}
+
+#select-doc12:hover .doc-meta,
+#select-doc12:active .doc-meta,
+#select-doc12.touch-active .doc-meta {
+    color: #f0f0f0;
+}
+
+/* Adaptation pour mobile */
+@media (max-width: 768px) {
+    #select-doc12 {
+        min-height: 180px;
+        -webkit-tap-highlight-color: transparent; /* Désactive le surlignage au tap sur iOS */
+    }
+    
+    #select-doc12::before {
+        background-size: contain;
+    }
+    
+    .doc-card-content {
+        padding: 12px;
+    }
+    
+    #select-doc12:hover .doc-card-content,
+    #select-doc12:active .doc-card-content,
+    #select-doc12.touch-active .doc-card-content {
+        background: rgba(0, 0, 0, 0.8);
+    }
+}
+
+@media (max-width: 480px) {
+    #select-doc12 {
+        min-height: 160px;
+    }
+    
+    .doc-card-content {
+        padding: 10px;
+    }
+    
+    #select-doc12:hover .doc-card-content,
+    #select-doc12:active .doc-card-content,
+    #select-doc12.touch-active .doc-card-content {
+        background: rgba(0, 0, 0, 0.85);
+    }
+}

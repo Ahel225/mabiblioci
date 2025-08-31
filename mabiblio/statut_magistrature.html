@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Statut de la Magistrature — Lecteur</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f9f6f3; --paper:#ffffff; --ink:#1c1e21;
+  --primary:#7a1f29; --primary-700:#5e1820; --accent:#c9a227;
+  --muted:#ece4db; --shadow:0 12px 28px rgba(0,0,0,.08); --radius:18px; --transition:.25s ease;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:'Raleway',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.6}
+header{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(255,255,255,.85));backdrop-filter:saturate(1.1) blur(8px);border-bottom:1px solid #eee}
+.container{max-width:1080px;margin:0 auto;padding:14px 16px;display:flex;align-items:center;gap:12px}
+.logo{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:radial-gradient(circle at 30% 30%, var(--accent), #e6ce84);color:#4a1b21;box-shadow:var(--shadow);font-size:18px}
+h1{margin:0;font-family:'Playfair Display',serif;font-size:20px;color:var(--primary-700)}
+.sub{color:#5f6b77;font-size:12px;margin-top:2px}
+.control-buttons{margin-left:auto;display:flex;gap:8px;align-items:center}
+.btn{width:38px;height:38px;border-radius:12px;border:1px solid #e5dfd6;background:#fff;color:var(--primary-700);display:grid;place-items:center;cursor:pointer;box-shadow:var(--shadow);transition:var(--transition)}
+.wrapper{max-width:1100px;margin:16px auto;padding:0 12px}
+.group{background:var(--paper);border:1px solid #eee;border-radius:var(--radius);box-shadow:var(--shadow);margin:14px 0;overflow:hidden}
+.group>h2{margin:0;padding:14px 16px;background:linear-gradient(180deg,#ffffff,#fbfaf8);border-bottom:1px solid #f1ebe3;color:var(--primary);font-size:18px;font-family:'Playfair Display',serif}
+.article{margin:10px 10px 14px 10px;padding:12px 14px;border-left:6px solid var(--primary);background:#fff;border-radius:14px;box-shadow:0 1px 0 rgba(0,0,0,.03)}
+.article h3{margin:0 0 6px 0;color:var(--primary-700)}
+.article-content p{margin:.4rem 0}.article-content ul,.article-content ol{margin:.5rem 0 .8rem 1.25rem}
+.article-content ol>li, .article-content ul>li{ padding:8px 0; line-height:1.7; border-bottom:1px solid #efe7d6; }
+.article-content ol>li:last-child, .article-content ul>li:last-child{ border-bottom:0; }
+.article-content li > ol > li, .article-content li > ul > li{ padding:6px 0; border-bottom:1px dashed #efe7d6; }
+.article-content li > ol > li:last-child, .article-content li > ul > li:last-child{ border-bottom:0; }
+.reading{ outline:2px solid var(--accent); outline-offset:2px; border-left-color:var(--accent) !important }
+mark{background:rgba(201,162,39,.35)}
+#tocFloatBtn{position:fixed; right:14px; bottom:92px; width:46px; height:46px; border-radius:50%; border:none; background:var(--primary); color:#fff; display:grid; place-items:center; box-shadow:0 10px 24px rgba(0,0,0,.25); z-index:1100;}
+#tocPanel{position:fixed; top:0; right:0; height:100%; width:86%; max-width:420px; background:#fff; border-left:1px solid #eee; box-shadow:-16px 0 35px rgba(0,0,0,.2); transform:translateX(100%); transition:transform .25s ease; z-index:1200; overflow:auto;}
+#tocOverlay{position:fixed; inset:0; background:rgba(0,0,0,.28); backdrop-filter:blur(2px); display:none; z-index:1190}
+#tocPanel.open{ transform:none } #tocOverlay.show{ display:block }
+#tocPanel header{position:sticky; top:0; background:#fff; padding:12px 14px; border-bottom:1px solid #eee}
+#tocPanel h3{margin:0; color:#5e1820} #tocPanel .toc-list{padding:12px 14px}
+#tocPanel .toc-list a{display:block; padding:6px 0; color:#4a1b21; text-decoration:none}
+#tocPanel .toc-sub{margin-left:10px; border-left:2px solid #f0f0f0; padding-left:8px}
+#voiceBar{position:fixed; left:50%; transform:translateX(-50%); bottom:14px; background:var(--primary-700); color:#fff; z-index:1150; border-radius:22px; padding:8px 12px; display:flex; gap:10px; align-items:center; box-shadow:0 12px 28px rgba(0,0,0,.3)}
+#voiceBar button{width:34px; height:34px; border-radius:10px; border:1px solid #d9d2ca; background:#fff; color:#fff; background:transparent; border-color:#f3e9d6; color:#f3e9d6; display:grid; place-items:center; cursor:pointer}
+#voiceBar .now{font-size:12px; max-width:52vw; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:#f1efe9}
+#fsOverlay{ position:fixed; inset:0; background:#fff; z-index:1300; display:none; }
+#fsOverlay.show{ display:block } #fsHeader{ position:sticky; top:0; background:#fff; padding:10px 14px; border-bottom:1px solid #eee; display:flex; align-items:center; gap:10px }
+#fsHeader .ttl{ font-weight:700; color:#5e1820; flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
+#fsHeader button{ width:36px; height:36px; border-radius:10px; border:1px solid #e7e1d7; background:#fff; }
+#fsBody{ padding:14px; height:calc(100% - 58px); overflow:auto } #fsBody .article-content{ font-size:1.04rem }
+#fsNavPrev,#fsNavNext{ position:fixed; top:50%; transform:translateY(-50%); width:42px; height:42px; border-radius:50%; border:none; background:var(--primary); color:#fff; display:grid; place-items:center; z-index:1310; opacity:.9 }
+#fsNavPrev{ left:10px } #fsNavNext{ right:10px }
+.article .open-fs{ float:right; margin-top:-6px; margin-right:-4px; width:34px; height:34px; border:1px solid #e7e1d7; background:#fff; border-radius:10px; cursor:pointer; }
+footer{max-width:1100px;margin:16px auto 26px;padding:0 12px;color:#6b6f75;font-size:12px}
+
+/* Header TOC button */
+#tocHeaderBtn{min-width:38px}
+
+/* ===== Anti-sélection / anti-copie ===== */
+.no-select, .no-select *:not(input):not(textarea):not(.selectable){
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  -webkit-touch-callout: none !important;
+}
+</style>
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#22c55e">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<!-- HIDE AUTH/VIEWS WIDGETS OUTSIDE HOME (safe) -->
+<style>
+  #auth-fab, .views-badge, #auth-modal, .card-views-badge { display: none !important; }
+</style>
+
+</head>
+<body>
+<header>
+  <div class="container">
+    <div class="logo"><i class="fa-solid fa-gavel"></i></div>
+    <div>
+      <h1>Statut de la Magistrature</h1>
+      <div class="sub">Loi n°2022-194 — Lecteur optimisé (bordeaux & or) • Mobile</div>
+    </div>
+    <div class="control-buttons"><button class="btn" id="tocHeaderBtn" title="Sommaire"><i class="fa-solid fa-list"></i></button>
+      <button class="btn" id="tocFloatBtn" title="Sommaire"><i class="fa-solid fa-scale-balanced"></i></button>
+      <a class="btn" id="btnAnnexe" href="annexe_magistrature_RESP.html" title="Annexes"><i class="fa-solid fa-table"></i></a>
+      <button class="btn" title="Haut de page" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fa-solid fa-angles-up"></i></button>
+    </div>
+  </div>
+</header>
+<main class="wrapper">
+<section class="group"><h2>CHAPITRE 1 — Dispositions générales</h2><div class="article" id="Article_1"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 1</h3><div class="article-content">Le corps judiciaire comprend les magistrats du siège de la Cour de cassation, du Conseil d'État, de la Cour des comptes, des cours d'appel, des cours d'appel de commerce, des cours administratives d'appel, des tribunaux de première instance, des tribunaux de commerce, des tribunaux administratifs, des Chambres régionales des comptes, du ministère public près lesdites juridictions et de l'Administration centrale du ministère de la Justice. Il comprend en outre les auditeurs de Justice.</div></div><div class="article" id="Article_2"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 2</h3><div class="article-content">La hiérarchie du corps judiciair e comprend deux grades comportant chacun deux groupes. A l'intérieur de chacun des groupes sont établis des échelons d'ancienneté. Le passage du second au premier grade est subordonné à l'inscription au tableau d'avancement. Le passage du second au premier groupe à l'intérieur du même grade est subordonné à l'inscription sur une liste d'aptitude. Le classement des emplois dans l'un et l'autre groupe de chaque grade ainsi que la détermination des échelons d'ancienneté sont organisés par décret.</div></div><div class="article" id="Article_3"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 3</h3><div class="article-content">Les fonctions exercées par les magistrats de chaque grade sont définies par le décret qui les nomme. Tout magistrat a vocation à être nommé au cours de sa carrière à des fonctions du siège, du parquet ou de l'Administration centrale du ministère de la Justice.</div></div><div class="article" id="Article_4"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 4</h3><div class="article-content">Le magistrat du siège n'est soumis dans l'exercice de ses fonctions qu'à l'autorité de la loi. Le magistrat du siège est indépendant. A cet égard, il règle les affaires dont il est saisi conformément à la loi. Il ne doit céder à aucune i nfluence, incitation, pression, menace ou intervention, directe ou indirecte. Lorsqu'il estime que son indépendance est menacée, le magistrat du siège a le droit de saisir le Conseil supérieur de la Magistrature.</div></div><div class="article" id="Article_5"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 5</h3><div class="article-content">Les magistrats du siège sont inamovibles. Ils ne peuvent recevoir, sans leur consentement, une affectation nouvelle, même en promotion, sauf lorsque les nécessités du service public de la justice l'exigent.</div></div><div class="article" id="Article_6"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 6</h3><div class="article-content">Les magistrats sont tenus au secret professionnel. Les magistrats du siège sont, en outre, tenus au secret des délibérations.</div></div><div class="article" id="Article_7"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 7</h3><div class="article-content">Les magistrats du ministère public et de l'Administration centrale du ministère de la Justice sont soumis au principe de la subordination hiérarchique et sont placés sous l'autorité du ministre de la Justice. Les magistrats du ministère public sont tenus de saisir la juridiction compétente de telles réquisitions ou conclusions conformément aux instructions écrites reçues de leurs supérieurs hiérarchiques. Toutefois, ils développent libremen t à l'audience les observations orales qu'ils croient convenables au bien de la justice.</div></div><div class="article" id="Article_8"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 8</h3><div class="article-content">Tout magistrat , lors de sa nomination à son premier poste et avant d'entrer en fonction, prête serment en ces termes : « Je jure de bien et fidèlement rempli r mes fonctions et de me conduire en tout comme un digne et loyal magistrat ». Il ne peut en aucun cas être relevé de ce serment. Le serment est prêté en audience solennelle devant les cours d'appel ou les cours d'appel de commerce pour les magistrats nommés pour la première fois dans une juridiction de l'ordre judiciaire et devant les cours administratives d'appel pour les magistrats nommés pour la première fois dans une juridiction de l'ordre administratif. Les magistrats nommés directement à la Chambre régionale des comptes prêtent serment devant la Cour des comptes. Les magistrats nommés directement à l'Administration centrale du ministère de la Justice prêtent serment devant la cour d'appel du siège du ministère de la Justice. Les magistr ats directement nommés dans les juridictions suprêmes prêtent serment devant ces juridictions. L'ancien magistrat prête à nouveau serment lorsqu'il est réintégré. En cas de nécessité, le magistrat prête provisoirement serment par écrit. Ce serment doit êtr e renouvelé au cours d'une audience solennelle.</div></div><div class="article" id="Article_9"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 9</h3><div class="article-content">Les magistrats sont installés dans leurs fonctions en audience solennelle de la juridiction au sein de laquelle ils sont nommés. En cas de nécessité, le supérieur hiérarchique du magistrat lui délivre un certificat de prise de service qui vaut installation provisoire.</div></div><div class="article" id="Article_10"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 10</h3><div class="article-content">Les magistrats sont libres de se constituer en organisations syndicales et de s'y affilier pour la défense de leurs intérêts et pour la protection de l'indépendance de la Magistrature.</div></div><div class="article" id="Article_11"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 11</h3><div class="article-content">Indépendamment des règles fixées par le Code pénal et les lois spéciales, le magistrat est protégé contre les menaces et attaquent de quelque nature qu'elles soient, dont il peut être l'objet dans l'exercice ou à l'occasion de l'exercice de ses fonctions. Cette protection s'étend également aux membres de la famille du magistrat . L'Etat doit réparer le préjudice moral, corporel ou matériel direct qui en résulte dans tous les cas non prévus par la législation des pensions. En cas de décès du magistrat dans l'exercice de ses fonctions résultant soit de voies de fait, soit d'actes terroristes ou de circonstances liées à des conflits armés, ses ayants droit bénéficient, en plus de leur pension, d'une indemnité forfait aire compensatrice et sont déclarés pupilles de la Nation. Cette indemnité forfaitaire est allouée au magistrat dont un membre de la famille est décédé dans les mêmes circonstances, en raison de sa fonction.</div></div><div class="article" id="Article_12"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 12</h3><div class="article-content">Le magistrat n'est civilement respons able que de ses fautes personnelles. Les condamnations prononcées contre le magistrat qui a commis une faute personnelle se rattachant au service public de la justice sont garanties par I 'Etat qui dispose du droit d'exercer contre lui l'action récursoire. Cette action récursoire est exercée devant le Conseil d'Etat. En cas de poursuite pénale contre le magistrat , il est procédé conformément aux dispositions du Code de procédure pénale relatives aux crimes et délits commis par les magistrats .</div></div><div class="article" id="Article_13"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 13</h3><div class="article-content">Les magistrats sont astreints à résider au siège de la juridiction à laquelle ils appartiennent ou sont rattachés. Toutefois, des dérogations à caractère individuel peuvent être accordées par les chefs des cours et des parquets. Les magistrats ne peuvent s'absenter de leur lieu de résidence sans congé ou permission si ce n'est pour cause de service.</div></div><div class="article" id="Article_14"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 14</h3><div class="article-content">Les magistrats ne peuvent, en dehors de leurs fonctions, être requis pour d'autres services publics.</div></div><div class="article" id="Article_15"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 15</h3><div class="article-content">Les magistrats sont astreint s au port du costume lors des audiences et des cérémonies publiques. La liste des cérémonies publiques concernées est déterminée par arrêté du ministre de la Justice. Le costume est fourni par l'Etat. Les caractéristiques du costume sont définies par décre t, sur proposition du Conseil supérieur de la Magistrature.</div></div><div class="article" id="Article_16"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 16</h3><div class="article-content">Lorsque le nombre des magistrats en fonction dans une juridiction est insuffisant pour assurer la continuité du service public, il peut y être exceptionnellement remédié par la nominati on à titre intérimaire, dans les conditions fixées par décret, pour une durée n'excédant pas deux années judiciaires, de magistrats titulaires d'autres fonctions. En aucun cas, le magistrat intérimaire ne peut se voir confier des fonctions lui donnant auto rité sur les magistrats appartenant à un grade supérieur au sien ou plus anciens dans le grade.</div></div></section><section class="group"><h2>CHAPITRE 2 — Recrutement</h2><div class="article" id="Article_17"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 17</h3><div class="article-content">Sous réserve des dispositions de l'article 21 et des dispositions particulières applicables aux magistrats de la Cour des comptes, nul ne peut être nommé magistrat s'il n'a accompli préalablement un stage de formation professionnelle assuré par la structure chargée de la formation des magistrats et satisfait aux examens de fin de stage. L'admission au stage a lieu par voie de concours ou sur titre dans les conditions fixées à l'article 20.</div></div><div class="article" id="Article_18"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 18</h3><div class="article-content">Les candidats au concours doivent : 1° être titulaires de la maîtrise en droit ou du master en droit ; 2° être de nationalité ivoirienne ; 3° jouir de leurs droits civiques et êtr e de bonne moralité ; 4° remplir les conditions d'aptitude physique nécessaires à l'exercice de leurs fonctions, et être reconnus indemnes ou définitivement guéris de toute affection donnant droit à un congé de longue durée ; 5° être majeurs et avoir 40 an s au plus au 31 décembre de l'année du concours ; les dispositions législatives portant recul de la limite d'âge pour l'accès par voie de concours aux emplois publics sont applicables dans les mêmes conditions à l'accès par voie de concours à la Magistratu re ; 6° avoir été autorisés à subir les épreuves du concours.</div></div><div class="article" id="Article_19"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 19</h3><div class="article-content">Les candidats admis au stage prévu à l'article 17 sont nommés auditeurs de Justice par arrêté du ministre de la Justice et perçoivent un traitement dans les conditions prévues au chap itre 7. Les auditeurs de Justice peuvent être affectés, en cette qualité dans les juridictions et à l'Administration centrale du ministère de la Justice pour y effectuer des stages pratiques. Ils participent, sous la responsabilité des magistrats , à l'activité juridictionnelle, sans pouvoir toutefois recevoir délégation de signature. Ils peuvent notamment : 1° assister le juge d'instruction dans tous les actes d'information 2° assister les magistrats du ministère public dans l'exercice de l'action publique ; 3° siéger en surnombre et participer avec voix consultative aux délibérés des juridictions civiles, commerciales, criminelles, correctionnelles et administratives ; 4° présenté oralement devant celles -ci des réquisitions ou des conclusi ons. Ils sont astreints au secret professionnel. Préalablement à toute activité, ils prêtent serment devant la cour d'appel, en ces termes : « Je jure de garder religieusement le secret professionnel et de me conduire en tout, comme un digne et loyal audit eur de Justice ».</div></div><div class="article" id="Article_20"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 20</h3><div class="article-content">Peuvent être nommés directement auditeurs de Justice, s'ils remplissent les conditions fixées à l'article 18 sous les numéros 1 à 5, les docteurs en droit ayant au moins trois ans de pratique professionnelle en cette qualité qu e leur compétence et leur activité dans le domaine juridique ou administratif qualifient pour les fonctions judiciaires. Peuvent être également nommés directement auditeurs de Justice, s'ils remplissent les conditions fixées à l'article 18 sous les numéros 1 à 5, les agents publics de catégorie A4 au minimum ayant au moins cinq ans de pratique professionnelle en cette qualité, que leur compétence et leur activité dans le domaine juridique ou administratif qualifient pour les fonctions judiciaires. Le nombre des auditeurs de Justice nommés au titre du présent article ne peut dépasser le dixième du nombre des auditeurs issus du concours prévu à l'article 7.</div></div><div class="article" id="Article_21"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 21</h3><div class="article-content">Peuvent être nommés directement magistrats aux fonctions du deuxième grade de la hiérarchie judiciaire s'ils remplissent les conditions prévues à l'article 18 sous les numéros 1 à 4 : 1° Les avocats ayant au moins dix ans d’exercice de leur profession ; 2° les maîtres de conférences des facultés de droit ayant au moins trois ans de pr atique professionnelle en cette qualité ; 3° Les agents publics de la catégorie A6 au minimum, ayant au moins trois ans de pratique professionnelle en cette qualité que leur compétence et leur activité dans le domaine juridique ou administratif qualifient pour les fonctions judiciaires. Peut être nommé directement magistrat au grade qu’il occupait au moment de son départ de la magistrature, l’ancien magistrat. Le nombre des magistrats nommés au titre du présent article ne peut dépasser le dixième des vaca nces constatées dans chacun des groupes du deuxième grade.</div></div><div class="article" id="Article_22"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 22</h3><div class="article-content">Les nominations au titre de l’article 21 ne peuvent intervenir que sur l’avis conforme du Conseil supérieur de la Magistrature qui détermine les fonctions auxquelles les candidats peuve nt être nommés. Avant de se prononcer, le Conseil supérieur de la Magistrature peut décider de subordonner la nomination du candidat à l’accomplissement d’un stage probatoire en juridiction organisé par la structure chargée de la formation des magistrats, selon les modalités et conditions prévues à l’article 17. 11 prêts serments en ces termes devant la cour d’appel : « Je jure de conserver le secret des actes du parquet, des juridictions d’instruction et de jugement dont j’aurai eu connaissance au cours d e mon stage ». Le responsable de la structure chargée de la formation des magistrats établit, sous la forme d’un rapport, le bilan du stage probatoire de chaque candidat qu’il transmet au Conseil supérieur de la Magistrature.</div></div></section><section class="group"><h2>CHAPITRE 3 — Formation professionnelle des magistrats</h2><div class="article" id="Article_23"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 23</h3><div class="article-content">Les auditeurs de Justice reçoivent une formation organisée par la structure chargée de la formation des magistrats . Cette formation comprend un stage théorique et des stages pratiques accomplis dans les conditions prévues à l'article 19.</div></div><div class="article" id="Article_24"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 24</h3><div class="article-content">Le droit à la formation continue est reconnu au magistrat . Il bénéficie à cet égard d'un programme de formation continue établi et exécuté par la structure chargée de la formation des magistrats . Les Présidents des juridictions suprêmes peuvent également organiser, pour les magistrats de ces juridictions, des formations continues, sans préjudice des programmes conduits par la structure chargée de la formation des magistrats . Lorsque le magistrat le demande, il peut ê tre autorisé par le ministre de la Justice ou par le Président de la juridiction suprême dont il relève, à suivre une formation spécialisée dans une discipline de son choix. L'autorité ayant autorisé la formation en informe aussitôt le Conseil supérieur de la Magistrature.</div></div><div class="article" id="Article_25"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 25</h3><div class="article-content">La structure chargée de la formation des magistrats est dirigée par des personnalités nommées par décret, après avis du Conseil supérieur de la Magistrature.</div></div></section><section class="group"><h2>CHAPITRE 4 — Carrière des magistrats</h2><div class="article" id="Article_26"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 26</h3><div class="article-content">Les auditeurs de Justice ayant satisfait aux épreuves de fin du stage et reconnus aptes aux fonctions judiciaires sont nommés dans les emplois du second groupe du second grade de la hiérarchie judiciaire. Le ministre de la Justice saisit, pour a vis conforme, le Conseil supérieur de la Magistrature, en ce qui concerne les auditeurs de Justice proposés à la nomination comme magistrats du siège.</div></div><div class="article" id="Article_27"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 27</h3><div class="article-content">Les nominations aux divers emplois des deux grades de la hiérarchie judiciaire sont faites par décret sur proposition du ministre de la Justice, après avis conforme du Conseil supérieur de la Magistrature, en ce qui concerne les magistrats du siège. En cas d'avis défavorable du Conseil supérieur de la Magistrature, l'intéressé est nommé a ux fonctions du ministère public. Le Conseil supérieur de la Magistrature fait des propositions pour la nomination aux fonctions de premier président d'une cour d'appel, d'une cour d'appel de commerce et d'une cour administrative d'appel, de président de t ribunal de première instance, de tribunal de commerce, de tribunal administratif et de président de Chambre régionale des comptes. Section 2 Avancement</div></div><div class="article" id="Article_28"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 28</h3><div class="article-content">II est institué une Commission d'avancement chargée de dresser et d'arrêter le tableau d'avan cement et les listes d'aptitude. Cette commission est commune aux magistrats du siège, du parquet, de l'Administration centrale du ministère de la Justice et aux magistrats en position de détachement.</div></div><div class="article" id="Article_29"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 29</h3><div class="article-content">La Commission d'avancement notifie à chaque magistrat dont l'inscription a été refusée sur la liste d'aptitude ou au tableau d'avancement le résultat motivé de ses délibérations en ce qui le concerne. Les délibérations de la Commission d'avancement sont susceptibles de recours devant le Conseil d'Etat.</div></div><div class="article" id="Article_30"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 30</h3><div class="article-content">La Commission d'avancement est composée de membres de droit et de membres élus. La composition de la Commission d'avancement, les modalités de l'élection des membres élus et les modalités de fonctionnement de la Commission d'avancement sont déterminées par décret.</div></div><div class="article" id="Article_31"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 31</h3><div class="article-content">Le tableau d'avancement et les listes d'aptitude sont établis annuellement. Ils sont affichés dans toutes les juridictions. L'inscription sur le tableau d'avancement et les listes d'aptitude est définiti ve, sauf radiation décidée dans les mêmes formes que l'inscription. Les conditions exigées pour figurer au tableau d'avancement ou sur les listes d'aptitude, ainsi que les modalités d'élaboration et d'établissement du tableau annuel, des tableaux supplémen taires éventuels, des listes d'aptitude sont fixées par décret.</div></div><div class="article" id="Article_32"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 32</h3><div class="article-content">Les promotions de grade ainsi que les promotions de groupe dans chaque grade interviennent par décret. Section 3 Magistrats hors hiérarchie</div></div><div class="article" id="Article_33"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 33</h3><div class="article-content">Les dispositions relatives à l'avancement ne s'appliquent pas aux nominations de magistrats hors hiérarchie.</div></div><div class="article" id="Article_34"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 34</h3><div class="article-content">Sont élevés au rang de magistrat hors hiérarchie : 1° les magistrats de la Cour de cassation, du Conseil d'Etat et de la Cour des comptes, à l'exception des conseillers référendaires et des auditeurs ; 2° les premiers présidents des cours d'appel, des cours d'appel de commerce et des cours administratives d'appel. Les magistrats mentionnés à l'alinéa 1 du présent article sont nommés hors hiérar chie par décret, sur proposition du Conseil supérieur de la Magistrature. Sont également élevés au rang de magistrat hors hiérarchie, par décret sur proposition du ministre de la Justice : 1° les magistrats des parquets généraux près la Cour de cassation, le Conseil d'Etat et la Cour des comptes, à l'exception des avocats généraux référendaires ; 2° les procureurs généraux près les cours d'appel, les cours administratives d'appel et les procureurs généraux à l'Administration centrale du ministère de la Justice. Peuvent être nommés hors hiérarchie, sur proposition du ministre de la Justice, les magistrats appartenant depuis dix ans au moins au premier grade, premier groupe, après avis conforme du Conseil supérieur de la Magistrature pour ce qui con cerne les magistrats du siège. Section 4 Magistrats à l'Administration centrale du ministère de la Justice</div></div><div class="article" id="Article_35"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 35</h3><div class="article-content">Les différents emplois des magistrats en service à l'Administration centrale du ministère de la Justice sont prévus par décret. Section 5 Magistrats à l'inspection générale des Services Judiciaires et pénitentiaires</div></div><div class="article" id="Article_36"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 36</h3><div class="article-content">Les magistrats de l'inspection générale des Services judiciaires et pénitentiaires sont choisis parmi les magistrats hors hiérarchie et les magistrats du pre mier grade, premier groupe reconnus pour leur compétence. Section 6 Magistrats honoraires</div></div><div class="article" id="Article_37"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 37</h3><div class="article-content">Les magistrats admis à la retraite peuvent, à leur demande, se voir conférer l'honorariat de leur fonction par l'autorité investie du pouvoir de nomination. A titre exceptionnel, ils peuvent se voir conférer l'honorariat d'une fonction ou d'un grade immédiatement supérieur.</div></div><div class="article" id="Article_38"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 38</h3><div class="article-content">Les magistrats honoraires demeurent attachés, en cette qualité, à la juridiction à laquelle ils appartiennent. Ils continuent à jouir des honneurs et privilèges attachés à leur état, et peuvent assister, en costume d'audience, aux cérémonies solennelles de leur juridiction. Ils prennent rang à la suite des magistrats de leur grade.</div></div><div class="article" id="Article_39"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 39</h3><div class="article-content">Les mag istrats honoraires sont tenus à la réserve qui s'impose à leur condition. L'honorariat ne peut leur être retiré que dans les formes prévues au chapitre relatif à la discipline.</div></div></section><section class="group"><h2>CHAPITRE 5 — Position du magistrat</h2><div class="article" id="Article_40"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 40</h3><div class="article-content">Le magistrat est placé dans l'une des positions suivantes : 1 ° en activité ; 2° en détachement ; 3° en disponibilité.</div></div><div class="article" id="Article_41"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 41</h3><div class="article-content">L'activité est la position du magistrat qui occupe effectivement un emploi. Est également considéré comme étant en activité, le magistrat en congé ou en stage de formation ou bénéficiant d'une autorisation d'absence avec traitement.</div></div><div class="article" id="Article_42"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 42</h3><div class="article-content">Le détachement est la position du magistrat autorisé à interrompre temporairement ses fonctions pour exercer un emploi ou un mandat public national ou international ou exercer une fonction ministérielle. Dans cette position, le magistrat continue de bénéficier de ses droits à l'avancement et à la retraite. Le détachement est prononcé soit à la demande du magistrat , soit d'office pour servir dans une institution de la République. Il est révocable. Le magistrat détaché est soumis aux règles régissant l'emploi pour lequel il a été détaché. Le magistrat détaché demeure également soumis aux obligations résultant du présent Statut, sauf lorsqu'il exerce des fonctions ministé rielles ou assimilées. Aucun magistrat ne peut être placé en position de détachement s'il n'a atteint au moins le deuxième groupe du premier grade dans la hiérarchie du corps judiciaire, sauf en cas de détachement d'office.</div></div><div class="article" id="Article_43"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 43</h3><div class="article-content">Le pouvoir disciplinaire à l'égard du magistrat détaché est exercé par le Conseil supérieur de la Magistrature dans les conditions prévues par le présent Statut. L'organisme auprès duquel il est détaché est tenu de saisir, à cet effet, le ministre de la Justice, d'un rapport circonstancié sur les faits reprochés au magistrat .</div></div><div class="article" id="Article_44"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 44</h3><div class="article-content">Le nombre total des magistrats placés en position de détachement ne peut dépasser 10% de l'effectif du corps judiciaire. La durée du détachement est de deux ans renouvelab les une fois, sauf en cas de détachement d'office. Le renouvellement se fait d'office sauf lorsqu'il est mis fin au détachement soit à la demande de l'Administration ou de l'organisme d'accueil, soit à la demande de l'intéressé. En cas de non -renouvellemen t du détachement, le magistrat est réintégré d'office et nommé dans les conditions prévues à l'article 27. La durée du détachement d'office est égale à celle des fonctions ou du mandat pour l'exercice duquel le magistrat a été détaché d'office.</div></div><div class="article" id="Article_45"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 45</h3><div class="article-content">Le magistrat détaché ne peut, sauf le cas où le détachement a été prononcé auprès d'organismes internationaux ou pour exercer une fonction ministérielle, être affilié au régime de retraite dont relève l'organisme auprès duquel il est détaché, ni acquérir à ce titre, de droit quelconque à pension ou allocation, sous peine de suspension de la pension de l'Etat.</div></div><div class="article" id="Article_46"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 46</h3><div class="article-content">A l'expiration de la période de détachement ou avant terme, le magistrat remis à la disposition du ministère de la Justice est réintégré da ns les formes prévues à l'article 27, dans le délai de deux mois à compter de la réception de la demande.</div></div><div class="article" id="Article_47"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 47</h3><div class="article-content">La disponibilité est la position du magistrat dont l'activité est suspendue temporairement, à sa demande, dans les cas suivants : 1° accident ou maladie grave du conjoint ou d'un enfant ; 2° pour suivre un conjoint fonctionnaire en service ou affecté à l'étranger ; 3° pour suivre un conjoint non fonctionnaire résidant hors du lieu d'affectation du magistrat ; 4° pour convenances personnelles. Sous réserve des dispositions des lois spéciales, la durée de la disponibilité est d'un an renouvelable une fois, à la demande motivée de l'intéressé et, dans l'hypothèse prévue au 1er de l'alinéa 1 du présent article, après avis du Conseil de santé.</div></div><div class="article" id="Article_48"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 48</h3><div class="article-content">Le magistrat en disponibilité n'a droit à aucune rémunération. Il cesse également de bénéficier de ses droits à l'avancement et à la retraite. Toutefois, le magistrat placé en disponibilité pour accident ou maladie grave du conjoint ou d'un enfant perçoit la totalité de son traitement et bénéficie de ses droits à la retraite.</div></div><div class="article" id="Article_49"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 49</h3><div class="article-content">A l'expiration de la période de disponibilité, le magistrat adresse une demande de réintégration au ministre de la Justice qui procède comme prévu à l'article 27, dans le délai de deux mois à compter de la réception de la demande. Il est réintégré dans un emploi de son grade. Le magistrat qui refuse la fonction proposée dans les conditions précitées est nommé d'office à un autre emploi de son grade. S'il refuse celui -ci, il est admis à faire valoir ses droits à la retraite. Si à la fin de sa période de disponibilité, le magistrat ne formule pas de demande de réintégration, il est nommé d'office dans un emploi de son grade. S'il refuse, il e st admis à faire valoir ses droits à la retraite.</div></div><div class="article" id="Article_50"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 50</h3><div class="article-content">La mise en position de détachement ou de disponibilité et la réintégration consécutive sont prononcées dans les formes et modalités prévues pour les nominations.</div></div></section><section class="group"><h2>CHAPITRE 6 — Cessation de fonction</h2><div class="article" id="Article_51"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 51</h3><div class="article-content">La cessation définitive des fonctions entraînant radiation des effectifs et perte de la qualité de magistrat résulte : 1° de la démission régulièrement acceptée ; 2° de la mise à la retraite d'office ou de l'admission à cesser ses fonctions lorsque le magistrat n'a pas droit à une pension ; 3° de la révocation ; 4° de la mise à la retraite ; 5° de la perte de la nationalité ; 6° du décès du magistrat .</div></div><div class="article" id="Article_52"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 52</h3><div class="article-content">La démission ne peut résulter que d'une demande expresse et écrite de l 'intéressé. Elle ne vaut qu'après acceptation par l'autorité investie du pouvoir de nomination et prend effet à la date fixée par cette autorité. L'acceptation de la demande la rend irrévocable. Elle ne fait pas obstacle, le cas échéant, à l'exercice de l' action disciplinaire, en raison de faits qui n'auraient été révélés qu'après cette acceptation.</div></div><div class="article" id="Article_53"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 53</h3><div class="article-content">L'âge de départ à la retraite des magistrats est fixé à soixante -cinq ans. Toutefois, la limite d'âge est portée à soixante -sept ans lorsque le magistrat concerné a été élevé au rang de magistrat hors hiérarchie, et à soixante -huit ans pour le magistrat hors hiérarchie nommé au groupe A.</div></div></section><section class="group"><h2>CHAPITRE 7 — Rémunération</h2><div class="article" id="Article_54"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 54</h3><div class="article-content">En rétribution de leurs services et afin de leur permettre de s'acquitter convenablement de leurs fonctions, les membres du corps judiciaire ont droit à une rémunération suffisante qui comprend : — le traitement soumis à retenue pour pension ; — les primes et indemnités. Les indices de traitement applicables aux magistra ts hors hiérarchie, aux magistrats de chacun des grades, groupes et échelons du corps judiciaire et aux auditeurs de Justice ainsi que la détermination et les taux des primes et indemnités sont fixés par décret.</div></div><div class="article" id="Article_55"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 55</h3><div class="article-content">Les magistrats ont droit à divers avantages liés aux fonctions qu'ils exercent. Les magistrats ont en outre droit aux avantages consentis aux fonctionnaires régis par le Statut général de la Fonction publique.</div></div><div class="article" id="Article_56"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 56</h3><div class="article-content">Les magistrats de la Cour de cassation, du Conseil d'Etat, de la Cour des comptes, des Parquets généraux près la Cour de cassation, le Conseil d'Etat et la Cour des comptes, ainsi que les magistrats hors hiérarchie de l'Administration centrale du ministère de la Justice et de l'inspection générale des Services judiciair es et pénitentiaires cessent leurs fonctions avec jouissance de tous les droits et avantages liés à la dernière fonction exercée. Les autres magistrats à la retraite ont droit à une pension en rapport avec leur catégorie professionnelle et aux avantages li és à leurs dernières fonctions.</div></div><div class="article" id="Article_57"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 57</h3><div class="article-content">Les modalités d'application du présent chapitre sont précisées par décret.</div></div></section><section class="group"><h2>CHAPITRE 8 — Déontologie du magistrat</h2><div class="article" id="Article_58"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 58</h3><div class="article-content">La mission du magistrat est de rendre la justice conformément à la loi. Il doit remplir cette mission avec honneur, droiture, dignité et intégrité. Le magistrat doit être impartial et objectif.</div></div><div class="article" id="Article_59"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 59</h3><div class="article-content">Le juge est tenu de rendre une décision dans toutes les affaires dont il est saisi, même en cas de silence ou d'obscurité de la loi, sous peine de poursuite pour déni de justice.</div></div><div class="article" id="Article_60"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 60</h3><div class="article-content">Le juge a l'obligation de motiver ses décisions.</div></div><div class="article" id="Article_61"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 61</h3><div class="article-content">Le juge doit s'abstenir de porter des modifications à une décision après son prononcé, sauf dans les cas prévus par la loi.</div></div><div class="article" id="Article_62"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 62</h3><div class="article-content">Le magistrat doit, en toutes circonstances, préserver son intégrité morale et défendre l'indépendance de la Magistrature dans l'intérêt supérieur de la justice et de la société. Le magistrat doit respecter et se conformer à la loi. Il doit agir en toutes circonstances, de manière à promouvoir la confiance de l'opinion publique en l'intégrité et en l'impartialité de la justice.</div></div><div class="article" id="Article_63"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 63</h3><div class="article-content">Le magistrat doit veiller au respect du principe de la séparation des pouvoirs exécutif, législatif et judiciaire. Le magistrat doit s'abstenir de rendre des décisions à caractère général et réglementaire. Il doit éviter de se substituer à l'administration et de défendre aux administrés d'exécuter les ordres de l'Administration. Section 2 Devoirs du magistrat dans l'exercice de ses fonctions</div></div><div class="article" id="Article_64"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 64</h3><div class="article-content">Le magistrat doit faire preuve d'une haute conscience professionnelle. Il doit remplir utilement et avec diligence les devoirs qu'impose sa fonction et s'y consacrer entièrement. Le magistrat doit s'astreindre à la ponctualité dans la conduite des dossiers, au respect des horaires fixés pour les audiences, convocations et auditions.</div></div><div class="article" id="Article_65"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 65</h3><div class="article-content">Le magistrat doit faire preuve de compétence professionnelle dans l'exercice de ses fonctions qu'il veille à maintenir par une formation continue. A cet effet, l'Etat assure au magistrat les moyens appropriés, l'équipement et l'assistance nécessaires pour le bon accomplissement de sa mission.</div></div><div class="article" id="Article_66"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 66</h3><div class="article-content">Le magistrat ne doit pas se détermi ner en fonction de considérations étrangères à l'application des règles de droit. 11 doit notamment : 1° s'acquitter de ses fonctions sans favoritisme, ni manifestation de préjugés ; 2° éviter que ses relations familiales, sociales, professionnelles ou autres, n'influencent la conduite des affaires dont il est saisi ; 3° éviter de fonder ses décisions sur des informations reçues en dehors du dossier et des débats.</div></div><div class="article" id="Article_67"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 67</h3><div class="article-content">Le magistrat doit exercer ses fonctions dans le respect de l 'égalité de traitement entre les parties et du principe du contradictoire. Il doit veiller à ce que les débats se déroulent dans le respect des droits des parties. Il doit faire preuve à leur égard de patience, de respect, de courtoisie et de disponibilité . Le magistrat doit s'abstenir à l'audience et dans ses décisions, de faire des observations injurieuses à l'égard des parties.</div></div><div class="article" id="Article_68"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 68</h3><div class="article-content">Le magistrat doit éviter de faire des observations ou remarques publiques désobligeantes à ses collègues. Cette même obligation s'impose à l'égard des auxiliaires de justice et des justiciables.</div></div><div class="article" id="Article_69"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 69</h3><div class="article-content">Le magistrat doit s'abstenir d'interférer dans les affaires relevant de la compétence d'autres magistrats en vue d'en influencer l'issue. Tout magistrat a l'obligation de dénoncer au Conseil supérieur de la Magistrature, de telles interférences.</div></div><div class="article" id="Article_70"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 70</h3><div class="article-content">Le magistrat doit éviter tous commentaires injustifiés sur les dossiers dont il a la charge. H doit protéger la procédure judiciaire contre toute influence extérieure. Dans les cas où il n'est pas tenu au secret professionnel, le magistrat du ministère public peut donner des informations dans le respect de l'honneur et de la dignité des parties qu'elle concerne. Section 3 Devoirs du magistrat en dehors de l'exercice de ses fonctions</div></div><div class="article" id="Article_71"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 71</h3><div class="article-content">Le magistrat doit faire preuve de réserve dans ses relations. Il doit préserver son indépendance et son impartialité en s'abstenant de toute exploitation personnelle de ses relations.</div></div><div class="article" id="Article_72"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 72</h3><div class="article-content">Le magistrat doit s'ab stenir de solliciter ou d'accepter une rétribution de quelque nature que ce soit pour lui -même ou pour un tiers, en rémunération d'un acte de sa fonction déjà accompli ou à accomplir.</div></div><div class="article" id="Article_73"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 73</h3><div class="article-content">Le magistrat doit s'abstenir de solliciter ou de recevoir des dons, legs, faveurs de quelque nature que ce soit de personnes engagées dans un procès ou intéressées de quelque façon que ce soit audit procès.</div></div><div class="article" id="Article_74"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 74</h3><div class="article-content">Le magistrat doit veiller, dans sa conduite et dans sa tenue, à la sauvegarde du prestige de la Mag istrature.</div></div><div class="article" id="Article_75"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 75</h3><div class="article-content">Le magistrat doit éviter d'utiliser le prestige de la Magistrature pour faire prévaloir ses intérêts. Section 4 Incompatibilités</div></div><div class="article" id="Article_76"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 76</h3><div class="article-content">L'exercice des fonctions de magistrat est incompatible avec toute fonction publique, toute profession civile, commerciale ou salariée. Le magistrat doit notamment s'abstenir : 1° de participer à la gestion ou à l'administration d'entreprises commerciales et civiles soit directement, soit par personne interposée ; 2° de donner des consultations juridiques rémunérées ou non à des tiers.</div></div><div class="article" id="Article_77"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 77</h3><div class="article-content">Le ministre de la Justice autorise la participation des magistrats aux travaux d'organismes, de commissions extra judiciaires ou l'exercice des fonctions ou activités qui ne seraient pas de nature à porter atteinte à la dignité du magistrat et à son indépendance, sous réserve des cas prévus par les dispositions législatives et réglementaires en vigueur. L'autorisation mentionnée à l'alinéa précédent est donnée, en ce qui concerne les magistr ats des juridictions suprêmes, par les Présidents de ces juridictions. Les dérogations individuelles sont accordées, en ce qui concerne les magistrats en détachement, par le ministre de la Justice. Toutefois, les magistrats peuvent, sans autorisation préal able, donner des enseignements ressortissants à leur compétence, se livrer à des travaux scientifiques, littéraires ou artistiques.</div></div><div class="article" id="Article_78"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 78</h3><div class="article-content">Dans tous les cas, le magistrat doit, dans l'exercice des activités extra professionnelles, prévenir tout conflit d'intérêt. Le magistrat doit éviter de se placer dans une situation telle qu'il ne peut remplir utilement et promptement ses fonctions, notamment la disponibilité requise pour traiter avec attention et dans un délai raisonnable les affaires qui lui sont s oumises. Le magistrat doit s'abstenir de toute activité de nature à entraver son indépendance et porter atteinte à son impartialité.</div></div><div class="article" id="Article_79"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 79</h3><div class="article-content">L'exercice des fonctions de magistrat est incompatible avec l'exercice de toute fonction élective sauf dispositions particulières de la loi. Nul ne peut être nommé magistrat , ni le demeurer dans une juridiction dans le ressort de laquelle il aura exercé depuis moins de cinq ans, une fonction publique élective ou fait acte de candidature à l'un de ces mandat s. Les dispositions de l'alinéa précédent ne s'appliquent pas aux magistrats des juridictions suprêmes.</div></div><div class="article" id="Article_80"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 80</h3><div class="article-content">Les parents et alliés jusqu'au quatrième degré inclusivement, ne peuvent simultanément siéger à la même audience d'une juridiction soit comme magistrats du siège, soit comme magistrats du ministère public.</div></div><div class="article" id="Article_81"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 81</h3><div class="article-content">Nul magistrat ne peut, à peine de nullité de la procédure, connaître d'une affaire dans laquelle l'une des parties est représentée par un avocat ou mandataire, conjoint du magistrat , parent ou allié dudit magistrat jusqu'au quatrième degré, inclusivement. La disposition de l'alinéa précédent s'applique lorsqu'il s'agit d'un cabinet d'avocats dont l'un des membres est conjoint du magistrat , parent ou allié dudit magistrat jusqu'au quatrième degré inclusivement.</div></div><div class="article" id="Article_82"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 82</h3><div class="article-content">Nul magistrat ne peut, à peine de nullité des actes intervenus, se rendre acquéreur ou cessionnaire, soit par lui -même, soit par personne interposée, des droits litigieux qui sont de la compétence des juridictions dans le ressort desquelles il exerce ses fonctions, ou des biens, droits et créances dont il doit poursuivre ou autoriser la vente. Il ne peut, en outre, ni prendre lesdits biens en louage ni les recevoir en nantissement.</div></div><div class="article" id="Article_83"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 83</h3><div class="article-content">Aucun magi strat ne peut procéder à un acte juridictionnel relevant de ses fonctions : 1° lorsqu'il s'agit de ses propres intérêts, de ceux de son conjoint, de ses enfants ou alliés en ligne directe ou en ligne collatérale, jusqu'au quatrième degré inclusivement ; 2° lorsqu'il s'agit des intérêts d'une personne dont il est le représentant légal ou le mandataire, de son concubin ou de toute personne ayant un lien de dépendance avec lui. Section 5 Interdictions</div></div><div class="article" id="Article_84"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 84</h3><div class="article-content">Toute activité politique est interdite au magistrat . Il lui est notamment fait défense : 1° de militer dans une organisation politique ; 2° d'agir en qualité de leader ou d'occuper un poste dans une organisation politique ; 3° de faire ou de prononcer des discours pour une organisation ou un candi dat à un poste politique ; 4° de soutenir ou de s'opposer publiquement à un candidat à un poste politique ; 5° de solliciter des fonds ou de faire une contribution de quelque nature que ce soit pour une organisation politique ou un candidat à un poste poli tique ; 6° d'assister à des rassemblements ou de participer à des manifestations politiques ; 7° d'organiser ou de participer à toute action ou rassemblement à caractère politique. Le magistrat doit également s'abstenir de toute prise de position publique sur un sujet d'ordre politique.</div></div><div class="article" id="Article_85"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 85</h3><div class="article-content">II est interdit au magistrat d'organiser ou de participer à toute manifestation d'hostilité au principe ou à la forme du Gouvernement de la République. Est également interdite, toute action concertée de nature à arrêter ou entraver le fonctionnement des juridictions.</div></div><div class="article" id="Article_86"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 86</h3><div class="article-content">Le magistrat ne doit pas appartenir à une association interdite par la loi ou faire partie d'une organisation dont les activités sont susceptibles de jeter le discrédit sur la Just ice.</div></div></section><section class="group"><h2>CHAPITRE 9 — Discipline</h2><div class="article" id="Article_87"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 87</h3><div class="article-content">Le pouvoir disciplinaire est exercé, tant à l'égard des magistrats du siège qu'à l'égard des magistrats du parquet, par le Conseil supérieur de la Magistrature, en sa formation disciplinaire.</div></div><div class="article" id="Article_88"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 88</h3><div class="article-content">Tout manquement par un magistrat aux règles déontologiques et plus généralement aux convenances de son état, à l'honneur, à la délicatesse ou à la dignité, constitue une faute disciplinaire.</div></div><div class="article" id="Article_89"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 89</h3><div class="article-content">En dehors de toute action disciplinaire, le ministre de la Justice, les présidents des juridictions suprêmes, les procureurs généraux près les juridictions suprêmes, l'inspecteur général des Services judiciaires, les premiers présidents, les procureurs généraux et les directeurs à l'Administration centrale du mini stère de la Justice ont le pouvoir de donner un avertissement aux magistrats placés sous leur autorité.</div></div><div class="article" id="Article_90"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 90</h3><div class="article-content">Les sanctions disciplinaires applicables aux magistrats sont : 1° la réprimande avec inscription au dossier ; 2° le déplacement d'office ; 3° la radiation du tableau d'avancement ; 4° le retrait de certaines fonctions ; 5° l'abaissement d'un ou de plusieurs échelons ; 6° l'abaissement de groupe ; 7° la rétrogradation ; 8° la mise à la retraite d'office ou l'admission à cesser ses f onctions lorsque le magistrat n'a pas droit à une pension de retraite ; 9° la révocation avec ou sans suspension des droits à pension.</div></div><div class="article" id="Article_91"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 91</h3><div class="article-content">Si un magistrat est poursuivi en même temps pour plusieurs faits, il ne peut être prononcé contre lui que l'une des sanctions prévues à l'article précédent. Une faute disciplinaire ne peut donner lieu qu'à une seule desdites sanctions. Toutefois, les sanctions prévues aux 6° et 7° de l'article précédent, peuvent être assorties du déplacement d'office.</div></div><div class="article" id="Article_92"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 92</h3><div class="article-content">Le ministre de la Justice saisi d'une plainte ou informé de faits paraissant de nature à entraîner des poursuites disciplinaires contre un magistrat peut, s'il y a urgence, et sur proposition des chefs hiérarchiques, suspendre, par arrêté, le magistrat mis en cause, de l'exercice de ses fonctions jusqu'à décision définitive sur l'action disciplinaire. La suspension ne comporte pas privation du droit au traitement. Cette décision prise dans l'intérêt du service ne peut intervenir qu'après avis du Conseil supérieur de la Magistrature. Elle ne peut être rendue publique. Pendant la durée de la suspension, le magistrat ne peut être remplacé à son poste. Seul son intérim est organisé. Si à l'expiration du délai d'un mois, le Conseil supérieur de la Magistrature n'a pas été saisi de l'action disciplinaire, la suspension cesse de plein droit de produire ses effets et l'intéressé reprend ses fonctions sans aucune formalité.</div></div><div class="article" id="Article_93"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 93</h3><div class="article-content">A la demande du ministre de la Justice, l'inspecteur général des Services judiciaires dénonce, après enquête, au Conseil supérieur de la Magistrature, les faits motivant une poursuite disciplinaire. L'enquête ne peut excéder une durée de six mois à compter du jour où les faits ont été portés à la connaissance du ministre de la J ustice, sous peine de forclusion de l'action disciplinaire. Les faits susceptibles de motiver des poursuites disciplinaires à l'encontre d'un magistrat relevant d'une juridiction suprême sont dénoncés au Conseil supérieur de la Magistrature, par le Préside nt de ladite juridiction.</div></div><div class="article" id="Article_94"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 94</h3><div class="article-content">Dès la saisine de la formation disciplinaire du Conseil supérieur de la Magistrature, le magistrat a droit à la communication de son dossier et des pièces de l'enquête. Il peut se faire assister et, en cas de maladie ou d'empêchements reconnus justifiés, se faire représenter, par l'un de ses pairs ou par un avocat inscrit au barreau. Le Président de la formation disciplinaire du Conseil supérieur de la Magistrature, désigne un rapporteur parmi les membres de ladite forma tion. Il le charge, s'il y a lieu, de procéder à une enquête complémentaire. La formation disciplinaire du Conseil supérieur de la Magistrature peut, par décision motivée, suspendre le magistrat mis en cause, de l'exercice de ses fonctions jusqu'à décision définitive. Cette suspension ne comporte pas privation du droit au traitement et la décision ne peut être rendue publique. Dans le cas prévu à l'alinéa précédent ou lorsque la formation disciplinaire du Conseil supérieur de la Magistrature est régulièreme nt saisie à la suite de la suspension prononcée par le ministre de la Justice, comme il est dit à l'article 92, la situation du magistrat concerné doit être définitivement réglée dans un délai de trois mois à compter du jour où la décision de suspension a pris effet. Lorsqu'aucune décision n'est intervenue au terme du délai de trois mois, la décision de suspension cesse de produire ses effets et le magistrat est rétabli de plein droit dans ses fonctions.</div></div><div class="article" id="Article_95"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 95</h3><div class="article-content">Au cours de l'enquête, le rapporteur entend ou fait entendre l'intéressé par un magistrat d'un rang égal ou supérieur à celui de ce dernier et, s'il y a lieu, le plaignant et les témoins. II accomplit tous actes d'investigation utiles. La procédure doit être mise à la disposition d e l'intéressé et de son conseil soixante -douze heures au moins avant chaque audition.</div></div><div class="article" id="Article_96"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 96</h3><div class="article-content">Lorsqu'une enquête complémentaire n'a pas été jugée nécessaire ou lorsque l'enquête est complète, le magistrat est cité à comparaître en la forme administrativ e devant la formation disciplinaire du Conseil supérieur de la Magistrature.</div></div><div class="article" id="Article_97"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 97</h3><div class="article-content">Le magistrat cité a droit à la communication de son dossier, de toutes les pièces de l'enquête et du rapport établi par le rapporteur. Son conseil a droit à la communication des mêmes documents.</div></div><div class="article" id="Article_98"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 98</h3><div class="article-content">Au jour fixé par la citation, et après lecture du rapport, le magistrat mis en cause est invité à fournir ses explications et moyens de défense sur les faits qui lui sont reprochés.</div></div><div class="article" id="Article_99"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 99</h3><div class="article-content">La formation disc iplinaire du Conseil supérieur de la Magistrature statue à huis clos dans un délai maximal de six mois à compter de sa saisine. Sa décision doit être motivée. Si le magistrat cité, hors les cas de maladie ou d'empêchement reconnus justifiés, ne comparaît p as, il peut néanmoins être statué et la décision est réputée contradictoire.</div></div><div class="article" id="Article_100"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 100</h3><div class="article-content">La décision rendue est notifiée au magistrat intéressé en la forme administrative par la formation disciplinaire du Conseil supérieur de la Magistrature. La décision de la formation disciplinaire du Conseil supérieur de la Magistrature est susceptible de recours devant le Conseil supérieur de la Magistrature, dans le délai de quinze jours à compter de sa notification au magistrat concerné. Le recours est suspe nsif. Les membres de la formation disciplinaire du Conseil supérieur de la Magistrature ne peuvent, à peine de nullité de la procédure, participer au jugement du recours formé contre les décisions qu'ils ont rendues.</div></div><div class="article" id="Article_101"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 101</h3><div class="article-content">L'exécution des décisions d u Conseil supérieur de la Magistrature incombe aux chefs des juridictions suprêmes s'agissant des magistrats desdites juridictions et au ministre de la Justice s'agissant des autres magistrats .</div></div></section><section class="group"><h2>CHAPITRE 10 — Dispositions diverses et finales</h2><div class="article" id="Article_102"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 102</h3><div class="article-content">Les dispositions du Statut général de la Fonction publique, notamment celles relatives au régime des congés et des pensions s'appliquent aux magistrats , en ce qu'elles n'ont rien de contraire au présent Statut.</div></div><div class="article" id="Article_103"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 103</h3><div class="article-content">Un décret pris en Conseil des min istres détermine les modalités d'application de la présente loi.</div></div><div class="article" id="Article_104"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 104</h3><div class="article-content">La loi n°78 -662 du 4 août 1978 portant Statut de la Magistrature, modifiée par les lois n°94 -437 du 16 août 1994 et n°94 -498 du 6 septembre 1994, est abrogée.</div></div><div class="article" id="Article_105"><button class="open-fs" title="Plein écran"><i class="fas fa-expand"></i></button><h3>Article 105</h3><div class="article-content">La présente loi sera publiée au Journal officiel de la République de Côte d'Ivoire et exécutée comme loi de l'Etat. Fait à Abidjan, le 11 mars 2022. Alassane OUNITARA.</div></div></section></main>
+<div id="tocOverlay"></div>
+<aside id="tocPanel"><header><h3><i class="fa-solid fa-landmark"></i> Sommaire</h3></header><div class="toc-list" id="tocList"></div></aside>
+<div id="voiceBar" role="region" aria-label="Lecteur vocal">
+  <button id="vPrev" title="Article précédent"><i class="fas fa-backward"></i></button>
+  <button id="vPlay" title="Lire / Reprendre"><i class="fas fa-play"></i></button>
+  <button id="vPause" title="Pause"><i class="fas fa-pause"></i></button>
+  <button id="vStop" title="Arrêter"><i class="fas fa-stop"></i></button>
+  <button id="vNext" title="Article suivant"><i class="fas fa-forward"></i></button>
+  <span class="now" id="vNow">—</span>
+</div>
+<div id="fsOverlay"><div id="fsHeader"><button id="fsClose" title="Fermer"><i class="fas fa-xmark"></i></button><div class="ttl" id="fsTitle"></div><button id="fsPlay" title="Lecture"><i class="fas fa-play"></i></button></div><div id="fsBody"><article class="article"><div class="article-content" id="fsContent"></div></article></div><button id="fsNavPrev" title="Précédent"><i class="fas fa-chevron-left"></i></button><button id="fsNavNext" title="Suivant"><i class="fas fa-chevron-right"></i></button></div>
+
+<script>
+function initSearchFeature() {
+    const bar = document.querySelector('.control-buttons');
+    const searchBtn = document.createElement('button');
+    searchBtn.className = 'btn'; searchBtn.id = 'searchBtn'; searchBtn.title = 'Rechercher';
+    searchBtn.innerHTML = '<i class="fas fa-search"></i>'; bar.appendChild(searchBtn);
+    const searchInterface = document.createElement('div');
+    searchInterface.id = 'searchInterface';
+    searchInterface.style.cssText = `position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+        width: calc(100% - 40px); max-width: 550px; background: #fff;
+        padding: 10px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        z-index: 1000; display: none; align-items: center; gap: 5px; transition: .25s ease;`;
+    searchInterface.innerHTML = `
+        <input type="text" id="searchInput" placeholder="Rechercher..." style="flex-grow: 1; padding: 8px; border: 1px solid #e6e2da; border-radius: 5px;">
+        <button id="searchPrevBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-up"></i></button>
+        <button id="searchNextBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-down"></i></button>
+        <span id="searchResultsCount" style="flex-shrink: 0; padding: 0 5px; min-width: 40px; text-align: center;"></span>
+        <button id="closeSearchBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-times"></i></button>`;
+    document.body.appendChild(searchInterface);
+    let searchResults = []; let currentSearchIndex = -1; let originalContents = new Map();
+    function performSearch() {
+        const searchTerm = document.getElementById('searchInput').value.trim();
+        if (!originalContents.size) { document.querySelectorAll('.article-content, h2, h3').forEach(el => originalContents.set(el, el.innerHTML)); }
+        originalContents.forEach((content, el) => el.innerHTML = content);
+        searchResults = []; currentSearchIndex = -1;
+        if (!searchTerm) { updateSearchUI(); return; }
+        const regex = new RegExp(searchTerm.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&'), 'gi');
+        originalContents.forEach((content, element) => { element.innerHTML = content.replace(regex, match => `<mark>${match}</mark>`); });
+        searchResults = Array.from(document.querySelectorAll('mark'));
+        if (searchResults.length > 0) navigateResults(true, false);
+        updateSearchUI(); window.dispatchEvent(new Event('reflowArticles'));
+    }
+    function navigateResults(isNext, shouldWrap = true) {
+        if (!searchResults.length) return;
+        searchResults.forEach(mark => mark.style.backgroundColor = '');
+        currentSearchIndex = shouldWrap ? (isNext ? (currentSearchIndex + 1) % searchResults.length : (currentSearchIndex - 1 + searchResults.length) % searchResults.length) : 0;
+        const currentMark = searchResults[currentSearchIndex];
+        currentMark.style.backgroundColor = 'var(--accent)';
+        currentMark.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        updateSearchUI();
+    }
+    function updateSearchUI() { document.getElementById('searchResultsCount').textContent = searchResults.length > 0 ? `${currentSearchIndex + 1}/${searchResults.length}` : '0/0'; }
+    function resetSearch() { originalContents.forEach((content, el) => el.innerHTML = content); originalContents.clear(); document.getElementById('searchInput').value = ''; searchResults = []; currentSearchIndex = -1; updateSearchUI(); }
+    searchBtn.addEventListener('click', () => { const isVisible = searchInterface.style.display === 'flex'; searchInterface.style.display = isVisible ? 'none' : 'flex'; if (isVisible) resetSearch(); else document.getElementById('searchInput').focus(); });
+    document.getElementById('searchInput').addEventListener('input', performSearch);
+    document.getElementById('searchNextBtn').addEventListener('click', () => navigateResults(true));
+    document.getElementById('searchPrevBtn').addEventListener('click', () => navigateResults(false));
+    document.getElementById('closeSearchBtn').addEventListener('click', () => { searchInterface.style.display = 'none'; resetSearch(); });
+}
+</script>
+
+<script>
+(function(){
+  function extractEnumeration(s){
+    const re = /(\d{1,2})(?:\s*°)?(?:\))?(?:\.)?\s+/g; const matches = []; let m;
+    while ((m = re.exec(s))){ const idx=m.index; const prev = idx>0 ? s.charAt(idx-1) : " "; if (/\d/.test(prev)) continue; matches.push({num:parseInt(m[1],10), start:idx, end:re.lastIndex}); }
+    if (matches.length < 2) return null;
+    for (let i=1;i<matches.length;i++){ if (matches[i].num !== matches[i-1].num + 1) return null; }
+    const intro = s.slice(0, matches[0].start).trim().replace(/[:;,\-]\s*$/, ""); const items = [];
+    for (let i=0;i<matches.length;i++){ const st=matches[i].end; const en=(i+1<matches.length)?matches[i+1].start:s.length; let seg = s.slice(st,en).trim().replace(/^[;,:-]\s*/,"").replace(/[;,\s]+$/,""); items.push(seg); }
+    return {intro, start: matches[0].num, items};
+  }
+  function transformNode(node){
+    if (node.querySelector('ol')) return;
+    const plain = node.textContent.replace(/\s+/g,' ').trim(); const res = extractEnumeration(plain); if (!res) return;
+    const frag = document.createElement('div'); if (res.intro){ const p=document.createElement('p'); p.textContent=res.intro; frag.appendChild(p); }
+    const ol=document.createElement('ol'); if (res.start!==1) ol.setAttribute('start', String(res.start));
+    res.items.forEach(it=>{ const li=document.createElement('li'); li.textContent=it; ol.appendChild(li); });
+    frag.appendChild(ol); node.innerHTML=frag.innerHTML;
+  }
+  function run(){ document.querySelectorAll('.article-content').forEach(transformNode);
+    document.querySelectorAll('.article-content li').forEach(li=>{
+      const s = li.textContent.replace(/\s+/g,' ').trim(); const res = extractEnumeration(s);
+      if (res){ li.innerHTML=''; if (res.intro){ const span=document.createElement('span'); span.textContent=res.intro+' :'; li.appendChild(span); }
+        const ol=document.createElement('ol'); if (res.start!==1) ol.setAttribute('start', String(res.start));
+        res.items.forEach(it=>{ const li2=document.createElement('li'); li2.textContent=it; ol.appendChild(li2); }); li.appendChild(ol); }
+    });
+  }
+  window.addEventListener('DOMContentLoaded', ()=>setTimeout(run, 60));
+  window.addEventListener('reflowArticles', run);
+})();
+</script>
+
+<script>
+(function(){
+  const $ = s=>document.querySelector(s);
+  const $$ = s=>Array.from(document.querySelectorAll(s));
+  function buildTOC(){
+    const toc = document.getElementById('tocList'); toc.innerHTML='';
+    $$('.group').forEach((grp, gi)=>{
+      const gh = grp.querySelector('h2')?.textContent.trim() || `Groupe ${gi+1}`;
+      const gl = document.createElement('a'); gl.textContent=gh; gl.href='#'; gl.style.fontWeight='700';
+      gl.addEventListener('click', e=>{ e.preventDefault(); grp.scrollIntoView({behavior:'smooth', block:'start'}); hideTOC(); });
+      toc.appendChild(gl);
+      const sub = document.createElement('div'); sub.className='toc-sub';
+      grp.querySelectorAll('.article').forEach((art, ai)=>{
+        const at = art.querySelector('h3')?.textContent.trim() || `Article ${ai+1}`;
+        const a = document.createElement('a'); a.textContent=at; a.href='#';
+        a.addEventListener('click', e=>{ e.preventDefault(); art.scrollIntoView({behavior:'smooth', block:'start'}); hideTOC(); });
+        sub.appendChild(a);
+        if (!art.querySelector('.open-fs')){
+          const btn = document.createElement('button'); btn.className='open-fs'; btn.innerHTML='<i class="fas fa-expand"></i>';
+          btn.title='Plein écran'; btn.addEventListener('click', ()=>openFS(artIndex(art))); art.prepend(btn);
+        }
+      });
+      toc.appendChild(sub);
+    });
+  }
+  function showTOC(){ document.getElementById('tocOverlay').classList.add('show'); document.getElementById('tocPanel').classList.add('open'); }
+  function hideTOC(){ document.getElementById('tocOverlay').classList.remove('show'); document.getElementById('tocPanel').classList.remove('open'); }
+  document.getElementById('tocFloatBtn').addEventListener('click', showTOC);
+  document.getElementById('tocOverlay').addEventListener('click', hideTOC);
+  buildTOC();
+  const articles = $$('.article');
+  function artIndex(el){ return articles.indexOf(el); }
+  function getArticle(i){ return articles[Math.max(0, Math.min(articles.length-1, i))]; }
+  function artTitle(i){ const el=getArticle(i); return el? (el.querySelector('h3')?.textContent.trim()||'') : ''; }
+  function artText(i){ const el=getArticle(i); return el? (el.querySelector('.article-content')?.innerText.trim()||'') : ''; }
+  const synth = window.speechSynthesis;
+  let current = 0, utter = null, playing = false, paused = false, inFS=false;
+  function speakIndex(i){ stopSpeak(); current=i; const text=artText(i); if(!text){ nextArticle(); return; }
+    utter = new SpeechSynthesisUtterance(text); utter.lang='fr-FR'; utter.rate=1; utter.pitch=1;
+    utter.onend = ()=>{ if(playing && !paused){ nextArticle(); } };
+    try{ synth.speak(utter);}catch(e){ console.warn(e); }
+    playing=true; paused=false; updateUI(); highlightCurrent(); }
+  function highlightCurrent(){ articles.forEach(a=>a.classList.remove('reading')); const el=getArticle(current); if(el){ el.classList.add('reading'); if(!inFS) el.scrollIntoView({behavior:'smooth', block:'center'}); } document.getElementById('vNow').textContent = artTitle(current) || '—'; }
+  function pauseSpeak(){ if(synth && synth.speaking){ synth.pause(); paused=true; playing=true; } }
+  function resumeSpeak(){ if(synth && paused){ synth.resume(); paused=false; } else { speakIndex(current); } updateUI(); }
+  function stopSpeak(){ if(synth){ try{synth.cancel();}catch(e){} } playing=false; paused=false; updateUI(); }
+  function prevArticle(){ current=Math.max(0,current-1); if(playing){ speakIndex(current);} else {highlightCurrent();} if(inFS) openFS(current); }
+  function nextArticle(){ current=Math.min(articles.length-1,current+1); if(playing){ speakIndex(current);} else {highlightCurrent();} if(inFS) openFS(current); }
+  document.getElementById('vPlay').addEventListener('click', ()=>{ if(!playing || paused){ resumeSpeak(); } else { pauseSpeak(); } });
+  document.getElementById('vPause').addEventListener('click', ()=>pauseSpeak());
+  document.getElementById('vStop').addEventListener('click', ()=>{ stopSpeak(); });
+  document.getElementById('vPrev').addEventListener('click', prevArticle);
+  document.getElementById('vNext').addEventListener('click', nextArticle);
+  function updateUI(){ document.getElementById('vPlay').innerHTML = paused || !playing ? '<i class="fas fa-play"></i>' : '<i class="fas fa-pause"></i>'; }
+  let touchStartX=null;
+  function openFS(i){ inFS=true; current=i; document.getElementById('fsTitle').textContent=artTitle(i); document.getElementById('fsContent').textContent=artText(i); document.getElementById('fsOverlay').classList.add('show'); document.body.style.overflow='hidden'; speakIndex(i); }
+  function closeFS(){ inFS=false; document.getElementById('fsOverlay').classList.remove('show'); document.body.style.overflow=''; }
+  document.getElementById('fsClose').addEventListener('click', ()=>{ closeFS(); });
+  document.getElementById('fsPlay').addEventListener('click', ()=>{ if(!playing || paused){ resumeSpeak(); } else { pauseSpeak(); } });
+  document.getElementById('fsNavPrev').addEventListener('click', ()=>{ prevArticle(); });
+  document.getElementById('fsNavNext').addEventListener('click', ()=>{ nextArticle(); });
+  $$('.article .open-fs').forEach((btn, idx)=> btn.addEventListener('click', ()=>openFS(idx)));
+  $$('.article').forEach((art, idx)=> art.addEventListener('dblclick', ()=>openFS(idx)));
+  document.getElementById('fsOverlay').addEventListener('touchstart', (e)=>{ touchStartX = e.changedTouches[0].clientX; }, {passive:true});
+  document.getElementById('fsOverlay').addEventListener('touchend', (e)=>{ if(touchStartX==null) return; const dx=e.changedTouches[0].clientX - touchStartX; const TH=50; if(dx<-TH){ nextArticle(); } else if(dx>TH){ prevArticle(); } touchStartX=null; }, {passive:true});
+  window.addEventListener('reflowArticles', ()=>{ buildTOC(); });
+  buildTOC();
+})();
+</script>
+
+<script>initSearchFeature(); window.dispatchEvent(new Event('reflowArticles'));</script>
+<footer>Voir aussi : <a href="annexe_magistrature_RESP.html">Annexes — Statut de la Magistrature</a></footer>
+
+<script>
+(function(){
+  function bindTOCButtons(){
+    var panel = document.getElementById('tocPanel');
+    var overlay = document.getElementById('tocOverlay');
+    function show(){ overlay && overlay.classList.add('show'); panel && panel.classList.add('open'); }
+    function hide(){ overlay && overlay.classList.remove('show'); panel && panel.classList.remove('open'); }
+    var b1 = document.getElementById('tocFloatBtn');
+    var b2 = document.getElementById('tocHeaderBtn');
+    if (b1) b1.addEventListener('click', show);
+    if (b2) b2.addEventListener('click', show);
+    if (overlay) overlay.addEventListener('click', hide);
+  }
+  document.addEventListener('DOMContentLoaded', bindTOCButtons);
+})();
+</script>
+
+
+<script>
+(function(){
+  // Activer le mode no-select
+  document.addEventListener('DOMContentLoaded', function(){
+    document.body.classList.add('no-select');
+  });
+
+  function isInteractive(el){
+    if (!el) return false;
+    if (el.tagName) {
+      const tag = el.tagName.toLowerCase();
+      if (tag === 'input' || tag === 'textarea') return true;
+    }
+    if (el.isContentEditable) return true;
+    if (el.closest && el.closest('#searchInterface')) return true; // autoriser la saisie dans la recherche
+    return false;
+  }
+
+  // Bloquer le menu contextuel hors champs
+  document.addEventListener('contextmenu', function(e){
+    if (!isInteractive(e.target)) e.preventDefault();
+  }, {capture:true});
+
+  // Bloquer sélection
+  document.addEventListener('selectstart', function(e){
+    if (!isInteractive(e.target)) e.preventDefault();
+  }, {capture:true});
+
+  // Bloquer copier/coller/couper hors champs
+  ['copy','cut','paste','dragstart'].forEach(function(type){
+    document.addEventListener(type, function(e){
+      if (!isInteractive(document.activeElement)) e.preventDefault();
+    }, {capture:true});
+  });
+
+  // Bloquer Ctrl/Cmd + C/X/A/S/P... hors champs
+  document.addEventListener('keydown', function(e){
+    const k = (e.key || '').toLowerCase();
+    const combo = (e.ctrlKey || e.metaKey) && ['c','x','a','s','p','insert'].includes(k);
+    if (combo && !isInteractive(document.activeElement)) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  }, {capture:true});
+})();
+</script>
+
+  <script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js"));
+  }
+</script>
+  <!-- PWA Install Button -->
+<button id="pwa-install-btn" aria-label="Installer l'application" hidden>Installer</button>
+<style>
+  #pwa-install-btn{
+    position:fixed; right:16px; bottom:16px; z-index:9999;
+    padding:10px 14px; border:none; border-radius:999px;
+    background:#22c55e; color:white; font:600 14px system-ui,Segoe UI,Roboto,Arial,sans-serif;
+    box-shadow:0 8px 20px rgba(34,197,94,.35);
+  }
+  #pwa-install-btn[hidden]{ display:none; }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    #pwa-install-btn{ bottom: calc(16px + env(safe-area-inset-bottom)); }
+  }
+</style>
+<script>
+  (function(){
+    let deferredPrompt;
+    const btnId = "pwa-install-btn";
+    function ensureBtn(){
+      let b = document.getElementById(btnId);
+      if(!b){
+        b = document.createElement("button");
+        b.id = btnId;
+        b.textContent = "Installer";
+        document.body.appendChild(b);
+      }
+      return b;
+    }
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      const btn = ensureBtn();
+      btn.hidden = false;
+      btn.onclick = async () => {
+        btn.hidden = true;
+        deferredPrompt.prompt();
+        await deferredPrompt.userChoice;
+        deferredPrompt = null;
+      };
+    });
+    if (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) {
+      const btn = document.getElementById(btnId);
+      if(btn) btn.hidden = true;
+    }
+  })();
+</script>
+  <!-- Auth UI minimal -->
+<style>
+  .auth-box{position:fixed; top:12px; right:12px; z-index:9998; background:#ffffff; color:#111827; border-radius:12px; padding:10px 12px; box-shadow:0 10px 24px rgba(0,0,0,.12); font:500 14px system-ui,Segoe UI,Roboto,Arial}
+  .auth-box h4{margin:0 0 6px; font-size:14px}
+  .auth-box form{display:flex; gap:6px; flex-wrap:wrap; align-items:center}
+  .auth-box input{padding:6px 8px; border:1px solid #e5e7eb; border-radius:8px}
+  .auth-box button{background:#22c55e; color:#fff; border:none; padding:6px 10px; border-radius:8px; cursor:pointer}
+  .auth-box .row{display:flex; gap:6px; flex-wrap:wrap}
+  .views-badge{position:fixed; left:12px; bottom:12px; z-index:9998; background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px; font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)}
+</style><!-- Admin link (visible only when logged-in) -->
+<style>
+  .admin-link{
+    position:fixed; right:16px; bottom:88px; z-index:9998;
+    display:none; align-items:center; gap:8px;
+    padding:10px 14px; border-radius:999px; text-decoration:none;
+    background:#111827; color:#fff; font:600 14px system-ui,Segoe UI,Roboto,Arial;
+    box-shadow:0 8px 20px rgba(0,0,0,.3);
+    border:1px solid rgba(255,255,255,.1);
+  }
+  body.logged-in .admin-link{ display:inline-flex; }
+  .admin-link:hover{ filter:brightness(1.1); }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    .admin-link{ bottom: calc(88px + env(safe-area-inset-bottom)); }
+  }
+</style>
+<a href="admin.html" class="admin-link" title="Tableau de bord">Admin</a>
+  <script type="module" src="assets/firebase-app.js"></script>
+  <script>window.autoCountAndBind && window.autoCountAndBind();</script>
+  
+<!-- Floating Auth Button + Modal -->
+<style>
+  #auth-fab{
+    position:fixed; right:16px; bottom:68px; z-index:9998;
+    width:48px; height:48px; border-radius:999px; border:none; cursor:pointer;
+    background:#111827; color:#fff; display:grid; place-items:center;
+    box-shadow:0 8px 20px rgba(0,0,0,.35); border:1px solid rgba(255,255,255,.1);
+  }
+  body.logged-in #auth-fab::after{ content:"✓"; }
+  #auth-fab::after{ content:"👤"; font-size:20px; }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    #auth-fab{ bottom: calc(68px + env(safe-area-inset-bottom)); }
+  }
+  .views-badge{
+    position:fixed; left:12px; bottom:12px; z-index:9998; 
+    background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px;
+    font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)
+  }
+  dialog#auth-modal{
+    border:none; border-radius:16px; padding:0; width:min(90vw,420px);
+    box-shadow:0 24px 72px rgba(0,0,0,.35); overflow:hidden;
+  }
+  dialog::backdrop{ background:rgba(0,0,0,.4); }
+  .auth-modal-head{background:#0f172a; color:#fff; padding:12px 16px; display:flex; justify-content:space-between; align-items:center}
+  .auth-modal-body{padding:16px; background:#111827; color:#e5e7eb}
+  .auth-modal-body label{display:block; font-size:13px; margin-top:8px; opacity:.9}
+  .auth-modal-body input{width:100%; padding:10px 12px; border-radius:10px; border:1px solid #1f2937; background:#0b1021; color:#e5e7eb}
+  .auth-actions{display:flex; gap:8px; margin-top:14px}
+  .btn{border:none; border-radius:10px; padding:10px 12px; cursor:pointer; font-weight:600}
+  .btn-primary{background:#22c55e; color:white}
+  .btn-ghost{background:transparent; color:#e5e7eb; border:1px solid #374151}
+  .muted{opacity:.8}
+</style>
+
+<button id="auth-fab" title="Connexion / Compte"></button>
+<div class="views-badge">Vues : <span id="viewCounter">0</span></div>
+
+<dialog id="auth-modal">
+  <div class="auth-modal-head">
+    <strong>Connexion</strong>
+    <button class="btn btn-ghost" id="auth-close" aria-label="Fermer">✕</button>
+  </div>
+  <div class="auth-modal-body">
+    <p class="muted">Connecte-toi pour accéder à l’admin et une meilleure expérience.</p>
+    <label>Email</label>
+    <input type="email" id="auth-email" placeholder="email@exemple.com" required>
+    <label>Mot de passe</label>
+    <input type="password" id="auth-pass" placeholder="••••••••" required>
+    <div class="auth-actions">
+      <button class="btn btn-primary" id="btn-login">Connexion</button>
+      <button class="btn btn-ghost" id="btn-register">Créer un compte</button>
+      <button class="btn btn-ghost" id="btn-logout">Déconnexion</button>
+    </div>
+    <div id="auth-msg" class="muted" style="margin-top:8px;"></div>
+  </div>
+</dialog>
+
+<script type="module">
+  import { authRegister, authLogin, authLogout } from "./assets/firebase-app.js";
+
+  const fab = document.getElementById("auth-fab");
+  const modal = document.getElementById("auth-modal");
+  const closeBtn = document.getElementById("auth-close");
+  const email = document.getElementById("auth-email");
+  const pass = document.getElementById("auth-pass");
+  const msg  = document.getElementById("auth-msg");
+  const btnLogin = document.getElementById("btn-login");
+  const btnRegister = document.getElementById("btn-register");
+  const btnLogout = document.getElementById("btn-logout");
+
+  function openModal(){ try{ modal.showModal(); }catch{ modal.setAttribute("open",""); } }
+  function closeModal(){ modal.close?.(); modal.removeAttribute("open"); }
+
+  fab?.addEventListener("click", openModal);
+  closeBtn?.addEventListener("click", closeModal);
+
+  async function handle(run){
+    msg.textContent = "";
+    try{
+      await run(email.value.trim(), pass.value);
+      msg.textContent = "✅ Opération réussie.";
+      setTimeout(()=>{ closeModal(); }, 500);
+    }catch(e){
+      console.error(e);
+      msg.textContent = "❌ " + (e?.message || "Erreur");
+    }
+  }
+
+  btnLogin?.addEventListener("click", () => handle(authLogin));
+  btnRegister?.addEventListener("click", () => handle(authRegister));
+  btnLogout?.addEventListener("click", async () => {
+    msg.textContent = "";
+    try{ await authLogout(); msg.textContent = "✅ Déconnecté."; }catch(e){ msg.textContent = "❌ " + (e?.message||"Erreur"); }
+  });
+</script>
+
+
+<!-- Per-card view counters -->
+<style>
+  .card-views-badge{
+    position:absolute; top:8px; right:8px;
+    background:rgba(17,24,39,.9); color:#fff;
+    padding:4px 8px; border-radius:999px; font:600 12px system-ui,Segoe UI,Roboto,Arial;
+    box-shadow:0 6px 14px rgba(0,0,0,.25);
+    pointer-events:none;
+  }
+  .card-views-wrap{ position:relative; }
+</style>
+<script type="module">
+  import { getViewCount } from "./assets/firebase-app.js";
+  function basename(href){
+    try{ const u = new URL(href, location.href);
+         const file = u.pathname.split('/').pop() || 'index.html';
+         return file.replace(/\.html$/i,''); }
+    catch{ return (href.split('/').pop()||'index.html').replace(/\.html$/i,''); }
+  }
+  async function attachCounterTo(el, docId){
+    let container = el.closest('.card, .item, .panel, .box, .article, .doc, .tile');
+    if(!container){ container = el.parentElement; }
+    if(container && !container.classList.contains('card-views-wrap')){
+      container.classList.add('card-views-wrap');
+    }
+    const host = container || el;
+    if(host.querySelector('.card-views-badge[data-doc="'+docId+'"]')) return;
+    const badge = document.createElement('span');
+    badge.className = 'card-views-badge';
+    badge.dataset.doc = docId;
+    badge.textContent = 'Vues: …';
+    host.appendChild(badge);
+    try{ const n = await getViewCount(docId);
+         badge.textContent = 'Vues: ' + n; }
+    catch{ badge.textContent = 'Vues: —'; }
+  }
+  async function initCardCounters(){
+    const links = Array.from(document.querySelectorAll('[data-doc-id], a[href$=".html"]'))
+      .filter(a => {
+        const id = a.getAttribute('data-doc-id') || basename(a.getAttribute('href')||'');
+        return id && !['index','admin','offline'].includes(id.toLowerCase());
+      });
+    const handled = new Set();
+    for(const a of links){
+      const id = a.getAttribute('data-doc-id') || basename(a.getAttribute('href')||'');
+      if(!id || handled.has(id)) continue;
+      handled.add(id);
+      attachCounterTo(a, id);
+    }
+  }
+  initCardCounters();
+  const obs = new MutationObserver(()=>initCardCounters());
+  obs.observe(document.body, { childList:true, subtree:true });
+</script>
+
+</body></html>

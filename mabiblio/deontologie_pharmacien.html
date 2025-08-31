@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Code de Déontologie — Pharmaciens (Lecteur)</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5fbff; --paper:#ffffff; --ink:#0b2a3d;
+  --primary:#1e90ff;
+  --primary-700:#0f4d86; --accent:#a7e3ff; --accent-2:#e8f7ff;
+  --muted:#dcedff; --shadow:0 12px 28px rgba(0,0,0,.08); --radius:18px; --transition:.25s ease;
+  --article-bg:#ffffff;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.6}
+header{position:sticky;top:0;z-index:60;background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(255,255,255,.88));backdrop-filter:saturate(1.1) blur(8px);border-bottom:1px solid #e6eef6}
+.container{max-width:1120px;margin:0 auto;padding:14px 16px;display:flex;align-items:center;gap:12px}
+.logo{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:radial-gradient(circle at 30% 30%, var(--accent), #d2f2ff);color:#0f4d86;box-shadow:var(--shadow);font-size:18px}
+h1{margin:0;font-family:'Playfair Display',serif;font-size:20px;color:var(--primary-700)}
+.sub{color:#4b6b88;font-size:12px;margin-top:2px}
+.control-buttons{margin-left:auto;display:flex;gap:8px;align-items:center}
+.btn{min-width:38px;height:38px;border-radius:12px;border:1px solid #cfe6ff;background:#fff;color:var(--primary-700);display:grid;place-items:center;cursor:pointer;box-shadow:var(--shadow);transition:var(--transition)}
+.btn:hover{transform:translateY(-1px)}
+.wrapper{max-width:1120px;margin:16px auto;padding:0 12px}
+.group{background:var(--paper);border:1px solid #e0efff;border-radius:var(--radius);box-shadow:var(--shadow);margin:14px 0;overflow:hidden}
+.group>h2{margin:0;padding:14px 16px;background:linear-gradient(180deg,#ffffff,#f4fbff);border-bottom:1px solid #e0efff;color:#0f4d86;font-size:18px;font-family:'Playfair Display',serif}
+.article{margin:10px 10px 14px 10px;padding:12px 14px;border-left:6px solid var(--primary);background:var(--article-bg);border-radius:14px;box-shadow:0 1px 0 rgba(0,0,0,.03)}
+.article-header{display:flex; align-items:center; gap:10px; margin:0 0 8px 0;}
+.article-header h3{margin:0; color:#0f4d86; display:flex; align-items:center; gap:8px;}
+.article .open-fs{ margin-left:auto; width:34px; height:34px; border:1px solid #cfe6ff; background:#fff; border-radius:10px; cursor:pointer; }
+.article .article-icon{ width:28px; height:28px; border-radius:8px; display:grid; place-items:center; background:var(--accent-2); color:var(--primary-700); border:1px solid #cfe6ff; }
+.article-content p{margin:.5rem 0}.article-content ul,.article-content ol{margin:.5rem 0 .8rem 1.25rem}
+.article-content ol>li, .article-content ul>li{ padding:8px 0; line-height:1.7; border-bottom:1px solid #ecf6ff; }
+.article-content ol>li:last-child, .article-content ul>li:last-child{ border-bottom:0; }
+.article-content li > ol > li, .article-content li > ul > li{ padding:6px 0; border-bottom:1px dashed #ecf6ff; }
+.article-content li > ol > li:last-child, .article-content li > ul > li:last-child{ border-bottom:0; }
+.reading{ outline:2px solid var(--accent); outline-offset:2px; border-left-color:var(--accent) !important; background:linear-gradient(180deg,#fff, var(--accent-2)) }
+mark{background:rgba(167,227,255,.55)}
+#tocFloatBtn{position:fixed; right:14px; bottom:120px; width:46px; height:46px; border-radius:50%; border:none; background:var(--primary); color:#fff; display:grid; place-items:center; box-shadow:0 10px 24px rgba(0,0,0,.25); z-index:1500;}
+#tocPanel{position:fixed; top:0; right:0; height:100%; width:86%; max-width:420px; background:#fff; border-left:1px solid #e0efff; box-shadow:-16px 0 35px rgba(0,0,0,.2); transform:translateX(100%); transition:transform .25s ease; z-index:1600; overflow:auto;}
+#tocOverlay{position:fixed; inset:0; background:rgba(0,0,0,.28); backdrop-filter:blur(2px); display:none; z-index:1590}
+#tocPanel.open{ transform:none } #tocOverlay.show{ display:block }
+#tocPanel header{position:sticky; top:0; background:#fff; padding:12px 14px; border-bottom:1px solid #e0efff}
+#tocPanel h3{margin:0; color:#0f4d86} #tocPanel .toc-list{padding:12px 14px}
+#tocPanel .toc-list a{display:block; padding:6px 0; color:#0f4d86; text-decoration:none}
+#tocPanel .toc-sub{margin-left:10px; border-left:2px solid #eef6fd; padding-left:8px}
+mark{ padding:0 2px; border-radius:3px }
+#voiceBar{position:fixed; left:50%; transform:translateX(-50%); bottom:14px; background:#0f4d86; color:#fff; z-index:1550; border-radius:22px; padding:8px 12px; display:flex; gap:10px; align-items:center; box-shadow:0 12px 28px rgba(0,0,0,.3)}
+#voiceBar button{width:34px; height:34px; border-radius:10px; border:1px solid #cfe3f5; background:transparent; color:#eaf0f6; display:grid; place-items:center; cursor:pointer}
+#voiceBar .now{font-size:12px; max-width:52vw; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:#f1f5f9}
+#fsOverlay{ position:fixed; inset:0; background:#fff; z-index:1700; display:none; }
+#fsOverlay.show{ display:block } #fsHeader{ position:sticky; top:0; background:#fff; padding:10px 14px; border-bottom:1px solid #e0efff; display:flex; align-items:center; gap:10px }
+#fsHeader .ttl{ font-weight:700; color:#0f4d86; flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
+#fsHeader button{ width:36px; height:36px; border-radius:10px; border:1px solid #cfe6ff; background:#fff; }
+#fsBody{ padding:14px; height:calc(100% - 58px); overflow:auto } #fsBody .article-content{ font-size:1.04rem }
+#fsNavPrev,#fsNavNext{ position:fixed; top:50%; transform:translateY(-50%); width:42px; height:42px; border-radius:50%; border:none; background:var(--primary); color:#fff; display:grid; place-items:center; z-index:1710; opacity:.9 }
+#fsNavPrev{ left:10px } #fsNavNext{ right:10px }
+footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c6785;font-size:12px}
+
+/* ===== Anti-sélection / anti-copie ===== */
+.no-select, .no-select *:not(input):not(textarea):not(.selectable){
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  -webkit-touch-callout: none !important;
+}
+</style>
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#22c55e">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<!-- HIDE AUTH/VIEWS WIDGETS OUTSIDE HOME (safe) -->
+<style>
+  #auth-fab, .views-badge, #auth-modal, .card-views-badge { display: none !important; }
+</style>
+
+</head>
+<body>
+<header>
+  <div class="container">
+    <div class="logo"><i class="fa-solid fa-prescription-bottle-medical"></i></div>
+    <div>
+      <h1>Code de Déontologie — Pharmaciens</h1>
+      <div class="sub">Lecteur optimisé (pharmacie) • Sommaire • Recherche • Lecture continue • Plein écran</div>
+    </div>
+    <div class="control-buttons">
+      <button class="btn" id="tocHeaderBtn" title="Sommaire"><i class="fa-solid fa-mortar-pestle"></i></button>
+      <button class="btn" title="Haut de page" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fa-solid fa-angles-up"></i></button>
+    </div>
+  </div>
+</header>
+<main class="wrapper"><section class="group"><h2>TITRE I: DISPOSITIONS GÉNÉRALES</h2><div class="article" id="Article_1"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-prescription-bottle-medical"></i></span><h3>Article 1</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Les dispositions de la présente loi s'appliquent à tous les pharmaciens inscrits à l'une des sections du tableau de l'Ordre national des pharmaciens de Côte d'Ivoire.</p>
+<p>Les dispositions de la présente loi s'appliquent également aux étudiants en pharmacie, inscrits en année de thèse d'exercice, autorisés à faire des remplacements.</p>
+</div></div><div class="article" id="Article_2"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-pills"></i></span><h3>Article 2</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le pharmacien membre d'une société pharmaceutique ne peut considérer son appartenance à la société comme te dispensant, à titre personnel, de ses obligations.</p>
+</div></div><div class="article" id="Article_3"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-capsules"></i></span><h3>Article 3</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Les infractions aux dispositions de la présente loi relèvent de la juridiction disciplinaire de l'Ordre national des pharmaciens, sans préjudice des poursuites judiciaires qu'elles sont susceptibles d'entraîner.</p>
+</div></div><div class="article" id="Article_4"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-mortar-pestle"></i></span><h3>Article 4</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le pharmacien qui exerce une mission de service public peut être traduit en chambre de discipline à la demande de l'autorité administrative dont il relève. L'autorité administrative dont relève le pharmacien est informée de toute action disciplinaire engagée par l'Ordre national des pharmaciens.</p>
+</div></div></section><section class="group"><h2>TITRE II: DEVOIRS GÉNÉRAUX DU PHARMACIEN</h2><div class="article" id="Article_5"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-syringe"></i></span><h3>Article 5</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le pharmacien doit, en toutes circonstances, exercer sa mission dans le respect de la vie et de la personne humaine.</p>
+</div></div><div class="article" id="Article_6"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-tablets"></i></span><h3>Article 6</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le pharmacien doit, en matière sanitaire et sociale, contribuer à l'information et à l'éducation du public.</p>
+</div></div><div class="article" id="Article_7"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-prescription-bottle"></i></span><h3>Article 7</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Un pharmacien ne peut exercer une autre activité que si ce cumul n'est pas exclu par la réglementation en vigueur et s'il est compatible avec la dignité professionnelle et avec l'obligation d'exercice personnel.</p>
+<p>L'exercice personnel consiste, pour le pharmacien, à exécuter lui-même les actes professionnels ou à en surveiller attentivement l'exécution, s'il ne les accomplit pas lui-même.</p>
+</div></div><div class="article" id="Article_8"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-capsules"></i></span><h3>Article 8</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le pharmacien doit veiller à préserver la liberté de son jugement professionnel dans l'exercice de ses fonctions. Il ne peut aliéner son indépendance sous quelque forme que ce soit.</p>
+<p>Il doit avoir en toutes circonstances un comportement conforme à ce qu'exigent la probité et la dignité de la profession. Il doit s'abstenir de tout fait ou manifestation de nature à déconsidérer la profession, même en dehors de l'exercice de celle-ci.</p>
+</div></div><div class="article" id="Article_9"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-prescription-bottle-medical"></i></span><h3>Article 9</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le pharmacien doit veiller à ne jamais favoriser, par ses conseils ou par ses actes, des pratiques contraires à la préservation de la santé publique.</p>
+<p>Il doit contribuer à la lutte contre le charlatanisme, notamment en s'abstenant de fabriquer, de distribuer ou de vendre tous objets ou produits ayant ce caractère.</p>
+</div></div><div class="article" id="Article_10"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-pills"></i></span><h3>Article 10</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le pharmacien a l'obligation d'actualiser ses connaissances par sa participation aux enseignements post-universitaires dont les modalités sont fixées par arrêté du ministre chargé de la Santé.</p>
+</div></div><div class="article" id="Article_11"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-capsules"></i></span><h3>Article 11</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Tout acte professionnel doit être accompli avec soin et attention, selon les règles de bonnes pratiques correspondant à l'activité considérée.</p>
+<p>Les officines, les pharmacies à usage intérieur, les laboratoires d'analyses de biologie médicale et tout autre établissement pharmaceutique doivent être installés dans des locaux spécifiques adaptés aux activités qui s'y exercent et convenablement équipés et tenus.</p>
+<p>Tout produit se trouvant dans une officine, une pharmacie à usage intérieur ou un établissement pharmaceutique doit pouvoir être identifié par son nom mentionné sur une étiquette disposée de façon appropriée.</p>
+</div></div><div class="article" id="Article_12"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-mortar-pestle"></i></span><h3>Article 12</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Tout pharmacien doit définir, par écrit, les attributions des pharmaciens qui l'assistent ou auxquels il donne délégation. La présence de l'assistant ne doit nullement justifier l'absence du pharmacien titulaire.</p>
+</div></div><div class="article" id="Article_13"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-syringe"></i></span><h3>Article 13</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Tout pharmacien doit s'assurer de l'inscription de son assistant, de son délégué ou de son directeur adjoint à l'une des sections du tableau de l'Ordre national des pharmaciens.</p>
+<p>Tout pharmacien qui se fait remplacer dans ses fonctions doit veiller à ce que son remplaçant satisfasse aux conditions requises à cet effet.</p>
+<p>Un pharmacien ne peut se faire remplacer que temporairement par un confrère ou un étudiant remplissant les conditions prévues par la loi.</p>
+<p>Lorsqu'il s'agit d'un pharmacien, le conseil régional dont il dépend doit être informé dans les 72 heures à compter du remplacement.</p>
+<p>Pendant la période de remplacement, le remplaçant, pharmacien ou étudiant relève de la juridiction disciplinaire de l'Ordre national des pharmaciens du lieu de remplacement.</p>
+</div></div><div class="article" id="Article_14"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-tablets"></i></span><h3>Article 14</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Les instances disciplinaires de l'Ordre national des pharmaciens apprécient dans quelle mesure un pharmacien est responsable disciplinairement des actes professionnels accomplis par un autre pharmacien placé sous son autorité.</p>
+<p>Les responsabilités disciplinaires de l'un et l'autre peuvent être simultanément engagées.</p>
+</div></div><div class="article" id="Article_15"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-prescription-bottle"></i></span><h3>Article 15</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Toute cessation d'activité professionnelle, tout transfert des locaux professionnels ainsi que toute modification intervenant dans la propriété, la direction pharmaceutique ou la structure sociale d'une officine, d'un laboratoire d'analyses de biologie médicale et de tout autre établissement pharmaceutique, dans la gérance d'une pharmacie à usage intérieur doit faire l'objet d'une déclaration à l'Ordre des pharmaciens auprès du conseil régional de l'Ordre national des pharmaciens.</p>
+</div></div><div class="article" id="Article_16"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-capsules"></i></span><h3>Article 16</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Il est interdit à tout pharmacien de proposer à un confrère une rémunération qui ne soit pas proportionnée, compte tenu des usages, aux fonctions et responsabilités assumées.</p>
+</div></div><div class="article" id="Article_17"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-prescription-bottle-medical"></i></span><h3>Article 17</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le pharmacien doit veiller à maintenir des relations confiantes avec les autorités administratives. Il doit donner aux membres des corps d'inspection compétents, toutes facilités pour l'accomplissement de leurs missions.</p>
+</div></div><div class="article" id="Article_18"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-pills"></i></span><h3>Article 18</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le pharmacien a le devoir de se préparer à la fonction de maître de stage en perfectionnant ses connaissances en se dotant des moyens adéquats.</p>
+<p>Le pharmacien agréé est le maître de stage et l'étudiant stagiaire son élève.</p>
+</div></div><div class="article" id="Article_19"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-capsules"></i></span><h3>Article 19</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Nul pharmacien ne peut prétendre former un stagiaire s'il n'est pas en mesure d'assurer lui-même cette formation.</p>
+<p>Le pharmacien maître de stage s'engage à dispenser au stagiaire une formation pratique en l'associant à l'ensemble des activités qu'il exerce.</p>
+</div></div><div class="article" id="Article_20"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-mortar-pestle"></i></span><h3>Article 20</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le pharmacien doit inspirer au stagiaire l'amour de la profession et lui donner l'exemple des qualités professionnelles et du respect de la déontologie.</p>
+<p>Le maître de stage rappelle à son stagiaire les obligations auxquelles il est tenu, notamment le respect du secret professionnel pour les faits connus durant le stage.</p>
+</div></div><div class="article" id="Article_21"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-syringe"></i></span><h3>Article 21</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le maître de stage doit pouvoir compter sur la fidélité, l'obéissance et le respect de son élève, qui doit l'aider dans la mesure de ses connaissances.</p>
+</div></div><div class="article" id="Article_22"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-tablets"></i></span><h3>Article 22</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Un pharmacien qui, pendant ou après ses études, a remplacé, assisté ou secondé l'un de ses confrères ou a effectué son stage auprès de celui-ci, ne doit pas entreprendre, pendant un délai de deux ans, l'exploitation d'une officine, d'un laboratoire d'analyses de biologie médicale ou de tout autre établissement pharmaceutique équivalent où sa présence peut permettre une concurrence directe avec le pharmacien remplacé, assisté, secondé ou le maître de stage, sauf entente écrite entre les intéressés. Cette entente doit être notifiée au conseil compétent.</p>
+<p>L'ancien gérant, après décès, a la même obligation vis-à-vis de son ancien employeur.</p>
+</div></div><div class="article" id="Article_23"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-prescription-bottle"></i></span><h3>Article 23</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Les différends entre pharmaciens et stagiaires doivent être portés à la connaissance des conseils régionaux compétents, exception faite de ceux relatifs à l'enseignement qui sont de la compétence de l'université.</p>
+</div></div><div class="article" id="Article_24"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-capsules"></i></span><h3>Article 24</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Les pharmaciens doivent s'efforcer de créer entre eux des sentiments d'estime et de confiance.</p>
+<p>Tous les pharmaciens se doivent mutuellement aide et assistance dans l'accomplissement de leurs devoirs professionnels. En toutes circonstances, ils doivent faire preuve de loyauté et de solidarité les uns envers les autres.</p>
+</div></div><div class="article" id="Article_25"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-prescription-bottle-medical"></i></span><h3>Article 25</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le pharmacien doit traiter avec équité et bienveillance tous ceux qui collaborent avec lui.</p>
+<p>Le pharmacien doit traiter en confrère le pharmacien placé sous son autorité et ne pas faire obstacle à l'exercice de son mandat professionnel le cas échéant.</p>
+<p>Il doit exiger de tous ceux qui collaborent avec lui et du pharmacien placé sous son autorité, une conduite en accord avec les prescriptions de la présente loi.</p>
+</div></div><div class="article" id="Article_26"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-pills"></i></span><h3>Article 26</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Il est interdit au pharmacien d'inciter tout collaborateur d'un confrère à rompre son contrat de travail.</p>
+<p>Avant de prendre à son service l'ancien collaborateur d'un confrère du proche voisinage, il doit en informer celui-ci. Toute contestation à ce sujet doit être soumise à la décision du conseil régional de l'ordre de l'intéressé.</p>
+</div></div><div class="article" id="Article_27"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-capsules"></i></span><h3>Article 27</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Un pharmacien ne peut faire usage de documents ou d'informations à caractère interne dont il a eu connaissance dans l'exercice de ses fonctions chez son ancien employeur ou maître de stage, sauf accord exprès de ce dernier.</p>
+</div></div><div class="article" id="Article_28"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-mortar-pestle"></i></span><h3>Article 28</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Toute dénonciation injustifiée ou faite dans le dessein de nuire à un confrère est constitutive de faute professionnelle. Tout propos ou tout acte, quelles qu'en soient les circonstances, susceptible de porter préjudice à un confrère au point de vue professionnel, est passible de sanction disciplinaire.</p>
+</div></div><div class="article" id="Article_29"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-syringe"></i></span><h3>Article 29</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>En raison de leur devoir de confraternité, les pharmaciens qui ont entre eux un différend d'ordre professionnel doivent tenter de le résoudre à l'amiable. En cas d'échec de la tentative de règlement amiable, le président du conseil régional de l'Ordre compétent est saisi par la partie la plus diligente aux fins de tentative de conciliation.</p>
+<p>Tout pharmacien informé d'un différend d'ordre professionnel entre confrères a le devoir de les réconcilier. S'il n'y parvient pas, il informe le conseil régional compétent.</p>
+</div></div></section><section class="group"><h2>TITRE III: INTERDICTION DE CERTAINS PROCÉDÉS DANS LA RECHERCHE DE LA CLIENTÈLE ET PROHIBITION DE CERTAINES CONVENTIONS OU ENTENTES</h2><div class="article" id="Article_30"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-tablets"></i></span><h3>Article 30</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Il est interdit au pharmacien de porter atteinte au principe du libre choix du pharmacien par les malades en octroyant directement ou indirectement à certains d'entre eux, des avantages que la loi ne leur aurait pas explicitement dévolus. Il doit s'abstenir de tout acte de concurrence déloyale.</p>
+</div></div><div class="article" id="Article_31"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-prescription-bottle"></i></span><h3>Article 31</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Il est interdit au pharmacien de solliciter la clientèle par des procédés et moyens contraires à la dignité de sa profession, même lorsque ces procédés et moyens ne sont pas expressément prohibés par la législation en vigueur.</p>
+</div></div><div class="article" id="Article_32"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-capsules"></i></span><h3>Article 32</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Il est interdit au pharmacien investi d'un mandat électif, administratif ou d'une fonction honorifique d'en user pour accroître sa clientèle.</p>
+</div></div><div class="article" id="Article_33"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-prescription-bottle-medical"></i></span><h3>Article 33</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>A l'exception de celles qu'impose la législation commerciale ou industrielle, les seules indications que le pharmacien peut faire figurer sur son en-tête de lettres, papier d'affaires, annuaire ou support numérique professionnel sont :</p>
+<p>celles qui facilitent ses relations avec les clients ou fournisseurs, telles que le nom, les prénoms, les contacts, la localisation, les jours et heures d'ouverture, les numéros de compte bancaire ; l'énoncé des différentes activités qu'il exerce ; les titres et fonctions retenus à cet effet par le conseil national de l'Ordre national des pharmaciens ; les distinctions honorifiques en rapport avec la pharmacie et la santé publique.</p>
+</div></div><div class="article" id="Article_34"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-pills"></i></span><h3>Article 34</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le pharmacien ne doit se soumettre à aucune contrainte financière, commerciale, technique ou morale, de quelque nature que ce soit, susceptible de porter atteinte à son indépendance dans l'exercice de sa profession, notamment à l'occasion de la conclusion de contrats, de conventions ou d'avenants à objet professionnel.</p>
+<p>Le pharmacien ne doit pas conclure, sans l'avis préalable de l'Ordre national des pharmaciens, des contrats, conventions ou avenants susceptibles de porter atteinte à son indépendance dans l'exercice de sa profession.</p>
+<p>Une copie des contrats, conventions ou avenants signés par les parties est transmise au conseil régional de l'Ordre compétent.</p>
+</div></div><div class="article" id="Article_35"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-capsules"></i></span><h3>Article 35</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Sont contraires à la moralité professionnelle toute convention ou tout acte ayant pour objet ou pour effet de spéculer sur la santé ainsi que le partage avec des tiers de la rémunération des services du pharmacien.</p>
+<p>Sont interdits notamment :</p>
+<ul>
+<li>tout versement et toute acceptation illicites de sommes d'argent entre les praticiens ;</li>
+<li>tout versement et toute acceptation de commissions entre le pharmacien et toute autre personne ; toute remise en argent ou en nature sur le prix public, d'un produit ou d'un service ; tout acte de nature à procurer à un client un avantage illicite ; toute facilité accordée à quiconque se livre à l'exercice illégal de la pharmacie, de la médecine ou de toute autre profession de santé.</li>
+</ul>
+</div></div><div class="article" id="Article_36"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-mortar-pestle"></i></span><h3>Article 36</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Tout compérage entre pharmacien et membres des autres professions de santé ou toute autre personne est interdit.</p>
+<p>On entend par compérage, l'intelligence entre deux ou plusieurs personnes en vue d'avantages obtenus au détriment du client ou de tiers.</p>
+</div></div><div class="article" id="Article_37"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-syringe"></i></span><h3>Article 37</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le pharmacien doit s'abstenir d'organiser des manifestations liées à l'activité pharmaceutique, qui ne répondraient pas à des objectifs scientifiques, techniques ou d'enseignement et qui lui procureraient des avantages matériels, ou de participer à de telles manifestations.</p>
+</div></div><div class="article" id="Article_38"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-tablets"></i></span><h3>Article 38</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Ne sont pas comprises dans les ententes prohibées entre pharmaciens et membres du corps médical celles qui tendent aux versements de droits d'auteur ou d'inventeur.</p>
+<p>De même, les membres du corps médical peuvent être associés au pharmacien pour la préparation des produits pharmaceutiques, conformément aux dispositions de la loi et des Codes de déontologie qui les concernent.</p>
+</div></div><div class="article" id="Article_39"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-prescription-bottle"></i></span><h3>Article 39</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le pharmacien peut recevoir des redevances qui lui seraient reconnues pour sa contribution à l'invention, à l'étude ou à la mise au point de médicaments ou d'appareils, dès lors que ceux-ci ont été prescrits ou conseillés par d'autres que lui-même.</p>
+</div></div><div class="article" id="Article_39"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-capsules"></i></span><h3>Article 39</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Il peut verser dans les mêmes conditions les redevances reconnues aux praticiens auxquels des contrats le lient.</p>
+<p>Lorsque l'inventeur a prescrit lui-même l'objet de seuil invention, le versement et l'acceptation des redevances sont subordonnés à l'autorisation de l'Ordre dont relève cet inventeur, si la prescription a lieu de manière habituelle.</p>
+</div></div><div class="article" id="Article_40"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-prescription-bottle-medical"></i></span><h3>Article 40</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Il est interdit au pharmacien toute information ou publicité mensongère. Lorsqu'elle est autorisée, l'information ou la publicité doit être sincère, loyale et formulée avec tact et mesure.</p>
+</div></div><div class="article" id="Article_41"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-pills"></i></span><h3>Article 41</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Il est interdit d'accorder, à l'ayant droit d'un service médio-pharmaceutique collectif, le remplacement d'un produit par une fourniture de nature différente même considérée comme ayant une valeur pécuniaire équivalente ou supérieure.</p>
+</div></div></section><section class="group"><h2>TITRE IV: DEVOIRS DU PHARMACIEN DANS LA PROTECTION DE LA SANTÉ PUBLIQUE ET DANS LA PROTECTION DE LA SANTÉ</h2><div class="article" id="Article_42"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-capsules"></i></span><h3>Article 42</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le pharmacien est au service du public. Il doit faire preuve du même dévouement envers toutes les personnes qui ont recours à son art.</p>
+<p>Sauf ordre écrit des autorités compétentes, le pharmacien doit demeurer à son poste quand l'intérêt du public l'exige.</p>
+</div></div><div class="article" id="Article_43"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-mortar-pestle"></i></span><h3>Article 43</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le secret professionnel s'impose à tout pharmacien, sauf dérogation établie par la loi. Tout pharmacien doit, en outre, veiller à ce que ses collaborateurs soient informés de leurs obligations en matière de secret professionnel et à ce qu'ils s'y conforment.</p>
+</div></div><div class="article" id="Article_44"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-syringe"></i></span><h3>Article 44</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le pharmacien est tenu de prêter son concours aux services publics pour les actions de protection et de préservation de la santé publique.</p>
+</div></div><div class="article" id="Article_45"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-tablets"></i></span><h3>Article 45</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le pharmacien est tenu de participer à la recherche, au développement et à la promotion des médicaments issus de la pharmacopée traditionnelle, en vue de la protection de la santé publique.</p>
+</div></div><div class="article" id="Article_46"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-prescription-bottle"></i></span><h3>Article 46</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Tout pharmacien doit, quelle que soit sa fonction et dans la limite de ses connaissances et de ses moyens, porter secours à toute personne en danger immédiat, hormis le cas de force majeure.</p>
+</div></div><div class="article" id="Article_47"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-capsules"></i></span><h3>Article 47</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Afin de ne pas compromettre le fonctionnement rationnel et le développement normal des institutions et régimes de protection sociale, le pharmacien observe dans l'exercice de son activité professionnelle, les règles prévues par les statuts des collectivités publiques ou privées, à condition qu'elles ne soient pas contraires aux lois et règlements qui régissent l'exercice de la pharmacie.</p>
+</div></div><div class="article" id="Article_48"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-prescription-bottle-medical"></i></span><h3>Article 48</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Il est interdit au pharmacien de délivrer un médicament non autorisé à la commercialisation et à la dispensation en Côte d'Ivoire.</p>
+<p>Le pharmacien ne doit vendre aucun remède secret.</p>
+</div></div><div class="article" id="Article_49"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-pills"></i></span><h3>Article 49</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le pharmacien doit assurer, dans son intégralité, l'acte de dispensation du médicament, associant à sa délivrance :</p>
+<ul>
+<li>l'analyse pharmaceutique de l'ordonnance médicale, si elle existe ;</li>
+<li>la préparation éventuelle des doses à administrer ;</li>
+<li>la mise à disposition des informations et des conseils nécessaires au bon usage du médicament.</li>
+</ul>
+<p>Le pharmacien a un devoir particulier de conseil lorsqu'il est amené à délivrer un médicament qui ne requiert pas une prescription médicale.</p>
+<p>Le pharmacien est tenu au respect des bonnes pratiques de dispensation.</p>
+<p>Le pharmacien doit, par des conseils appropriés et dans le domaine de ses compétences, participer au soutien apporté au client.</p>
+</div></div><div class="article" id="Article_50"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-capsules"></i></span><h3>Article 50</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Afin d'assurer le respect du secret professionnel, le pharmacien s'abstient de discuter en public, notamment à l'officine, de questions relatives aux maladies des clients.</p>
+</div></div><div class="article" id="Article_51"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-mortar-pestle"></i></span><h3>Article 51</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Un service de garde est organisé, en dehors des jours d'ouverture, pour répondre aux besoins du public. La garde est une obligation de santé publique.</p>
+<p>Pour la pharmacie à usage intérieur, le pharmacien est tenu de participer aux services de garde et d'urgence rendus nécessaires par le fonctionnement de l'établissement sanitaire qui abrite ladite pharmacie.</p>
+<p>Le pharmacien titulaire veille à ce que son officine satisfasse aux obligations imposées par ce service, notamment la présence d'un pharmacien.</p>
+</div></div><div class="article" id="Article_52"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-syringe"></i></span><h3>Article 52</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>En dehors des heures d'ouverture et dans les localités où un service de garde n'est pas assuré, le pharmacien d'officine est tenu d'indiquer le lieu où il peut être contacté en cas d'urgence.</p>
+</div></div><div class="article" id="Article_53"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-tablets"></i></span><h3>Article 53</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>En cas de fermeture, le pharmacien d'officine porte à la connaissance du public, les noms et adresses de ses proches confrères en mesure de procurer aux malades les médicaments et conseils nécessaires.</p>
+</div></div><div class="article" id="Article_54"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-prescription-bottle"></i></span><h3>Article 54</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Aucun pharmacien ne peut maintenir une officine ouverte ou une pharmacie à usage intérieur en fonctionnement, s'il n'est pas effectivement et régulièrement remplacé.</p>
+</div></div></section><section class="group"><h2>TITRE V: DEVOIRS DU PHARMACIEN D&#x27;OFFICINE ET DE PHARMACIE A USAGE INTÉRIEUR, DU PHARMACIEN EXERÇANT DANS UN ÉTABLISSEMENT PHARMACEUTIQUE DE FABRICATION, DE DISTRIBUTION EN GROS ET DU PHARMACIEN BIOLOGISTE</h2><div class="article" id="Article_55"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-capsules"></i></span><h3>Article 55</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Les dispositions du présent chapitre s'appliquent aux pharmaciens d'officine et aux pharmaciens exerçant dans les pharmacies à usage intérieur ainsi qu'à ceux qui exercent dans tous les autres organismes habilités à distribuer des médicaments.</p>
+</div></div><div class="article" id="Article_56"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-prescription-bottle-medical"></i></span><h3>Article 56</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>L'exploitation d'une officine de pharmacie est incompatible avec l'exercice d'une autre profession, notamment avec celle de médecin, de chirurgien-dentiste, de vétérinaire, d'infirmier, de sage-femme, même si l'intéressé est pourvu des diplômes correspondants.</p>
+<p>Le pharmacien ne peut être propriétaire ou copropriétaire que d'une seule officine.</p>
+</div></div><div class="article" id="Article_57"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-pills"></i></span><h3>Article 57</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>L'activité des pharmacies à usage intérieur est limitée à l'usage particulier des malades dans les établissements de santé ou médico-sociaux où elles ont été constituées.</p>
+<p>La gérance d'une pharmacie à usage intérieur est assurée par un pharmacien. Il est responsable des dispositions qui ont trait à l'activité pharmaceutique.</p>
+<p>Le pharmacien chargé de la gérance d'une officine après décès du titulaire se voit reconnaître la même indépendance technique qu'avait le titulaire lui-même.</p>
+</div></div><div class="article" id="Article_58"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-capsules"></i></span><h3>Article 58</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Toute officine doit porter de façon lisible de l'extérieur, le nom du ou des pharmaciens propriétaires, ou s'il s'agit d'une officine exploitée en société, le nom du ou des pharmaciens associés.</p>
+<p>Les noms des pharmaciens assistants peuvent être également mentionnés.</p>
+<p>Ces inscriptions ne peuvent être accompagnées que des seuls titres universitaires, hospitaliers et scientifiques dont la liste est établie par le conseil national de l'Ordre des pharmaciens.</p>
+</div></div><div class="article" id="Article_59"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-mortar-pestle"></i></span><h3>Article 59</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>La présentation intérieure et extérieure de l'officine doit être conforme à la dignité professionnelle et aux dispositions réglementaires.</p>
+<p>La signalisation extérieure de l'officine ne peut comporter, outre sa dénomination, que les emblèmes et indications ci-après :</p>
+<ul>
+<li>croix grecque de couleur verte, lumineuse ou non ;</li>
+<li>caducée pharmaceutique de couleur verte, lumineux ou non, tel que reconnu par le ministère en charge de la Santé en tant qu'emblème officiel des pharmaciens et constitué par une coupe d'Hygie et un serpent d'Epidaure ;</li>
+<li>lorsque cela est autorisé, le nom ou le sigle de l'association, du groupement ou du réseau pharmaceutique dont le pharmacien est membre ; ce nom ou ce sigle ne saurait prévaloir sur la dénomination ou l'identité de l'officine.</li>
+</ul>
+</div></div><div class="article" id="Article_60"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-syringe"></i></span><h3>Article 60</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le pharmacien ne doit pas aliéner son indépendance et son identité professionnelles à l'occasion de l'utilisation de marques ou d'emblèmes collectifs.</p>
+</div></div><div class="article" id="Article_61"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-tablets"></i></span><h3>Article 61</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>L'organisation de l'officine ou de la pharmacie à usage intérieur doit assurer la qualité de tous les actes qui y sont pratiqués.</p>
+<p>Le pharmacien veille à ce que le public ne puisse accéder directement aux médicaments et à ce que ceux-ci soient dispensés avec la discrétion que requiert le respect du secret professionnel.</p>
+<p>Toutefois, le pharmacien titulaire ou le pharmacien gérant d'une officine peut rendre directement accessibles au public les médicaments de médication officinale précisés par voie réglementaire. Ces médicaments doivent être présentés dans un espace dédié, clairement identifié et situé à proximité immédiate des postes de dispensation des médicaments de façon à permettre un contrôle effectif du pharmacien. Ce dernier met à la disposition du public les informations émanant des autorités de santé relatives au bon usage des médicaments de médication officinale.</p>
+</div></div><div class="article" id="Article_62"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-prescription-bottle"></i></span><h3>Article 62</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Les activités spécialisées de l'officine entrant dans le champ professionnel du pharmacien doivent être exercées conformément aux réglementations qui leur sont propres.</p>
+</div></div><div class="article" id="Article_63"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-capsules"></i></span><h3>Article 63</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>L'information en faveur d'une officine de pharmacie dans les annuaires ou supports équivalents est limitée comme suit :</p>
+<ul>
+<li>à la rubrique «Pharmacie», sont seules autorisées les mentions des noms, des adresses, numéros de téléphone et de télécopie, l'adresse électronique ;</li>
+<li>à toute autre rubrique, ne peuvent figurer que les annonces relatives aux activités spécialisées autorisées dans l'officine.</li>
+</ul>
+<p>Les mentions prévues à l'alinéa 1 du présent article ne peuvent revêtir, par leur présentation et leur dimension, une importance telle qu'elle leur confère un caractère publicitaire.</p>
+</div></div><div class="article" id="Article_64"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-prescription-bottle-medical"></i></span><h3>Article 64</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>La publicité pour les médicaments, produits et articles dont la vente est réservée aux pharmaciens ne peut s'effectuer que conformément à la réglementation en vigueur.</p>
+<p>La publicité pour les produits ou articles dont la vente n'est pas exclusivement réservée aux pharmaciens est admise sous réserve des conditions ci-après :</p>
+<ul>
+<li>demeurer loyale ;</li>
+<li>se présenter sur un support compatible avec la dignité de la profession ;</li>
+<li>observer tact et mesure dans sa forme et son contenu ;</li>
+<li>ne pas être trompeuse pour le consommateur.</li>
+</ul>
+</div></div><div class="article" id="Article_65"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-pills"></i></span><h3>Article 65</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Les vitrines des officines et les emplacements aménagés pour être visibles de l'extérieur ne peuvent servir à présenter que les activités dont l'exercice en pharmacie est licite.</p>
+<p>Sous réserve de la réglementation en vigueur en matière de concurrence et de publicité ainsi que des obligations légales en matière d'information sur les prix pratiqués, ces vitrines et emplacements ne saurait être utilisés aux fins de solliciter la clientèle par des procédés et moyens contraires à la dignité de la profession.</p>
+</div></div><div class="article" id="Article_66"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-capsules"></i></span><h3>Article 66</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le pharmacien ne doit favoriser, ni par ses conseils, ni par ses actes, des pratiques contraires aux bonnes mœurs.</p>
+<p>Il est interdit au pharmacien de collecter les ordonnances aux fins de délivrance de médicaments.</p>
+</div></div><div class="article" id="Article_67"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-mortar-pestle"></i></span><h3>Article 67</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Lorsque l'intérêt de la santé du client lui paraît l'exiger, le pharmacien doit refuser de dispenser un médicament. Si ce médicament is prescrit sur une ordonnance, le pharmacien doit informer immédiatement le prescripteur de son refus et le mentionner sur l'ordonnance.</p>
+</div></div><div class="article" id="Article_68"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-syringe"></i></span><h3>Article 68</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le pharmacien ne peut modifier une prescription qu'avec l'accord exprès et préalable de son auteur. Toutefois, pour des raisons de santé publique, des dérogations à cette règle peuvent être admises dans des conditions fixées par arrêté du ministre chargé de la Santé.</p>
+</div></div><div class="article" id="Article_69"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-tablets"></i></span><h3>Article 69</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Chaque fois qu'il lui paraît nécessaire, le pharmacien doit inciter ses clients à consulter un praticien qualifié.</p>
+</div></div><div class="article" id="Article_70"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-prescription-bottle"></i></span><h3>Article 70</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le pharmacien doit s'abstenir de formuler un diagnostic sur la maladie au traitement de laquelle il est appelé à collaborer.</p>
+</div></div><div class="article" id="Article_71"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-capsules"></i></span><h3>Article 71</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le pharmacien doit répondre avec circonspection aux demandes faites par les malades ou par leurs préposés pour connaître la nature de la maladie traitée ou la valeur des moyens curatifs prescrits ou appliqués.</p>
+</div></div><div class="article" id="Article_72"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-prescription-bottle-medical"></i></span><h3>Article 72</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le pharmacien ne doit not, par quelque procédé ou moyen que ce soit, inciter ses clients à une consommation abusive de médicaments.</p>
+</div></div><div class="article" id="Article_73"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-pills"></i></span><h3>Article 73</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Les prix des médicaments et autres produits vendus dans l'officine doivent être portés à la connaissance du public conformément à la réglementation en vigueur. Lorsque le pharmacien est appelé à déterminer lui-même le prix, il doit le faire dans les conditions prévues par la réglementation en vigueur. Toutefois, lorsqu'il s'agit de produit autre qu'un médicament, il doit y procéder avec mesure.</p>
+</div></div><div class="article" id="Article_74"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-capsules"></i></span><h3>Article 74</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Aucun acte médical ou vétérinaire ou consultation médicale ne peut être effectué dans l'officine.</p>
+</div></div><div class="article" id="Article_75"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-mortar-pestle"></i></span><h3>Article 75</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Il est interdit au pharmacien de mettre à la disposition de personnes étrangères à l'officine, à quelque titre que ce soit, onéreux ou gratuit, tout ou partie de ses locaux professionnels pour l'exercice de toute autre profession.</p>
+</div></div><div class="article" id="Article_76"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-syringe"></i></span><h3>Article 76</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le pharmacien responsable d'un établissement pharmaceutique est personnellement responsable du respect des dispositions ayant trait à son activité, sans préjudice le cas échéant, de la responsabilité solidaire de la société.</p>
+</div></div><div class="article" id="Article_77"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-tablets"></i></span><h3>Article 77</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le pharmacien responsable d'un établissement de fabrication, d'importation, d'exportation et de distribution en gros de médicaments doit veiller au respect de l'éthique professionnelle ainsi que de toutes les prescriptions édictées dans l'intérêt de la santé publique.</p>
+<p>Il doit, en outre, veiller à définir avec précision les attributions des pharmaciens et du personnel placés sous son autorité. Il doit former ces derniers aux règles de bonnes pratiques.</p>
+<p>Le pharmacien délégué est tenu, dans les limites de sa délégation, aux mêmes obligations.</p>
+</div></div><div class="article" id="Article_78"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-prescription-bottle"></i></span><h3>Article 78</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le pharmacien responsable et le pharmacien délégué doivent exercer personnellement leur profession.</p>
+<p>Le pharmacien responsable doit justifier d'une expérience appropriée. En cas d'absence, le pharmacien responsable doit se faire remplacer. Il doit veiller à ce que son remplaçant satisfasse aux conditions requises.</p>
+</div></div><div class="article" id="Article_79"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-capsules"></i></span><h3>Article 79</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le pharmacien responsable et les pharmaciens placés sous son autorité doivent s'interdire de discréditer un confrère ou une entreprise concurrente. Le pharmacien responsable est tenu de veiller à l'exactitude de l'information scientifique, médicale et pharmaceutique et de la publicité, ainsi qu'à la loyauté de leur utilisation.</p>
+<p>Il s'assure que la publicité liée aux médicaments est réalisée de façon objective et qu'elle n'est pas trompeuse.</p>
+</div></div><div class="article" id="Article_80"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-prescription-bottle-medical"></i></span><h3>Article 80</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le pharmacien responsable doit organiser un système d'astreinte pour répondre aux besoins urgents en médicaments en dehors des horaires et des jours d'ouverture généralement pratiqués par les grossistes-répartiteurs sur leur territoire de répartition.</p>
+</div></div><div class="article" id="Article_81"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-pills"></i></span><h3>Article 81</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Dans l'exercice de ses fonctions, le pharmacien biologiste doit veiller au respect de l'éthique professionnelle et de toutes les prescriptions édictées dans l'intérêt de la santé publique.</p>
+</div></div><div class="article" id="Article_81"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-capsules"></i></span><h3>Article 81</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le pharmacien accomplit sa mission en mettant en œuvre les méthodes scientifiques appropriées et, s'il y a lieu, en se faisant aider d'avis éclairés.</p>
+<p>Le pharmacien doit surveiller, avec soin, l'exécution des examens qu'il ne pratique pas lui-même.</p>
+<p>Le pharmacien doit, dans le cas d'un contrat de collaboration entre laboratoires, s'assurer que les analyses confiées au laboratoire tiers sont exécutées avec la plus grande sécurité pour le client.</p>
+</div></div><div class="article" id="Article_82"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-mortar-pestle"></i></span><h3>Article 82</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>L'information scientifique auprès du corps médical ou pharmaceutique ne saurait être détournée à des fins publicitaires.</p>
+</div></div><div class="article" id="Article_83"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-syringe"></i></span><h3>Article 83</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Outre les indications qui doivent figurer, en vertu de la réglementation en vigueur, sur tous documents émanant de son laboratoire, le pharmacien biologiste ne peut faire figurer sur ces documents que tout ou partie des indications suivantes :</p>
+<ul>
+<li>les noms, adresses, numéros de téléphone et de télécopie, l'adresse électronique ;</li>
+<li>le numéro de compte bancaire ;</li>
+<li>les activités exercées figurant dans l'autorisation ministérielle ;</li>
+<li>lorsque cela est autorisé, le nom ou le sigle de l'association, du groupement ou du réseau de biologistes dont le pharmacien biologiste est membre ; ce nom ou ce sigle ne saurait prévaloir sur la dénomination ou l'identité du laboratoire ;</li>
+<li>les titres et fonctions reconnus par le conseil national de l'Ordre des pharmaciens.</li>
+</ul>
+<p>Le pharmacien biologiste peut également faire figurer ces indications dans un annuaire professionnel.</p>
+<p>Ces indications, comme celles qui sont inscrites, selon les dispositions réglementaires en vigueur, sur la plaque professionnelle apposée sur la porte des locaux du laboratoire ou de l'immeuble dans lequel ce dernier est installé, doivent être présentées avec discrétion selon les usages des professions libérales.</p>
+</div></div><div class="article" id="Article_84"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-tablets"></i></span><h3>Article 84</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le pharmacien biologiste peut refuser d'exécuter un prélèvement ou une analyse pour des motifs liés à l'intérêt du client ou au caractère illicite de la demande. S'il refuse pour d'autres motifs, il doit fournir au client tous renseignements utiles pour lui permettre de faire exécuter ce prélèvement ou cette analyse.</p>
+</div></div><div class="article" id="Article_85"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-prescription-bottle"></i></span><h3>Article 85</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le pharmacien biologiste doit, dans le cadre de la tarification de ses actes, respecter la codification en vigueur. Il ne doit not réduire ses honoraires dans une intention de concurrence déloyale.</p>
+<p>Les contrats de collaboration entre laboratoires d'analyses de biologie médicale sont soumis à l'avis du conseil national de l'Ordre national des pharmaciens.</p>
+<p>Il est interdit au pharmacien biologiste de collecter les prélèvements aux fins d'analyses dès lors que cette pratique constitue une concurrence déloyale au détriment de ses confrères.</p>
+</div></div><div class="article" id="Article_86"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-capsules"></i></span><h3>Article 86</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le pharmacien biologiste, titulaire d'une officine de pharmacie, peut être autorisé à ouvrir un laboratoire de biologie médicale. Lorsqu'ils ne sont pas contigus, les locaux qui abritent les deux activités doivent être séparés d'une distance autorisée par la réglementation en vigueur.</p>
+</div></div></section><section class="group"><h2>TITRE VI: RELATIONS AVEC LES AUTRES PROFESSIONS DE SANTÉ</h2><div class="article" id="Article_87"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-prescription-bottle-medical"></i></span><h3>Article 87</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le pharmacien doit entretenir de bons rapports avec les membres du corps médical, les membres des autres professions de santé ainsi que les vétérinaires et respecter leur indépendance professionnelle.</p>
+</div></div><div class="article" id="Article_88"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-pills"></i></span><h3>Article 88</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le pharmacien doit, vis-à-vis de sa clientèle, éviter tous agissements tendant à nuire aux praticiens mentionnés à l'article 96 de la présente loi.</p>
+</div></div><div class="article" id="Article_89"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-capsules"></i></span><h3>Article 89</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Tout projet de contrat d'association entre un ou plusieurs pharmaciens, d'une part, et un ou plusieurs membres d'une ou plusieurs des professions mentionnées à l'article 79 de la présente loi, d'autre part, doit être soumis à l'agrément du conseil national de l'Ordre national des pharmaciens. Celui-ci s'assure, sur avis du conseil régional, que les règles de la déontologie pharmaceutique sont respectées et notamment que la dignité et l'indépendance du pharmacien sont sauvegardées.</p>
+</div></div></section><section class="group"><h2>TITRE VII: SANCTIONS PÉNALES</h2><div class="article" id="Article_90"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-mortar-pestle"></i></span><h3>Article 90</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>La violation des dispositions des articles 43 et 49 de la présente loi constitue une infraction punie d'un emprisonnement de 15 jours à 6 mois et d'une amende de 100.000 à 500.000 francs, ou de l'une de ces deux peines seulement.</p>
+</div></div><div class="article" id="Article_91"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-syringe"></i></span><h3>Article 91</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>La violation des dispositions des articles 41, 56, 66, et 74 de la présente loi constitue une infraction punie d'un emprisonnement de 6 mois à 2 ans et d'une amende de 1.000.000 à 5.000.000 de francs, ou de l'une de ces deux peines seulement.</p>
+</div></div><div class="article" id="Article_92"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-tablets"></i></span><h3>Article 92</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Les juridictions répressives saisies des infractions définies aux articles précédents peuvent prononcer, comme peines complémentaires, l'interdiction temporaire ou définitive d'exercer la profession de pharmacien.</p>
+</div></div></section><section class="group"><h2>TITRE VIII: DISPOSITIONS DIVERSES ET FINALES</h2><div class="article" id="Article_93"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-prescription-bottle"></i></span><h3>Article 93</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Toute décision disciplinaire prise par les conseils centraux en vertu des dispositions du présent Code peut être confirmée, réformée ou annulée par le conseil national de l'Ordre national des pharmaciens, à la demande des intéressés, laquelle doit être présentée dans les deux mois de la notification de la décision.</p>
+</div></div><div class="article" id="Article_94"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-capsules"></i></span><h3>Article 94</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Tout pharmacien, lors de son inscription au tableau, doit affirmer devant le conseil régional de l'Ordre qu'il a eu connaissance du présent Code et s'engager, sous serment et par écrit, à le respecter.</p>
+</div></div><div class="article" id="Article_95"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-prescription-bottle-medical"></i></span><h3>Article 95</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>La présente loi abroge les dispositions de la loi n° 62-249 du 31 juillet 1962 instituant un Code de déontologie pharmaceutique.</p>
+</div></div><div class="article" id="Article_96"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-pills"></i></span><h3>Article 96</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Des décrets précisent les modalités d'application de la présente loi.</p>
+</div></div><div class="article" id="Article_97"><div class="article-header"><span class="article-icon"><i class="fa-solid fa-capsules"></i></span><h3>Article 97</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>La présente loi sera publiée au Journal officiel de la République de Côte d'Ivoire et exécutée comme loi de l'Etat.</p>
+<p>Fait à Abidjan, le 20 juillet 2015.<br/>Alassane QUATTARA.</p>
+</div></div></section></main>
+<button id="tocFloatBtn" title="Sommaire" class="btn"><i class="fa-solid fa-book-medical"></i></button>
+<div id="tocOverlay"></div>
+<aside id="tocPanel"><header><h3><i class="fa-solid fa-staff-snake"></i> Sommaire</h3></header><div class="toc-list" id="tocList"></div></aside>
+<div id="voiceBar" role="region" aria-label="Lecteur vocal">
+  <button id="vPrev" title="Article précédent"><i class="fas fa-backward"></i></button>
+  <button id="vPlay" title="Lire / Reprendre"><i class="fas fa-play"></i></button>
+  <button id="vPause" title="Pause"><i class="fas fa-pause"></i></button>
+  <button id="vStop" title="Arrêter"><i class="fas fa-stop"></i></button>
+  <button id="vNext" title="Article suivant"><i class="fas fa-forward"></i></button>
+  <span class="now" id="vNow">—</span>
+</div>
+<div id="fsOverlay">
+  <div id="fsHeader">
+    <button id="fsClose" title="Fermer"><i class="fas fa-xmark"></i></button>
+    <div class="ttl" id="fsTitle"></div>
+    <button id="fsPlay" title="Lecture"><i class="fas fa-play"></i></button>
+  </div>
+  <div id="fsBody"><article class="article"><div class="article-content" id="fsContent"></div></article></div>
+  <button id="fsNavPrev" title="Précédent"><i class="fas fa-chevron-left"></i></button>
+  <button id="fsNavNext" title="Suivant"><i class="fas fa-chevron-right"></i></button>
+</div>
+
+<script>
+function initSearchFeature() {
+    const searchBtn = document.createElement('button');
+    searchBtn.className = 'btn';
+    searchBtn.id = 'searchBtn';
+    searchBtn.title = 'Rechercher';
+    searchBtn.innerHTML = '<i class="fas fa-search"></i>';
+    document.querySelector('.control-buttons').appendChild(searchBtn);
+    
+    const searchInterface = document.createElement('div');
+    searchInterface.id = 'searchInterface';
+    searchInterface.style.cssText = `
+        position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+        width: calc(100% - 40px); max-width: 550px; background: #fff;
+        padding: 10px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        z-index: 1800; display: none; align-items: center; gap: 5px; transition: .25s ease;
+    `;
+    searchInterface.innerHTML = `
+        <input type="text" id="searchInput" placeholder="Rechercher..." style="flex-grow: 1; padding: 8px; border: 1px solid #d6e2ef; border-radius: 5px;">
+        <button id="searchPrevBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-up"></i></button>
+        <button id="searchNextBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-down"></i></button>
+        <span id="searchResultsCount" style="flex-shrink: 0; padding: 0 5px; min-width: 40px; text-align: center;"></span>
+        <button id="closeSearchBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-times"></i></button>
+    `;
+    document.body.appendChild(searchInterface);
+
+    let searchResults = [];
+    let currentSearchIndex = -1;
+    let originalContents = new Map();
+
+    function performSearch() {
+        const searchTerm = document.getElementById('searchInput').value.trim();
+        if (!originalContents.size) {
+            document.querySelectorAll('.article-content, h2, h3').forEach(el => originalContents.set(el, el.innerHTML));
+        }
+        originalContents.forEach((content, el) => el.innerHTML = content);
+        searchResults = [];
+        currentSearchIndex = -1;
+        if (!searchTerm) { updateSearchUI(); return; }
+
+        const regex = new RegExp(searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+        originalContents.forEach((content, element) => {
+            element.innerHTML = content.replace(regex, match => `<mark>${match}</mark>`);
+        });
+        searchResults = Array.from(document.querySelectorAll('mark'));
+        if (searchResults.length > 0) navigateResults(true, false);
+        updateSearchUI();
+        window.dispatchEvent(new Event('reflowArticles'));
+    }
+
+    function navigateResults(isNext, shouldWrap = true) {
+        if (!searchResults.length) return;
+        searchResults.forEach(mark => mark.style.backgroundColor = '');
+        if (shouldWrap) {
+            currentSearchIndex = isNext ? (currentSearchIndex + 1) % searchResults.length : (currentSearchIndex - 1 + searchResults.length) % searchResults.length;
+        } else {
+            currentSearchIndex = 0;
+        }
+        const currentMark = searchResults[currentSearchIndex];
+        currentMark.style.backgroundColor = 'var(--accent)';
+        currentMark.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        updateSearchUI();
+    }
+
+    function updateSearchUI() {
+        document.getElementById('searchResultsCount').textContent = searchResults.length > 0 ? `${currentSearchIndex + 1}/${searchResults.length}` : '0/0';
+    }
+    
+    function resetSearch() {
+        originalContents.forEach((content, el) => el.innerHTML = content);
+        originalContents.clear();
+        document.getElementById('searchInput').value = '';
+        searchResults = []; currentSearchIndex = -1;
+        updateSearchUI();
+    }
+
+    searchBtn.addEventListener('click', () => {
+        const isVisible = searchInterface.style.display === 'flex';
+        searchInterface.style.display = isVisible ? 'none' : 'flex';
+        if (isVisible) resetSearch(); else document.getElementById('searchInput').focus();
+    });
+    document.getElementById('searchInput').addEventListener('input', performSearch);
+    document.getElementById('searchNextBtn').addEventListener('click', () => navigateResults(true));
+    document.getElementById('searchPrevBtn').addEventListener('click', () => navigateResults(false));
+    document.getElementById('closeSearchBtn').addEventListener('click', () => {
+        searchInterface.style.display = 'none';
+        resetSearch();
+    });
+}
+</script>
+
+
+<script>
+(function(){
+  function extractEnumeration(s){
+    const re = /(\d{1,2})(?:\s*°)?(?:\))?(?:\.)?\s+/g; const matches = []; let m;
+    while ((m = re.exec(s))){ const idx=m.index; const prev = idx>0 ? s.charAt(idx-1) : " "; if (/\d/.test(prev)) continue; matches.push({num:parseInt(m[1],10), start:idx, end:re.lastIndex}); }
+    if (matches.length < 2) return null;
+    for (let i=1;i<matches.length;i++){ if (matches[i].num !== matches[i-1].num + 1) return null; }
+    const intro = s.slice(0, matches[0].start).trim().replace(/[:;,\-]\s*$/, ""); const items = [];
+    for (let i=0;i<matches.length;i++){ const st=matches[i].end; const en=(i+1<matches.length)?matches[i+1].start:s.length; let seg = s.slice(st,en).trim().replace(/^[;,:-]\s*/,"").replace(/[;,\s]+$/,""); items.push(seg); }
+    return {intro, start: matches[0].num, items};
+  }
+  function transformNode(node){
+    if (node.querySelector('ol')) return;
+    const plain = node.textContent.replace(/\s+/g,' ').trim(); const res = extractEnumeration(plain); if (!res) return;
+    const frag = document.createElement('div'); if (res.intro){ const p=document.createElement('p'); p.textContent=res.intro; frag.appendChild(p); }
+    const ol=document.createElement('ol'); if (res.start!==1) ol.setAttribute('start', String(res.start));
+    res.items.forEach(it=>{ const li=document.createElement('li'); li.textContent=it; ol.appendChild(li); });
+    frag.appendChild(ol); node.innerHTML=frag.innerHTML;
+  }
+  function run(){ document.querySelectorAll('.article-content').forEach(transformNode); }
+  window.addEventListener('DOMContentLoaded', ()=>setTimeout(run, 60));
+  window.addEventListener('reflowArticles', run);
+})();
+</script>
+
+
+<script>
+(function(){
+  const $ = s=>document.querySelector(s);
+  const $$ = s=>Array.from(document.querySelectorAll(s));
+  function buildTOC(){
+    const toc = document.getElementById('tocList'); if(!toc) return; toc.innerHTML='';
+    $$('.group').forEach((grp, gi)=>{
+      const gh = grp.querySelector('h2')?.textContent.trim() || `Groupe ${gi+1}`;
+      const gl = document.createElement('a'); gl.textContent=gh; gl.href='#'; gl.style.fontWeight='700';
+      gl.addEventListener('click', e=>{ e.preventDefault(); grp.scrollIntoView({behavior:'smooth', block:'start'}); hideTOC(); });
+      toc.appendChild(gl);
+      const sub = document.createElement('div'); sub.className='toc-sub';
+      grp.querySelectorAll('.article').forEach((art, ai)=>{
+        const at = art.querySelector('.article-header h3')?.textContent.trim() || `Article ${ai+1}`;
+        const a = document.createElement('a'); a.textContent=at; a.href='#';
+        a.addEventListener('click', e=>{ e.preventDefault(); art.scrollIntoView({behavior:'smooth', block:'start'}); hideTOC(); });
+        sub.appendChild(a);
+        if (!art.querySelector('.open-fs')){
+          const btn = document.createElement('button'); btn.className='open-fs'; btn.innerHTML='<i class="fas fa-maximize"></i>';
+          btn.title='Plein écran'; btn.addEventListener('click', ()=>openFS(artIndex(art))); art.querySelector('.article-header')?.appendChild(btn);
+        }
+      });
+      toc.appendChild(sub);
+    });
+  }
+  function showTOC(){ document.getElementById('tocOverlay').classList.add('show'); document.getElementById('tocPanel').classList.add('open'); }
+  function hideTOC(){ document.getElementById('tocOverlay').classList.remove('show'); document.getElementById('tocPanel').classList.remove('open'); }
+  document.addEventListener('DOMContentLoaded', ()=>{
+    const floatBtn = document.getElementById('tocFloatBtn');
+    if (floatBtn) floatBtn.addEventListener('click', showTOC);
+    const overlay = document.getElementById('tocOverlay');
+    if (overlay) overlay.addEventListener('click', hideTOC);
+    const headerBtn = document.getElementById('tocHeaderBtn');
+    if (headerBtn) headerBtn.addEventListener('click', showTOC);
+  });
+  const articles = $$('.article');
+  function artIndex(el){ return articles.indexOf(el); }
+  function getArticle(i){ return articles[Math.max(0, Math.min(articles.length-1, i))]; }
+  function artTitle(i){ const el=getArticle(i); return el? (el.querySelector('.article-header h3')?.textContent.trim()||'') : ''; }
+  function artText(i){ const el=getArticle(i); return el? (el.querySelector('.article-content')?.innerText.trim()||'') : ''; }
+  const synth = window.speechSynthesis;
+  let current = 0, utter = null, playing = false, paused = false, inFS=false;
+  function speakIndex(i){ stopSpeak(); current=i; const text=artText(i); if(!text){ nextArticle(); return; }
+    utter = new SpeechSynthesisUtterance(text); utter.lang='fr-FR'; utter.rate=1; utter.pitch=1;
+    utter.onend = ()=>{ if(playing && !paused){ nextArticle(); } };
+    try{ synth.speak(utter);}catch(e){ console.warn(e); }
+    playing=true; paused=false; updateUI(); highlightCurrent(); }
+  function highlightCurrent(){ articles.forEach(a=>a.classList.remove('reading')); const el=getArticle(current); if(el){ el.classList.add('reading'); if(!inFS) el.scrollIntoView({behavior:'smooth', block:'center'}); } document.getElementById('vNow').textContent = artTitle(current) || '—'; }
+  function pauseSpeak(){ if(synth && synth.speaking){ synth.pause(); paused=true; playing=true; } }
+  function resumeSpeak(){ if(synth && paused){ synth.resume(); paused=false; } else { speakIndex(current); } updateUI(); }
+  function stopSpeak(){ if(synth){ try{synth.cancel();}catch(e){} } playing=false; paused=false; updateUI(); }
+  function prevArticle(){ current=Math.max(0,current-1); if(playing){ speakIndex(current);} else {highlightCurrent();} if(inFS) openFS(current); }
+  function nextArticle(){ current=Math.min(articles.length-1,current+1); if(playing){ speakIndex(current);} else {highlightCurrent();} if(inFS) openFS(current); }
+  document.addEventListener('DOMContentLoaded', ()=>{
+    document.getElementById('vPrev').addEventListener('click', prevArticle);
+    document.getElementById('vPlay').addEventListener('click', ()=>{ if(!playing || paused){ resumeSpeak(); } else { pauseSpeak(); } });
+    document.getElementById('vPause').addEventListener('click', ()=>pauseSpeak());
+    document.getElementById('vStop').addEventListener('click', ()=>{ stopSpeak(); });
+    document.getElementById('vNext').addEventListener('click', nextArticle);
+  });
+  function updateUI(){ document.getElementById('vPlay').innerHTML = paused || !playing ? '<i class="fas fa-play"></i>' : '<i class="fas fa-pause"></i>'; }
+  function openFS(i){ inFS=true; current=i; document.getElementById('fsTitle').textContent=artTitle(i); document.getElementById('fsContent').textContent=artText(i); document.getElementById('fsOverlay').classList.add('show'); document.body.style.overflow='hidden'; speakIndex(i); }
+  function closeFS(){ inFS=false; document.getElementById('fsOverlay').classList.remove('show'); document.body.style.overflow=''; }
+  document.addEventListener('DOMContentLoaded', ()=>{
+    document.getElementById('fsClose').addEventListener('click', ()=>{ closeFS(); });
+    document.getElementById('fsPlay').addEventListener('click', ()=>{ if(!playing || paused){ resumeSpeak(); } else { pauseSpeak(); } });
+    document.getElementById('fsNavPrev').addEventListener('click', ()=>{ prevArticle(); });
+    document.getElementById('fsNavNext').addEventListener('click', ()=>{ nextArticle(); });
+    document.querySelectorAll('.article .open-fs').forEach((btn, idx)=> btn.addEventListener('click', ()=>openFS(idx)));
+    document.querySelectorAll('.article').forEach((art, idx)=> art.addEventListener('dblclick', ()=>openFS(idx)));
+    document.getElementById('fsOverlay').addEventListener('touchstart', (e)=>{ window.__touchX = e.changedTouches[0].clientX; }, {passive:true});
+    document.getElementById('fsOverlay').addEventListener('touchend', (e)=>{ const dx = e.changedTouches[0].clientX - (window.__touchX||0); const TH=50; if(dx<-TH){ nextArticle(); } else if(dx>TH){ prevArticle(); } }, {passive:true});
+  });
+  window.addEventListener('reflowArticles', ()=>{ buildTOC(); });
+  buildTOC();
+})();
+</script>
+
+<script>initSearchFeature(); window.dispatchEvent(new Event('reflowArticles'));</script>
+<footer>Source : fichier HTML fourni (déontologie pharmaciens). Thème bleu ciel, icônes médicaments variés.</footer>
+
+<script>
+(function(){
+  function isInteractive(el){
+    if (!el) return false;
+    if (el.tagName){
+      const tag = el.tagName.toLowerCase();
+      if (['input','textarea','select'].includes(tag)) return true;
+    }
+    if (el.isContentEditable) return true;
+    if (el.closest && el.closest('#searchInterface')) return true;
+    return false;
+  }
+  document.addEventListener('DOMContentLoaded', ()=>{ document.body.classList.add('no-select'); });
+  document.addEventListener('contextmenu', e=>{ if (!isInteractive(e.target)) e.preventDefault(); }, {capture:true});
+  document.addEventListener('selectstart', e=>{ if (!isInteractive(e.target)) e.preventDefault(); }, {capture:true});
+  ['copy','cut','paste','dragstart'].forEach(type=>{
+    document.addEventListener(type, e=>{ if (!isInteractive(document.activeElement)) e.preventDefault(); }, {capture:true});
+  });
+  document.addEventListener('keydown', e=>{
+    const k=(e.key||'').toLowerCase();
+    const combo=(e.ctrlKey||e.metaKey)&&['c','x','a','s','p','insert'].includes(k);
+    if(combo && !isInteractive(document.activeElement)){ e.preventDefault(); e.stopPropagation(); }
+  }, {capture:true});
+})();
+</script>
+
+  <script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js"));
+  }
+</script>
+  <!-- PWA Install Button -->
+<button id="pwa-install-btn" aria-label="Installer l'application" hidden>Installer</button>
+<style>
+  #pwa-install-btn{
+    position:fixed; right:16px; bottom:16px; z-index:9999;
+    padding:10px 14px; border:none; border-radius:999px;
+    background:#22c55e; color:white; font:600 14px system-ui,Segoe UI,Roboto,Arial,sans-serif;
+    box-shadow:0 8px 20px rgba(34,197,94,.35);
+  }
+  #pwa-install-btn[hidden]{ display:none; }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    #pwa-install-btn{ bottom: calc(16px + env(safe-area-inset-bottom)); }
+  }
+</style>
+<script>
+  (function(){
+    let deferredPrompt;
+    const btnId = "pwa-install-btn";
+    function ensureBtn(){
+      let b = document.getElementById(btnId);
+      if(!b){
+        b = document.createElement("button");
+        b.id = btnId;
+        b.textContent = "Installer";
+        document.body.appendChild(b);
+      }
+      return b;
+    }
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      const btn = ensureBtn();
+      btn.hidden = false;
+      btn.onclick = async () => {
+        btn.hidden = true;
+        deferredPrompt.prompt();
+        await deferredPrompt.userChoice;
+        deferredPrompt = null;
+      };
+    });
+    if (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) {
+      const btn = document.getElementById(btnId);
+      if(btn) btn.hidden = true;
+    }
+  })();
+</script>
+  <!-- Auth UI minimal -->
+<style>
+  .auth-box{position:fixed; top:12px; right:12px; z-index:9998; background:#ffffff; color:#111827; border-radius:12px; padding:10px 12px; box-shadow:0 10px 24px rgba(0,0,0,.12); font:500 14px system-ui,Segoe UI,Roboto,Arial}
+  .auth-box h4{margin:0 0 6px; font-size:14px}
+  .auth-box form{display:flex; gap:6px; flex-wrap:wrap; align-items:center}
+  .auth-box input{padding:6px 8px; border:1px solid #e5e7eb; border-radius:8px}
+  .auth-box button{background:#22c55e; color:#fff; border:none; padding:6px 10px; border-radius:8px; cursor:pointer}
+  .auth-box .row{display:flex; gap:6px; flex-wrap:wrap}
+  .views-badge{position:fixed; left:12px; bottom:12px; z-index:9998; background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px; font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)}
+</style><!-- Admin link (visible only when logged-in) -->
+<style>
+  .admin-link{
+    position:fixed; right:16px; bottom:88px; z-index:9998;
+    display:none; align-items:center; gap:8px;
+    padding:10px 14px; border-radius:999px; text-decoration:none;
+    background:#111827; color:#fff; font:600 14px system-ui,Segoe UI,Roboto,Arial;
+    box-shadow:0 8px 20px rgba(0,0,0,.3);
+    border:1px solid rgba(255,255,255,.1);
+  }
+  body.logged-in .admin-link{ display:inline-flex; }
+  .admin-link:hover{ filter:brightness(1.1); }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    .admin-link{ bottom: calc(88px + env(safe-area-inset-bottom)); }
+  }
+</style>
+<a href="admin.html" class="admin-link" title="Tableau de bord">Admin</a>
+  <script type="module" src="assets/firebase-app.js"></script>
+  <script>window.autoCountAndBind && window.autoCountAndBind();</script>
+  
+<!-- Floating Auth Button + Modal -->
+<style>
+  #auth-fab{
+    position:fixed; right:16px; bottom:68px; z-index:9998;
+    width:48px; height:48px; border-radius:999px; border:none; cursor:pointer;
+    background:#111827; color:#fff; display:grid; place-items:center;
+    box-shadow:0 8px 20px rgba(0,0,0,.35); border:1px solid rgba(255,255,255,.1);
+  }
+  body.logged-in #auth-fab::after{ content:"✓"; }
+  #auth-fab::after{ content:"👤"; font-size:20px; }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    #auth-fab{ bottom: calc(68px + env(safe-area-inset-bottom)); }
+  }
+  .views-badge{
+    position:fixed; left:12px; bottom:12px; z-index:9998; 
+    background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px;
+    font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)
+  }
+  dialog#auth-modal{
+    border:none; border-radius:16px; padding:0; width:min(90vw,420px);
+    box-shadow:0 24px 72px rgba(0,0,0,.35); overflow:hidden;
+  }
+  dialog::backdrop{ background:rgba(0,0,0,.4); }
+  .auth-modal-head{background:#0f172a; color:#fff; padding:12px 16px; display:flex; justify-content:space-between; align-items:center}
+  .auth-modal-body{padding:16px; background:#111827; color:#e5e7eb}
+  .auth-modal-body label{display:block; font-size:13px; margin-top:8px; opacity:.9}
+  .auth-modal-body input{width:100%; padding:10px 12px; border-radius:10px; border:1px solid #1f2937; background:#0b1021; color:#e5e7eb}
+  .auth-actions{display:flex; gap:8px; margin-top:14px}
+  .btn{border:none; border-radius:10px; padding:10px 12px; cursor:pointer; font-weight:600}
+  .btn-primary{background:#22c55e; color:white}
+  .btn-ghost{background:transparent; color:#e5e7eb; border:1px solid #374151}
+  .muted{opacity:.8}
+</style>
+
+<button id="auth-fab" title="Connexion / Compte"></button>
+<div class="views-badge">Vues : <span id="viewCounter">0</span></div>
+
+<dialog id="auth-modal">
+  <div class="auth-modal-head">
+    <strong>Connexion</strong>
+    <button class="btn btn-ghost" id="auth-close" aria-label="Fermer">✕</button>
+  </div>
+  <div class="auth-modal-body">
+    <p class="muted">Connecte-toi pour accéder à l’admin et une meilleure expérience.</p>
+    <label>Email</label>
+    <input type="email" id="auth-email" placeholder="email@exemple.com" required>
+    <label>Mot de passe</label>
+    <input type="password" id="auth-pass" placeholder="••••••••" required>
+    <div class="auth-actions">
+      <button class="btn btn-primary" id="btn-login">Connexion</button>
+      <button class="btn btn-ghost" id="btn-register">Créer un compte</button>
+      <button class="btn btn-ghost" id="btn-logout">Déconnexion</button>
+    </div>
+    <div id="auth-msg" class="muted" style="margin-top:8px;"></div>
+  </div>
+</dialog>
+
+<script type="module">
+  import { authRegister, authLogin, authLogout } from "./assets/firebase-app.js";
+
+  const fab = document.getElementById("auth-fab");
+  const modal = document.getElementById("auth-modal");
+  const closeBtn = document.getElementById("auth-close");
+  const email = document.getElementById("auth-email");
+  const pass = document.getElementById("auth-pass");
+  const msg  = document.getElementById("auth-msg");
+  const btnLogin = document.getElementById("btn-login");
+  const btnRegister = document.getElementById("btn-register");
+  const btnLogout = document.getElementById("btn-logout");
+
+  function openModal(){ try{ modal.showModal(); }catch{ modal.setAttribute("open",""); } }
+  function closeModal(){ modal.close?.(); modal.removeAttribute("open"); }
+
+  fab?.addEventListener("click", openModal);
+  closeBtn?.addEventListener("click", closeModal);
+
+  async function handle(run){
+    msg.textContent = "";
+    try{
+      await run(email.value.trim(), pass.value);
+      msg.textContent = "✅ Opération réussie.";
+      setTimeout(()=>{ closeModal(); }, 500);
+    }catch(e){
+      console.error(e);
+      msg.textContent = "❌ " + (e?.message || "Erreur");
+    }
+  }
+
+  btnLogin?.addEventListener("click", () => handle(authLogin));
+  btnRegister?.addEventListener("click", () => handle(authRegister));
+  btnLogout?.addEventListener("click", async () => {
+    msg.textContent = "";
+    try{ await authLogout(); msg.textContent = "✅ Déconnecté."; }catch(e){ msg.textContent = "❌ " + (e?.message||"Erreur"); }
+  });
+</script>
+
+
+<!-- Per-card view counters -->
+<style>
+  .card-views-badge{
+    position:absolute; top:8px; right:8px;
+    background:rgba(17,24,39,.9); color:#fff;
+    padding:4px 8px; border-radius:999px; font:600 12px system-ui,Segoe UI,Roboto,Arial;
+    box-shadow:0 6px 14px rgba(0,0,0,.25);
+    pointer-events:none;
+  }
+  .card-views-wrap{ position:relative; }
+</style>
+<script type="module">
+  import { getViewCount } from "./assets/firebase-app.js";
+  function basename(href){
+    try{ const u = new URL(href, location.href);
+         const file = u.pathname.split('/').pop() || 'index.html';
+         return file.replace(/\.html$/i,''); }
+    catch{ return (href.split('/').pop()||'index.html').replace(/\.html$/i,''); }
+  }
+  async function attachCounterTo(el, docId){
+    let container = el.closest('.card, .item, .panel, .box, .article, .doc, .tile');
+    if(!container){ container = el.parentElement; }
+    if(container && !container.classList.contains('card-views-wrap')){
+      container.classList.add('card-views-wrap');
+    }
+    const host = container || el;
+    if(host.querySelector('.card-views-badge[data-doc="'+docId+'"]')) return;
+    const badge = document.createElement('span');
+    badge.className = 'card-views-badge';
+    badge.dataset.doc = docId;
+    badge.textContent = 'Vues: …';
+    host.appendChild(badge);
+    try{ const n = await getViewCount(docId);
+         badge.textContent = 'Vues: ' + n; }
+    catch{ badge.textContent = 'Vues: —'; }
+  }
+  async function initCardCounters(){
+    const links = Array.from(document.querySelectorAll('[data-doc-id], a[href$=".html"]'))
+      .filter(a => {
+        const id = a.getAttribute('data-doc-id') || basename(a.getAttribute('href')||'');
+        return id && !['index','admin','offline'].includes(id.toLowerCase());
+      });
+    const handled = new Set();
+    for(const a of links){
+      const id = a.getAttribute('data-doc-id') || basename(a.getAttribute('href')||'');
+      if(!id || handled.has(id)) continue;
+      handled.add(id);
+      attachCounterTo(a, id);
+    }
+  }
+  initCardCounters();
+  const obs = new MutationObserver(()=>initCardCounters());
+  obs.observe(document.body, { childList:true, subtree:true });
+</script>
+
+</body>
+</html>

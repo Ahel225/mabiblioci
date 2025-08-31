@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Décret n°2024-04 — Olive/Ivoire</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Raleway:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --gold-color: #c8a444;
+      --primary-color: #3d5a2a;
+      --secondary-color: #b59b4c;
+      --accent-color: #e67e22;
+      --light-color: #f4f1e6;
+      --dark-color: #1f2937;
+      --text-color: #253238;
+      --bg-color: #f6f6f2;
+      --article-bg: #ffffff;
+      --header-bg: linear-gradient(135deg, #3d5a2a, #27411b);
+      --border-color: rgba(61,90,42,.18);
+      --shadow-color: rgba(61,90,42,.12);
+      --transition: all .3s ease;
+    }
+    .dark-mode{
+      --primary-color: #4b7433;
+      --secondary-color: #c6aa63;
+      --accent-color: #f39c12;
+      --light-color: #23261f;
+      --dark-color: #e5e7eb;
+      --text-color: #e5e7eb;
+      --bg-color: #0f120f;
+      --article-bg: #151a15;
+      --header-bg: linear-gradient(135deg, #27411b, #1b2b12);
+      --border-color: rgba(255,255,255,.08);
+      --shadow-color: rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Raleway',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg-color);color:var(--text-color);line-height:1.65;padding:20px;transition:var(--transition);
+      background-image:radial-gradient(900px 550px at -10% -10%, rgba(61,90,42,.08), transparent 60%),radial-gradient(800px 520px at 110% 0%, rgba(181,155,76,.08), transparent 60%);}
+    .container{max-width:980px;margin:0 auto;background:var(--article-bg);border-radius:12px;box-shadow:0 8px 24px var(--shadow-color);overflow:hidden;border:1px solid var(--border-color);position:relative;}
+    .container::before{content:"";position:absolute;inset:0 auto auto 0;height:8px;width:100%;background:linear-gradient(90deg,#f0771b 0 33.33%,#fff 33.33% 66.66%,#0b6a4a 66.66% 100%);}
+    header{background:var(--header-bg);color:#fff;padding:30px 24px 24px;text-align:center;border-bottom:5px solid var(--secondary-color);}
+    h1{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,1.1rem + 2vw,2.5rem);letter-spacing:.2px;text-shadow:0 1px 2px rgba(0,0,0,.35);}
+    .subtitle{opacity:.95;margin-top:10px;font-style:italic;}
+    .ribbon{margin-top:14px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+    .chip{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.16);backdrop-filter: blur(6px);font-weight:600;}
+    .content{padding:28px 22px 40px;}
+    .section{margin-bottom:28px;scroll-margin-top:80px;}
+    h2{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--primary-color);margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--secondary-color);position:relative;padding-left:16px;}
+    h2::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--primary-color);border-radius:2px;}
+    .article{margin-bottom:22px;padding:18px 18px 14px;background:var(--article-bg);border-radius:10px;box-shadow:0 2px 10px var(--shadow-color);border-left:4px solid var(--primary-color);}
+    .article .article-title{font-family:'Playfair Display',serif;font-weight:700;color:var(--dark-color);margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+    .article .article-title i{color:var(--secondary-color);}
+    
+    h3.heading-chapitre{font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--primary-color);margin:8px 0 10px;border-left:4px solid var(--secondary-color);padding-left:10px;}
+    h4.heading-section{font-family:'Raleway',sans-serif;font-size:1.05rem;color:#555;margin:6px 0 10px;letter-spacing:.2px;text-transform:none;}
+
+    
+    /* Alinéa (mise en page type PDF) */
+    .alinea{ margin:6px 0; padding-left:18px; text-indent:-12px; }
+    .alinea::before{ content:"— "; color: var(--secondary-color); font-weight:700; }
+
+    .article ul{padding-left:22px;margin:8px 0} .article li{margin:6px 0}
+    .control-buttons{position:fixed;top:20px;left:20px;display:flex;gap:10px;z-index:2000;}
+    .control-btn{width:46px;height:46px;border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;background:var(--primary-color);box-shadow:0 4px 12px rgba(0,0,0,.25);transition:var(--transition);border:1px solid rgba(255,255,255,.3);}
+    .control-btn:hover{transform:scale(1.08);background:var(--accent-color);}
+    .brightness-control{position:fixed;top:80px;left:20px;background:var(--article-bg);padding:12px 14px;border-radius:10px;border:1px solid var(--border-color);box-shadow:0 6px 20px var(--shadow-color);display:none;flex-direction:column;gap:8px;z-index:2000;}
+    .brightness-control.active{display:flex}
+    .brightness-slider{width:160px;height:8px;appearance:none;background:var(--secondary-color);border-radius:6px;}
+    .brightness-slider::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--primary-color);border:2px solid #fff;}
+    #scrollTopBtn,#scrollBottomBtn{position:fixed;right:20px;width:50px;height:50px;border-radius:50%;border:none;color:#fff;background:var(--primary-color);cursor:pointer;display:none;font-size:18px;z-index:1999;box-shadow:0 4px 14px rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.3);}
+    #scrollTopBtn{bottom:140px} #scrollBottomBtn{bottom:80px} #scrollTopBtn:hover,#scrollBottomBtn:hover{background:var(--accent-color);transform:scale(1.05)}
+    .mobile-sommaire-btn{position:fixed;top:20px;right:20px;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;background:var(--header-bg);z-index:2001;border:2px solid var(--secondary-color);cursor:pointer;box-shadow:0 4px 15px rgba(0,0,0,.3);}
+    .mobile-sommaire{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;opacity:0;transition:.3s;z-index:2000}
+    .mobile-sommaire.active{display:flex;opacity:1;align-items:center;justify-content:center;padding:20px}
+    .mobile-sommaire-content{background:var(--article-bg);width:92%;max-width:520px;max-height:80vh;overflow:auto;padding:22px;border-radius:14px;border:2px solid var(--secondary-color);transform:translateY(16px);transition:transform .35s ease;}
+    .mobile-sommaire.active .mobile-sommaire-content{transform:translateY(0)}
+    .mobile-sommaire-header{display:flex;align-items:center;justify-content:space-between;padding-bottom:10px;border-bottom:2px solid var(--secondary-color)}
+    .mobile-sommaire-title{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--dark-color)}
+    .sommaire-list{list-style:none;margin-top:14px} .sommaire-item{margin-bottom:10px;padding:12px;background:var(--light-color);border-left:3px solid var(--accent-color);border-radius:8px;}
+    .sommaire-item a{text-decoration:none;color:var(--dark-color);font-weight:600} .sommaire-item:hover{background:var(--secondary-color)} .sommaire-item:hover a{color:#fff}
+    .mobile-sommaire-close{background:none;border:none;font-size:1.3rem;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--dark-color);}
+    .fullscreen-mode{position:fixed;inset:0;background:var(--article-bg);z-index:3000;display:none;overflow:auto;padding:20px} .fullscreen-mode.active{display:block}
+    .fullscreen-header{display:flex;align-items:center;justify-content:space-between;padding-bottom:10px;border-bottom:2px solid var(--secondary-color)}
+    .fullscreen-title{font-family:'Playfair Display',serif;color:var(--dark-color)} .fullscreen-close{background:none;border:none;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer}
+    .fullscreen-content{font-size:1.1rem;line-height:1.8;margin-top:10px} .fullscreen-nav{display:flex;justify-content:space-between;gap:10px;margin-top:18px;padding-top:12px;border-top:1px solid var(--border-color)}
+    .fullscreen-nav-btn{background:var(--primary-color);border:none;color:#fff;padding:10px 18px;border-radius:8px;cursor:pointer} .fullscreen-nav-btn:disabled{background:var(--secondary-color);cursor:not-allowed}
+    .fullscreen-voice-controls{display:flex;justify-content:center;gap:12px;margin:14px 0} .fullscreen-voice-btn{font-size:18px;background:var(--primary-color);color:#fff;border:none;width:50px;height:50px;border-radius:50%;cursor:pointer}
+    .voice-controls{
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 20px;
+      display: flex;
+      gap: 10px;
+      background: var(--primary-color);
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 999px;
+      z-index: 3002;
+      border: 1px solid rgba(255,255,255,.3);
+      box-shadow: 0 4px 12px rgba(0,0,0,.25);
+    }
+    .voice-btn{ font-size: 18px; background:none; border:none; color:#fff; width:40px; height:40px; border-radius:50%; cursor:pointer }
+    .nav-indicator{
+      position: fixed; left:50%; transform: translateX(-50%);
+      bottom: 8px; display:flex; gap:6px; background: rgba(255,255,255,.9); padding:6px 10px; border-radius:999px;
+      box-shadow: 0 2px 10px rgba(0,0,0,.15); z-index:2000;
+    }
+    .nav-dot{ width:10px; height:10px; border-radius:50%; background: var(--secondary-color); }
+    .nav-dot.active{ background: var(--primary-color); transform: scale(1.2) }
+    /* Désactivation de la sélection globale (sauf champs de saisie) */
+    .no-select, .no-select *:not(input, textarea) {
+      -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-touch-callout: none;
+    }
+    @media (max-width:768px){.control-buttons{top:90px;left:10px;flex-direction:column} .section{scroll-margin-top:100px} header{padding:22px} h1{font-size:1.6rem}}
+  </style>
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#22c55e">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<!-- HIDE AUTH/VIEWS WIDGETS OUTSIDE HOME (safe) -->
+<style>
+  #auth-fab, .views-badge, #auth-modal, .card-views-badge { display: none !important; }
+</style>
+
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Décret n°2024-04</h1>
+      <p class="subtitle">Modalités d'application de la loi portant Statut du Corps Diplomatique</p>
+      <div class="ribbon">
+        <span class="chip"><i class="fas fa-globe-africa"></i> Diplomatie</span>
+        <span class="chip"><i class="fas fa-shield-alt"></i> Lecture confortable</span>
+        <span class="chip"><i class="fas fa-moon"></i> Mode sombre</span>
+      </div>
+    </header>
+
+    <div class="content">
+      <div class="control-buttons">
+        <button class="control-btn" id="themeToggle" title="Mode nuit/jour"><i class="fas fa-moon"></i></button>
+        <button class="control-btn" id="brightnessBtn" title="Contrôle de luminosité"><i class="fas fa-sun"></i></button>
+        <button class="control-btn" id="fullscreenToggle" title="Mode lecture plein écran"><i class="fas fa-expand"></i></button>
+      </div>
+
+      <div class="brightness-control" id="brightnessControl">
+        <label for="brightnessSlider">Luminosité</label>
+        <input type="range" min="50" max="150" value="100" class="brightness-slider" id="brightnessSlider">
+      </div>
+
+      <button id="scrollTopBtn" title="Aller en haut">↑</button>
+      <button id="scrollBottomBtn" title="Aller en bas">↓</button>
+
+      <!-- Plein écran -->
+      <div class="fullscreen-mode" id="fullscreenMode">
+        <div class="fullscreen-header">
+          <h2 class="fullscreen-title" id="fullscreenTitle"></h2>
+          <button class="fullscreen-close" id="fullscreenClose"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="fullscreen-content" id="fullscreenContent"></div>
+
+        <div class="fullscreen-voice-controls">
+          <button class="fullscreen-voice-btn" id="fullscreenPlayBtn" title="Lire">▶</button>
+          <button class="fullscreen-voice-btn" id="fullscreenPlayContinuousBtn" title="Lecture continue">⏩</button>
+          <button class="fullscreen-voice-btn" id="fullscreenPauseBtn" title="Pause">⏸</button>
+          <button class="fullscreen-voice-btn" id="fullscreenStopBtn" title="Arrêter">■</button>
+        </div>
+
+        <div class="fullscreen-nav">
+          <button class="fullscreen-nav-btn" id="prevArticleBtn" disabled>Précédent</button>
+          <button class="fullscreen-nav-btn" id="nextArticleBtn">Suivant</button>
+        </div>
+      </div>
+
+      <!-- Sommaire mobile -->
+      <div class="mobile-sommaire-btn" id="mobileSommaireBtn"><i class="fas fa-bars"></i></div>
+      <div class="mobile-sommaire" id="mobileSommaire">
+        <div class="mobile-sommaire-content">
+          <div class="mobile-sommaire-header">
+            <h3 class="mobile-sommaire-title">Sommaire</h3>
+            <button class="mobile-sommaire-close" id="mobileSommaireClose"><i class="fas fa-times"></i></button>
+          </div>
+          <ul class="sommaire-list" id="sommaireList"></ul>
+        </div>
+      </div>
+
+      <div id="articlesContainer"></div>
+
+      <!-- Barre lecteur vocal (mode normal) -->
+      <div class="voice-controls" id="mainVoiceControls">
+        <button class="voice-btn" id="mainPlayBtn" title="Lire l'article visible">▶</button>
+        <button class="voice-btn" id="mainPlayContinuousBtn" title="Lecture continue">⏩</button>
+        <button class="voice-btn" id="mainPauseBtn" title="Pause">⏸</button>
+        <button class="voice-btn" id="mainStopBtn" title="Arrêter">■</button>
+      </div>
+
+      <div class="nav-indicator" id="navIndicator"></div>
+    </div>
+
+    <footer style="text-align:center; background: var(--primary-color); color:#fff; padding: 20px">
+      <p>République de Côte d'Ivoire — Ministère d'État, Ministère des Affaires Étrangères</p>
+      <p>© 2025 — Présentation non-officielle à usage pédagogique</p>
+    </footer>
+  </div>
+
+  <script>
+  // lawData — exact block from your file (contents unchanged)
+  const lawData = {"title": "Décret n°2024-04 du 9 janvier 2024", "subtitle": "Modalités d'application de la loi portant Statut du Corps Diplomatique", "chapters": [{"title": "TITRE I : DISPOSITIONS GENERALES", "articles": [{"id": "article1", "title": "Article 1", "content": "<p>Le présent décret fixe les modalités d'application de la loi n°2023-895 du 23 novembre 2023 portant Statut du Corps Diplomatique.</p>"}, {"id": "article2", "title": "Article 2", "content": "Le présent décret s'applique aux membres du Corps Diplomatique, tel que défini à l'article 3 de la loi n°2023-895 du 23 novembre 2023 susvisée. Il s'applique également, dans certaines de ses dispositions, aux personnalités autres que les membres du Corps diplomatique, qui sont nommées dans les fonctions d'Ambassadeur."}]}, {"title": "TITRE II : COMPOSITION DU CORPS DIPLOMATIQUE ET PROFIL DE CARRIERE — CHAPITRE I : COMPOSITION DU CORPS DIPLOMATIQUE", "articles": [{"id": "article3", "title": "Article 3", "content": "La hiérarchie du Corps Diplomatique comprend dans l'ordre décroissant un Hors Grade et trois Grades, correspondant chacun à un emploi : <ul> <li>Hors Grade : Ambassadeur ;</li> <li>Grade I : Ministre Plénipotentiaire;</li> <li>Grade II : Conseiller des Affaires Etrangères ;</li> <li>Grade III : Secrétaire des Affaires Etrangères.</li> </ul>"}, {"id": "article4", "title": "Article 4", "content": "Chacun des quatre Grades comporte dans l'ordre croissant, trois échelons : <ul> <li>le premier échelon ;</li> <li>le deuxième échelon ;</li> <li>le troisième échelon.</li> </ul> Les Grades et échelons des membres du Corps Diplomatique sont déterminés par l'annexe I du présent décret."}]}, {"title": "TITRE II : COMPOSITION DU CORPS DIPLOMATIQUE ET PROFIL DE CARRIERE — CHAPITRE II : PROFIL DE CARRIERE — Section 1 : Nomination dans les Grades", "articles": [{"id": "article5", "title": "Article 5", "content": "Les membres du Corps Diplomatique classés Hors Grade sont nommés par décret, sur proposition du Ministre chargé des Affaires Etrangères, parmi les Ministres Plénipotentiaires classés au troisième échelon de leur Grade, n'ayant fait l'objet d'aucune sanction disciplinaire du second degré durant les cinq dernières années de leur carrière professionnelle. La nomination dans le Hors Grade relève du pouvoir discrétionnaire du Président de la République."}, {"id": "article6", "title": "Article 6", "content": "Les Ministres Plénipotentiaires sont nommés par décret, sur proposition du Ministre chargé des Affaires Etrangères, parmi les Conseillers des Affaires Etrangères classés au 3ème échelon de leur Grade, n'ayant fait l'objet d'aucune sanction disciplinaire du second degré durant les cinq dernières années de leur carrière professionnelle et inscrits sur une liste d'aptitude."}, {"id": "article7", "title": "Article 7", "content": "Les Conseillers des Affaires Etrangères sont nommés par décret, sur proposition du Ministre chargé des Affaires Etrangères, parmi les Secrétaires des Affaires Etrangères classés au 3ème échelon de leur Grade, n'ayant fait l'objet d'aucune sanction disciplinaire du second degré durant les cinq dernières années de leur carrière professionnelle et inscrits sur une liste d'aptitude."}, {"id": "article8", "title": "Article 8", "content": "Les Secrétaires des Affaires Etrangères sont nommés par décret, parmi les titulaires du Diplôme du cycle supérieur de l'Ecole Nationale d'Administration (ENA), filière diplomatie. Ils sont classés au 1er échelon du Grade III."}, {"id": "article9", "title": "Article 9", "content": "Peuvent être nommés, à titre exceptionnel, conformément à l'article 15 de la loi n°2023-895 du 23 novembre 2023 susvisée, les titulaires d'un diplôme délivré par les Instituts de formation spécialisés en diplomatie et reconnu équivalent au Diplôme du cycle supérieur de l'Ecole Nationale d'Administration (ENA), par le ministère en charge de la Fonction Publique, ou de tout autre diplôme de l'enseignement supérieur du deuxième cycle au moins. Les personnes ainsi nommées sont classées au 1er échelon du Grade dans lequel elles sont intégrées. Elles doivent satisfaire à un stage probatoire d'un an au ministère en charge des Affaires Etrangères, sanctionné par un rapport. Toutefois, ces nominations ne peuvent excéder vingt pour cent (20%) par an de l'effectif total des élèves de la filière diplomatie, en formation à l'ENA."}]}, {"title": "TITRE II : COMPOSITION DU CORPS DIPLOMATIQUE ET PROFIL DE CARRIERE — CHAPITRE II : PROFIL DE CARRIERE — Sous-section 1 : Fonctions au Département Central", "articles": [{"id": "article10", "title": "Article 10", "content": "Selon leur Grade, les membres du Corps Diplomatique exercent au Département Central les fonctions à caractère diplomatique et consulaire."}, {"id": "article11", "title": "Article 11", "content": "La fonction de Secrétaire Général est exercée par les Ambassadeurs ayant servi en qualité de Chef de Mission Diplomatique ou de Poste Consulaire et ayant exercé, au Département Central, l'une des fonctions suivantes : <ul> <li>Directeur de Cabinet ;</li> <li>Inspecteur Général ;</li> <li>Secrétaire Général Adjoint ;</li> <li>Directeur de Cabinet Adjoint ;</li> <li>Inspecteur Général Adjoint ;</li> <li>Chef de Cabinet;</li> <li>Directeur Général.</li> </ul> Le Secrétaire Général est nommé par décret pris en Conseil des Ministres, sur proposition du Ministre chargé des Affaires Etrangères. Le Secrétaire Général a rang de Secrétaire d'Etat. Il prend rang après le Ministre chargé des Affaires Etrangères. Il bénéficie des droits et avantages liés à cette fonction, conformément à la réglementation en vigueur. Le Secrétaire Général est assisté par un Secrétaire Général Adjoint."}, {"id": "article12", "title": "Article 12", "content": "La fonction de Secrétaire Général Adjoint est exercée par les Ambassadeurs ayant servi en qualité de Chef de Mission Diplomatique ou de Poste Consulaire et ayant exercé au moins la fonction de Directeur d'Administration Centrale. Toutefois, le Ministre chargé des Affaires Etrangères peut proposer la nomination, à cette fonction, d'un Ambassadeur n'ayant pas servi en qualité de Chef de Mission Diplomatique ou de Poste Consulaire. Le Secrétaire Général Adjoint assiste et supplée le Secrétaire Général. Le Secrétaire Général Adjoint est nommé par décret pris en Conseil des Ministres, sur proposition du Ministre chargé des Affaires Etrangères. Le Secrétaire Général Adjoint bénéficie des indemnités spécifiques prévues à l'annexe I-A du présent décret."}, {"id": "article13", "title": "Article 13", "content": "La fonction de Directeur de Cabinet est exercée par les Ambassadeurs ayant servi en qualité de Chef de Mission Diplomatique ou de Poste Consulaire et ayant occupé au moins la fonction de Directeur d'Administration Centrale. Toutefois, le Président de la République peut nommer à cette fonction un Ambassadeur n'ayant pas servi en qualité de Chef de Mission Diplomatique ou de Poste Consulaire."}, {"id": "article14", "title": "Article 14", "content": "La fonction de Directeur de Cabinet Adjoint est exercée par les Ambassadeurs ayant servi en qualité de Chef de Mission Diplomatique ou de Poste consulaire et ayant occupé au moins la fonction de Directeur d'Administration Centrale."}, {"id": "article15", "title": "Article 15", "content": "La fonction de Chef de Cabinet est exercée par les Ambassadeurs ayant occupé au moins la fonction de Directeur d'Administration Centrale. Toutefois, le Président de la République peut nommer, à cette fonction, une personne non-membre du Corps Diplomatique. Cette nomination n'emporte pas intégration de l'intéressé dans le Corps Diplomatique."}, {"id": "article16", "title": "Article 16", "content": "La fonction d'Ambassadeur Itinérant est exercée par les Ambassadeurs. Toutefois, le Président de la République peut nommer, à cette fonction, toute autre personnalité non membre du Corps Diplomatique. Cette nomination n'emporte pas intégration de l'intéressé dans le Corps Diplomatique. L'Ambassadeur Itinérant bénéficie d'un véhicule de fonction et des indemnités spécifiques prévues à l'annexe III-B du présent décret."}, {"id": "article17", "title": "Article 17", "content": "La fonction de Conseiller Diplomatique dans les Institutions de la République, les ministères techniques ou les établissements publics nationaux est exercée par les Ambassadeurs, les Ministres Plénipotentiaires ou les Conseillers des Affaires Etrangères. Durant la période où il exerce la fonction de Conseiller Diplomatique, l'Ambassadeur, le Ministre Plénipotentiaire ou le Conseiller des Affaires Etrangères est en position d'activité et bénéficie, à ce titre, outre les droits et avantages découlant de son statut de membre du Corps Diplomatique, de ceux liés à sa nouvelle fonction."}, {"id": "article18", "title": "Article 18", "content": "La fonction de Conseiller Technique est exercée par un Ambassadeur ou un Ministre Plénipotentiaire. Toutefois, le Président de la République peut nommer à cette fonction une personne non membre du Corps Diplomatique. Cette nomination n'emporte pas intégration de l'intéressé dans le Corps Diplomatique."}, {"id": "article19", "title": "Article 19", "content": "La fonction de Chargé de mission est exercée par les Conseillers des Affaires Etrangères. Toutefois, le Ministre chargé des Affaires Etrangères peut nommer à cette fonction toute personne non membre du Corps Diplomatique. Cette nomination n'emporte pas intégration de l'intéressé dans le Corps Diplomatique."}, {"id": "article20", "title": "Article 20", "content": "La fonction de Chargé d'Etudes, avec rang de Sous-Directeur d'Administration Centrale, au Cabinet, au Secrétariat Général et à l'Inspection Générale est exercée par les Conseillers des Affaires Etrangères."}, {"id": "article21", "title": "Article 21", "content": "La fonction d'Inspecteur Général est exercée par les Ambassadeurs ayant servi en qualité de Chef de Mission Diplomatique ou de Poste Consulaire et ayant occupé, au Département Central, l'une des fonctions ci-après : <ul> <li>Directeur de Cabinet;</li> <li>Secrétaire Général Adjoint ;</li> <li>Directeur de Cabinet Adjoint ;</li> <li>Chef de Cabinet;</li> <li>Inspecteur Général Adjoint ;</li> <li>Directeur Général;</li> <li>Inspecteur.</li> </ul>"}, {"id": "article22", "title": "Article 22", "content": "Les fonctions d'Inspecteur Général Adjoint et d'Inspecteur sont exercées par les Ambassadeurs ayant servi en qualité de Chef de mission diplomatique ou de Poste Consulaire et ayant occupé au moins la fonction de Directeur d'Administration Centrale. L'Inspecteur Général, l'Inspecteur Général Adjoint et les Inspecteurs sont nommés par décret pris en Conseil des Ministres, sur proposition du Ministre chargé des Affaires Etrangères."}, {"id": "article23", "title": "Article 23", "content": "La fonction de Directeur Général est exercée par les Ambassadeurs ayant servi en qualité de Chef de Mission Diplomatique ou de Poste Consulaire et ayant occupé au moins la fonction de Directeur d'Administration Centrale. Toutefois, le Président de la République peut nommer à cette fonction une personne non membre du corps diplomatique ayant la compétence requise. Cette nomination n'emporte pas intégration de l'intéressé dans le Corps Diplomatique."}, {"id": "article24", "title": "Article 24", "content": "La fonction de Directeur d'Administration Centrale est exercée par les Ambassadeurs ou les Ministres Plénipotentiaires. Toutefois, le Président de la République peut nommer à une fonction de Directeur d'Administration Centrale, toute personne non membre du Corps Diplomatique ayant la compétence requise. Cette nomination n'emporte pas intégration de l'intéressé dans le Corps Diplomatique."}, {"id": "article25", "title": "Article 25", "content": "La fonction de Sous-Directeur d'Administration Centrale est exercée par les Conseillers des Affaires Etrangères."}, {"id": "article26", "title": "Article 26", "content": "La fonction de Chef de Service, avec rang de Sous-Directeur d'Administration Centrale, est exercée par les Conseillers des Affaires Etrangères."}]}, {"title": "TITRE II : COMPOSITION DU CORPS DIPLOMATIQUE ET PROFIL DE CARRIERE — CHAPITRE II : PROFIL DE CARRIERE — Sous-section 2 : Fonctions dans les Missions Diplomatiques et Postes Consulaires", "articles": [{"id": "article27", "title": "Article 27", "content": "Les membres du Corps Diplomatique exercent, dans les Missions Diplomatiques et Postes Consulaires, les fonctions à caractère diplomatique et consulaire, selon leur Grade."}, {"id": "article28", "title": "Article 28", "content": "L'Ambassadeur, Chef de Mission Diplomatique ou de Poste Consulaire, est nommé par décret pris en Conseil des Ministres, sur proposition du Ministre chargé des Affaires Etrangères."}, {"id": "article29", "title": "Article 29", "content": "La fonction de Chef de Mission Diplomatique, de Représentant Permanent, de Délégué Permanent, de Consul Général, de Représentant Permanent Adjoint ou de Délégué Permanent Adjoint, est exercée par un Ambassadeur. Toutefois, le Président de la République peut nommer dans la fonction d'Ambassadeur, Chef de Mission Diplomatique, toute personne de son choix n'ayant pas la qualité de membre du Corps Diplomatique. La personne ainsi nommée bénéficie des mêmes droits et avantages et est soumise, pendant la durée de sa mission à l'étranger, aux mêmes obligations et incompatibilités que le membre du Corps Diplomatique. Cette nomination n’emporte pas intégration de l'intéressé dans le Corps Diplomatique."}, {"id": "article30", "title": "Article 30", "content": "L'Ambassadeur, Chef de Mission Diplomatique, est le dépositaire de l'autorité de l'Etat dans sa circonscription. À ce titre, il représente le Président de la République, le Gouvernement et chacun des Ministres. Il est chargé, sous l'autorité du Ministre chargé des Affaires Etrangères, de la mise en œuvre dans le pays accréditaire, de la politique étrangère de la Côte d'Ivoire. En outre, il supervise, coordonne et anime l'action de tous les services extérieurs, civils, militaires et paramilitaires de l'Etat dans sa circonscription. Il peut également être chargé de missions spéciales. En cas d'absence temporaire du Chef de Mission, du Représentant Permanent, du Délégué Permanent ou du Consul Général, l'Ambassade, la Représentation Permanente, la Délégation Permanente où le Consulat Général est dirigé par un Chargé d'Affaires ad intérim désigné suivant l'ordre hiérarchique établi dans la Mission Diplomatique ou dans le Poste Consulaire."}]}, {"title": "TITRE II : COMPOSITION DU CORPS DIPLOMATIQUE ET PROFIL DE CARRIERE — CHAPITRE II : PROFIL DE CARRIERE — Sous-section 2 : Fonctions dans les Missions Diplomatiques et Postes Consulaires (Suite)", "articles": [{"id": "article31", "title": "Article 31", "content": "Avant son départ en poste à l'étranger, l'Ambassadeur nommé Chef de Mission Diplomatique, outre ses Lettres de Créance, reçoit, à l'initiative du Ministre chargé des Affaires Etrangères, une Lettre d'instructions du Président de la République lui définissant les objectifs à atteindre durant sa mission."}, {"id": "article32", "title": "Article 32", "content": "La fonction de Chargé d'Affaires en Pied est exercée par un Ministre Plénipotentiaire. Le Chargé d'Affaires en Pied exerce les fonctions de Chef de Mission Diplomatique ou de Poste Consulaire. Il est accrédité auprès du Ministre chargé des Affaires Etrangères du pays d'accueil. A ce titre, il est porteur de Lettres de Cabinet du Ministre chargé des Affaires Etrangères."}, {"id": "article33", "title": "Article 33", "content": "La fonction de Ministre Conseiller est exercée par un Ministre Plénipotentiaire. Le Ministre Conseiller prend rang après l'Ambassadeur, Chef de Mission, dans les Postes où il n'existe pas de Représentant Permanent Adjoint ou de Délégué Permanent Adjoint. Le Ministre Conseiller est nommé par décision du Ministre chargé des Affaires Etrangères."}, {"id": "article34", "title": "Article 34", "content": "Les fonctions de Premier Conseiller, de Conseiller et de Consul sont exercées par les Conseillers des Affaires Etrangères, sur décision du Ministre chargé des Affaires Etrangères. Le Premier Conseiller prend rang après l'Ambassadeur, Chef de Mission, dans les Postes où il n'existe pas de Ministre Conseiller."}, {"id": "article35", "title": "Article 35", "content": "Les fonctions de Premier Secrétaire et de Vice-consul sont exercées par un Secrétaire des Affaires Etrangères, sur décision du Ministre chargé des Affaires Etrangères."}, {"id": "article36", "title": "Article 36", "content": "Le Chargé d'Affaires ad intérim est chargé de la direction de la Mission Diplomatique ou du Poste Consulaire pendant l'absence temporaire du Chef de Mission ou en cas de vacance du Poste. Il est désigné par l'Ambassadeur, Chef de Mission, dans le premier cas, ou nommé par le Ministre chargé des Affaires Etrangères, dans le deuxième cas, suivant l'ordre hiérarchique établi parmi les membres du Corps Diplomatique au sein de la Mission Diplomatique ou du Poste Consulaire. L'intérim du Chargé d'Affaires prend fin dès la reprise de service de l'Ambassadeur, Chef de Mission, ou l'entrée en fonction du nouvel Ambassadeur dans l'Etat d'accueil."}]}, {"title": "TITRE III : DROITS, AVANTAGES, OBLIGATIONS ET INCOMPATIBILITES — CHAPITRE I : DROITS ET AVANTAGES — Section 1 : Traitements", "articles": [{"id": "article37", "title": "Article 37", "content": "Sans préjudice des dispositions prévues par la loi portant Statut Général de la Fonction Publique et ses textes d'application, les indices de traitement des membres du Corps Diplomatique sont ceux prévus par les grilles indiciaires établies à l'annexe II du présent décret. En outre, l'Ambassadeur bénéficie d'un forfait indiciaire Ambassadeur correspondant à trente-cinq pour cent (35%) de son traitement indiciaire."}, {"id": "article38", "title": "Article 38", "content": "La valeur du point de l'indice de traitement est celle harmonisée et retenue pour tous les fonctionnaires et agents de l'Etat, telle que spécifiée et déterminée par la réglementation en vigueur."}, {"id": "article39", "title": "Article 39", "content": "Le traitement soumis à retenues pour pension et fiscalités servi aux membres du Corps Diplomatique est constitué par : <ul> <li>le salaire de base ou salaire indiciaire ;</li> <li>l'indemnité de résidence, déterminée par référence au salaire de base;</li> <li>le forfait indiciaire pour les Ambassadeurs ;</li> <li>la prime de prospection et d'information prévue à l'article 52 ;</li> <li>l'indemnité de sujétion.</li> </ul> A l'exception de l'Ambassadeur, l'assiette de calcul de la pension de retraite des autres membres du Corps Diplomatique est constituée par la somme du salaire de base, de l'indemnité de résidence, de l’indemnité de sujétion et de la prime de prospection et d'information."}, {"id": "article40", "title": "Article 40", "content": "La monnaie de référence pour les transactions et le paiement de la rémunération des membres du Corps Diplomatique à l'étranger est l'euro. En cas de changement de la parité de l'euro avec la monnaie de paiement en Côte d'Ivoire où de fluctuation de l'euro, un «taux de référence » est fixé par arrêté interministériel du Ministre chargé des Affaires Etrangères, du Ministre chargé de l'Economie et des Finances et du Ministre chargé du Budget."}, {"id": "article41", "title": "Article 41", "content": "Le mode unique de calcul des rémunérations des membres du Corps Diplomatique et des non membres du Corps Diplomatique en service dans les Missions Diplomatiques et Postes Consulaires à l'étranger est fixé par arrêté interministériel du Ministre chargé des Affaires Etrangères, du Ministre chargé de l'Economie et des Finances et du Ministre chargé du Budget. Le mode de calcul susvisé est actualisé périodiquement pour tenir compte des augmentations de traitement pouvant intervenir ou être appliquées à l'ensemble des fonctionnaires et agents de l'Etat. Les frais occasionnés par les transferts des rémunérations et autres avantages de toutes natures des membres du Corps Diplomatique en service dans les Missions Diplomatiques et Postes Consulaires sont supportés par le budget de l'Etat."}, {"id": "article42", "title": "Article 42", "content": "Le traitement et les indemnités du membre du Corps Diplomatique, dans les Services Extérieurs, sont affectés d'un coefficient de correction par zone géographique comme suit : <ul> <li>Zone Afrique: 4.45</li> <li>Zone Europe: 4,75</li> <li>Zone Amérique-Asie- Moyen-Orient-Océanie : 5,05</li> </ul> Pour tenir compte d'une éventuelle hausse du coût de la vie dans les zones susmentionnées, ces coefficients peuvent être revalorisés par arrêté conjoint du Ministre chargé des Affaires Etrangères, du Ministre chargé de l'Economie et des Finances et du Ministre chargé du Budget."}]}, {"title": "TITRE III : DROITS, AVANTAGES, OBLIGATIONS ET INCOMPATIBILITES — CHAPITRE I : DROITS ET AVANTAGES — Sous-section 1 : Indemnités et prime au Département Central", "articles": [{"id": "article43", "title": "Article 43", "content": "Les membres du Corps Diplomatique perçoivent des indemnités et une prime tenant compte des sujétions spéciales inhérentes à l'exercice de leurs fonctions. Au Département Central, les membres du Corps Diplomatique perçoivent une indemnité compensatrice mensuelle. L'Ambassadeur et le Ministre Plénipotentiaire perçoivent une indemnité représentative de frais mensuelle. Lorsque l'Ambassadeur est en position de détachement auprès d'une Institution de la République, d'un Ministère, d'un Etablissement Public National ou d'un Organisme public, il conserve le bénéfice de cette indemnité. Le Ministre Plénipotentiaire en position de détachement auprès d'une Institution de la République, d'un Ministère, d'un Etablissement Public National ou d'un Organisme public, bénéficie également de l'indemnité représentative de frais mensuelle. Cette indemnité n'est pas cumulable avec celle de même nature que perçoivent les Ambassadeurs ou les Ministres Plénipotentiaires occupant de hautes fonctions différentes de celles visées à l'alinéa précédent. Les montants des indemnités prévues aux alinéas 2 et 3 du présent article sont fixés à l'annexe IV du présent décret."}, {"id": "article44", "title": "Article 44", "content": "Les membres du Corps Diplomatique en service au Département Central bénéficient, en fonction de leur Grade, d'une indemnité contributive aux charges locatives, dite indemnité de logement. Ils bénéficient, en outre, de l'indemnité spécifique au Corps Diplomatique. Les montants de ces indemnités sont fixés à l'annexe IV du présent décret."}, {"id": "article45", "title": "Article 45", "content": "L'Ambassadeur nommé Chef de Mission Diplomatique, Représentant Permanent ou Délégué Permanent, Consul Général, Représentant Permanent Adjoint ou Délégué Permanent Adjoint, perçoit une allocation de mise en route dont le montant est fixé à l'annexe VI du présent décret. Le Chargé d'Affaires en Pied perçoit une allocation spéciale de mise en route, dont le montant est fixé à l'annexe VI du présent décret. Cette allocation est prise en charge par le budget de l'Etat. Les dispositions prévues aux alinéas précédents du présent article ne sont pas applicables en cas de mutation."}, {"id": "article46", "title": "Article 46", "content": "Au Département Central, les membres du Corps Diplomatique ont droit à une prime mensuelle dite prime de prospection et d'information. Les montants gradués de cette prime sont fixés à l'annexe IV du présent décret."}]}, {"title": "TITRE III : DROITS, AVANTAGES, OBLIGATIONS ET INCOMPATIBILITES — CHAPITRE I : DROITS ET AVANTAGES — Sous-section 2 : Indemnités à l'étranger", "articles": [{"id": "article47", "title": "Article 47", "content": "Dans les Missions Diplomatiques ou Postes Consulaires, le membre du Corps Diplomatique perçoit une indemnité mensuelle de sujétion. Le montant de cette indemnité est fixé à l'annexe V du présent décret."}, {"id": "article48", "title": "Article 48", "content": "A l'étranger, le membre du Corps Diplomatique a automatiquement droit à une indemnité compensatrice de stabilisation en cas de perte subie sur sa rémunération, consécutive à la fluctuation de la monnaie de paiement du salaire. Cette compensation est supportée par le budget de l'Etat."}, {"id": "article49", "title": "Article 49", "content": "Le membre du Corps Diplomatique qui assure la fonction de Chargé d'Affaires en Pied, bénéficie, en sa qualité de Chef de Mission et pendant la durée de ses fonctions, des mêmes indemnités que l'Ambassadeur, Chef de Mission Diplomatique ou de Poste Consulaire."}, {"id": "article50", "title": "Article 50", "content": "Les membres du Corps Diplomatique exerçant dans les Missions Diplomatiques ou Postes Consulaires se trouvant dans des pays à risques, bénéficient de mesures de protection renforcées de la part de l'Etat. Ces mesures de protection sont définies en fonction de la nature du risque encouru. Sont considérés comme pays à risques, les pays confrontés à l'une des circonstances ci-après : <ul> <li>les conflits armés latents ou déclarés ;</li> <li>les épidémies ;</li> <li>les catastrophes naturelles ;</li> <li>les actes de terrorisme et d’extrémismes violents ;</li> <li>ou toutes autres circonstances de nature à mettre en péril l'intégrité physique et morale du membre du corps diplomatique et de sa famille.</li> </ul> La liste des pays considérés à risque est établie périodiquement par le Ministre Chargé des Affaires Etrangères, en relation avec le Ministre chargé de la Défense, le Ministre chargé de la Sécurité et le Ministre chargé de la Santé. Dans les pays considérés à risques, le membre du Corps Diplomatique et sa famille bénéficient d'une assurance-vie ou d'invalidité."}, {"id": "article51", "title": "Article 51", "content": "Le conjoint non-fonctionnaire de l'Ambassadeur, Chef de Mission Diplomatique ou de Poste Consulaire, du Représentant Permanent ou du Délégué Permanent, du Représentant Permanent Adjoint ou du Délégué Permanent Adjoint, qui est amené à suivre l'Ambassadeur affecté dans une Mission Diplomatique où un Poste Consulaire, perçoit une indemnité de conjoint mensuelle dont le montant est fixé à l'annexe X du présent décret. L'indemnité prévue à l'alinéa précédent est due à compter de la date de prise de service de l'Ambassadeur et de la délivrance de l'attestation de présence du conjoint au lieu de l'affectation. Cette indemnité est payée par le Payeur à l'intéressé(e) et prend fin au terme de la mission des personnes mentionnées à l'alinéa 1 du présent article, dûment constaté par le certificat de cessation de service. Un certificat de cessation de paiement de l'indemnité de conjoint mensuelle est délivré à l'intéressé(e) par le Payeur."}, {"id": "article52", "title": "Article 52", "content": "Le fonctionnaire, conjoint de l'Ambassadeur, Chef de Mission Diplomatique ou de Poste Consulaire, exerçant au Ministère des Affaires Etrangères, et qui est amené à suivre celui-ci à l'étranger, est considéré comme étant en activité. Il continue de percevoir le salaire qui lui est versé en Côte d'Ivoire et conserve ses droits à l'avancement, à la promotion et à la retraite. Le fonctionnaire, conjoint de l'Ambassadeur, Chef de Mission Diplomatique ou de Poste Consulaire, exerçant dans une autre Administration et qui est amené à suivre celui-ci à l'étranger, est mis, à sa demande, à la disposition du ministère en charge des Affaires Etrangères et est considéré comme étant en activité et continue de percevoir la rémunération qui lui est versée en Côte d'Ivoire. Il conserve ses droits à l'avancement, à la promotion et à la retraite. Toutefois, lorsque le salaire du fonctionnaire, conjoint de l'Ambassadeur, Chef de Mission Diplomatique ou de Poste Consulaire, est inférieur à l'indemnité de conjoint mensuelle, un complément mensuel lui est versé. Ce complément mensuel représente la différence entre l'indemnité de conjoint mensuelle prévue à l'article 51 et la rémunération à laquelle a droit le conjoint fonctionnaire. Cette indemnité payée par le Payeur à l'intéressé est due à compter de la date de prise de service de l'Ambassadeur et de la délivrance de l'attestation de présence du conjoint au lieu d'affectation. Le paiement de cette indemnité prend fin au terme de la mission des personnes mentionnées à l'alinéa 1 du présent article, dûment constaté par le certificat de cessation de service. Un certificat de cessation de paiement de cette indemnité est délivré à l'intéressé par le Payeur."}, {"id": "article53", "title": "Article 53", "content": "Le membre du Corps Diplomatique qui assure les fonctions de Chargé d'Affaires ad intérim de la Mission Diplomatique ou du Poste Consulaire pendant au moins trente (30) jours calendaires, perçoit une indemnité de représentation égale à l'indemnité de représentation de l'Ambassadeur, Chef de Mission Diplomatique ou de Poste Consulaire, dont il assure l'intérim. L'indemnité prévue à l'alinéa précédent est sans préjudice de l'indemnité de représentation de l'Ambassadeur, Chef de Mission Diplomatique ou de Poste Consulaire."}, {"id": "article54", "title": "Article 54", "content": "A l'étranger, les membres du Corps Diplomatique exerçant les fonctions ci-après, bénéficient d'une indemnité représentative de frais : <ul> <li>Ambassadeur, Chef de Mission Diplomatique ou de Poste Consulaire ;</li> <li>Ambassadeur, Représentant Permanent ;</li> <li>Ambassadeur, Représentant Permanent Adjoint ;</li> <li>Ambassadeur, Délégué Permanent ;</li> <li>Ambassadeur, Délégué Permanent Adjoint ;</li> <li>Chargé d'Affaires en Pied ;</li> <li>Consul Général ;</li> <li>Chargé d'Affaires ad intérim ;</li> <li>Ministre Conseiller ;</li> <li>Premier Conseiller.</li> </ul> Cette indemnité est affectée du coefficient de correction de la zone géographique concernée, conformément à l'annexe VII du présent décret. L'indemnité représentative de frais n'est pas soumise à retenue pour pension. Pour tenir compte d'une éventuelle hausse du coût de la vie dans les zones géographiques concernées, l'indemnité représentative de frais peut être modifiée par arrêté conjoint du Ministre chargé des Affaires Etrangères, du Ministre chargé de l'Economie et des Finances et du Ministre chargé du Budget, conformément à l'annexe VII du présent décret."}]}, {"title": "TITRE III : DROITS, AVANTAGES, OBLIGATIONS ET INCOMPATIBILITES — CHAPITRE I : DROITS ET AVANTAGES — Sous-section 1 : Dispositions communes", "articles": [{"id": "article55", "title": "Article 55", "content": "Le membre du Corps Diplomatique a droit au respect, à la considération, à l'aide et à la protection dus à ses fonctions et à son rang de la part des Officiers Civils et Militaires chargés du maintien de l'ordre en Côte d'Ivoire."}, {"id": "article56", "title": "Article 56", "content": "Au Département Central ou dans une Mission Diplomatique ou Poste Consulaire, lorsque le membre du Corps Diplomatique est poursuivi par des tiers pour faute de service commise dans l'exercice de ses fonctions, l'Etat de Côte d'Ivoire est responsable et supporte les condamnations civiles prononcées contre lui dans la mesure où aucune faute personnelle détachable du service ne peut lui être imputée. Nonobstant les dispositions prévues par les Conventions de Vienne sur les Relations diplomatiques et les Relations consulaires, le membre du Corps Diplomatique bénéficie, à l'étranger, de la protection de l'Etat contre les faits de guerre, les voies de fait, la destruction de ses biens, toute autre agression, accident ou catastrophe naturelle. Il bénéficie d'une réparation par l'Etat des préjudices qui en résultent, conformément à la réglementation en vigueur."}, {"id": "article57", "title": "Article 57", "content": "L'Ambassadeur, conjoint de l'Ambassadeur, Chef de Mission Diplomatique ou de Poste Consulaire, du Représentant Permanent, du Délégué Permanent, du Consul Général, du Représentant Permanent Adjoint, du Délégué Permanent Adjoint ou du Chargé d'Affaires en Pied, a droit au déroulement normal de sa carrière. Il bénéficie, à l'occasion du mouvement diplomatique, du droit d'être nommé dans un poste proche du pays de résidence de son conjoint, Chef de Mission Diplomatique ou de Poste Consulaire, Représentant Permanent, Délégué Permanent, Consul Général, Représentant Permanent Adjoint, Délégué Permanent Adjoint ou Chargé d'Affaires en Pied. Lorsque le conjoint de l'Ambassadeur, Chef de Mission Diplomatique ou de Poste Consulaire, du Représentant Permanent, du Délégué Permanent, du Consul Général, du Représentant Permanent Adjoint, du Délégué Permanent Adjoint ou du Chargé d'Affaires en Pied, est membre du Corps Diplomatique, mais n’a pas le Grade d'Ambassadeur, il bénéficie d'une affectation régulière en même temps que son conjoint, dans le poste le plus proche du pays de résidence de celui-ci ou de celle-ci."}, {"id": "article58", "title": "Article 58", "content": "Le fonctionnaire, conjoint d'un membre du Corps Diplomatique, autre que l'Ambassadeur, exerçant au Ministère des Affaires Etrangères, bénéficie d'une affectation régulière en même temps que le membre du Corps Diplomatique dans le même poste. Le fonctionnaire, conjoint du membre du Corps Diplomatique, exerçant dans une autre Administration et qui est amené à suivre celui-ci à l'étranger, est mis à la disposition du Ministère en charge des Affaires Etrangères et maintenu en position d'activité. Il continue de percevoir la rémunération qui lui est versée en Côte d'Ivoire. Il conserve ses droits à l'avancement, à la promotion et à la retraite."}, {"id": "article59", "title": "Article 59", "content": "Le membre du Corps Diplomatique, son conjoint, ses enfants mineurs et ceux poursuivant des études jusqu'à l'âge de trente ans bénéficient d'un passeport diplomatique. A la retraite, le membre du corps diplomatique, son conjoint et ses enfants mineurs et ceux poursuivant des études jusqu'à l'âge de trente ans conservent le bénéfice du passeport diplomatique. En cas de décès du membre du corps diplomatique, son conjoint et ses enfants mineurs et ceux poursuivant des études jusqu'à l’âge de trente ans conservent le bénéfice du passeport diplomatique."}, {"id": "article60", "title": "Article 60", "content": "Le membre du Corps Diplomatique à l'étranger, son conjoint et ses enfants à charge bénéficient d'une assurance maladie. Cette assurance, prise en charge intégralement par le budget de l'Etat, couvre les frais médicaux, chirurgicaux, pharmaceutiques et d'hospitalisation."}, {"id": "article61", "title": "Article 61", "content": "A l'occasion des missions à l'étranger, les Ambassadeurs en service au Département Central et dans les Services Extérieurs voyagent en classe affaires."}, {"id": "article62", "title": "Article 62", "content": "Le membre du Corps Diplomatique en service au Département Central et dans les Missions Diplomatiques ou Postes Consulaires a droit à la formation continue et au renforcement des capacités par des sessions de perfectionnement, séminaires, conférences et stages en Côte d'Ivoire et à l'étranger. Les frais occasionnés par cette formation continue et ce renforcement des capacités font l'objet d'une inscription budgétaire."}]}, {"title": "TITRE III : DROITS, AVANTAGES, OBLIGATIONS ET INCOMPATIBILITES — CHAPITRE I : DROITS ET AVANTAGES — Sous-section 2 : Droits et avantages de toutes natures au Département Central", "articles": [{"id": "article63", "title": "Article 63", "content": "Le membre du Corps Diplomatique, effectuant une mission officielle à l'étranger, bénéficie, en cas d'accidents ou de maladies survenus lors de cette mission, des mêmes avantages que ceux prévus à l'article 60."}, {"id": "article64", "title": "Article 64", "content": "Le membre du Corps Diplomatique rappelé au Département Central après un séjour dans une Mission Diplomatique ou un Poste Consulaire, bénéficie des avantages et des exonérations, ci-après : <ul> <li>prise en charge intégrale par le budget de l'Etat des frais annexes liés au dédouanement de ses véhicules et de ses effets à usage personnel ;</li> <li>exonération intégrale des droits et taxes de douanes pour les effets à usage personnel ;</li> <li>exonération des droits et taxes de douanes pour ses véhicules à usage personnel.</li> </ul> L'exonération n'est accordée que pour un véhicule pour le membre du Corps Diplomatique célibataire et pour deux véhicules pour le membre du Corps Diplomatique marié."}, {"id": "article65", "title": "Article 65", "content": "Les effets personnels prévus à l'article précédent sont tous les biens où équipements usagers ou neufs servant à un usage domestique, importés dans une quantité telle qu'ils ne peuvent être considérés comme destinés à une activité commerciale."}, {"id": "article66", "title": "Article 66", "content": "Le membre du Corps Diplomatique rappelé au Département Central, a droit à trois mois de congé pour le service accompli à l'étranger."}, {"id": "article67", "title": "Article 67", "content": "Pendant les trois mois qui suivent le retour en Côte d'Ivoire du membre du Corps Diplomatique rappelé, il perçoit la contre-valeur, en monnaie locale, de l'intégralité du traitement auquel il a eu régulièrement droit durant son séjour à l'étranger."}, {"id": "article68", "title": "Article 68", "content": "À son départ du Département Central pour un poste à l'étranger, le membre du Corps Diplomatique a droit à la prise en charge par le budget de l'Etat des frais de transport de ses bagages, par voie aérienne, en fret non accompagné dont le poids est fixé comme suit : <ul> <li>l'Ambassadeur : 250 kg;</li> <li>les autres membres du Corps Diplomatique : 150 kg.</li> </ul>"}]}, {"title": "TITRE III : DROITS, AVANTAGES, OBLIGATIONS ET INCOMPATIBILITES — CHAPITRE I : DROITS ET AVANTAGES — Sous-section 3 : Droits et avantages de toutes natures à l'étranger", "articles": [{"id": "article69", "title": "Article 69", "content": "Le membre du Corps Diplomatique bénéficie, durant son séjour à l'étranger, de la prise en charge par le budget de l'Etat des frais d'écolage, de scolarité de ses enfants, âgés de vingt-cinq ans au plus et poursuivant des études prématernelles, maternelles, primaires, secondaires classiques, techniques ou professionnelles."}, {"id": "article70", "title": "Article 70", "content": "Le membre du Corps Diplomatique bénéficie, durant son séjour à l'étranger, d'une aide forfaitaire annuelle prévue à l'annexe XI du présent décret pour les frais de scolarité par enfant à charge, âgé de trente ans au plus et poursuivant des études supérieures classiques, techniques ou professionnelles en Côte d'Ivoire ou à l'étranger. Le montant de cette aide est pris en charge par le budget de la Mission Diplomatique ou du Poste Consulaire."}, {"id": "article71", "title": "Article 71", "content": "Le nombre maximum d'enfants pris en charge, tel que mentionné aux articles 69 et 70, est de six enfants."}, {"id": "article72", "title": "Article 72", "content": "Le membre du Corps Diplomatique a droit à un congé administratif d'un mois, après douze mois de service ininterrompu, à compter de la date de prise ou de reprise de service dans son poste d'affectation."}, {"id": "article73", "title": "Article 73", "content": "Le membre du Corps Diplomatique a droit à un congé administratif de deux mois à passer en Côte d'Ivoire, après deux années de service effectif, à compter de la date de prise ou de reprise de service. Durant ce congé, le membre du Corps Diplomatique conserve l'intégralité de sa rémunération à l'étranger. Les titres de transport pour se rendre en Côte d'Ivoire à l'occasion de ce congé sont pris en charge par le budget de l'Etat, tant pour le Chef de la Mission Diplomatique ou du Poste Consulaire que pour le membre du Corps Diplomatique, son conjoint et ses enfants, conformément à la réglementation en vigueur."}, {"id": "article74", "title": "Article 74", "content": "Le membre du Corps diplomatique qui effectue une mission officielle à l'intérieur de sa circonscription bénéficie de titres de transport et d'indemnités, conformément à la réglementation en vigueur. Lorsque le conjoint de l'Ambassadeur, du Chargé d'Affaires en Pied ou du Chargé d'Affaires ad intérim est amené à l'accompagner dans une mission officielle nécessitant sa présence matérialisée par une invitation officielle, il bénéficie de la prise en charge de son titre de transport. Les missions de l'Ambassadeur, Chef de Mission Diplomatique ou de Poste Consulaire, du Chargé d'Affaires en Pied ou du Chargé d'Affaires se déroulant hors de la circonscription Diplomatique et du Poste Consulaire doivent être autorisées par le Ministre chargé des Affaires Etrangères."}, {"id": "article75", "title": "Article 75", "content": "Le membre du Corps Diplomatique affecté à l'étranger bénéficie, au moment de son départ en poste, d'une allocation pour l'ameublement de son logement de fonction. À l'exception de l'Ambassadeur, Chef de Mission, du Représentant Permanent, du Délégué Permanent, du Consul Général, du Représentant Permanent Adjoint, du Délégué Permanent Adjoint et du Chargé d'Affaires en Pied, les frais d'ameublement du logement de fonction des autres membres du Corps Diplomatique sont fixés, conformément à l'annexe VIII du présent décret. Ces frais sont pris en charge par le budget de l'Etat. Cette disposition n'est pas applicable en cas de mutation."}, {"id": "article76", "title": "Article 76", "content": "Le membre du Corps Diplomatique en service dans une Mission Diplomatique ou un Poste Consulaire bénéficie d'un logement de fonction, selon son Grade. Dans les pays froids, les frais de chauffage du logement du membre du Corps Diplomatique sont, pendant la période de froid, pris en charge par la Mission Diplomatique ou le Poste Consulaire. Dans les pays chauds, les frais de climatisation du logement du membre du Corps Diplomatique durant la période de forte chaleur sont pris en charge par la Mission Diplomatique ou le Poste Consulaire. Les périodes de froid ou de forte chaleur sont déterminées par décision du Chef de Mission Diplomatique ou du Poste Consulaire."}, {"id": "article77", "title": "Article 77", "content": "Les frais de téléphone fixe et mobile, d'internet, d'eau, d'électricité, de gaz et d'entretien du logement du membre du Corps Diplomatique sont à sa charge. Les frais de téléphone fixe et mobile, d'internet, d'eau, d'électricité, de gaz et d'entretien de la Résidence du Chef de Mission Diplomatique ou du Poste Consulaire, du Représentant Permanent, du Délégué Permanent, du Représentant Permanent Adjoint ou Délégué Permanent Adjoint sont supportés par le budget de l'Etat. Toutefois, les frais de téléphone mobile et d'internet du membre du Corps Diplomatique, qui prend rang après le Chef de Mission Diplomatique ou du Poste Consulaire, sont pris en charge par le budget de l'Etat sur la base d'un forfait fixé par le Chef de la Mission Diplomatique ou du Poste Consulaire. Pour nécessité de service, le Chef de mission peut, le cas échéant, étendre ces avantages à d'autres agents."}, {"id": "article78", "title": "Article 78", "content": "L'Ambassadeur affecté en qualité de Chef de Mission Diplomatique ou de Poste Consulaire, de Représentant Permanent où de Délégué Permanent bénéficie de deux véhicules de fonction. Le Représentant Permanent Adjoint ou le Délégué Permanent Adjoint bénéficie d'un véhicule de fonction. Le membre du Corps Diplomatique, qui prend rang après le Chef de Mission Diplomatique, le Représentant Permanent ou le Délégué Permanent bénéficie d'un véhicule de service."}, {"id": "article79", "title": "Article 79", "content": "L'Ambassadeur affecté en qualité de Chef de Mission Diplomatique ou de Poste Consulaire a droit, aux frais de l'Etat, à un personnel de maison. Ce personnel, affecté par le Département Central ou recruté localement, est composé comme suit : <ul> <li>un Maître d'hôtel ;</li> <li>une Gouvernante :</li> <li>un cuisinier.</li> </ul> L'Ambassadeur, affecté en qualité de Représentant Permanent Adjoint ou de Délégué Permanent Adjoint, a droit, aux frais de l'Etat, à deux agents de maison comprenant une Gouvernante et un Cuisinier. Ces agents peuvent être affectés par le Département Central ou recrutés localement. L'Ambassadeur, affecté en qualité de Représentant Permanent Adjoint ou de Délégué Permanent Adjoint, a droit, aux frais de l'Etat, à la prise en charge : <ul> <li>d'une Secrétaire ;</li> <li>d'un Chauffeur.</li> </ul>"}, {"id": "article80", "title": "Article 80", "content": "Le membre du Corps Diplomatique rappelé au Département Central avant le terme de sa mission, dans les circonstances énumérées à l'article 26 de la loi n°2023-895 du 23 novembre 2023 susvisée, continue de percevoir l'intégralité de sa rémunération, de bénéficier, avec sa famille, de la prise en charge des frais médicaux, ainsi que de la prise en charge des frais de scolarité de ses enfants jusqu'à leur rappel effectif à l'Administration Centrale. Pour le mouvement diplomatique suivant, le membre du Corps Diplomatique concerné à l'alinéa précédent est prioritaire et bénéficie d'une nouvelle affectation pour une période de cinq ans."}, {"id": "article81", "title": "Article 81", "content": "En cas de décès du membre du Corps Diplomatique en fonction à l'étranger, de son conjoint où d’un de ses enfants à charge, les frais de traitement, de conservation et de transfert de la dépouille jusqu'au lieu de l'inhumation en Côte d'Ivoire ou en tout autre lieu, sont pris en charge par le budget de l'Etat. Les frais de transport du membre du Corps Diplomatique, de son conjoint et ceux de ses enfants accompagnant la dépouille sont pris en charge par le budget de l'Etat. En cas d'inhumation à l'étranger du membre du corps diplomatique, de son conjoint ou de l'enfant à charge, l'intégralité des frais relatifs au traitement, à la conservation de la dépouille et à l'inhumation sont pris en charge par le budget de l'Etat. En cas de décès à l'étranger du membre du Corps Diplomatique, de son conjoint ou de son enfant à charge, les frais de transport du membre de la Mission Diplomatique ou du Poste Consulaire désigné pour accompagner la dépouille sont également pris en charge par le budget de l'Etat."}, {"id": "article82", "title": "Article 82", "content": "Dans l'attente du rapatriement de la dépouille du membre du Corps diplomatique, la famille du défunt continue de bénéficier du logement et des avantages, notamment scolarité, assurance prévus par la réglementation en vigueur. Toutefois, en cas d'affectation d'un membre du Corps Diplomatique en remplacement du défunt, la famille du défunt, bénéficie d'un logement jusqu'à leur rappel effectif qui ne peut intervenir avant la fin de l’année scolaire. Les frais afférents à ces logements sont pris en charge par le budget de l'Etat."}, {"id": "article83", "title": "Article 83", "content": "En cas de décès du membre du Corps Diplomatique en fonction à l'étranger, en début ou en cours d'année scolaire, les frais de scolarité des enfants à charge sont supportés par le budget de l'Etat. Dans ce cas, l'Etat accorde au conjoint et aux enfants à charge une assistance financière équivalant à l'intégralité du salaire mensuel du défunt à l'étranger jusqu'à la fin de l'année scolaire. Cette assistance financière est prise en charge par le budget de l'Etat. Le montant de cette assistance financière est versé en mains propres aux ayants droit majeurs du membre du corps diplomatique ou au représentant légal, s'agissant d'un enfant mineur."}, {"id": "article84", "title": "Article 84", "content": "En cas de décès du membre du Corps Diplomatique en fonction à l'étranger, durant les vacances scolaires, l'Etat accorde au conjoint et aux enfants à charge une assistance financière équivalant à trois mois de l'intégralité du salaire mensuel du défunt à l'étranger. Cette assistance financière est prise en charge par le budget de l'Etat. Le montant de cette assistance financière est versé en mains propres aux ayants droit majeurs du membre du corps diplomatique ou au représentant légal, s'agissant d'un enfant mineur."}, {"id": "article85", "title": "Article 85", "content": "En cas de décès en Côte d'Ivoire du père ou de la mère du membre du Corps Diplomatique ou de ceux de son conjoint, les titres de transport du membre du Corps Diplomatique en service dans une Mission Diplomatique ou dans un Poste Consulaire et de son conjoint sont pris en charge par le budget de l'Etat."}, {"id": "article86", "title": "Article 86", "content": "Le membre du Corps Diplomatique en poste à l'étranger bénéficie, dans les circonstances prévues à l'article 85, d'une autorisation d'absence spéciale de quinze jours."}, {"id": "article87", "title": "Article 87", "content": "En cas de décès d'un membre du Corps Diplomatique survenu à l'occasion ou dans l'exercice de ses fonctions à l'étranger et résultant de faits de guerre, de conflits armés, de voies de fait, d'actes terroristes ou d'extrémismes violents, de catastrophes naturelles ou de toutes autres circonstances ayant porté atteinte à son intégrité physique, ses enfants à charge deviennent pupilles de la Nation jusqu'à l'âge de vingt-cinq ans."}, {"id": "article88", "title": "Article 88", "content": "Le membre du Corps Diplomatique affecté dans des pays où les possibilités de scolarisation des enfants sont inexistantes ou insatisfaisantes peut, en accord avec le Chef de Mission Diplomatique ou du Poste Consulaire et avec l'autorisation préalable du Département Central, faire scolariser ses enfants dans un autre pays, dans les limites de l'enveloppe budgétaire prévue à cet effet, sans préjudice de leurs droits et avantages relatifs aux frais de santé."}, {"id": "article89", "title": "Article 89", "content": "Le membre du Corps Diplomatique rappelé au Département Central ou muté dans un autre poste, bénéficie, selon son Grade d'une allocation forfaitaire pour le transport de ses effets personnels. Le montant de cette allocation forfaitaire, pris en charge par le budget de l'Etat, est fixé à l'annexe IX du présent décret."}]}, {"title": "TITRE III : DROITS, AVANTAGES, OBLIGATIONS ET INCOMPATIBILITES — CHAPITRE II : OBLIGATIONS ET INCOMPATIBILITES — Section 1 : Obligations", "articles": [{"id": "article90", "title": "Article 90", "content": "Outre les obligations définies par la loi n°2023-895 du 23 novembre 2023 susvisée, le membre du Corps Diplomatique est soumis aux obligations fixées par le présent décret."}, {"id": "article91", "title": "Article 91", "content": "Avant de rejoindre son poste d'affectation, l'Ambassadeur, Chef de Mission diplomatique ou de Poste Consulaire, prête serment devant le Président de la République au cours d'une cérémonie en ces termes : « Je jure de servir la Côte d'Ivoire ma Patrie, avec honneur, fidélité et dévouement, de me conduire en votre digne représentant, Monsieur le Président de la République, d'assurer avec loyauté les charges de ma fonction, de veiller en tout lieu et en tout temps à la sauvegarde des intérêts et de l'image de mon pays, ainsi qu'à son rayonnement, de garder le secret de ma profession tout au long de ma carrière et même après la cessation de mes fonctions ». Un procès-verbal en est dressé par les Services compétents de la Présidence de la République en double exemplaire, dont l'un est scellé dans les Archives de la Présidence de la République et l’autre dans les Archives du ministère en charge des Affaires Etrangères."}, {"id": "article92", "title": "Article 92", "content": "Le membre du Corps Diplomatique en service à l'étranger est tenu de respecter les lois et règlements de l'Etat accréditaire."}, {"id": "article93", "title": "Article 93", "content": "Le membre du Corps Diplomatique ne peut témoigner ou ester en justice à l'étranger qu'après l'autorisation expresse du Ministre chargé des Affaires Etrangères."}, {"id": "article94", "title": "Article 94", "content": "Le membre du Corps Diplomatique est libre de ses opinions ou croyances philosophiques, religieuses ou politiques. Toutefois, il est tenu à l'obligation de réserve et doit s'abstenir d'afficher ses opinions où croyances philosophiques, religieuses ou politiques et observer, en toutes circonstances, une parfaite neutralité vis-à-vis des forces politiques et religieuses."}, {"id": "article95", "title": "Article 95", "content": "Le membre du Corps Diplomatique est soumis à l'obligation : <ul> <li>de secret professionnel ;</li> <li>de discrétion ;</li> <li>d'intégrité morale et intellectuelle ;</li> <li>de respect de la hiérarchie.</li> </ul>"}, {"id": "article96", "title": "Article 96", "content": "Le membre du Corps diplomatique en fonction dans une Mission Diplomatique ou un Poste Consulaire a l'obligation de bonne tenue, d'entretien et de conservation des biens meubles et immeubles mis à sa disposition."}, {"id": "article97", "title": "Article 97", "content": "À son rappel au Département Central ou à sa mutation, le membre du Corps Diplomatique doit s'acquitter de toutes dettes personnelles contractées avant son départ du poste, sous peine : <ul> <li>d'émission à son encontre d'un ordre de recettes, conformément à la réglementation en vigueur, jusqu'au remboursement de l'intégralité de ses dettes;</li> <li>de son maintien au Département Central jusqu'à extinction de ses dettes et sans préjudice de sanctions disciplinaires, prévues par l'article 149.</li> </ul> Avant le départ du membre du Corps Diplomatique rappelé au Département Central ou muté dans un autre poste, la Mission Diplomatique ou le Poste Consulaire a l'obligation d'apurer l'intégralité de ses dettes à l'égard dudit membre. Dans l'impossibilité pour la Mission Diplomatique ou le Poste Consulaire d'apurer lesdites dettes, la Mission ou le Poste est tenu d'en garantir le remboursement vis-à-vis du membre du Corps Diplomatique, par une attestation dûment cosignée du Chef de Mission Diplomatique ou du Poste Consulaire et du Payeur. Dans ce cas, le membre du Corps Diplomatique peut se faire rembourser par le ministère en charge des Finances sur la dotation budgétaire de ladite Mission Diplomatique ou dudit Poste Consulaire, sur présentation des preuves de sa créance."}, {"id": "article98", "title": "Article 98", "content": "Nonobstant les audits et contrôles qui peuvent être assurés par l'Inspection Générale d'Etat, la Mission Diplomatique ou le Poste Consulaire fait l'objet, au moins tous les trois ans, et sur instructions du Ministre chargé des Affaires Etrangères, d'une inspection menée par l'Inspection Générale des Affaires Etrangères, sans préjudice des inspections ponctuelles, en cas de besoin, sans préavis. A cette occasion, le Chef de Mission Diplomatique ou de Poste Consulaire est tenu de réserver un accueil approprié à ladite mission d'inspection."}, {"id": "article99", "title": "Article 99", "content": "A la fin de la mission de l'Ambassadeur, Chef de Mission Diplomatique ou de Poste Consulaire ou du Chargé d'Affaires en Pied, et avant l'entrée en fonction de son successeur, il est organisé une mission d'inspection en vue de faire l'état des lieux aux plans administratif, comptable, financier et du patrimoine de la Mission ou du Poste. À cette occasion, le Chef de Mission Diplomatique ou de Poste Consulaire ou le Chargé d'Affaires en Pied sortant est tenu d'être présent et de réserver un accueil approprié à ladite mission d'inspection."}, {"id": "article100", "title": "Article 100", "content": "L'Ambassadeur sortant est tenu de dresser un inventaire complet des biens meubles et immeubles à la fin de sa mission. L'Ambassadeur entrant est tenu de procéder à un inventaire contradictoire à sa prise de fonction. Chaque inventaire est signé en ce qui le concerne par l'Ambassadeur sortant ou entrant, et contresigné par le Payeur en présence du Chargé d'Affaires ad intérim."}]}, {"title": "TITRE III : DROITS, AVANTAGES, OBLIGATIONS ET INCOMPATIBILITES — CHAPITRE II : OBLIGATIONS ET INCOMPATIBILITES — Section 2 : Incompatibilités", "articles": [{"id": "article101", "title": "Article 101", "content": "La qualité de membre du Corps Diplomatique est incompatible avec : <ul> <li>les fonctions dans les instances dirigeantes d'une organisation politique ;</li> <li>l'exercice d'un mandat électif;</li> <li>l'exercice, à titre professionnel, d'une activité privée lucrative de quelque nature que ce soit.</li> </ul> Le membre du Corps Diplomatique ne peut exercer les activités incompatibles qu'en position de disponibilité."}, {"id": "article102", "title": "Article 102", "content": "Tout manquement aux obligations et incompatibilités prévues au Chapitre II ci-dessus, constitue une faute passible de sanctions disciplinaires prévues dans le présent décret."}]}, {"title": "TITRE IV : NOTATION, AVANCEMENT ET PROMOTION", "articles": [{"id": "article103", "title": "Article 103", "content": "Il est créé une Commission, dénommée « Commission d'Avancement, de Promotion et de Discipline », en abrégé C.A.P.D."}]}, {"title": "TITRE IV : NOTATION, AVANCEMENT ET PROMOTION — CHAPITRE I : COMPETENCES ET ATTRIBUTIONS", "articles": [{"id": "article104", "title": "Article 104", "content": "La Commission d'Avancement, de Promotion et de Discipline est compétente pour connaître des mérites et des fautes commises par tout membre du Corps Diplomatique. Les décisions de la Commission d'Avancement, de Promotion et de Discipline sont motivées et soumises à l'approbation du Ministre chargé des Affaires Etrangères."}, {"id": "article105", "title": "Article 105", "content": "En matière d'avancement et de promotion, la Commission d'Avancement, de Promotion et de Discipline est compétente pour : <ul> <li>recevoir et analyser les notes et appréciations attribuées au membre du Corps Diplomatique ;</li> <li>établir et soumettre la liste d'aptitude à l'avancement d'échelon des membres du Corps Diplomatique à l'approbation du Ministre chargé des Affaires Etrangères :</li> <li>proposer des réductions ou des majorations du temps passé dans l'échelon ;</li> <li>proposer des pertes d'avancement d'échelon à l'encontre des membres du Corps Diplomatique:</li> <li>établir et soumettre la liste d'aptitude à la promotion des membres du Corps Diplomatique en fonction des quotas fixés à l'approbation du Ministre chargé des Affaires Etrangères.</li> </ul>"}, {"id": "article106", "title": "Article 106", "content": "En matière disciplinaire, la Commission veille au respect de la discipline par les membres du Corps Diplomatique, en statuant sur les cas de manquements aux obligations prévues par la loi n°2023-895 du 23 novembre 2023 susvisée et par le présent décret. A ce titre, la Commission d'Avancement, de Promotion et de Discipline est compétente pour : <ul> <li>recevoir les dossiers relatifs à des faits justifiant des sanctions disciplinaires contre les membres du Corps Diplomatique ;</li> <li>diligenter des enquêtes et auditions nécessaires au bon déroulement de toute procédure disciplinaire:</li> <li>délibérer et émettre un avis motivé sur les affaires qui lui sont soumises;</li> <li>proposer au Ministre chargé des Affaires Etrangères, les sanctions en rapport avec la gravité des fautes commises dans les cas où les faits reprochés au membre du Corps Diplomatique sont établis, sans préjudice des poursuites pénales.</li> </ul>"}]}, {"title": "TITRE IV : NOTATION, AVANCEMENT ET PROMOTION — CHAPITRE II : COMPOSITION ET FONCTIONNEMENT", "articles": [{"id": "article107", "title": "Article 107", "content": "La Commission d'Avancement, de Promotion et de Discipline comprend deux organes : <ul> <li>la Commission d'Avancement et de Promotion ;</li> <li>la Commission de Discipline.</li> </ul>"}, {"id": "article108", "title": "Article 108", "content": "La Commission d'Avancement et de Promotion comprend treize membres, dont neuf membres titulaires et quatre membres suppléants répartis comme suit : <ul> <li>Président: le Secrétaire Général du ministère en charge des Affaires Etrangères ;</li> <li>1er Vice-Président : le Directeur de Cabinet du Ministre chargé des Affaires Etrangères ;</li> <li>2ème Vice-Président : l'Inspecteur Général des Affaires Etrangères ;</li> <li>Rapporteur : le Directeur des Ressources Humaines du ministère en charge des Affaires Etrangères ;</li> <li>Membres : <ul> <li>le Secrétaire Général Adjoint ;</li> <li>un Ambassadeur et un suppléant ;</li> <li>un Ministre Plénipotentiaire et un suppléant ;</li> <li>un Conseiller des Affaires Etrangères et un suppléant;</li> <li>un Secrétaire des Affaires Etrangères et un suppléant.</li> </ul> </li> </ul> Le Rapporteur assure le Secrétariat de la Commission."}, {"id": "article109", "title": "Article 109", "content": "Hormis le Président, les Vice-présidents, le Rapporteur et le Secrétaire Général Adjoint, les autres membres de la Commission sont élus par leurs pairs en même temps que leurs suppléants. La durée du mandat des membres élus est de deux ans, renouvelable une seule fois. Le membre suppléant siège à la Commission en cas d'empêchement du membre titulaire. En cas d'empêchement du Président, il est suppléé par l'un des Vice-présidents de la Commission dans l'ordre de préséance tel que prévu à l'article précédent."}, {"id": "article110", "title": "Article 110", "content": "La Commission de Discipline est présidée par le Secrétaire Général du ministère en charge des Affaires Etrangères, assisté de deux Vice-présidents et un Rapporteur. Les membres de la Commission de Discipline sont nommés par Arrêté du Ministre chargé des Affaires Etrangères. La durée du mandat des membres élus est de deux ans, renouvelable une seule fois. En cas d'empêchement du Président, il est suppléé par l'un des Vice-présidents de la Commission dans l'ordre de préséance tel que prévu à l'article 108. La qualité de membre de la Commission est gratuite."}, {"id": "article111", "title": "Article 111", "content": "Les Commissions prévues aux articles 108 et 110 se réunissent en sessions ordinaires et en sessions extraordinaires sur convocation de leur Président. Les sessions ordinaires se tiennent une fois par trimestre et au plus tard à la fin du mois d'octobre concernant le dernier trimestre. La durée d'une session ordinaire est de quinze jours. Les sessions extraordinaires se tiennent autant que de besoin. La Commission d'Avancement et de Promotion et la Commission de Discipline ne peuvent valablement délibérer que si les deux tiers au moins de leurs membres sont présents. Elles délibèrent à la majorité simple des voix. En cas d'égalité des voix, celle du Président est prépondérante. Les délibérations se déroulent à huis clos et sont confidentielles. La violation du caractère confidentiel des délibérations par l'un des membres des Commissions l'expose à des sanctions disciplinaires telles que prévues dans le présent décret. Les résultats des travaux des Commissions sont soumis sans délai au Ministre chargé des Affaires Etrangères, pour décision, en matière d'avancement, et transmis au Président de la République, en ce qui concerne les promotions et les sanctions du second degré."}, {"id": "article112", "title": "Article 112", "content": "La Commission d'Avancement et de Promotion et la Commission de Discipline peuvent être saisies par écrit par le Ministre chargé des Affaires Etrangères ou par les deux tiers de ses membres."}]}, {"title": "TITRE IV : NOTATION, AVANCEMENT ET PROMOTION — CHAPITRE III : NOTATION", "articles": [{"id": "article113", "title": "Article 113", "content": "Il est attribué, chaque année, à tout membre du Corps Diplomatique, en activité ou en détachement, une note en vue de son inscription au tableau d'avancement et sur les listes d'aptitude. La notation porte sur l'évaluation des services accomplis du 1er juin de l'année précédente au 31 mai de l'année en cours. Elle produit ses effets au cours de l'année civile. La notation du membre du Corps Diplomatique a lieu du 1er janvier au 28 février de l'année qui suit sur la base d'une grille de notation définie par arrêté du Ministre chargé des Affaires Etrangères. La note chiffrée de 1 à 20 porte sur une série d'appréciations détaillées concernant : <ul> <li>les connaissances et aptitudes professionnelles ;</li> <li>l'esprit d'initiative :</li> <li>le sens des responsabilités ;</li> <li>la puissance de travail et le rendement :</li> <li>le civisme, l'intégrité et la moralité ;</li> <li>le sens du service public ;</li> <li>le sens social et le sens de la relation humaine :</li> <li>l'esprit de discipline ;</li> <li>la ponctualité et l'assiduité ;</li> <li>la tenue et la présentation.</li> </ul> Les notes inférieures à 10 et celles supérieures à 18/20 font l'objet d'un rapport circonstancié par l'autorité ayant procédé à la notation."}, {"id": "article114", "title": "Article 114", "content": "L'Ambassadeur, Chef de Mission Diplomatique ou de Poste Consulaire, le Représentant Permanent, le Délégué Permanent, le Consul Général, le Représentant Permanent Adjoint, le Délégué Permanent Adjoint et le Chargé d'Affaires en Pied, sont évalués et notés par le Ministre chargé des Affaires Etrangères sur proposition d'un jury comprenant le Secrétaire Général, le Directeur de Cabinet, l'Inspecteur Général et le Chef de Cabinet, membres du Corps Diplomatique. Les rapports d'inspection font partie des éléments d'évaluation. Les autres membres du Corps Diplomatique sont notés par le Ministre chargé des Affaires Etrangères, sur proposition de leur supérieur hiérarchique. Le membre du Corps Diplomatique en position de détachement est noté par l'autorité de la structure auprès de laquelle il est détaché. La notation du membre du Corps Diplomatique en position de détachement est adressée au Ministre chargé des Affaires Etrangères."}, {"id": "article115", "title": "Article 115", "content": "La note attribuée au membre du Corps Diplomatique doit lui être notifiée au plus tard le 30 septembre de l'année en cours. Si à la date prévue à l'alinéa précédent, l'intéressé n'a pas reçu notification de sa notation, il est fondé à introduire une réclamation écrite auprès de son supérieur hiérarchique. Le membre du Corps Diplomatique peut, dans les quinze jours ouvrables suivant la notification de sa notation, introduire une réclamation écrite auprès de l'autorité ayant procédé à la notation, qui peut la modifier ou la confirmer. Le supérieur hiérarchique a trente jours ouvrables à compter de la date de sa saisine pour donner suite à cette réclamation."}, {"id": "article116", "title": "Article 116", "content": "En cas d'absence de réponse dans le délai de trente jours ouvrables ou de rejet de la réclamation, le membre du Corps Diplomatique peut saisir, par écrit, dans un délai de quinze jours, le Ministre chargé des Affaires Etrangères qui se prononce après avis de la Commission d'Avancement et de Promotion. La note définitive arrêtée par le Ministre chargé des Affaires Etrangères est adressée au membre du Corps Diplomatique concerné."}, {"id": "article117", "title": "Article 117", "content": "Lorsque de son fait, un membre du Corps Diplomatique n'a pu être noté dans les délais réglementaires, l'année considérée n'est pas prise en compte pour son avancement d'échelon ou de Grade. Toutefois, en cas de force majeure l'agent peut être noté hors du délai réglementaire. Le membre du Corps Diplomatique, qui est en position de disponibilité, membre du Gouvernement et Président d'institution, n'est pas soumis à la notation."}]}, {"title": "TITRE IV : NOTATION, AVANCEMENT ET PROMOTION — CHAPITRE IV : AVANCEMENT", "articles": [{"id": "article118", "title": "Article 118", "content": "L'avancement est le passage d'un échelon à un autre à l'intérieur du même Grade."}, {"id": "article119", "title": "Article 119", "content": "L'avancement d'échelon est acquis après deux années dans l'échelon initial et l'obtention d'une note d'au moins 12/20 pour chacune des deux années de référence. Après délibérations, la Commission d'Avancement et de Promotion propose le tableau d'avancement d'échelon des membres du Corps Diplomatique. Le tableau d'avancement est publié par arrêté du Ministre chargé des Affaires Etrangères et devient exécutoire dès sa publication."}, {"id": "article120", "title": "Article 120", "content": "La durée moyenne d'avancement peut, après avis de la Commission d'Avancement et de Promotion, être réduite d’un an en faveur du membre du Corps Diplomatique ayant obtenu, sur les deux années de référence, une note d'au moins 18/20."}, {"id": "article121", "title": "Article 121", "content": "Le Ministre chargé des Affaires Etrangères peut, à titre exceptionnel, procéder à l'avancement d'échelon d'un membre du Corps Diplomatique dans les trois Grades. Cette faveur ne peut intervenir qu'une seule fois à l'intérieur du même Grade du Corps Diplomatique."}]}, {"title": "TITRE IV : NOTATION, AVANCEMENT ET PROMOTION — CHAPITRE V : PROMOTION", "articles": [{"id": "article122", "title": "Article 122", "content": "La promotion est le passage d'un Grade au Grade immédiatement supérieur. La promotion est acquise selon les conditions de durée, de notation et de discipline suivantes : <ul> <li>avoir effectué six années dans chacun des Grades ;</li> <li>avoir obtenu une note d'au moins 12/20 pour chacune des deux années de référence;</li> <li>n'avoir fait l'objet d'aucune sanction disciplinaire de second degré durant le déroulement de sa carrière dans chacun des Grades.</li> </ul> Après délibération, la Commission propose la liste d'aptitude à la promotion pour chaque Grade. La liste d'aptitude à la promotion proposée par la Commission est soumise à l'approbation du Ministre chargé des Affaires Etrangères. Toutefois, cette disposition ne concerne pas la promotion des Ministres Plénipotentiaires dans le Hors Grade."}, {"id": "article123", "title": "Article 123", "content": "Le Président de la République peut, de manière discrétionnaire, procéder à la promotion, à titre exceptionnel, d'un membre du Corps Diplomatique dans tout Grade du Corps Diplomatique."}]}, {"title": "TITRE V : MOUVEMENT DIPLOMATIQUE", "articles": [{"id": "article124", "title": "Article 124", "content": "Le mouvement diplomatique s'entend du redéploiement régulier et statutaire des membres du Corps Diplomatique entre le Département Central et les Missions Diplomatiques ou Postes Consulaires, d'une part, et entre les Missions Diplomatiques ou Postes Consulaires, d'autre part. Le mouvement diplomatique a lieu tous les ans de janvier à mai, et porte sur l'affectation, la mutation et le rappel des membres du Corps Diplomatique."}, {"id": "article125", "title": "Article 125", "content": "Le redéploiement régulier et statutaire des membres du Corps Diplomatique entre les services du Département Central et les Missions Diplomatiques ou les Postes Consulaires se fait par décret pour les Ambassadeurs et par décision du Ministre chargé des Affaires Etrangères pour les autres membres du Corps Diplomatique."}, {"id": "article126", "title": "Article 126", "content": "L'affectation est la désignation, par un acte administratif, d'un membre du Corps Diplomatique en service au Département Central pour exercer une fonction dans une Mission Diplomatique ou un Poste Consulaire. Sauf cas de nécessités de service, l'affectation intervient après trois années révolues, à compter de la date de prise de service au Département Central."}, {"id": "article127", "title": "Article 127", "content": "La durée du séjour à l'étranger du membre du Corps Diplomatique affecté dans une Mission Diplomatique ou un Poste Consulaire est de cinq ans pour compter de la date de sa prise de service. Toutefois, le Ministre chargé des Affaires Etrangères peut, pour nécessité de service, prolonger la durée du séjour à l'étranger du membre du Corps Diplomatique."}, {"id": "article128", "title": "Article 128", "content": "La mutation est le redéploiement du membre du Corps Diplomatique d'une Mission Diplomatique ou d'un Poste Consulaire à une autre Mission Diplomatique ou un autre Poste Consulaire. Elle intervient dans les cas ci-après : <ol> <li>nécessités de service ;</li> <li>poste reconnu particulièrement difficile;</li> <li>poste déclaré à risques, conformément aux les conditions de risques prévues à l'article 56 du présent décret ;</li> <li>problèmes récurrents de santé liés aux conditions de vie dans le pays d'accueil.</li> </ol>"}, {"id": "article129", "title": "Article 129", "content": "Le rappel est l'acte administratif qui met fin au séjour réglementaire du membre du Corps Diplomatique dans une Mission Diplomatique ou un Poste Consulaire et qui notifie à l'intéressé son retour au Département Central. Il intervient à la fin de la cinquième année à compter de la date de prise de service du membre du Corps Diplomatique. La décision de rappel est notifiée au membre du Corps Diplomatique au plus tard au mois de mai de l'année en cours. Toutefois, le rappel peut intervenir avant terme dans les cas suivants : <ul> <li>nécessités de service:</li> <li>demande motivée de l'agent ;</li> <li>sanction disciplinaire;</li> <li>admission à la retraite.</li> </ul>"}, {"id": "article130", "title": "Article 130", "content": "Le rappel ou la mutation d'un Ambassadeur, Chef de Mission Diplomatique ou de Poste Consulaire, doit lui être notifié par pli confidentiel du Ministre chargé des Affaires Etrangères. Le rappel ou la mutation d'un Ambassadeur, Représentant ou Délégué Permanent Adjoint, doit lui être notifié par pli confidentiel du Ministre chargé des Affaires Etrangères avec ampliation au Représentant ou Délégué Permanent."}, {"id": "article131", "title": "Article 131", "content": "L'Ambassadeur, Chef de Mission Diplomatique ou de Poste Consulaire rappelé ou muté, doit prendre toutes les dispositions nécessaires pour faire ses adieux aux autorités du pays d'accueil et regagner le Département Central ou son nouveau poste à l'étranger, dans un délai maximum de quarante-cinq jours, à compter de la date de réception de ses titres de voyage et de la liquidation par la Mission Diplomatique où le Poste Consulaire, des frais afférents au transport de ses effets personnels. Les autres membres du Corps Diplomatique rappelés ou mutés doivent prendre toutes les dispositions nécessaires pour regagner le Département Central ou leurs nouveaux postes à l'étranger, dans un délai maximum d'un mois, après réception de leurs titres de voyage et la liquidation par la Mission Diplomatique ou le Poste Consulaire, des frais afférents au transport de leurs effets personnels."}, {"id": "article132", "title": "Article 132", "content": "Au terme de sa mission, l'Ambassadeur, Chef de Mission Diplomatique ou de Poste Consulaire, est tenu de produire un rapport de fin de mission dont un exemplaire est transmis au Président de la République."}, {"id": "article133", "title": "Article 133", "content": "Le membre du Corps Diplomatique rappelé doit rejoindre le Département Central au plus tard le 31 juillet de l'année en cours. Le membre du Corps Diplomatique affecté ou muté doit rejoindre son nouveau poste à l'étranger au plus tard le 1er septembre de l’année en cours."}, {"id": "article134", "title": "Article 134", "content": "Aucun membre du Corps Diplomatique ne peut s'opposer, de quelque manière que ce soit, à une décision d'affectation, de mutation ou de rappel. Toute résistance ou entrave au mouvement diplomatique ou tout refus de s'y soumettre, expose l'intéressé à des sanctions disciplinaires. Tout recours contre la décision prévue à l'alinéa premier du présent article est soumis par écrit au Ministre chargé des Affaires Etrangères. La décision finale du Ministre chargé des Affaires Etrangères intervient dans un délai d'un mois, à partir de la date de sa saisine."}]}, {"title": "TITRE VI : POSITIONS DU MEMBRE DU CORPS DIPLOMATIQUE", "articles": [{"id": "article135", "title": "Article 135", "content": "Le membre du Corps Diplomatique est placé dans l'une des positions suivantes : <ul> <li>en activité ;</li> <li>en détachement ;</li> <li>en disponibilité.</li> </ul>"}]}, {"title": "TITRE VI : POSITIONS DU MEMBRE DU CORPS DIPLOMATIQUE — CHAPITRE I : ACTIVITÉ", "articles": [{"id": "article136", "title": "Article 136", "content": "L'activité est la position du membre du Corps Diplomatique qui occupe effectivement un emploi. Est également considéré comme étant en activité, le membre du Corps Diplomatique en congé ou en stage de formation ou bénéficiant d'une autorisation d'absence avec traitement."}]}, {"title": "TITRE VI : POSITIONS DU MEMBRE DU CORPS DIPLOMATIQUE — CHAPITRE II : DETACHEMENT", "articles": [{"id": "article137", "title": "Article 137", "content": "Le détachement est la position du membre du Corps Diplomatique autorisé à interrompre temporairement ses fonctions pour exercer un emploi ou un mandat public national ou international ou exercer une fonction ministérielle."}, {"id": "article138", "title": "Article 138", "content": "Le détachement est prononcé à la demande du membre du Corps Diplomatique ou d'office. Il est révocable. Le détachement du membre du Corps Diplomatique auprès d'un organisme international, d'une société d'Etat ou d'une entreprise privée requiert l'autorisation préalable du Conseil des Ministres. Lorsqu'il s'agit d'un détachement pour l'exercice d'une fonction auprès d'un organisme international, de membre du Gouvernement où du Parlement, il est fait droit à la demande du membre du Corps Diplomatique."}, {"id": "article139", "title": "Article 139", "content": "La durée de la période du détachement auprès d'un organisme international, d'une société d'Etat ou d'une entreprise privée est de cinq années maximum, renouvelable une seule fois. A l'issue de la période autorisée, le membre du Corps Diplomatique est remis à la disposition du ministère en charge des Affaires Etrangères et est nommé selon les besoins du service à un poste vacant correspondant à son Grade. La réintégration du membre du Corps Diplomatique au terme du détachement est prononcée par décret pris en Conseil des Ministres, sur proposition du Ministre chargé des Affaires Etrangères. En cas de refus par le membre du Corps Diplomatique de réintégrer son corps d'origine au terme de la période autorisée, il est considéré comme démissionnaire."}, {"id": "article140", "title": "Article 140", "content": "Le membre du Corps Diplomatique détaché, remis à la disposition du ministère chargé des Affaires Etrangères avant le terme de la période de son détachement, pour une cause autre qu'une faute commise dans l'exercice de ses fonctions, continue d'être rémunéré par l'organisme de détachement jusqu'à sa réintégration. En cas de défaillance dudit organisme, il est réintégré de plein droit dans son corps d'origine. En cas de faute grave où de faute professionnelle, l'organisme de détachement est tenu de saisir, sans délai, par rapport circonstancié, le Ministre chargé des Affaires Etrangères qui en informe le Ministre chargé de la Fonction Publique."}, {"id": "article141", "title": "Article 141", "content": "Les membres du Corps Diplomatique détachés ne peuvent, sauf au cas où le détachement a été prononcé auprès d'un organisme international pour exercer une fonction parlementaire ou une fonction ministérielle, être affiliés au régime de retraite dont relève l'organisme auprès duquel ils sont détachés, ni acquérir à ce titre, de droit quelconque à pension ou allocation, sous peine de suspension de la pension de l'Etat."}, {"id": "article142", "title": "Article 142", "content": "Le nombre total des membres du Corps Diplomatique placés en position de détachement ne peut excéder 5% de l'effectif du Corps Diplomatique."}]}, {"title": "TITRE VI : POSITIONS DU MEMBRE DU CORPS DIPLOMATIQUE — CHAPITRE III : DISPONIBILITE", "articles": [{"id": "article143", "title": "Article 143", "content": "La disponibilité est la position du membre du Corps Diplomatique dont l'activité est suspendue temporairement, à sa demande, pour : <ul> <li>accident ou maladie grave du conjoint ou d'un enfant. Dans ce cas, la durée de la disponibilité est d'une année renouvelable une seule fois ;</li> <li>suivre un conjoint fonctionnaire en service ou affecté à l'étranger. La durée est également d'une année renouvelable une seule fois à la demande motivée de l'intéressée ;</li> <li>suivre un conjoint non fonctionnaire. La durée est alors de trois années renouvelables une seule fois ;</li> <li>convenances personnelles. La durée est d'une année renouvelable une seule fois.</li> </ul>"}, {"id": "article144", "title": "Article 144", "content": "La disponibilité est prononcée par arrêté du Ministre chargé de la Fonction Publique, après avis favorable du Ministre chargé des Affaires Etrangères."}, {"id": "article145", "title": "Article 145", "content": "Le membre du Corps Diplomatique placé en position de disponibilité n'a droit à aucune rémunération. Toutefois, le membre du Corps Diplomatique placé en disponibilité pour accident ou maladie grave de son conjoint ou d'un enfant perçoit la totalité des allocations familiales et garde l'intégralité de sa rémunération."}, {"id": "article146", "title": "Article 146", "content": "A l'expiration de la période de la disponibilité, le membre du Corps Diplomatique est remis à la disposition du ministère en charge des Affaires Etrangères et nommé selon les besoins du service à un poste vacant correspondant à son Grade."}, {"id": "article147", "title": "Article 147", "content": "Le membre du Corps Diplomatique placé en position de disponibilité doit solliciter sa réintégration auprès du Ministre chargé de la Fonction Publique, deux mois au moins avant l'expiration de la période de disponibilité en cours. Le membre du Corps Diplomatique qui a formulé une demande de réintégration anticipée est, à son retour, remis à la disposition du ministère chargé des Affaires Etrangères, dans l'attente d'un poste correspondant à son profil."}]}, {"title": "TITRE VII : REGIME DISCIPLINAIRE — CHAPITRE I : POUVOIR DISCIPLINAIRE", "articles": [{"id": "article148", "title": "Article 148", "content": "Le pouvoir disciplinaire est exercé à l'égard du membre du Corps Diplomatique et des personnalités mentionnées à l'alinéa 2 de l'article 2, par le Ministre chargé des Affaires Etrangères. Dans l'exercice de ce pouvoir disciplinaire, le Ministre chargé des Affaires Etrangères sollicite l'avis de la Commission de Discipline. La saisine de la Commission de Discipline par le Ministre chargé des Affaires Etrangères doit être motivée."}, {"id": "article149", "title": "Article 149", "content": "Les sanctions disciplinaires applicables au membre du Corps Diplomatique sont : <br/>Sanctions du premier degré : <ol> <li>l'avertissement;</li> <li>le blâme ;</li> <li>la mutation d'office ;</li> <li>le rappel avant terme ;</li> <li>la radiation du tableau d'avancement.</li> </ol> Les sanctions du premier degré sont prononcées par arrêté du Ministre chargé des Affaires Etrangères. <br/>Sanctions du second degré : <ol> <li>l'abaissement d'échelon ;</li> <li>l'exclusion temporaire du Corps Diplomatique pour une durée ne pouvant excéder six mois avec perte de tous les avantages, à l'exception des prestations familiales ;</li> <li>l'exclusion définitive du Corps Diplomatique avec perte de tous les avantages y afférents. L'intéressé est remis à la disposition du Ministère en charge de la Fonction Publique ;</li> <li>la révocation avec ou sans suspension de droit à pension.</li> </ol> Les sanctions du second degré sont prononcées par décret, sur proposition conjointe du Ministre chargé des Affaires Etrangères et du Ministre chargé de la Fonction Publique."}]}, {"title": "TITRE VII : REGIME DISCIPLINAIRE — CHAPITRE II : PROCEDURE DISCIPLINAIRE", "articles": [{"id": "article150", "title": "Article 150", "content": "La procédure disciplinaire est engagée par une demande d'explication écrite adressée au membre du Corps Diplomatique ou aux personnalités mentionnées à l'alinéa 2 de l'article 2, par son supérieur hiérarchique."}, {"id": "article151", "title": "Article 151", "content": "En cas de faute grave commise par un Ambassadeur en fonction, le Président de la République peut, par mesure conservatoire, suspendre l'intéressé de ses fonctions sans perte de la rémunération et/ou le rappeler pour consultation au Département Central, avant la saisine de la Commission d'Avancement, de Promotion et de Discipline par le Ministre chargé des Affaires Etrangères pour statuer sur sa situation. Les mesures conservatoires prévues à l'alinéa précédent sont notifiées par écrit à l'intéressé par le Ministre chargé des Affaires Etrangères. Pendant la durée de la mesure conservatoire, le membre du Corps Diplomatique conserve l'intégralité de son traitement et autres droits et avantages. En application de l'alinéa premier du présent article, la situation de l'intéressé doit faire l'objet d'une décision définitive dans un délai de trois mois à compter du jour de sa suspension. Si l'intéressé n'a subi aucune sanction de premier degré, à l'expiration du délai de trois mois ou s'il n'a pu être statué sur sa situation, l'Ambassadeur regagne son poste."}, {"id": "article152", "title": "Article 152", "content": "En cas de faute grave commise par un membre du Corps Diplomatique autre qu'un Ambassadeur, le Ministre chargé des Affaires Etrangères peut, par mesure conservatoire, suspendre l'intéressé de ses fonctions et/ou le convoquer au Département Central avant la saisine de la Commission de Discipline pour statuer sur sa situation. Pendant la durée de la mesure conservatoire, le membre du Corps Diplomatique conserve l'intégralité de son traitement et autres droits et avantages. En application de l'alinéa premier du présent article, la situation de l'intéressé doit faire l'objet d'une décision définitive dans un délai de trois mois à compter du jour de sa suspension. Si l'intéressé n'a subi aucune sanction du premier degré, à l'expiration du délai de trois mois où s'il n'a pu être statué sur sa situation, le membre du Corps Diplomatique regagne son poste."}, {"id": "article153", "title": "Article 153", "content": "Lorsque la Commission de Discipline est saisie, selon les modalités de l'article 104 et suivant, de faits justifiant des poursuites disciplinaires à l'encontre du membre du Corps Diplomatique, elle procède à une enquête dont la durée ne peut excéder trois mois, sauf cas de force majeure dûment constaté par la Commission. Au cours de l'enquête, il est procédé à l'audition du mis en cause et de tout sachant. Toute pièce adressée à la Commission dans le cadre de l'affaire doit être communiquée au membre du Corps Diplomatique mis en cause. Lorsque l'enquête est terminée, le membre du Corps Diplomatique mis en cause doit être immédiatement convoqué devant la Commission. Il est tenu de comparaître en personne et peut se faire assister par un Conseil. Il ne peut se faire représenter qu'en cas de force majeure dûment constatée par la Commission. La non-comparution du membre du Corps Diplomatique régulièrement cité à comparaître, pour une raison autre qu'un cas de force majeure reconnu, n'entache nullement la validité de la délibération de la Commission. La Commission délibère à huis clos. Ses décisions doivent être motivées. Si les faits reprochés au membre du Corps Diplomatique ne sont pas établis, l'intéressé est rétabli dans ses droits et fonctions."}, {"id": "article154", "title": "Article 154", "content": "Toute sanction prise à l'encontre du membre du Corps Diplomatique est motivée, notifiée à l'intéressé et versée à son dossier. Ce dernier a quinze jours, à compter de la date de notification de la décision de sanction, pour exercer un recours devant le Ministre chargé des Affaires Etrangères."}]}, {"title": "TITRE VIII : CESSATION DEFINITIVE DES FONCTIONS, RETRAITE, PENSION ET ALLOCATION VIAGERE — CHAPITRE I : CESSATION DEFINITIVE DES FONCTIONS ET RETRAITE", "articles": [{"id": "article155", "title": "Article 155", "content": "La cessation définitive des fonctions du membre du Corps diplomatique résulte : <ul> <li>de la démission écrite acceptée et de ce fait irrévocable ;</li> <li>de l'exclusion définitive ;</li> <li>de la révocation ;</li> <li>de l'admission à la retraite ;</li> <li>du décès.</li> </ul>"}, {"id": "article156", "title": "Article 156", "content": "Sous réserve des prorogations pouvant résulter des textes applicables à l'ensemble des agents de l'Etat, la limite d'âge, pour le départ à la retraite d’un membre du corps diplomatique, est fixée à soixante-cinq ans. Toutefois, la limite d'âge est portée à soixante-sept ans lorsque le membre du Corps Diplomatique est nommé dans l'emploi d'Ambassadeur."}]}, {"title": "TITRE VIII : CESSATION DEFINITIVE DES FONCTIONS, RETRAITE, PENSION ET ALLOCATION VIAGERE — CHAPITRE II : PENSION ET ALLOCATION VIAGERE — Section 1 : Pension", "articles": [{"id": "article157", "title": "Article 157", "content": "Le membre du Corps Diplomatique a droit, à sa retraite, à une pension dans les conditions fixées par la réglementation en vigueur."}, {"id": "article158", "title": "Article 158", "content": "Nonobstant les dispositions régissant la Caisse Générale de Retraite des Agents de l'Etat, l'assiette de calcul de la pension de retraite du membre du Corps Diplomatique, de son conjoint survivant et de ses ayant droits est constituée par la somme des éléments constitutifs du traitement, tel que prévu à l'article 39."}]}, {"title": "TITRE VIII : CESSATION DEFINITIVE DES FONCTIONS, RETRAITE, PENSION ET ALLOCATION VIAGERE — CHAPITRE II : PENSION ET ALLOCATION VIAGERE — Section 2 : Allocation viagère", "articles": [{"id": "article159", "title": "Article 159", "content": "La jouissance de l'allocation viagère prévue aux articles 62 et 63 de la loi n°2023-895 du 23 novembre 2023 susvisée est acquise aux conditions ci-après : <ul> <li>avoir exercé pendant au moins dix ans cumulatifs l'une ou les fonctions prévues par la loi portant Statut du Corps Diplomatique ;</li> <li>être âgé de soixante-sept ans révolus et être admis à la retraite.</li> </ul>"}, {"id": "article160", "title": "Article 160", "content": "Toutefois, l'allocation viagère est acquise d'office au conjoint survivant en cas de décès de l'Ambassadeur bénéficiaire à la suite d'accident de travail, de faits de guerre, de conflits armés, de voies de fait, d'actes terroristes ou d'extrémismes violents, de catastrophes naturelles ou de toutes autres circonstances ayant porté atteinte à son intégrité physique survenus au cours de l'exercice de ses fonctions."}, {"id": "article161", "title": "Article 161", "content": "Le taux de l'allocation viagère est fixé à 5.25% par annuité du traitement constitué par la somme des éléments prévus par l'article 39, sans toutefois excéder 80% de celui-ci. Les Ambassadeurs en fonction supportent une retenue égale à 8,33 % de leur traitement de base. Le pourcentage de contribution employeur est de 16,67 %. L'allocation viagère est réversible aux ayants droit dans les conditions suivantes : <ul> <li>50 % pour le conjoint survivant ;</li> <li>50% pour les enfants mineurs, sans que la part d'un enfant n'excède 10%.</li> </ul>"}, {"id": "article162", "title": "Article 162", "content": "L'allocation viagère est cumulable avec toute autre allocation viagère reversée aux personnes ayant occupé les fonctions de Président d'institution, de membre du Gouvernement, de Secrétaire Général du ministère en charge des Affaires Etrangères ou de toute autre haute fonction de l'Etat donnant droit à l'allocation viagère. L'Ambassadeur, Chef de Mission, membre du Corps Diplomatique ou la personne visée à l'alinéa 2 de l'article 2 de la loi n°2023-895 du 23 novembre 2023 susvisée, bénéficiaire d'une pension de réversion, peut cumuler intégralement le montant de cette allocation viagère avec celui des émoluments afférents à son Grade."}, {"id": "article163", "title": "Article 163", "content": "L'allocation viagère est cumulable avec toute autre pension dont pourrait bénéficier l'Ambassadeur, au titre de ses éventuelles fonctions précédentes. Toutefois, si l'Ambassadeur bénéficiaire de l'allocation viagère est nommé à une fonction où dans un Grade rémunéré par les budgets de l'Etat, d'une manière générale, par tous budgets des sociétés à participation financière de l'Etat ou des Collectivités publiques, pendant toute la durée de l'exercice de ses fonctions dans ces organismes, l'allocation ne peut se cumuler avec les émoluments afférents au nouveau Grade que dans la limite de 50% de son montant. L'Ambassadeur recouvre la jouissance entière de l'allocation à la cessation de ladite fonction."}, {"id": "article164", "title": "Article 164", "content": "La concession de l'allocation viagère est subordonnée à une demande adressée au Ministre chargé des Affaires Etrangères qui la transmet au Ministre chargé de la Fonction Publique. Sa liquidation incombe au service des liquidations des pensions dans les mêmes conditions que les pensions civiles attribuées aux anciens fonctionnaires, à leurs conjoints survivants et enfants mineurs à charge."}]}, {"title": "TITRE IX : DISPOSITION TRANSITOIRE", "articles": [{"id": "article165", "title": "Article 165", "content": "La pension de retraite et l'allocation viagère du membre du Corps Diplomatique admis à faire valoir ses droits à la retraite avant la signature du présent décret, mais maintenu en activité pour nécessités de service, seront calculées sur la base des dispositions du Statut du Corps Diplomatique."}]}, {"title": "TITRE X : DISPOSITIONS FINALES", "articles": [{"id": "article166", "title": "Article 166", "content": "Le présent décret abroge le décret n° 2011-468 du 21 décembre 2011 fixant les modalités d'application de la loi n° 2007-669 du 27 décembre 2007 portant Statut du Corps Diplomatique, tel que modifié par le décret n°2012-1201 du 31 décembre 2012."}, {"id": "article167", "title": "Article 167", "content": "Le Ministre des Affaires Etrangères, de l'intégration Africaine et des Ivoiriens de l'Extérieur, le Ministre d'Etat, Ministre de la Fonction Publique et de la Modernisation de l'Administration et le Ministre des Finances et du Budget sont chargés, chacun en ce qui le concerne, de l'exécution du présent décret qui sera publié au Journal Officiel de la République de Côte d'Ivoire."}]}]};
+
+  // Utilitaire pour n'afficher que le niveau le plus précis (Section/Sous-section/Paragraphe -> Chapitre -> Titre)
+  function pickDeepestHeading(fullTitle){
+    if(!fullTitle) return '';
+    const parts = fullTitle.split('—').map(s => s.trim()).filter(Boolean);
+    const prefOrder = [/^(sous[-\s]?section)\b/i, /^(section)\b/i, /^(paragraphe)\b/i];
+    for(const rx of prefOrder){
+      const found = [...parts].reverse().find(p => rx.test(p));
+      if(found) return found.replace(/\s+/g,' ').replace(/^./, c => c.toUpperCase());
+    }
+    const chap = [...parts].reverse().find(p => /^chap(itre|\.)\b/i.test(p)); if(chap) return chap.replace(/\s+/g,' ').replace(/^./, c => c.toUpperCase());
+    const tit = [...parts].reverse().find(p => /^titre\b/i.test(p)); if(tit) return tit.replace(/\s+/g,' ').replace(/^./, c => c.toUpperCase());
+    return parts.length ? parts[parts.length-1] : fullTitle;
+  }
+
+  
+  // Analyse "TITRE — CHAPITRE — SECTION" et retourne { titre, chapitre, section, reste[] }
+  function parseHeadingParts(fullTitle){
+    const parts = (fullTitle || '').split('—').map(s => s.trim()).filter(Boolean);
+    let titre=null, chapitre=null, section=null, others=[];
+    for(const part of parts){
+      const p = part.replace(/\s+/g,' ').trim();
+      if(/^\s*titre\b/i.test(p))      { titre = p; continue; }
+      if(/^\s*chap(itre|\.)\b/i.test(p)){ chapitre = p; continue; }
+      if(/^\s*sous[-\s]?section\b/i.test(p)){ section = p; continue; }
+      if(/^\s*section\b/i.test(p))    { section = p; continue; }
+      if(/^\s*paragraphe\b/i.test(p)) { section = section ? section : p; continue; }
+      others.push(p);
+    }
+    return { titre, chapitre, section, others };
+  }
+
+  
+  // Convertit le texte brut d'un article en alinéas (sans toucher aux <ul>/<ol> existants)
+  function applyAlineaLayout(el){
+    if(!el) return;
+    const html = el.innerHTML;
+    if(/<(ul|ol)\b/i.test(html)) return; // déjà listé
+    const txt = el.innerText.trim();
+    if(!txt) return;
+
+    // Heuristique : on coupe après '.' ou ';' suivi d'une majuscule (début d'alinéa), sans casser les sigles usuels
+    const parts = txt.split(/(?<=[.;])\s+(?=[A-ZÉÈÀÂÙÎÔÇ][a-zéèêàâôîûç])/g).map(s=>s.trim()).filter(Boolean);
+
+    if(parts.length <= 1) return; // rien à faire si une seule phrase
+
+    // Reconstruire en faux paragraphes d'alinéa
+    const rebuilt = parts.map(p => `<div class="alinea">${p}</div>`).join("");
+    el.innerHTML = rebuilt;
+  }
+
+  // State & refs
+  let currentArticleIndex = 0;
+  let isAutoReading = false;       // mode normal
+  let isAutoReadingFs = false;     // mode plein écran
+  let articles = [];
+  const container = document.getElementById('articlesContainer');
+
+  // Rendu
+  
+  function renderArticles(){
+    container.innerHTML = '';
+    articles = [];
+    let last = { titre:null, chapitre:null, section:null };
+
+    lawData.chapters.forEach((ch)=>{
+      const {titre, chapitre, section} = parseHeadingParts(ch.title);
+
+      // Ouvre une section de rendu par groupe ch (contiendra ses sous-titres + articles)
+      const block = document.createElement('section');
+      block.className = 'section';
+
+      // TITRE (H2) si changement
+      if(titre && titre !== last.titre){
+        const h2 = document.createElement('h2');
+        h2.textContent = titre;
+        block.appendChild(h2);
+        last.titre = titre;
+        // On remet à zéro les niveaux inférieurs
+        last.chapitre = null; last.section = null;
+      }
+
+      // CHAPITRE (H3) si changement
+      if(chapitre && chapitre !== last.chapitre){
+        const h3 = document.createElement('h3');
+        h3.className = 'heading-chapitre';
+        h3.textContent = chapitre;
+        block.appendChild(h3);
+        last.chapitre = chapitre;
+        // On remet la section
+        last.section = null;
+      }
+
+      // SECTION (H4) si changement
+      if(section && section !== last.section){
+        const h4 = document.createElement('h4');
+        h4.className = 'heading-section';
+        h4.textContent = section;
+        block.appendChild(h4);
+        last.section = section;
+      }
+
+      // Articles du groupe
+      ch.articles.forEach((art)=>{
+        const article = document.createElement('article');
+        article.className = 'article'; article.id = art.id;
+        article.innerHTML = `<div class="article-title"><i class="fas fa-feather"></i>${art.title}</div><div class="article-content">${art.content}</div>`;
+        applyAlineaLayout(article.querySelector('.article-content'));
+        block.appendChild(article);
+        articles.push({ id: art.id, title: art.title, node: article });
+      article.addEventListener('click', ()=> openFullscreenById(art.id));
+    });
+
+    container.appendChild(block);
+  });
+
+  buildSommaire();
+  buildNavDots();
+  updateScrollButtons();
+}
+
+  // Sommaire
+  const sommaireList = document.getElementById('sommaireList');
+  function buildSommaire(){
+    sommaireList.innerHTML = '';
+    lawData.chapters.forEach((ch)=>{ ch.articles.forEach((art)=>{
+      const li = document.createElement('li'); li.className = 'sommaire-item';
+      li.innerHTML = `<a href="#${art.id}">${art.title}</a>`;
+      li.addEventListener('click', ()=> document.getElementById('mobileSommaire').classList.remove('active'));
+      sommaireList.appendChild(li);
+    }) });
+  }
+
+  // Pastilles
+  const navIndicator = document.getElementById('navIndicator');
+  function buildNavDots(){
+    navIndicator.innerHTML = '';
+    articles.forEach((a,i)=>{
+      const dot = document.createElement('div'); dot.className = 'nav-dot'; if(i===0) dot.classList.add('active');
+      dot.addEventListener('click', ()=> document.getElementById(a.id).scrollIntoView({behavior:'smooth',block:'start'}));
+      navIndicator.appendChild(dot);
+    });
+  }
+  function setActiveDot(){
+    const dots = [...navIndicator.querySelectorAll('.nav-dot')];
+    let idx = 0;
+    for(let i=0;i<articles.length;i++){ const rect = articles[i].node.getBoundingClientRect(); if(rect.top >= 0 && rect.top < window.innerHeight*0.6){ idx = i; break; } }
+    dots.forEach(d=>d.classList.remove('active')); if(dots[idx]) dots[idx].classList.add('active');
+  }
+
+  // Plein écran
+  const fullscreen = document.getElementById('fullscreenMode');
+  const fullscreenTitle = document.getElementById('fullscreenTitle');
+  const fullscreenContent = document.getElementById('fullscreenContent');
+  const prevBtn = document.getElementById('prevArticleBtn');
+  const nextBtn = document.getElementById('nextArticleBtn');
+  function openFullscreenById(id){ const idx = articles.findIndex(a=>a.id===id); if(idx>=0) openFullscreen(idx); }
+  function openFullscreen(index){
+    currentArticleIndex = Math.max(0, Math.min(index, articles.length-1));
+    const art = articles[currentArticleIndex];
+    fullscreenTitle.textContent = art.title;
+    fullscreenContent.innerHTML = art.node.querySelector('.article-content').innerHTML;
+    fullscreen.classList.add('active');
+    prevBtn.disabled = currentArticleIndex === 0; nextBtn.disabled = currentArticleIndex === articles.length-1;
+  }
+
+  // TTS
+  const synth = window.speechSynthesis; let currentUtterance = null;
+  function speak(text){ stopSpeak(); currentUtterance = new SpeechSynthesisUtterance(text); currentUtterance.lang='fr-FR'; synth.speak(currentUtterance); }
+  function pauseSpeak(){ if(synth && synth.speaking) synth.paused ? synth.resume() : synth.pause(); }
+  function stopSpeak(){ if(synth){ synth.cancel(); currentUtterance=null; } }
+
+  // Lecture continue en plein écran
+  function startFullscreenContinuous(){
+    isAutoReadingFs = true;
+    const playCurrent = ()=>{
+      if(!isAutoReadingFs) return;
+      stopSpeak();
+      const txt = fullscreenContent.innerText;
+      const u = new SpeechSynthesisUtterance(txt);
+      u.lang = 'fr-FR';
+      u.onend = ()=>{
+        if(!isAutoReadingFs) return;
+        if(currentArticleIndex < articles.length - 1){ openFullscreen(currentArticleIndex + 1); setTimeout(playCurrent, 150); }
+        else { isAutoReadingFs = false; }
+      };
+      synth.speak(u);
+    };
+    playCurrent();
+  }
+
+  // Recherche (ta version modifiée)
+  function initSearchFeature(){
+    const controls = document.querySelector('.control-buttons');
+    const searchBtn = document.createElement('button');
+    searchBtn.className = 'control-btn'; searchBtn.id = 'searchBtn'; searchBtn.title = 'Rechercher'; searchBtn.textContent = '🔎';
+    controls.appendChild(searchBtn);
+    const searchInterface = document.createElement('div');
+    searchInterface.id = 'searchInterface';
+    searchInterface.style.cssText = 'position: fixed; top: 20px; left: 50%; transform: translateX(-50%); width: calc(100% - 40px); max-width: 550px; background: var(--article-bg); padding: 10px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 3001; display: none; align-items: center; gap: 5px; transition: var(--transition);';
+    searchInterface.innerHTML = `
+      <input type="text" id="searchInput" placeholder="Rechercher..." style="flex-grow: 1; padding: 8px; border: 1px solid var(--secondary-color); border-radius: 5px;">
+      <button id="searchPrevBtn" class="control-btn" style="width: 35px; height: 35px; flex-shrink: 0;">▲</button>
+      <button id="searchNextBtn" class="control-btn" style="width: 35px; height: 35px; flex-shrink: 0;">▼</button>
+      <span id="searchResultsCount" style="flex-shrink: 0; padding: 0 5px; min-width: 40px; text-align: center;"></span>
+      <button id="closeSearchBtn" class="control-btn" style="width: 35px; height: 35px; flex-shrink: 0;">✖</button>
+    `;
+    document.body.appendChild(searchInterface);
+    let searchResults = []; let currentSearchIndex = -1; let originalContents = new Map();
+    function performSearch(){
+      const searchTerm = document.getElementById('searchInput').value.trim();
+      if (!originalContents.size) { document.querySelectorAll('.article-content, h3').forEach(el => originalContents.set(el, el.innerHTML)); }
+      originalContents.forEach((content, el) => el.innerHTML = content);
+      searchResults = []; currentSearchIndex = -1;
+      if (!searchTerm) { updateSearchUI(); return; }
+      const regex = new RegExp(searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+      originalContents.forEach((content, element) => { element.innerHTML = content.replace(regex, match => `<mark>${match}</mark>`); });
+      searchResults = Array.from(document.querySelectorAll('mark'));
+      if (searchResults.length > 0) navigateResults(true, false);
+      updateSearchUI();
+    }
+    function navigateResults(isNext, shouldWrap = true){
+      if (!searchResults.length) return;
+      searchResults.forEach(mark => mark.style.backgroundColor = '');
+      if (shouldWrap) { currentSearchIndex = isNext ? (currentSearchIndex + 1) % searchResults.length : (currentSearchIndex - 1 + searchResults.length) % searchResults.length; }
+      else { currentSearchIndex = 0; }
+      const currentMark = searchResults[currentSearchIndex];
+      currentMark.style.backgroundColor = 'var(--gold-color)';
+      currentMark.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      updateSearchUI();
+    }
+    function updateSearchUI(){
+      document.getElementById('searchResultsCount').textContent = searchResults.length > 0 ? `${currentSearchIndex + 1}/${searchResults.length}` : '0/0';
+    }
+    function resetSearch(){
+      originalContents.forEach((content, el) => el.innerHTML = content);
+      originalContents.clear();
+      document.getElementById('searchInput').value = '';
+      searchResults = []; currentSearchIndex = -1; updateSearchUI();
+    }
+    searchBtn.addEventListener('click', () => { const isVisible = searchInterface.style.display === 'flex'; searchInterface.style.display = isVisible ? 'none' : 'flex'; if (isVisible) resetSearch(); else document.getElementById('searchInput').focus(); });
+    document.getElementById('searchInput').addEventListener('input', performSearch);
+    document.getElementById('searchNextBtn').addEventListener('click', () => navigateResults(true));
+    document.getElementById('searchPrevBtn').addEventListener('click', () => navigateResults(false));
+    document.getElementById('closeSearchBtn').addEventListener('click', () => { searchInterface.style.display = 'none'; resetSearch(); });
+  }
+
+  // Divers contrôles
+  const themeToggle = document.getElementById('themeToggle');
+  const brightnessControl = document.getElementById('brightnessControl');
+  const brightnessBtn = document.getElementById('brightnessBtn');
+  const slider = document.getElementById('brightnessSlider');
+  const btnTop = document.getElementById('scrollTopBtn');
+  const btnBot = document.getElementById('scrollBottomBtn');
+
+  function updateScrollButtons(){
+    const y = window.scrollY || document.documentElement.scrollTop;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    btnTop.style.display = y > 200 ? 'block' : 'none';
+    btnBot.style.display = y < max - 200 ? 'block' : 'none';
+  }
+
+  document.addEventListener('DOMContentLoaded', ()=>{
+    // Désactiver sélection & copier/coller (sauf recherche)
+    document.body.classList.add('no-select');
+    const guard = (e)=>{ const el = e.target; if (el && el.closest && el.closest('#searchInterface')) return; e.preventDefault(); };
+    ['copy','cut','paste','contextmenu'].forEach(evt => document.addEventListener(evt, guard));
+
+    // Rendu + UI
+    renderArticles();
+    initSearchFeature();
+    updateScrollButtons();
+
+    // Mobile sommaire
+    document.getElementById('mobileSommaireBtn').addEventListener('click', ()=> document.getElementById('mobileSommaire').classList.add('active'));
+    document.getElementById('mobileSommaireClose').addEventListener('click', ()=> document.getElementById('mobileSommaire').classList.remove('active'));
+
+    // Thème & luminosité
+    themeToggle.addEventListener('click', ()=> document.body.classList.toggle('dark-mode'));
+    brightnessBtn.addEventListener('click', ()=> brightnessControl.classList.toggle('active'));
+    slider.addEventListener('input', (e)=>{ const v = Number(e.target.value)/100; document.documentElement.style.filter = `brightness(${v})`; });
+
+    // Scroll buttons
+    btnTop.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
+    btnBot.addEventListener('click', ()=> window.scrollTo({top: document.documentElement.scrollHeight, behavior:'smooth'}));
+
+    // Fullscreen controls
+    document.getElementById('fullscreenToggle').addEventListener('click', ()=> openFullscreen(0));
+    document.getElementById('fullscreenClose').addEventListener('click', ()=> fullscreen.classList.remove('active'));
+    document.getElementById('fullscreenPlayBtn').addEventListener('click', ()=> speak(fullscreenContent.innerText));
+    document.getElementById('fullscreenPlayContinuousBtn').addEventListener('click', startFullscreenContinuous);
+    document.getElementById('fullscreenPauseBtn').addEventListener('click', pauseSpeak);
+    document.getElementById('fullscreenStopBtn').addEventListener('click', ()=>{ isAutoReadingFs=false; stopSpeak(); });
+    document.getElementById('prevArticleBtn').addEventListener('click', ()=> openFullscreen(currentArticleIndex-1));
+    document.getElementById('nextArticleBtn').addEventListener('click', ()=> openFullscreen(currentArticleIndex+1));
+
+    // Barre lecteur (mode normal)
+    document.getElementById('mainPlayBtn').addEventListener('click', ()=>{
+      const vis = articles.find(a=> a.node.getBoundingClientRect().top >= 0 && a.node.getBoundingClientRect().top < window.innerHeight*0.6) || articles[0];
+      if(vis) speak(vis.node.innerText);
+    });
+    document.getElementById('mainPlayContinuousBtn').addEventListener('click', ()=>{
+      isAutoReading = true;
+      let i = Math.max(0, articles.findIndex(a=> a.node.getBoundingClientRect().top >= 0));
+      function readNext(){
+        if(!isAutoReading || i >= articles.length) return;
+        const el = articles[i].node;
+        const txt = el.innerText;
+        el.scrollIntoView({behavior:'smooth', block:'start'});
+        const u = new SpeechSynthesisUtterance(txt);
+        u.lang = 'fr-FR';
+        u.onend = ()=>{ i++; readNext(); };
+        speechSynthesis.speak(u);
+      }
+      readNext();
+    });
+    document.getElementById('mainPauseBtn').addEventListener('click', pauseSpeak);
+    document.getElementById('mainStopBtn').addEventListener('click', ()=>{ isAutoReading=false; stopSpeak(); });
+  });
+
+  // Scroll listener
+  document.addEventListener('scroll', ()=>{ updateScrollButtons(); setActiveDot(); });
+  </script>
+  <script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js"));
+  }
+</script>
+  <!-- PWA Install Button -->
+<button id="pwa-install-btn" aria-label="Installer l'application" hidden>Installer</button>
+<style>
+  #pwa-install-btn{
+    position:fixed; right:16px; bottom:16px; z-index:9999;
+    padding:10px 14px; border:none; border-radius:999px;
+    background:#22c55e; color:white; font:600 14px system-ui,Segoe UI,Roboto,Arial,sans-serif;
+    box-shadow:0 8px 20px rgba(34,197,94,.35);
+  }
+  #pwa-install-btn[hidden]{ display:none; }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    #pwa-install-btn{ bottom: calc(16px + env(safe-area-inset-bottom)); }
+  }
+</style>
+<script>
+  (function(){
+    let deferredPrompt;
+    const btnId = "pwa-install-btn";
+    function ensureBtn(){
+      let b = document.getElementById(btnId);
+      if(!b){
+        b = document.createElement("button");
+        b.id = btnId;
+        b.textContent = "Installer";
+        document.body.appendChild(b);
+      }
+      return b;
+    }
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      const btn = ensureBtn();
+      btn.hidden = false;
+      btn.onclick = async () => {
+        btn.hidden = true;
+        deferredPrompt.prompt();
+        await deferredPrompt.userChoice;
+        deferredPrompt = null;
+      };
+    });
+    if (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) {
+      const btn = document.getElementById(btnId);
+      if(btn) btn.hidden = true;
+    }
+  })();
+</script>
+  <!-- Auth UI minimal -->
+<style>
+  .auth-box{position:fixed; top:12px; right:12px; z-index:9998; background:#ffffff; color:#111827; border-radius:12px; padding:10px 12px; box-shadow:0 10px 24px rgba(0,0,0,.12); font:500 14px system-ui,Segoe UI,Roboto,Arial}
+  .auth-box h4{margin:0 0 6px; font-size:14px}
+  .auth-box form{display:flex; gap:6px; flex-wrap:wrap; align-items:center}
+  .auth-box input{padding:6px 8px; border:1px solid #e5e7eb; border-radius:8px}
+  .auth-box button{background:#22c55e; color:#fff; border:none; padding:6px 10px; border-radius:8px; cursor:pointer}
+  .auth-box .row{display:flex; gap:6px; flex-wrap:wrap}
+  .views-badge{position:fixed; left:12px; bottom:12px; z-index:9998; background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px; font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)}
+</style><!-- Admin link (visible only when logged-in) -->
+<style>
+  .admin-link{
+    position:fixed; right:16px; bottom:88px; z-index:9998;
+    display:none; align-items:center; gap:8px;
+    padding:10px 14px; border-radius:999px; text-decoration:none;
+    background:#111827; color:#fff; font:600 14px system-ui,Segoe UI,Roboto,Arial;
+    box-shadow:0 8px 20px rgba(0,0,0,.3);
+    border:1px solid rgba(255,255,255,.1);
+  }
+  body.logged-in .admin-link{ display:inline-flex; }
+  .admin-link:hover{ filter:brightness(1.1); }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    .admin-link{ bottom: calc(88px + env(safe-area-inset-bottom)); }
+  }
+</style>
+<a href="admin.html" class="admin-link" title="Tableau de bord">Admin</a>
+  <script type="module" src="assets/firebase-app.js"></script>
+  <script>window.autoCountAndBind && window.autoCountAndBind();</script>
+  
+<!-- Floating Auth Button + Modal -->
+<style>
+  #auth-fab{
+    position:fixed; right:16px; bottom:68px; z-index:9998;
+    width:48px; height:48px; border-radius:999px; border:none; cursor:pointer;
+    background:#111827; color:#fff; display:grid; place-items:center;
+    box-shadow:0 8px 20px rgba(0,0,0,.35); border:1px solid rgba(255,255,255,.1);
+  }
+  body.logged-in #auth-fab::after{ content:"✓"; }
+  #auth-fab::after{ content:"👤"; font-size:20px; }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    #auth-fab{ bottom: calc(68px + env(safe-area-inset-bottom)); }
+  }
+  .views-badge{
+    position:fixed; left:12px; bottom:12px; z-index:9998; 
+    background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px;
+    font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)
+  }
+  dialog#auth-modal{
+    border:none; border-radius:16px; padding:0; width:min(90vw,420px);
+    box-shadow:0 24px 72px rgba(0,0,0,.35); overflow:hidden;
+  }
+  dialog::backdrop{ background:rgba(0,0,0,.4); }
+  .auth-modal-head{background:#0f172a; color:#fff; padding:12px 16px; display:flex; justify-content:space-between; align-items:center}
+  .auth-modal-body{padding:16px; background:#111827; color:#e5e7eb}
+  .auth-modal-body label{display:block; font-size:13px; margin-top:8px; opacity:.9}
+  .auth-modal-body input{width:100%; padding:10px 12px; border-radius:10px; border:1px solid #1f2937; background:#0b1021; color:#e5e7eb}
+  .auth-actions{display:flex; gap:8px; margin-top:14px}
+  .btn{border:none; border-radius:10px; padding:10px 12px; cursor:pointer; font-weight:600}
+  .btn-primary{background:#22c55e; color:white}
+  .btn-ghost{background:transparent; color:#e5e7eb; border:1px solid #374151}
+  .muted{opacity:.8}
+</style>
+
+<button id="auth-fab" title="Connexion / Compte"></button>
+<div class="views-badge">Vues : <span id="viewCounter">0</span></div>
+
+<dialog id="auth-modal">
+  <div class="auth-modal-head">
+    <strong>Connexion</strong>
+    <button class="btn btn-ghost" id="auth-close" aria-label="Fermer">✕</button>
+  </div>
+  <div class="auth-modal-body">
+    <p class="muted">Connecte-toi pour accéder à l’admin et une meilleure expérience.</p>
+    <label>Email</label>
+    <input type="email" id="auth-email" placeholder="email@exemple.com" required>
+    <label>Mot de passe</label>
+    <input type="password" id="auth-pass" placeholder="••••••••" required>
+    <div class="auth-actions">
+      <button class="btn btn-primary" id="btn-login">Connexion</button>
+      <button class="btn btn-ghost" id="btn-register">Créer un compte</button>
+      <button class="btn btn-ghost" id="btn-logout">Déconnexion</button>
+    </div>
+    <div id="auth-msg" class="muted" style="margin-top:8px;"></div>
+  </div>
+</dialog>
+
+<script type="module">
+  import { authRegister, authLogin, authLogout } from "./assets/firebase-app.js";
+
+  const fab = document.getElementById("auth-fab");
+  const modal = document.getElementById("auth-modal");
+  const closeBtn = document.getElementById("auth-close");
+  const email = document.getElementById("auth-email");
+  const pass = document.getElementById("auth-pass");
+  const msg  = document.getElementById("auth-msg");
+  const btnLogin = document.getElementById("btn-login");
+  const btnRegister = document.getElementById("btn-register");
+  const btnLogout = document.getElementById("btn-logout");
+
+  function openModal(){ try{ modal.showModal(); }catch{ modal.setAttribute("open",""); } }
+  function closeModal(){ modal.close?.(); modal.removeAttribute("open"); }
+
+  fab?.addEventListener("click", openModal);
+  closeBtn?.addEventListener("click", closeModal);
+
+  async function handle(run){
+    msg.textContent = "";
+    try{
+      await run(email.value.trim(), pass.value);
+      msg.textContent = "✅ Opération réussie.";
+      setTimeout(()=>{ closeModal(); }, 500);
+    }catch(e){
+      console.error(e);
+      msg.textContent = "❌ " + (e?.message || "Erreur");
+    }
+  }
+
+  btnLogin?.addEventListener("click", () => handle(authLogin));
+  btnRegister?.addEventListener("click", () => handle(authRegister));
+  btnLogout?.addEventListener("click", async () => {
+    msg.textContent = "";
+    try{ await authLogout(); msg.textContent = "✅ Déconnecté."; }catch(e){ msg.textContent = "❌ " + (e?.message||"Erreur"); }
+  });
+</script>
+
+
+<!-- Per-card view counters -->
+<style>
+  .card-views-badge{
+    position:absolute; top:8px; right:8px;
+    background:rgba(17,24,39,.9); color:#fff;
+    padding:4px 8px; border-radius:999px; font:600 12px system-ui,Segoe UI,Roboto,Arial;
+    box-shadow:0 6px 14px rgba(0,0,0,.25);
+    pointer-events:none;
+  }
+  .card-views-wrap{ position:relative; }
+</style>
+<script type="module">
+  import { getViewCount } from "./assets/firebase-app.js";
+  function basename(href){
+    try{ const u = new URL(href, location.href);
+         const file = u.pathname.split('/').pop() || 'index.html';
+         return file.replace(/\.html$/i,''); }
+    catch{ return (href.split('/').pop()||'index.html').replace(/\.html$/i,''); }
+  }
+  async function attachCounterTo(el, docId){
+    let container = el.closest('.card, .item, .panel, .box, .article, .doc, .tile');
+    if(!container){ container = el.parentElement; }
+    if(container && !container.classList.contains('card-views-wrap')){
+      container.classList.add('card-views-wrap');
+    }
+    const host = container || el;
+    if(host.querySelector('.card-views-badge[data-doc="'+docId+'"]')) return;
+    const badge = document.createElement('span');
+    badge.className = 'card-views-badge';
+    badge.dataset.doc = docId;
+    badge.textContent = 'Vues: …';
+    host.appendChild(badge);
+    try{ const n = await getViewCount(docId);
+         badge.textContent = 'Vues: ' + n; }
+    catch{ badge.textContent = 'Vues: —'; }
+  }
+  async function initCardCounters(){
+    const links = Array.from(document.querySelectorAll('[data-doc-id], a[href$=".html"]'))
+      .filter(a => {
+        const id = a.getAttribute('data-doc-id') || basename(a.getAttribute('href')||'');
+        return id && !['index','admin','offline'].includes(id.toLowerCase());
+      });
+    const handled = new Set();
+    for(const a of links){
+      const id = a.getAttribute('data-doc-id') || basename(a.getAttribute('href')||'');
+      if(!id || handled.has(id)) continue;
+      handled.add(id);
+      attachCounterTo(a, id);
+    }
+  }
+  initCardCounters();
+  const obs = new MutationObserver(()=>initCardCounters());
+  obs.observe(document.body, { childList:true, subtree:true });
+</script>
+
+</body>
+</html>

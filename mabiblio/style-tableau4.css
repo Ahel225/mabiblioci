@@ -1,0 +1,93 @@
+.table-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    background-color: #fff; /* Fond blanc */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin: 20px auto;
+    max-width: 1200px;
+}
+
+.table-wrapper {
+    width: 100%;
+    text-align: center;
+}
+
+.table-responsive2 {
+    overflow-x: auto;
+    margin: 0 auto;
+    display: inline-block;
+    width: 100%; /* Ajouté pour le défilement */
+    max-width: 100%; /* Empêche tout débordement */
+}
+
+.styled-table2 {
+    border-collapse: collapse;
+    font-size: 0.95em;
+    margin: 0 auto;
+    min-width: 600px; /* Important pour le défilement */
+}
+
+.centered-table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.styled-table2 th, 
+.styled-table2 td {
+    border: 1px solid #dee2e6;
+    padding: 12px 15px;
+    text-align: center;
+}
+
+.styled-table2 thead th {
+    background-color: #007a4d;
+    color: white;
+    position: sticky;
+    top: 0;
+}
+
+.styled-table2 tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.styled-table2 tbody tr:hover {
+    background-color: #e9ecef;
+}
+
+.styled-table2 small {
+    font-size: 0.8em;
+    color: #666;
+    display: block;
+    margin-top: 5px;
+    font-weight: normal;
+}
+
+h2, h3 {
+    color: #007a4d;
+    margin-bottom: 15px;
+}
+
+h2 {
+    font-size: 1.5em;
+}
+
+h3 {
+    font-size: 1.2em;
+    margin-top: 0;
+}
+
+/* Media Queries pour la responsivité */
+@media (max-width: 768px) {
+    .table-responsive2 {
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+        display: block; /* Changé pour mobile */
+    }
+    
+    .styled-table2 {
+        min-width: 100%; /* Ajustement mobile */
+    }
+}

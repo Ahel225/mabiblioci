@@ -1,0 +1,2939 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pension des Fonctionnaires et Agents à la Retraite</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Raleway:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+    :root {
+        /* Couleurs de la fonction publique ivoirienne */
+        --primary-color: #1a4e8e;    /* Bleu gouvernemental */
+        --secondary-color: #e67e22;  /* Orange terre d'Afrique */
+        --accent-color: #f1c40f;     /* Or pour l'excellence */
+        --light-color: #ecf0f1;      /* Gris clair pour la neutralité */
+        --dark-color: #2c3e50;       /* Bleu foncé pour le sérieux */
+        --success-color: #27ae60;    /* Vert pour la validation */
+        
+        --transition: all 0.3s ease;
+        --text-color: #2c3e50;
+        --bg-color: #f9f9f9;
+        --article-bg: #ffffff;
+        --header-bg: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        --border-color: rgba(26, 78, 142, 0.2);
+        --shadow-color: rgba(26, 78, 142, 0.1);
+    }
+        
+    .dark-mode {
+        --primary-color: #2980b9;
+        --secondary-color: #d35400;
+        --accent-color: #f39c12;
+        --light-color: #34495e;
+        --dark-color: #ecf0f1;
+        --success-color: #2ecc71;
+        --text-color: #ecf0f1;
+        --bg-color: #2c3e50;
+        --article-bg: #34495e;
+        --header-bg: linear-gradient(135deg, #2980b9, #d35400);
+    }
+        
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+        
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        line-height: 1.6;
+        padding: 20px;
+        background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 50L0 25L50 0L100 25L50 50Z' fill='%231a4e8e10' /%3E%3C/svg%3E");
+        transition: var(--transition);
+    }
+        
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+        background: var(--article-bg);
+        border-radius: 10px;
+        box-shadow: 0 5px 20px var(--shadow-color);
+        overflow: hidden;
+        border: 1px solid var(--primary-color);
+        transition: var(--transition);
+    }
+        
+    header {
+        background: var(--header-bg);
+        color: white;
+        padding: 30px;
+        text-align: center;
+        border-bottom: 5px solid var(--accent-color);
+        position: relative;
+        transition: var(--transition);
+    }
+        
+    header::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+    }
+        
+    h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    .subtitle {
+        font-style: italic;
+        opacity: 0.9;
+        font-size: 1.1rem;
+        margin-top: 10px;
+    }
+        
+    .content {
+        padding: 30px;
+    }
+        
+    .section {
+        margin-bottom: 30px;
+        scroll-margin-top: 20px;
+    }
+        
+    h2 {
+        font-family: 'Georgia', serif;
+        font-size: 1.8rem;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--secondary-color);
+        position: relative;
+        transition: var(--transition);
+        padding-right: 30px;
+    }
+
+    /* Icônes représentant la fonction publique */
+    h2::after {
+        content: "🏛️"; /* Symbole de bâtiment gouvernemental */
+        position: absolute;
+        right: 0;
+        bottom: 10px;
+    }
+
+    .section:nth-child(2n) h2::after {
+        content: "📋"; /* Symbole de dossier administratif */
+    }
+        
+    .section:nth-child(3n) h2::after {
+        content: "⚖️"; /* Balance de la justice */
+    }
+        
+    .section:nth-child(4n) h2::after {
+        content: "👔"; /* Symbole du fonctionnaire */
+    }
+        
+    .section:nth-child(5n) h2::after {
+        content: "📜"; /* Parchemin des documents officiels */
+    }
+
+    .articleX {
+        background: var(--article-bg);
+        border-left: 4px solid var(--primary-color);
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 0 8px 8px 0;
+        box-shadow: 0 3px 10px var(--shadow-color);
+        scroll-margin-top: 20px;
+        position: relative;
+        transition: var(--transition);
+        cursor: pointer;
+    }
+        
+    .articleX::before {
+        content: "📄"; /* Symbole de document officiel */
+        position: absolute;
+        left: -15px;
+        top: 15px;
+        background: var(--article-bg);
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid var(--primary-color);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        transition: var(--transition);
+    }
+        
+    .article-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.4rem;
+        color: var(--dark-color);
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        transition: var(--transition);
+    }
+        
+    .article-title::before {
+        content: "🇨🇮"; /* Drapeau de la Côte d'Ivoire */
+        margin-right: 10px;
+        color: var(--accent-color);
+    }
+        
+    .article-content {
+        color: var(--text-color);
+        line-height: 1.7;
+        transition: var(--transition);
+    }
+
+    /* Boutons de contrôle */
+    .control-buttons {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        display: flex;
+        gap: 10px;
+        z-index: 1000;
+    }
+        
+    .control-btn {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: var(--transition);
+    }
+        
+    .control-btn:hover {
+        transform: scale(1.1);
+        background: var(--secondary-color);
+    }
+        
+    /* Boutons défilement */
+    #scrollTopBtn, #scrollBottomBtn {
+        position: fixed;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        border: none;
+        border-radius: 50%;
+        background-color: rgba(26, 78, 142, 0.8);
+        color: white;
+        cursor: pointer;
+        font-size: 18px;
+        z-index: 99;
+        display: none;
+        transition: opacity 0.3s, transform 0.3s;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    #scrollTopBtn {
+        bottom: 140px;
+    }
+
+    #scrollBottomBtn {
+        bottom: 80px;
+    }
+        
+    #scrollTopBtn:hover, #scrollBottomBtn:hover {
+        background-color: rgba(26, 78, 142, 1);
+        transform: scale(1.05);
+    }
+        
+    .show-buttons {
+        display: block !important;
+        opacity: 1;
+    }
+        
+    .hide-buttons {
+        opacity: 0;
+        display: none !important;
+    }
+        
+    /* Modal plein écran */
+    .article-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 2000;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+        
+    .article-modal.active {
+        opacity: 1;
+        display: flex;
+    }
+        
+    .modal-content {
+        background: var(--article-bg);
+        width: 90%;
+        max-width: 800px;
+        max-height: 80vh;
+        overflow-y: auto;
+        padding: 30px;
+        border-radius: 15px;
+        position: relative;
+        transform: translateY(20px);
+        transition: transform 0.4s ease;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+        
+    .article-modal.active .modal-content {
+        transform: translateY(0);
+    }
+        
+    .modal-close {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--dark-color);
+        transition: var(--transition);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+        
+    .modal-close:hover {
+        color: var(--primary-color);
+        background-color: var(--secondary-color);
+    }
+        
+    /* Contrôles de lecture vocale */
+    .voice-controls {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%); 
+        display: flex;
+        gap: 10px;
+        background: var(--primary-color);
+        padding: 10px 15px;
+        border-radius: 30px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        opacity: 0.9;
+    }
+        
+    .voice-btn {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.2rem;
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: var(--transition);
+    }
+        
+    .voice-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+        
+    /* Curseur de luminosité */
+    .brightness-control {
+        position: fixed;
+        top: 80px;
+        left: 20px;
+        background: var(--article-bg);
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+        
+    .brightness-control.active {
+        display: flex;
+    }
+        
+    .brightness-slider {
+        width: 150px;
+        appearance: none;
+        -webkit-appearance: none;
+        height: 8px;
+        border-radius: 5px;
+        background: var(--secondary-color);
+        outline: none;
+    }
+        
+    .brightness-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: var(--primary-color);
+        cursor: pointer;
+    }
+        
+    /* Bouton sommaire mobile */
+    .mobile-sommaire-btn {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: var(--header-bg);
+        color: white;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        z-index: 1001;
+        cursor: pointer;
+        transition: var(--transition);
+        border: 2px solid white;
+    }
+        
+    .mobile-sommaire-btn:hover {
+        transform: scale(1.05);
+    }
+        
+    /* Sommaire plein écran pour mobile */
+    .mobile-sommaire {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(26, 78, 142, 0.95);
+        z-index: 1002;
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+        
+    .mobile-sommaire.active {
+        opacity: 1;
+        display: flex;
+    }
+        
+    .mobile-sommaire-content {
+        background: var(--article-bg);
+        width: 90%;
+        max-width: 500px;
+        max-height: 80vh;
+        overflow-y: auto;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        transform: translateY(20px);
+        transition: transform 0.4s ease;
+        border: 2px solid var(--secondary-color);
+    }
+        
+    .mobile-sommaire.active .mobile-sommaire-content {
+        transform: translateY(0);
+    }
+        
+    .mobile-sommaire-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 2px solid var(--secondary-color);
+    }
+        
+    .mobile-sommaire-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--dark-color);
+    }
+        
+    .mobile-sommaire-close {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--dark-color);
+        transition: var(--transition);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+        
+    .mobile-sommaire-close:hover {
+        color: var(--primary-color);
+        background-color: var(--secondary-color);
+    }
+        
+    .sommaire-list {
+        list-style: none;
+    }
+        
+    .sommaire-item {
+        margin-bottom: 12px;
+        padding: 15px;
+        border-radius: 8px;
+        transition: var(--transition);
+        background-color: var(--light-color);
+        border-left: 3px solid var(--accent-color);
+    }
+        
+    .sommaire-item:hover {
+        background-color: var(--secondary-color);
+        transform: translateX(5px);
+    }
+        
+    .sommaire-item a {
+        text-decoration: none;
+        color: var(--dark-color);
+        font-weight: 500;
+        display: block;
+        transition: var(--transition);
+    }
+        
+    .sommaire-item:hover a {
+        color: var(--primary-color);
+    }
+        
+    footer {
+        text-align: center;
+        padding: 20px;
+        color: var(--dark-color);
+        font-size: 0.9rem;
+        background: var(--primary-color);
+        color: white;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        transition: var(--transition);
+    }
+        
+    /* Indicateur de navigation */
+    .nav-indicator {
+        position: fixed;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 8px;
+        z-index: 999;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 8px 12px;
+        border-radius: 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+        
+    .nav-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--secondary-color);
+        transition: var(--transition);
+    }
+        
+    .nav-dot.active {
+        background: var(--primary-color);
+        transform: scale(1.3);
+    }
+        
+    /* Mode lecture plein écran */
+    .fullscreen-mode {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--article-bg);
+        z-index: 3000;
+        overflow: auto;
+        padding: 20px;
+        display: none;
+    }
+
+    .fullscreen-mode.active { display: block; }
+
+    .fullscreen-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 2px solid var(--secondary-color);
+        padding-right: 50px;
+    }
+
+    .fullscreen-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.8rem;
+        color: var(--dark-color);
+    }
+
+    .fullscreen-close {
+        background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--dark-color);
+        transition: var(--transition); width: 40px; height: 40px; border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+    }
+
+    .fullscreen-close:hover {
+        color: var(--primary-color);
+        background-color: var(--secondary-color);
+    }
+
+    .fullscreen-content { font-size: 1.2rem; line-height: 1.8; }
+
+    .fullscreen-nav {
+        display: flex; justify-content: space-between; margin-top: 30px;
+        padding-top: 15px; border-top: 1px solid var(--secondary-color);
+    }
+
+    .fullscreen-nav-btn {
+        background: var(--primary-color); color: white; border: none; padding: 10px 20px;
+        border-radius: 5px; cursor: pointer; transition: var(--transition);
+    }
+
+    .fullscreen-nav-btn:hover { background: var(--dark-color); }
+    .fullscreen-nav-btn:disabled { background: var(--secondary-color); cursor: not-allowed; }
+
+    /* Contrôles vocaux en mode plein écran */
+    .fullscreen-voice-controls {
+        display: flex; justify-content: center; gap: 15px; margin: 20px 0;
+    }
+
+    .fullscreen-voice-btn {
+        background: var(--primary-color); color: white; border: none; width: 50px;
+        height: 50px; border-radius: 50%; display: flex; justify-content: center;
+        align-items: center; font-size: 1.2rem; cursor: pointer; transition: var(--transition);
+    }
+
+    .fullscreen-voice-btn:hover { background: var(--dark-color); }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .mobile-sommaire-btn { display: flex; }
+        .control-buttons { top: 90px; left: 10px; flex-direction: column; }
+        .voice-controls { width: calc(100% - 40px); justify-content: center; }
+        header { padding: 20px; }
+        h1 { font-size: 2rem; }
+        .section, .articleX { scroll-margin-top: 80px; }
+    }
+
+    /* Styles pour l'interface de recherche */
+    #searchInput:focus {
+        outline: none;
+        border-color: var(--primary-color) !important;
+    }
+    </style>
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#22c55e">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<!-- HIDE AUTH/VIEWS WIDGETS OUTSIDE HOME (safe) -->
+<style>
+  #auth-fab, .views-badge, #auth-modal, .card-views-badge { display: none !important; }
+</style>
+
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Ordonnace relative à la Pension CGRAE</h1>
+            <p class="subtitle">Ordonnance n° 2012-303 du 4 avril 2012 modifiée par l'ordonnance n°2017-107 du 15 février 2017</p>
+        </header>
+        
+        <div class="content">
+            <div class="control-buttons">
+                <button class="control-btn" id="themeToggle" title="Mode nuit/jour">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="control-btn" id="brightnessBtn" title="Contrôle de luminosité">
+                    <i class="fas fa-sun"></i>
+                </button>
+                <button class="control-btn" id="fullscreenToggle" title="Mode lecture plein écran">
+                    <i class="fas fa-expand"></i>
+                </button>
+                <button class="control-btn" id="searchBtn" title="Rechercher">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            
+            <div class="brightness-control" id="brightnessControl">
+                <label for="brightnessSlider">Luminosité</label>
+                <input type="range" min="50" max="150" value="100" class="brightness-slider" id="brightnessSlider">
+            </div>
+            
+            <button id="scrollTopBtn" title="Aller en haut">↑</button>
+            <button id="scrollBottomBtn" title="Aller en bas">↓</button>
+            
+            <div class="article-modal" id="articleModal">
+                <div class="modal-content">
+                    <button class="modal-close" id="modalClose">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <div id="modalArticleContent"></div>
+                </div>
+            </div>
+
+            <div class="fullscreen-mode" id="fullscreenMode">
+              <div class="fullscreen-header">
+                  <h2 class="fullscreen-title" id="fullscreenTitle"></h2>
+                  <button class="fullscreen-close" id="fullscreenClose">
+                      <i class="fas fa-times"></i>
+                  </button>
+              </div>
+              <div class="fullscreen-content" id="fullscreenContent"></div>
+              <div class="fullscreen-voice-controls">
+                  <button class="fullscreen-voice-btn" id="fullscreenPlayBtn" title="Lire"><i class="fas fa-play"></i></button>
+                  <button class="fullscreen-voice-btn" id="fullscreenPauseBtn" title="Pause"><i class="fas fa-pause"></i></button>
+                  <button class="fullscreen-voice-btn" id="fullscreenStopBtn" title="Arrêter"><i class="fas fa-stop"></i></button>
+              </div>
+              <div class="fullscreen-nav">
+                  <button class="fullscreen-nav-btn" id="prevArticleBtn" disabled>Précédent</button>
+                  <button class="fullscreen-nav-btn" id="nextArticleBtn">Suivant</button>
+              </div>
+          </div>
+            
+            <div class="voice-controls" id="mainVoiceControls">
+                <button class="voice-btn" id="mainPlayBtn" title="Lire l'article visible"><i class="fas fa-play"></i></button>
+                <button class="voice-btn" id="mainPlayContinuousBtn" title="Lecture continue"><i class="fas fa-forward"></i></button>
+                <button class="voice-btn" id="mainPauseBtn" title="Pause"><i class="fas fa-pause"></i></button>
+                <button class="voice-btn" id="mainStopBtn" title="Arrêter"><i class="fas fa-stop"></i></button>
+            </div>
+            
+            <div id="articlesContainer"></div>
+            
+            <div class="nav-indicator" id="navIndicator"></div>
+        </div>
+        
+        <footer>
+            <p>© 2023 - Ministère de la Fonction Publique - République de Côte d'Ivoire</p>
+            <p>Le service public, un sacerdoce au service de la nation</p>
+        </footer>
+    </div>
+    
+    <div class="mobile-sommaire-btn" id="mobileSommaireBtn"><i class="fas fa-bars"></i></div>
+    <div class="mobile-sommaire" id="mobileSommaire">
+        <div class="mobile-sommaire-content">
+            <div class="mobile-sommaire-header">
+                <h3 class="mobile-sommaire-title">Sommaire</h3>
+                <button class="mobile-sommaire-close" id="mobileSommaireClose"><i class="fas fa-times"></i></button>
+            </div>
+            <ul class="sommaire-list" id="sommaireList"></ul>
+        </div>
+    </div>
+    <script>
+    // Variables globales
+    let isDarkMode = false;
+    let currentArticleIndex = 0;
+    let isAutoReading = false;
+    let articles = [];
+    
+
+// Données de la loi
+    const lawData = {
+    title: "Décret d'application du Statut Général de la Fonction Publique",
+    subtitle: "Décret fixant les modalités communes d'application de la loi n° 2023-892 du 23 novembre 2023",
+    chapters: [
+  {
+    title: "1ere PARTIE : LES REGIMES GENERAUX",
+    articles: []
+  },
+  {
+    title: "LIVRE I : REGIME GENERAL DES PENSIONS CIVILES",
+    articles: [
+      {
+        id: "article2",
+        title: "Article 2 :",
+        content: "Ont droit au bénéfice des dispositions du présent livre I, les fonctionnaires\n    soumis aux dispositions de la loi portant Statut Général de la Fonction Publique et\n    des textes portant statuts spéciaux, ainsi que leurs ayants cause."
+      },
+      {
+        id: "article3",
+        title: "Article 3 :",
+        content: "Les fonctionnaires ne peuvent prétendre à pension au titre de la présente\n    ordonnance qu'après avoir été préalablement admis à faire valoir leurs droits à la\n    retraite soit sur leur demande, soit d'office.</p>Les fonctionnaires ne peuvent être mis à la retraite d'office avant la date à\n    laquelle ils atteignent la limite d'âge, fixée par décret, qui leur est applicable, sauf\n    toutefois :</p><p>1- dans les conditions visées aux dispositions de la loi portant Statut Général de la Fonction Publique ou des textes portant statuts spéciaux, relatives à la cessation définitive de fonction;</p><p>   2-par sanction disciplinaire, en application des dispositions de leurs statuts respectifs."
+      }
+    ]
+  },
+  {
+    title: "TITRE I : CONSTITUTION DU DROIT A PENSION DE RETRAITE",
+    articles: []
+  },
+  {
+    title: "CHAPITRE I : GENERALITES SUR LA PENSION DE RETRAITE",
+    articles: [
+      {
+        id: "article4",
+        title: "Article 4 :",
+        content: "La pension de retraite est une allocation pécuniaire, personnelle et viagère\n    accordée aux fonctionnaires et, après leur décès, à leurs ayants cause désignés\n    par la présente ordonnance, en rémunération des services qu'ils ont accomplis\n    jusqu'à la cessation de leurs fonctions."
+      }
+    ]
+  },
+  {
+    title: "CHAPITRE II : ELEMENTS CONSTITUTIFS",
+    articles: []
+  },
+  {
+    title: "Section 1: Age",
+    articles: [
+      {
+        id: "article6",
+        title: "Article 6 :",
+        content: "En vue d'une mise à la retraite anticipée, la condition d'âge peut être réduite:</p><p>    pour le fonctionnaire ancien combattant, d'un temps fixé par décret;voir le décret\n    pour le fonctionnaire ancien combattant, d'un temps fixé par décret.voir le décret"
+      }
+    ]
+  },
+  {
+    title: "Section 2: Services",
+    articles: [
+      {
+        id: "article7",
+        title: "Article 7 :",
+        content: "Les services pris en compte dans la constitution du droit à pension de retraite\n    sont:</p><p>    1) les services accomplis en qualité de fonctionnaire à partir d'un âge minimum fixé par décret;</p><p>2) les services de stage rendus à partir d'un âge minimum fixé par décret, sous réserve du versement rétroactif des retenues pour pension;</p><p>3) les services auxiliaires, temporaires ou contractuels dûment validés accomplis dans les Administrations et Etablissements Publics de l'Etat, à partir d'un âge minimum fixé par décret et suivant des conditions elles aussi fixées par décret;</p><p>4) les services militaires accomplis dans les armées de terre, de mer et de l'air, à l'exclusion de ceux effectués avant un âge minimum fixé par décret, s'ils ne sont déjà rémunérés soit par une pension, soit par une solde de réforme;</p><p>5) les services accomplis à partir d'un âge minimum fixé par décret dans les cadres permanents des Administrations, des Collectivités territoriales et des\n    Etablissements Publics qu'elles seraient amenées à créer."
+      },
+      {
+        id: "article8",
+        title: "Article 8 :",
+        content: "Les services accomplis postérieurement à la limite d'âge prescrite pour faire valoir ses droits à la retraite, ne peuvent être pris en compte dans la liquidation de la pension."
+      }
+    ]
+  },
+  {
+    title: "TITRE II : LIQUIDATION DE LA PENSION DE RETRAITE",
+    articles: []
+  },
+  {
+    title: "CHAPITRE I : SERVICES VALABLES",
+    articles: [
+      {
+        id: "article9",
+        title: "Article 9 :",
+        content: "Les services pris en compte dans la liquidation de la pension de retraite sont les\n    services énumérés à l'article 7."
+      }
+    ]
+  },
+  {
+    title: "CHAPITRE II : DECOMPTE DES ANNUITES LIQUIDABLES",
+    articles: [
+      {
+        id: "article10",
+        title: "Article 10 :",
+        content: "Dans la liquidation de la pension de retraite, les annuités liquidables sont prises\n    en compte pour leur durée effective.</p><p>    Dans le décompte final des annuités liquidables, la valeur de la fraction de\n    semestre est fixée par décret. Le maximum des annuités liquidables est fixé par décret."
+      }
+    ]
+  },
+  {
+    title: "CHAPITRE III : EMOLUMENTS DE BASE",
+    articles: [
+      {
+        id: "article11",
+        title: "Article 11 (nouveau) :",
+        content: "Les émoluments de base servant au calcul de la pension sont fixés par décret.</p><p>    Toutefois, lorsque la mise hors de service ou le décès d'un fonctionnaire se produit par suite d'un accident survenu en service ou à l'occaion du service, les émoluments de base sont représentés par le dernier traitement indiciaire soumis à retenue, afférent à l'emploi ou au grade et  l'échelon effectivement détenus au moment de la cessation de service.</p><p>    Les traitements indiciaires des emplois supprimés sont assimilés par un acte réglementaire à des traitements d'indices existants.</p><p>    Les traitements indiciaires des emplois supprimés sont assimilés par un acte\n    réglementaire à des traitements d'indices existants."
+      }
+    ]
+  },
+  {
+    title: "CHAPITRE IV : CALCUL DE LA PENSION DE RETRAITE",
+    articles: [
+      {
+        id: "article12",
+        title: "Article 12 :",
+        content: "La pension de retraite est fixée à un pourcentage, déterminé par décret, des\n    émoluments de base par annuité liquidable.</p><p>    La rémunération de l'ensemble des annuités liquidées conformément aux\n    dispositions de l'alinéa précédent ne peut être inférieure à un montant minimum,\n    fixé tous les deux ans, par arrêté du Ministre en charge des Affaires Sociales, pris\n    après avis motivé du Conseil d'Administration de la Caisse Générale de Retraite\n    des Agents de l'Etat.</p><p>    Toutefois, ce montant minimum ne peut, en aucun cas, être inférieur à un\n    pourcentage, fixé par décret, du salaire minimum interprofessionnel garanti.</p><p>    Si le montant de la pension n'est pas un chiffre entier, il est porté au chiffre entier\n    immédiatement supérieur dès lors que le premier nombre après la décimale est égal\n    ou supérieur à cinq.</p><p>    A défaut, il est ramené au chiffre entier immédiatement inférieur."
+      },
+      {
+        id: "article12.1",
+        title: "Article 12.1 :",
+        content: "La pension de retraie des fonctionnaires est majorée selon les modalités déterminées par décret.</p><p>    Outre la majoration prévue à l'alinéa précédent, le fonctionnaire admis à faire valoir ses droits à la retraite peut bénéficier d'allocations familiales dans les conditions fixées par décret."
+      }
+    ]
+  },
+  {
+    title: "TITRE IV : INVALIDITES",
+    articles: [
+      {
+        id: "article13",
+        title: "Article 13 :",
+        content: "La jouissance de la pension de retraite concédée au fonctionnaire, soit pour\n    invalidité soit pour suppression d'emploi, soit pour limite d'âge est\n    immédiate. Elle ne peut être antérieure à la date de la décision d'admission à la\n    retraite.</p><p>    La jouissance de la pension de retraite telle que prévue au dernier alinéa de\n    l'article 5 est différée jusqu'à ce que le fonctionnaire ait atteint la limite d'âge,\n    avec la possibilité d'en jouir de manière anticipée un certain nombre d'années plus\n    tôt, fixé par décret, et en supportant un pourcentage d'abattement par année\n    d'anticipation, déterminé par décret.</p><p>    Toutefois, le fonctionnaire bénéficiaire d'une telle pension a droit à en jouir\n    immédiatement s'il est atteint d'une infirmité reconnue incurable."
+      }
+    ]
+  },
+  {
+    title: "CHAPITRE I",
+    articles: [
+      {
+        id: "article14",
+        title: "Article 14 :",
+        content: "Les dépenses relatives à la couverture accordée en cas d'invalidité incombent en\n    totalité à l'Etat; la Caisse Générale de Retraite des Agents de l'Etat en assure le\n    paiement."
+      }
+    ]
+  },
+  {
+    title: "CHAPITRE II : INVALIDITE RESULTANT DE L'EXERCICE DES FONCTIONS",
+    articles: [
+      {
+        id: "article15",
+        title: "Article 15 :",
+        content: "Le fonctionnaire qui a été mis dans l'impossibilité définitive et absolue de continuer\n    ses fonctions, par suite d'infirmité résultant de blessures ou de maladies\n    contractées ou aggravées soit en service, soit en accomplissant un acte de\n    dévouement dans un intérêt public, soit en exposant ses jours pour sauver la vie\n    d'une ou de plusieurs personnes, peut être admis à la retraite comme prévu par les\n    dispositions de la loi portant Statut Général de la Fonction Publique ou des textes\n    portant statuts spéciaux.</p><p>    Il a droit, dans ce cas, à une rente viagère d'invalidité, non réversible en cas de\n    décès, cumulable avec la pension de retraite concédée dans les conditions\n    énumérées à l'article 5, à l'exclusion de celle mentionnée au dernier alinéa.</p><p>    Le montant de la rente d'invalidité est fixé à la fraction du traitement brut afférent\n    à l'indice minimum du corps auquel appartient le fonctionnaire, égale à la fraction\n    d'invalidité.</p><p>    Dans le cas d'aggravation d'infirmités préexistantes, le taux d'invalidité à\n    prendre en considération doit être apprécié par rapport à la validité restante dп\n    fonctionnaire.</p><p>    Le taux d'invalidité est déterminé compte tenu d'un barème fixé par décret. Toutefois,\n    le montant cumulé de la rente et de la pension ne peut être inférieur à : </p><p>un certain pourcentage, fixé par décret, de la dernière solde indiciaire, en cas\n    d'invalidité imputable au service;</p><p>-un autre pourcentage, également fixé par décret, de la dernière solde\n    indiciaire, en cas d'invalidité imputable à un acte de dévouement dans un intérêt\n    public.</p><p>    \n    La rente d'invalidité ajoutée à la pension cumulable ne peut faire bénéficier\n    le titulaire d'émoluments totaux supérieurs aux émoluments de base visés à\n    l'article 11. Elle est liquidée, concédée et payée dans les mêmes conditions et\n    suivant les mêmes modalités que la pension de retraite.</p><p>    Le total de la pension de retraite et de la rente d'invalidité est élevé au montant de\n    la pension basée sur un certain nombre d'annuités liquidables, fixé par décret,\n    lorsque le fonctionnaire est mis à la retraite à la suite d'un attentat ou d'une lutte\n    dans l'exercice de ses fonctions ou s'il a exposé ses jours dans l'exercice normal de\n    ses fonctions."
+      }
+    ]
+  },
+  {
+    title: "CHAPITRE III : INVALIDITE NE RESULTANT PAS DE L'EXERCICE DES FONCTIONS",
+    articles: [
+      {
+        id: "article16",
+        title: "Article 16 :",
+        content: "Le fonctionnaire qui a été mis dans l'impossibilité définitive et absolue de continuer\n    ses fonctions, par suite d'infirmité ne résultant pas de blessures ou de maladies\n    contractées ou aggravées en service, peut être admis à la retraite sur sa\n    demande ou mis à la retraite à l'expiration du congé réglementaire prévu par\n    les dispositions de la loi portant Statut Général de la Fonction Publique ou des\n    textes portant statuts spéciaux.</p><p>    Cette mise à la retraite ne pourra avoir une date d'effet postérieure à la limite d'âge.</p><p>    Toutefois, les blessures ou les maladies doivent avoir été contractées au cours\n    d'une période durant laquelle l'intéressé acquérait des droits à pension.</p><p>    Il a droit, en ce cas, à la pènsion de retraite prévue à l'article 5 (1°). Le taux de cette\n    pension ne peut être inférieur à un certain pourcentage, fixé par décret, de la\n    moyenne des dernières soldes indiciaires retenues pour le calcul de la pension."
+      }
+    ]
+  },
+  {
+    title: "CHAPITRE IV : ALLOCATION TEMPORAIRE D'INVALIDITE",
+    articles: [
+      {
+        id: "article17",
+        title: "Article 17 :",
+        content: "En application des dispositions de la loi portant Statut Général de la Fonction\n    Publique et des textes portant statuts spéciaux, le fonctionnaire atteint d'une\n    invalidité résultant soit d'un accident de service ayant entraîné une incapacité\n    permanente, soit d'une maladie professionnelle, peut prétendre à une allocation\n    temporaire d'invalidité, cumulable avec son traitement, non réversible en cas de\n    décès."
+      },
+      {
+        id: "article18",
+        title: "Article 18 :",
+        content: "Le fonctionnaire détaché, conformément aux dispositions réglementaires en\n    vigueur, bénéficie de l'allocation temporaire due à l'invalidité contractée dans\n    l'emploi de détachement.</p><p>    Le paiement de cette allocation est à la charge de l'organisme employeur pendant\n    la période de détachement. Pour les fonctionnaires employés dans un service doté\n    d'un budget annexe, le paiement de cette allocation est à la charge du budget\n    annexe."
+      },
+      {
+        id: "article19",
+        title: "Article 19 :",
+        content: "Le montant de l'allocation d'invalidité est fixé à la fraction du traitement brut afférent\n    à l'indice minimum du corps auquel appartient le fonctionnaire, égale à la fraction\n    d'invalidité, sans toutefois que le montant de cette allocation puisse excéder un\n    certain pourcentage, fixé par décret, du traitement brut de base du fonctionnaire."
+      },
+      {
+        id: "article20",
+        title: "Article 20 :",
+        content: "L'entrée en jouissance de l'allocation temporaire d'invalidité est fixée:</p><p>a) à la date de l'accident, lorsque l'invalidité résulte d'un accident;</p><p>b)  à la date de la première constatation médicale de la maladie, lorsque l'invalidité résulte d'une maladie contractée en service.</p><p>Cette allocation est payée trimestriellement sur les crédits ouverts au budget\n    au chapitre pensions, allocations et rentes viagères."
+      },
+      {
+        id: "article21",
+        title: "Article 21 :",
+        content: "Toute modification dans l'état de la victime soit par aggravation, soit par atténuation\n    de l'infirmité ou de la maladie, doit entraîner une révision du taux d'incapacité par la\n    commission de réforme visée ci-dessus.</p><p>    Le pouvoir de décision appartient dans tous les cas au Ministre de la Fonction\n    Publique."
+      },
+      {
+        id: "article22",
+        title: "Article 22 :",
+        content: "En vue de déceler les modifications dans l'état du fonctionnaire, celui-ci est tenu de\n    se présenter annuellement devant la commission de réforme, suivant des modalités\n    fixées par arrêté conjoint du Ministre d'Etat, Ministre de l'Emploi, des Affaires\n    Sociales et de la Solidarité et des Ministre de la Santé et de la Lutte contre le SIDA,\n    de la Fonction Publique et de la Réforme Administrative, de l'Economie et des\n    Finances.</p><p>    En cas de révision du taux d'invalidité, celle-ci ne prendra effet qu'à compter du jour\n    où a été constatée, par la commission de réforme, l'aggravation ou l'atténuation de\n    l'invalidité."
+      },
+      {
+        id: "article23",
+        title: "Article 23 :",
+        content: "Si l'état du fonctionnaire est reconnu stationnaire, l'allocation dont il bénéficiait est\n    alors maintenue pour une nouvelle période d'un an.</p><p>a) En cas de diminution de pourcentage d'invalidité, l'ancienne allocation est révisée\n    sur la base de ce nouveau taux, sauf dans les cas suivants:</p><p>b) le taux d'invalidité consécutive à un accident est inférieur à certain pourcentage fixé par décret;</p><p>    l'invalidité résultant d'une maladie professionnelle a totalement disparu après guérison.</p><p>    \n    Dans ces deux hypothèses, l'allocation est suspendue pour une durée d'un an, son\n    rétablissement ne pouvant être envisagé qu'à l'expiration de ce délai et seulement à\n    la demande de l'intéressé.</p><p>    En cas d'aggravation de l'invalidité, l'allocation est révisée sur la base du nouveau\n    taux. Toutefois, si cette aggravation est reconnue comme entraînant une inaptitude à\n    l'exercice des fonctions, le fonctionnaire doit être mis à la retraite pour invalidité, et\n    l'allocation temporaire est transformée en rente viagère d'invalidité.</p><p>    En cas de mise à la retraite pour toute cause autre que l'aggravation de l'invalidité,\n    ou en cas de départ du service sans droit à pension, l'allocation temporaire\n    d'invalidité continue à être servie dans les conditions fixées au présent chapitre."
+      }
+    ]
+  },
+  {
+    title: "CHAPITRE V : LA RENTE VIAGERE",
+    articles: [
+      {
+        id: "article24",
+        title: "Article 24 :",
+        content: "En cas de décès du fonctionnaire, au moment d'un accident dans l'exercice de ses\n    fonctions, ou consécutif à l'aggravation de l'incapacité visée à l'article 17 ci-dessus,\n    une rente viagère, non cumulable avec la pension de réversion, calculée sur un\n    taux d'incapacité d'un certain pourcentage, fixé par décret, est accordée à ses\n    ayants cause."
+      },
+      {
+        id: "article25",
+        title: "Article 25 :",
+        content: "Lorsque le fonctionnaire décédé dans les circonstances prévues au précédent\n    article était en possession de droit à pension, ses ayants cause ont le bénéfice de\n    la prestation la plus avantageuse entre la rente viagère et la pension de réversion."
+      }
+    ]
+  },
+  {
+    title: "CHAPITRE VI : DISPOSITIONS COMMUNES AUX PENSIONS, RENTES ET ALLOCATIONS TEMPORAIRES D'INVALIDITE",
+    articles: [
+      {
+        id: "article26",
+        title: "Article 26 :",
+        content: "Est considéré comme accident de service, l'accident survenu :</p><p>- par le fait ou à l'occasion du service;</p><p>- pendant le trajet de la résidence au lieu de travail et vice versa, dans la mesure où\n    le parcours n'a pas été interrompu ou détourné pour un motif dicté par l'intérêt\n    personnel ou indépendant de l'emploi;</p><p>- pendant les voyages dont les frais sont à la charge de l'Etat."
+      },
+      {
+        id: "article27",
+        title: "Article 27 :",
+        content: "Lorsque la cause d'une infirmité est imputable à un tiers, l'Etat est subrogé de plein\n    droit à la victime ou à ses ayants droit dans leur action contre le tiers\n    responsable, pour le remboursement de toutes les prestations versées ou\n    maintenues à la victime par suite des infirmités dont elle est atteinte."
+      },
+      {
+        id: "article28",
+        title: "Article 28 :",
+        content: "La réalité des infirmités invoquées par le fonctionnaire, leur imputabilité au service,\n    les conséquences ainsi que le taux d'invalidité qu'elles entraînent, sont appréciés\n    par une commission de Réforme dont la composition et les attributions sont fixées\n    par décret."
+      },
+      {
+        id: "article29",
+        title: "Article 29 :",
+        content: "Les fonctionnaires en service détaché bénéficient des dispositions du présent titre."
+      }
+    ]
+  },
+  {
+    title: "TITRE V : PENSION DES AYANTS CAUSE",
+    articles: []
+  },
+  {
+    title: "CHAPITRE I : GENERALITES",
+    articles: [
+      {
+        id: "article30",
+        title: "Article 30 :",
+        content: "La réversion, à ses ayants cause, des droits à pension acquis par le fonctionnaire,\n    intervient en cas de décès, de disparition ou d'absence.</p><p>    Les ayants cause du fonctionnaire sont le conjoint survivant et les orphelins mineurs\n    et assimilés.</p><p>    La liquidation des pensions de réversion est définitive, sauf cas d'erreur matérielle ou\n    de droit."
+      }
+    ]
+  },
+  {
+    title: "CHAPITRE II : AGENTS MONOGAMES",
+    articles: [
+      {
+        id: "article31",
+        title: "Article 31 :",
+        content: "Le conjoint survivant du fonctionnaire monogame a droit à une pension égale à un\n    certain pourcentage, fixé par décret, de la pension de retraite obtenue par le\n    fonctionnaire ou qu'il aurait obtenue le jour de son décès, selon des modalités\n    fixées par décret."
+      },
+      {
+        id: "article32",
+        title: "Article 32 :",
+        content: "Lorsque, au décès du fonctionnaire, une instance en divorce était pendante devant\n    les juridictions et que cette demande avait été introduite par le conjoint survivant,\n    celui-ci perd ses droits à réversion, sauf si une requête en annulation avait été\n    introduite par le conjoint survivant avant le décès du fonctionnaire."
+      },
+      {
+        id: "article33",
+        title: "Article 33 (nouveau):",
+        content: "La jouissance de la pension du conjoint survivant est fixée selon les modalités déterminées par décret."
+      },
+      {
+        id: "article34",
+        title: "Article 34 :",
+        content: "Chaque orphelin a droit jusqu'à un âge limite déterminé par décret, et sans\n    condition d'âge s'il est atteint d'une infirmité permanente le mettant dans\n    l'impossibilité de gagner sa vie au jour du décès du fonctionnaire, à une pension\n    égale à un certain pourcentage, fixé par décret, de la pension de retraite\n    obtenue par le fonctionnaire ou qu'il aurait obtenue le jour de son décès, sans que\n    le total des émoluments versés au conjoint survivant et aux orphelins puisse\n    excéder le montant de la pension attribuée ou qui aurait été attribuée au\n    fonctionnaire. S'il y a excédent, il est procédé à la réduction des pensions\n    d'orphelins."
+      },
+      {
+        id: "article35",
+        title: "Article 35 :",
+        content: "En cas de déchéance des droits parentaux ou d'incapacité de jouissance de son\n    titulaire, le bénéfice de la pension de conjoint survivant est transféré à l'orphelin\n    mineur le plus âgé, et la pension d'orphelin est maintenue à partir du deuxième, à\n    chaque enfant mineur dans une limite déterminée par décret.</p><p>    Lorsque cesse la cause qui a entraîné la perte du bénéfice de la pension, le conjoint\n    survivant recouvre ses droits à pension en l'état, et l'orphelin mineur le plus âgé est\n    réintégré au titre de la pension d'orphelin."
+      },
+      {
+        id: "article36",
+        title: "Article 36 :",
+        content: "Les pensions attribuées aux enfants ne peuvent pas, au total, être inférieures au\n    montant des avantages familiaux dont aurait bénéficié le père, s'il avait été en\n    activité."
+      },
+      {
+        id: "article37",
+        title: "Article 37 :",
+        content: "Le droit à pension d'orphelin est établi dès lors que la filiation de l'enfant mineur est\n    légalement établie à l'égard du fonctionnaire décédé en activité ou à la retraite.</p><p>    Concernant l'enfant infirme auquel il est fait référence à l'article 34 ci-dessus, outre\n    l'établissement de sa filiation légale à l'égard du fonctionnaire décédé en activité ou\n    à la retraite, la preuve de l'infirmité doit être faite par un certificat médical délivré par\n    un médecin spécialisé dans l'affection dont il souffre."
+      },
+      {
+        id: "article38",
+        title: "Article 38 :",
+        content: "Est interdit, du chef d'un même enfant, le cumul de plusieurs accessoires de\n    traitement, solde, salaire et pension servis par la Caisse Générale de\n    Retraite des Agents de l'Etat, l'Etat, les collectivités publiques et les organismes de\n    prévoyance collectifs ou obligatoires, aux intéressés ou à leur conjoint."
+      },
+      {
+        id: "article39",
+        title: "Article 39 :",
+        content: "Lorsqu'il existe un conjoint survivant et des enfants mineurs de deux ou plusieurs\n    lits, par suite d'un ou de plusieurs mariages antérieurs du fonctionnaire, la pension\n    du conjoint survivant est maintenue au taux prévu à l'article 19. Celle des orphelins\n    est fixée, pour chacun d'eux, au taux et dans les conditions prévues aux articles 34\n    et suivants ci-dessus."
+      }
+    ]
+  },
+  {
+    title: "CHAPITRE III : DISPOSITIONS SPECIALES - CONJOINTS SURVIVANTS ET ORPHELINS DES AGENTS POLYGAMES",
+    articles: [
+      {
+        id: "article40",
+        title: "Article 40 :",
+        content: "En ce qui concerne les agents non remariés sous le régime de la loi n° 64-375 du 7\n    octobre 1964 relative au mariage, modifiée par la loi n° 83-800 du 2 août 1983, la\n    pension, telle qu'elle est fixée par les articles 31 à 39 ci-dessus, est accordée à\n    leurs veuves et à leurs enfants âgés de moins de vingt et un (21) ans.</p><p>    Cette pension est allouée à la famille et partagée par parts égales entre chaque lit\n    représenté au décès du fonctionnaire par une veuve ou éventuellement par les\n    orphelins mineurs."
+      }
+    ]
+  },
+  {
+    title: "CHAPITRE IV : DISPOSITIONS COMMUNES AUX PENSIONS DES AYANTS CAUSE",
+    articles: [
+      {
+        id: "article41",
+        title: "Article 41 :",
+        content: "Les parts attribuées aux orphelins sont versées aux personnes chargées de\n    leur entretien.</p><p>    La preuve des naissances, mariages et autres mentions de l'état civil est faite\n    selon les formes prévues par la réglementation en vigueur."
+      },
+      {
+        id: "article42",
+        title: "Article 42 :",
+        content: "Le droit à pension du conjoint survivant n'existe pas s'il est de notoriété publique\n    et dûment établi par voie judiciaire qu'il a cessé la vie conjugale plus d'un certain\n    nombre d'années, fixé par décret, avant le décès du fonctionnaire."
+      }
+    ]
+  },
+  {
+    title: "TITRE VI : DISPOSITIONS DIVERSES COMMUNES AUX PENSIONS ET AUX RENTES VIAGERES",
+    articles: [
+      {
+        id: "article43",
+        title: "Article 43 :",
+        content: "Les pensions et les rentes viagères d'invalidité instituées par la présente\n    ordonnance sont incessibles et insaisissables, sauf en cas de débet envers l'Etat,\n    les Collectivités Territoriales ou Etablissements Publics, ou pour les créances\n    alimentaires ou privilégiées prévues par la loi.</p><p>    Les débets envers l'Etat et ceux contractés envers les diverses autres\n    collectivités publiques visées au précédent alinéa, rendent les pensions et les\n    rentes viagères d'invalidité passibles de retenues jusqu'à concurrence d'une\n    fraction de leur montant, déterminé par décret.</p><p>    Dans les autres cas prévus au précédent alinéa, la retenue peut s'élever jusqu'à\n    une autre fraction du montant, fixé par décret, de la pension ou de la rente viagère\n    d'invalidité.</p><p>    Les retenues indiquées au précédent alinéa peuvent s'exercer cumulativement.</p><p>    En cas de débets simultanés envers l'Etat et autres collectivités publiques, les\n    retenues devront être effectuées en premier lieu au profit de l'Etat."
+      },
+      {
+        id: "article44",
+        title: "Article 44 :",
+        content: "Lorsqu'un bénéficiaire de la présente ordonnance, titulaire d'une pension ou\n    d'une rente viagère d'invalidité n'a plus paru à son domicile et qu'une période,\n    fixée par décret, s'est écoulée sans qu'il ait réclamé les arrérages de sa pension,\n    ses ayants cause peuvent obtenir, à titre provisoire, la liquidation des droits à\n    pension qui leur sont ouverts par les dispositions de la présente ordonnance.</p><p>    Une pension peut être attribuée, à titre provisoire, aux ayants cause du bénéficiaire\n    de la présente ordonnance, lorsque celui-ci était en possession de droits à\n    pension au jour depuis lequel il n'a plus donné signe de vie et qu'il s'est\n    écoulé une période, déterminée par décret, depuis ce jour.</p><p>    La pension provisoire est convertie en pension définitive lorsque le décès est\n    officiellement établi ou que l'absence a été déclarée par jugement passé en force de\n    chose jugée."
+      },
+      {
+        id: "article45",
+        title: "Article 45 :",
+        content: "Le droit à l'obtention ou à la jouissance de la pension ou de la rente viagère\n    d'invalidité est suspendu :</p><p>- par la révocation avec suspension des droits à pension;</p><p>- par la condamnation à une peine afflictive ou infâmante, pendant la durée de la\n    peine;</p><p>- par des circonstances qui font perdre la qualité d'Ivoirien, durant la privation de\n    cette qualité;</p><p>- par la déchéance de la puissance paternelle, pour les conjoints survivants.</p><p>    \n    S'il y a lieu par la suite de procéder à la liquidation ou au rétablissement de la\n    pension ou de la rente viagère d'invalidité, aucun rappel pour les arrérages antérieurs\n    n'est dû."
+      },
+      {
+        id: "article46",
+        title: "Article 46 :",
+        content: "La suspension est partielle si le titulaire a des enfants mineurs à charge. Ces\n    derniers reçoivent, pendant la durée de la suspension, une pension égale à\n    un certain pourcentage, fixé par décret, de la pension dont bénéficiait ou aurait\n    bénéficié effectivement le fonctionnaire.</p><p>    Dans le cas où le fonctionnaire n'est pas effectivement en jouissance d'une\n    pension ou d'une rente viagère d'invalidité au moment où doit jouer la suspension,\n    les enfants peuvent obtenir la pension définie à l'alinéa précédent si celui-ci totalise\n    en ce moment un certain nombre d'années de services, déterminé par décret.</p><p>    Le fonctionnaire révoqué sans suspension des droits à pension peut obtenir une\n    pension, s'il totalise le nombre d'années de services fixé à l'alinéa précédent. Dans\n    le cas contraire, les dispositions des alinéas 1° et 2° de l'article 61 ci-après lui sont\n    applicables."
+      },
+      {
+        id: "article47",
+        title: "Article 47 :",
+        content: "Tout bénéficiaire de cette ordonnance qui est exclu définitivement des cadres:</p><p>- pour avoir été reconnu coupable de détournement soit de deniers de l'Etat, des\n    Collectivités territoriales ou Etablissements Publics, soit de dépôts de fonds\n    particuliers versés à sa caisse ou de matières reçues et dont il doit compte;</p><p> - pour avoir été convaincu de malversations relatives à son service:</p><p>- pour corruption active ou passive ou complicité,\n    \n    peut être déchu de ses droits à pension, ainsi qu'à rente viagère d'invalidité résultant\n    de blessures ou de maladies contractées ou aggravées en service.</p><p>- Dans le cas où la découverte du détournement, des malversations ou de\n    corruption n'a lieu qu'après la cessation d'activité, la même disposition est\n    applicable au fonctionnaire retraité lorsque les agissements qui lui sont reprochés\n    auraient été de nature à motiver son exclusion définitive des cadres, alors même\n    que sa pension ou sa rente viagère d'invalidité aurait déjà été concédée.</p><p>    La déchéance édictée au présent article et sur laquelle l'organisme disciplinaire\n    compétent est toujours expressément appelé à donner son avis, est prononcée\n    par arrêté du Ministre en charge de la Fonction Publique."
+      },
+      {
+        id: "article48",
+        title: "Article 48 :",
+        content: "Pour les Magistrats, nonobstant les dispositions du présent texte, l'assiette de\n    calcul de l'allocation viagère du magistrat, de la pension de réversion de son\n    conjoint et celle de ses ayants droit survivants est déterminée selon des\n    modalités fixées par décret."
+      }
+    ]
+  },
+  {
+    title: "TITRE VII : DISPOSITIONS D'ORDRE ET DE COMPTABILITE",
+    articles: [
+      {
+        id: "article49",
+        title: "Article 49 :",
+        content: "Toute demande de pension, de rente viagère d'invalidité ou d'allocation\n    temporaire d'invalidité est adressée sans condition de délai au Ministre du\n    département auquel appartient ou appartenait le fonctionnaire.</p><p>    Toutefois, si la demande intervient au-delà d'un délai, fixé par décret, à compter du\n    jour où l'intéressé a été admis à faire valoir ses droits à la retraite ou radié des\n    cadres et, pour les ayants cause, à compter du jour du décès du fonctionnaire, il ne\n    peut y avoir lieu au rappel de plus d'un certain nombre d'années, fixé par décret,\n    d'arrérages antérieures à la date de dépôt de la demande.</p><p>    Lorsque la demande intervient dans le délai mentionné à l'alinéa précédent ou\n    lorsque la production tardive de celle-ci est imputable à l'Administration quel que soit\n    le délai, l'ensemble des arrérages est dû."
+      },
+      {
+        id: "article50",
+        title: "Article 50 :",
+        content: "La liquidation de la pension, de la rente viagère d'invalidité ou de l'allocation\n    temporaire d'invalidité incombe à la Caisse Générale de Retraite des Agents de\n    l'Etat, et la concession est effectuée par décision du Directeur Général dudit\n    organisme.</p><p>    Cette décision est notifiée à chaque intéressé, en même temps que le\n    décompte détaillé de la liquidation."
+      },
+      {
+        id: "article51",
+        title: "Article 51 :",
+        content: "Les pensions attribuées conformément aux dispositions de la présente\n    ordonnance sont inscrites au grand livre de la dette publique et payées par la Caisse\n    Générale de Retraite des Agents de l'Etat.</p><p>    Le Directeur Général de la Caisse Générale de Retraite des Agents de l'Etat ne\n    faire inscrire ni ne payer aucune pension en dehors des conditions prévues.</p><p>    peut"
+      },
+      {
+        id: "article52",
+        title: "Article 52 :",
+        content: "La pension et la rente viagère d'invalidité peuvent être révisées à tout moment en\n    cas d'erreur ou d'omission quelle que soit la nature de celles-ci. Elles peuvent être\n    modifiées ou supprimées si la concession a été faite dans des conditions contraires\n    aux prescriptions de la présente ordonnance.</p><p>1°) La pension de retraite et la rente viagère d'invalidité peuvent à tout moment:</p><p>2°) être révisées dans l'un des cas suivants :</p><p>3°) A l'initiative de l'Administration ou sur demande de l'intéressé :</p><p>        \n    lorsqu'une erreur matérielle de liquidation ou une omission est constatée;</p><p>    lorsque l'énoncé des actes ou des documents au vu desquels l'acte de concession a été pris est reconnu erroné à l'un ou à l'autre titre.</p><p>    \n    D'office, lorsqu'il y a une augmentation générale des salaires des fonctionnaires et agents de l'Etat.</p><p>    \n    ) être supprimées lorsque les prestations ont été accordées à la suite de fraude, de substitution de personne, de simulation d'affection ou d'erreurs médicales;</p><p>    ) être révisées ou supprimées lorsqu'il y a erreur de droit.</p><p>    \n    Les sommes perçues indûment doivent être intégralement restituées, sans préjudice des\n    recours judiciaires qui pourraient être ouverts à la Caisse Générale de Retraite des Agents\n    de l'Etat."
+      },
+      {
+        id: "article53",
+        title: "Article 53 :",
+        content: "Les recours en matière de pension ou de rente viagère d'invalidité sont soumis\n    aux règles de procédures applicables aux recours contre les actes administratifs."
+      },
+      {
+        id: "article54",
+        title: "Article 54 :",
+        content: "Les pensions et les rentes viagères d'invalidité sont payées mensuellement et à\n    terme échu.</p><p>    En attendant la liquidation définitive de la pension, des avances sont payées aux\n    fonctionnaires retraités ou aux ayants cause.</p><p>    Les modalités d'application des dispositions du présent titre seront, autant que de\n    besoin, fixées par décret."
+      }
+    ]
+  },
+  {
+    title: "TITRE VIII : RETENUES POUR PENSION",
+    articles: []
+  },
+  {
+    title: "CHAPITRE I : EXERCICE DE LA RETENUE",
+    articles: [
+      {
+        id: "article55",
+        title: "Article 55 :",
+        content: "Les agents visés à l'article premier de la présente ordonnance supportent une\n    retenue de plusieurs points de pourcentage, déterminée par décret, sur leur\n    traitement indiciaire tel qu'il est fixé dans leurs statuts respectifs.</p><p>    En cas de perception d'un traitement réduit pour cause de congé, d'absence,\n    par mesure disciplinaire ou pour toute autre cause que ce soit, la retenue est perçue\n    sur le traitement entier.</p><p>    Le budget employeur verse une contribution, fixée par décret, exprimée en\n    pourcentage du même traitement indiciaire que celui auquel il est fait référence au\n    premier alinéa du présent article."
+      },
+      {
+        id: "article56",
+        title: "Article 56 :",
+        content: "Sauf dispositions législatives contraires, toute perception d'un traitement ou solde\n    d'activité est soumise au prélèvement de la retenue visée à l'article 56, même si les\n    services ainsi rémunérés ne sont pas susceptibles d'être pris en compte pour la\n    constitution du droit et pour la liquidation de la pension.</p><p>    Aucune pension ne peut être concédée si le versement des retenues exigibles n'a\n    pas été effectué."
+      },
+      {
+        id: "article57",
+        title: "Article 57 :",
+        content: "Les retenues légalement perçues peuvent être remboursées comme prévu\n    l'article 61 ci-après.</p><p>    Celles qui ont été irrégulièrement prélevées n'ouvrent aucun droit à pension, mais\n    doivent être remboursées sans intérêts sur la demande des ayants droit."
+      },
+      {
+        id: "article58",
+        title: "Article 58 :",
+        content: "Le montant annuel du traitement soumis à retenue pour pension afférent à l'indice\n    100 est fixé par décret.</p><p>    Le traitement annuel soumis à retenue pour pension afférent à chaque indice de\n    hiérarchie est calculée en multipliant ledit indice par le centième du traitement\n    afférent à l'indice 100."
+      },
+      {
+        id: "article59",
+        title: "Article 59 :",
+        content: "Pour les Magistrats, le traitement soumis à retenue pour pension est celui\n    déterminé à l'article 48 ci-dessus."
+      },
+      {
+        id: "article60",
+        title: "Article 60 :",
+        content: "Il en est de même pour les niveaux des indices et la valeur du point d'indice\n    servant au calcul des différentes composantes du traitement."
+      }
+    ]
+  },
+  {
+    title: "CHAPITRE II : REMBOURSEMENT DE RETENUES",
+    articles: [
+      {
+        id: "article61",
+        title: "Article 61 :",
+        content: "Le fonctionnaire qui vient à quitter le service pour quelque cause que ce soit,\n    avant de pouvoir obtenir une pension ou une rente viagère d'invalidité, perd\n    ses droits aux dites pensions ou rentes. Il peut prétendre, sauf dans les\n    hypothèses visées à l'article 47 de la présente ordonnance, au remboursement\n    direct et immédiat de la retenue personnelle subie d'une manière effective sur\n    son traitement ou solde, sous réserve, le cas échéant, de la compensation avec\n    les sommes dont il peut être redevable du chef de débets prévus à l'article 43 de la\n    présente ordonnance.</p><p>    A cet effet, une demande personnelle doit être déposée auprès du ministre dont\n    relevait le fonctionnaire.</p><p>    Le fonctionnaire qui, ayant quitté le service, a été remis en activité en qualité de\n    titulaire dans un emploi susceptible de lui ouvrir des droits à pension dans les\n    conditions de l'article 7 (1°) de la présente ordonnance, bénéficie pour la retraite,\n    de la totalité des services qu'il a rendus, à condition que, sur sa demande\n    expresse formulée dans un délai de trois (3) mois à compter de sa remise en.</p><p>    activité, il reverse à la Caisse Générale de Retraite des Agents de l'Etat, le\n    montant des retenues qui lui auraient été éventuellement remboursées."
+      }
+    ]
+  },
+  {
+    title: "TITRE IX :  CUMUL DES PENSIONS AVEC DES REMUNERATIONS PUBLIQUES OU D'AUTRES PENSIONS",
+    articles: []
+  },
+  {
+            title: "CHAPITRE I : DISPOSITIONS GENERALES",
+            articles: [
+            {
+                id: "article62",
+                title: "Article 62 :",
+                content: "Les dispositions du présent titre sont applicables aux agents percevant nu\n    traitement ou bénéficiaires de pensions concédées sur un budget public de Côte d'lvoire (budget de l'Etat, des Collectivités territoriales, des Etablissements Publics, etc.) et des budgets annexes audit budget, et, d'une manière générale, à tout\n    personnel des organismes dotés de la personnalité civile et de l'autonomie\n    financière, créés par l'Etat ou par une collectivité publique en vue de la satisfaction\n    d'un besoin d'intérêt général, ainsi que tous les organismes, même privés,\n    assurant la gestion d'un service public ou constituant le complément d'un tel\n    service."
+            },
+            {
+                id: "article63",
+                title: "Article 63 :",
+                content: "Ceux qui, par fausse déclaration ou de quelque manière que ce soit, auraient\n    cumulé par usurpation plusieurs pensions ou traitements avec une pension,\n    seront déchus de leurs droits à pension. Ils seront, en outre, poursuivis en\n    restitution, sans préjudice des éventuelles poursuites pénales."
+            }
+            ]
+             },
+            {
+            title: "CHAPITRE II : CUMUL DE PENSIONS ET DE REMUNERATIONS PUBLIQUES",
+            articles: [
+                {
+            id: "article64",
+            title: "Article 64 :",
+            content: "Tout titulaire d'une pension de réversion peut cumuler intégralement le montant de cette pension avec celui des émoluments afférents à son emploi.</p><p>    Les pensions et rentes viagères d'invalidité autres que celles visées à l'alinéa qui\n    précède, peuvent se cumuler avec les émoluments correspondants à un nouvel\n    emploi dans la limite soit des émoluments visés au premier alinéa de l'article\n    11, soit des émoluments afférents au nouvel emploi.</p><p>    Toutefois, aucune restriction n'est apportée au cumul lorsque le total des\n    pensions ou rentes viagères et des émoluments afférents au nouvel emploi\n    n'excède pas deux fois le traitement brut afférent à l'indice minimum du corps\n    auquel appartient le fonctionnaire."
+                },
+                ]
+            },
+            {
+            title: "CHAPITRE III : CUMUL DE PLUSIEURS PENSIONS",
+            articles: [
+            {
+                id: "article65",
+                title: "Article 65 :",
+                content: "Les fonctionnaires qui ont été mis à la retraite parce qu'ils ont atteint la limite d'âge et qui occupent un nouvel emploi ne peuvent acquérir de nouveaux droits à\n    pension.</p><p>    Les fonctionnaires dont la mise à la retraite n'a pas été prononcée pour limite\n    d'âge ont la possibilité, lorsqu'ils sont nommés à un nouvel emploi de l'Etat, de\n    renoncer à cumuler leur pension avec leur traitement d'activité en vue d'acquérir\n    de nouveaux droits à pension au titre dudit emploi.</p><p>    La renonciation doit être expresse et formulée dans les trois (3) mois de la\n    notification aux intéressés de leur remise en activité. A défaut de renonciation ainsi\n    exprimée, la faculté de cumul emporte affranchissement des retenues."
+            },
+            {
+                id: "article66",
+                title: "Article 66 :",
+                content: "Les titulaires d'une pension civile de l'Etat ou d'une rente viagère d'invalidité venant à servir à titre militaire pendant une guerre, peuvent cumuler cette pension ou cette rente avec la solde militaire, même mensuelle, afférente à leur grade\n    dans les armées de terre, de mer ou de l'air."
+            },
+            {
+                id: "article67",
+                title: "Article 67 :",
+                content: "Dans le cas où la limite du cumul est atteinte, la réduction prévue est opérée sur la pension ou la rente au vu d'un certificat de suspension délivré par le\n    Ministre en charge des Finances, pour les titulaires de pensions et rentes servies\n    par l'Etat."
+            },
+            {
+                id: "article68",
+                title: "Article 68 :",
+                content: "Il ne pourra être dérogé aux dispositions du présent titre qu'en vertu d'un décret\n    pris sur la proposition du Ministre intéressé et du Ministre en charge des Finances.</p><p>    Le décret autorisant cette dérogation devra obligatoirement en préciser la durée qui\n    ne pourra, en aucun cas, dépasser trois (3) ans, sauf renouvellement dans les\n    mêmes formes."
+            },
+            {
+                id: "article69",
+                title: "Article 69 :",
+                content: "Le cumul de deux ou plusieurs pensions basées sur la durée de services est interdit.</p><p>    Lorsqu'un fonctionnaire aura effectué des services dans des emplois successifs, il\n    sera procédé à la concession d'une seule pension totalisant les différentes années\n    de services, sur la base du dernier emploi."
+            },
+            {
+                id: "article70",
+                title: "Article 70 :",
+                content: "Tout titulaire d'une pension de réversion peut cumuler intégralement le montant de celle-ci avec celui de sa pension personnelle.</p><p>    Est interdit du chef d'un même enfant, le cumul de plusieurs accessoires de\n    traitement et pension servis par l'Etat, les Collectivités territoriales et les\n    Etablissements Publics.</p><p>    LIVRE II - REGIMES SPECIAUX"
+            }
+            ]
+        },
+        {
+            title: "TITRE I : REGIME DES PENSIONS MILITAIRES",
+            articles: [
+            {
+                id: "article71",
+                title: "Article 71 :",
+                content: "Le régime général des pensions militaires concerne:</p><p>1)  la pension de retraite et la solde de réforme;</p><p>2) la pension d'invalidité;</p><p>3) la rente viagère d'invalidité."
+            },
+            {
+                id: "article72",
+                title: "Article 72 :",
+                content: "Ont droit au bénéfice des dispositions prévues par ce régime:</p><p>- les militaires de tous grades des Forces Terrestres, des Forces Aériennes, de\n    la Marine Nationale et de la Gendarmerie Nationale possédant le statut de\n    militaires de carrière ou servant dans les Forces Armées Nationales en vertu\n    d'un contrat, pour l'application des règles concernant les pensions militaires;</p><p>- les policiers de la Police Nationale;</p><p>- dans le cadre de l'application des règles concernant les pensions d'invalidité, les\n    jeunes gens et jeunes filles accomplissant leur Service National, les militaires et les\n    gendarmes de réserve en situation d'activité ou accomplissant les périodes\n    d'activité volontaires ou obligatoires;</p><p>- les ayants cause de ces militaires et policiers."
+            }
+            ]
+        },
+        {
+            title: "TITRE I : LA PENSION DE RETRAITE ET LA SOLDE DE REFORME",
+            articles: []
+        },
+        {
+            title: "CHAPITRE I : CHAPITREI: Dispositions générales",
+            articles: [
+            {
+                id: "article73",
+                title: "Article 73 :",
+                content: "La pension de retraite est une allocation pécuniaire, personnelle et viagère,\n    accordée aux militaires et, après leur décès, à leurs ayants cause désignés\n    par la présente ordonnance en rémunération des services qu'ils ont accomplis\n    jusqu'à la cessation régulière de leurs fonctions."
+            },
+            {
+                id: "article74",
+                title: "Article 74 :",
+                content: "La solde de réforme est une allocation pécuniaire et personnelle versée au\n    militaire pendant une durée égale à celle des services effectivement accomplis."
+            },
+            {
+                id: "article75",
+                title: "Article 75 :",
+                content: "Les bénéficiaires des présentes dispositions ne peuvent prétendre à une pension\n    de retraite qu'après avoir été préalablement admis à faire valoir leurs droits à\n    la retraite soit d'office, soit sur leur demande."
+            },
+            {
+                id: "article76",
+                title: "Article 76 :",
+                content: "Le militaire est mis à la retraite, soit:</p><p>1) d'office:</p><p>    \n    - après accomplissement de la durée maximale des services;</p><p>    - par limite d'âge;</p><p>   - par suite d'invalidité ou pour aptitude physique insuffisante, après nu\n    nombre minimum d'années de services liquidables dûment validés, fixé par\n    décret.</p><p>    </p><p>2) sur demande agréée, après un nombre minimum d'années, fixé par décret, de services liquidables dûment validés.</p><p>    \n\n    En temps de guerre ou lorsque les circonstances exceptionnelles l'exigent, le\n    militaire devant être mis à la retraite peut être maintenu en activité."
+            }
+            ]
+        },
+        {
+            title: "CHAPITRE II : Le droit à pension de retraite ou à solde de réforme",
+            articles: [
+            {
+                id: "article77",
+                title: "Article 77 :",
+                content: "Le droit à pension de retraite est acquis aux militaires de tous grades rendus à la\n    vie civile, dans les cas ci-après:</p><p>    1) après un nombre minimum d'années de services liquidables dûment validés, fixé\n    par décret;</p><p>2) sans condition de durée de services, en cas de radiation des cadres pour\n    \n    invalidité imputable au service ou de décès en service commandé.</p><p>   3) Le temps de service mentionné au 1° peut être réduit pour les périodes\n    ouvrant droit à bonifications pour campagne, en conformité des dispositions de\n    l'article 84 ci-après."
+            },
+            {
+                id: "article78",
+                title: "Article 78 :",
+                content: "Le militaire rendu à la vie civile et n'ayant pas acquis droit à pension de retraite est\n    admis au bénéfice d'une solde de réforme, s'il a accompli un temps de service égal\n    ou supérieur à un nombre minimum d'années, fixé par décret."
+            }
+            ]
+        },
+        {
+            title: "Section 1: Les services constitutifs du droit",
+            articles: [
+            {
+                id: "article79",
+                title: "Article 79 :",
+                content: "Les services pris en compte pour la constitution du droit à pension de retraite ou\n    à solde de réforme sont :</p><p>1)  les services militaires effectifs, à savoir:</p><p>  - Les services militaires accomplis après un certain âge, déterminé par\n    décret, dans les Forces Armées Ivoiriennes;</p><p>    - le temps passé dans les écoles de formation militaire après un certain\n    âge, déterminé par décret et avant tout engagement militaire, lesdits\n    services se décomptant du jour de l'entrée à l'école;</p><p>    2)  les services civils, sous réserve de leur validation par décision\n    ministérielle et de régularisations éventuelles des retenues pour pension effectuées, à savoir:</p><p> - les services accomplis en qualité de fonctionnaire à partir d'un certain âge,\n    déterminé par décret;</p><p>   3) les services accomplis en qualité d'agent temporaire, de contractuel après\n    un certain âge, déterminé par décret, dans les services, collectivités et établissements publics.</p><p>    - les services accomplis par le militaire maintenu au-delà de la limite d'âge ou de la durée maximale des services."
+            },
+            {
+                id: "article80",
+                title: "Article 80 :",
+                content: "Le temps passé en situation de disponibilité, en position de service détaché ou\n    en position hors cadres, n'est pris en compte pour le calcul des droits à pension\n    ou à solde de réforme que sous réserve de reversement à l'organisme compétent,\n    d'une contribution égale à la retenue pour pension afférente à la solde et à\n    l'échelon du grade détenu par l'intéressé dans son corps d'origine.</p><p>    Le temps passé en situation de retrait d'emploi, en congé de longue durée pour\n    maladie ou en congé pour raison de santé ne compte pas pour le droit à\n    pension de retraite ou à solde de réforme."
+            }
+            ]
+        },
+        {
+            title: "Section 2: Les bonifications",
+            articles: [
+            {
+                id: "article81",
+                title: "Article 81 :",
+                content: "Les services pris en compte pour la constitution du droit à pension de retraite ou\n    du droit à solde de réforme sont bonifiés en raison des charges et sujétions de\n    l'état de militaire; les services militaires effectivement accomplis sont bonifiés\n    comme suit :</p><p>    \n   1) bonification quinquennale;</p><p>   2) bonification pour services spéciaux."
+            },
+            {
+                id: "article82",
+                title: "Article 82 :",
+                content: "La bonification quinquennale est attribuée au militaire ayant accompli un nombre\n    minimum d'années, fixé par décret, de services militaires effectifs à raison d'un\n    certain nombre d'annuité(s), fixé par décret, par période de cinq ans. Le\n    maximum d'années de bonification pouvant être accordées à ce titre est fixé par décret.</p><p>    Ne sont prises en compte dans le décompte final, que les périodes de cinq années\n    complètes; les périodes inférieures à cinq années sont négligées."
+            },
+            {
+                id: "article83",
+                title: "Article 83 :",
+                content: "Les bonifications pour services spéciaux sont accordées au militaire :</p><p>  1) pour les opérations déclarées campagne de guerre ou des opérations de\n    maintien de l'ordre effectuées sur le territoire national ou hors de celui-ci ;</p><p> 2) pour les services accomplis, soit:</p><p>    \n    dans le cadre de missions opérationnelles;</p><p>  3) dans des zones déclarées dangereuses;</p><p>   4) dans des unités mises sur pied de guerre;</p><p>  5)  à bord de bâtiments de la Marine Nationale;</p><p>    6) prisonnier de guerre, pour le temps passé en captivité</p><p>- pour les services aériens ou sous-marins;</p><p>- en cas de radiation des cadres pour raison d'invalidité ou d'aptitude physique insuffisante imputable au service;</p><p>- au titre du bénéfice pour études préliminaires nécessaires au recrutement de l'intéressé."
+            },
+            {
+                id: "article84",
+                title: "Article 84 :",
+                content: "Les bonifications prévues au titre des trois premiers points de l'article 83 peuvent\n    donner lieu à demi-campagne, campagne simple ou campagne double:</p><p>    1) Donnent lieu à campagne double: les opérations déclarées campagne de guerre;</p><p> 2) Donnent lieu à campagne simple:</p><p>    \n    - les opérations de maintien de l'ordre effectuées sur le territoire national ou\n    hors de celui-ci en cas de crise;</p><p>   - les services accomplis soit dans le cadre de missions opérationnelles, soit\n    dans les zones déclarées dangereuses, soit dans les unités mises sur pied de\n    guerre;</p><p>  -  le temps passé en captivité en qualité de prisonnier de guerre;</p><p>  -  le temps passé en séjour à l'étranger pour exercer un emploi effectif en cas\n    de crise.</p><p>    </p><p>3) Donnent lieu à demi-campagne simple, les services accomplis à bord de bâtiments de la Marine Nationale en mission hors de leur port de stationnement, au\n    profit:</p><p>   - des personnels de la Marine Nationale embarqués dans des fonctions de leur\n    spécialité;</p><p>   - des personnels des autres armées embarquées en vue d'une mission de combat,\n    de maintien de l'ordre ou de participation à une opération extérieure.</p><p>    \n    Pour la campagne double, les bénéfices de campagne sont décomptés double en\n    sus de la durée effective. Pour la campagne simple, les bénéfices de campagne\n    sont décomptés en totalité en sus de la durée effective. Pour la demi-campagne,\n    les bénéfices de campagne sont décomptés pour moitié en sus de la durée\n    effective. Les temps de services sont évalués en jours."
+            },
+            {
+                id: "article85",
+                title: "Article 85 :",
+                content: "Ouvrent droit aux bonifications prévues au titre du quatrième point de l'article 83, les services aériens, sous-marins, subaquatiques exécutés dans les conditions suivantes:</p><p>    \n 1)   les services aériens commandés et exécutés en dehors des opérations de guerre dans les conditions suivantes:</p><p>   - services accomplis à bord d'aéronefs dans l'exercice des fonctions de leur\n    spécialité militaire pour les personnels navigants des Armées;</p><p>  -  vols à bord d'aéronefs suivis d'une descente en parachutes et les descentes\n    elles-mêmes, les vols en planeur, les lancements par catapulte ou par fusée\n    d'appoint et les accrochages sur plate-forme mobile;</p><p>  -  services accomplis à bord d'aéronefs dans l'exercice des fonctions de leur\n    spécialité par des personnels techniques militaires à l'occasion d'essai, de mise au\n    point, de mise en œuvre de matériel, d'équipements et dispositifs ressortissant de\n    leur spécialité;</p><p>  -  les services accomplis sur les aéronefs opérationnels et sur les matériels\n    de servitudes techniques dans l'exercice des fonctions de leur spécialité\n    militaire à l'occasion de leur entretien et de leur mise en œuvre par les personnels\n    techniques militaires;</p><p>  -  vols effectués par des personnels embarqués au-dessus des zones\n    opérationnelles en vue de l'exécution d'une mission de combat en liaison avec des\n    formations engagées;</p><p>  - vols effectués à bord d'aéronefs au cours d'une mission de secours;</p><p> -   vols effectués à bord d'aéronefs suivis d'une descente en rappel ou par le\n    treuillage et les descentes elles-mêmes;</p><p>  -  vols effectués à bord d'aéronefs par les personnels militaires du Service de Santé\n    des Armées assurant une mission de convoyage de blessés ou de malades.</p><p>    \n 2)   les services sous-marins et subaquatiques exécutés en dehors des opérations\n    de guerre dans les conditions suivantes:</p><p>  -  services exécutés à bord de sous-marins en plongée effective en vertu\n    d'ordres émanant d'autorités qualifiées, soit au cours des essais techniques pour\n    les sous-marins en armement pour essais, soit en navigation ou exercices pour les\n    sous-marins armés;</p><p> -   plongées accomplies sur ordre du Commandant d'Unité ou de Formation on\n    du Chef de Service par les personnels brevetés plongeurs, démineurs ou titulaires\n    d'un des certificats de nageur de combat, de plongeur ou de scaphandrier."
+            },
+            {
+                id: "article86",
+                title: "Article 86 :",
+                content: "Pour le calcul de la bonification, les services aériens, sous-marins ou\n    subaquatiques effectivement accomplis dans les conditions définies ci-dessus,\n    sont évalués d'après leur durée réelle en heures ou fractions d'heures."
+            },
+            {
+                id: "article87",
+                title: "Article 87 :",
+                content: "Aux fins de permettre le décompte des périodes de service ouvrant droit à\n    bonifications, il appartient aux services compétents de constater les droits et de\n    les inscrire au dossier de l'intéressé."
+            },
+            {
+                id: "article88",
+                title: "Article 88 :",
+                content: "La bonification prévue au titre du cinquième point de l'article 83, est fixée par\n    décret."
+            },
+            {
+                id: "article89",
+                title: "Article 89 :",
+                content: "Conformément à la disposition prévue au sixième point de l'article 83, au titre du\n    bénéfice pour études préliminaires, il est alloué aux militaires recrutés parmi les\n    étudiants civils issus des écoles militaires de formation initiale des Officiers,\n    une bonification d'un certain nombre d'années, fixé par décret, sans préjudice des\n    dispositions de l'article 74 de la présente ordonnance."
+            }
+            ]
+        },
+        {
+            title: "CHAPITRE III : La liguidation de la pension de retraite ou de la solde de réforme",
+            articles: []
+        },
+        {
+            title: "Section 1: Le décompte des annuités liquidables",
+            articles: [
+            {
+                id: "article90",
+                title: "Article 90 :",
+                content: "La liquidation des pensions de retraite et des soldes de réforme est effectuée\n    sous forme d'annuités liquidables calculées sur la base des services\n    constitutifs du droit et des bonifications éventuelles.</p><p>    Lors de la liquidation, les annuités liquidables augmentées des bonifications\n    sont prises en compte pour leur durée effective, dans la limite toutefois d'un\n    maximum d'annuités liquidables, fixé par décret.</p><p>    Dans le décompte final des annuités liquidables, la valeur de la fraction de\n    semestre est fixée par décret."
+            }
+            ]
+        },
+        {
+            title: "Section 2: La solde de base",
+            articles: [
+            {
+                id: "article91",
+                title: "Article 91 :",
+                content: "La pension de retraite ainsi que la solde de réforme sont basées sur la solde\n    budgétaire moyenne d'un certain nombre d'années de services, fixé par\n    décret, afférente aux grades et échelons effectivement détenus par le militaire\n    durant la période de référence.</p><p>    Toutefois, lorsque le grade ou l'échelon est acquis à titre posthume, c'est la solde\n    budgétaire y afférente qui est retenue pour le calcul de la pension de retraite ou de\n    la solde de réforme."
+            }
+            ]
+        },
+        {
+            title: "Section 3 : Le calcul et la liquidation de la pension de retraite ou de la solde de réforme",
+            articles: [
+            {
+                id: "article92",
+                title: "Article 92 :",
+                content: "La pension de retraite est fixée, par annuités liquidables, à un pourcentage, fixé\n    par décret, de la solde de base.</p><p>    La rémunération de l'ensemble des annuités liquidées, conformément aux\n    dispositions de l'alinéa précédent, ne peut être inférieure à un montant minimum,\n    fixé tous les deux (2) ans, par arrêté du Ministre en charge des Affaires Sociales,\n    après avis motivé du Conseil d'Administration de la CGRAE.</p><p>    Toutefois, ce montant minimum ne peut, en aucun cas, être inférieur à uu\n    pourcentage, fixé par décret, du salaire minimum interprofessionnel garanti."
+            },
+            {
+                id: "article93",
+                title: "Article 93 :",
+                content: "Le montant de la solde de réforme est fixé à un certain pourcentage de la solde\n    de base. Toutefois, lorsque le départ à la vie civile du militaire résulte d'une\n    révocation, ce montant est ramené à un pourcentage inférieur à celui\n    précédemment défini. Ces deux pourcentages sont fixés par décret."
+            }
+            ]
+        },
+        {
+            title: "CHAPITRE IV : La jouissance de la pension de retraite ou de la solde de réforme",
+            articles: [
+            {
+                id: "article94",
+                title: "Article 94 :",
+                content: "La jouissance de la pension de retraite concédée au militaire pour mise à la\n    retraite d'office ou de la solde de réforme est immédiate; elle intervient\n    dès la cessation de service de l'intéressé.</p><p>    Lorsque la mise à la retraite a lieu suite à une demande agréée du militaire, la\n    jouissance de la pension de retraite est différée jusqu'à ce qu'il atteigne la limite\n    d'âge statutaire applicable à son grade; toutefois, le militaire a la possibilité de\n    pouvoir en jouir, de manière anticipée, un certain nombre d'années plus tôt, fixé par\n    décret, mais en supportant un pourcentage d'abattement par année d'anticipation,\n    déterminé par décret.</p><p>    Cependant, le militaire bénéficiaire d'une pension concédée après une mise à la\n    retraite sur demande agréée, a droit à en jouir immédiatement s'il est atteint d'une\n    infirmité reconnue incurable."
+            },
+            {
+                id: "article95",
+                title: "Article 95 :",
+                content: "La solde de réforme est servie pendant un temps égal à la durée des services\n    effectués, éventuellement bonifiés."
+            },
+            {
+                id: "article96",
+                title: "Article 96 :",
+                content: "Le militaire bénéficiaire d'une solde de réforme peut en demander la conversion en\n    une somme en capital.</p><p>    Dans ce cas, le versement au bénéficiaire peut être effectué en une seule fois ou,\n    le cas échéant, en deux fractions égales. Le versement effectué au titre de la\n    liquidation des droits de l'intéressé dégage alors l'Etat de tout autre paiement\n    ultérieur.</p><p>    La demande de conversion doit être faite par le bénéficiaire et parvenir au Ministre.</p><p>    en charge de la Défense dans les trois mois suivant la mise à la réforme, faute de\n    quoi l'intéressé est présumé avoir définitivement renoncé à cette option."
+            },
+            {
+                id: "article97",
+                title: "Article 97 :",
+                content: "En cas de décès du bénéficiaire, les droits sont intégralement transférés aux\n    ayants droit. Ceux-ci bénéficient de la solde de réforme jusqu'à l'expiration du\n    temps pendant lequel le militaire aurait continué à la percevoir ou, le cas échéant,\n    de la fraction non perçue par celui-ci."
+            }
+            ]
+        },
+        {
+            title: "TITRE II : LA PENSION D'INVALIDITE",
+            articles: [
+            {
+                id: "article98",
+                title: "Article 98 :",
+                content: "La pension d'invalidité est une allocation pécuniaire personnelle, non réversible,\n    attribuée à titre temporaire ou définitif au militaire devenu invalide par suite de blessures ou maladie du fait ou à l'occasion du service.</p><p>    La pension d'invalidité est également attribuée au militaire dont l'invalidité étrangère\n    au service a été aggravée du fait ou à l'occasion de celui-ci.</p><p>    Les dépenses relatives à la couverture accordée en cas d'invalidité incombent en\n    totalité à l'Etat; la Caisse Générale de Retraite des Agents de l'Etat en assure le\n    paiement."
+            }
+            ]
+        },
+        {
+            title: "CHAPITRE II : Dispositions générales",
+            articles: []
+        },
+        {
+            title: "Section 1: L'acquisition du droit",
+            articles: [
+            {
+                id: "article99",
+                title: "Article 99 :",
+                content: "Le droit à pension d'invalidité est acquis après avis de la Commission de Réforme,\n    en conformité des dispositions de l'article 109 de la loi n°95-695 du 7 septembre\n    1995 portant code de la fonction militaire.</p><p>    La pension d'invalidité est temporaire lorsque le militaire est atteint d'une invalidité\n    temporaire. Elle est concédée pour une année et est renouvelable suivant l'avis de\n    la Commission de Réforme.</p><p>    La pension d'invalidité est définitive lorsque le militaire est atteint d'une invalidité\n    reconnue définitive. Elle devient alors viagère."
+            },
+            {
+                id: "article100",
+                title: "Article 100 :",
+                content: "En cas de pluralité d'infirmités dont l'une ouvre droit à pension d'invalidité\n    temporaire, le militaire a droit à cette pension pour l'ensemble de ses infirmités."
+            },
+            {
+                id: "article101",
+                title: "Article 101 :",
+                content: "La pension d'invalidité est acquise au militaire à compter de la date :</p><p>    </p><p>- de son accident, lorsque l'invalidité résulte de celui-ci;</p><p>- de sa première présentation devant la Commission de Réforme, lorsque l'invalidité résulte d'une maladie."
+            }
+            ]
+        },
+        {
+            title: "Section 2: Les éléments constitutifs du droit",
+            articles: [
+            {
+                id: "article102",
+                title: "Article 102 :",
+                content: "Le taux des pensions d'invalidité est fixé d'après le degré d'invalidité.</p><p>  Ne sont prises en considération que les infirmités entraînant un degré d'invalidité au\n    moins égal:</p><p>- à un certain pourcentage, fixé par décret, en cas d'infirmité simple;</p><p>- à un autre pourcentage, fixé par décret, en cas d'infirmités multiples.</p><p>    En cas d'aggravation, par le fait ou à l'occasion du service, d'une infirmité\n    étrangère à celui-ci, seul le taux correspondant à cette aggravation est pris en\n    considération."
+            },
+            {
+                id: "article103",
+                title: "Article 103 :",
+                content: "Même s'il s'agit d'une infirmité éventuellement curable à plus longue échéance, la\n    pension temporaire est transformée en rente viagère définitive ou supprimée, dans\n    un délai :</p><p>    1) d'un certain nombre d'années, fixé par décret, dans le cas où la ou les infirmités résultent uniquement de blessures;</p><p> 2) d'un certain nombre d'années, déterminé par décret, dans le cas où la ou les infirmités résultent de maladie.</p><p>    \n    A l'expiration de ces délais, doit nécessairement intervenir une constatation\n    médicale de la persistance de l'invalidité. La pension définitive sera établie par la\n    Commission de Réforme et aura effet à compter de l'expiration du délai légal."
+            }
+            ]
+        },
+        {
+            title: "Section 3: Révisions des pensions d'invalidité",
+            articles: [
+            {
+                id: "article104",
+                title: "Article 104 :",
+                content: "Les pensions définitives peuvent être révisées :</p><p>  -  lorsqu'une erreur matérielle d'instruction du dossier ou de liquidation a été\n    commise;</p><p>  -  sur demande du pensionné, pour aggravation, sans limitation de délai."
+            }
+            ]
+        },
+        {
+            title: "Section 4: La notion de service",
+            articles: [
+            {
+                id: "article105",
+                title: "Article 105 :",
+                content: "Pour que l'aggravation soit prise en considération, il faut que le supplément\n    d'invalidité soit exclusivement imputable aux blessures ou aux maladies constatant\n    les infirmités pour lesquelles la pension a été accordée.</p><p>    il faut, en outre, que le degré d'invalidité soit reconnu supérieur d'un certain\n    pourcentage au moins, fixé par décret, à celui retenu antérieurement.</p><p>    En cas d'infirmités multiples, il faut qu'une des infirmités se soit accrue d'un\n    pourcentage, déterminé par décret, même si le nouveau taux de la pension a subi\n    une augmentation moindre."
+            },
+            {
+                id: "article106",
+                title: "Article 106 :",
+                content: "Aux fins de constater l'aggravation, le bénéficiaire de l'allocation d'invalidité\n    définitive est tenu de se présenter devant la Commission de Réforme.</p><p>    En cas de révision du taux d'invalidité, celle-ci ne prend effet qu'à compter du jour\n    où a été constatée, par la Commission de Réforme, l'aggravation de l'invalidité."
+            },
+            {
+                id: "article107",
+                title: "Article 107 :",
+                content: "Le service, s'il comporte une part de travail normal accompli dans le cadre d'un\n    programme déterminé et d'horaires réguliers, s'étend, sans restriction de temps\n    ou de lieu, aux activités liées à la permanence de l'action, aux missions et aux\n    obligations de présence que l'autorité militaire est appelée à prescrire pour\n    l'accomplissement de la mission."
+            }
+            ]
+        },
+        {
+            title: "Section 5: Imputabilité au service",
+            articles: [
+            {
+                id: "article108",
+                title: "Article 108 :",
+                content: "Est considéré comme un accident de service, l'accident survenu :</p><p> -  par le fait ou à l'occasion du service. L'accident est dit « par le fait du service »\n    lorsque le service est la cause qui a entraîné l'événement: ainsi, la blessure\n    reçue du coup de feu qui part du fusil d'un militaire pendant un exercice ;</p><p>  -  l'accident est dit « à l'occasion du service » lorsque le service est l'occasion qui a\n    rendu l'événement possible: ainsi, le militaire blessé, dans le camp, à l'occasion\n    d'une rixe ou par suite de l'imprudence d'un camarade;</p><p> -   pendant le trajet de la résidence au lieu de travail et vice-versa, dans la mesure\n    où le parcours n'a pas été interrompu ou détourné pour un motif dicté par l'intérêt\n    personnel ou indépendant du service;</p><p>  -  pendant les déplacements pour raison de service.</p><p>    Les jeunes gens et jeunes filles recensés au titre du Service National et qui répondent\n    à une convocation ou à un ordre de l'autorité militaire, ou qui participent à des activités\n    de préparation militaire, ou de réserviste à titre bénévole sont considérés comme étant en\n    service.</p><p>    \n    Le militaire qui, en dehors du service, est requis par une autorité judiciaire,\n    administrative ou militaire qualifiée est de même considéré en service."
+            },
+            {
+                id: "article109",
+                title: "Article 109 :",
+                content: "Sont rattachées au service, les infirmités des militaires résultant:</p><p>  - d'événements survenus, quel qu'en soit le lieu, pendant une activité culturelle,\n    sportive ou de détente organisée par l'autorité militaire;</p><p>  -  d'événements survenus en dehors du service dans un lieu de séjour militaire\n    sous la réserve que les victimes aient été placées sous la surveillance effective de\n    l'autorité militaire;</p><p> -   d'un acte de dévouement accompli dans un intérêt public;</p><p>  -  de violences ou d'attentats subis en raison de leur qualité de militaire."
+            },
+            {
+                id: "article110",
+                title: "Article 110 :",
+                content: "Sont détachables du service, pour l'application des dispositions précédentes,\n    les accidents résultant :</p><p>    • d'événements survenus sur le trajet séparant deux lieux de permission ou de\n    congé non déclarés;</p><p>    • d'événements survenus à l'occasion d'opérations militaires et trouvant leur\n    origine dans le manquement à la discipline, dans une infraction aux règlements\n    ou aux consignes ou dans une faute personnelle détachable du service;</p><p>    d'événements survenus à un militaire en état d'insoumission, de désertion,\n    d'insubordination ou en absence irrégulière."
+            }
+            ]
+        },
+        {
+            title: "Section 6: La présomption d'imputabilité",
+            articles: [
+            {
+                id: "article111",
+                title: "Article 111 :",
+                content: "Lorsqu'il n'est pas possible d'administrer ni la preuve que l'invalidité ou que\n    l'aggravation résulte des blessures ou de maladies du fait ou à l'occasion du\n    service ni la preuve contraire, la présomption d'imputabilité bénéficie au militaire à\n    condition, hormis le cas de force majeure:</p><p>  -  qu'elle ait été constatée après le renvoi du militaire à la vie civile, s'il s'agit d'une\n    blessure;</p><p>   -  qu'elle ait été constatée après le quatre-vingt dixième jour de service et avant\n    le trentième jour suivant le renvoi du militaire à la vie civile, s'il s'agit d'une\n    maladie;</p><p>    - que soit établi, médicalement, le lien entre la blessure ou la maladie ayant fait\n    l'objet de la constatation de l'invalidité invoquée."
+            },
+            {
+                id: "article112",
+                title: "Article 112 :",
+                content: "En cas d'interruption du service pendant une durée supérieure à quatre-vingtdix jours, la présomption ne joue qu'après le quatre-vingt-dixième jour suivant\n    la reprise du service actif."
+            },
+            {
+                id: "article113",
+                title: "Article 113 :",
+                content: "La présomption visée à l'article 99 s'applique exclusivement aux constatations\n    faites soit au cours d'opérations déclarées campagne de guerre, d'opérations de\n    protection civile ou de maintien de l'ordre, soit pour les appelés, pendant la\n    durée des obligations du Service National, compte tenu des délais prévus audit article.</p><p>    Toutefois, la présomption bénéficie aux militaires prisonniers de guerre, internés ou\n    déportés, à la condition que leurs blessures ou maladies aient été régulièrement et\n    médicalement constatées dans les cent quatre-vingt jours suivant la libération des\n    intéressés."
+            },
+            {
+                id: "article114",
+                title: "Article 114 :",
+                content: "La preuve de l'origine ou de l'aggravation de l'invalidité s'administre par tous\n    moyens, notamment par des documents officiels ou par écrits, certificats,\n    attestations, témoignages, présomptions, aveux ou serments."
+            }
+            ]
+        },
+        {
+            title: "Section 7: Invalidités imputables à un tiers",
+            articles: [
+            {
+                id: "article115",
+                title: "Article 115 :",
+                content: "Lorsque la cause de l'infirmité est imputable à un tiers, I'Etat est subrogé de plein\n    droit à la victime ou à ses ayants cause dans leur action contre le tiers\n    responsable pour le remboursement des prestations versées.</p><p>    L'appréciation de l'infirmité invoquée, son imputabilité au service, ses conséquences\n    ainsi que le taux d'invalidité qu'elle entraîne sont appréciés par la Commission de\n    Réforme."
+            }
+            ]
+        },
+        {
+            title: "CHAPITRE III : Le montant des pensions d'invalidité",
+            articles: []
+        },
+        {
+            title: "Section 1 : Le montant de base",
+            articles: [
+            {
+                id: "article116",
+                title: "Article 116 :",
+                content: "Le montant de la pension d'invalidité est fixé à la fraction du traitement brut\n    afférent à l'indice moyen du grade, lorsque l'intéressé est officier ou sous-officier,\n    et à l'indice minimum du premier grade de sous-officier, lorsque le pensionnaire\n    est militaire du rang. Cette fraction est déterminée par le taux d'invalidité."
+            }
+            ]
+        },
+        {
+            title: "Section 2: Les majorations spéciales",
+            articles: [
+            {
+                id: "article117",
+                title: "Article 117 :",
+                content: "Des majorations spéciales sont accordées aux grands mutilés de guerre, aux\n    grands mutilés et aux grands invalides tels que déterminés par les dispositions\n    pertinentes du code de la fonction militaire."
+            },
+            {
+                id: "article118",
+                title: "Article 118 :",
+                content: "Le montant de la pension d'invalidité est majoré :</p><p>  -  d'un premier pourcentage, pour le grand mutilé de guerre;</p><p>  -  d'un second pourcentage, pour le grand mutilé;</p><p>  -  d'un troisième pourcentage, pour le grand invalide.</p><p>  Ces majorations ne se cumulent pas entre elles. Les trois pourcentages sont fixés\n    par décret."
+            }
+            ]
+        },
+        {
+            title: "TITRE III : LA RENTE VIAGERE",
+            articles: [
+            {
+                id: "article119",
+                title: "Article 119 :",
+                content: "La rente viagère est une allocation pécuniaire, non cumulable avec la pension\n    de réversion, versée aux ayants cause d'un militaire décédé, soit:</p><p>  -  des suites d'un événement survenu du fait ou à l'occasion du service;</p><p> -   de l'aggravation d'une invalidité résultant d'un accident survenu du fait ou à\n    l'occasion du service;</p><p>  -  de l'aggravation d'une invalidité résultant d'une maladie contractée du fait ou à\n    l'occasion du service;</p><p>    \n    Le montant de la rente viagère est fixé à un certain pourcentage, déterminé par\n    décret, de la solde afférente à l'indice moyen du grade détenu par le militaire\n    décédé. Ce montant est réparti selon des modalités fixées par décret.</p><p>    Lorsque le militaire décédé dans les circonstances prévues au présent article était en\n    possession de droit à pension, ses ayants cause ont le bénéfice de la prestation la\n    plus avantageuse entre la rente viagère et la pension de réversion."
+            }
+            ]
+        },
+        {
+            title: "TITRE IV : DISPOSITIONS COMMUNES ET DIVERSES",
+            articles: []
+        },
+        {
+            title: "CHAPITRE I : La retenue pour pension",
+            articles: [
+            {
+                id: "article120",
+                title: "Article 120 :",
+                content: "Le militaire bénéficiaire du présent régime de pensions supporte une retenue,\n    fixée par décret, sur la solde de base soumise à retenue pour pension afférente à\n    son grade et à son échelon.</p><p>    Le budget employeur verse une contribution, fixée par décret, exprimée en\n    pourcentage de la même solde de base.</p><p>    En cas de perception d'un traitement réduit pour cause de congé, d'absence,\n    par mesure disciplinaire ou pour toute autre cause, le montant de la retenue\n    demeure le même que celui qui serait prélevé sur la solde de base normalement\n    perçue.</p><p>    Aucune pension de retraite, solde de réforme, pension d'invalidité ou rente viagère\n    ne peut être concédée si les retenues pour pension n'ont pas été effectuées.</p><p>    Ces dispositions ne s'appliquent pas aux appelés du Service National."
+            },
+            {
+                id: "article121",
+                title: "Article 121 :",
+                content: "Concernant les remboursements de retenues pour pension :</p><p>  1)  Les retenues qui ont été légalement prélevées peuvent être remboursées,\n    lorsque le militaire vient à quitter le service pour quelque cause que ce soit, sans\n    avoir obtenu droit à une pension.</p><p>    Le remboursement intervient à la demande du bénéficiaire, auprès des services\n    compétents du Ministre en charge de la Défense.</p><p>    Le remboursement se fait sans intérêt, au bénéficiaire ou, le cas échéant, à ses\n    ayants cause.</p><p>  2)  Une retenue pour pension irrégulièrement prélevée n'ouvre aucun droit à pension de retraite mais est remboursée, sans intérêt, à la demande du bénéficiaire."
+            },
+            {
+                id: "article122",
+                title: "Article 122 :",
+                content: "Le militaire réformé, qui a accompli le temps de service minimum prévu à l'article\n    78 permettant de bénéficier d'une solde de réforme, doit choisir entre le\n    remboursement des retenues pour pension et le bénéfice de la solde de réforme."
+            }
+            ]
+        },
+        {
+            title: "CHAPITRE II : La concession et la révision",
+            articles: [
+            {
+                id: "article123",
+                title: "Article 123 :",
+                content: "La concession est l'acte juridique attribuant au militaire une pension de retraite,\n    une solde de réforme, une pension d'invalidité ou une rente viagère."
+            },
+            {
+                id: "article124",
+                title: "Article 124 :",
+                content: "La demande de pension militaire ou de rente viagère d'invalidité est adressée\n    sans condition de délai au Ministre en charge de la Défense.</p><p>    Toutefois, si la demande intervient au-delà d'un délai, fixé par décret, à compter du\n    jour où l'intéressé a été admis à faire valoir ses droits à la retraite ou radié des\n    cadres et, pour les ayants cause, à compter du jour du décès du militaire, il ne peut\n    y avoir lieu au rappel de plus d'un certain nombre d'années, fixé par décret,\n    d'arrérages antérieures à la date de dépôt de la demande.</p><p>    Lorsque la demande intervient dans le délai mentionné à l'alinéa précédent on\n    lorsque la production tardive de celle-ci est imputable à l'Administration quel que soit\n    le délai, l'ensemble des arrérages est dû.</p><p>    125 :La liquidation de la pension ou de la rente viagère d'invalidité incombe à la\n    Caisse Générale de Retraite des Agents de l'Etat. La concession est effectuée par\n    décision du Directeur Général de la Caisse Générale de Retraite des Agents de\n    l'Etat. Cette décision est notifiée à l'intéressé en même temps que le décompte\n    détaillé de la liquidation."
+            },
+            {
+                id: "article126",
+                title: "Article 126 :",
+                content: "La pension de retraite, la solde de réforme, la pension d'invalidité et la rente\n    viagère peuvent à tout moment:</p><p>    1) être révisées dans l'un des cas suivants:</p><p>  -  A l'initiative de l'Administration ou sur demande de l'intéressé:</p><p>  -   lorsque l'énoncé des actes ou des documents au vu desquels l'acte de concession a été pris, est reconnu erroné à l'un ou à l'autre titre.</p><p>    \n -    lorsque l'énoncé des actes ou des documents au vu desquels l'acte de\n    concession a été pris, est reconnu erroné à l'un ou à l'autre titre.</p><p>    \n    lorsque l'énoncé des actes ou des documents au vu desquels l'acte de concession a été pris, est reconnu erroné à l'un ou à l'autre titre.</p><p>    \n -  D'office, lorsqu'il y a une augmentation générale des salaires des fonctionnaires\n    et agents de l'Etat.</p><p>    2) être supprimées lorsque les prestations ont été accordées à la suite de fraude,\n    de substitution de personne, de simulation d'affection ou d'erreurs médicales;</p><p> 3) être révisées ou supprimées lorsqu'il y a erreur de droit."
+            },
+            {
+                id: "article127",
+                title: "Article 127 :",
+                content: "La révision ou la suppression est décidée dans les mêmes formes que la\n    concession initiale.</p><p>    Toutefois, lorsque la révision a lieu à la suite d'une augmentation générale des salaires des fonctionnaires et agents de l'Etat, un acte de portée générale du Directeur Général de la Caisse Générale de Retraite des Agents de l'Etat sera suffisant."
+            },
+            {
+                id: "article128",
+                title: "Article 128 :",
+                content: "Les sommes perçues indûment doivent être intégralement restituées, sans préjudice des recours judiciaires qui pourraient être ouverts à la Caisse Générale de Retraite des Agents de l'Etat."
+            },
+            {
+                id: "article129",
+                title: "Article 129 :",
+                content: "Les militaires qui ont été mis à la retraite parce qu'ils ont atteint la limite d'âge et qui occupent un nouvel emploi, ne peuvent acquérir de nouveaux droits à pension.</p><p>    Les militaires dont la mise à la retraite n'a pas été prononcée pour limite d'âge, ont la possibilité, lorsqu'ils sont nommés à un nouvel emploi de l'Etat, de renoncer à cumuler leur pension avec leur traitement d'activité en vue d'acquérir de nouveaux droits à pension au titre dudit emploi.</p><p>    La renonciation doit être expresse et formulée dans les trois (3) mois de la notification aux intéressés de leur remise en activité. A défaut de renonciation ainsi exprimée, la faculté de cumul emporte affranchissement des retenues."
+            },
+            {
+                id: "article130",
+                title: "Article 130 :",
+                content: "Les recours en matière de pensions ou de rentes viagères d'invalidité sont soumis aux règles de procédure applicables aux recours contre les actes administratifs."
+            },
+            {
+                id: "article131",
+                title: "Article 131 :",
+                content: "La pension de retraite et la pension d'invalidité sont payées mensuellement et à terme échu.</p><p>    Il en est de même pour la solde de réforme, lorsque le bénéficiaire de la solde de réforme n'a pas opté pour la transformation en une somme en capital. En attendant la liquidation définitive de la pension de retraite, des avances peuvent être payées aux militaires retraités ou à leurs ayants cause."
+            }
+            ]
+        },
+        {
+            title: "CHAPITRE III : La suspension des droits",
+            articles: [
+            {
+                id: "article132",
+                title: "Article 132 :",
+                content: "Le droit à pension de retraite, à solde de réforme ou à pension d'invalidité est suspendu dans les cas suivants :</p><p>    \n    Condamnation à une peine criminelle pendant la durée de celle-ci;</p><p>    Circonstances qui font perdre la qualité de citoyen ivoirien durant la privation de cette qualité;</p><p>    Agissements malhonnêtes à caractère financier ou comptable, ayant entraîné:</p><p>    la révocation pour le militaire en activité ou la résiliation du contrat lorsque le militaire (i) a été convaincu de malversations dans le cadre du service (ii) a négocié à prix d'argent ou à des conditions équivalant à une rémunération en argent, des services publics gratuits, ou a accordé à des particuliers au préjudice de l'Etat, des avantages indus, ou a été complice d'un tel acte.</p><p>    une condamnation, pour le militaire à la retraite;</p><p>- la déchéance, partielle ou totale, de l'autorité parentale.</p><p>"
+            },
+                        {
+                id: "article133",
+                title: "Article 133 :",
+                content: "Dans le cas où la découverte du détournement, des malversations ou du trafic\n    d'influence n'a lieu qu'après la cessation d'activité, les mêmes dispositions sont\n    applicables au militaire retraité lorsque les agissements qui lui sont reprochés\n    auraient été de nature à motiver son exclusion définitive des cadres, alors même\n    que sa pension lui aurait été déjà concédée."
+            },
+            {
+                id: "article134",
+                title: "Article sans titre",
+                content: "La suspension de la pension n'est que partielle si le titulaire de la pension a des orphelins mineurs à charge. Dans ce cas, les enfants perçoivent, pendant la durée de la suspension, une pension égale à un certain pourcentage, fixé par décret, de la pension de retraite ou de la solde de réforme dont bénéficiait le militaire.</p><p>Les frais de justice résultant de la condamnation ne peuvent être prélevés sur portion de la pension réservée aux enfants.</p>"
+            }
+            ]
+        },
+        {
+            title: "CHAPITRE IV",
+            articles: [
+            {
+                id: "article135",
+                title: "Article 135 :",
+                content: "La pension de retraite, la solde de réforme, la pension d'invalidité et la rente\n    viagère sont incessibles et insaisissables, sauf cas de débet envers l'Etat,\n    les collectivités publiques ou en cas de créances alimentaires ou privilégiées."
+            },
+            {
+                id: "article136",
+                title: "Article 136 :",
+                content: "Les débets envers les personnes morales visées à l'article ci-dessus rendent les\n    pensions militaires passibles de retenues jusqu'à concurrence d'un cinquième de\n    leur montant.</p><p>    En ce qui concerne les autres créances, alimentaires et privilégiées, les retenues\n    ne peuvent s'exercer qu'à concurrence du tiers du montant de la pension.</p><p>    Les retenues du tiers et du cinquième définies ci-avant peuvent s'exercer en même\n    temps.</p><p>    En cas de débets simultanés envers l'Etat et les autres collectivités publiques, les\n    retenues sont effectuées, en premier lieu, au profit de l'Etat."
+            }
+            ]
+        },
+        {
+            title: "CHAPITRE V : Les cumuls",
+            articles: []
+        },
+        {
+            title: "Section 1: Cumul de pensions et de rémunérations",
+            articles: [
+            {
+                id: "article137",
+                title: "Article 137 :",
+                content: "Le militaire rendu à la vie civile avec le bénéfice de la pension de retraite, de la\n    solde de réforme ou de la pension d'invalidité peut cumuler intégralement le\n    montant de sa pension avec une rémunération résultant d'une activité exercée\n    dans le secteur privé ou une activité indépendante lucrative."
+            },
+            {
+                id: "article138",
+                title: "Article 138 :",
+                content: "Lorsque le militaire a été mis à la retraite sans avoir atteint la limite d'âge de son\n    grade, il peut cumuler sa pension avec une rémunération résultant d'un emploi\n    public.</p><p>    Il a cependant la possibilité de renoncer à la faculté de cumuler sa pension aveс\n    son traitement d'activité en vue d'acquérir, au titre dudit emploi, de nouveaux droits\n    à pension, lui permettant d'obtenir, en fin de carrière, une pension unique\n    rémunérant la totalité de la carrière. La renonciation doit être formulée, par\n    écrit, dans le délai maximum de trois mois suivant la date de prise de service dans\n    son nouvel emploi public. Elle est irrévocable.</p><p>    Si la pension attribuée en fin de carrière est inférieure à la pension militaire\n    antérieurement acquise, cette dernière est définitivement rétablie.</p><p>    Les militaires retraités qui n'exercent pas la faculté de renonciation ci-dessus,\n    acquièrent des droits à pension civile au titre de leur nouvel emploi."
+            },
+            {
+                id: "article139",
+                title: "Article 139 :",
+                content: "Les militaires qui ont été mis à la retraite parce qu'ils ont atteint la limite d'âge et\n    qui occupent un nouvel emploi ne peuvent acquérir de nouveaux droits à pension au"
+            },
+            {
+                id: "article140",
+                title: "Article 140 :",
+                content: "Le militaire titulaire d'une pension de retraite, d'une solde de réforme ou d'une\n    pension d'invalidité peut cumuler celle-ci avec sa solde en cas de rappel en activité."
+            },
+            {
+                id: "article141",
+                title: "Article 141 :",
+                content: "La pension de retraite ou la solde de réforme est cumulable avec la pension\n    d'invalidité et toute autre allocation."
+            },
+            {
+                id: "article142",
+                title: "Article 142 :",
+                content: "La pension d'invalidité est cumulable avec la solde. Toutefois, le montant de\n    ladite pension ne peut excéder un certain pourcentage, fixé par décret, de la\n    solde afférente au grade et à l'échelon détenus par le militaire, lorsqu'il se trouve\n    en position d'activité ou de non- activité.</p><p>    Cette limitation est cependant sans effet lorsque le bénéficiaire se trouve en\n    situation de retrait d'emploi ou lorsque l'invalidité est imputable à un acte de\n    bravoure ou à un acte de dévouement dans un intérêt public.</p><p>    Le pensionné rendu à la vie civile recouvre la totalité de la pension non perçue\n    au titre des dispositions du premier alinéa du présent article."
+            }
+            ]
+        },
+        {
+            title: "Section 2: Cumul de pensions.",
+            articles: [
+            {
+                id: "article143",
+                title: "Article 143 :",
+                content: "Le cumul de deux ou plusieurs pensions basées sur la durée des services n'est.</p><p>    permis que lorsque lesdites pensions sont fondées sur des services effectués\n    dans des emplois successifs, l'acquisition de droits dans deux emplois\n    concomitants étant interdite.</p><p>    En aucun cas, le temps décompté pour le calcul d'une pension ne peut\n    intervenir dans la liquidation d'une autre pension.</p><p>    Dans le cas de prohibition de cumul de pensions, l'intéressé conserve le droit de\n    désigner la pension dont il entend conserver le bénéfice."
+            }
+            ]
+        },
+        {
+            title: "TITRE V : LA REVERSION DES DROITS AUX AYANTS CAUSE",
+            articles: [
+            {
+                id: "article144",
+                title: "Article 144 :",
+                content: "La réversion, à ses ayants cause, des droits à pension acquis par le militaire,\n    intervient soit en cas de décès du militaire, soit en cas de disparition."
+            }
+            ]
+        },
+        {
+            title: "CHAPITRE I : Droits à pension des ayants cause du militaire décédé",
+            articles: [
+            {
+                id: "article145",
+                title: "Article 145 :",
+                content: "A son décès, les droits à pension acquis par le militaire sont transférés à ses\n    ayants cause, à savoir: le conjoint survivant et les orphelins mineurs."
+            }
+            ]
+        },
+        {
+            title: "Section 1: Les droits du conjoint survivant",
+            articles: [
+            {
+                id: "article146",
+                title: "Article 146 :",
+                content: "Le conjoint survivant d'un militaire décédé a droit à la réversion d'un certain\n    pourcentage, fixé par décret, de la pension de retraite ou de la solde de réforme,\n    selon des modalités déterminées par décret."
+            },
+            {
+                id: "article147",
+                title: "Article 147 :",
+                content: "Les droits à réversion passent aux orphelins mineurs du militaire lorsque le conjoint\n    survivant est déchu de ses droits parentaux ou est déclaré incapable."
+            },
+            {
+                id: "article148",
+                title: "Article 148 :",
+                content: "Le conjoint survivant peut, à sa demande, recouvrer ses droits à réversion à la\n    condition que cesse la situation qui a entraîné la suspension des droits. Le\n    recouvrement est prononcé par décision judiciaire."
+            },
+            {
+                id: "article149",
+                title: "Article 149 :",
+                content: "La jouissance de la pension du conjoint survivant commence dès lors que celui-ci\n    atteint l'âge auquel le militaire, s'il avait été en vie, en aurait eu le bénéfice, avec la\n    possibilité d'en jouir, de manière anticipée, un certain nombre d'années plus tôt,\n    fixé par décret, en supportant un abattement, déterminé par décret, par année\n    d'anticipation.</p><p>    Toutefois, le bénéfice de la pension de conjoint survivant est immédiat, dès lors que\n    celui-ci a un enfant mineur à charge, le paiement de celle-ci s'interrompant à\n    majorité de l'enfant ou lorsque celui-ci cesse d'être à charge pour reprendre à la date\n    fixée à l'alinéa précédent.</p><p>    La pension de conjoint survivant s'éteint en cas de remariage ou de décès du\n    bénéficiaire.</p><p>    150: Lorsque, au décès du militaire, une instance en divorce était pendante devant\n    les instances judiciaires et que cette demande avait été introduite par le conjoint\n    survivant, celui-ci perd ses droits à réversion, sauf si une requête en annulation\n    d'instance avait été introduite par le conjoint survivant avant le décès du militaire."
+            }
+            ]
+        },
+        {
+            title: "Section 2: Les droits des orphelins",
+            articles: [
+            {
+                id: "article151",
+                title: "Article 151 :",
+                content: "Tous les enfants orphelins mineurs dont la filiation est légalement établie à l'égard\n    du militaire décédé, ont droit à la réversion d'un certain pourcentage, fixé par\n    décret, de la pension de retraite, de la solde de réforme, de la pension d'invalidité\n    ou de la rente viagère."
+            },
+            {
+                id: "article152",
+                title: "Article 152 :",
+                content: "Sont assimilés aux enfants mineurs, les enfants majeurs qui, jusqu'au jour du\n    décès du militaire, se trouvent à sa charge par suite d'une infirmité\n    permanente les mettant dans l'impossibilité de subvenir à leurs besoins.</p><p>    La preuve de l'infirmité à laquelle il est fait référence à l'alinéa précédent est faite par\n    un certificat médical délivré par un médecin spécialisé dans l'affection dont souffre\n    l'enfant."
+            },
+            {
+                id: "article153",
+                title: "Article 153 :",
+                content: "La réversion aux enfants mineurs et assimilés prend fin:</p><p>- pour les orphelins non infirmes, à leur majorité ou à leur décès si celui-ci survient\n    avant leur majorité ;</p><p>- pour les orphelins souffrant d'une infirmité, lorsqu'ils décèdent ou lorsque\n    cesse l'infirmité.</p><p>    Dans le cas particulier de la solde de réforme, la réversion cesse en tout état\n    cause au moment de l'extinction du droit."
+            },
+            {
+                id: "article154",
+                title: "Article 154 :",
+                content: "Aucune condition d'antériorité de la naissance par rapport à la radiation des\n    cadres de leur auteur n'est exigée des orphelins légitimes ou naturels dont la\n    filiation est légalement établie.</p><p>    Aucune condition d'antériorité de l'adoption par rapport à la radiation des cadres\n    de l'adoptant n'est exigée des orphelins adoptifs.</p><p>    La filiation des enfants nés de la veuve postérieurement au décès du\n    militaire s'établit conformément aux dispositions du code civil en matière de\n    paternité et de filiation."
+            },
+            {
+                id: "article155",
+                title: "Article 155 :",
+                content: "La pension de réversion des orphelins mineurs est versée soit au conjoint\n    survivant, soit au tuteur légal\n    ."
+            }
+            ]
+        },
+        {
+            title: "CHAPITRE II : Droits à pension des ayants cause du militaire porté disparu",
+            articles: [
+            {
+                id: "article156",
+                title: "Article 156 :",
+                content: "Lorsqu'un bénéficiaire du présent texte, titulaire d'une pension ou d'une rente\n    d'invalidité, a disparu de son domicile et que plus d'un an s'est écoulé sans qu'il\n    ait réclamé les arrérages de sa pension de retraite ou de sa pension\n    d'invalidité, ses ayants cause peuvent obtenir, à titre provisoire, la liquidation des\n    droits à pension qui leur seraient ouverts par les dispositions du présent texte.</p><p>    Une pension peut être attribuée, à titre provisoire, aux ayants cause du\n    bénéficiaire du présent texte lorsque celui-ci était en possession de droits à\n    pension au jour de sa disparition et qu'il s'est écoulé au minimum un an depuis ce\n    jour.</p><p>    La pension provisoire est convertie en pension définitive lorsque le décès est\n    officiellement établi ou que l'absence a été déclarée par jugement passé en force de\n    chose jugée.</p><p>    Lorsque le bénéficiaire réapparaît, il est rétabli dans ses droits en l'état."
+            }
+            ]
+        },
+        {
+            title: "TITRE VI : DISPOSITIONS FINALES DU LIVRE II DE LA 1ère PARTIE",
+            articles: [
+            {
+                id: "article157",
+                title: "Article 157 :",
+                content: "Le militaire qui, par fausses déclarations ou de quelque manière que ce soit,\n    aura usurpé une ou plusieurs pensions, sera déchu de ses droits à pension. II sera, en outre, poursuivi en restitution, sans préjudice des éventuelles poursuites pénales.</p><p>    2ème PARTIE : LES REGIMES SPECIAUX\n    LIVREI: REGIME DES ALLOCATIONS VIAGERES DES EXAGENTS TEMPORAIRES DES ADMINISTRATIONS\n    ET ETABLISSEMENTS PUBLICS ADMINISTRATIFS\n    DE L'ETАТ\n    CHAPITRE II : L’ALLOCATION VIAGERE\n    CHAPITRE1: DISPOSITIONS GENERALES"
+            },
+            {
+                id: "article158",
+                title: "Article 158 :",
+                content: "Ont droit au bénéfice des dispositions de ce livre I les agents non titulaires de\n    l'Etat, recrutés selon les dispositions du décret n°65-196 du 12 juin 1965,\n    fixant le régime général des agents temporaires des Administrations et\n    Etablissements Administratifs de l'Etat."
+            },
+            {
+                id: "article159",
+                title: "Article 159 :",
+                content: "Les agents visés à l'article 158 ci-dessus supportent une retenue, fixée par\n    décret, exprimée en pourcentage sur leur salaire mensuel, à l'exclusion d'indemnité\n    de toute nature.</p><p>    Le budget employeur verse une contribution, fixée par décret, exprimée en\n    pourcentage du même salaire.</p><p>    En cas de perception d'un salaire réduit pour cause de congé, d'absence, par\n    mesure disciplinaire, ou pour toute autre cause que ce soit, la retenue est perçue sur\n    le salaire entier."
+            }
+            ]
+        },
+        {
+            title: "CHAPITRE II : L’ALLOCATION VIAGERE",
+            articles: [
+            {
+                id: "article160",
+                title: "Article 160 :",
+                content: "L'allocation viagère est une prestation pécuniaire, personnelle et viagère, accordée\n    aux ex-agents temporaires en rémunération des services qu'ils ont accomplis\n    jusqu'à la cessation régulière de leurs fonctions."
+            },
+            {
+                id: "article161",
+                title: "Article 161 :",
+                content: "Le droit à allocation viagère est acquis lorsque se trouvent remplies, à la cessation\n    d'activités, les conditions d'âge et de durée de service suivantes:</p><p>  -  un âge minimum fixé par décret;</p><p>  -  un nombre minimum d'années de services effectifs, fixé par décret.</p><p>    \n    Toutefois, l'allocation viagère est acquise sans condition de durée de service ni\n    d'âge aux ex-agents temporaires licenciés pour invalidité résultant de l'exercice de\n    leurs fonctions."
+            },
+            {
+                id: "article162",
+                title: "Article 162 :",
+                content: "Les services pris en compte pour le calcul de l'allocation viagère sont ceux\n    effectués dans les Administrations et Etablissements Publics Administratifs de\n    l'Etat à partir d'un âge déterminé par décret."
+            },
+            {
+                id: "article163",
+                title: "Article 163 :",
+                content: "Le montant de l'allocation viagère est égal au produit du salaire moyen d'nn\n    certain nombre d'années de services, fixé par décret, par un taux d'annuité par\n    année de services, fixé lui aussi par décret.</p><p>    II ne peut être payé d'allocation viagère si le nombre d'années de services effectifs\n    est inférieur à un certain seuil fixé par décret.</p><p>    Le maximum des annuités liquidables est fixé par décret. Le surplus ne peut\n    donner lieu à remboursement de retenues."
+            },
+            {
+                id: "article164",
+                title: "Article 164 :",
+                content: "Pour le décompte de la durée des services, la valeur de la fraction de\n    semestre est fixée par décret."
+            },
+            {
+                id: "article165",
+                title: "Article 165 :",
+                content: "L'entrée en jouissance de l'allocation viagère ne peut être antérieure à la date de\n    la cessation effective de service de l'agent."
+            },
+            {
+                id: "article166",
+                title: "Article 166 :",
+                content: "L'ex-agent temporaire qui compte le nombre minimum d'années de services\n    effectifs prévu à l'article 161 et qui vient à arrêter ses services sans avoir atteint\n    l'âge minimum prévu au même article, pourra bénéficier d'une allocation viagère\n    dont le paiement sera différé jusqu'à ce qu'il ait atteint cette limite d'âge, avec la\n    possibilité d'en jouir, de manière anticipée, un certain nombre d'années plus tôt,\n    fixé par décret, mais en supportant un pourcentage d'abattement par année\n    d'anticipation, déterminé par décret.</p><p>    Toutefois, l'ex-agent temporaire bénéficiaire d'une telle allocation, a droit à en jouir\n    immédiatement s'il est atteint d'une infirmité reconnue incurable."
+            },
+            {
+                id: "article167",
+                title: "Article 167 :",
+                content: "L'allocation viagère est réversible sur la tête des ayants cause dans les\n    conditions fixées par la réglementation en vigueur en matière de pensions civiles."
+            },
+            {
+                id: "article168",
+                title: "Article 168 :",
+                content: "L'agent qui, au moment de la cessation définitive de ses fonctions, ne totalise pas\n    un nombre d'années de services effectifs au moins égal au seuil prévu à l'alinéa\n    2 de l'article 163, ne pourra bénéficier, quel que soit son âge, que du\n    remboursement des cotisations qu'il a effectivement versées pendant la durée de\n    ses services, s'il ne peut faire valoir les dispositions de l'article 161 ci-dessus."
+            },
+            {
+                id: "article169",
+                title: "Article 169 :",
+                content: "Tout bénéficiaire de cette ordonnance qui est exclu définitivement de son emploi:</p><p>    \n -   pour avoir été convaincu de malversations relatives à son service;</p><p>  -  pour corruption passive ou active ou complicité;</p><p>    \n    peut être déchu de ses droits à allocation viagère ou au remboursement de ses\n    cotisations personnelles.</p><p>    Dans le cas où la découverte du détournement, des malversations ou de la\n    corruption n'a lieu qu'après la cessation d'activité, la même disposition est\n    applicable à l'agent, lorsque les agissements qui lui sont reprochés auraient été\n    de nature à motiver son exclusion définitive de l'emploi, alors que son allocation\n    viagère aurait été déjà concédée.</p><p>    La déchéance, édictée au présent article et sur laquelle l'organisme disciplinaire\n    compétent est toujours expressément appelé à donner son avis, est prononcée par\n    décision du premier responsable de l'organisme employeur."
+            },
+            {
+                id: "article170",
+                title: "Article 170 :",
+                content: "Les ex-agents temporaires, encore en service à la date d'entrée en vigueur de\n    la présente ordonnance, pourront, s'ils le désirent, faire valoir les services\n    antérieurs accomplis dans l'Administration. Ils devront pour cela verser les\n    retenues rétroactives, au taux prévu à l'article 159, calculées sur la base des\n    salaires effectivement perçus par eux pendant la période considérée, les\n    services employeurs versant eux aussi leur part contributive.</p><p>    Ces versements devront s'effectuer en une ou plusieurs fois sur une période\n    n'excédant pas cinq ans.</p><p>    Toutefois, les ex-agents temporaires visés au présent article ne pourront percevoir\n    leur allocation viagère que s'ils remplissent les conditions prévues par la présente\n    ordonnance."
+            }
+            ]
+        },
+        {
+            title: "CHAPITRE III",
+            articles: [
+            {
+                id: "article171",
+                title: "Article 171 :",
+                content: "Les modalités de liquidation, de concession et de paiement des allocations\n    viagères et du remboursement des cotisations personnelles sont déterminées\n    selon les dispositions du régime général des pensions civiles ou, à défaut, selon\n    les autres dispositions en vigueur."
+            },
+            {
+                id: "article172",
+                title: "Article 172 :",
+                content: "L'allocation viagère servie en application des dispositions de ce titre second n'est\n    pas cumulable avec une pension de fonctionnaire relevant du régime général des\n    pensions civiles."
+            },
+            {
+                id: "article173",
+                title: "Article 173 :",
+                content: "Les allocations viagères instituées par la présente ordonnance sont\n    incessibles et insaisissables, sauf en cas de débet envers l'Etat, les Collectivités\n    territoriales ou les Etablissements Publics, ou pour les créances alimentaires ou\n    privilégiées prévues par la loi.</p><p>    Les débets envers l'Etat et ceux contractés envers les autres collectivités visées au\n    présent alinéa rendent les allocations viagères passibles de retenues jusqu'à\n    concurrence d'un cinquième de leur montant. Dans les autres cas prévus au\n    précédent alinéa, la retenue peut s'élever jusqu'au tiers du montant de l'allocation\n    viagère.</p><p>    Les retenues du tiers et du cinquième peuvent s'exercer cumulativement.</p><p>    En cas de débets simultanés envers l'Etat et autres collectivités publiques, les\n    retenues devront être effectuées, en premier, au profit de l'Etat."
+            },
+            {
+                id: "article174",
+                title: "Article 174 :",
+                content: "Les ex-agents soumis aux dispositions du livre I de la 2eme partie de la présente\n    ordonnance peuvent, sur leur demande expresse, et sur production de la\n    justification de leur affiliation à un régime similaire, être exclus du bénéfice des\n    présentes."
+            },
+            {
+                id: "article175",
+                title: "Article 175 :",
+                content: "Les anciens membres du Conseil Economique et Social peuvent prétendre, dans\n    les conditions fixées par la présente ordonnance, à une pension viagère, avoir perçu pendant le même nombre minimum d'années, l'indemnité\n    allouée aux conseillers économiques et sociaux diminuée effectivement de la\n    retenue prévue à l'article 177.</p><p>    180: Le taux de la pension viagère normale visée à l'article 179 est égal à un\n    pourcentage, fixé par décret, du montant brut de l'indemnité annuelle allouée aux\n    membres du Conseil Economique et Social pour chaque annuité de retenue faite\n    sur cette indemnité.</p><p>    Le montant de la pension viagère normale ne peut excéder un certain pourcentage,\n    fixé par décret, de l'indemnité de conseiller économique et social.</p><p>    Pour la détermination du nombre des annuités à prendre en compte pour la\n    liquidation de la pension, toute fraction de mois est comptée pour le mois entier."
+            }
+            ]
+        },
+        {
+            title: "CHAPITRE II : L’ALLOCATION VIAGERE",
+            articles: [
+            {
+                id: "article181",
+                title: "Article 181 :",
+                content: "Le droit à pension viagère proportionnelle à laquelle peuvent prétendre les\n    anciens membres du Conseil Economique et Social, n'est acquis qu'aux anciens\n    conseillers économiques et sociaux qui remplissent les conditions suivantes:</p><p>    avoir atteint un âge fixé par décret;</p><p>    avoir exercé les fonctions de conseiller économique et social pendant uu\n    nombre minimum d'années fixé par décret;</p><p>    avoir perçu, pendant le même nombre minimum d'années, l'indemnité\n    allouée aux conseillers économiques et sociaux diminuée effectivement de la\n    retenue prévue à l'article 177."
+            },
+            {
+                id: "article182",
+                title: "Article 182 :",
+                content: "Le taux de la pension viagère proportionnelle visée à l'article 181 est égal à nu\n    pourcentage, fixé par décret, du montant brut de l'indemnité annuelle allouée aux\n    membres du Conseil Economique et Social pour chaque annuité de retenue faite\n    sur cette indemnité.</p><p>    Le montant de la pension viagère proportionnelle ne peut excéder un certain\n    pourcentage, fixé par décret, de l'indemnité de conseiller économique et social.</p><p>    Les dispositions du dernier alinéa de l'article 180 du présent texte, relatives à la\n    détermination du nombre des annuités à prendre en compte pour la liquidation de la\n    pension viagère normale, sont applicables à la liquidation des pensions viagères\n    proportionnelles qui peuvent être allouées aux anciens conseillers économiques et\n    sociaux."
+            }
+            ]
+        },
+        {
+            title: "CHAPITRE III : PENSION DE REVERSION DE CONJOINT SURVIVANT",
+            articles: [
+            {
+                id: "article183",
+                title: "Article 183 :",
+                content: "Le conjoint survivant d'un membre ou d'un ancien membre du Conseil\n    Economique et Social a droit à une pension égale à un certain pourcentage, fixé\n    par décret, de la pension viagère normale ou proportionnelle obtenue ou\n    qu'il aurait obtenue, selon des modalités fixées par décret."
+            },
+            {
+                id: "article184",
+                title: "Article 184 :",
+                content: "La pension de réversion de conjoint survivant est supprimée en cas de remariage\n    ou de décès du bénéficiaire."
+            },
+            {
+                id: "article185",
+                title: "Article 185 :",
+                content: "Le montant de la pension de réversion visée à l'article 183, à laquelle peut\n    prétendre le conjoint survivant d'un Conseiller Economique et Social, est égal à\n    un pourcentage, fixé par décret, du montant de la pension qu'aurait pu avoir son\n    conjoint, une fois atteint l'âge prévu au premier point de l'article 179 ou, s'il\n    s'agissait d'un ancien conseiller, au même pourcentage de la pension dont il\n    jouissait.</p><p>    S'il y a plusieurs veuves, leurs droits résultent de l'application combinée des\n    dispositions du présent régime spécial et de celles régissant le régime général des\n    pensions civiles. La pension de réversion est répartie par parts égales entre les\n    veuves dont les droits sont ainsi établis de manière intangible."
+            }
+            ]
+        },
+        {
+            title: "CHAPITRE IV : PENSIONS D'ORPHELINS",
+            articles: [
+            {
+                id: "article186",
+                title: "Article 186 :",
+                content: "Les enfants issus de l'union légale d'un Conseiller ou ancien Conseiller\n    Economique et Social, les enfants naturels reconnus, les enfants adoptifs d'un\n    Conseiller ou ancien Conseiller Economique et Social, ont droit à une pension\n    temporaire d'orphelin à condition qu'ils soient mineurs ou atteints d'une maladie ou\n    d'une infirmité les rendant inaptes à tout travail leur donnant gain et profit.</p><p>    Ce droit cesse le jour où les orphelins atteignent leur majorité, sauf lorsqu'ils sont\n    atteints d'une maladie ou d'une infirmité qui les rend inaptes à tout travail, comme il\n    est dit ci-dessus."
+            },
+            {
+                id: "article187",
+                title: "Article 187 :",
+                content: "Le montant de la pension temporaire d'orphelin visé à l'article 186 du présent\n    texte est égal à un pourcentage, fixé par décret, du montant de celle dont jouissait,\n    ou à laquelle aurait pu prétendre, après avoir atteint l'âge prévu au premier point de\n    l'article 179, le Conseiller ou l'ancien Conseiller Economique et Social, père ou mère\n    légal, adoptif ou naturel de l'enfant.</p><p>    La somme des pensions de réversion attribuées aux conjoints survivants et des\n    pensions temporaires attribuées aux orphelins d'un membre ou ancien membre du\n    Conseil Economique et Social ne peut, en aucun cas, excéder le montant de la\n    pension dont jouissait ou à laquelle aurait pu prétendre le de cujus.</p><p>    la\n    Lorsque le nombre des orphelins ayant droit à une pension temporaire en\n    application des dispositions du présent texte est supérieur à cinq au moment de\n    liquidation des pensions temporaires d'orphelins, celles-ci sont réduites de façon\n    à rester égales entre elles et à former un total qui n'excède pas un pourcentage, fixé\n    par décret, du montant de la pension dont jouissait ou à laquelle aurait pu prétendre\n    le de cujus."
+            },
+            {
+                id: "article188",
+                title: "Article 188 :",
+                content: "En cas de déchéance des droits parentaux ou d'incapacité de jouissance de son\n    titulaire, le bénéfice de la pension de conjoint survivant est transféré à l'orphelin\n    mineur le plus âgé, et la pension d'orphelin est maintenue à partir du deuxième à\n    chaque enfant mineur dans une limite déterminée par décret.</p><p>    Lorsque cesse la cause qui a entraîné la perte du bénéfice de la pension, le conjoint\n    survivant recouvre ses droits à pension en l'état, et l'orphelin mineur le plus âgé est réintégré au titre de la pension d'orphelin."
+            }
+            ]
+        },
+        {
+            title: "CHAPITRE V : PENSIONS D'INVALIDITÉ",
+            articles: [
+            {
+                id: "article189",
+                title: "Article 189 :",
+                content: "Le membre du Conseil Economique et Social qui, par suite de maladie ou\n    d'accident survenu au cours de son mandat, est atteint d'une invalidité qui\n    l'empêche de se livrer à aucune occupation ni à aucun travail rémunéré lui\n    donnant gain ou profit, a droit, quels que soient son sexe, son âge et le nombre\n    des retenues faites sur ses indemnités, à une pension d'invalidité totale,\n    calculée de la même façon que la pension viagère normale. Toutefois, le\n    montant de la pension d'invalidité totale ne peut être inférieur à un pourcentage,\n    fixé par décret, de l'indemnité de membre du Conseil Economique et Social.</p><p>    Si le conseiller a été mis hors d'état de poursuivre ses fonctions au Conseil\n    Economique et Social par suite soit d'un attentat dont il a été victime en exerçant\n    ses fonctions de conseiller, soit d'un acte de dévouement fait dans un intérêt public,\n    soit en exposant sa vie pour sauver celle d'une ou plusieurs personnes, le taux de\n    la pension d'invalidité totale attribuée à l'intéressé est, dans tous les cas, égal à un\n    pourcentage, fixé par décret, de l'indemnité de membre du Conseil Economique et\n    Social."
+            },
+            {
+                id: "article190",
+                title: "Article 190 :",
+                content: "Le membre du Conseil Economique et Social qui, par suite de maladie ou\n    d'accident survenu au cours de son mandat, est atteint d'une invalidité partielle\n    réduisant au moins de deux tiers sa capacité de travail ou de gain, appréciée\n    par la commission de réforme, aura droit à une pension dont le montant sera\n    égal à un pourcentage, fixé par décret, de celui de la pension d'invalidité totale\n    calculée comme il est dit à l'article 189 ci-dessus. Toutefois, aucun montant\n    minimum n'est fixé aux pensions d'invalidité proportionnelles, ni aucun régime\n    particulier appliqué lorsque cette invalidité résulte de l'un des faits énumérés au\n    deuxième alinéa de l'article 189."
+            },
+            {
+                id: "article191",
+                title: "Article 191 :",
+                content: "Les pensions d'invalidité totale ou partielle sont concédées à titre temporaire. Elles\n    sont supprimées dès que la capacité de travail ou de gain, appréciée comme il\n    est dit à l'article 190 ci-dessus, devient supérieure à un tiers."
+            },
+            {
+                id: "article192",
+                title: "Article 192 :",
+                content: "Lorsqu'un ancien membre du Conseil Economique et Social, bénéficiaire d'une\n    pension temporaire d'invalidité, remplit les conditions d'âge et de durée d'exercice\n    des fonctions de Conseiller Economique et Social requises par l'article 179\n    du présent texte, sa pension temporaire d'invalidité est remplacée par une\n    pension viagère normale dont le montant, calculée selon les règles fixées par\n    l'article 181 ci-dessus, ne peut, en aucun cas être inférieur à celui de la pension\n    temporaire d'invalidité."
+            }
+            ]
+        },
+        {
+            title: "CHAPITRE VI : REMBOURSEMENT DE RETENUES",
+            articles: [
+            {
+                id: "article193",
+                title: "Article 193 :",
+                content: "Le Conseiller Economique et Social dont le mandat vient à prendre fin pour\n    quelque cause que ce soit, avant de pouvoir obtenir une pension viagère\n    normale ou proportionnelle ou une pension d'invalidité, perd ses droits auxdites\n    pensions. II ne peut prétendre qu'au remboursement direct et immédiat des\n    retenues personnelles subies d'une manière effective sur son traitement.</p><p>    A cet effet, une demande personnelle doit être déposée auprès de l'organisme\n    chargé de la liquidation des pensions des anciens membres du Conseil Economique\n    et Social.</p><p>    Le Conseiller Economique et Social qui, ayant quitté l'Institution, a été nommé de\n    nouveau, bénéficie pour la détermination de sa pension, de la totalité des années\n    de cotisations qu'il a subies, à condition que sur sa demande expresse\n    formulée dans un délai de trois (3) mois à compter de sa nouvelle nomination,\n    reverse à l'organisme chargé de la liquidation des pensions des anciens membres\n    du Conseil Economique et Social, le montant des retenues qui lui auraient été\n    éventuellement remboursées."
+            }
+            ]
+        },
+        {
+            title: "CHAPITRE VII : SUSPENSION ET CUMUL",
+            articles: [
+            {
+                id: "article194",
+                title: "Article 194 :",
+                content: "Le paiement des arrérages des pensions viagères normales ou proportionnelles\n    est suspendu lorsque le bénéficiaire est à nouveau chargé des fonctions de\n    Conseiller Economique et Social, à compter du jour de la prise d'effet de sa\n    nomination."
+            },
+            {
+                id: "article195",
+                title: "Article 195 :",
+                content: "Une nouvelle désignation, dans les fonctions de Conseiller Economique et\n    Social, d'un ancien membre du Conseil Economique et Social titulaire\n    d'une pension viagère proportionnelle, ne pourra lui donner droit à une pension\n    viagère normale.</p><p>    Les retenues mensuelles faites sur son indemnité de conseiller en application de\n    l'article 177 de la présente ordonnance ne serviront qu'à accroître le nombre des\n    annuités à prendre en compte pour un nouveau calcul de la pension viagère\n    proportionnelle, lorsque cesseront les fonctions de Conseiller Economique et\n    Social."
+            },
+            {
+                id: "article196",
+                title: "Article 196 :",
+                content: "Les pensions des anciens membres du Conseil Economique et Social, les\n    pensions de réversion de leurs conjoints survivants, les pensions temporaires de\n    leurs orphelins se cumulent avec les traitements ou pensions affectées aux\n    fonctions publiques rétribuées sur les fonds de l'Etat, des Etablissements Publics\n    ou des Collectivités Locales, quel qu'en soit le montant."
+            },
+            {
+                id: "article197",
+                title: "Article 197 :",
+                content: "Les pensions des anciens membres du Conseil Economique et Social, les\n    pensions de réversion de leurs conjoints survivants, les pensions temporaires de\n    leurs orphelins se cumulent avec les pensions ou allocations de même nature\n    allouées aux anciens députés à l'Assemblée Nationale ou à leurs ayants droit\n    selon les dispositions régissant le régime de retraite des députés de l'Assemblée Nationale."
+            },
+            {
+                id: "article198",
+                title: "Article 198 :",
+                content: "Les pensions des anciens membres du Conseil Economique et Social, les\n    pensions de réversion de leurs conjoints survivants, les pensions temporaires de\n    leurs orphelins ne peuvent pas se cumuler entre elles, sauf en ce qui concerne les\n    pensions de conjoints survivants qui peuvent se cumuler avec la pension viagère,\n    normale ou proportionnelle, dont le conjoint survivant serait bénéficiaire ou à\n    laquelle il pourrait prétendre en qualité de membre ou ancien membre dп\n    Conseil Economique et Social, dans la limite des trois quarts de l'indemnité de\n    Conseiller Economique et Social servant de base au calcul de la pension viagère."
+            }
+            ]
+        },
+        {
+            title: "CHAPITRE VIII : DISPOSITIONS GENERALES ET DIVERSES",
+            articles: [
+            {
+                id: "article199",
+                title: "Article 199 :",
+                content: "L es variations du taux de l'indemnité allouée aux membres du Conseil\n    Economique et Social en exercice sont appliquées automatiquement au taux des\n    pensions viagères, pensions de réversion, pensions temporaires d'orphelins\n    et pensions d'invalidité auxquelles peuvent prétendre des membres on\n    anciens membres du Conseil Economique et Social et leurs ayants droit."
+            },
+            {
+                id: "article200",
+                title: "Article 200 :",
+                content: "L'indemnité allouée aux membres du Conseil Economique et Social ne pouvant se\n    cumuler avec un traitement de fonctionnaire ou une solde de militaire, les\n    fonctionnaires et militaires chargés d'un mandat de conseiller économique et social\n    subissent la retenue prévue au premier alinéa de l'article 177, en plus de celle qu'ils\n    supportent au titre de leur régime de base sur leur traitement ou solde.</p><p>    Les périodes où les intéressés auront rempli un mandat de Conseiller Economique\n    et Social en même temps qu'ils assuraient leurs fonctions normales de militaire ou\n    de fonctionnaire, seront prises en compte, pour la liquidation de la ou des pensions\n    auxquelles ils peuvent prétendre au titre de chacun des régimes.</p><p>    En aucun cas, une même retenue pour pension ne pourra être affectée\n    simultanément à plus d'un régime de retraite.</p><p>    Les dispositions du présent article sont applicables, mutatis mutandis, à la\n    liquidation des pensions de conjoints survivants et d'orphelins."
+            },
+            {
+                id: "article201",
+                title: "Article 201 :",
+                content: "Les règles fixées par la présente ordonnance pour le régime général des\n    pensions civiles, sont applicables, dans toutes leurs dispositions qui ne sont pas\n    contraires à celles fixées dans le livre II de la 2eme partie, relatif au régime spécial\n    des anciens membres du conseil économique et social:</p><p>  -  à la constitution des dossiers de pensions ou de remboursements ouverts\n    au nom de chaque bénéficiaire du régime spécial des anciens membres pu\n    Conseil Economique et Social, à la suite de sa nomination en qualité de membre\n    du Conseil Economique et Social;</p><p>  -  à la gestion de ces dossiers;</p><p>  -  aux modalités et conditions d'attribution et de liquidation des pensions et\n    remboursements des anciens Conseillers Economiques et Sociaux et de leurs\n    ayants droit;</p><p>  -  aux modalités et conditions de paiement des arrérages de ces pensions.</p><p>    \n    LIVRE III: REGIME DE RETRAITE DES AMBASSADEURS\n    Article 202:Les Ambassadeurs ayant exercé à l'étranger, en cette qualité, pendant un\n    nombre minimum d'années fixé par décret, peuvent prétendre, dans les conditions\n    fixées par la présente ordonnance, à une allocation viagère avec jouissance à\n    compter d'un âge fixé par décret.</p><p>    Les dépenses résultant du paiement des allocations viagères des Ambassadeurs\n    feront l'objet d'une gestion séparée de celle des autres régimes de pension."
+            },
+            {
+                id: "article203",
+                title: "Article 203 :",
+                content: "Le taux de l'allocation viagère est égal à un pourcentage, par annuité du salaire\n    de base, sans toutefois pouvoir excéder un certain pourcentage de ce dernier. Ces\n    deux pourcentages sont fixés par décret.</p><p>    Le nombre d'annuités à prendre en compte pour le calcul de l'allocation est celui\n    correspondant à la durée des fonctions exercées à l'étranger comme Ambassadeur."
+            },
+            {
+                id: "article204",
+                title: "Article 204 :",
+                content: "Les Ambassadeurs en fonction à l'étranger supportent une retenue égale à nu\n    pourcentage, fixé par décret, de leur salaire de base, pour le financement du présent\n    régime.</p><p>    Le budget employeur verse une contribution, fixée par décret, égale à un autre\n    pourcentage du même salaire de base.</p><p>    Ces retenues seront effectuées et comptabilisées dans un compte de gestion\n    séparée, destiné au financement exclusif du régime de retraite des anciens\n    Ambassadeurs."
+            },
+            {
+                id: "article205",
+                title: "Article 205 :",
+                content: "L'allocation viagère est réversible sur la tête des ayants cause dans\n    conditions suivantes: </p><p> - un premier pourcentage, fixé par décret, pour le conjoint survivant;</p><p>  -  un second pourcentage, fixé par décret, par enfant mineur, sans que le monant attribué au conjoint survivant et aux orphélins mineurs puisse excéder l'allocation principale.</p>"
+            },
+            {
+                id: "article206",
+                title: "Article 206 :",
+                content: "un premier pourcentage : L'allocation viagère est cumulable avec toute autre pension.</p><p>    Toutefois, si son bénéficiaire est nommé dans une fonction ou dans un emploi\n    rémunéré par les budgets de l'Etat, des Collectivités Locales, des Sociétés\n    d'Etat et Etablissements Publics et d'une manière générale par tout budget de\n    Sociétés à participation de l'Etat ou des Collectivités Publiques, l'allocation\n    viagère ne peut se cumuler avec les émoluments afférents au nouvel emploi\n    que dans la limite d'un pourcentage, fixé par décret, de son montant, pendant\n    toute la durée de l'exercice des fonctions dans ces organismes."
+            },
+            {
+                id: "article207",
+                title: "Article 207 :",
+                content: "Tout titulaire d'une pension de réversion peut cumuler intégralement le montant de\n    cette pension avec celui des émoluments afférents à son nouvel emploi."
+            },
+            {
+                id: "article208",
+                title: "Article 208 :",
+                content: "La concession de l'allocation est subordonnée à une demande adressée au\n    Ministre en charge des Affaires Etrangères. Sa liquidation incombe au service des\n    liquidations des pensions dans les mêmes conditions que les pensions civiles\n    attribuées aux anciens fonctionnaires, à leurs conjoints survivants et enfants\n    mineurs à charge."
+            },
+            {
+                id: "article209",
+                title: "Article 209 :",
+                content: "Les dispositions du présent titre sont applicables aux Ambassadeurs, Directeurs à\n    l'Administration Centrale du Ministère des Affaires Etrangères et aux Inspecteurs\n    des Postes Diplomatiques et Consulaires ayant exercé, pendant le nombre\n    minimum d'années fixé à l'article 202, les fonctions d'Ambassadeur.</p><p>    DISPOSITIONS DIVERSES ET FINALES"
+            },
+            {
+                id: "article210",
+                title: "Article 210 :",
+                content: "Les cotisations perçues au titre de chacun des régimes ci-dessus présentés et les\n    dépenses qui y sont afférentes sont gérées séparément dans des comptes\n    distincts."
+            },
+            {
+                id: "article211",
+                title: "Article 211 :",
+                content: "Dans le souci de préserver à long terme l'équilibre financier de la Caisse Générale\n    des Agents de l'Etat, la prise en charge par la CGRAE de tout régime particulier de\n    retraite doit faire l'objet d'une convention avec l'Institution, qui détermine les\n    conditions et modalités de viabilité technique et financière dudit régime."
+            },
+            {
+                id: "article212",
+                title: "Article 212 :",
+                content: "Les régimes spéciaux existants, notamment le régime de pension des anciens\n    Conseillers Economiques et Sociaux et le régime d'allocation viagère des\n    Ambassadeurs, doivent faire l'objet d'une évaluation périodique, fixée par décret,\n    aux fins de s'assurer de leur viabilité technique et financière, et de prendre les\n    mesures correctrices nécessaires."
+            },
+            {
+                id: "article213",
+                title: "Article 213 :",
+                content: "Des décrets précisent, en tant que de besoin, les modalités d'application de la\n    présente ordonnance."
+            },
+            {
+                id: "article214",
+                title: "Article 214 :",
+                content: "La présente ordonnance, qui abroge toutes les dispositions antérieures\n    contraires, entre en vigueur à compter du 1er janvier 2012."
+            },
+            {
+                id: "article215",
+                title: "Article 215 :",
+                content: "La présente ordonnance sera publiée, exécutée comme loi de l'Etat et publiéeau Journal Officiel de la République de Côte d'Ivoire."
+            }
+            ]
+        }
+    ] 
+}
+// Initialisation générale
+    document.addEventListener('DOMContentLoaded', function() {
+        initArticles();
+        initScrollButtons();
+        initVoiceControls();
+        initThemeToggle();
+        initBrightnessControl();
+        initArticleClickModal();
+        initMobileSommaire();
+        initNavIndicator();
+        initFullscreenMode();
+        initSpeechEvents();
+        initAutoCloseSommaire();
+        disableSelectionAndCopyPaste();
+        initSearchFeature();
+    });
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        // Vos autres initialisations...
+        initFullscreenMode();
+    });
+
+    function initArticles() {
+        const articlesContainer = document.getElementById('articlesContainer');
+        const sommaireList = document.getElementById('sommaireList');
+        
+        lawData.chapters.forEach(chapter => {
+            const section = document.createElement('div');
+            section.className = 'section';
+            const chapterTitle = document.createElement('h2');
+            chapterTitle.className = 'article-title';
+            chapterTitle.id = chapter.title.replace(/\s+/g, '-').toLowerCase();
+            chapterTitle.textContent = chapter.title;
+            section.appendChild(chapterTitle);
+            
+            chapter.articles.forEach(articleData => {
+                const article = document.createElement('div');
+                article.className = 'articleX';
+                article.id = articleData.id;
+                const title = document.createElement('h3');
+                title.textContent = articleData.title;
+                const content = document.createElement('div');
+                content.className = 'article-content';
+                content.innerHTML = articleData.content;
+                article.appendChild(title);
+                article.appendChild(content);
+                section.appendChild(article);
+                
+                const listItem = document.createElement('li');
+                listItem.className = 'sommaire-item';
+                listItem.innerHTML = `<a href="#${articleData.id}">${articleData.title}</a>`;
+                sommaireList.appendChild(listItem);
+            });
+            articlesContainer.appendChild(section);
+        });
+        articles = document.querySelectorAll('.articleX');
+    }
+    
+    function initScrollButtons() {
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        const scrollBottomBtn = document.getElementById('scrollBottomBtn');
+        window.addEventListener('scroll', function() {
+            scrollTopBtn.classList.toggle('show-buttons', window.scrollY > 300);
+            scrollBottomBtn.classList.toggle('show-buttons', (window.innerHeight + window.scrollY) < document.body.offsetHeight - 300);
+        });
+        scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        scrollBottomBtn.addEventListener('click', () => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }));
+    }
+    
+    function initVoiceControls() {
+        const playBtn = document.getElementById('mainPlayBtn');
+        const playContinuousBtn = document.getElementById('mainPlayContinuousBtn');
+        const pauseBtn = document.getElementById('mainPauseBtn');
+        const stopBtn = document.getElementById('mainStopBtn');
+
+        if (!('speechSynthesis' in window)) {
+            [playBtn, playContinuousBtn, pauseBtn, stopBtn].forEach(btn => btn && (btn.disabled = true));
+            return;
+        }
+
+        if (playBtn) {
+            playBtn.addEventListener('click', function() {
+                isAutoReading = false;
+                if (speechSynthesis.paused) {
+                    speechSynthesis.resume();
+                } else if (!speechSynthesis.speaking) {
+                    const visibleArticle = getVisibleArticle();
+                    if (visibleArticle) readArticle(visibleArticle);
+                }
+            });
+        }
+        if (playContinuousBtn) playContinuousBtn.addEventListener('click', startContinuousReading);
+        if (pauseBtn) pauseBtn.addEventListener('click', () => speechSynthesis.pause());
+        if (stopBtn) {
+            stopBtn.addEventListener('click', function() {
+                isAutoReading = false;
+                speechSynthesis.cancel();
+            });
+        }
+    }
+
+    function startContinuousReading() {
+        speechSynthesis.cancel(); 
+        isAutoReading = true; 
+        const startArticle = getVisibleArticle();
+        if (startArticle) {
+            readArticle(startArticle); 
+        } else if (articles.length > 0) {
+            currentArticleIndex = 0;
+            scrollToArticle(0);
+            readArticle(articles[0]);
+        }
+    }
+
+    function getVisibleArticle() {
+        let mostVisibleArticle = null;
+        let maxVisibility = 0;
+        articles.forEach((article, index) => {
+            const rect = article.getBoundingClientRect();
+            const visibleHeight = Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0);
+            const visibilityRatio = visibleHeight / rect.height;
+            if (visibilityRatio > maxVisibility && visibilityRatio > 0.3) {
+                maxVisibility = visibilityRatio;
+                mostVisibleArticle = article;
+                currentArticleIndex = index;
+            }
+        });
+        return mostVisibleArticle;
+    }
+
+     function readArticle(article) {
+        speechSynthesis.cancel();
+        const title = article.querySelector('h3').textContent;
+        const content = article.querySelector('.article-content').textContent;
+        const utterance = new SpeechSynthesisUtterance(`${title}. ${content}`);
+        utterance.lang = 'fr-FR';
+        
+        // Mettre à jour les métadonnées de session média
+        updateMediaSession(article);
+
+        utterance.onend = function() {
+            if (isAutoReading && currentArticleIndex < articles.length - 1) {
+                // Passer à l'article suivant
+                currentArticleIndex++;
+                
+                // Si en mode plein écran, mettre à jour l'affichage
+                if (document.getElementById('fullscreenMode').classList.contains('active')) {
+                    loadArticleIntoFullscreen(); // Appel à la fonction du mode plein écran
+                } else {
+                    scrollToArticle(currentArticleIndex);
+                }
+                
+                // Lire l'article suivant après un court délai
+                setTimeout(() => readArticle(articles[currentArticleIndex]), 500);
+            } else {
+                isAutoReading = false;
+            }
+        };
+        
+        speechSynthesis.speak(utterance);
+    }
+      
+    function initSpeechEvents() {
+        const fsPlayBtn = document.getElementById('fullscreenPlayBtn');
+        const fsPauseBtn = document.getElementById('fullscreenPauseBtn');
+        const fsStopBtn = document.getElementById('fullscreenStopBtn');
+        
+        fsPlayBtn.addEventListener('click', () => {
+            isAutoReading = true; // Activer la lecture continue
+            if (speechSynthesis.paused) {
+                speechSynthesis.resume();
+            } else if (!speechSynthesis.speaking) {
+                readArticle(articles[currentArticleIndex]);
+            }
+        });
+        fsPauseBtn.addEventListener('click', () => speechSynthesis.pause());
+        fsStopBtn.addEventListener('click', () => {
+            isAutoReading = false; // Désactiver la lecture continue
+            speechSynthesis.cancel();
+        });
+    }
+    
+    function initThemeToggle() {
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            isDarkMode = !isDarkMode;
+            document.body.classList.toggle('dark-mode', isDarkMode);
+            themeToggle.querySelector('i').className = `fas ${isDarkMode ? 'fa-sun' : 'fa-moon'}`;
+        });
+    }
+    
+    function initBrightnessControl() {
+        const brightnessBtn = document.getElementById('brightnessBtn');
+        const brightnessControl = document.getElementById('brightnessControl');
+        brightnessBtn.addEventListener('click', () => brightnessControl.classList.toggle('active'));
+        document.getElementById('brightnessSlider').addEventListener('input', function() {
+            document.body.style.filter = `brightness(${this.value}%)`;
+        });
+    }
+    
+    function initArticleClickModal() {
+        const modal = document.getElementById('articleModal');
+        articles.forEach(article => {
+            article.addEventListener('click', function() {
+                document.getElementById('modalArticleContent').innerHTML = `<h3>${this.querySelector('h3').textContent}</h3><div>${this.querySelector('.article-content').innerHTML}</div>`;
+                modal.classList.add('active');
+            });
+        });
+        document.getElementById('modalClose').addEventListener('click', () => modal.classList.remove('active'));
+    }
+    
+    function initMobileSommaire() {
+        const mobileSommaire = document.getElementById('mobileSommaire');
+        document.getElementById('mobileSommaireBtn').addEventListener('click', () => mobileSommaire.classList.add('active'));
+        document.getElementById('mobileSommaireClose').addEventListener('click', () => mobileSommaire.classList.remove('active'));
+    }
+
+    function initAutoCloseSommaire() {
+        const mobileSommaire = document.getElementById('mobileSommaire');
+        document.querySelectorAll('.sommaire-item a').forEach(link => {
+            link.addEventListener('click', () => setTimeout(() => mobileSommaire.classList.remove('active'), 300));
+        });
+    }
+    
+    function initNavIndicator() {
+        const navIndicator = document.getElementById('navIndicator');
+        articles.forEach((_, i) => {
+            const dot = document.createElement('div');
+            dot.className = 'nav-dot';
+            dot.addEventListener('click', () => scrollToArticle(i));
+            navIndicator.appendChild(dot);
+        });
+        window.addEventListener('scroll', () => {
+            if (isAutoReading) return;
+            const visibleArticle = getVisibleArticle();
+            if (visibleArticle) updateNavIndicator(Array.from(articles).indexOf(visibleArticle));
+        });
+    }
+    
+    function updateNavIndicator(index) {
+        document.querySelectorAll('.nav-dot').forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
+        });
+    }
+
+    function scrollToArticle(index) {
+        if (articles[index]) {
+            articles[index].scrollIntoView({ behavior: 'smooth', block: 'center' });
+            updateNavIndicator(index);
+        }
+    }
+    
+    function initFullscreenMode() {
+        const fullscreenMode = document.getElementById('fullscreenMode');
+        const fullscreenToggle = document.getElementById('fullscreenToggle');
+        const fullscreenClose = document.getElementById('fullscreenClose');
+        const fullscreenTitle = document.getElementById('fullscreenTitle');
+        const fullscreenContent = document.getElementById('fullscreenContent');
+        const prevBtn = document.getElementById('prevArticleBtn');
+        const nextBtn = document.getElementById('nextArticleBtn');
+        const fsPlayBtn = document.getElementById('fullscreenPlayBtn');
+        const fsPauseBtn = document.getElementById('fullscreenPauseBtn');
+        const fsStopBtn = document.getElementById('fullscreenStopBtn');
+
+        // Charger l'article dans le mode plein écran
+        function loadArticleIntoFullscreen() {
+            const article = articles[currentArticleIndex];
+            fullscreenTitle.textContent = article.querySelector('h3').textContent;
+            fullscreenContent.innerHTML = article.querySelector('.article-content').innerHTML;
+            
+            // Mettre à jour l'état des boutons de navigation
+            prevBtn.disabled = currentArticleIndex === 0;
+            nextBtn.disabled = currentArticleIndex === articles.length - 1;
+            
+            // Arrêter toute lecture en cours
+            speechSynthesis.cancel();
+        }
+
+        // Ouvrir le mode plein écran
+        fullscreenToggle.addEventListener('click', () => {
+            // Trouver l'article actuellement visible
+            getVisibleArticle();
+            loadArticleIntoFullscreen();
+            fullscreenMode.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        // Fermer le mode plein écran
+        fullscreenClose.addEventListener('click', () => {
+            fullscreenMode.classList.remove('active');
+            document.body.style.overflow = '';
+            isAutoReading = false; // Désactiver la lecture continue en sortant du mode plein écran
+            speechSynthesis.cancel(); // Arrêter la lecture vocale
+        });
+
+        // Navigation vers l'article précédent
+        prevBtn.addEventListener('click', () => {
+            if (currentArticleIndex > 0) {
+                currentArticleIndex--;
+                loadArticleIntoFullscreen();
+                
+                // Si la lecture continue est activée, lire l'article
+                if (isAutoReading) {
+                    setTimeout(() => readArticle(articles[currentArticleIndex]), 500);
+                }
+            }
+        });
+
+        // Navigation vers l'article suivant
+        nextBtn.addEventListener('click', () => {
+            if (currentArticleIndex < articles.length - 1) {
+                currentArticleIndex++;
+                loadArticleIntoFullscreen();
+                
+                // Si la lecture continue est activée, lire l'article
+                if (isAutoReading) {
+                    setTimeout(() => readArticle(articles[currentArticleIndex]), 500);
+                }
+            }
+        });
+
+        // Contrôles vocaux en mode plein écran
+        fsPlayBtn.addEventListener('click', () => {
+            isAutoReading = true; // Activer la lecture continue
+            if (speechSynthesis.paused) {
+                speechSynthesis.resume();
+            } else if (!speechSynthesis.speaking) {
+                readArticle(articles[currentArticleIndex]);
+            }
+        });
+
+        fsPauseBtn.addEventListener('click', () => {
+            speechSynthesis.pause();
+        });
+
+        fsStopBtn.addEventListener('click', () => {
+            isAutoReading = false; // Désactiver la lecture continue
+            speechSynthesis.cancel();
+        });
+
+        // Navigation par balayage (swipe)
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        fullscreenMode.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, false);
+
+        fullscreenMode.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, false);
+        
+        function handleSwipe() {
+            const minSwipeDistance = 50; // Distance minimale pour considérer un balayage
+            
+            if (touchStartX - touchEndX > minSwipeDistance) {
+                // Balayage vers la gauche = article suivant
+                if (nextBtn && !nextBtn.disabled) {
+                    nextBtn.click();
+                }
+            } else if (touchEndX - touchStartX > minSwipeDistance) {
+                // Balayage vers la droite = article précédent
+                if (prevBtn && !prevBtn.disabled) {
+                    prevBtn.click();
+                }
+            }
+        }
+
+        // Navigation au clavier en mode plein écran
+        document.addEventListener('keydown', function(e) {
+            if (!fullscreenMode.classList.contains('active')) return;
+            
+            switch(e.key) {
+                case 'ArrowLeft':
+                    if (prevBtn && !prevBtn.disabled) prevBtn.click();
+                    break;
+                case 'ArrowRight':
+                    if (nextBtn && !nextBtn.disabled) nextBtn.click();
+                    break;
+                case 'Escape':
+                    fullscreenClose.click();
+                    break;
+            }
+        });
+    }
+
+    function disableSelectionAndCopyPaste() {
+        document.body.style.userSelect = 'none';
+        ['contextmenu', 'copy', 'paste', 'selectstart'].forEach(event => {
+            window.addEventListener(event, e => e.preventDefault());
+        });
+    }
+    
+    // --- Fonctionnalité de lecture en arrière-plan (Media Session API) ---
+    function updateMediaSession(article) {
+        if (!('mediaSession' in navigator)) return;
+        const title = article.querySelector('h3').textContent;
+        const chapter = article.closest('.section').querySelector('h2').textContent;
+        navigator.mediaSession.metadata = new MediaMetadata({
+            title: title, artist: chapter, album: 'Loi relative à la filiation',
+            artwork: [{ src: 'https://img.icons8.com/ios-filled/128/000000/law.png', sizes: '128x128', type: 'image/png' }]
+        });
+        navigator.mediaSession.setActionHandler('play', () => { isAutoReading = true; speechSynthesis.resume(); });
+        navigator.mediaSession.setActionHandler('pause', () => speechSynthesis.pause());
+        navigator.mediaSession.setActionHandler('nexttrack', playNextArticle);
+        navigator.mediaSession.setActionHandler('previoustrack', playPreviousArticle);
+    }
+    function playNextArticle() {
+        if (currentArticleIndex < articles.length - 1) {
+            currentArticleIndex++; isAutoReading = true;
+            scrollToArticle(currentArticleIndex); readArticle(articles[currentArticleIndex]);
+        }
+    }
+    function playPreviousArticle() {
+        if (currentArticleIndex > 0) {
+            currentArticleIndex--; isAutoReading = true;
+            scrollToArticle(currentArticleIndex); readArticle(articles[currentArticleIndex]);
+        }
+    }
+
+    // --- Fonctionnalité de recherche (MODIFIÉE) ---
+    function initSearchFeature() {
+        const searchBtn = document.createElement('button');
+        searchBtn.className = 'control-btn';
+        searchBtn.id = 'searchBtn';
+        searchBtn.title = 'Rechercher';
+        searchBtn.innerHTML = '<i class="fas fa-search"></i>';
+        document.querySelector('.control-buttons').appendChild(searchBtn);
+        
+        const searchInterface = document.createElement('div');
+        searchInterface.id = 'searchInterface';
+        searchInterface.style.cssText = `
+            position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+            width: calc(100% - 40px); max-width: 550px; background: var(--article-bg);
+            padding: 10px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 1000; display: none; align-items: center; gap: 5px; transition: var(--transition);
+        `;
+        searchInterface.innerHTML = `
+            <input type="text" id="searchInput" placeholder="Rechercher..." style="flex-grow: 1; padding: 8px; border: 1px solid var(--secondary-color); border-radius: 5px;">
+            <button id="searchPrevBtn" class="control-btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-up"></i></button>
+            <button id="searchNextBtn" class="control-btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-down"></i></button>
+            <span id="searchResultsCount" style="flex-shrink: 0; padding: 0 5px; min-width: 40px; text-align: center;"></span>
+            <button id="closeSearchBtn" class="control-btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-times"></i></button>
+        `;
+        document.body.appendChild(searchInterface);
+
+        let searchResults = [];
+        let currentSearchIndex = -1;
+        let originalContents = new Map();
+
+        function performSearch() {
+            const searchTerm = document.getElementById('searchInput').value.trim();
+            if (!originalContents.size) {
+                document.querySelectorAll('.article-content, h3').forEach(el => originalContents.set(el, el.innerHTML));
+            }
+            originalContents.forEach((content, el) => el.innerHTML = content);
+            searchResults = [];
+            currentSearchIndex = -1;
+            if (!searchTerm) { updateSearchUI(); return; }
+
+            const regex = new RegExp(searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+            originalContents.forEach((content, element) => {
+                element.innerHTML = content.replace(regex, match => `<mark>${match}</mark>`);
+            });
+            searchResults = Array.from(document.querySelectorAll('mark'));
+            if (searchResults.length > 0) navigateResults(true, false);
+            updateSearchUI();
+        }
+
+        function navigateResults(isNext, shouldWrap = true) {
+            if (!searchResults.length) return;
+            searchResults.forEach(mark => mark.style.backgroundColor = '');
+            if (shouldWrap) {
+                currentSearchIndex = isNext ? (currentSearchIndex + 1) % searchResults.length : (currentSearchIndex - 1 + searchResults.length) % searchResults.length;
+            } else {
+                currentSearchIndex = 0;
+            }
+            const currentMark = searchResults[currentSearchIndex];
+            currentMark.style.backgroundColor = 'var(--gold-color)';
+            currentMark.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            updateSearchUI();
+        }
+
+        function updateSearchUI() {
+            document.getElementById('searchResultsCount').textContent = searchResults.length > 0 ? `${currentSearchIndex + 1}/${searchResults.length}` : '0/0';
+        }
+        
+        function resetSearch() {
+            originalContents.forEach((content, el) => el.innerHTML = content);
+            originalContents.clear();
+            document.getElementById('searchInput').value = '';
+            searchResults = []; currentSearchIndex = -1;
+            updateSearchUI();
+        }
+
+        searchBtn.addEventListener('click', () => {
+            const isVisible = searchInterface.style.display === 'flex';
+            searchInterface.style.display = isVisible ? 'none' : 'flex';
+            if (isVisible) resetSearch(); else document.getElementById('searchInput').focus();
+        });
+        document.getElementById('searchInput').addEventListener('input', performSearch);
+        document.getElementById('searchNextBtn').addEventListener('click', () => navigateResults(true));
+        document.getElementById('searchPrevBtn').addEventListener('click', () => navigateResults(false));
+        document.getElementById('closeSearchBtn').addEventListener('click', () => {
+            searchInterface.style.display = 'none';
+            resetSearch();
+        });
+    }
+    </script>
+  <script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js"));
+  }
+</script>
+  <!-- PWA Install Button -->
+<button id="pwa-install-btn" aria-label="Installer l'application" hidden>Installer</button>
+<style>
+  #pwa-install-btn{
+    position:fixed; right:16px; bottom:16px; z-index:9999;
+    padding:10px 14px; border:none; border-radius:999px;
+    background:#22c55e; color:white; font:600 14px system-ui,Segoe UI,Roboto,Arial,sans-serif;
+    box-shadow:0 8px 20px rgba(34,197,94,.35);
+  }
+  #pwa-install-btn[hidden]{ display:none; }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    #pwa-install-btn{ bottom: calc(16px + env(safe-area-inset-bottom)); }
+  }
+</style>
+<script>
+  (function(){
+    let deferredPrompt;
+    const btnId = "pwa-install-btn";
+    function ensureBtn(){
+      let b = document.getElementById(btnId);
+      if(!b){
+        b = document.createElement("button");
+        b.id = btnId;
+        b.textContent = "Installer";
+        document.body.appendChild(b);
+      }
+      return b;
+    }
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      const btn = ensureBtn();
+      btn.hidden = false;
+      btn.onclick = async () => {
+        btn.hidden = true;
+        deferredPrompt.prompt();
+        await deferredPrompt.userChoice;
+        deferredPrompt = null;
+      };
+    });
+    if (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) {
+      const btn = document.getElementById(btnId);
+      if(btn) btn.hidden = true;
+    }
+  })();
+</script>
+  <!-- Auth UI minimal -->
+<style>
+  .auth-box{position:fixed; top:12px; right:12px; z-index:9998; background:#ffffff; color:#111827; border-radius:12px; padding:10px 12px; box-shadow:0 10px 24px rgba(0,0,0,.12); font:500 14px system-ui,Segoe UI,Roboto,Arial}
+  .auth-box h4{margin:0 0 6px; font-size:14px}
+  .auth-box form{display:flex; gap:6px; flex-wrap:wrap; align-items:center}
+  .auth-box input{padding:6px 8px; border:1px solid #e5e7eb; border-radius:8px}
+  .auth-box button{background:#22c55e; color:#fff; border:none; padding:6px 10px; border-radius:8px; cursor:pointer}
+  .auth-box .row{display:flex; gap:6px; flex-wrap:wrap}
+  .views-badge{position:fixed; left:12px; bottom:12px; z-index:9998; background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px; font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)}
+</style><!-- Admin link (visible only when logged-in) -->
+<style>
+  .admin-link{
+    position:fixed; right:16px; bottom:88px; z-index:9998;
+    display:none; align-items:center; gap:8px;
+    padding:10px 14px; border-radius:999px; text-decoration:none;
+    background:#111827; color:#fff; font:600 14px system-ui,Segoe UI,Roboto,Arial;
+    box-shadow:0 8px 20px rgba(0,0,0,.3);
+    border:1px solid rgba(255,255,255,.1);
+  }
+  body.logged-in .admin-link{ display:inline-flex; }
+  .admin-link:hover{ filter:brightness(1.1); }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    .admin-link{ bottom: calc(88px + env(safe-area-inset-bottom)); }
+  }
+</style>
+<a href="admin.html" class="admin-link" title="Tableau de bord">Admin</a>
+  <script type="module" src="assets/firebase-app.js"></script>
+  <script>window.autoCountAndBind && window.autoCountAndBind();</script>
+  
+<!-- Floating Auth Button + Modal -->
+<style>
+  #auth-fab{
+    position:fixed; right:16px; bottom:68px; z-index:9998;
+    width:48px; height:48px; border-radius:999px; border:none; cursor:pointer;
+    background:#111827; color:#fff; display:grid; place-items:center;
+    box-shadow:0 8px 20px rgba(0,0,0,.35); border:1px solid rgba(255,255,255,.1);
+  }
+  body.logged-in #auth-fab::after{ content:"✓"; }
+  #auth-fab::after{ content:"👤"; font-size:20px; }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    #auth-fab{ bottom: calc(68px + env(safe-area-inset-bottom)); }
+  }
+  .views-badge{
+    position:fixed; left:12px; bottom:12px; z-index:9998; 
+    background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px;
+    font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)
+  }
+  dialog#auth-modal{
+    border:none; border-radius:16px; padding:0; width:min(90vw,420px);
+    box-shadow:0 24px 72px rgba(0,0,0,.35); overflow:hidden;
+  }
+  dialog::backdrop{ background:rgba(0,0,0,.4); }
+  .auth-modal-head{background:#0f172a; color:#fff; padding:12px 16px; display:flex; justify-content:space-between; align-items:center}
+  .auth-modal-body{padding:16px; background:#111827; color:#e5e7eb}
+  .auth-modal-body label{display:block; font-size:13px; margin-top:8px; opacity:.9}
+  .auth-modal-body input{width:100%; padding:10px 12px; border-radius:10px; border:1px solid #1f2937; background:#0b1021; color:#e5e7eb}
+  .auth-actions{display:flex; gap:8px; margin-top:14px}
+  .btn{border:none; border-radius:10px; padding:10px 12px; cursor:pointer; font-weight:600}
+  .btn-primary{background:#22c55e; color:white}
+  .btn-ghost{background:transparent; color:#e5e7eb; border:1px solid #374151}
+  .muted{opacity:.8}
+</style>
+
+<button id="auth-fab" title="Connexion / Compte"></button>
+<div class="views-badge">Vues : <span id="viewCounter">0</span></div>
+
+<dialog id="auth-modal">
+  <div class="auth-modal-head">
+    <strong>Connexion</strong>
+    <button class="btn btn-ghost" id="auth-close" aria-label="Fermer">✕</button>
+  </div>
+  <div class="auth-modal-body">
+    <p class="muted">Connecte-toi pour accéder à l’admin et une meilleure expérience.</p>
+    <label>Email</label>
+    <input type="email" id="auth-email" placeholder="email@exemple.com" required>
+    <label>Mot de passe</label>
+    <input type="password" id="auth-pass" placeholder="••••••••" required>
+    <div class="auth-actions">
+      <button class="btn btn-primary" id="btn-login">Connexion</button>
+      <button class="btn btn-ghost" id="btn-register">Créer un compte</button>
+      <button class="btn btn-ghost" id="btn-logout">Déconnexion</button>
+    </div>
+    <div id="auth-msg" class="muted" style="margin-top:8px;"></div>
+  </div>
+</dialog>
+
+<script type="module">
+  import { authRegister, authLogin, authLogout } from "./assets/firebase-app.js";
+
+  const fab = document.getElementById("auth-fab");
+  const modal = document.getElementById("auth-modal");
+  const closeBtn = document.getElementById("auth-close");
+  const email = document.getElementById("auth-email");
+  const pass = document.getElementById("auth-pass");
+  const msg  = document.getElementById("auth-msg");
+  const btnLogin = document.getElementById("btn-login");
+  const btnRegister = document.getElementById("btn-register");
+  const btnLogout = document.getElementById("btn-logout");
+
+  function openModal(){ try{ modal.showModal(); }catch{ modal.setAttribute("open",""); } }
+  function closeModal(){ modal.close?.(); modal.removeAttribute("open"); }
+
+  fab?.addEventListener("click", openModal);
+  closeBtn?.addEventListener("click", closeModal);
+
+  async function handle(run){
+    msg.textContent = "";
+    try{
+      await run(email.value.trim(), pass.value);
+      msg.textContent = "✅ Opération réussie.";
+      setTimeout(()=>{ closeModal(); }, 500);
+    }catch(e){
+      console.error(e);
+      msg.textContent = "❌ " + (e?.message || "Erreur");
+    }
+  }
+
+  btnLogin?.addEventListener("click", () => handle(authLogin));
+  btnRegister?.addEventListener("click", () => handle(authRegister));
+  btnLogout?.addEventListener("click", async () => {
+    msg.textContent = "";
+    try{ await authLogout(); msg.textContent = "✅ Déconnecté."; }catch(e){ msg.textContent = "❌ " + (e?.message||"Erreur"); }
+  });
+</script>
+
+
+<!-- Per-card view counters -->
+<style>
+  .card-views-badge{
+    position:absolute; top:8px; right:8px;
+    background:rgba(17,24,39,.9); color:#fff;
+    padding:4px 8px; border-radius:999px; font:600 12px system-ui,Segoe UI,Roboto,Arial;
+    box-shadow:0 6px 14px rgba(0,0,0,.25);
+    pointer-events:none;
+  }
+  .card-views-wrap{ position:relative; }
+</style>
+<script type="module">
+  import { getViewCount } from "./assets/firebase-app.js";
+  function basename(href){
+    try{ const u = new URL(href, location.href);
+         const file = u.pathname.split('/').pop() || 'index.html';
+         return file.replace(/\.html$/i,''); }
+    catch{ return (href.split('/').pop()||'index.html').replace(/\.html$/i,''); }
+  }
+  async function attachCounterTo(el, docId){
+    let container = el.closest('.card, .item, .panel, .box, .article, .doc, .tile');
+    if(!container){ container = el.parentElement; }
+    if(container && !container.classList.contains('card-views-wrap')){
+      container.classList.add('card-views-wrap');
+    }
+    const host = container || el;
+    if(host.querySelector('.card-views-badge[data-doc="'+docId+'"]')) return;
+    const badge = document.createElement('span');
+    badge.className = 'card-views-badge';
+    badge.dataset.doc = docId;
+    badge.textContent = 'Vues: …';
+    host.appendChild(badge);
+    try{ const n = await getViewCount(docId);
+         badge.textContent = 'Vues: ' + n; }
+    catch{ badge.textContent = 'Vues: —'; }
+  }
+  async function initCardCounters(){
+    const links = Array.from(document.querySelectorAll('[data-doc-id], a[href$=".html"]'))
+      .filter(a => {
+        const id = a.getAttribute('data-doc-id') || basename(a.getAttribute('href')||'');
+        return id && !['index','admin','offline'].includes(id.toLowerCase());
+      });
+    const handled = new Set();
+    for(const a of links){
+      const id = a.getAttribute('data-doc-id') || basename(a.getAttribute('href')||'');
+      if(!id || handled.has(id)) continue;
+      handled.add(id);
+      attachCounterTo(a, id);
+    }
+  }
+  initCardCounters();
+  const obs = new MutationObserver(()=>initCardCounters());
+  obs.observe(document.body, { childList:true, subtree:true });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1939 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statut du corps des Greffiers</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Raleway:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+    :root {
+        /* Couleurs de la fonction publique ivoirienne */
+        --primary-color: #1a4e8e;    /* Bleu gouvernemental */
+        --secondary-color: #e67e22;  /* Orange terre d'Afrique */
+        --accent-color: #f1c40f;     /* Or pour l'excellence */
+        --light-color: #ecf0f1;      /* Gris clair pour la neutralité */
+        --dark-color: #2c3e50;       /* Bleu foncé pour le sérieux */
+        --success-color: #27ae60;    /* Vert pour la validation */
+        
+        --transition: all 0.3s ease;
+        --text-color: #2c3e50;
+        --bg-color: #f9f9f9;
+        --article-bg: #ffffff;
+        --header-bg: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        --border-color: rgba(26, 78, 142, 0.2);
+        --shadow-color: rgba(26, 78, 142, 0.1);
+    }
+        
+    .dark-mode {
+        --primary-color: #2980b9;
+        --secondary-color: #d35400;
+        --accent-color: #f39c12;
+        --light-color: #34495e;
+        --dark-color: #ecf0f1;
+        --success-color: #2ecc71;
+        --text-color: #ecf0f1;
+        --bg-color: #2c3e50;
+        --article-bg: #34495e;
+        --header-bg: linear-gradient(135deg, #2980b9, #d35400);
+    }
+        
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+        
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        line-height: 1.6;
+        padding: 20px;
+        background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 50L0 25L50 0L100 25L50 50Z' fill='%231a4e8e10' /%3E%3C/svg%3E");
+        transition: var(--transition);
+    }
+        
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+        background: var(--article-bg);
+        border-radius: 10px;
+        box-shadow: 0 5px 20px var(--shadow-color);
+        overflow: hidden;
+        border: 1px solid var(--primary-color);
+        transition: var(--transition);
+    }
+        
+    header {
+        background: var(--header-bg);
+        color: white;
+        padding: 30px;
+        text-align: center;
+        border-bottom: 5px solid var(--accent-color);
+        position: relative;
+        transition: var(--transition);
+    }
+        
+    header::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+    }
+        
+    h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    .subtitle {
+        font-style: italic;
+        opacity: 0.9;
+        font-size: 1.1rem;
+        margin-top: 10px;
+    }
+        
+    .content {
+        padding: 30px;
+    }
+        
+    .section {
+        margin-bottom: 30px;
+        scroll-margin-top: 20px;
+    }
+        
+    h2 {
+        font-family: 'Georgia', serif;
+        font-size: 1.8rem;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--secondary-color);
+        position: relative;
+        transition: var(--transition);
+        padding-right: 30px;
+    }
+
+    /* Icônes représentant la fonction publique */
+    h2::after {
+        content: "🏛️"; /* Symbole de bâtiment gouvernemental */
+        position: absolute;
+        right: 0;
+        bottom: 10px;
+    }
+
+    .section:nth-child(2n) h2::after {
+        content: "📋"; /* Symbole de dossier administratif */
+    }
+        
+    .section:nth-child(3n) h2::after {
+        content: "⚖️"; /* Balance de la justice */
+    }
+        
+    .section:nth-child(4n) h2::after {
+        content: "👔"; /* Symbole du fonctionnaire */
+    }
+        
+    .section:nth-child(5n) h2::after {
+        content: "📜"; /* Parchemin des documents officiels */
+    }
+
+    .articleX {
+        background: var(--article-bg);
+        border-left: 4px solid var(--primary-color);
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 0 8px 8px 0;
+        box-shadow: 0 3px 10px var(--shadow-color);
+        scroll-margin-top: 20px;
+        position: relative;
+        transition: var(--transition);
+        cursor: pointer;
+    }
+        
+    .articleX::before {
+        content: "📄"; /* Symbole de document officiel */
+        position: absolute;
+        left: -15px;
+        top: 15px;
+        background: var(--article-bg);
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid var(--primary-color);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        transition: var(--transition);
+    }
+        
+    .article-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.4rem;
+        color: var(--dark-color);
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        transition: var(--transition);
+    }
+        
+    .article-title::before {
+        content: "🇨🇮"; /* Drapeau de la Côte d'Ivoire */
+        margin-right: 10px;
+        color: var(--accent-color);
+    }
+        
+    .article-content {
+        color: var(--text-color);
+        line-height: 1.7;
+        transition: var(--transition);
+    }
+
+    /* Boutons de contrôle */
+    .control-buttons {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        display: flex;
+        gap: 10px;
+        z-index: 1000;
+    }
+        
+    .control-btn {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: var(--transition);
+    }
+        
+    .control-btn:hover {
+        transform: scale(1.1);
+        background: var(--secondary-color);
+    }
+        
+    /* Boutons défilement */
+    #scrollTopBtn, #scrollBottomBtn {
+        position: fixed;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        border: none;
+        border-radius: 50%;
+        background-color: rgba(26, 78, 142, 0.8);
+        color: white;
+        cursor: pointer;
+        font-size: 18px;
+        z-index: 99;
+        display: none;
+        transition: opacity 0.3s, transform 0.3s;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    #scrollTopBtn {
+        bottom: 140px;
+    }
+
+    #scrollBottomBtn {
+        bottom: 80px;
+    }
+        
+    #scrollTopBtn:hover, #scrollBottomBtn:hover {
+        background-color: rgba(26, 78, 142, 1);
+        transform: scale(1.05);
+    }
+        
+    .show-buttons {
+        display: block !important;
+        opacity: 1;
+    }
+        
+    .hide-buttons {
+        opacity: 0;
+        display: none !important;
+    }
+        
+    /* Modal plein écran */
+    .article-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 2000;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+        
+    .article-modal.active {
+        opacity: 1;
+        display: flex;
+    }
+        
+    .modal-content {
+        background: var(--article-bg);
+        width: 90%;
+        max-width: 800px;
+        max-height: 80vh;
+        overflow-y: auto;
+        padding: 30px;
+        border-radius: 15px;
+        position: relative;
+        transform: translateY(20px);
+        transition: transform 0.4s ease;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+        
+    .article-modal.active .modal-content {
+        transform: translateY(0);
+    }
+        
+    .modal-close {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--dark-color);
+        transition: var(--transition);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+        
+    .modal-close:hover {
+        color: var(--primary-color);
+        background-color: var(--secondary-color);
+    }
+        
+    /* Contrôles de lecture vocale */
+    .voice-controls {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%); 
+        display: flex;
+        gap: 10px;
+        background: var(--primary-color);
+        padding: 10px 15px;
+        border-radius: 30px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        opacity: 0.9;
+    }
+        
+    .voice-btn {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.2rem;
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: var(--transition);
+    }
+        
+    .voice-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+        
+    /* Curseur de luminosité */
+    .brightness-control {
+        position: fixed;
+        top: 80px;
+        left: 20px;
+        background: var(--article-bg);
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+        
+    .brightness-control.active {
+        display: flex;
+    }
+        
+    .brightness-slider {
+        width: 150px;
+        appearance: none;
+        -webkit-appearance: none;
+        height: 8px;
+        border-radius: 5px;
+        background: var(--secondary-color);
+        outline: none;
+    }
+        
+    .brightness-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: var(--primary-color);
+        cursor: pointer;
+    }
+        
+    /* Bouton sommaire mobile */
+    .mobile-sommaire-btn {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: var(--header-bg);
+        color: white;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        z-index: 1001;
+        cursor: pointer;
+        transition: var(--transition);
+        border: 2px solid white;
+    }
+        
+    .mobile-sommaire-btn:hover {
+        transform: scale(1.05);
+    }
+        
+    /* Sommaire plein écran pour mobile */
+    .mobile-sommaire {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(26, 78, 142, 0.95);
+        z-index: 1002;
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+        
+    .mobile-sommaire.active {
+        opacity: 1;
+        display: flex;
+    }
+        
+    .mobile-sommaire-content {
+        background: var(--article-bg);
+        width: 90%;
+        max-width: 500px;
+        max-height: 80vh;
+        overflow-y: auto;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        transform: translateY(20px);
+        transition: transform 0.4s ease;
+        border: 2px solid var(--secondary-color);
+    }
+        
+    .mobile-sommaire.active .mobile-sommaire-content {
+        transform: translateY(0);
+    }
+        
+    .mobile-sommaire-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 2px solid var(--secondary-color);
+    }
+        
+    .mobile-sommaire-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--dark-color);
+    }
+        
+    .mobile-sommaire-close {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--dark-color);
+        transition: var(--transition);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+        
+    .mobile-sommaire-close:hover {
+        color: var(--primary-color);
+        background-color: var(--secondary-color);
+    }
+        
+    .sommaire-list {
+        list-style: none;
+    }
+        
+    .sommaire-item {
+        margin-bottom: 12px;
+        padding: 15px;
+        border-radius: 8px;
+        transition: var(--transition);
+        background-color: var(--light-color);
+        border-left: 3px solid var(--accent-color);
+    }
+        
+    .sommaire-item:hover {
+        background-color: var(--secondary-color);
+        transform: translateX(5px);
+    }
+        
+    .sommaire-item a {
+        text-decoration: none;
+        color: var(--dark-color);
+        font-weight: 500;
+        display: block;
+        transition: var(--transition);
+    }
+        
+    .sommaire-item:hover a {
+        color: var(--primary-color);
+    }
+        
+    footer {
+        text-align: center;
+        padding: 20px;
+        color: var(--dark-color);
+        font-size: 0.9rem;
+        background: var(--primary-color);
+        color: white;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        transition: var(--transition);
+    }
+        
+    /* Indicateur de navigation */
+    .nav-indicator {
+        position: fixed;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 8px;
+        z-index: 999;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 8px 12px;
+        border-radius: 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+        
+    .nav-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--secondary-color);
+        transition: var(--transition);
+    }
+        
+    .nav-dot.active {
+        background: var(--primary-color);
+        transform: scale(1.3);
+    }
+        
+    /* Mode lecture plein écran */
+    .fullscreen-mode {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--article-bg);
+        z-index: 3000;
+        overflow: auto;
+        padding: 20px;
+        display: none;
+    }
+
+    .fullscreen-mode.active { display: block; }
+
+    .fullscreen-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 2px solid var(--secondary-color);
+        padding-right: 50px;
+    }
+
+    .fullscreen-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.8rem;
+        color: var(--dark-color);
+    }
+
+    .fullscreen-close {
+        background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--dark-color);
+        transition: var(--transition); width: 40px; height: 40px; border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+    }
+
+    .fullscreen-close:hover {
+        color: var(--primary-color);
+        background-color: var(--secondary-color);
+    }
+
+    .fullscreen-content { font-size: 1.2rem; line-height: 1.8; }
+
+    .fullscreen-nav {
+        display: flex; justify-content: space-between; margin-top: 30px;
+        padding-top: 15px; border-top: 1px solid var(--secondary-color);
+    }
+
+    .fullscreen-nav-btn {
+        background: var(--primary-color); color: white; border: none; padding: 10px 20px;
+        border-radius: 5px; cursor: pointer; transition: var(--transition);
+    }
+
+    .fullscreen-nav-btn:hover { background: var(--dark-color); }
+    .fullscreen-nav-btn:disabled { background: var(--secondary-color); cursor: not-allowed; }
+
+    /* Contrôles vocaux en mode plein écran */
+    .fullscreen-voice-controls {
+        display: flex; justify-content: center; gap: 15px; margin: 20px 0;
+    }
+
+    .fullscreen-voice-btn {
+        background: var(--primary-color); color: white; border: none; width: 50px;
+        height: 50px; border-radius: 50%; display: flex; justify-content: center;
+        align-items: center; font-size: 1.2rem; cursor: pointer; transition: var(--transition);
+    }
+
+    .fullscreen-voice-btn:hover { background: var(--dark-color); }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .mobile-sommaire-btn { display: flex; }
+        .control-buttons { top: 90px; left: 10px; flex-direction: column; }
+        .voice-controls { width: calc(100% - 40px); justify-content: center; }
+        header { padding: 20px; }
+        h1 { font-size: 2rem; }
+        .section, .articleX { scroll-margin-top: 80px; }
+    }
+
+    /* Styles pour l'interface de recherche */
+    #searchInput:focus {
+        outline: none;
+        border-color: var(--primary-color) !important;
+    }
+    </style>
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#22c55e">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<!-- HIDE AUTH/VIEWS WIDGETS OUTSIDE HOME (safe) -->
+<style>
+  #auth-fab, .views-badge, #auth-modal, .card-views-badge { display: none !important; }
+</style>
+
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Statut du corps des Greffiers</h1>
+            <p class="subtitle">LOI N° 2015-492 DU 07 JUILLET 2015</p>
+        </header>
+        
+        <div class="content">
+            <div class="control-buttons">
+                <button class="control-btn" id="themeToggle" title="Mode nuit/jour">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="control-btn" id="brightnessBtn" title="Contrôle de luminosité">
+                    <i class="fas fa-sun"></i>
+                </button>
+                <button class="control-btn" id="fullscreenToggle" title="Mode lecture plein écran">
+                    <i class="fas fa-expand"></i>
+                </button>
+                <button class="control-btn" id="searchBtn" title="Rechercher">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            
+            <div class="brightness-control" id="brightnessControl">
+                <label for="brightnessSlider">Luminosité</label>
+                <input type="range" min="50" max="150" value="100" class="brightness-slider" id="brightnessSlider">
+            </div>
+            
+            <button id="scrollTopBtn" title="Aller en haut">↑</button>
+            <button id="scrollBottomBtn" title="Aller en bas">↓</button>
+            
+            <div class="article-modal" id="articleModal">
+                <div class="modal-content">
+                    <button class="modal-close" id="modalClose">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <div id="modalArticleContent"></div>
+                </div>
+            </div>
+
+            <div class="fullscreen-mode" id="fullscreenMode">
+              <div class="fullscreen-header">
+                  <h2 class="fullscreen-title" id="fullscreenTitle"></h2>
+                  <button class="fullscreen-close" id="fullscreenClose">
+                      <i class="fas fa-times"></i>
+                  </button>
+              </div>
+              <div class="fullscreen-content" id="fullscreenContent"></div>
+              <div class="fullscreen-voice-controls">
+                  <button class="fullscreen-voice-btn" id="fullscreenPlayBtn" title="Lire"><i class="fas fa-play"></i></button>
+                  <button class="fullscreen-voice-btn" id="fullscreenPauseBtn" title="Pause"><i class="fas fa-pause"></i></button>
+                  <button class="fullscreen-voice-btn" id="fullscreenStopBtn" title="Arrêter"><i class="fas fa-stop"></i></button>
+              </div>
+              <div class="fullscreen-nav">
+                  <button class="fullscreen-nav-btn" id="prevArticleBtn" disabled>Précédent</button>
+                  <button class="fullscreen-nav-btn" id="nextArticleBtn">Suivant</button>
+              </div>
+          </div>
+            
+            <div class="voice-controls" id="mainVoiceControls">
+                <button class="voice-btn" id="mainPlayBtn" title="Lire l'article visible"><i class="fas fa-play"></i></button>
+                <button class="voice-btn" id="mainPlayContinuousBtn" title="Lecture continue"><i class="fas fa-forward"></i></button>
+                <button class="voice-btn" id="mainPauseBtn" title="Pause"><i class="fas fa-pause"></i></button>
+                <button class="voice-btn" id="mainStopBtn" title="Arrêter"><i class="fas fa-stop"></i></button>
+            </div>
+            
+            <div id="articlesContainer"></div>
+            
+            <div class="nav-indicator" id="navIndicator"></div>
+        </div>
+        
+        <footer>
+            <p>© 2025 - Ministère de la Fonction Publique - République de Côte d'Ivoire</p>
+            <p>Le service public, un sacerdoce au service de la nation</p>
+        </footer>
+    </div>
+    
+    <div class="mobile-sommaire-btn" id="mobileSommaireBtn"><i class="fas fa-bars"></i></div>
+    <div class="mobile-sommaire" id="mobileSommaire">
+        <div class="mobile-sommaire-content">
+            <div class="mobile-sommaire-header">
+                <h3 class="mobile-sommaire-title">Sommaire</h3>
+                <button class="mobile-sommaire-close" id="mobileSommaireClose"><i class="fas fa-times"></i></button>
+            </div>
+            <ul class="sommaire-list" id="sommaireList"></ul>
+        </div>
+    </div>
+    <script>
+    // Variables globales
+    let isDarkMode = false;
+    let currentArticleIndex = 0;
+    let isAutoReading = false;
+    let articles = [];
+    
+      // Données de la loi
+    const lawData = {
+    title: "Statut des Greffiers",
+    subtitle: "Loi n°2015-588 du 17 juillet 2015",
+    chapters: [
+            {
+                title: "CHAPITRE PREMIER : Dispositions générales",
+                articles: [
+                    {
+                        id: "article1",
+                        title: "Article 1",
+                        content: "Les greffiers sont des auxiliaires de Justice. Le corps des greffiers comprend :</br>\n• les administrateurs des greffes et parquets ;</br>\n• les attachés des greffes et parquets ;</br>\n• les secrétaires des greffes et parquets."
+                    },
+                    {
+                        id: "article2",
+                        title: "Article 2",
+                        content: "La catégorie des administrateurs des greffes et parquets comprend quatre grades :</br>\n• le hors - grade ;</br>\n• le grade principal ;</br>\n• le premier grade ;</br>\n• le deuxième grade.\n\nDans la catégorie des administrateurs des greffes et parquets :</br>• le hors - grade comporte deux échelons ;</br>• le grade principal et le premier grade comportent chacun trois échelons ;</br>• le deuxième grade comporte quatre échelons.</br></br>Les catégories des attachés et des secrétaires des greffes et parquets comprennent chacune quatre classes :</br>• la classe exceptionnelle ;</br>• la classe principale ;</br>• la première classe ;</br>• la deuxième classe.</br></br>Dans les catégories des attachés et des secrétaires des greffes et parquets :</br>• la classe exceptionnelle comporte deux échelons ;</br>• la classe principale et la première classe comportent chacune trois échelons ;</br>• la deuxième classe comporte quatre échelons.</br></br>La durée du temps passé dans chacun des échelons est de deux années."
+                    },
+                    {
+                        id: "article3",
+                        title: "Article 3",
+                        content: "Le classement des emplois de chaque catégorie est déterminé par décret."
+                    },
+                    {
+                        id: "article4",
+                        title: "Article 4",
+                        content: "Les administrateurs, les attachés et les secrétaires des greffes et parquets exercent leurs fonctions dans les juridictions, à l'administration centrale du ministère en charge de la Justice et dans les établissements sous tutelle du ministère en charge de la Justice."
+                    },
+                    {
+                        id: "article5",
+                        title: "Article 5",
+                        content: "Dans les juridictions, les greffiers exercent les attributions qui leur sont dévolues par la législation en vigueur, sous la supervision du greffier en chef et sous l'autorité et le contrôle des chefs de juridiction. Ils assistent les magistrats dans tous les cas prévus par la loi.</br></br>Les greffiers prennent rang après les magistrats du parquet. Ce rang est déterminé, à la suite du greffier en chef de la juridiction, par l'ordre de catégorie, de grade et d'ancienneté dans le grade.</br></br>A l'administration centrale et dans les établissements sous tutelle du ministère en charge de la Justice, ils exercent les fonctions prévues par les textes en vigueur."
+                    }
+                ]
+            },
+            {
+                title: "CHAPITRE 2 : Recrutement et formation",
+                articles: []
+            },
+                    {
+                        title: "Section 1 : Recrutement",
+                        articles: [
+                            {
+                                id: "article6",
+                                title: "Article 6",
+                                content: "Nul ne peut être nommé greffier s'il n'a accompli, préalablement, un stage de formation professionnelle et satisfait aux épreuves de fin de stage. L'admission au stage a lieu par voie de concours."
+                            },
+                            {
+                                id: "article7",
+                                title: "Article 7",
+                                content: "Les greffiers sont recrutés :</br>1°) par concours direct dans les conditions ci-après :</br>• parmi les titulaires de la maîtrise ou de tout diplôme équivalent, pour la catégorie des administrateurs des greffes et parquets ;</br>• parmi les titulaires du diplôme d'études universitaires générales (D.E.U.G) ou de tout diplôme équivalent, pour la catégorie des attachés des greffes et parquets ;</br>• parmi les titulaires du baccalauréat, pour la catégorie des secrétaires des greffes et parquets ;</br></br>2°) par concours professionnel dans les conditions ci-après :</br>• parmi les attachés des greffes et parquets âgés de 45 ans au plus et justifiant d'une ancienneté d'au moins trois ans, pour la catégorie des administrateurs des greffes et parquets ;</br>• parmi les secrétaires des greffes et parquets âgés de 42 ans au plus et justifiant d'une ancienneté d'au moins trois ans, pour la catégorie des attachés des greffes et parquets ;</br></br>3°) par concours spécial dans les conditions définies par décret pris en Conseil des ministres ;</br>4°) sur titre, dans les conditions définies par décret pris en Conseil des ministres."
+                            },
+                            {
+                                id: "article8",
+                                title: "Article 8",
+                                content: "Les candidats au concours direct des administrateurs, des attachés et des secrétaires des greffes et parquets doivent :</br>• être de nationalité ivoirienne ;</br>• jouir de leurs droits civiques et être de bonne moralité ;</br>• remplir les conditions d'aptitude physique nécessaires à l'exercice de leurs fonctions et être reconnus indemnes ou définitivement guéris de toute affection donnant droit à un congé de longue durée ;</br>• justifier qu'ils se trouvent en position régulière au regard des lois sur le recrutement dans l'armée ;</br>• être majeurs et avoir 40 ans au plus au 1er janvier de l'année du concours ;</br>• avoir été autorisés à subir les épreuves du concours.</br></br>Les dispositions législatives portant recul de l'âge limite pour l'accès par voie de concours aux emplois publics sont applicables dans les mêmes conditions à l'accès par voie de concours au corps des greffiers.</br></br>Les modalités d'application du présent article sont précisées par décret pris en Conseil des ministres."
+                            }
+                        ]
+                    },
+                    {
+                        title: "Section 2 : Formation",
+                        articles: [
+                            {
+                                id: "article9",
+                                title: "Article 9",
+                                content: "La formation professionnelle des greffiers est assurée par la structure en charge de la formation judiciaire.</br></br>Les élèves greffiers perçoivent, pendant la période de formation, une rémunération dont le montant est fixé par décret."
+                            },
+                            {
+                                id: "article10",
+                                title: "Article 10",
+                                content: "Les élèves greffiers sont, à la fin de la formation théorique, astreints à un stage pratique.</br></br>Préalablement au stage pratique, les élèves greffiers prêtent serment, devant le tribunal de première instance du siège de la structure en charge de la formation judiciaire, dans les termes suivants : « Je jure de bien et loyalement remplir mes fonctions et de ne rien révéler ou utiliser de ce qui sera porté à ma connaissance à l'occasion de leur exercice. »"
+                            },
+                            {
+                                id: "article11",
+                                title: "Article 11",
+                                content: "Les greffiers bénéficient d'une formation continue assurée par la structure en charge de la formation judiciaire."
+                            }
+                        ]
+                 },
+                {
+                title: "CHAPITRE 3 : Carrière",
+                articles: []},
+                    {
+                        title: "Section 1 : Nomination et affectation",
+                        articles: [
+                            {
+                                id: "article12",
+                                title: "Article 12",
+                                content: "La nomination des greffiers dans la catégorie des administrateurs des greffes et parquets est faite par décret.</br></br>La nomination des greffiers dans les catégories des attachés et des secrétaires des greffes et parquets est faite par arrêté du ministre chargé de la Justice."
+                            },
+                            {
+                                id: "article13",
+                                title: "Article 13",
+                                content: "Les administrateurs, les attachés et les secrétaires des greffes et parquets sont affectés par arrêté du ministre chargé de la Justice."
+                            }
+                        ]
+                    },
+                    {
+                        title: "Section 2 : Serment",
+                        articles: [
+                            {
+                                id: "article14",
+                                title: "Article 14",
+                                content: "Les greffiers, lors de leur nomination à leur premier poste et avant d'entrer en fonction, prêtent serment, en audience solennelle de la juridiction où ils sont affectés, en ces termes : « Je jure de bien et loyalement remplir mes fonctions et d'observer, en tout, les devoirs qu'elles m'imposent ».</br></br>En cas de nécessité, ils prêtent serment par écrit."
+                            },
+                            {
+                                id: "article15",
+                                title: "Article 15",
+                                content: "Les attachés et les secrétaires des greffes et parquets, accédant à une catégorie supérieure, ne sont pas astreints au renouvellement de leur serment."
+                            }
+                        ]
+                    },
+                    {
+                        title: "Section 3 : Notation et avancement",
+                        articles: [
+                            {
+                                id: "article16",
+                                title: "Article 16",
+                                content: "Il est attribué, chaque année, à tout greffier en activité ou en position de détachement une note chiffrée suivie d'une appréciation générale exprimant sa valeur professionnelle."
+                            },
+                            {
+                                id: "article17",
+                                title: "Article 17",
+                                content: "Il est institué au ministère en charge de la Justice une commission d'avancement, pour toutes les catégories définies à l'article 1 de la présente loi, dénommée commission administrative paritaire.</br></br>Chaque année, les listes des greffiers en vue d'une inscription au tableau d'avancement sont adressées au ministre chargé de la Justice par la direction des Services judiciaires.</br></br>La direction des Services judiciaires notifie aux greffiers inscrits au tableau d'avancement le résultat des délibérations les concernant."
+                            },
+                            {
+                                id: "article18",
+                                title: "Article 18",
+                                content: "La commission administrative paritaire est saisie, pour avis, des questions d'ordre individuel concernant les greffiers, notamment des nominations, positions et notations."
+                            },
+                            {
+                                id: "article19",
+                                title: "Article 19",
+                                content: "La commission administrative paritaire comprend:</br>• l'inspecteur général des services judiciaires et pénitentiaires ou son représentant, président ;</br>• le directeur en charge des services judiciaires et des ressources humaines ;</br>• le directeur des affaires civiles et pénales ;</br>• un greffier, inspecteur des services judiciaires ;</br>• deux administrateurs des greffes et parquets, dont un titulaire et un suppléant ;</br>• deux attachés des greffes et parquets, dont un titulaire et un suppléant ;</br>• deux secrétaires des greffes et parquets, dont un titulaire et un suppléant.</br></br>Les membres de la commission administrative paritaire sont nommés par arrêté du ministre chargé de la Justice.</br></br>La durée du mandat des greffiers, membres de la commission administrative paritaire, est de deux ans non renouvelable.</br></br>Les greffiers nommés ne peuvent siéger lorsqu'ils sont concernés par les délibérations de la commission."
+                            },
+                            {
+                                id: "article20",
+                                title: "Article 20",
+                                content: "Les conditions générales exigées pour figurer au tableau d'avancement, les modalités de notation, d'élaboration et d'établissement du tableau annuel, de promotion de grade, de fonctionnement de la commission administrative paritaire ainsi que de désignation des membres de la commission sont fixées par décret pris en Conseil des ministres."
+                            }
+                        ]
+                    },
+                {
+                title: "CHAPITRE 4 : Positions",
+                articles: [
+                    {
+                        id: "article21",
+                        title: "Article 21",
+                        content: "Le greffier est placé dans l'une des positions suivantes :</br>• activité ;</br>• détachement ;</br>• disponibilité ;</br>• sous les drapeaux."
+                    }
+                    ]
+                },
+                {
+                        title: "Section 1 : Activité",
+                        articles: [
+                            {
+                                id: "article22",
+                                title: "Article 22",
+                                content: "L'activité est la position du greffier qui, régulièrement nommé, occupe effectivement un emploi.</br></br>Est également considéré comme en activité, le greffier en congé ou en stage de formation ou bénéficiant d'une autorisation d'absence avec traitement."
+                            }
+                        ]
+                 },
+                {
+                        title: "Section 2 : Détachement",
+                        articles: [
+                            {
+                                id: "article23",
+                                title: "Article 23",
+                                content: "Le détachement est la position du greffier autorisé à interrompre temporairement ses fonctions pour exercer un emploi ou un mandat public national ou international ou un mandat syndical.</br></br>Dans cette position, le greffier continue de bénéficier de ses droits à l'avancement et à la retraite.</br></br>Le détachement est prononcé à la demande du greffier ou d'office. Il est révocable.</br></br>La durée du détachement est de cinq ans renouvelable une fois, sauf en cas de détachement d'office.</br></br>Le greffier détaché est soumis aux règles régissant l'emploi pour lequel il a été détaché, à l'exception de toute disposition législative, réglementaire ou conventionnelle, prévoyant le versement d'indemnité de licenciement ou de fin de carrière."
+                            },
+                            {
+                                id: "article24",
+                                title: "Article 24",
+                                content: "Le greffier détaché réintègre le ministère en charge de la Justice si, avant terme, son détachement prend fin.</br></br>En cas de faute grave ou de faute professionnelle, l'organisme de détachement est tenu de saisir, sans délai, le ministre chargé de la Justice d'un rapport circonstancié.</br></br>Dans ce cas, le ministre chargé de la Justice procède ainsi qu'il est dit à l'article 50 de la présente loi."
+                            },
+                            {
+                                id: "article25",
+                                title: "Article 25",
+                                content: "Le greffier détaché ne peut, sauf dans le cas où le détachement a été prononcé auprès d'organismes internationaux ou pour exercer un emploi ou un mandat public, être affilié au régime de retraite dont relève l'organisme auprès duquel il est détaché, ni acquérir à ce titre, de droit quelconque à pension ou allocation, sous peine de suspension de la pension de l'Etat."
+                            },
+                            {
+                                id: "article26",
+                                title: "Article 26",
+                                content: "Sous réserve des dérogations fixées par décret pris en Conseil des ministres, la collectivité ou l'organisme auprès duquel un greffier est détaché est redevable, envers l'institution chargée de la gestion de la retraite des agents de l'Etat, d'une contribution pour la constitution des droits à pension de l'intéressé."
+                            },
+                            {
+                                id: "article27",
+                                title: "Article 27",
+                                content: "Le nombre total des greffiers placés en position de détachement ne peut dépasser 10 % de l'effectif du corps des greffiers.</br></br>A l'expiration de la période de détachement, le greffier est remis à la disposition du ministère en charge de la Justice."
+                            }
+                        ]
+                    },
+                    {
+                        title: "Section 3 : Disponibilité",
+                        articles: [
+                            {
+                                id: "article28",
+                                title: "Article 28",
+                                content: "La disponibilité est la position du greffier dont l'activité est suspendue temporairement, à sa demande, pour des raisons personnelles, dans les cas suivants :</br>• accident ou maladie grave du conjoint ou d'un enfant ;</br>• pour suivre un conjoint fonctionnaire en service ou affecté à l'étranger ;</br>• pour suivre un conjoint non - fonctionnaire ;</br>• pour convenances personnelles.</br></br>La durée de la disponibilité est d'une année renouvelable à la demande motivée de l'intéressé et après avis du conseil de santé dans l'hypothèse prévue au premier tiret du présent article."
+                            },
+                            {
+                                id: "article29",
+                                title: "Article 29",
+                                content: "Le greffier en disponibilité n'a droit à aucune rémunération. Il cesse également de bénéficier de ses droits à l'avancement et à la retraite."
+                            },
+                            {
+                                id: "article30",
+                                title: "Article 30",
+                                content: "Le greffier, chef de famille, placé en disponibilité pour accident ou maladie d'un enfant, perçoit la totalité des allocations familiales."
+                            },
+                            {
+                                id: "article31",
+                                title: "Article 31",
+                                content: "A l'expiration de la période de disponibilité, le greffier adresse une demande de réintégration au ministre chargé de la Justice.</br></br>Il est réintégré dans un emploi de son grade."
+                            }
+                        ]
+                    },
+                    {
+                        title: "Section 4 : Disposition commune au détachement et à la disponibilité",
+                        articles: [
+                            {
+                                id: "article32",
+                                title: "Article 32",
+                                content: "La mise en position de détachement ou de disponibilité et la réintégration consécutive sont prononcées dans les formes prévues pour les nominations."
+                            }
+                        ]
+                    },
+                    {
+                        title: "Section 5 : Sous les drapeaux",
+                        articles: [
+                            {
+                                id: "article33",
+                                title: "Article 33",
+                                content: "Le greffier incorporé dans une formation militaire, pour y accomplir son temps de service civique, est placé dans la position « sous les drapeaux ».</br></br>Il conserve sa rémunération."
+                            },
+                            {
+                                id: "article34",
+                                title: "Article 34",
+                                content: "Le greffier qui accomplit une période d'instruction militaire est mis en congé, avec son traitement d'activité, pour la durée de cette période."
+                            }
+                        ]
+                    },
+                {
+                title: "CHAPITRE 5 : Incapacités, incompatibilités et devoirs",
+                articles: []},
+                    {
+                        title: "Section 1 : Incapacités et incompatibilités",
+                        articles: [
+                            {
+                                id: "article35",
+                                title: "Article 35",
+                                content: "Le greffier ne peut, à peine de nullité des actes intervenus :</br>• siéger à l'audience de la juridiction à laquelle il appartient lorsque celle-ci compte parmi ses membres son conjoint, un parent ou allié en ligne directe ou en ligne collatérale jusqu'au troisième degré inclusivement ;</br>• assister un magistrat exerçant des attributions juridictionnelles lorsqu'il se trouve par rapport à lui dans les mêmes conditions de parenté ou d'alliance ;</br>• siéger à l'audience ou assister un juge lorsqu'il s'agit de ses propres intérêts, de ceux de son conjoint, de ses parents ou alliés en ligne directe ou en ligne collatérale jusqu'au troisième degré inclusivement ou de ceux d'une personne dont il est le représentant légal ou le mandataire à un titre quelconque."
+                            },
+                            {
+                                id: "article36",
+                                title: "Article 36",
+                                content: "Le greffier ne peut se porter acquéreur des droits litigieux pendants devant la juridiction au sein de laquelle il est en service."
+                            }
+                        ]
+                    },
+                    {
+                        title: "Section 2 : Devoirs du greffier",
+                        articles: [
+                            {
+                                id: "article37",
+                                title: "Article 37",
+                                content: "Le greffier est astreint à l'obligation de réserve et de discrétion.</br></br>Le greffier est soumis dans l'exercice de suas fonctions au secret professionnel.</br></br>Le greffier doit remplir sa mission avec loyauté, dignité, intégrité et dévouement.</br></br>Le greffier doit faire preuve d'une conscience professionnelle élevée."
+                            },
+                            {
+                                id: "article38",
+                                title: "Article 38",
+                                content: "Le greffier doit s'abstenir de solliciter ou d'accepter une rétribution en espèces ou en nature pour lui-même ou pour un tiers, en rémunération d'un acte de sa fonction déjà accompli ou à accomplir."
+                            },
+                            {
+                                id: "article39",
+                                title: "Article 39",
+                                content: "Le greffier doit s'abstenir de solliciter ou de recevoir des dons, legs, faveurs de quelque nature que ce soit de personnes engagées dans un procès ou intéressées de quelque façon que ce soit audit procès."
+                            },
+                            {
+                                id: "article40",
+                                title: "Article 40",
+                                content: "Le greffier est tenu de résider au siège de la juridiction à laquelle il appartient.</br></br>Toutefois, des dérogations à caractère individuel peuvent être accordées :</br>• pour les greffiers en chef, après avis des chefs de juridiction et de parquet, par le ministre chargé de la Justice ;</br>• pour les autres greffiers, par le greffier en chef de la juridiction à laquelle ils appartiennent."
+                            },
+                            {
+                                id: "article41",
+                                title: "Article 41",
+                                content: "Le droit de grève est reconnu aux greffiers.</br></br>Le droit de grève est exercé dans les conditions prévues par la législation en vigueur.</br></br>En cas de grève des greffiers, un service minimum est assuré dans les conditions prévues par décret.</br></br>L'inobservation des présentes dispositions entraîne pour les greffiers, l'application des sanctions prévues au chapitre 6 de la présente loi."
+                            }
+                        ]
+            },
+            {
+                title: "CHAPITRE 6 : Discipline",
+                articles: [
+                    {
+                        id: "article42",
+                        title: "Article 42",
+                        content: "Le pouvoir disciplinaire est exercé à l'égard des greffiers par le ministre chargé de la Justice."
+                    },
+                    {
+                        id: "article43",
+                        title: "Article 43",
+                        content: "Il est créé auprès du ministre chargé de la Justice, un conseil de discipline des greffiers.</br></br>Aucune sanction disciplinaire ne peut être prononcée sans l'avis dudit conseil."
+                    },
+                    {
+                        id: "article44",
+                        title: "Article 44",
+                        content: "Le conseil de discipline des greffiers comprend :</br>• l'inspecteur général des services judiciaires et pénitentiaires ou son représentant, président ;</br>• le directeur chargé des services judiciaires et des ressources humaines ;</br>• le directeur des affaires civiles et pénales ;</br>• un greffier, inspecteur des services judiciaires ;</br>• deux administrateurs des greffes et parquets, dont un titulaire et un suppléant ;</br>• deux attachés des greffes et parquets, dont un titulaire et un suppléant ;</br>• deux secrétaires des greffes et parquets, dont un titulaire et un suppléant.</br></br>Les membres du conseil de discipline des greffiers sont nommés par arrêté du ministre chargé de la Justice.</br></br>Les modalités de fonctionnement du conseil de discipline des greffiers sont fixées par décret."
+                    },
+                    {
+                        id: "article45",
+                        title: "Article 45",
+                        content: "Tout manquement par un greffier aux devoirs de son état, à l'honneur ou à la probité constitue une faute disciplinaire."
+                    },
+                    {
+                        id: "article46",
+                        title: "Article 46",
+                        content: "En dehors de toute action disciplinaire, le ministre chargé de la Justice, l'inspecteur général des services judiciaires et pénitentiaires, les directeurs de l'administration centrale, les chefs de juridiction et les greffiers en chef ont le pouvoir de donner des avertissements aux greffiers placés sous leur autorité.</br></br>Ce pouvoir de donner des avertissements est reconnu aux chefs de juridiction lorsque le manquement est le fait d'un greffier en chef."
+                    },
+                    {
+                        id: "article47",
+                        title: "Article 47",
+                        content: "En cas de faute disciplinaire commise par un greffier, le greffier en chef, d'office ou sur instruction du chef de juridiction, après une demande d'explication écrite adressée à l'intéressé, en réfère par un rapport écrit, par la voie hiérarchique, au ministre chargé de la Justice.</br></br>Si le greffier fautif n'exerce pas dans une juridiction, les supérieurs hiérarchiques dont il relève effectuent les diligences prévues à l'alinéa précédent.</br></br>En cas de faute disciplinaire commise par un greffier en chef, le chef de la juridiction dont il relève effectue les diligences ci-dessus spécifiées."
+                    },
+                    {
+                        id: "article48",
+                        title: "Article 48",
+                        content: "Les sanctions disciplinaires applicables aux greffiers sont, par ordre de gravité :</br>• le blâme ;</br>• le déplacement d'office ;</br>• la radiation du tableau d'avancement ;</br>• l'abaissement d'échelon ;</br>• la rétrogradation ;</br>• la mise à la retraite d'office ;</br>• la révocation avec ou sans suspension des droits à pension."
+                    },
+                    {
+                        id: "article49",
+                        title: "Article 49",
+                        content: "Le ministre chargé de la Justice, saisi d'une plainte ou informé de faits paraissant de nature à entraîner des poursuites disciplinaires contre un greffier, peut, s'il y a urgence, suspendre l'intéressé de ses fonctions sur proposition :</br>• du chef de la juridiction après avis du greffier en chef, s'agissant d'un greffier exerçant dans une juridiction ;</br>• du chef de juridiction, s'agissant d'un greffier en chef ;</br>• du directeur chargé des services judiciaires et des ressources humaines, si l'intéressé exerce ses fonctions à l'administration centrale du ministère en charge de la Justice ou dans une structure sous tutelle du ministère en charge de la Justice.</br></br>La suspension n'emporte pas privation du droit au traitement.</br></br>Elle cesse de produire ses effets si, dans un délai de deux mois, à compter de la suspension, aucune enquête n'est ouverte contre le greffier ou si les faits qui lui sont reprochés ne constituent pas une faute disciplinaire."
+                    },
+                    {
+                        id: "article50",
+                        title: "Article 50",
+                        content: "Le ministre chargé de la Justice, saisi d'une plainte ou informé de faits paraissant de nature à entraîner des poursuites disciplinaires contre un greffier, transmet le dossier à l'inspection générale des services judiciaires et pénitentiaires pour enquête.</br></br>A l'issue de cette enquête, les résultats lui sont remis avec un rapport motivé.</br></br>S'il ressort du rapport qu'il existe des charges contre le greffier pour manquement à ses obligations professionnelles, le ministre chargé de la Justice saisit le conseil de discipline des greffiers pour avis.</br></br>Les sanctions sont prononcées par le ministre chargé de la Justice, après avis du conseil de discipline.</br></br>Les sanctions sont notifiées, par la voie administrative, au greffier, par le ministre chargé de la Justice.</br></br>Elles sont susceptibles de recours devant la juridiction administrative compétente."
+                    },
+                    {
+                        id: "article51",
+                        title: "Article 51",
+                        content: "Lorsque les faits sont de nature à entraîner des poursuites pénales, le procureur de la République, directement saisi, procède par la voie de la citation directe ou de l'information.</br></br>Pour le jugement, la procédure est transmisse, par les soins du procureur de la République, au procureur général près la Cour d'appel compétente aux fins de saisine d'une juridiction limitrophe."
+                    }
+                ]
+            },
+            {
+                title: "CHAPITRE 7 : Cessation définitive de la fonction de greffier",
+                articles: [
+                    {
+                        id: "article52",
+                        title: "Article 52",
+                        content: "La cessation définitive des fonctions de greffier résulte :</br>• de la démission notifiée par écrit au ministre chargé de la Justice ;</br>• de la révocation ;</br>• de l'admission à la retraite ;</br>• du décès."
+                    }
+                ]
+            },
+            {
+                title: "CHAPITRE 8 : Rémunération",
+                articles: [
+                    {
+                        id: "article53",
+                        title: "Article 53",
+                        content: "En rétribution de ses services et afin de lui permettre de s'acquitter convenablement de ses fonctions, le greffier a droit à une rémunération qui comprend :</br>• le traitement soumis à retenue pour pension ;</br>• des indemnités.</br></br>Les indices de traitement des greffiers de chacun de grades et échelons et des élèves greffiers ainsi que les montants et les conditions d'octroi des indemnités sont fixés par décret."
+                    },
+                    {
+                        id: "article54",
+                        title: "Article 54",
+                        content: "Le greffier a, en outre, droit aux avantages sociaux et prestations diverses prévus par le Statut général de la Fonction publique."
+                    },
+                    {
+                        id: "article55",
+                        title: "Article 55",
+                        content: "En cas d'admission à la retraite, le greffier a droit à une pension dans les conditions, fixées par les lois et règlements en vigueur."
+                    }
+                ]
+            },
+            {
+                title: "CHAPITRE 9 : Costume",
+                articles: [
+                    {
+                        id: "article56",
+                        title: "Article 56",
+                        content: "Les greffiers sont astreints au port d'un costume au cours des audiences ordinaires et solennelles.</br></br>La composition de ce costume et son mode d'octroi sont définis par décret."
+                    }
+                ]
+            },
+            {
+                title: "CHAPITRE 10 : Dispositions diverses, transitoires et finales",
+                articles: [
+                    {
+                        id: "article57",
+                        title: "Article 57",
+                        content: "L'âge limite pour le départ à la retraite est fixé à 65 ans pour les administrateurs des greffes et parquets et à 60 ans pour les attachés et les secrétaires des greffes et parquets."
+                    },
+                    {
+                        id: "article58",
+                        title: "Article 58",
+                        content: "Le corps des greffiers bénéficie d'un honorariat dans les conditions définies par décret."
+                    },
+                    {
+                        id: "article59",
+                        title: "Article 59",
+                        content: "En application de la présente loi, les assistants des greffes et parquets en service effectif à cette date et totalisant une ancienneté de 15 années sont nommés en qualité de secrétaires des greffes et parquets après inscription sur une liste d'aptitude établie par la commission administrative paritaire.</br></br>Les assistants des greffes et parquets ne remplissant pas les conditions ci-dessus sont nommés en qualité de secrétaires des greffes et parquets, après un concours exceptionnel dont les modalités seront précisées par arrêté du ministre chargé de la Justice."
+                    },
+                    {
+                        id: "article60",
+                        title: "Article 60",
+                        content: "Les secrétaires des greffes et parquets appartenant à l'emploi organisé par le décret n° 93-609 du 2 juillet 1993, en position administrative régulière à la date de prise d'effet de la présente loi sont, à compter de ladite date, reclassés dans le nouvel emploi des secrétaires des greffes et parquets aux grades égaux à ceux qu'ils détenaient dans l'emploi précédent."
+                    },
+                    {
+                        id: "article61",
+                        title: "Article 61",
+                        content: "Les attachés des greffes et parquets appartenant à l'emploi organisé par le décret n° 93-609 du 2 juillet 1993, en position administrative régulière à la date de prise d'effet de la présente loi sont, à compter de ladite date, reclassés dans le nouvel emploi des attachés des greffes et parquets aux grades égaux à ceux qu'ils détenaient dans l'emploi précédent."
+                    },
+                    {
+                        id: "article62",
+                        title: "Article 62",
+                        content: "Les administrateurs des greffes et parquets appartenant à l'emploi organisé par le décret n° 93-609 du 2 juillet 1993, en position administrative régulière à la date de prise d'effet de la présente loi sont, à compter de ladite date, reclassés dans le nouvel emploi des administrateurs des greffes et parquets aux grades égaux à ceux qu'ils détenaient dans l'emploi précédent."
+                    },
+                    {
+                        id: "article63",
+                        title: "Article 63",
+                        content: "La présente loi sera exécutée comme loi de l'Etat."
+                    }
+                ]
+            }
+    ]
+}
+    
+// Initialisation générale
+    document.addEventListener('DOMContentLoaded', function() {
+        initArticles();
+        initScrollButtons();
+        initVoiceControls();
+        initThemeToggle();
+        initBrightnessControl();
+        initArticleClickModal();
+        initMobileSommaire();
+        initNavIndicator();
+        initFullscreenMode();
+        initSpeechEvents();
+        initAutoCloseSommaire();
+        disableSelectionAndCopyPaste();
+        initSearchFeature();
+    });
+    
+    // (Supprimé : double initialisation DOMContentLoaded redondante)
+
+    function initArticles() {
+        const articlesContainer = document.getElementById('articlesContainer');
+        const sommaireList = document.getElementById('sommaireList');
+        
+        lawData.chapters.forEach(chapter => {
+            const section = document.createElement('div');
+            section.className = 'section';
+            const chapterTitle = document.createElement('h2');
+            chapterTitle.className = 'article-title';
+            chapterTitle.id = chapter.title.replace(/\s+/g, '-').toLowerCase();
+            chapterTitle.textContent = chapter.title;
+            section.appendChild(chapterTitle);
+            
+            chapter.articles.forEach(articleData => {
+                const article = document.createElement('div');
+                article.className = 'articleX';
+                article.id = articleData.id;
+                const title = document.createElement('h3');
+                title.textContent = articleData.title;
+                const content = document.createElement('div');
+                content.className = 'article-content';
+                content.innerHTML = articleData.content;
+                article.appendChild(title);
+                article.appendChild(content);
+                section.appendChild(article);
+                
+                const listItem = document.createElement('li');
+                listItem.className = 'sommaire-item';
+                listItem.innerHTML = `<a href="#${articleData.id}">${articleData.title}</a>`;
+                sommaireList.appendChild(listItem);
+            });
+            articlesContainer.appendChild(section);
+        });
+        articles = document.querySelectorAll('.articleX');
+    }
+    
+    function initScrollButtons() {
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        const scrollBottomBtn = document.getElementById('scrollBottomBtn');
+        window.addEventListener('scroll', function() {
+            scrollTopBtn.classList.toggle('show-buttons', window.scrollY > 300);
+            scrollBottomBtn.classList.toggle('show-buttons', (window.innerHeight + window.scrollY) < document.body.offsetHeight - 300);
+        });
+        scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        scrollBottomBtn.addEventListener('click', () => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }));
+    }
+    
+    function initVoiceControls() {
+        const playBtn = document.getElementById('mainPlayBtn');
+        const playContinuousBtn = document.getElementById('mainPlayContinuousBtn');
+        const pauseBtn = document.getElementById('mainPauseBtn');
+        const stopBtn = document.getElementById('mainStopBtn');
+
+        if (!('speechSynthesis' in window)) {
+            [playBtn, playContinuousBtn, pauseBtn, stopBtn].forEach(btn => btn && (btn.disabled = true));
+            return;
+        }
+
+        if (playBtn) {
+            playBtn.addEventListener('click', function() {
+                isAutoReading = false;
+                if (speechSynthesis.paused) {
+                    speechSynthesis.resume();
+                } else if (!speechSynthesis.speaking) {
+                    const visibleArticle = getVisibleArticle();
+                    if (visibleArticle) readArticle(visibleArticle);
+                }
+            });
+        }
+        if (playContinuousBtn) playContinuousBtn.addEventListener('click', startContinuousReading);
+        if (pauseBtn) pauseBtn.addEventListener('click', () => speechSynthesis.pause());
+        if (stopBtn) {
+            stopBtn.addEventListener('click', function() {
+                isAutoReading = false;
+                speechSynthesis.cancel();
+            });
+        }
+    }
+
+    function startContinuousReading() {
+        speechSynthesis.cancel(); 
+        isAutoReading = true; 
+        const startArticle = getVisibleArticle();
+        if (startArticle) {
+            readArticle(startArticle); 
+        } else if (articles.length > 0) {
+            currentArticleIndex = 0;
+            scrollToArticle(0);
+            readArticle(articles[0]);
+        }
+    }
+
+    function getVisibleArticle() {
+        let mostVisibleArticle = null;
+        let maxVisibility = 0;
+        articles.forEach((article, index) => {
+            const rect = article.getBoundingClientRect();
+            const visibleHeight = Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0);
+            const visibilityRatio = visibleHeight / rect.height;
+            if (visibilityRatio > maxVisibility && visibilityRatio > 0.3) {
+                maxVisibility = visibilityRatio;
+                mostVisibleArticle = article;
+                currentArticleIndex = index;
+            }
+        });
+        return mostVisibleArticle;
+    }
+
+     function readArticle(article) {
+        speechSynthesis.cancel();
+        const title = article.querySelector('h3').textContent;
+        const content = article.querySelector('.article-content').textContent;
+        const utterance = new SpeechSynthesisUtterance(`${title}. ${content}`);
+        utterance.lang = 'fr-FR';
+        
+        // Mettre à jour les métadonnées de session média
+        updateMediaSession(article);
+
+        utterance.onend = function() {
+            if (isAutoReading && currentArticleIndex < articles.length - 1) {
+                // Passer à l'article suivant
+                currentArticleIndex++;
+                
+                // Si en mode plein écran, mettre à jour l'affichage
+                if (document.getElementById('fullscreenMode').classList.contains('active')) {
+                    loadArticleIntoFullscreen(); // Appel à la fonction du mode plein écran
+                } else {
+                    scrollToArticle(currentArticleIndex);
+                }
+                
+                // Lire l'article suivant après un court délai
+                setTimeout(() => readArticle(articles[currentArticleIndex]), 500);
+            } else {
+                isAutoReading = false;
+            }
+        };
+        
+        speechSynthesis.speak(utterance);
+    }
+      
+    function initSpeechEvents() {
+        const fsPlayBtn = document.getElementById('fullscreenPlayBtn');
+        const fsPauseBtn = document.getElementById('fullscreenPauseBtn');
+        const fsStopBtn = document.getElementById('fullscreenStopBtn');
+        
+        fsPlayBtn.addEventListener('click', () => {
+            isAutoReading = true; // Activer la lecture continue
+            if (speechSynthesis.paused) {
+                speechSynthesis.resume();
+            } else if (!speechSynthesis.speaking) {
+                readArticle(articles[currentArticleIndex]);
+            }
+        });
+        fsPauseBtn.addEventListener('click', () => speechSynthesis.pause());
+        fsStopBtn.addEventListener('click', () => {
+            isAutoReading = false; // Désactiver la lecture continue
+            speechSynthesis.cancel();
+        });
+    }
+    
+    function initThemeToggle() {
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            isDarkMode = !isDarkMode;
+            document.body.classList.toggle('dark-mode', isDarkMode);
+            themeToggle.querySelector('i').className = `fas ${isDarkMode ? 'fa-sun' : 'fa-moon'}`;
+        });
+    }
+    
+    function initBrightnessControl() {
+        const brightnessBtn = document.getElementById('brightnessBtn');
+        const brightnessControl = document.getElementById('brightnessControl');
+        brightnessBtn.addEventListener('click', () => brightnessControl.classList.toggle('active'));
+        document.getElementById('brightnessSlider').addEventListener('input', function() {
+            document.body.style.filter = `brightness(${this.value}%)`;
+        });
+    }
+    
+    function initArticleClickModal() {
+        const modal = document.getElementById('articleModal');
+        articles.forEach(article => {
+            article.addEventListener('click', function() {
+                document.getElementById('modalArticleContent').innerHTML = `<h3>${this.querySelector('h3').textContent}</h3><div>${this.querySelector('.article-content').innerHTML}</div>`;
+                modal.classList.add('active');
+            });
+        });
+        document.getElementById('modalClose').addEventListener('click', () => modal.classList.remove('active'));
+    }
+    
+    function initMobileSommaire() {
+        const mobileSommaire = document.getElementById('mobileSommaire');
+        document.getElementById('mobileSommaireBtn').addEventListener('click', () => mobileSommaire.classList.add('active'));
+        document.getElementById('mobileSommaireClose').addEventListener('click', () => mobileSommaire.classList.remove('active'));
+    }
+
+    function initAutoCloseSommaire() {
+        const mobileSommaire = document.getElementById('mobileSommaire');
+        document.querySelectorAll('.sommaire-item a').forEach(link => {
+            link.addEventListener('click', () => setTimeout(() => mobileSommaire.classList.remove('active'), 300));
+        });
+    }
+    
+    function initNavIndicator() {
+        const navIndicator = document.getElementById('navIndicator');
+        articles.forEach((_, i) => {
+            const dot = document.createElement('div');
+            dot.className = 'nav-dot';
+            dot.addEventListener('click', () => scrollToArticle(i));
+            navIndicator.appendChild(dot);
+        });
+        window.addEventListener('scroll', () => {
+            if (isAutoReading) return;
+            const visibleArticle = getVisibleArticle();
+            if (visibleArticle) updateNavIndicator(Array.from(articles).indexOf(visibleArticle));
+        });
+    }
+    
+    function updateNavIndicator(index) {
+        document.querySelectorAll('.nav-dot').forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
+        });
+    }
+
+    function scrollToArticle(index) {
+        if (articles[index]) {
+            articles[index].scrollIntoView({ behavior: 'smooth', block: 'center' });
+            updateNavIndicator(index);
+        }
+    }
+    
+    function initFullscreenMode() {
+        const fullscreenMode = document.getElementById('fullscreenMode');
+        const fullscreenToggle = document.getElementById('fullscreenToggle');
+        const fullscreenClose = document.getElementById('fullscreenClose');
+        const fullscreenTitle = document.getElementById('fullscreenTitle');
+        const fullscreenContent = document.getElementById('fullscreenContent');
+        const prevBtn = document.getElementById('prevArticleBtn');
+        const nextBtn = document.getElementById('nextArticleBtn');
+        const fsPlayBtn = document.getElementById('fullscreenPlayBtn');
+        const fsPauseBtn = document.getElementById('fullscreenPauseBtn');
+        const fsStopBtn = document.getElementById('fullscreenStopBtn');
+
+        // Charger l'article dans le mode plein écran
+        function loadArticleIntoFullscreen() {
+            const article = articles[currentArticleIndex];
+            fullscreenTitle.textContent = article.querySelector('h3').textContent;
+            fullscreenContent.innerHTML = article.querySelector('.article-content').innerHTML;
+            
+            // Mettre à jour l'état des boutons de navigation
+            prevBtn.disabled = currentArticleIndex === 0;
+            nextBtn.disabled = currentArticleIndex === articles.length - 1;
+            
+            // Arrêter toute lecture en cours
+            speechSynthesis.cancel();
+        }
+
+        // Ouvrir le mode plein écran
+        fullscreenToggle.addEventListener('click', () => {
+            // Trouver l'article actuellement visible
+            getVisibleArticle();
+            loadArticleIntoFullscreen();
+            fullscreenMode.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        // Fermer le mode plein écran
+        fullscreenClose.addEventListener('click', () => {
+            fullscreenMode.classList.remove('active');
+            document.body.style.overflow = '';
+            isAutoReading = false; // Désactiver la lecture continue en sortant du mode plein écran
+            speechSynthesis.cancel(); // Arrêter la lecture vocale
+        });
+
+        // Navigation vers l'article précédent
+        prevBtn.addEventListener('click', () => {
+            if (currentArticleIndex > 0) {
+                currentArticleIndex--;
+                loadArticleIntoFullscreen();
+                
+                // Si la lecture continue est activée, lire l'article
+                if (isAutoReading) {
+                    setTimeout(() => readArticle(articles[currentArticleIndex]), 500);
+                }
+            }
+        });
+
+        // Navigation vers l'article suivant
+        nextBtn.addEventListener('click', () => {
+            if (currentArticleIndex < articles.length - 1) {
+                currentArticleIndex++;
+                loadArticleIntoFullscreen();
+                
+                // Si la lecture continue est activée, lire l'article
+                if (isAutoReading) {
+                    setTimeout(() => readArticle(articles[currentArticleIndex]), 500);
+                }
+            }
+        });
+
+        // Contrôles vocaux en mode plein écran
+        fsPlayBtn.addEventListener('click', () => {
+            isAutoReading = true; // Activer la lecture continue
+            if (speechSynthesis.paused) {
+                speechSynthesis.resume();
+            } else if (!speechSynthesis.speaking) {
+                readArticle(articles[currentArticleIndex]);
+            }
+        });
+
+        fsPauseBtn.addEventListener('click', () => {
+            speechSynthesis.pause();
+        });
+
+        fsStopBtn.addEventListener('click', () => {
+            isAutoReading = false; // Désactiver la lecture continue
+            speechSynthesis.cancel();
+        });
+
+        // Navigation par balayage (swipe)
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        fullscreenMode.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, false);
+
+        fullscreenMode.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, false);
+        
+        function handleSwipe() {
+            const minSwipeDistance = 50; // Distance minimale pour considérer un balayage
+            
+            if (touchStartX - touchEndX > minSwipeDistance) {
+                // Balayage vers la gauche = article suivant
+                if (nextBtn && !nextBtn.disabled) {
+                    nextBtn.click();
+                }
+            } else if (touchEndX - touchStartX > minSwipeDistance) {
+                // Balayage vers la droite = article précédent
+                if (prevBtn && !prevBtn.disabled) {
+                    prevBtn.click();
+                }
+            }
+        }
+
+        // Navigation au clavier en mode plein écran
+        document.addEventListener('keydown', function(e) {
+            if (!fullscreenMode.classList.contains('active')) return;
+            
+            switch(e.key) {
+                case 'ArrowLeft':
+                    if (prevBtn && !prevBtn.disabled) prevBtn.click();
+                    break;
+                case 'ArrowRight':
+                    if (nextBtn && !nextBtn.disabled) nextBtn.click();
+                    break;
+                case 'Escape':
+                    fullscreenClose.click();
+                    break;
+            }
+        });
+    }
+
+    function disableSelectionAndCopyPaste() {
+        document.body.style.userSelect = 'none';
+        ['contextmenu', 'copy', 'paste', 'selectstart'].forEach(event => {
+            window.addEventListener(event, e => e.preventDefault());
+        });
+    }
+    
+    // --- Fonctionnalité de lecture en arrière-plan (Media Session API) ---
+    function updateMediaSession(article) {
+        if (!('mediaSession' in navigator)) return;
+        const title = article.querySelector('h3').textContent;
+        const chapter = article.closest('.section').querySelector('h2').textContent;
+        navigator.mediaSession.metadata = new MediaMetadata({
+            title: title, artist: chapter, album: 'Loi relative à la filiation',
+            artwork: [{ src: 'https://img.icons8.com/ios-filled/128/000000/law.png', sizes: '128x128', type: 'image/png' }]
+        });
+        navigator.mediaSession.setActionHandler('play', () => { isAutoReading = true; speechSynthesis.resume(); });
+        navigator.mediaSession.setActionHandler('pause', () => speechSynthesis.pause());
+        navigator.mediaSession.setActionHandler('nexttrack', playNextArticle);
+        navigator.mediaSession.setActionHandler('previoustrack', playPreviousArticle);
+    }
+    function playNextArticle() {
+        if (currentArticleIndex < articles.length - 1) {
+            currentArticleIndex++; isAutoReading = true;
+            scrollToArticle(currentArticleIndex); readArticle(articles[currentArticleIndex]);
+        }
+    }
+    function playPreviousArticle() {
+        if (currentArticleIndex > 0) {
+            currentArticleIndex--; isAutoReading = true;
+            scrollToArticle(currentArticleIndex); readArticle(articles[currentArticleIndex]);
+        }
+    }
+
+    // --- Fonctionnalité de recherche (MODIFIÉE) ---
+    function initSearchFeature() {
+        const searchBtn = document.createElement('button');
+        searchBtn.className = 'control-btn';
+        searchBtn.id = 'searchBtn';
+        searchBtn.title = 'Rechercher';
+        searchBtn.innerHTML = '<i class="fas fa-search"></i>';
+        document.querySelector('.control-buttons').appendChild(searchBtn);
+        
+        const searchInterface = document.createElement('div');
+        searchInterface.id = 'searchInterface';
+        searchInterface.style.cssText = `
+            position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+            width: calc(100% - 40px); max-width: 550px; background: var(--article-bg);
+            padding: 10px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 1000; display: none; align-items: center; gap: 5px; transition: var(--transition);
+        `;
+        searchInterface.innerHTML = `
+            <input type="text" id="searchInput" placeholder="Rechercher..." style="flex-grow: 1; padding: 8px; border: 1px solid var(--secondary-color); border-radius: 5px;">
+            <button id="searchPrevBtn" class="control-btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-up"></i></button>
+            <button id="searchNextBtn" class="control-btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-down"></i></button>
+            <span id="searchResultsCount" style="flex-shrink: 0; padding: 0 5px; min-width: 40px; text-align: center;"></span>
+            <button id="closeSearchBtn" class="control-btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-times"></i></button>
+        `;
+        document.body.appendChild(searchInterface);
+
+        let searchResults = [];
+        let currentSearchIndex = -1;
+        let originalContents = new Map();
+
+        function performSearch() {
+            const searchTerm = document.getElementById('searchInput').value.trim();
+            if (!originalContents.size) {
+                document.querySelectorAll('.article-content, h3').forEach(el => originalContents.set(el, el.innerHTML));
+            }
+            originalContents.forEach((content, el) => el.innerHTML = content);
+            searchResults = [];
+            currentSearchIndex = -1;
+            if (!searchTerm) { updateSearchUI(); return; }
+
+            const regex = new RegExp(searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+            originalContents.forEach((content, element) => {
+                element.innerHTML = content.replace(regex, match => `<mark>${match}</mark>`);
+            });
+            searchResults = Array.from(document.querySelectorAll('mark'));
+            if (searchResults.length > 0) navigateResults(true, false);
+            updateSearchUI();
+        }
+
+        function navigateResults(isNext, shouldWrap = true) {
+            if (!searchResults.length) return;
+            searchResults.forEach(mark => mark.style.backgroundColor = '');
+            if (shouldWrap) {
+                currentSearchIndex = isNext ? (currentSearchIndex + 1) % searchResults.length : (currentSearchIndex - 1 + searchResults.length) % searchResults.length;
+            } else {
+                currentSearchIndex = 0;
+            }
+            const currentMark = searchResults[currentSearchIndex];
+            currentMark.style.backgroundColor = 'var(--gold-color)';
+            currentMark.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            updateSearchUI();
+        }
+
+        function updateSearchUI() {
+            document.getElementById('searchResultsCount').textContent = searchResults.length > 0 ? `${currentSearchIndex + 1}/${searchResults.length}` : '0/0';
+        }
+        
+        function resetSearch() {
+            originalContents.forEach((content, el) => el.innerHTML = content);
+            originalContents.clear();
+            document.getElementById('searchInput').value = '';
+            searchResults = []; currentSearchIndex = -1;
+            updateSearchUI();
+        }
+
+        searchBtn.addEventListener('click', () => {
+            const isVisible = searchInterface.style.display === 'flex';
+            searchInterface.style.display = isVisible ? 'none' : 'flex';
+            if (isVisible) resetSearch(); else document.getElementById('searchInput').focus();
+        });
+        document.getElementById('searchInput').addEventListener('input', performSearch);
+        document.getElementById('searchNextBtn').addEventListener('click', () => navigateResults(true));
+        document.getElementById('searchPrevBtn').addEventListener('click', () => navigateResults(false));
+        document.getElementById('closeSearchBtn').addEventListener('click', () => {
+            searchInterface.style.display = 'none';
+            resetSearch();
+        });
+    }
+    </script>
+  <script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js"));
+  }
+</script>
+  <!-- PWA Install Button -->
+<button id="pwa-install-btn" aria-label="Installer l'application" hidden>Installer</button>
+<style>
+  #pwa-install-btn{
+    position:fixed; right:16px; bottom:16px; z-index:9999;
+    padding:10px 14px; border:none; border-radius:999px;
+    background:#22c55e; color:white; font:600 14px system-ui,Segoe UI,Roboto,Arial,sans-serif;
+    box-shadow:0 8px 20px rgba(34,197,94,.35);
+  }
+  #pwa-install-btn[hidden]{ display:none; }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    #pwa-install-btn{ bottom: calc(16px + env(safe-area-inset-bottom)); }
+  }
+</style>
+<script>
+  (function(){
+    let deferredPrompt;
+    const btnId = "pwa-install-btn";
+    function ensureBtn(){
+      let b = document.getElementById(btnId);
+      if(!b){
+        b = document.createElement("button");
+        b.id = btnId;
+        b.textContent = "Installer";
+        document.body.appendChild(b);
+      }
+      return b;
+    }
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      const btn = ensureBtn();
+      btn.hidden = false;
+      btn.onclick = async () => {
+        btn.hidden = true;
+        deferredPrompt.prompt();
+        await deferredPrompt.userChoice;
+        deferredPrompt = null;
+      };
+    });
+    if (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) {
+      const btn = document.getElementById(btnId);
+      if(btn) btn.hidden = true;
+    }
+  })();
+</script>
+  <!-- Auth UI minimal -->
+<style>
+  .auth-box{position:fixed; top:12px; right:12px; z-index:9998; background:#ffffff; color:#111827; border-radius:12px; padding:10px 12px; box-shadow:0 10px 24px rgba(0,0,0,.12); font:500 14px system-ui,Segoe UI,Roboto,Arial}
+  .auth-box h4{margin:0 0 6px; font-size:14px}
+  .auth-box form{display:flex; gap:6px; flex-wrap:wrap; align-items:center}
+  .auth-box input{padding:6px 8px; border:1px solid #e5e7eb; border-radius:8px}
+  .auth-box button{background:#22c55e; color:#fff; border:none; padding:6px 10px; border-radius:8px; cursor:pointer}
+  .auth-box .row{display:flex; gap:6px; flex-wrap:wrap}
+  .views-badge{position:fixed; left:12px; bottom:12px; z-index:9998; background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px; font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)}
+</style><!-- Admin link (visible only when logged-in) -->
+<style>
+  .admin-link{
+    position:fixed; right:16px; bottom:88px; z-index:9998;
+    display:none; align-items:center; gap:8px;
+    padding:10px 14px; border-radius:999px; text-decoration:none;
+    background:#111827; color:#fff; font:600 14px system-ui,Segoe UI,Roboto,Arial;
+    box-shadow:0 8px 20px rgba(0,0,0,.3);
+    border:1px solid rgba(255,255,255,.1);
+  }
+  body.logged-in .admin-link{ display:inline-flex; }
+  .admin-link:hover{ filter:brightness(1.1); }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    .admin-link{ bottom: calc(88px + env(safe-area-inset-bottom)); }
+  }
+</style>
+<a href="admin.html" class="admin-link" title="Tableau de bord">Admin</a>
+  <script type="module" src="assets/firebase-app.js"></script>
+  <script>window.autoCountAndBind && window.autoCountAndBind();</script>
+  
+<!-- Floating Auth Button + Modal -->
+<style>
+  #auth-fab{
+    position:fixed; right:16px; bottom:68px; z-index:9998;
+    width:48px; height:48px; border-radius:999px; border:none; cursor:pointer;
+    background:#111827; color:#fff; display:grid; place-items:center;
+    box-shadow:0 8px 20px rgba(0,0,0,.35); border:1px solid rgba(255,255,255,.1);
+  }
+  body.logged-in #auth-fab::after{ content:"✓"; }
+  #auth-fab::after{ content:"👤"; font-size:20px; }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    #auth-fab{ bottom: calc(68px + env(safe-area-inset-bottom)); }
+  }
+  .views-badge{
+    position:fixed; left:12px; bottom:12px; z-index:9998; 
+    background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px;
+    font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)
+  }
+  dialog#auth-modal{
+    border:none; border-radius:16px; padding:0; width:min(90vw,420px);
+    box-shadow:0 24px 72px rgba(0,0,0,.35); overflow:hidden;
+  }
+  dialog::backdrop{ background:rgba(0,0,0,.4); }
+  .auth-modal-head{background:#0f172a; color:#fff; padding:12px 16px; display:flex; justify-content:space-between; align-items:center}
+  .auth-modal-body{padding:16px; background:#111827; color:#e5e7eb}
+  .auth-modal-body label{display:block; font-size:13px; margin-top:8px; opacity:.9}
+  .auth-modal-body input{width:100%; padding:10px 12px; border-radius:10px; border:1px solid #1f2937; background:#0b1021; color:#e5e7eb}
+  .auth-actions{display:flex; gap:8px; margin-top:14px}
+  .btn{border:none; border-radius:10px; padding:10px 12px; cursor:pointer; font-weight:600}
+  .btn-primary{background:#22c55e; color:white}
+  .btn-ghost{background:transparent; color:#e5e7eb; border:1px solid #374151}
+  .muted{opacity:.8}
+</style>
+
+<button id="auth-fab" title="Connexion / Compte"></button>
+<div class="views-badge">Vues : <span id="viewCounter">0</span></div>
+
+<dialog id="auth-modal">
+  <div class="auth-modal-head">
+    <strong>Connexion</strong>
+    <button class="btn btn-ghost" id="auth-close" aria-label="Fermer">✕</button>
+  </div>
+  <div class="auth-modal-body">
+    <p class="muted">Connecte-toi pour accéder à l’admin et une meilleure expérience.</p>
+    <label>Email</label>
+    <input type="email" id="auth-email" placeholder="email@exemple.com" required>
+    <label>Mot de passe</label>
+    <input type="password" id="auth-pass" placeholder="••••••••" required>
+    <div class="auth-actions">
+      <button class="btn btn-primary" id="btn-login">Connexion</button>
+      <button class="btn btn-ghost" id="btn-register">Créer un compte</button>
+      <button class="btn btn-ghost" id="btn-logout">Déconnexion</button>
+    </div>
+    <div id="auth-msg" class="muted" style="margin-top:8px;"></div>
+  </div>
+</dialog>
+
+<script type="module">
+  import { authRegister, authLogin, authLogout } from "./assets/firebase-app.js";
+
+  const fab = document.getElementById("auth-fab");
+  const modal = document.getElementById("auth-modal");
+  const closeBtn = document.getElementById("auth-close");
+  const email = document.getElementById("auth-email");
+  const pass = document.getElementById("auth-pass");
+  const msg  = document.getElementById("auth-msg");
+  const btnLogin = document.getElementById("btn-login");
+  const btnRegister = document.getElementById("btn-register");
+  const btnLogout = document.getElementById("btn-logout");
+
+  function openModal(){ try{ modal.showModal(); }catch{ modal.setAttribute("open",""); } }
+  function closeModal(){ modal.close?.(); modal.removeAttribute("open"); }
+
+  fab?.addEventListener("click", openModal);
+  closeBtn?.addEventListener("click", closeModal);
+
+  async function handle(run){
+    msg.textContent = "";
+    try{
+      await run(email.value.trim(), pass.value);
+      msg.textContent = "✅ Opération réussie.";
+      setTimeout(()=>{ closeModal(); }, 500);
+    }catch(e){
+      console.error(e);
+      msg.textContent = "❌ " + (e?.message || "Erreur");
+    }
+  }
+
+  btnLogin?.addEventListener("click", () => handle(authLogin));
+  btnRegister?.addEventListener("click", () => handle(authRegister));
+  btnLogout?.addEventListener("click", async () => {
+    msg.textContent = "";
+    try{ await authLogout(); msg.textContent = "✅ Déconnecté."; }catch(e){ msg.textContent = "❌ " + (e?.message||"Erreur"); }
+  });
+</script>
+
+
+<!-- Per-card view counters -->
+<style>
+  .card-views-badge{
+    position:absolute; top:8px; right:8px;
+    background:rgba(17,24,39,.9); color:#fff;
+    padding:4px 8px; border-radius:999px; font:600 12px system-ui,Segoe UI,Roboto,Arial;
+    box-shadow:0 6px 14px rgba(0,0,0,.25);
+    pointer-events:none;
+  }
+  .card-views-wrap{ position:relative; }
+</style>
+<script type="module">
+  import { getViewCount } from "./assets/firebase-app.js";
+  function basename(href){
+    try{ const u = new URL(href, location.href);
+         const file = u.pathname.split('/').pop() || 'index.html';
+         return file.replace(/\.html$/i,''); }
+    catch{ return (href.split('/').pop()||'index.html').replace(/\.html$/i,''); }
+  }
+  async function attachCounterTo(el, docId){
+    let container = el.closest('.card, .item, .panel, .box, .article, .doc, .tile');
+    if(!container){ container = el.parentElement; }
+    if(container && !container.classList.contains('card-views-wrap')){
+      container.classList.add('card-views-wrap');
+    }
+    const host = container || el;
+    if(host.querySelector('.card-views-badge[data-doc="'+docId+'"]')) return;
+    const badge = document.createElement('span');
+    badge.className = 'card-views-badge';
+    badge.dataset.doc = docId;
+    badge.textContent = 'Vues: …';
+    host.appendChild(badge);
+    try{ const n = await getViewCount(docId);
+         badge.textContent = 'Vues: ' + n; }
+    catch{ badge.textContent = 'Vues: —'; }
+  }
+  async function initCardCounters(){
+    const links = Array.from(document.querySelectorAll('[data-doc-id], a[href$=".html"]'))
+      .filter(a => {
+        const id = a.getAttribute('data-doc-id') || basename(a.getAttribute('href')||'');
+        return id && !['index','admin','offline'].includes(id.toLowerCase());
+      });
+    const handled = new Set();
+    for(const a of links){
+      const id = a.getAttribute('data-doc-id') || basename(a.getAttribute('href')||'');
+      if(!id || handled.has(id)) continue;
+      handled.add(id);
+      attachCounterTo(a, id);
+    }
+  }
+  initCardCounters();
+  const obs = new MutationObserver(()=>initCardCounters());
+  obs.observe(document.body, { childList:true, subtree:true });
+</script>
+
+</body>
+</html>
