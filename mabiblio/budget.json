@@ -6,16 +6,16 @@
       "id": "menapln",
       "name": "Ministère de l'Éducation Nationale et de l'Alphabétisation",
       "icon": "Landmark",
-      "cp": 46766478879636111288,
+      "cp":1439519194349,
       "programs": [
         {
           "id": "edu_global",
           "title": "Budget global",
-          "amount": 46766478879636111288,
+          "amount": 1439519194349,
           "natures": [
             {
               "title": "Personnel",
-              "amount": 110795031504,
+              "amount": 1053810696060,
               "lines": [
                 {
                   "label": "1 Personnel 53.729.980.754",
