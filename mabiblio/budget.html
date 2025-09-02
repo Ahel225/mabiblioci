@@ -1,180 +1,612 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="light">
+<html lang="fr" data-theme="dark">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-  <title>Hub Budgétaire — Côte d'Ivoire</title>
-  <link rel="icon" type="image/png" sizes="32x32" href="icons/icon-192.png">
-  <link rel="stylesheet" href="budget.css"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Hub Budget – Côte d’Ivoire</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js"></script>
+<style>
+  /* ========================= THEMES ========================= */
+  :root {
+    --bg:#0b1020; --panel:#121a33; --muted:#8da2c0; --text:#e7eefc; --accent:#6ea8fe; --accent2:#ffd166;
+    --ok:#2ecc71; --warn:#f39c12; --border:#223055; --tile:#0f1734; --input:#0e1530; --barbg:#0c1430;
+  }
+  html[data-theme="light-blue"]{
+    --bg:#f6f9ff; --panel:#ffffff; --muted:#5a6b85; --text:#0e1a33; --accent:#2f6fff; --accent2:#ffb703;
+    --ok:#1eaf62; --warn:#e58d0a; --border:#e3e9f7; --tile:#ffffff; --input:#f1f5ff; --barbg:#e7eefc;
+  }
+  html[data-theme="light-green"]{
+    --bg:#f7fff9; --panel:#ffffff; --muted:#556a5e; --text:#0a2414; --accent:#15a85b; --accent2:#ffb703;
+    --ok:#169a54; --warn:#d68b0e; --border:#e3f1e8; --tile:#ffffff; --input:#f1fbf5; --barbg:#e6f6ec;
+  }
+
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial;
+    background:linear-gradient(180deg,var(--bg) 0%, var(--bg) 100%); color:var(--text)
+  }
+
+  /* ========================= LAYOUT ========================= */
+  .app{display:grid; grid-template-columns:300px 1fr; gap:16px; padding:16px; max-width:1480px; margin:0 auto}
+  header{grid-column:1 / -1; display:flex; gap:12px; flex-wrap:wrap; align-items:center; justify-content:space-between}
+  .brand{font-weight:800; font-size:20px}
+  .panel{background:var(--panel); border:1px solid var(--border); border-radius:16px; padding:14px}
+  .sidebar{display:flex; flex-direction:column; gap:12px; height:calc(100vh - 130px); position:sticky; top:16px}
+  .toolbar{display:flex; gap:8px; align-items:center; flex-wrap:wrap}
+
+  input[type="text"], input[type="url"], input[type="search"]{
+    background:var(--input); border:1px solid var(--border); border-radius:10px; padding:10px 12px; color:var(--text); width:100%;
+  }
+  .btn{
+    background:var(--accent); color:#fff; border:none; padding:10px 12px; border-radius:10px;
+    font-weight:700; cursor:pointer; transition:transform .05s ease
+  }
+  .btn:active{ transform:scale(.98) }
+  .btn.secondary{background:transparent; color:var(--text); border:1px solid var(--border)}
+  .btn.ghost{background:transparent; color:var(--muted); border:1px dashed var(--border)}
+  .btn.small{padding:8px 10px; font-size:13px}
+
+  .menu{display:flex; flex-direction:column; gap:6px}
+  .menu .item{padding:10px 12px; border-radius:10px; cursor:pointer; color:var(--text); border:1px solid transparent}
+  .menu .item:hover{background:var(--tile)}
+  .menu .item.active{border-color:var(--accent); background:var(--tile)}
+  .hint{color:var(--muted); font-size:12px}
+  .main{display:grid; gap:16px}
+  .row{display:flex; gap:8px; align-items:center; flex-wrap:wrap}
+  .badge{font-size:12px; color:var(--muted)}
+  .cards{display:grid; grid-template-columns:repeat(4,1fr); gap:12px}
+  .card{background:var(--tile); border:1px solid var(--border); border-radius:14px; padding:12px}
+  .card h4{margin:0 0 6px 0; font-size:13px; color:var(--muted)}
+  .card .v{font-size:20px; font-weight:700}
+
+  .list{display:grid; grid-template-columns:repeat(3, 1fr); gap:10px}
+  .tile{background:var(--tile); border:1px solid var(--border); border-radius:14px; padding:12px; cursor:pointer}
+  .tile:hover{transform:translateY(-1px); transition:.15s}
+  .tile .head{display:flex; justify-content:space-between; align-items:center; gap:8px}
+  .tile .pct{font-weight:800}
+  .bar{height:6px; border-radius:999px; background:var(--barbg); margin-top:8px; overflow:hidden}
+  .bar > div{height:100%}
+
+  .grid{display:grid; gap:12px}
+  .table{width:100%; border-collapse:collapse; font-size:14px}
+  .table th,.table td{border-bottom:1px dashed var(--border); padding:8px 6px; text-align:left; vertical-align:top}
+  .table th{color:var(--muted); font-weight:600}
+  .mon{font-variant-numeric:tabular-nums}
+  .footer{grid-column:1/-1; text-align:center; color:#93a9cc66; font-size:12px; padding:8px 0}
+
+  .tabs{display:flex; gap:8px; border-bottom:1px solid var(--border); margin-bottom:8px; overflow:auto}
+  .tab{padding:8px 12px; border:1px solid var(--border); border-bottom:none; border-radius:10px 10px 0 0; cursor:pointer; background:var(--tile); white-space:nowrap}
+  .tab.active{background:var(--panel); border-color:var(--accent)}
+
+  .accordion{border:1px solid var(--border); border-radius:10px; overflow:hidden}
+  .acc-item + .acc-item{border-top:1px dashed var(--border)}
+  .acc-head{display:flex; justify-content:space-between; padding:10px; cursor:pointer; background:var(--tile)}
+  .acc-body{padding:8px 10px; display:none}
+  .acc-item.open .acc-body{display:block}
+
+  /* ========================= MODAL SEARCH ========================= */
+  .modal{position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(2,7,22,.6); z-index:50}
+  html[data-theme="light-blue"] .modal, html[data-theme="light-green"] .modal{ background:rgba(0,0,0,.25) }
+  .modal.open{display:flex}
+  .modal .box{width:min(1100px, 96vw); max-height:90vh; overflow:auto; background:var(--panel); border:1px solid var(--border); border-radius:16px; padding:16px}
+  .modal .res{margin-top:12px}
+  .modal .res .item{padding:10px; border:1px solid var(--border); border-radius:10px; margin-bottom:8px}
+  .modal .res .item:hover{background:var(--tile)}
+
+  /* ========================= MOBILE ========================= */
+  @media (max-width:1100px){
+    .app{grid-template-columns:1fr}
+    .sidebar{position:static; height:auto}
+    .cards{grid-template-columns:repeat(2,1fr)}
+    .list{grid-template-columns:repeat(2,1fr)}
+  }
+  @media (max-width:720px){
+    header{position:sticky; top:0; z-index:10}
+    .toolbar{gap:6px}
+    .btn{padding:9px 11px}
+    .btn.small{padding:7px 9px}
+    .list{grid-template-columns:1fr}
+    .cards{grid-template-columns:1fr}
+    /* Sidebar collapsible on mobile */
+    .sidebar .menu { display:none }
+    .sidebar.open .menu { display:flex }
+  }
+</style>
 </head>
 <body>
+<div class="app">
   <header>
-    <div class="wrap row">
-      <button class="back" onclick="history.back()" aria-label="Retour"><i class="fa fa-arrow-left"></i></button>
-      <h1>Hub Budgétaire — Côte d'Ivoire</h1>
-      <a class="pill" href="budget.json" download><i class="fa fa-download"></i> Export JSON</a>
+    <div class="brand">🇨🇮 Hub Budget – Côte d’Ivoire</div>
+    <div class="toolbar panel" style="gap:8px; flex:1">
+      <input id="urlInput" type="url" placeholder="URL du JSON (ex: /data/2024.json). Laissez vide pour charger un fichier…" style="min-width:220px; flex:1">
+      <input id="fileInput" type="file" accept="application/json,application/*+json">
+      <button class="btn" id="loadBtn" aria-label="Charger les données">Charger</button>
+      <button class="btn secondary" id="advSearchBtn" title="Recherche avancée (ministère, programme, nature, ligne)" aria-haspopup="dialog">Recherche</button>
+      <button class="btn secondary" id="exportBtn" title="Exporter la vue en CSV">Export</button>
+      <!-- Theme switcher -->
+      <div class="row" style="margin-left:auto; gap:6px">
+        <button class="btn small secondary" data-theme="dark" title="Thème sombre">Sombre</button>
+        <button class="btn small secondary" data-theme="light-blue" title="Thème blanc & bleu">Bleu</button>
+        <button class="btn small secondary" data-theme="light-green" title="Thème blanc & vert">Vert</button>
+      </div>
+      <!-- Mobile sidebar toggle -->
+      <button class="btn ghost small" id="toggleMenu" title="Afficher/masquer le menu">Menu</button>
     </div>
   </header>
 
-  <main class="wrap" id="app" aria-live="polite">
-    <div class="card">
-      <div class="title">Chargement…</div>
-      <p class="muted">Merci de patienter.</p>
+  <aside class="sidebar panel" id="sidebar">
+    <div class="menu" id="menuMain">
+      <div class="item active" data-view="budget-general">Budget général</div>
+      <div class="item" data-view="ressources">Ressources du Budget de l'État</div>
+      <div class="item" data-view="cst">Comptes spéciaux du Trésor</div>
+      <div class="item" data-view="dette">Service de la dette</div>
+      <div class="item" data-view="annexes">Annexes (EPN, collectivités, COGES)</div>
     </div>
+    <div class="hint" style="margin-top:6px">Astuce : ajoute <code>?data=/data/2024.json</code> à l’URL pour précharger le JSON.</div>
+  </aside>
+
+  <main class="main">
+    <!-- BUDGET GENERAL -->
+    <section class="panel" id="view-budget-general">
+      <div class="row" style="justify-content:space-between">
+        <h2 style="margin:0">Budget général — Ministères</h2>
+        <span class="badge" id="bg-meta">—</span>
+      </div>
+      <div class="row" style="gap:6px">
+        <input id="filterMinistere" type="search" placeholder="Filtrer les ministères… (nom ou ID)" style="max-width:380px">
+      </div>
+      <div class="list" id="ministryGrid"></div>
+    </section>
+
+    <!-- DETAIL ENTITE -->
+    <section class="panel" id="view-entity" style="display:none">
+      <div class="row" style="justify-content:space-between">
+        <h2 id="ent-title" style="margin:0">—</h2>
+        <div class="row">
+          <button class="btn secondary" id="backToGeneral">← Budget général</button>
+          <span class="badge" id="ent-meta"></span>
+        </div>
+      </div>
+      <div class="cards">
+        <div class="card"><h4>Dépenses</h4><div class="v mon" id="k_dep">—</div></div>
+        <div class="card"><h4>Recettes</h4><div class="v mon" id="k_rec">—</div></div>
+        <div class="card"><h4>Lignes</h4><div class="v mon" id="k_lines">—</div></div>
+        <div class="card"><h4>Programmes</h4><div class="v mon" id="k_prog">—</div></div>
+      </div>
+      <div class="tabs" id="progTabs"></div>
+      <div id="progPane"></div>
+    </section>
+
+    <!-- AUTRES VUES -->
+    <section class="panel" id="view-ressources" style="display:none">
+      <h2 style="margin:0">Ressources du Budget de l'État</h2>
+      <p class="badge">En attente de données de ressources. Dès que tu m’envoies le fichier, cette section affichera les agrégats (recettes fiscales, non fiscales, dons…).</p>
+    </section>
+
+    <section class="panel" id="view-cst" style="display:none">
+      <h2 style="margin:0">Comptes spéciaux du Trésor</h2>
+      <p class="badge">En attente de données CST. Vue prévue : liste des comptes, soldes, mouvements par nature.</p>
+    </section>
+
+    <section class="panel" id="view-dette" style="display:none">
+      <div class="row" style="justify-content:space-between">
+        <h2 style="margin:0">Service de la dette</h2>
+        <span class="badge" id="debt-meta">—</span>
+      </div>
+      <canvas id="debtChart" height="120" aria-label="Graphique de dette"></canvas>
+      <p class="badge">En attendant le fichier dette, je lis les champs <code>debt</code> du JSON si présents.</p>
+    </section>
+
+    <section class="panel" id="view-annexes" style="display:none">
+      <h2 style="margin:0">Annexes — EPN, Collectivités, COGES</h2>
+      <p class="badge">Dès réception des fichiers, cette vue affichera la liste par entité, avec filtres et agrégats.</p>
+    </section>
+
+    <div class="footer">Hub statique – JSON “Option A”. ©</div>
   </main>
-  <div class="footer"></div>
+</div>
 
-  <script>
-    const FMT = new Intl.NumberFormat('fr-FR');
-    const app = document.getElementById('app');
+<!-- MODAL RECHERCHE AVANCÉE -->
+<div class="modal" id="advSearchModal" role="dialog" aria-modal="true" aria-labelledby="advSearchTitle">
+  <div class="box">
+    <div class="row" style="justify-content:space-between; align-items:flex-end">
+      <div>
+        <h3 id="advSearchTitle" style="margin:0 0 6px 0">Recherche avancée</h3>
+        <div class="hint">Tape un mot-clé : ministère, programme, nature, catégorie, compte, libellé de ligne…</div>
+      </div>
+      <button class="btn secondary" id="closeSearch">Fermer</button>
+    </div>
+    <div class="row" style="margin-top:8px">
+      <input id="advQuery" type="search" placeholder="Ex.: santé, 21074, rémunérations, investissement, 6211…" style="flex:1">
+      <button class="btn" id="advGo">Rechercher</button>
+    </div>
+    <div class="res" id="advResults"></div>
+  </div>
+</div>
 
-    function money(n){ return '<span class="money">' + FMT.format(n||0) + ' FCFA</span>'; }
+<script>
+/* ========================= UTILS ========================= */
+const qs = (s, el=document)=>el.querySelector(s);
+const qsa = (s, el=document)=>[...el.querySelectorAll(s)];
+const fmt = new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 0 });
 
-    let st = { ministry:null, program:null, nature:null, data:null };
+let RAW = null;
+let ENTITIES = [];
+let MINISTRIES = [];
+let CURRENT = null;
+let debtChart = null;
 
-    function infoEmpty(reason){
-      app.innerHTML = `
-        <div class="card">
-          <div class="title">Aucune donnée à afficher</div>
-          <p class="muted">${reason}</p>
-          <ul class="muted">
-            <li>Vérifie que <code>budget.json</code> est à la <strong>racine</strong> (même dossier que cette page).</li>
-            <li>Ouvre directement ce lien pour confirmer: <a href="budget.json" target="_blank">budget.json</a></li>
-            <li>Si la page est installée en PWA, force le rechargement (rafraîchir le cache) ou rouvre dans le navigateur.</li>
-          </ul>
-        </div>`;
-    }
-
-    function viewHome(){
-      if (!st.data || !Array.isArray(st.data.ministries)) return infoEmpty("Structure JSON invalide.");
-      if (st.data.ministries.length === 0) return infoEmpty("Le fichier JSON est présent mais vide (aucun ministère)."); 
-
-      app.innerHTML = `
-        <div class="row" style="margin:10px 0 12px">
-          <div class="caps">Ministères</div>
-          <div class="caps">Année&nbsp;<strong id="year"></strong>&nbsp;•&nbsp;Monnaie&nbsp;<strong id="cur"></strong></div>
-        </div>
-        <div class="grid" id="grid"></div>`;
-      document.getElementById('year').textContent = st.data.year;
-      document.getElementById('cur').textContent  = st.data.currency;
-      const grid = document.getElementById('grid');
-      st.data.ministries.forEach(m => {
-        const div = document.createElement('div');
-        div.className = 'card';
-        div.innerHTML = `
-          <div class="row">
-            <div class="title">${m.name}</div>
-            <div class="tag">CP ${money(m.cp||0)}</div>
-          </div>
-          <div class="muted">${(m.programs||[]).length} programme(s)</div>
-          <button class="btn">Ouvrir</button>`;
-        div.querySelector('.btn').onclick = () => { st.ministry = m; st.program=null; st.nature=null; viewMinistry(); };
-        grid.appendChild(div);
-      });
-      window.scrollTo({top:0,behavior:'instant'});
-    }
-
-    function viewMinistry(){
-      const m = st.ministry;
-      app.innerHTML = `
-        <div class="card">
-          <div class="row">
-            <div>
-              <div class="caps">Ministère</div>
-              <div class="title">${m.name}</div>
-            </div>
-            <div class="tag">CP ${money(m.cp||0)}</div>
-          </div>
-        </div>
-        <div class="grid" id="grid"></div>`;
-      const grid = document.getElementById('grid');
-      (m.programs||[]).forEach(p => {
-        const div = document.createElement('div');
-        div.className = 'card';
-        div.innerHTML = `
-          <div class="row">
-            <div class="title">${p.title}</div>
-            <div class="tag">${money(p.amount||0)}</div>
-          </div>
-          <div class="muted">${p.natures ? p.natures.length+' nature(s)' : (p.lines?.length||0)+' ligne(s)'}</div>
-          <button class="btn">Voir</button>`;
-        div.querySelector('.btn').onclick = () => { st.program = p; st.nature=null; viewProgram(); };
-        grid.appendChild(div);
-      });
-      window.scrollTo({top:0,behavior:'instant'});
-    }
-
-    function viewProgram(){
-      const p = st.program;
-      const hasNatures = Array.isArray(p.natures) && p.natures.length>0;
-      app.innerHTML = `
-        <div class="card">
-          <div class="row">
-            <div>
-              <div class="caps">Programme</div>
-              <div class="title">${p.title}</div>
-            </div>
-            <div class="tag">${money(p.amount||0)}</div>
-          </div>
-          ${hasNatures ? '<div class="natures" id="natures"></div>' : ''}
-        </div>
-        <div class="card">
-          <div class="row"><div class="caps">Lignes budgétaires</div></div>
-          <div class="table-wrap">
-            <table>
-              <thead><tr><th>Libellé</th><th>Montant</th></tr></thead>
-              <tbody id="tbody"></tbody>
-            </table>
-          </div>
-        </div>`;
-      if (hasNatures){
-        const prio = ["Personnel","Biens et services","Transferts","Investissements"];
-        p.natures.sort((a,b)=> prio.indexOf(a.title) - prio.indexOf(b.title));
-        const wrap = document.getElementById('natures');
-        p.natures.forEach(n => {
-          const b = document.createElement('button');
-          b.className = 'nature';
-          b.innerHTML = `<div class="caps">${n.title}</div><div>${money(n.amount||0)}</div>`;
-          b.onclick = () => { st.nature = n; renderLines(); Array.from(wrap.children).forEach(el=>el.classList.remove('active')); b.classList.add('active'); };
-          wrap.appendChild(b);
+function pickAmount(line){
+  const a = Number(line?.montant_rectifie ?? line?.montant_initial ?? 0);
+  return Number.isFinite(a) ? a : 0;
+}
+function sum(arr){ return arr.reduce((s,x)=>s+x,0) }
+function flattenEntity(ent){
+  const rows = [];
+  for (const p of (ent.programs||[])){
+    for (const a of (p.actions||[])){
+      for (const bl of (a.budget_lines||[])){
+        rows.push({
+          program_code: p.code, program_label: p.libelle,
+          action_code: a.code, action_label: a.libelle,
+          ...bl
         });
       }
-      renderLines();
-      window.scrollTo({top:0,behavior:'instant'});
     }
+  }
+  return rows;
+}
+function totalsEntity(ent){
+  const rows = flattenEntity(ent);
+  const dep = sum(rows.filter(r=> (r.nature||'depense')==='depense').map(pickAmount));
+  const rec = sum(rows.filter(r=> (r.nature||'depense')==='recette').map(pickAmount));
+  return {dep, rec, lines: rows.length, progs: (ent.programs||[]).length};
+}
+function colorForShare(share){
+  // palette perceptible sur clair & sombre
+  const hue = 210 - 210*share; // bleu -> violet
+  const sat = 85; const light = (document.documentElement.dataset.theme==='dark'? 60 : 50);
+  return `hsl(${hue}, ${sat}%, ${light}%)`;
+}
 
-    function renderLines(){
-      const tbody = document.getElementById('tbody');
-      tbody.innerHTML = '';
-      const lines = st.nature?.lines || st.program.lines || [];
-      lines.forEach(ln => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `<td>${ln.label}</td><td class="money">${FMT.format(ln.amount||0)} FCFA</td>`;
-        tbody.appendChild(tr);
+/* ========================= BUDGET GENERAL ========================= */
+function buildBudgetGeneral(){
+  MINISTRIES = ENTITIES.filter(e => (e.type||'ministere') === 'ministere');
+  const totals = MINISTRIES.map(e=> totalsEntity(e).dep);
+  const totalState = sum(totals) || 1;
+  qs('#bg-meta').textContent = `Ministères: ${MINISTRIES.length} · Total dépenses agrégées: ${fmt.format(totalState)}`;
+
+  const grid = qs('#ministryGrid'); grid.innerHTML = "";
+  const makeTile = (e)=>{
+    const {dep} = totalsEntity(e);
+    const share = dep / totalState;
+    const tile = document.createElement('div');
+    tile.className = "tile";
+    tile.onclick = ()=>openEntity(e.id);
+    tile.innerHTML = `
+      <div class="head">
+        <div style="font-weight:700">${e.nom}</div>
+        <div class="pct" style="color:${colorForShare(share)}">${(share*100).toFixed(2)}%</div>
+      </div>
+      <div class="badge">${(e.type||'ministere').toUpperCase()} · ID ${e.id}</div>
+      <div class="bar"><div style="width:${(share*100).toFixed(4)}%; background:${colorForShare(share)}"></div></div>
+      <div class="badge" style="margin-top:6px">Dépenses: <b class="mon">${fmt.format(dep)}</b></div>
+    `;
+    return tile;
+  }
+  MINISTRIES
+    .slice()
+    .sort((a,b)=> totalsEntity(b).dep - totalsEntity(a).dep)
+    .forEach(e=> grid.appendChild(makeTile(e)));
+
+  // filtre
+  qs('#filterMinistere').oninput = (ev)=>{
+    const v = (ev.target.value||"").normalize("NFD").replace(/\p{Diacritic}/gu,"").toLowerCase();
+    grid.innerHTML = "";
+    MINISTRIES
+      .filter(e=>{
+        const s1 = (e.nom||"").normalize("NFD").replace(/\p{Diacritic}/gu,"").toLowerCase();
+        const s2 = (e.id||"").toLowerCase();
+        return !v || s1.includes(v) || s2.includes(v);
+      })
+      .sort((a,b)=> totalsEntity(b).dep - totalsEntity(a).dep)
+      .forEach(e=> grid.appendChild(makeTile(e)));
+  };
+}
+
+/* ========================= DETAIL ENTITE ========================= */
+function openEntity(id){
+  const ent = ENTITIES.find(e=> e.id===id);
+  if (!ent) return;
+  CURRENT = ent;
+  showOnly('view-entity');
+  qs('#ent-title').textContent = ent.nom;
+  qs('#ent-meta').textContent = `${(ent.type||'ministere').toUpperCase()} · ID ${ent.id}`;
+
+  const t = totalsEntity(ent);
+  qs('#k_dep').textContent = fmt.format(t.dep);
+  qs('#k_rec').textContent = fmt.format(t.rec);
+  qs('#k_lines').textContent = fmt.format(t.lines);
+  qs('#k_prog').textContent = fmt.format(t.progs);
+
+  const tabs = qs('#progTabs'); tabs.innerHTML = "";
+  const pane = qs('#progPane'); pane.innerHTML = "";
+  (ent.programs||[]).forEach((p, idx)=>{
+    const tab = document.createElement('div');
+    tab.className = 'tab' + (idx===0?' active':'');
+    tab.textContent = `${p.code||''} ${p.libelle||''}`;
+    tab.onclick = ()=>selectProgram(idx);
+    tabs.appendChild(tab);
+  });
+  if ((ent.programs||[]).length){ selectProgram(0); }
+}
+
+function groupByNature(rows){
+  const map = new Map();
+  for (const r of rows){
+    const n = (r.nature||'depense').toLowerCase();
+    if (!map.has(n)) map.set(n, []);
+    map.get(n).push(r);
+  }
+  return map;
+}
+function selectProgram(idx){
+  const ent = CURRENT; if (!ent) return;
+  const p = (ent.programs||[])[idx]; if (!p) return;
+  qsa('#progTabs .tab').forEach((t,i)=> t.classList.toggle('active', i===idx));
+
+  const pane = qs('#progPane'); pane.innerHTML = "";
+  const rows = [];
+  for (const a of (p.actions||[])){
+    for (const bl of (a.budget_lines||[])){
+      rows.push({
+        action_code:a.code, action_label:a.libelle,
+        ...bl
       });
     }
+  }
+  const grouped = groupByNature(rows);
+  const wrapper = document.createElement('div'); wrapper.className = 'accordion';
+  for (const [nature, list] of grouped){
+    const total = sum(list.map(pickAmount));
+    const item = document.createElement('div'); item.className = 'acc-item';
+    item.innerHTML = `
+      <div class="acc-head" tabindex="0" role="button" aria-expanded="false">
+        <div><b>${nature.toUpperCase()}</b> · <span class="badge">${list.length} lignes</span></div>
+        <div class="mon"><b>${fmt.format(total)}</b></div>
+      </div>
+      <div class="acc-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Action</th><th>Catégorie</th><th>Compte</th><th>Libellé</th>
+              <th style="text-align:right">Montant</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${list.sort((a,b)=> pickAmount(b)-pickAmount(a)).map(r=>`
+              <tr>
+                <td><span class="pill">${r.action_code||''}</span> ${r.action_label||''}</td>
+                <td>${r.categorie||''}</td>
+                <td class="mon">${r.compte||''}</td>
+                <td>${r.libelle||''}</td>
+                <td class="mon" style="text-align:right">${fmt.format(pickAmount(r))}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+    `;
+    const head = item.querySelector('.acc-head');
+    head.onclick = ()=> item.classList.toggle('open');
+    head.onkeydown = (e)=>{ if (e.key==='Enter' || e.key===' ') { e.preventDefault(); item.classList.toggle('open'); } };
+    wrapper.appendChild(item);
+  }
+  pane.appendChild(wrapper);
+}
 
-    (async function init(){
-      try{
-        // cache-busting param to avoid PWA/ServiceWorker stale cache
-        const res = await fetch('budget.json?v=' + Date.now(), {cache:'no-store'});
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        const data = await res.json();
-        if (!data || !Array.isArray(data.ministries)) throw new Error('Structure JSON invalide.');
-        st.data = data;
-        viewHome();
-      }catch(e){
-        console.error('Chargement JSON échoué:', e);
-        app.innerHTML = `
-          <div class="card">
-            <div class="title">Impossible de charger le JSON</div>
-            <p class="muted">Erreur: ${e?.message || e}</p>
-            <p class="muted">Vérifie le chemin et que le fichier est bien à la racine. Essaye aussi d'ouvrir 
-            <a href="budget.json?v=2" target="_blank">budget.json</a>.</p>
-          </div>`;
+/* ========================= NAV / VUES ========================= */
+function showOnly(id){
+  ['view-budget-general','view-entity','view-ressources','view-cst','view-dette','view-annexes']
+    .forEach(v=> qs('#'+v).style.display = (v===id?'block':'none'));
+  qsa('.menu .item').forEach(it=>{
+    const view = it.getAttribute('data-view');
+    const map = { 'budget-general':'view-budget-general','ressources':'view-ressources','cst':'view-cst','dette':'view-dette','annexes':'view-annexes' };
+    it.classList.toggle('active', map[view]===id);
+  });
+}
+function renderDebt(){
+  if (!RAW?.debt){ qs('#debt-meta').textContent = 'Aucune donnée de dette dans ce JSON.'; return; }
+  const d = RAW.debt;
+  qs('#debt-meta').textContent = 'Encours total / Interne / Externe / Service / Ratio PIB';
+  const ctx = qs('#debtChart').getContext('2d');
+  if (debtChart) debtChart.destroy();
+  debtChart = new Chart(ctx, { type: 'bar',
+    data: { labels: ['Totale','Interne','Externe','Service','Ratio PIB'],
+      datasets: [{ data: [d.dette_totale||0, d.dette_interne||0, d.dette_externe||0, d.service_dette||0, d.ratio_dette_pib||0], label:'Dette' }] },
+    options: { plugins:{ legend:{display:false} } }
+  });
+}
+
+/* ========================= EXPORT ========================= */
+function exportCSV(){
+  if (qs('#view-entity').style.display==='block' && CURRENT){
+    const rows = [];
+    for (const p of (CURRENT.programs||[])){
+      for (const a of (p.actions||[])){
+        for (const bl of (a.budget_lines||[])){
+          rows.push({
+            programme:p.code, programme_lib:p.libelle,
+            action:a.code, action_lib:a.libelle,
+            nature:(bl.nature||'depense'), categorie:bl.categorie||'', compte:bl.compte||'', libelle:bl.libelle||'',
+            montant: pickAmount(bl)
+          });
+        }
       }
-    })();
-  </script>
+    }
+    const headers = ["programme","programme_lib","action","action_lib","nature","categorie","compte","libelle","montant"];
+    const lines = [headers.join(";")];
+    rows.forEach(r=>{
+      const arr = headers.map(h=> (""+(r[h]??"")).replace(/[\r\n;]/g, " ").trim());
+      lines.push(arr.join(";"));
+    });
+    const blob = new Blob([lines.join("\n")], {type:"text/csv;charset=utf-8"});
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+    a.download = (CURRENT.id || "export") + ".csv"; document.body.appendChild(a); a.click(); a.remove();
+  } else if (qs('#view-budget-general').style.display==='block'){
+    const totals = MINISTRIES.map(e=>{
+      const t = totalsEntity(e);
+      return { id:e.id, nom:e.nom, depenses:t.dep, recettes:t.rec, programmes:t.progs, lignes:t.lines };
+    });
+    const headers = ["id","nom","depenses","recettes","programmes","lignes"];
+    const lines = [headers.join(";")];
+    totals.forEach(r=>{
+      const arr = headers.map(h=> (""+(r[h]??"")).replace(/[\r\n;]/g, " ").trim());
+      lines.push(arr.join(";"));
+    });
+    const blob = new Blob([lines.join("\n")], {type:"text/csv;charset=utf-8"});
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+    a.download = "budget_general_ministeres.csv"; document.body.appendChild(a); a.click(); a.remove();
+  } else {
+    alert("Rien à exporter pour la vue courante.");
+  }
+}
+
+/* ========================= CHARGEMENT ========================= */
+async function loadJSONFromFile(file){
+  return new Promise((res, rej)=>{
+    const fr = new FileReader();
+    fr.onerror = ()=>rej(new Error("Lecture fichier échouée"));
+    fr.onload = ()=> { try{ res(JSON.parse(fr.result)); } catch(e){ rej(e) } };
+    fr.readAsText(file, 'utf-8');
+  });
+}
+async function loadData(){
+  const url = (qs('#urlInput').value||"").trim();
+  const file = qs('#fileInput').files?.[0];
+  try{
+    if (url){
+      const resp = await fetch(url); RAW = await resp.json();
+    } else if (file){
+      RAW = await loadJSONFromFile(file);
+    } else if (new URLSearchParams(location.search).get('data')){
+      const u = new URLSearchParams(location.search).get('data');
+      const resp = await fetch(u); RAW = await resp.json();
+    } else { alert("Indique une URL du JSON ou choisis un fichier."); return; }
+  } catch(e){
+    console.error(e); alert("Impossible de charger le JSON : "+e.message); return;
+  }
+  ENTITIES = (RAW.entities||[]).slice().sort((a,b)=> (a.nom||'').localeCompare((b.nom||''), 'fr'));
+  buildBudgetGeneral();
+  renderDebt();
+  showOnly('view-budget-general');
+}
+
+/* ========================= MENU / MOBILE / THEME ========================= */
+qs('#menuMain').addEventListener('click', (e)=>{
+  const it = e.target.closest('.item'); if (!it) return;
+  const view = it.getAttribute('data-view');
+  const map = { 'budget-general':'view-budget-general','ressources':'view-ressources','cst':'view-cst','dette':'view-dette','annexes':'view-annexes' };
+  if (map[view]) showOnly(map[view]);
+});
+qs('#backToGeneral').onclick = ()=> showOnly('view-budget-general');
+
+qs('#toggleMenu').onclick = ()=>{
+  const sb = qs('#sidebar'); sb.classList.toggle('open');
+};
+
+qs('#loadBtn').onclick = loadData;
+qs('#exportBtn').onclick = exportCSV;
+
+/* Theme switching with localStorage */
+function setTheme(t){
+  document.documentElement.setAttribute('data-theme', t);
+  localStorage.setItem('budget_hub_theme', t);
+}
+qsa('[data-theme]').forEach(btn=>{
+  btn.addEventListener('click', ()=> setTheme(btn.getAttribute('data-theme')));
+});
+(function initTheme(){
+  const saved = localStorage.getItem('budget_hub_theme');
+  if (saved) setTheme(saved);
+})();
+
+/* ========================= RECHERCHE AVANCÉE ========================= */
+function openSearch(){ qs('#advSearchModal').classList.add('open'); qs('#advQuery').focus(); }
+function closeSearch(){ qs('#advSearchModal').classList.remove('open'); }
+qs('#advSearchBtn').onclick = openSearch;
+qs('#closeSearch').onclick = closeSearch;
+qs('#advGo').onclick = doAdvancedSearch;
+qs('#advQuery').addEventListener('keydown', e=> { if (e.key==='Enter') doAdvancedSearch(); });
+
+function doAdvancedSearch(){
+  const q = (qs('#advQuery').value||"").trim();
+  const box = qs('#advResults'); box.innerHTML = "";
+  if (!q){ box.innerHTML = `<div class="hint">Saisis un mot-clé pour lancer la recherche.</div>`; return; }
+  const norm = s => (s??"").toString().normalize("NFD").replace(/\p{Diacritic}/gu,"").toLowerCase();
+  const nq = norm(q);
+
+  const res = [];
+  for (const e of ENTITIES){
+    const inEnt = norm(e.nom).includes(nq) || norm(e.id).includes(nq);
+    if (inEnt){ res.push({type:'entite', ent:e}); }
+    for (const p of (e.programs||[])){
+      if (norm(p.libelle).includes(nq) || norm(p.code).includes(nq)){
+        res.push({type:'programme', ent:e, prog:p});
+      }
+      for (const a of (p.actions||[])){
+        for (const bl of (a.budget_lines||[])){
+          const hay = [bl.nature, bl.categorie, bl.compte, bl.libelle, a.code, a.libelle].map(norm).join(" ");
+          if (hay.includes(nq)){
+            res.push({type:'ligne', ent:e, prog:p, action:a, bl});
+          }
+        }
+      }
+    }
+  }
+  if (!res.length){ box.innerHTML = `<div class="hint">Aucun résultat.</div>`; return; }
+
+  for (const r of res.slice(0, 300)){
+    const div = document.createElement('div'); div.className = 'item';
+    if (r.type==='entite'){
+      div.innerHTML = `<div><b>Ministère/Institution</b> — ${r.ent.nom}</div><div class="badge">ID ${r.ent.id}</div>`;
+      div.onclick = ()=>{ closeSearch(); openEntity(r.ent.id); };
+    } else if (r.type==='programme'){
+      div.innerHTML = `<div><b>Programme</b> — ${r.prog.code||''} ${r.prog.libelle||''}</div><div class="badge">${r.ent.nom}</div>`;
+      div.onclick = ()=>{ closeSearch(); openEntity(r.ent.id);
+        setTimeout(()=>{
+          const idx = (r.ent.programs||[]).indexOf(r.prog);
+          if (idx>=0) selectProgram(idx);
+        }, 50);
+      };
+    } else {
+      div.innerHTML = `<div><b>Ligne</b> — ${r.bl.compte||''} ${r.bl.libelle||''}</div>
+                       <div class="badge">${r.ent.nom} · ${r.prog.code||''} ${r.prog.libelle||''} · ${r.action.code||''} ${r.action.libelle||''} · ${r.bl.nature||''}/${r.bl.categorie||''}</div>`;
+      div.onclick = ()=>{ closeSearch(); openEntity(r.ent.id);
+        setTimeout(()=>{
+          const idx = (r.ent.programs||[]).indexOf(r.prog);
+          if (idx>=0) selectProgram(idx);
+          const heads = qsa('#progPane .acc-item .acc-head');
+          heads.forEach(h=>{
+            if (h.textContent.toLowerCase().includes((r.bl.nature||'depense').toLowerCase())) {
+              h.parentElement.classList.add('open');
+            }
+          });
+        }, 50);
+      };
+    }
+    box.appendChild(div);
+  }
+}
+
+/* Auto-charge si ?data= présent */
+window.addEventListener('DOMContentLoaded', ()=>{
+  const qp = new URLSearchParams(location.search);
+  if (qp.get('data')) loadData();
+  else showOnly('view-budget-general');
+});
+</script>
 </body>
 </html>
