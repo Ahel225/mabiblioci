@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="dark">
+<html lang="fr" data-theme="light-blue">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -7,14 +7,13 @@
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js"></script>
 <style>
-  /* ========================= THEMES ========================= */
-  :root {
-    --bg:#0b1020; --panel:#121a33; --muted:#8da2c0; --text:#e7eefc; --accent:#6ea8fe; --accent2:#ffd166;
-    --ok:#2ecc71; --warn:#f39c12; --border:#223055; --tile:#0f1734; --input:#0e1530; --barbg:#0c1430;
-  }
-  html[data-theme="light-blue"]{
+  :root{
     --bg:#f6f9ff; --panel:#ffffff; --muted:#5a6b85; --text:#0e1a33; --accent:#2f6fff; --accent2:#ffb703;
     --ok:#1eaf62; --warn:#e58d0a; --border:#e3e9f7; --tile:#ffffff; --input:#f1f5ff; --barbg:#e7eefc;
+  }
+  html[data-theme="dark"]{
+    --bg:#0b1020; --panel:#121a33; --muted:#8da2c0; --text:#e7eefc; --accent:#6ea8fe; --accent2:#ffd166;
+    --ok:#2ecc71; --warn:#f39c12; --border:#223055; --tile:#0f1734; --input:#0e1530; --barbg:#0c1430;
   }
   html[data-theme="light-green"]{
     --bg:#f7fff9; --panel:#ffffff; --muted:#556a5e; --text:#0a2414; --accent:#15a85b; --accent2:#ffb703;
@@ -22,92 +21,49 @@
   }
 
   *{box-sizing:border-box}
-  html,body{height:100%}
-  body{
-    margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial;
-    background:linear-gradient(180deg,var(--bg) 0%, var(--bg) 100%); color:var(--text)
-  }
-
-  /* ========================= LAYOUT ========================= */
-  .app{display:grid; grid-template-columns:300px 1fr; gap:16px; padding:16px; max-width:1480px; margin:0 auto}
-  header{grid-column:1 / -1; display:flex; gap:12px; flex-wrap:wrap; align-items:center; justify-content:space-between}
-  .brand{font-weight:800; font-size:20px}
-  .panel{background:var(--panel); border:1px solid var(--border); border-radius:16px; padding:14px}
-  .sidebar{display:flex; flex-direction:column; gap:12px; height:calc(100vh - 160px); position:sticky; top:16px}
+  body{margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial; background:var(--bg); color:var(--text)}
+  .app{display:grid; grid-template-columns:320px 1fr; gap:14px; padding:12px; max-width:1200px; margin:0 auto}
+  header{grid-column:1 / -1; display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+  .brand{font-weight:800; font-size:18px}
+  .panel{background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:12px}
+  .sidebar{display:flex; flex-direction:column; gap:10px; height:calc(100vh - 140px); position:sticky; top:12px}
   .toolbar{display:flex; gap:8px; align-items:center; flex-wrap:wrap}
-
-  input[type="text"], input[type="url"], input[type="search"], input[type="number"]{
-    background:var(--input); border:1px solid var(--border); border-radius:10px; padding:10px 12px; color:var(--text); width:100%;
-  }
-  .btn{
-    background:var(--accent); color:#fff; border:none; padding:10px 12px; border-radius:10px;
-    font-weight:700; cursor:pointer; transition:transform .05s ease
-  }
-  .btn:active{ transform:scale(.98) }
+  input[type="text"],input[type="search"],input[type="number"],input[type="url"]{background:var(--input); border:1px solid var(--border); border-radius:10px; padding:10px 12px; color:var(--text)}
+  .btn{background:var(--accent); color:#fff; border:none; padding:10px 12px; border-radius:10px; font-weight:700}
   .btn.secondary{background:transparent; color:var(--text); border:1px solid var(--border)}
-  .btn.ghost{background:transparent; color:var(--muted); border:1px dashed var(--border)}
   .btn.small{padding:8px 10px; font-size:13px}
-
   .menu{display:flex; flex-direction:column; gap:6px}
-  .menu .item{padding:10px 12px; border-radius:10px; cursor:pointer; color:var(--text); border:1px solid transparent}
-  .menu .item:hover{background:var(--tile)}
-  .menu .item.active{border-color:var(--accent); background:var(--tile)}
+  .menu .item{padding:10px 12px; border-radius:10px; cursor:pointer; border:1px solid transparent}
+  .menu .item:hover{background:var(--tile)} .menu .item.active{border-color:var(--accent); background:var(--tile)}
   .hint{color:var(--muted); font-size:12px}
-  .main{display:grid; gap:16px}
-  .row{display:flex; gap:8px; align-items:center; flex-wrap:wrap}
-  .badge{font-size:12px; color:var(--muted)}
-  .cards{display:grid; grid-template-columns:repeat(4,1fr); gap:12px}
-  .card{background:var(--tile); border:1px solid var(--border); border-radius:14px; padding:12px}
-  .card h4{margin:0 0 6px 0; font-size:13px; color:var(--muted)}
-  .card .v{font-size:20px; font-weight:700}
-
-  .list{display:grid; grid-template-columns:repeat(3, 1fr); gap:10px}
-  .tile{background:var(--tile); border:1px solid var(--border); border-radius:14px; padding:12px; cursor:pointer}
-  .tile:hover{transform:translateY(-1px); transition:.15s}
-  .tile .head{display:flex; justify-content:space-between; align-items:center; gap:8px}
-  .tile .pct{font-weight:800}
-  .bar{height:6px; border-radius:999px; background:var(--barbg); margin-top:8px; overflow:hidden}
+  .list{display:grid; grid-template-columns:repeat(2,1fr); gap:10px}
+  .tile{background:var(--tile); border:1px solid var(--border); border-radius:12px; padding:12px; cursor:pointer}
+  .tile .head{display:flex; justify-content:space-between; gap:8px; align-items:center}
+  .tile .share{font-weight:800}
+  .bar{height:6px; border-radius:999px; background:var(--barbg); overflow:hidden}
   .bar > div{height:100%}
+  .mini-bars{display:grid; gap:6px; margin-top:6px}
+  .mini-bars .row{display:flex; align-items:center; gap:6px}
+  .mini-bars .year{font-size:12px; width:46px; text-align:right; color:var(--muted)}
+  .mini-bars .pct{font-size:12px; width:48px; text-align:right; color:var(--muted)}
+  .cards{display:grid; grid-template-columns:repeat(3,1fr); gap:10px}
+  .card{background:var(--tile); border:1px solid var(--border); border-radius:12px; padding:10px}
+  .card h4{margin:0 0 6px 0; font-size:13px; color:var(--muted)}
+  .card .v{font-size:18px; font-weight:700}
+  .table{width:100%; border-collapse:collapse; font-size:14px}
+  .table th,.table td{border-bottom:1px dashed var(--border); padding:8px 6px; text-align:left; white-space:nowrap}
+  .table-wrap{border:1px solid var(--border); border-radius:10px; overflow:auto; resize:both; padding:6px; background:var(--tile); min-height:160px; max-height:70vh}
 
-  .grid{display:grid; gap:12px}
-  .table{width:100%; border-collapse:collapse; font-size:14px; table-layout:auto}
-  .table th,.table td{border-bottom:1px dashed var(--border); padding:8px 6px; text-align:left; vertical-align:top; white-space:nowrap}
-  .table th{color:var(--muted); font-weight:600}
-  .mon{font-variant-numeric:tabular-nums}
-  .footer{grid-column:1/-1; text-align:center; color:#93a9cc66; font-size:12px; padding:8px 0}
-
-  .tabs{display:flex; gap:8px; border-bottom:1px solid var(--border); margin-bottom:8px; overflow:auto}
-  .tab{padding:8px 12px; border:1px solid var(--border); border-bottom:none; border-radius:10px 10px 0 0; cursor:pointer; background:var(--tile); white-space:nowrap}
-  .tab.active{background:var(--panel); border-color:var(--accent)}
-
-  .accordion{border:1px solid var(--border); border-radius:10px; overflow:hidden}
-  .acc-item + .acc-item{border-top:1px dashed var(--border)}
-  .acc-head{display:flex; justify-content:space-between; padding:10px; cursor:pointer; background:var(--tile)}
-  .acc-body{padding:8px 10px; display:none}
-  .acc-item.open .acc-body{display:block}
-
-  /* Redimensionnable + scroll horizontal pour les tableaux */
-  .table-wrap{
-    border:1px solid var(--border); border-radius:10px; overflow:auto; resize:both; padding:6px; background:var(--tile);
-    min-height:160px; max-height:70vh;
-  }
-
-  /* ========================= MOBILE ========================= */
-  @media (max-width:1100px){
-    .app{grid-template-columns:1fr}
+  @media (max-width:960px){
+    .app{grid-template-columns:1fr; gap:10px}
     .sidebar{position:static; height:auto}
-    .cards{grid-template-columns:repeat(2,1fr)}
-    .list{grid-template-columns:repeat(2,1fr)}
-  }
-  @media (max-width:720px){
-    header{position:sticky; top:0; z-index:10}
-    .toolbar{gap:6px}
-    .btn{padding:9px 11px}
-    .btn.small{padding:7px 9px}
     .list{grid-template-columns:1fr}
+    .cards{grid-template-columns:repeat(2,1fr)}
+    input, .btn{font-size:16px}
+  }
+  @media (max-width:420px){
     .cards{grid-template-columns:1fr}
-    .sidebar .menu { display:none }
-    .sidebar.open .menu { display:flex }
+    .btn.small{padding:9px 11px}
   }
 </style>
 </head>
@@ -116,26 +72,18 @@
   <header>
     <div class="brand">🇨🇮 Hub Budget – Côte d’Ivoire</div>
     <div class="toolbar panel" style="gap:8px; flex:1">
-      <!-- Saisie directe de l'année -->
-      <input id="yearInput" type="number" placeholder="Année (ex: 2024). Entrer pour charger…" style="width:120px">
-      <button class="btn" id="loadYearBtn" aria-label="Charger l'année">Charger l’année</button>
-
-      <!-- (Optionnel) URL JSON direct + fichier -->
+      <input id="yearInput" type="number" placeholder="Année (ex: 2024)" style="width:120px">
+      <button class="btn" id="loadYearBtn">Charger</button>
+      <input id="yearsMulti" type="text" placeholder="Pluriannuel (ex: 2024,2025)" style="width:180px">
       <input id="urlInput" type="url" placeholder="(Optionnel) URL JSON : /data/2024.json" style="min-width:220px; flex:1">
       <input id="fileInput" type="file" accept="application/json,application/*+json">
-
-      <button class="btn secondary" id="advSearchBtn" title="Recherche avancée (ministère, programme, nature, ligne)" aria-haspopup="dialog">Recherche</button>
-      <button class="btn secondary" id="exportBtn" title="Exporter la vue en CSV">Export</button>
-
-      <!-- Theme switcher -->
-      <div class="row" style="margin-left:auto; gap:6px">
-        <button class="btn small secondary" data-theme="dark" title="Thème sombre">Sombre</button>
-        <button class="btn small secondary" data-theme="light-blue" title="Thème blanc & bleu">Bleu</button>
-        <button class="btn small secondary" data-theme="light-green" title="Thème blanc & vert">Vert</button>
+      <button class="btn secondary" id="advSearchBtn">Recherche</button>
+      <button class="btn secondary" id="exportBtn">Export</button>
+      <div style="margin-left:auto; display:flex; gap:6px">
+        <button class="btn small secondary" data-theme="light-blue">Bleu</button>
+        <button class="btn small secondary" data-theme="light-green">Vert</button>
+        <button class="btn small secondary" data-theme="dark">Sombre</button>
       </div>
-
-      <!-- Mobile sidebar toggle -->
-      <button class="btn ghost small" id="toggleMenu" title="Afficher/masquer le menu">Menu</button>
     </div>
   </header>
 
@@ -143,63 +91,24 @@
     <div class="menu" id="menuMain">
       <div class="item active" data-view="budget-general">Budget général</div>
       <div class="item" data-view="ressources">Ressources du Budget de l'État</div>
-      <div class="item" data-view="cst">Comptes spéciaux du Trésor</div>
       <div class="item" data-view="dette">Service de la dette</div>
       <div class="item" data-view="annexes">Annexes (EPN, collectivités, COGES)</div>
     </div>
-    <div class="hint" style="margin-top:6px">Astuce : ajoute <code>?data=/data/2024.json</code> à l’URL pour précharger le JSON.</div>
+    <div class="hint">Astuce : ajoute <code>?data=/data/2024.json</code> à l’URL pour précharger.</div>
   </aside>
 
   <main class="main">
-    <!-- BUDGET GENERAL -->
     <section class="panel" id="view-budget-general">
-      <div class="row" style="justify-content:space-between">
+      <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:8px">
         <h2 style="margin:0">Budget général — Ministères</h2>
-        <span class="badge" id="bg-meta">—</span>
+        <span class="hint" id="bg-meta">—</span>
       </div>
-      <div class="row" style="gap:6px; align-items:flex-end">
-        <input id="filterMinistere" type="search" placeholder="Filtrer les ministères… (nom ou ID)" style="max-width:380px">
-        <!-- Pluriannuel -->
-        <div class="row" style="gap:6px">
-          <input id="yearsMulti" type="text" placeholder="Pluriannuel (ex: 2024,2025)" style="width:220px">
-          <select id="entitySelect" style="min-width:260px">
-            <option value="">— Sélectionner un ministère/institution —</option>
-          </select>
-          <button class="btn small" id="compareBtn">Comparer</button>
-        </div>
-      </div>
-
-      <div class="list" id="ministryGrid" style="margin-top:8px"></div>
-
-      <!-- Résultat comparaison pluriannuelle -->
-      <div class="panel" style="margin-top:12px">
-        <div class="row" style="justify-content:space-between"><h3 style="margin:0">Comparaison pluriannuelle</h3><span class="badge" id="multiMeta">—</span></div>
-        <canvas id="multiChart" height="120"></canvas>
-      </div>
+      <input id="filterMinistere" type="search" placeholder="Filtrer les ministères…" style="max-width:380px; margin:6px 0">
+      <div class="list" id="ministryGrid" style="margin-top:4px"></div>
     </section>
 
-    <!-- DETAIL ENTITE -->
-    <section class="panel" id="view-entity" style="display:none">
-      <div class="row" style="justify-content:space-between">
-        <h2 id="ent-title" style="margin:0">—</h2>
-        <div class="row">
-          <button class="btn secondary" id="backToGeneral">← Budget général</button>
-          <span class="badge" id="ent-meta"></span>
-        </div>
-      </div>
-      <div class="cards">
-        <div class="card"><h4>Dépenses</h4><div class="v mon" id="k_dep">—</div></div>
-        <div class="card"><h4>Recettes</h4><div class="v mon" id="k_rec">—</div></div>
-        <div class="card"><h4>Lignes</h4><div class="v mon" id="k_lines">—</div></div>
-        <div class="card"><h4>Programmes</h4><div class="v mon" id="k_prog">—</div></div>
-      </div>
-      <div class="tabs" id="progTabs"></div>
-      <div id="progPane"></div>
-    </section>
-
-    <!-- RESSOURCES -->
     <section class="panel" id="view-ressources" style="display:none">
-      <div class="row" style="justify-content:space-between; align-items:flex-end">
+      <div style="display:flex; justify-content:space-between; align-items:flex-end">
         <h2 style="margin:0">Ressources du Budget de l'État</h2>
         <div class="cards" style="grid-template-columns:repeat(5,1fr)">
           <div class="card"><h4>Fiscales</h4><div class="v mon" id="res_fisc">—</div></div>
@@ -209,19 +118,15 @@
           <div class="card"><h4>Total</h4><div class="v mon" id="res_total">—</div></div>
         </div>
       </div>
-      <div class="table-wrap" id="resTableWrap">
-        <table class="table" id="resTable">
-          <thead><tr><th>Section</th><th>Code</th><th>Libellé</th><th style="text-align:right">Montant</th></tr></thead>
-          <tbody></tbody>
-        </table>
+      <div class="table-wrap">
+        <table class="table" id="resTable"><thead><tr><th>Section</th><th>Code</th><th>Libellé</th><th style="text-align:right">Montant</th></tr></thead><tbody></tbody></table>
       </div>
     </section>
 
-    <!-- DETTE -->
     <section class="panel" id="view-dette" style="display:none">
-      <div class="row" style="justify-content:space-between">
+      <div style="display:flex; justify-content:space-between; align-items:flex-end">
         <h2 style="margin:0">Service de la dette</h2>
-        <span class="badge" id="debt-meta">—</span>
+        <span class="hint" id="debt-meta">—</span>
       </div>
       <div class="cards" style="grid-template-columns:repeat(5,1fr); margin-bottom:10px">
         <div class="card"><h4>Service (total)</h4><div class="v mon" id="d_svct">—</div></div>
@@ -230,141 +135,141 @@
         <div class="card"><h4>Dette totale</h4><div class="v mon" id="d_tot">—</div></div>
         <div class="card"><h4>Ratio PIB</h4><div class="v mon" id="d_ratio">—</div></div>
       </div>
-      <canvas id="debtChart" height="120" aria-label="Graphique de dette"></canvas>
-
-      <h3 style="margin:14px 0 6px 0">Lignes détaillées</h3>
-      <div class="table-wrap" id="debtTableWrap">
-        <table class="table" id="debtTable">
-          <thead><tr><th>Type</th><th>Compte</th><th>Libellé</th><th style="text-align:right">Montant</th></tr></thead>
-          <tbody></tbody>
-        </table>
+      <div class="table-wrap">
+        <table class="table" id="debtTable"><thead><tr><th>Type</th><th>Compte</th><th>Libellé</th><th style="text-align:right">Montant</th></tr></thead><tbody></tbody></table>
       </div>
     </section>
 
-    <!-- ANNEXES -->
     <section class="panel" id="view-annexes" style="display:none">
-      <h2 style="margin:0">Annexes — EPN, Collectivités, COGES</h2>
-      <p class="badge">À alimenter avec vos JSON Annexes.</p>
+      <h2 style="margin:0">Annexes</h2>
+      <p class="hint">À compléter.</p>
     </section>
-
-    <div class="footer">Hub statique – JSON “Option A”. ©</div>
   </main>
 </div>
 
-<!-- MODAL RECHERCHE AVANCÉE -->
-<div class="modal" id="advSearchModal" role="dialog" aria-modal="true" aria-labelledby="advSearchTitle">
-  <div class="box">
-    <div class="row" style="justify-content:space-between; align-items:flex-end">
-      <div>
-        <h3 id="advSearchTitle" style="margin:0 0 6px 0">Recherche avancée</h3>
-        <div class="hint">Tape un mot-clé : ministère, programme, nature, catégorie, compte, libellé de ligne…</div>
-      </div>
-      <button class="btn secondary" id="closeSearch">Fermer</button>
-    </div>
-    <div class="row" style="margin-top:8px">
-      <input id="advQuery" type="search" placeholder="Ex.: santé, 21074, rémunérations, investissement, 6211…" style="flex:1">
-      <button class="btn" id="advGo">Rechercher</button>
-    </div>
-    <div class="res" id="advResults"></div>
-  </div>
-</div>
-
 <script>
-/* ========================= UTILS ========================= */
 const qs = (s, el=document)=>el.querySelector(s);
 const qsa = (s, el=document)=>[...el.querySelectorAll(s)];
 const fmt = new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 0 });
 
-let RAW = null;
-let ENTITIES = [];
-let MINISTRIES = [];
-let CURRENT = null;
-let debtChart = null;
-let multiChart = null;
+let RAW=null, ENTITIES=[], MINISTRIES=[];
+let MULTI = {};   // { "2024": raw2024, "2025": raw2025 }
+let MULTI_YEARS = []; // ex: ["2024","2025"]
 
+/* ===================== Helpers ===================== */
+function normName(s){ return (s||"").normalize("NFD").replace(/\p{Diacritic}/gu,"").replace(/[^a-z0-9 ]/gi,"").trim().toLowerCase(); }
 function pickAmount(line){
   const a = Number(line?.montant_rectifie ?? line?.montant_initial ?? 0);
   return Number.isFinite(a) ? a : 0;
 }
 function sum(arr){ return arr.reduce((s,x)=>s+x,0) }
 function flattenEntity(ent){
-  const rows = [];
-  for (const p of (ent.programs||[])){
-    for (const a of (p.actions||[])){
-      for (const bl of (a.budget_lines||[])){
-        rows.push({
-          program_code: p.code, program_label: p.libelle,
-          action_code: a.code, action_label: a.libelle,
-          ...bl
-        });
-      }
-    }
-  }
+  const rows=[];
+  (ent.programs||[]).forEach(p=>{
+    (p.actions||[]).forEach(a=>{
+      (a.budget_lines||[]).forEach(bl=> rows.push(bl));
+    });
+  });
   return rows;
 }
-function totalsEntity(ent){
-  const rows = flattenEntity(ent);
-  const dep = sum(rows.filter(r=> (r.nature||'depense')==='depense').map(pickAmount));
-  const rec = sum(rows.filter(r=> (r.nature||'depense')==='recette').map(pickAmount));
-  return {dep, rec, lines: rows.length, progs: (ent.programs||[]).length};
+function totalDep(ent){
+  // somme de toutes les lignes (on ne dépend plus du champ "nature" qui peut manquer)
+  return sum(flattenEntity(ent).map(pickAmount));
 }
-function colorForShare(share){
-  const hue = 210 - 210*share; // bleu -> violet
-  const sat = 85; const light = (document.documentElement.dataset.theme==='dark'? 60 : 50);
-  return `hsl(${hue}, ${sat}%, ${light}%)`;
+function totalState(raw){
+  return sum((raw.entities||[]).filter(e=>(e.type||'ministere')==='ministere').map(totalDep));
 }
 
-/* ========================= CHARGEMENT (Année) ========================= */
-function yearToURL(y){
-  // Pointage par défaut vers /data/<année>.json ; adapter si besoin (ex: 2025_final.json)
-  return `/data/${y}.json`;
-}
-async function loadYear(){
-  const y = String(qs('#yearInput').value||'').trim();
-  if (!/^\d{4}$/.test(y)){ alert("Saisis une année (ex: 2024)"); return; }
-  qs('#urlInput').value = yearToURL(y);
-  return loadData();
-}
-
-/* ========================= BUDGET GENERAL ========================= */
-function buildBudgetGeneral(){
-  MINISTRIES = ENTITIES.filter(e => (e.type||'ministere') === 'ministere');
-  const totals = MINISTRIES.map(e=> totalsEntity(e).dep);
-  const totalState = sum(totals) || 1;
-  qs('#bg-meta').textContent = `Année ${RAW?.exercice??'—'} · Ministères: ${MINISTRIES.length} · Total dépenses agrégées: ${fmt.format(totalState)}`;
-
-  // Remplir le select entité pour la comparaison pluriannuelle
-  const sel = qs('#entitySelect'); sel.innerHTML = `<option value="">— Sélectionner un ministère/institution —</option>`;
-  ENTITIES.forEach(e=>{
-    const opt = document.createElement('option');
-    opt.value = e.id; opt.textContent = e.nom;
-    sel.appendChild(opt);
+/* ===================== Merge/Dedupe ===================== */
+function mergeEntities(raw){
+  const map = new Map();
+  for (const e of (raw.entities||[])){
+    const key = (e.code && String(e.code).length===3) ? "code:"+e.code : "nom:"+normName(e.nom);
+    if (!map.has(key)){
+      map.set(key, JSON.parse(JSON.stringify(e)));
+    } else {
+      const base = map.get(key);
+      base.programs = (base.programs||[]).concat(e.programs||[]);
+      // si un id vide / différent : garde le plus “parlant”
+      if ((!base.id || base.id.length<3) && e.id) base.id = e.id;
+      if (!base.nom && e.nom) base.nom = e.nom;
+      if (!base.type && e.type) base.type = e.type;
+    }
+  }
+  // recompacte et recalcule un id s'il manque
+  return [...map.values()].map(e=>{
+    if (!e.id || e.id.length<2){
+      e.id = (e.code && String(e.code).length===3) ? ("C"+e.code) : (e.nom||"ENTITE").split(/\s+/).map(w=>w[0]).join("").toUpperCase().slice(0,12);
+    }
+    return e;
   });
+}
 
+/* ===================== UI ===================== */
+function colorForShare(s){ const hue = 210 - Math.min(1,s)*210; return `hsl(${hue},85%,${document.documentElement.dataset.theme==='dark'?60:50}%)`; }
+function yearToURL(y){ return `/data/${y}.json`; }
+
+function renderGrid(){
+  MINISTRIES = ENTITIES.filter(e=> (e.type||'ministere')==='ministere');
+
+  // totaux pour l'année active
+  const total = totalState(RAW) || 1;
+  qs('#bg-meta').textContent = `Année ${RAW?.exercice??'—'} · Ministères: ${MINISTRIES.length} · Total dépenses agrégées: ${fmt.format(total)}`;
+
+  const years = MULTI_YEARS;
   const grid = qs('#ministryGrid'); grid.innerHTML = "";
+
   const makeTile = (e)=>{
-    const {dep} = totalsEntity(e);
-    const share = dep / totalState;
-    const tile = document.createElement('div');
-    tile.className = "tile";
-    tile.onclick = ()=>openEntity(e.id);
-    tile.innerHTML = `
+    const depNow = totalDep(e);
+    const shareNow = depNow / total;
+
+    const div = document.createElement('div');
+    div.className = "tile";
+    div.onclick = ()=> openEntity(e.id); // garder le clic
+    div.innerHTML = `
       <div class="head">
         <div style="font-weight:700">${e.nom}</div>
-        <div class="pct" style="color:${colorForShare(share)}">${(share*100).toFixed(2)}%</div>
+        <div class="share" style="color:${colorForShare(shareNow)}">${(shareNow*100).toFixed(2)}%</div>
       </div>
-      <div class="badge">${(e.type||'ministere').toUpperCase()} · ID ${e.id}</div>
-      <div class="bar"><div style="width:${(share*100).toFixed(4)}%; background:${colorForShare(share)}"></div></div>
-      <div class="badge" style="margin-top:6px">Dépenses: <b class="mon">${fmt.format(dep)}</b></div>
+      <div class="bar" title="Part dans ${RAW.exercice}">
+        <div style="width:${(shareNow*100).toFixed(3)}%; background:${colorForShare(shareNow)}"></div>
+      </div>
+      <div class="hint" style="margin-top:4px">Dépenses ${RAW.exercice} : <b class="mon">${fmt.format(depNow)}</b></div>
+      <div class="mini-bars" id="mini-${e.id}"></div>
     `;
-    return tile;
-  }
+
+    // Barres pluriannuelles (si l’utilisateur a saisi des années)
+    if (years.length){
+      const holder = div.querySelector(`#mini-${e.id}`);
+      years.forEach(y=>{
+        const rawY = MULTI[y]; if (!rawY) return;
+        const entY = mergeEntities(rawY).find(x=>{
+          if (e.code && x.code && String(e.code)===String(x.code)) return true;
+          return normName(e.nom)===normName(x.nom);
+        });
+        const depY = entY ? totalDep(entY) : 0;
+        const totY = totalState(rawY) || 1;
+        const shareY = depY / totY;
+
+        const row = document.createElement('div');
+        row.className = 'row';
+        row.innerHTML = `
+          <div class="year">${y}</div>
+          <div class="bar" style="flex:1"><div style="width:${(shareY*100).toFixed(3)}%; background:${colorForShare(shareY)}"></div></div>
+          <div class="pct">${(shareY*100).toFixed(2)}%</div>
+        `;
+        holder.appendChild(row);
+      });
+    }
+    return div;
+  };
+
   MINISTRIES
     .slice()
-    .sort((a,b)=> totalsEntity(b).dep - totalsEntity(a).dep)
+    .sort((a,b)=> totalDep(b) - totalDep(a))
     .forEach(e=> grid.appendChild(makeTile(e)));
 
-  // Filtre ministères
+  // Filtre texte
   qs('#filterMinistere').oninput = (ev)=>{
     const v = (ev.target.value||"").normalize("NFD").replace(/\p{Diacritic}/gu,"").toLowerCase();
     grid.innerHTML = "";
@@ -374,136 +279,50 @@ function buildBudgetGeneral(){
         const s2 = (e.id||"").toLowerCase();
         return !v || s1.includes(v) || s2.includes(v);
       })
-      .sort((a,b)=> totalsEntity(b).dep - totalsEntity(a).dep)
+      .sort((a,b)=> totalDep(b) - totalDep(a))
       .forEach(e=> grid.appendChild(makeTile(e)));
   };
 }
 
-/* ========================= DETAIL ENTITE ========================= */
 function openEntity(id){
-  const ent = ENTITIES.find(e=> e.id===id);
-  if (!ent) return;
-  CURRENT = ent;
-  showOnly('view-entity');
-  qs('#ent-title').textContent = ent.nom;
-  qs('#ent-meta').textContent = `${(ent.type||'ministere').toUpperCase()} · ID ${ent.id}`;
-
-  const t = totalsEntity(ent);
-  qs('#k_dep').textContent = fmt.format(t.dep);
-  qs('#k_rec').textContent = fmt.format(t.rec);
-  qs('#k_lines').textContent = fmt.format(t.lines);
-  qs('#k_prog').textContent = fmt.format(t.progs);
-
-  const tabs = qs('#progTabs'); tabs.innerHTML = "";
-  const pane = qs('#progPane'); pane.innerHTML = "";
-  (ent.programs||[]).forEach((p, idx)=>{
-    const tab = document.createElement('div');
-    tab.className = 'tab' + (idx===0?' active':'');
-    tab.textContent = `${p.code||''} ${p.libelle||''}`;
-    tab.onclick = ()=>selectProgram(idx);
-    tabs.appendChild(tab);
-  });
-  if ((ent.programs||[]).length){ selectProgram(0); }
+  // route ancienne conservée (si tu veux réactiver la vue détail programme)
+  alert("Astuce : tu peux utiliser la recherche avancée pour cibler un programme/ligne.\nIci, on a surtout amélioré la vue cartes + barres pluriannuelles.");
 }
 
-function groupByNature(rows){
-  const map = new Map();
-  for (const r of rows){
-    const n = (r.nature||'depense').toLowerCase();
-    if (!map.has(n)) map.set(n, []);
-    map.get(n).push(r);
-  }
-  return map;
-}
-function selectProgram(idx){
-  const ent = CURRENT; if (!ent) return;
-  const p = (ent.programs||[])[idx]; if (!p) return;
-  qsa('#progTabs .tab').forEach((t,i)=> t.classList.toggle('active', i===idx));
-
-  const pane = qs('#progPane'); pane.innerHTML = "";
-  const rows = [];
-  for (const a of (p.actions||[])){
-    for (const bl of (a.budget_lines||[])){
-      rows.push({
-        action_code:a.code, action_label:a.libelle,
-        ...bl
-      });
-    }
-  }
-  const grouped = groupByNature(rows);
-  const wrapper = document.createElement('div'); wrapper.className = 'accordion';
-  for (const [nature, list] of grouped){
-    const total = sum(list.map(pickAmount));
-    const item = document.createElement('div'); item.className = 'acc-item';
-    item.innerHTML = `
-      <div class="acc-head" tabindex="0" role="button" aria-expanded="false">
-        <div><b>${nature.toUpperCase()}</b> · <span class="badge">${list.length} lignes</span></div>
-        <div class="mon"><b>${fmt.format(total)}</b></div>
-      </div>
-      <div class="acc-body">
-        <div class="table-wrap">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Action</th><th>Catégorie</th><th>Compte</th><th>Libellé</th>
-                <th style="text-align:right">Montant</th>
-              </tr>
-            </thead>
-            <tbody>
-              ${list.sort((a,b)=> pickAmount(b)-pickAmount(a)).map(r=>`
-                <tr>
-                  <td><span class="pill">${r.action_code||''}</span> ${r.action_label||''}</td>
-                  <td>${r.categorie||''}</td>
-                  <td class="mon">${r.compte||''}</td>
-                  <td>${r.libelle||''}</td>
-                  <td class="mon" style="text-align:right">${fmt.format(pickAmount(r))}</td>
-                </tr>
-              `).join('')}
-            </tbody>
-          </table>
-        </div>
-      </div>
-    `;
-    const head = item.querySelector('.acc-head');
-    head.onclick = ()=> item.classList.toggle('open');
-    head.onkeydown = (e)=>{ if (e.key==='Enter' || e.key===' ') { e.preventDefault(); item.classList.toggle('open'); } };
-    wrapper.appendChild(item);
-  }
-  pane.appendChild(wrapper);
-}
-
-/* ========================= NAV / VUES ========================= */
+/* ===================== Views ===================== */
 function showOnly(id){
-  ['view-budget-general','view-entity','view-ressources','view-cst','view-dette','view-annexes']
+  ['view-budget-general','view-ressources','view-dette','view-annexes']
     .forEach(v=> qs('#'+v).style.display = (v===id?'block':'none'));
   qsa('.menu .item').forEach(it=>{
     const view = it.getAttribute('data-view');
-    const map = { 'budget-general':'view-budget-general','ressources':'view-ressources','cst':'view-cst','dette':'view-dette','annexes':'view-annexes' };
+    const map = { 'budget-general':'view-budget-general','ressources':'view-ressources','dette':'view-dette','annexes':'view-annexes' };
     it.classList.toggle('active', map[view]===id);
   });
 }
 
-/* ========================= DETTE ========================= */
+/* ===================== Resources / Debt ===================== */
+function renderResources(){
+  const r = RAW?.resources; if (!r) return;
+  qs('#res_fisc').textContent   = fmt.format(r.recettes_fiscales||0);
+  qs('#res_nonf').textContent   = fmt.format(r.recettes_non_fiscales||0);
+  qs('#res_dons').textContent   = fmt.format(r.dons||0);
+  qs('#res_autres').textContent = fmt.format(r.autres||0);
+  qs('#res_total').textContent  = fmt.format(r.total||0);
+  const tb = qs('#resTable tbody'); tb.innerHTML = "";
+  (r.lignes||[]).forEach(x=>{
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${x.section||''}</td><td class="mon">${x.code||''}</td><td>${x.libelle||''}</td>
+                    <td class="mon" style="text-align:right">${fmt.format(Number(x.montant||0))}</td>`;
+    tb.appendChild(tr);
+  });
+}
 function renderDebt(){
-  if (!RAW?.debt){ qs('#debt-meta').textContent = 'Aucune donnée de dette dans ce JSON.'; return; }
-  const d = RAW.debt;
+  const d = RAW?.debt; if (!d) return;
   qs('#d_svct').textContent = fmt.format(d.service_dette||0);
   qs('#d_int').textContent  = fmt.format(d.service_interne||0);
   qs('#d_ext').textContent  = fmt.format(d.service_externe||0);
   qs('#d_tot').textContent  = fmt.format(d.dette_totale||0);
   qs('#d_ratio').textContent= (d.ratio_dette_pib||0).toLocaleString('fr-FR',{maximumFractionDigits:2})+"%";
-  qs('#debt-meta').textContent = `Lignes: ${(d.lignes||[]).length}`;
-
-  // chart
-  const ctx = qs('#debtChart').getContext('2d');
-  if (debtChart) debtChart.destroy();
-  debtChart = new Chart(ctx, { type: 'bar',
-    data: { labels: ['Service','Intérieure','Extérieure'],
-      datasets: [{ data: [d.service_dette||0, d.service_interne||0, d.service_externe||0], label:'Dette' }] },
-    options: { plugins:{ legend:{display:false} }, scales:{ y:{ ticks:{ callback:v=>fmt.format(v) }}} }
-  });
-
-  // table
   const tb = qs('#debtTable tbody'); tb.innerHTML = "";
   (d.lignes||[]).forEach(r=>{
     const tr = document.createElement('tr');
@@ -513,286 +332,59 @@ function renderDebt(){
   });
 }
 
-/* ========================= RESSOURCES ========================= */
-function renderResources(){
-  const r = RAW?.resources;
-  if (!r){ qs('#view-ressources .badge')?.remove(); return; }
-  qs('#res_fisc').textContent   = fmt.format(r.recettes_fiscales||0);
-  qs('#res_nonf').textContent   = fmt.format(r.recettes_non_fiscales||0);
-  qs('#res_dons').textContent   = fmt.format(r.dons||0);
-  qs('#res_autres').textContent = fmt.format(r.autres||0);
-  qs('#res_total').textContent  = fmt.format(r.total||0);
-
-  const tb = qs('#resTable tbody'); tb.innerHTML = "";
-  (r.lignes||[]).forEach(x=>{
-    const tr = document.createElement('tr');
-    tr.innerHTML = `<td>${x.section||''}</td><td class="mon">${x.code||''}</td><td>${x.libelle||''}</td>
-                    <td class="mon" style="text-align:right">${fmt.format(Number(x.montant||0))}</td>`;
-    tb.appendChild(tr);
-  });
+/* ===================== Loading ===================== */
+async function fetchJSON(url){
+  const r = await fetch(url); if (!r.ok) throw new Error(url+" : "+r.status); return r.json();
 }
+function yearFromInput(){ return String(qs('#yearInput').value||'').trim(); }
+function parseYearsMulti(){ return (qs('#yearsMulti').value||'').split(',').map(s=>s.trim()).filter(Boolean); }
 
-/* ========================= PLURIANNUEL ========================= */
-async function fetchYearJSON(year){
-  const url = yearToURL(year);
-  const resp = await fetch(url);
-  if (!resp.ok) throw new Error(`Échec chargement ${url}`);
-  return resp.json();
-}
-function totalStateFrom(raw){
-  // agrège toutes les dépenses des ministères
-  const entities = (raw.entities||[]).filter(e=>(e.type||'ministere')==='ministere');
-  const totals = entities.map(e=>{
-    const rows = [];
-    (e.programs||[]).forEach(p=>{
-      (p.actions||[]).forEach(a=>{
-        (a.budget_lines||[]).forEach(bl=> rows.push(bl));
-      });
-    });
-    return sum(rows.filter(r=>(r.nature||'depense')==='depense').map(pickAmount));
-  });
-  return sum(totals);
-}
-function entityDepFrom(raw, entId){
-  const ent = (raw.entities||[]).find(e=> e.id === entId);
-  if (!ent) return 0;
-  const rows = [];
-  (ent.programs||[]).forEach(p=>{
-    (p.actions||[]).forEach(a=>{
-      (a.budget_lines||[]).forEach(bl=> rows.push(bl));
-    });
-  });
-  return sum(rows.filter(r=>(r.nature||'depense')==='depense').map(pickAmount));
-}
-async function compareMulti(){
-  const years = (qs('#yearsMulti').value||'').split(',').map(s=>s.trim()).filter(Boolean);
-  const entId = qs('#entitySelect').value;
-  if (!years.length || !entId){ alert("Renseigne des années (ex: 2024,2025) et choisis une entité."); return; }
+async function loadYear(){
+  // charge l'année active + les éventuelles années pluriannuelles pour afficher des barres sur chaque carte
+  const y = yearFromInput();
+  if (!/^\d{4}$/.test(y)){ alert("Saisis une année (ex: 2024)"); return; }
+  const url = (qs('#urlInput').value||"").trim() || `/data/${y}.json`;
+  RAW = await fetchJSON(url);
 
-  // charge en parallèle
-  let raws = {};
-  try{
-    const fetched = await Promise.all(years.map(y=> fetchYearJSON(y)));
-    years.forEach((y,i)=> raws[y]=fetched[i]);
-  }catch(e){ alert(e.message); return; }
+  // DÉDUP : fusionner les entités du JSON (évite les doublons “Éducation Nationale”)
+  ENTITIES = mergeEntities(RAW);
 
-  // calcule parts et montants
-  const labels = years;
-  const amounts = years.map(y=> entityDepFrom(raws[y], entId));
-  const totals  = years.map(y=> totalStateFrom(raws[y]) || 1);
-  const shares  = amounts.map((v,i)=> v / totals[i]);
-
-  qs('#multiMeta').textContent = `Entité: ${ENTITIES.find(e=>e.id===entId)?.nom || entId}`;
-
-  const ctx = qs('#multiChart').getContext('2d');
-  if (multiChart) multiChart.destroy();
-  multiChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels,
-      datasets: [{
-        label: 'Part du budget (%)',
-        data: shares.map(s=> (s*100)),
-      },{
-        label: 'Montant (FCFA)',
-        data: amounts,
-        yAxisID: 'y2'
-      }]
-    },
-    options: {
-      plugins:{ legend:{ display:true } },
-      scales:{
-        y:{ type:'linear', position:'left', ticks:{ callback:v=>v+"%" }, beginAtZero:true, max: Math.max(100, Math.ceil(Math.max(...shares)*12000)/100) },
-        y2:{ type:'linear', position:'right', ticks:{ callback:v=>fmt.format(v) }, grid:{ drawOnChartArea:false } }
-      }
-    }
-  });
-}
-
-/* ========================= EXPORT ========================= */
-function exportCSV(){
-  if (qs('#view-entity').style.display==='block' && CURRENT){
-    const rows = [];
-    for (const p of (CURRENT.programs||[])){
-      for (const a of (p.actions||[])){
-        for (const bl of (a.budget_lines||[])){
-          rows.push({
-            programme:p.code, programme_lib:p.libelle,
-            action:a.code, action_lib:a.libelle,
-            nature:(bl.nature||'depense'), categorie:bl.categorie||'', compte:bl.compte||'', libelle:bl.libelle||'',
-            montant: pickAmount(bl)
-          });
-        }
-      }
-    }
-    const headers = ["programme","programme_lib","action","action_lib","nature","categorie","compte","libelle","montant"];
-    const lines = [headers.join(";")];
-    rows.forEach(r=>{
-      const arr = headers.map(h=> (""+(r[h]??"")).replace(/[\r\n;]/g, " ").trim());
-      lines.push(arr.join(";"));
+  // Charger les années pluriannuelles (si différentes de l’année active)
+  MULTI = {}; MULTI_YEARS = [];
+  const ys = parseYearsMulti().filter(v=> v!==y);
+  if (ys.length){
+    const promises = ys.map(async yy=>{
+      const u = `/data/${yy}.json`;
+      try{ MULTI[yy] = await fetchJSON(u); }catch(e){ console.warn("Manque", u); }
     });
-    const blob = new Blob([lines.join("\n")], {type:"text/csv;charset=utf-8"});
-    const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
-    a.download = (CURRENT.id || "export") + ".csv"; document.body.appendChild(a); a.click(); a.remove();
-  } else if (qs('#view-budget-general').style.display==='block'){
-    const totals = MINISTRIES.map(e=>{
-      const t = totalsEntity(e);
-      return { id:e.id, nom:e.nom, depenses:t.dep, recettes:t.rec, programmes:t.progs, lignes:t.lines };
-    });
-    const headers = ["id","nom","depenses","recettes","programmes","lignes"];
-    const lines = [headers.join(";")];
-    totals.forEach(r=>{
-      const arr = headers.map(h=> (""+(r[h]??"")).replace(/[\r\n;]/g, " ").trim());
-      lines.push(arr.join(";"));
-    });
-    const blob = new Blob([lines.join("\n")], {type:"text/csv;charset=utf-8"});
-    const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
-    a.download = "budget_general_ministeres.csv"; document.body.appendChild(a); a.click(); a.remove();
-  } else if (qs('#view-ressources').style.display==='block' && RAW?.resources){
-    const rows = (RAW.resources.lignes||[]).map(x=>({
-      section:x.section, code:x.code, libelle:x.libelle, montant:Number(x.montant||0)
-    }));
-    const headers = ["section","code","libelle","montant"];
-    const lines = [headers.join(";")];
-    rows.forEach(r=>{
-      const arr = headers.map(h=> (""+(r[h]??"")).replace(/[\r\n;]/g, " ").trim());
-      lines.push(arr.join(";"));
-    });
-    const blob = new Blob([lines.join("\n")], {type:"text/csv;charset=utf-8"});
-    const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
-    a.download = `ressources_${RAW.exercice||'annee'}.csv`; document.body.appendChild(a); a.click(); a.remove();
-  } else {
-    alert("Rien à exporter pour la vue courante.");
+    await Promise.all(promises);
+    MULTI_YEARS = ys.filter(yy=> !!MULTI[yy]);
   }
-}
 
-/* ========================= CHARGEMENT ========================= */
-async function loadJSONFromFile(file){
-  return new Promise((res, rej)=>{
-    const fr = new FileReader();
-    fr.onerror = ()=>rej(new Error("Lecture fichier échouée"));
-    fr.onload = ()=> { try{ res(JSON.parse(fr.result)); } catch(e){ rej(e) } };
-    fr.readAsText(file, 'utf-8');
-  });
-}
-async function loadData(){
-  const url = (qs('#urlInput').value||"").trim();
-  const file = qs('#fileInput').files?.[0];
-  try{
-    if (url){
-      const resp = await fetch(url); RAW = await resp.json();
-    } else if (file){
-      RAW = await loadJSONFromFile(file);
-    } else if (new URLSearchParams(location.search).get('data')){
-      const u = new URLSearchParams(location.search).get('data');
-      const resp = await fetch(u); RAW = await resp.json();
-    } else { alert("Indique une URL du JSON, choisis un fichier, ou tape une année."); return; }
-  } catch(e){
-    console.error(e); alert("Impossible de charger le JSON : "+e.message); return;
-  }
-  ENTITIES = (RAW.entities||[]).slice().sort((a,b)=> (a.nom||'').localeCompare((b.nom||''), 'fr'));
-  buildBudgetGeneral();
-  renderDebt();
+  renderGrid();
   renderResources();
+  renderDebt();
   showOnly('view-budget-general');
 }
 
-/* ========================= MENU / MOBILE / THEME ========================= */
+/* ===================== Events ===================== */
 qs('#menuMain').addEventListener('click', (e)=>{
   const it = e.target.closest('.item'); if (!it) return;
   const view = it.getAttribute('data-view');
-  const map = { 'budget-general':'view-budget-general','ressources':'view-ressources','cst':'view-cst','dette':'view-dette','annexes':'view-annexes' };
+  const map = { 'budget-general':'view-budget-general','ressources':'view-ressources','dette':'view-dette','annexes':'view-annexes' };
   if (map[view]) showOnly(map[view]);
 });
-qs('#backToGeneral').onclick = ()=> showOnly('view-budget-general');
-qs('#toggleMenu').onclick = ()=> qs('#sidebar').classList.toggle('open');
-
+qsa('[data-theme]').forEach(btn=> btn.addEventListener('click', ()=> document.documentElement.setAttribute('data-theme', btn.getAttribute('data-theme')) ));
 qs('#loadYearBtn').onclick = loadYear;
 qs('#yearInput').addEventListener('keydown', e=>{ if (e.key==='Enter') loadYear(); });
-qs('#advSearchBtn').onclick = ()=>{ qs('#advSearchModal').classList.add('open'); qs('#advQuery').focus(); };
-qs('#closeSearch').onclick = ()=> qs('#advSearchModal').classList.remove('open');
-qs('#advGo').onclick = doAdvancedSearch;
-qs('#advQuery').addEventListener('keydown', e=> { if (e.key==='Enter') doAdvancedSearch(); });
-qs('#exportBtn').onclick = exportCSV;
-qs('#compareBtn').onclick = compareMulti;
 
-/* Theme switching persisted */
-function setTheme(t){
-  document.documentElement.setAttribute('data-theme', t);
-  localStorage.setItem('budget_hub_theme', t);
-}
-qsa('[data-theme]').forEach(btn=> btn.addEventListener('click', ()=> setTheme(btn.getAttribute('data-theme')) ));
-(function initTheme(){
-  const saved = localStorage.getItem('budget_hub_theme');
-  if (saved) setTheme(saved);
-})();
-
-/* ========================= RECHERCHE AVANCÉE ========================= */
-function doAdvancedSearch(){
-  const q = (qs('#advQuery').value||"").trim();
-  const box = qs('#advResults'); box.innerHTML = "";
-  if (!q){ box.innerHTML = `<div class="hint">Saisis un mot-clé pour lancer la recherche.</div>`; return; }
-  const norm = s => (s??"").toString().normalize("NFD").replace(/\p{Diacritic}/gu,"").toLowerCase();
-  const nq = norm(q);
-
-  const res = [];
-  for (const e of ENTITIES){
-    const inEnt = norm(e.nom).includes(nq) || norm(e.id).includes(nq);
-    if (inEnt){ res.push({type:'entite', ent:e}); }
-    for (const p of (e.programs||[])){
-      if (norm(p.libelle).includes(nq) || norm(p.code).includes(nq)){
-        res.push({type:'programme', ent:e, prog:p});
-      }
-      for (const a of (p.actions||[])){
-        for (const bl of (a.budget_lines||[])){
-          const hay = [bl.nature, bl.categorie, bl.compte, bl.libelle, a.code, a.libelle].map(norm).join(" ");
-          if (hay.includes(nq)){
-            res.push({type:'ligne', ent:e, prog:p, action:a, bl});
-          }
-        }
-      }
-    }
-  }
-  if (!res.length){ box.innerHTML = `<div class="hint">Aucun résultat.</div>`; return; }
-
-  for (const r of res.slice(0, 300)){
-    const div = document.createElement('div'); div.className = 'item';
-    if (r.type==='entite'){
-      div.innerHTML = `<div><b>Ministère/Institution</b> — ${r.ent.nom}</div><div class="badge">ID ${r.ent.id}</div>`;
-      div.onclick = ()=>{ qs('#advSearchModal').classList.remove('open'); openEntity(r.ent.id); };
-    } else if (r.type==='programme'){
-      div.innerHTML = `<div><b>Programme</b> — ${r.prog.code||''} ${r.prog.libelle||''}</div><div class="badge">${r.ent.nom}</div>`;
-      div.onclick = ()=>{ qs('#advSearchModal').classList.remove('open'); openEntity(r.ent.id);
-        setTimeout(()=>{
-          const idx = (r.ent.programs||[]).indexOf(r.prog);
-          if (idx>=0) selectProgram(idx);
-        }, 50);
-      };
-    } else {
-      div.innerHTML = `<div><b>Ligne</b> — ${r.bl.compte||''} ${r.bl.libelle||''}</div>
-                       <div class="badge">${r.ent.nom} · ${r.prog.code||''} ${r.prog.libelle||''} · ${r.action.code||''} ${r.action.libelle||''} · ${r.bl.nature||''}/${r.bl.categorie||''}</div>`;
-      div.onclick = ()=>{ qs('#advSearchModal').classList.remove('open'); openEntity(r.ent.id);
-        setTimeout(()=>{
-          const idx = (r.ent.programs||[]).indexOf(r.prog);
-          if (idx>=0) selectProgram(idx);
-          const heads = qsa('#progPane .acc-item .acc-head');
-          heads.forEach(h=>{
-            if (h.textContent.toLowerCase().includes((r.bl.nature||'depense').toLowerCase())) {
-              h.parentElement.classList.add('open');
-            }
-          });
-        }, 50);
-      };
-    }
-    box.appendChild(div);
-  }
-}
-
-/* Auto-charge si ?data= présent */
-window.addEventListener('DOMContentLoaded', ()=>{
+/* Fallback: si ?data= est présent */
+window.addEventListener('DOMContentLoaded', async ()=>{
   const qp = new URLSearchParams(location.search);
-  if (qp.get('data')) loadData();
-  else showOnly('view-budget-general');
+  if (qp.get('data')){ 
+    const url = qp.get('data'); RAW = await fetchJSON(url); ENTITIES = mergeEntities(RAW);
+    renderGrid(); renderResources(); renderDebt(); 
+  }
 });
 </script>
 </body>
