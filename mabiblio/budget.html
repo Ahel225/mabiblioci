@@ -33,10 +33,10 @@
   header{grid-column:1 / -1; display:flex; gap:12px; flex-wrap:wrap; align-items:center; justify-content:space-between}
   .brand{font-weight:800; font-size:20px}
   .panel{background:var(--panel); border:1px solid var(--border); border-radius:16px; padding:14px}
-  .sidebar{display:flex; flex-direction:column; gap:12px; height:calc(100vh - 130px); position:sticky; top:16px}
+  .sidebar{display:flex; flex-direction:column; gap:12px; height:calc(100vh - 160px); position:sticky; top:16px}
   .toolbar{display:flex; gap:8px; align-items:center; flex-wrap:wrap}
 
-  input[type="text"], input[type="url"], input[type="search"]{
+  input[type="text"], input[type="url"], input[type="search"], input[type="number"]{
     background:var(--input); border:1px solid var(--border); border-radius:10px; padding:10px 12px; color:var(--text); width:100%;
   }
   .btn{
@@ -70,8 +70,8 @@
   .bar > div{height:100%}
 
   .grid{display:grid; gap:12px}
-  .table{width:100%; border-collapse:collapse; font-size:14px}
-  .table th,.table td{border-bottom:1px dashed var(--border); padding:8px 6px; text-align:left; vertical-align:top}
+  .table{width:100%; border-collapse:collapse; font-size:14px; table-layout:auto}
+  .table th,.table td{border-bottom:1px dashed var(--border); padding:8px 6px; text-align:left; vertical-align:top; white-space:nowrap}
   .table th{color:var(--muted); font-weight:600}
   .mon{font-variant-numeric:tabular-nums}
   .footer{grid-column:1/-1; text-align:center; color:#93a9cc66; font-size:12px; padding:8px 0}
@@ -86,14 +86,11 @@
   .acc-body{padding:8px 10px; display:none}
   .acc-item.open .acc-body{display:block}
 
-  /* ========================= MODAL SEARCH ========================= */
-  .modal{position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(2,7,22,.6); z-index:50}
-  html[data-theme="light-blue"] .modal, html[data-theme="light-green"] .modal{ background:rgba(0,0,0,.25) }
-  .modal.open{display:flex}
-  .modal .box{width:min(1100px, 96vw); max-height:90vh; overflow:auto; background:var(--panel); border:1px solid var(--border); border-radius:16px; padding:16px}
-  .modal .res{margin-top:12px}
-  .modal .res .item{padding:10px; border:1px solid var(--border); border-radius:10px; margin-bottom:8px}
-  .modal .res .item:hover{background:var(--tile)}
+  /* Redimensionnable + scroll horizontal pour les tableaux */
+  .table-wrap{
+    border:1px solid var(--border); border-radius:10px; overflow:auto; resize:both; padding:6px; background:var(--tile);
+    min-height:160px; max-height:70vh;
+  }
 
   /* ========================= MOBILE ========================= */
   @media (max-width:1100px){
@@ -109,7 +106,6 @@
     .btn.small{padding:7px 9px}
     .list{grid-template-columns:1fr}
     .cards{grid-template-columns:1fr}
-    /* Sidebar collapsible on mobile */
     .sidebar .menu { display:none }
     .sidebar.open .menu { display:flex }
   }
@@ -120,17 +116,24 @@
   <header>
     <div class="brand">🇨🇮 Hub Budget – Côte d’Ivoire</div>
     <div class="toolbar panel" style="gap:8px; flex:1">
-      <input id="urlInput" type="url" placeholder="URL du JSON (ex: /data/2024.json). Laissez vide pour charger un fichier…" style="min-width:220px; flex:1">
+      <!-- Saisie directe de l'année -->
+      <input id="yearInput" type="number" placeholder="Année (ex: 2024). Entrer pour charger…" style="width:120px">
+      <button class="btn" id="loadYearBtn" aria-label="Charger l'année">Charger l’année</button>
+
+      <!-- (Optionnel) URL JSON direct + fichier -->
+      <input id="urlInput" type="url" placeholder="(Optionnel) URL JSON : /data/2024.json" style="min-width:220px; flex:1">
       <input id="fileInput" type="file" accept="application/json,application/*+json">
-      <button class="btn" id="loadBtn" aria-label="Charger les données">Charger</button>
+
       <button class="btn secondary" id="advSearchBtn" title="Recherche avancée (ministère, programme, nature, ligne)" aria-haspopup="dialog">Recherche</button>
       <button class="btn secondary" id="exportBtn" title="Exporter la vue en CSV">Export</button>
+
       <!-- Theme switcher -->
       <div class="row" style="margin-left:auto; gap:6px">
         <button class="btn small secondary" data-theme="dark" title="Thème sombre">Sombre</button>
         <button class="btn small secondary" data-theme="light-blue" title="Thème blanc & bleu">Bleu</button>
         <button class="btn small secondary" data-theme="light-green" title="Thème blanc & vert">Vert</button>
       </div>
+
       <!-- Mobile sidebar toggle -->
       <button class="btn ghost small" id="toggleMenu" title="Afficher/masquer le menu">Menu</button>
     </div>
@@ -154,10 +157,25 @@
         <h2 style="margin:0">Budget général — Ministères</h2>
         <span class="badge" id="bg-meta">—</span>
       </div>
-      <div class="row" style="gap:6px">
+      <div class="row" style="gap:6px; align-items:flex-end">
         <input id="filterMinistere" type="search" placeholder="Filtrer les ministères… (nom ou ID)" style="max-width:380px">
+        <!-- Pluriannuel -->
+        <div class="row" style="gap:6px">
+          <input id="yearsMulti" type="text" placeholder="Pluriannuel (ex: 2024,2025)" style="width:220px">
+          <select id="entitySelect" style="min-width:260px">
+            <option value="">— Sélectionner un ministère/institution —</option>
+          </select>
+          <button class="btn small" id="compareBtn">Comparer</button>
+        </div>
       </div>
-      <div class="list" id="ministryGrid"></div>
+
+      <div class="list" id="ministryGrid" style="margin-top:8px"></div>
+
+      <!-- Résultat comparaison pluriannuelle -->
+      <div class="panel" style="margin-top:12px">
+        <div class="row" style="justify-content:space-between"><h3 style="margin:0">Comparaison pluriannuelle</h3><span class="badge" id="multiMeta">—</span></div>
+        <canvas id="multiChart" height="120"></canvas>
+      </div>
     </section>
 
     <!-- DETAIL ENTITE -->
@@ -179,29 +197,54 @@
       <div id="progPane"></div>
     </section>
 
-    <!-- AUTRES VUES -->
+    <!-- RESSOURCES -->
     <section class="panel" id="view-ressources" style="display:none">
-      <h2 style="margin:0">Ressources du Budget de l'État</h2>
-      <p class="badge">En attente de données de ressources. Dès que tu m’envoies le fichier, cette section affichera les agrégats (recettes fiscales, non fiscales, dons…).</p>
+      <div class="row" style="justify-content:space-between; align-items:flex-end">
+        <h2 style="margin:0">Ressources du Budget de l'État</h2>
+        <div class="cards" style="grid-template-columns:repeat(5,1fr)">
+          <div class="card"><h4>Fiscales</h4><div class="v mon" id="res_fisc">—</div></div>
+          <div class="card"><h4>Non fiscales</h4><div class="v mon" id="res_nonf">—</div></div>
+          <div class="card"><h4>Dons</h4><div class="v mon" id="res_dons">—</div></div>
+          <div class="card"><h4>Autres</h4><div class="v mon" id="res_autres">—</div></div>
+          <div class="card"><h4>Total</h4><div class="v mon" id="res_total">—</div></div>
+        </div>
+      </div>
+      <div class="table-wrap" id="resTableWrap">
+        <table class="table" id="resTable">
+          <thead><tr><th>Section</th><th>Code</th><th>Libellé</th><th style="text-align:right">Montant</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
     </section>
 
-    <section class="panel" id="view-cst" style="display:none">
-      <h2 style="margin:0">Comptes spéciaux du Trésor</h2>
-      <p class="badge">En attente de données CST. Vue prévue : liste des comptes, soldes, mouvements par nature.</p>
-    </section>
-
+    <!-- DETTE -->
     <section class="panel" id="view-dette" style="display:none">
       <div class="row" style="justify-content:space-between">
         <h2 style="margin:0">Service de la dette</h2>
         <span class="badge" id="debt-meta">—</span>
       </div>
+      <div class="cards" style="grid-template-columns:repeat(5,1fr); margin-bottom:10px">
+        <div class="card"><h4>Service (total)</h4><div class="v mon" id="d_svct">—</div></div>
+        <div class="card"><h4>Intérieure</h4><div class="v mon" id="d_int">—</div></div>
+        <div class="card"><h4>Extérieure</h4><div class="v mon" id="d_ext">—</div></div>
+        <div class="card"><h4>Dette totale</h4><div class="v mon" id="d_tot">—</div></div>
+        <div class="card"><h4>Ratio PIB</h4><div class="v mon" id="d_ratio">—</div></div>
+      </div>
       <canvas id="debtChart" height="120" aria-label="Graphique de dette"></canvas>
-      <p class="badge">En attendant le fichier dette, je lis les champs <code>debt</code> du JSON si présents.</p>
+
+      <h3 style="margin:14px 0 6px 0">Lignes détaillées</h3>
+      <div class="table-wrap" id="debtTableWrap">
+        <table class="table" id="debtTable">
+          <thead><tr><th>Type</th><th>Compte</th><th>Libellé</th><th style="text-align:right">Montant</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
     </section>
 
+    <!-- ANNEXES -->
     <section class="panel" id="view-annexes" style="display:none">
       <h2 style="margin:0">Annexes — EPN, Collectivités, COGES</h2>
-      <p class="badge">Dès réception des fichiers, cette vue affichera la liste par entité, avec filtres et agrégats.</p>
+      <p class="badge">À alimenter avec vos JSON Annexes.</p>
     </section>
 
     <div class="footer">Hub statique – JSON “Option A”. ©</div>
@@ -237,6 +280,7 @@ let ENTITIES = [];
 let MINISTRIES = [];
 let CURRENT = null;
 let debtChart = null;
+let multiChart = null;
 
 function pickAmount(line){
   const a = Number(line?.montant_rectifie ?? line?.montant_initial ?? 0);
@@ -265,10 +309,21 @@ function totalsEntity(ent){
   return {dep, rec, lines: rows.length, progs: (ent.programs||[]).length};
 }
 function colorForShare(share){
-  // palette perceptible sur clair & sombre
   const hue = 210 - 210*share; // bleu -> violet
   const sat = 85; const light = (document.documentElement.dataset.theme==='dark'? 60 : 50);
   return `hsl(${hue}, ${sat}%, ${light}%)`;
+}
+
+/* ========================= CHARGEMENT (Année) ========================= */
+function yearToURL(y){
+  // Pointage par défaut vers /data/<année>.json ; adapter si besoin (ex: 2025_final.json)
+  return `/data/${y}.json`;
+}
+async function loadYear(){
+  const y = String(qs('#yearInput').value||'').trim();
+  if (!/^\d{4}$/.test(y)){ alert("Saisis une année (ex: 2024)"); return; }
+  qs('#urlInput').value = yearToURL(y);
+  return loadData();
 }
 
 /* ========================= BUDGET GENERAL ========================= */
@@ -276,7 +331,15 @@ function buildBudgetGeneral(){
   MINISTRIES = ENTITIES.filter(e => (e.type||'ministere') === 'ministere');
   const totals = MINISTRIES.map(e=> totalsEntity(e).dep);
   const totalState = sum(totals) || 1;
-  qs('#bg-meta').textContent = `Ministères: ${MINISTRIES.length} · Total dépenses agrégées: ${fmt.format(totalState)}`;
+  qs('#bg-meta').textContent = `Année ${RAW?.exercice??'—'} · Ministères: ${MINISTRIES.length} · Total dépenses agrégées: ${fmt.format(totalState)}`;
+
+  // Remplir le select entité pour la comparaison pluriannuelle
+  const sel = qs('#entitySelect'); sel.innerHTML = `<option value="">— Sélectionner un ministère/institution —</option>`;
+  ENTITIES.forEach(e=>{
+    const opt = document.createElement('option');
+    opt.value = e.id; opt.textContent = e.nom;
+    sel.appendChild(opt);
+  });
 
   const grid = qs('#ministryGrid'); grid.innerHTML = "";
   const makeTile = (e)=>{
@@ -301,7 +364,7 @@ function buildBudgetGeneral(){
     .sort((a,b)=> totalsEntity(b).dep - totalsEntity(a).dep)
     .forEach(e=> grid.appendChild(makeTile(e)));
 
-  // filtre
+  // Filtre ministères
   qs('#filterMinistere').oninput = (ev)=>{
     const v = (ev.target.value||"").normalize("NFD").replace(/\p{Diacritic}/gu,"").toLowerCase();
     grid.innerHTML = "";
@@ -378,25 +441,27 @@ function selectProgram(idx){
         <div class="mon"><b>${fmt.format(total)}</b></div>
       </div>
       <div class="acc-body">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Action</th><th>Catégorie</th><th>Compte</th><th>Libellé</th>
-              <th style="text-align:right">Montant</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${list.sort((a,b)=> pickAmount(b)-pickAmount(a)).map(r=>`
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
               <tr>
-                <td><span class="pill">${r.action_code||''}</span> ${r.action_label||''}</td>
-                <td>${r.categorie||''}</td>
-                <td class="mon">${r.compte||''}</td>
-                <td>${r.libelle||''}</td>
-                <td class="mon" style="text-align:right">${fmt.format(pickAmount(r))}</td>
+                <th>Action</th><th>Catégorie</th><th>Compte</th><th>Libellé</th>
+                <th style="text-align:right">Montant</th>
               </tr>
-            `).join('')}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              ${list.sort((a,b)=> pickAmount(b)-pickAmount(a)).map(r=>`
+                <tr>
+                  <td><span class="pill">${r.action_code||''}</span> ${r.action_label||''}</td>
+                  <td>${r.categorie||''}</td>
+                  <td class="mon">${r.compte||''}</td>
+                  <td>${r.libelle||''}</td>
+                  <td class="mon" style="text-align:right">${fmt.format(pickAmount(r))}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </div>
       </div>
     `;
     const head = item.querySelector('.acc-head');
@@ -417,16 +482,130 @@ function showOnly(id){
     it.classList.toggle('active', map[view]===id);
   });
 }
+
+/* ========================= DETTE ========================= */
 function renderDebt(){
   if (!RAW?.debt){ qs('#debt-meta').textContent = 'Aucune donnée de dette dans ce JSON.'; return; }
   const d = RAW.debt;
-  qs('#debt-meta').textContent = 'Encours total / Interne / Externe / Service / Ratio PIB';
+  qs('#d_svct').textContent = fmt.format(d.service_dette||0);
+  qs('#d_int').textContent  = fmt.format(d.service_interne||0);
+  qs('#d_ext').textContent  = fmt.format(d.service_externe||0);
+  qs('#d_tot').textContent  = fmt.format(d.dette_totale||0);
+  qs('#d_ratio').textContent= (d.ratio_dette_pib||0).toLocaleString('fr-FR',{maximumFractionDigits:2})+"%";
+  qs('#debt-meta').textContent = `Lignes: ${(d.lignes||[]).length}`;
+
+  // chart
   const ctx = qs('#debtChart').getContext('2d');
   if (debtChart) debtChart.destroy();
   debtChart = new Chart(ctx, { type: 'bar',
-    data: { labels: ['Totale','Interne','Externe','Service','Ratio PIB'],
-      datasets: [{ data: [d.dette_totale||0, d.dette_interne||0, d.dette_externe||0, d.service_dette||0, d.ratio_dette_pib||0], label:'Dette' }] },
-    options: { plugins:{ legend:{display:false} } }
+    data: { labels: ['Service','Intérieure','Extérieure'],
+      datasets: [{ data: [d.service_dette||0, d.service_interne||0, d.service_externe||0], label:'Dette' }] },
+    options: { plugins:{ legend:{display:false} }, scales:{ y:{ ticks:{ callback:v=>fmt.format(v) }}} }
+  });
+
+  // table
+  const tb = qs('#debtTable tbody'); tb.innerHTML = "";
+  (d.lignes||[]).forEach(r=>{
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${r.type||''}</td><td class="mon">${r.compte||''}</td><td>${r.libelle||''}</td>
+                    <td class="mon" style="text-align:right">${fmt.format(Number(r.montant||0))}</td>`;
+    tb.appendChild(tr);
+  });
+}
+
+/* ========================= RESSOURCES ========================= */
+function renderResources(){
+  const r = RAW?.resources;
+  if (!r){ qs('#view-ressources .badge')?.remove(); return; }
+  qs('#res_fisc').textContent   = fmt.format(r.recettes_fiscales||0);
+  qs('#res_nonf').textContent   = fmt.format(r.recettes_non_fiscales||0);
+  qs('#res_dons').textContent   = fmt.format(r.dons||0);
+  qs('#res_autres').textContent = fmt.format(r.autres||0);
+  qs('#res_total').textContent  = fmt.format(r.total||0);
+
+  const tb = qs('#resTable tbody'); tb.innerHTML = "";
+  (r.lignes||[]).forEach(x=>{
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${x.section||''}</td><td class="mon">${x.code||''}</td><td>${x.libelle||''}</td>
+                    <td class="mon" style="text-align:right">${fmt.format(Number(x.montant||0))}</td>`;
+    tb.appendChild(tr);
+  });
+}
+
+/* ========================= PLURIANNUEL ========================= */
+async function fetchYearJSON(year){
+  const url = yearToURL(year);
+  const resp = await fetch(url);
+  if (!resp.ok) throw new Error(`Échec chargement ${url}`);
+  return resp.json();
+}
+function totalStateFrom(raw){
+  // agrège toutes les dépenses des ministères
+  const entities = (raw.entities||[]).filter(e=>(e.type||'ministere')==='ministere');
+  const totals = entities.map(e=>{
+    const rows = [];
+    (e.programs||[]).forEach(p=>{
+      (p.actions||[]).forEach(a=>{
+        (a.budget_lines||[]).forEach(bl=> rows.push(bl));
+      });
+    });
+    return sum(rows.filter(r=>(r.nature||'depense')==='depense').map(pickAmount));
+  });
+  return sum(totals);
+}
+function entityDepFrom(raw, entId){
+  const ent = (raw.entities||[]).find(e=> e.id === entId);
+  if (!ent) return 0;
+  const rows = [];
+  (ent.programs||[]).forEach(p=>{
+    (p.actions||[]).forEach(a=>{
+      (a.budget_lines||[]).forEach(bl=> rows.push(bl));
+    });
+  });
+  return sum(rows.filter(r=>(r.nature||'depense')==='depense').map(pickAmount));
+}
+async function compareMulti(){
+  const years = (qs('#yearsMulti').value||'').split(',').map(s=>s.trim()).filter(Boolean);
+  const entId = qs('#entitySelect').value;
+  if (!years.length || !entId){ alert("Renseigne des années (ex: 2024,2025) et choisis une entité."); return; }
+
+  // charge en parallèle
+  let raws = {};
+  try{
+    const fetched = await Promise.all(years.map(y=> fetchYearJSON(y)));
+    years.forEach((y,i)=> raws[y]=fetched[i]);
+  }catch(e){ alert(e.message); return; }
+
+  // calcule parts et montants
+  const labels = years;
+  const amounts = years.map(y=> entityDepFrom(raws[y], entId));
+  const totals  = years.map(y=> totalStateFrom(raws[y]) || 1);
+  const shares  = amounts.map((v,i)=> v / totals[i]);
+
+  qs('#multiMeta').textContent = `Entité: ${ENTITIES.find(e=>e.id===entId)?.nom || entId}`;
+
+  const ctx = qs('#multiChart').getContext('2d');
+  if (multiChart) multiChart.destroy();
+  multiChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [{
+        label: 'Part du budget (%)',
+        data: shares.map(s=> (s*100)),
+      },{
+        label: 'Montant (FCFA)',
+        data: amounts,
+        yAxisID: 'y2'
+      }]
+    },
+    options: {
+      plugins:{ legend:{ display:true } },
+      scales:{
+        y:{ type:'linear', position:'left', ticks:{ callback:v=>v+"%" }, beginAtZero:true, max: Math.max(100, Math.ceil(Math.max(...shares)*12000)/100) },
+        y2:{ type:'linear', position:'right', ticks:{ callback:v=>fmt.format(v) }, grid:{ drawOnChartArea:false } }
+      }
+    }
   });
 }
 
@@ -469,6 +648,19 @@ function exportCSV(){
     const blob = new Blob([lines.join("\n")], {type:"text/csv;charset=utf-8"});
     const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
     a.download = "budget_general_ministeres.csv"; document.body.appendChild(a); a.click(); a.remove();
+  } else if (qs('#view-ressources').style.display==='block' && RAW?.resources){
+    const rows = (RAW.resources.lignes||[]).map(x=>({
+      section:x.section, code:x.code, libelle:x.libelle, montant:Number(x.montant||0)
+    }));
+    const headers = ["section","code","libelle","montant"];
+    const lines = [headers.join(";")];
+    rows.forEach(r=>{
+      const arr = headers.map(h=> (""+(r[h]??"")).replace(/[\r\n;]/g, " ").trim());
+      lines.push(arr.join(";"));
+    });
+    const blob = new Blob([lines.join("\n")], {type:"text/csv;charset=utf-8"});
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+    a.download = `ressources_${RAW.exercice||'annee'}.csv`; document.body.appendChild(a); a.click(); a.remove();
   } else {
     alert("Rien à exporter pour la vue courante.");
   }
@@ -494,13 +686,14 @@ async function loadData(){
     } else if (new URLSearchParams(location.search).get('data')){
       const u = new URLSearchParams(location.search).get('data');
       const resp = await fetch(u); RAW = await resp.json();
-    } else { alert("Indique une URL du JSON ou choisis un fichier."); return; }
+    } else { alert("Indique une URL du JSON, choisis un fichier, ou tape une année."); return; }
   } catch(e){
     console.error(e); alert("Impossible de charger le JSON : "+e.message); return;
   }
   ENTITIES = (RAW.entities||[]).slice().sort((a,b)=> (a.nom||'').localeCompare((b.nom||''), 'fr'));
   buildBudgetGeneral();
   renderDebt();
+  renderResources();
   showOnly('view-budget-general');
 }
 
@@ -512,35 +705,29 @@ qs('#menuMain').addEventListener('click', (e)=>{
   if (map[view]) showOnly(map[view]);
 });
 qs('#backToGeneral').onclick = ()=> showOnly('view-budget-general');
+qs('#toggleMenu').onclick = ()=> qs('#sidebar').classList.toggle('open');
 
-qs('#toggleMenu').onclick = ()=>{
-  const sb = qs('#sidebar'); sb.classList.toggle('open');
-};
-
-qs('#loadBtn').onclick = loadData;
+qs('#loadYearBtn').onclick = loadYear;
+qs('#yearInput').addEventListener('keydown', e=>{ if (e.key==='Enter') loadYear(); });
+qs('#advSearchBtn').onclick = ()=>{ qs('#advSearchModal').classList.add('open'); qs('#advQuery').focus(); };
+qs('#closeSearch').onclick = ()=> qs('#advSearchModal').classList.remove('open');
+qs('#advGo').onclick = doAdvancedSearch;
+qs('#advQuery').addEventListener('keydown', e=> { if (e.key==='Enter') doAdvancedSearch(); });
 qs('#exportBtn').onclick = exportCSV;
+qs('#compareBtn').onclick = compareMulti;
 
-/* Theme switching with localStorage */
+/* Theme switching persisted */
 function setTheme(t){
   document.documentElement.setAttribute('data-theme', t);
   localStorage.setItem('budget_hub_theme', t);
 }
-qsa('[data-theme]').forEach(btn=>{
-  btn.addEventListener('click', ()=> setTheme(btn.getAttribute('data-theme')));
-});
+qsa('[data-theme]').forEach(btn=> btn.addEventListener('click', ()=> setTheme(btn.getAttribute('data-theme')) ));
 (function initTheme(){
   const saved = localStorage.getItem('budget_hub_theme');
   if (saved) setTheme(saved);
 })();
 
 /* ========================= RECHERCHE AVANCÉE ========================= */
-function openSearch(){ qs('#advSearchModal').classList.add('open'); qs('#advQuery').focus(); }
-function closeSearch(){ qs('#advSearchModal').classList.remove('open'); }
-qs('#advSearchBtn').onclick = openSearch;
-qs('#closeSearch').onclick = closeSearch;
-qs('#advGo').onclick = doAdvancedSearch;
-qs('#advQuery').addEventListener('keydown', e=> { if (e.key==='Enter') doAdvancedSearch(); });
-
 function doAdvancedSearch(){
   const q = (qs('#advQuery').value||"").trim();
   const box = qs('#advResults'); box.innerHTML = "";
@@ -572,10 +759,10 @@ function doAdvancedSearch(){
     const div = document.createElement('div'); div.className = 'item';
     if (r.type==='entite'){
       div.innerHTML = `<div><b>Ministère/Institution</b> — ${r.ent.nom}</div><div class="badge">ID ${r.ent.id}</div>`;
-      div.onclick = ()=>{ closeSearch(); openEntity(r.ent.id); };
+      div.onclick = ()=>{ qs('#advSearchModal').classList.remove('open'); openEntity(r.ent.id); };
     } else if (r.type==='programme'){
       div.innerHTML = `<div><b>Programme</b> — ${r.prog.code||''} ${r.prog.libelle||''}</div><div class="badge">${r.ent.nom}</div>`;
-      div.onclick = ()=>{ closeSearch(); openEntity(r.ent.id);
+      div.onclick = ()=>{ qs('#advSearchModal').classList.remove('open'); openEntity(r.ent.id);
         setTimeout(()=>{
           const idx = (r.ent.programs||[]).indexOf(r.prog);
           if (idx>=0) selectProgram(idx);
@@ -584,7 +771,7 @@ function doAdvancedSearch(){
     } else {
       div.innerHTML = `<div><b>Ligne</b> — ${r.bl.compte||''} ${r.bl.libelle||''}</div>
                        <div class="badge">${r.ent.nom} · ${r.prog.code||''} ${r.prog.libelle||''} · ${r.action.code||''} ${r.action.libelle||''} · ${r.bl.nature||''}/${r.bl.categorie||''}</div>`;
-      div.onclick = ()=>{ closeSearch(); openEntity(r.ent.id);
+      div.onclick = ()=>{ qs('#advSearchModal').classList.remove('open'); openEntity(r.ent.id);
         setTimeout(()=>{
           const idx = (r.ent.programs||[]).indexOf(r.prog);
           if (idx>=0) selectProgram(idx);
