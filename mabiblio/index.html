@@ -268,6 +268,10 @@
     .search-input:not(:placeholder-shown) + .close-search {
       display: block;
     }
+
+/* Carte Hub des emplois */
+.card-emplois .card-image { background: var(--grad-4); }  /* vert/émeraude */
+
   .card-budget .card-image { background: var(--grad-4); }
 </style>
   <link rel="manifest" href="manifest.webmanifest">
@@ -394,6 +398,22 @@ document.getElementById('btnBudget')?.addEventListener('click', () => { window.l
           </div>
         </div>
       </article>
+
+<article class="card card-emplois reveal">
+  <span class="ribbon">Emplois</span>
+  <div class="card-image">
+    <i class="fas fa-briefcase icon" aria-hidden="true"></i>
+  </div>
+  <div class="card-content">
+    <h2>Hub des emplois</h2>
+    <p>Grilles par familles, grades et échelons, calculs brut/net, indemnités et primes (santé, enseignement supérieur, informatique…).</p>
+    <div class="card-buttons">
+      <a href="hub_emplois/index.html" class="btn primary" aria-label="Ouvrir le hub des emplois">
+        <i class="fas fa-eye"></i>Consulter
+      </a>
+    </div>
+  </div>
+</article>
 
       <article class="card card-deontology reveal">
         <span class="ribbon">Déontologie</span>
@@ -540,6 +560,13 @@ document.getElementById('btnBudget')?.addEventListener('click', () => { window.l
 
     // Index de recherche
     const searchIndex = [
+{
+  title: "Hub des emplois",
+  description: "Familles d’emplois, grades, échelons, salaire brut/net, primes et indemnités.",
+  url: "hub_emplois/index.html",
+  category: "Emplois",
+  keywords: ["emploi", "salaires", "indices", "grades", "échelons", "prime", "indemnité", "santé", "éducation", "informatique"]
+},
 {
   title: "Budget de l’État (Hub)",
   description: "Ministères, Programmes, Natures (Personnel, Biens & services, Transferts, Investissements) et lignes budgétaires.",
