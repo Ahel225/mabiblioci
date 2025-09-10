@@ -1,0 +1,1892 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Code de Déontologie des Médecins — Lecteur</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+ <style>
+        :root{
+            /* Couleurs de la Côte d'Ivoire */
+            --orange: #FF9B00;
+            --orange-700: #E68A00;
+            --blanc: #FFFFFF;
+            --vert: #009A49;
+            --vert-700: #008140;
+            
+            /* Autres variables */
+            --bg: #f8faf7; 
+            --paper: #ffffff; 
+            --ink: #1a3312;
+            --primary: var(--orange);
+            --primary-700: var(--orange-700);
+            --accent: #8dd6ad; 
+            --accent-2: #e6f4ec;
+            --muted: #e6f0e6; 
+            --shadow: 0 8px 24px rgba(0, 106, 42, 0.15); 
+            --radius: 16px; 
+            --transition: .25s ease;
+        }
+        
+        *{box-sizing:border-box}
+        html,body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.6}
+        
+        /* En-tête */
+        header{position:sticky;top:0;z-index:50;background:linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.88));backdrop-filter:saturate(1.1) blur(8px);border-bottom:1px solid #e0e8df}
+        .container{max-width:1120px;margin:0 auto;padding:14px 16px;display:flex;align-items:center;gap:12px}
+        .logo{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background: linear-gradient(145deg, var(--orange), var(--blanc), var(--vert));color:#0d3b66;box-shadow:var(--shadow);font-size:18px;font-weight:bold}
+        h1{margin:0;font-family:'Playfair Display',serif;font-size:20px;color:var(--vert-700)}
+        .sub{color:#4c6785;font-size:12px;margin-top:2px}
+        .control-buttons{margin-left:auto;display:flex;gap:8px;align-items:center}
+        .btn{min-width:38px;height:38px;border-radius:12px;border:1px solid #d5e6d5;background:#fff;color:var(--vert-700);display:grid;place-items:center;cursor:pointer;box-shadow:var(--shadow);transition:var(--transition)}
+        .btn:hover{transform:translateY(-1px);background:var(--vert);color:white}
+        
+        /* Contenu principal */
+        .wrapper{max-width:1120px;margin:16px auto;padding:0 12px}
+        .group{background:var(--paper);border:1px solid #dde8dd;border-radius:var(--radius);box-shadow:var(--shadow);margin:14px 0;overflow:hidden}
+        .group>h2{margin:0;padding:14px 16px;background:linear-gradient(180deg,#ffffff,#f2f8f2);border-bottom:1px solid #dde8dd;color:var(--vert-700);font-size:18px;font-family:'Playfair Display',serif}
+        
+        /* Articles avec drapeau ivoirien */
+        .article{position:relative;margin:10px 10px 14px 40px;padding:12px 14px 12px 24px;border-left:6px solid var(--orange);background:#fff;border-radius:14px;box-shadow:0 1px 0 rgba(0,0,0,.03)}
+        .article:before{content:"";position:absolute;left:-34px;top:50%;transform:translateY(-50%);width:28px;height:18px;background:linear-gradient(to right, var(--orange) 33.3%, var(--blanc) 33.3%, var(--blanc) 66.6%, var(--vert) 66.6%);border:1px solid #ddd;box-shadow:0 0 4px rgba(0,0,0,0.1)}
+        
+        .article-header{display:flex; align-items:center; gap:8px; margin:0 0 6px 0;}
+        .article-header h3{margin:0; color:var(--vert-700);}
+        .article .open-fs{ order:2; margin-left:auto; width:34px; height:34px; border:1px solid #d5e6d5; background:#fff; border-radius:10px; cursor:pointer; color:var(--vert);}
+        .article-content p{margin:.5rem 0}.article-content ul,.article-content ol{margin:.5rem 0 .8rem 1.25rem}
+        .article-content ol>li, .article-content ul>li{ padding:8px 0; line-height:1.7; border-bottom:1px solid #eaf3eb; }
+        .article-content ol>li:last-child, .article-content ul>li:last-child{ border-bottom:0; }
+        .article-content li > ol > li, .article-content li > ul > li{ padding:6px 0; border-bottom:1px dashed #eaf3eb; }
+        .article-content li > ol > li:last-child, .article-content li > ul > li:last-child{ border-bottom:0; }
+        .reading{ outline:2px solid var(--accent); outline-offset:2px; border-left-color:var(--accent) !important; background:linear-gradient(180deg,#fff, var(--accent-2)) }
+        mark{background:rgba(141,214,173,.45)}
+        
+        /* Table des matières flottante */
+        #tocFloatBtn{position:fixed; right:14px; bottom:120px; width:46px; height:46px; border-radius:50%; border:none; background:var(--vert); color:#fff; display:grid; place-items:center; box-shadow:0 10px 24px rgba(0,0,0,.25); z-index:2000;}
+        #tocPanel{position:fixed; top:0; right:0; height:100%; width:86%; max-width:420px; background:#fff; border-left:1px solid #dde8dd; box-shadow:-16px 0 35px rgba(0,0,0,.2); transform:translateX(100%); transition:transform .25s ease; z-index:1600; overflow:auto;}
+        #tocOverlay{position:fixed; inset:0; background:rgba(0,0,0,.28); backdrop-filter:blur(2px); display:none; z-index:1590}
+        #tocPanel.open{ transform:none } #tocOverlay.show{ display:block }
+        #tocPanel header{position:sticky; top:0; background:#fff; padding:12px 14px; border-bottom:1px solid #dde8dd}
+        #tocPanel h3{margin:0; color:var(--vert-700)} #tocPanel .toc-list{padding:12px 14px}
+        #tocPanel .toc-list a{display:block; padding:6px 0; color:#173f64; text-decoration:none}
+        #tocPanel .toc-sub{margin-left:10px; border-left:2px solid #eef6ee; padding-left:8px}
+        
+        /* Barre vocale */
+        #voiceBar{position:fixed; left:50%; transform:translateX(-50%); bottom:14px; background:var(--vert); color:#fff; z-index:1550; border-radius:22px; padding:8px 12px; display:flex; gap:10px; align-items:center; box-shadow:0 12px 28px rgba(0,0,0,.3)}
+        #voiceBar button{width:34px; height:34px; border-radius:10px; border:1px solid #cfe3cf; background:transparent; color:#eaf0ea; display:grid; place-items:center; cursor:pointer}
+        #voiceBar .now{font-size:12px; max-width:52vw; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:#f1f9f1}
+        
+        /* Plein écran */
+        #fsOverlay{ position:fixed; inset:0; background:#fff; z-index:1700; display:none; }
+        #fsOverlay.show{ display:block } #fsHeader{ position:sticky; top:0; background:#fff; padding:10px 14px; border-bottom:1px solid #dde8dd; display:flex; align-items:center; gap:10px }
+        #fsHeader .ttl{ font-weight:700; color:var(--vert-700); flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
+        #fsHeader button{ width:36px; height:36px; border-radius:10px; border:1px solid #d5e6d5; background:#fff; color:var(--vert); }
+        #fsBody{ padding:14px; height:calc(100% - 58px); overflow:auto } #fsBody .article-content{ font-size:1.04rem }
+        #fsNavPrev,#fsNavNext{ position:fixed; top:50%; transform:translateY(-50%); width:42px; height:42px; border-radius:50%; border:none; background:var(--vert); color:#fff; display:grid; place-items:center; z-index:1710; opacity:.9 }
+        #fsNavPrev{ left:10px } #fsNavNext{ right:10px }
+        
+        /* Pied de page */
+        footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c6785;font-size:12px;text-align:center}
+        footer:before{content:"";display:block;width:60px;height:12px;margin:0 auto 10px;background:linear-gradient(to right, var(--orange) 33.3%, var(--blanc) 33.3%, var(--blanc) 66.6%, var(--vert) 66.6%);border-radius:2px}
+        
+        /* Anti-sélection */
+        .no-select, .no-select *:not(input):not(textarea):not(.selectable){
+            -webkit-user-select: none !important;
+            -moz-user-select: none !important;
+            -ms-user-select: none !important;
+            user-select: none !important;
+            -webkit-touch-callout: none !important;
+        }
+    </style>
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#22c55e">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<!-- HIDE AUTH/VIEWS WIDGETS OUTSIDE HOME (safe) -->
+<style>
+  #auth-fab, .views-badge, #auth-modal, .card-views-badge { display: none !important; }
+</style>
+</head>
+<body>
+    <main class="wrapper">
+        <header>
+            <h1>Code de la Nationalité Ivoirienne</h1>
+            <div class="meta-info">
+                Loi n° 61-415 du 14 décembre 1961 modifiée par les lois 72-852, 2004-662, 2013-654 et 2024-236
+            </div>
+        </header>
+
+        <section class="group">
+            <h2>TITRE PREMIER : DISPOSITIONS GÉNÉRALES</h2>
+            
+            <div class="article" id="Article_1">
+                <div class="article-header">
+                    <h3>Article 1</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La loi détermine quels individus ont à leur naissance la nationalité ivoirienne à titre de nationalité d'origine.</p>
+                    <p>La nationalité ivoirienne s'acquiert ou se perd après la naissance par l'effet de la loi ou par une décision de l'autorité publique prise dans les conditions fixées par la loi.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_2">
+                <div class="article-header">
+                    <h3>Article 2</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p class="modification-note">(Loi n° 72-852 du 21/12/1972)</p>
+                    <p>La majorité, au sens du présent code, est celle fixée par la loi civile ivoirienne.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_3">
+                <div class="article-header">
+                    <h3>Article 3</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les dispositions relatives à la nationalité contenues dans les traités ou accords internationaux dûment ratifiés et publiés s'appliquent, même si elles sont contraires aux dispositions de la législation interne ivoirienne.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_4">
+                <div class="article-header">
+                    <h3>Article 4</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Un changement de nationalité ne peut en aucun cas résulter d'une convention internationale si celle-ci ne le prévoit expressément.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_5">
+                <div class="article-header">
+                    <h3>Article 5</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Lorsqu'un changement de nationalité est subordonné, dans les termes de la convention, à l'accomplissement d'un acte d'option, cet acte est déterminé dans sa forme par la loi de celui des pays contractants dans lequel il est institué.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="group">
+            <h2>TITRE II : DE L'ATTRIBUTION DE LA NATIONALITÉ IVOIRIENNE A TITRE DE NATIONALITÉ D'ORIGINE</h2>
+            
+            <div class="article" id="Article_6">
+                <div class="article-header">
+                    <h3>Article 6</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p class="modification-note">(Loi n° 72-852 du 21/12/1972)</p>
+                    <p>Est ivoirien :</p>
+                    <ol>
+                        <li>l'enfant légitime ou légitimé, né en Côte d'Ivoire, sauf si ses deux parents sont étrangers ;</li>
+                        <li>l'enfant né hors mariage, en Côte d'Ivoire, sauf si sa filiation est légalement établie à l'égard de ses deux parents étrangers, ou d'un seul parent, également étranger.</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_7">
+                <div class="article-header">
+                    <h3>Article 7</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p class="modification-note">(Loi n° 72-852 du 21/12/1972)</p>
+                    <p>Est ivoirien :</p>
+                    <ol>
+                        <li>l'enfant légitime ou légitimé, né à l'étranger d'un parent ivoirien ;</li>
+                        <li>l'enfant né hors mariage, à l'étranger, dont la filiation est légalement établie à l'égard d'un parent ivoirien.</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_8">
+                <div class="article-header">
+                    <h3>Article 8</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>L'enfant qui est ivoirien en vertu des dispositions du présent titre est réputé avoir été ivoirien dès sa naissance même si l'existence des conditions requises par la loi pour l'attribution de la nationalité ivoirienne n'est établie que postérieurement à sa naissance.</p>
+                    <p>Toutefois, dans ce dernier cas, l'attribution de la nationalité ivoirienne dès la naissance ne porte pas atteinte à la validité des actes passés par l'intéressé ni aux droits acquis à des tiers sur le fondement de la nationalité apparente possédée par l'enfant.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_9">
+                <div class="article-header">
+                    <h3>Article 9</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p class="modification-note">(Loi n° 72-852 du 21/12/1972)</p>
+                    <p>La naissance ou la filiation ne produit effet en matière d'attribution de la nationalité ivoirienne que si elle est établie dans les conditions déterminées par la loi civile ivoirienne.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_10">
+                <div class="article-header">
+                    <h3>Article 10</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p class="modification-note">Abrogé par la loi n° 72-852 du 21/12/1972</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="group">
+            <h2>TITRE III : DE L'ACQUISITION DE LA NATIONALITÉ IVOIRIENNE</h2>
+            <h2>CHAPITRE PREMIER : DES MODES D'ACQUISITION DE LA NATIONALITÉ</h2>
+            <h2>Section 1 - Acquisition de plein droit de la nationalité ivoirienne</h2>
+            
+            <div class="article" id="Article_11">
+                <div class="article-header">
+                    <h3>Article 11</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p class="modification-note">(Loi n° 64-381 du 07/10/1964 et loi n° 72-852 du 21/12/1972)</p>
+                    <p>L'enfant qui a fait l'objet d'une adoption acquiert la nationalité ivoirienne si l'un au moins des adoptants est de nationalité ivoirienne.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_12">
+                <div class="article-header">
+                    <h3>Article 12</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p class="modification-note">(Loi n° 2024-236 du 24/04/2024)</p>
+                    <p>La femme de nationalité étrangère qui épouse un Ivoirien ou 
+l'homme de nationalité étrangère qui épouse une Ivoirienne peut, 
+après un délai de cinq ans à compter de la célébration du mariage, 
+faire une déclaration en vue d'acquérir la nationalité, ivoirienne 
+devant l'autorité competente, à condition qu'à la date de cette déclaration, la communauté de vie n'ait pas cessé entre les époux 
+depuis le mariage et que le conjoint Ivoirien, ait conservé sa 
+nationalité.</p>
+                    <p>La preuve de la communauté de vie est établie par tout moyen. 
+L'autorité compétente peut, à l'effet d'établir la matérialité de la 
+communauté de vie, ordonner une enquête sociale.</p>
+<p>Le délai de communauté de vie prévu à l'alinéa 1 du présent 
+article, est porté à six ans, lorsqu'au moment de la déclaration le 
+conjoint de nationalité étrangère ne justifie pas avoir résidé en 
+Côte d'Ivoire de manière ininterrompue et régulière pendant au 
+moins quatre ans à compter de la célébration du mariage.</p>
+<p>Les délais prévus aux alinéas précédents sont réduits à trois 
+ans, lorsqu'au moins deux enfants sont issus de la communauté 
+de vie créée par le mariage.</p>
+<p>Le conjoint de nationalité étrangère qui a fait l'objet d'une 
+décision d'expulsion ou d'interdiction du territoire de la Répu-
+blique de Côte d'Ivoire ou d'assignation à résidence ne peut sous-
+crire à la déclaration de nationalité ivoirienne, sauf révocation de 
+ladite décision dans les conditions prévues par la loi.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_13">
+                <div class="article-header">
+                    <h3>Article 13</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p class="modification-note">(Loi n° 2024-236 du 24/04/2024)</p>
+                    <p>Sous réserve des dispositions prévues aux articles 14 et 16, l'in-
+téressé acquiert la nationalité ivoirienne à la date à laquelle la 
+déclaration a été acceptée.</p>
+<p>L'acceptation de la déclaration est faite par arrêté du ministre 
+chargé de la Justice.</p>
+<p>La preuve de l'acquisition de la nationalité par le mariage 
+résulte de la production soit d'une copie de l'arrêté du ministre 
+chargé de la Justice prévu à l'alinéa précédent, soit d'un exem-
+plaire du Journal officiel dans lequel cet arrêté a été publié.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_14">
+                <div class="article-header">
+                    <h3>Article 14</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p class="modification-note">(Loi n° 2024-236 du 24/04/2024)</p>
+                    <p>AuLe Gouvernement peut, par décret pris sur rapport soit du 
+ministre chargé de la Justice, soit du ministre chargé de l'Inté-
+rieur, s'opposer à l'acquisition de la nationalité ivoirienne par le 
+conjoint étranger, dans le délai d'un an qui suit l'acceptation de 
+la déclaration de nationalité ivoirienne.</p>
+                    <p>En cas d'opposition du Gouvernement, l'intéressé est réputé 
+n'avoir jamais acquis la nationalité ivoirienne.</p>
+                    <p>Toutefois, lorsque la validité des actes passés antérieurement 
+au décret d'opposition était subordonnée à l'acquisition par le 
+conjoint étranger de la nationalité ivoirienne, cette validité ne 
+peut être contestée pour le motif que le conjoint étranger n'a pu 
+acquérir cette qualité.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_15">
+                <div class="article-header">
+                    <h3>Article 15</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p class="modification-note">(Loi n° 2024-236 du 24/04/2024)</p>
+                    <p>Lorsque le mariage a été célébré à l'étranger, la déclaration du 
+conjoint de nationalité étrangère ne pourra être reçue que si le 
+mariage a été transcrit sur les registres de l'état civil ivoirien dans 
+les conditions fixées par la loi sur l'état civil.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_16">
+                <div class="article-header">
+                    <h3>Article 16</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p class="modification-note">(Loi n° 2024-236 du 24/04/2024)</p>
+                    <p>LeLe conjoint étranger perd la nationalité ivoirienne si son 
+mariage avec un Ivoirien est déclaré nul par une décision émanant d'une juridiction ivoirienne ou d'une juridiction étrangère 
+dont l'autorité est reconnue en Côte d'Ivoire. Toutefois, lorsque 
+la validité des actes passés antérieurement à la décision judiciaire 
+constatant la nullité du mariage était subordonnée à l'acquisition 
+par le conjoint étranger de la nationalité ivoirienne, cette validité 
+ne peut être contestée pour le motif que le conjoint étranger, 
+déclaré de bonne foi par la décision judiciaire, n'a pu acquérir 
+cette qualité.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_16.1">
+                <div class="article-header">
+                    <h3>Article 16.1</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p class="modification-note">(Loi n° 2024-236 du 24/04/2024)</p>
+                    <p>Dans tous les cas de perte de la nationalité acquise par mariage, 
+celle-ci est constatée par arrêté du ministre chargé de la Justice</p>
+            </div>
+            </div>
+            <h2>Section 2. - Acquisition de la nationalité ivoirienne par déclaration</h2>
+            
+            <div class="article" id="Article_17_23">
+                <div class="article-header">
+                    <h3>Articles 17 à 23</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p class="modification-note">Abrogés par la loi n° 64-381 du 07/10/1964 et loi n° 72-852 du 21/12/1972</p>
+                </div>
+            </div>
+            
+            <h2>Section 3. - Acquisition de la nationalité ivoirienne par décision de l'autorité publique</h2>
+            
+            <div class="article" id="Article_24">
+                <div class="article-header">
+                    <h3>Article 24</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>L'acquisition de la nationalité ivoirienne par décision de l'autorité publique résulte d'une naturalisation ou d'une réintégration accordée à la demande de l'étranger.</p>
+                </div>
+            </div>
+            
+            <h2>§ 1er - Naturalisation</h2>
+            
+            <div class="article" id="Article_25">
+                <div class="article-header">
+                    <h3>Article 25</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La naturalisation ivoirienne est accordée par décret après enquête.</p>
+                    <p>Nul ne peut être naturalisé s'il n'a en Côte d'Ivoire sa résidence habituelle au moment de la signature du décret de naturalisation.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_26">
+                <div class="article-header">
+                    <h3>Article 26</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Sous réserve des exceptions prévues aux articles 27 et 28, la naturalisation ne peut être accordée qu'à l'étranger justifiant de sa résidence habituelle en Côte d'Ivoire pendant les cinq années qui précèdent le dépôt de sa demande.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_27">
+                <div class="article-header">
+                    <h3>Article 27</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p class="modification-note">(Loi n° 2004-662 du 17/12/2004)</p>
+                    <p>Le stage visé à l'article 26 est réduit à deux ans :</p>
+                    <ol>
+                        <li>pour l'étranger né en Côte d'Ivoire ;</li>
+                        <li>pour celui qui a rendu des services importants à la Côte d'Ivoire, tel que l'apport de talents artistiques, scientifiques ou littéraires distingués, l'introduction d'industries ou d'inventions utiles.</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_28">
+                <div class="article-header">
+                    <h3>Article 28</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Peut être naturalisé sans condition de stage :</p>
+                    <ol>
+                        <li>l'enfant mineur étranger, né hors de Côte d'Ivoire, si l'un des parents acquiert du vivant de l'autre la nationalité ivoirienne ;</li>
+                        <li>l'enfant mineur d'un étranger qui acquiert la nationalité ivoirienne dans le cas où, conformément à l'article 46 ci-après, cet enfant n'a pas lui-même acquis de plein droit la nationalité ivoirienne ;</li>
+                        <li>la femme et l'enfant majeur de l'étranger qui acquiert la nationalité ivoirienne ;</li>
+                        <li class="modification-note">Abrogé par la loi n° 72-852 du 21/12/1972</li>
+                        <li>l'étranger qui a rendu des services exceptionnels à la Côte d'Ivoire ou celui dont la naturalisation présente pour la Côte d'Ivoire un intérêt exceptionnel.</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_29">
+                <div class="article-header">
+                    <h3>Article 29</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+               <div class="article-content">
+                    <p class="modification-note">(Loi n° 2024-236 du 24/04/2024)</p>
+                    <p>AAucun mineur ne peut être naturalisé, à l'exception de celui 
+pouvant invoquer le bénéfice des dispositions de l'article 28.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_30">
+                <div class="article-header">
+                    <h3>Article 30</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+               <div class="article-content">
+                    <p class="modification-note">(Loi n° 2024-236 du 24/04/2024)</p>
+                    <p>LeLe mineur qui peut invoquer le bénéfice des dispositions de 
+l'article 28 doit, pour demander sa naturalisation, être représenté 
+par son représentant légal, à condition toutefois que celui-ci, s'il 
+est étranger, ait lui-même depuis au moins cinq années sa rési-
+dence habituelle en Côte d'Ivoire.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_31">
+                <div class="article-header">
+                    <h3>Article 31</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Nul ne peut être naturalisé s'il n'est pas de bonnes vie et mœurs.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_32">
+                <div class="article-header">
+                    <h3>Article 32</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Nul ne peut être naturalisé :</p>
+                    <ol>
+                        <li>s'il n'est reconnu être sain d'esprit ;</li>
+                        <li>s'il n'est reconnu, d'après son état de santé physique, ne devoir être ni une charge ni un danger pour la collectivité.</li>
+                    </ol>
+                    <p>Toutefois, cette condition n'est pas exigée de l'étranger susceptible de bénéficier des dispositions du dernier alinéa de l'article 28.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_33">
+                <div class="article-header">
+                    <h3>Article 33</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les conditions dans lesquelles s'effectuera le contrôle de l'état de santé de l'étranger en instance de naturalisation seront fixées par décret.</p>
+                    <p>Il sera perçu au profit du Trésor, à l'occasion de chaque naturalisation un droit de chancellerie dont les conditions de paiement et le taux seront fixés par décret.</p>
+                </div>
+            </div>
+            
+            <h2>§ 2 - Réintégration</h2>
+            
+            <div class="article" id="Article_34">
+                <div class="article-header">
+                    <h3>Article 34</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La réintégration dans la nationalité ivoirienne est accordée par décret après enquête.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_35">
+                <div class="article-header">
+                    <h3>Article 35</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La réintégration peut être obtenue à tout âge et sans condition de stage.</p>
+                    <p>Toutefois, nul ne peut être réintégré s'il n'a en Côte d'Ivoire sa résidence habituelle au moment de la réintégration.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_36">
+                <div class="article-header">
+                    <h3>Article 36</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Celui qui demande la réintégration doit apporter la preuve qu'il a eu la qualité d'Ivoirien.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_37">
+                <div class="article-header">
+                    <h3>Article 37</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Ne peut être réintégré l'individu qui a été déchu de la nationalité ivoirienne par application de l'article 54 du présent code, à moins que, dans le cas où la déchéance a été motivée par une condamnation, il n'ait obtenu la réhabilitation judiciaire.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_38">
+                <div class="article-header">
+                    <h3>Article 38</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>L'individu visé à l'article précédent peut toutefois obtenir la réintégration s'il a rendu des services exceptionnels à la Côte d'Ivoire ou si sa réintégration présente pour la Côte d'Ivoire un intérêt exceptionnel.</p>
+                </div>
+            </div>
+            
+            <h2>Section 4. - Dispositions communes à certains modes d'acquisition de la nationalité ivoirienne</h2>
+            
+            <div class="article" id="Article_39">
+                <div class="article-header">
+                    <h3>Article 39</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Nul ne peut acquérir la nationalité ivoirienne, lorsque la résidence en Côte d'Ivoire constitue une condition de cette acquisition, s'il ne satisfait aux obligations et conditions imposées par les lois relatives au séjour des étrangers en Côte d'Ivoire.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_40">
+                <div class="article-header">
+                    <h3>Article 40</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>L'étranger qui a fait l'objet d'un arrêté d'expulsion ou d'un arrêté d'assignation à résidence ne peut acquérir la nationalité ivoirienne de quelque manière que ce soit ou être réintégré, si cet arrêté n'a pas été rapporté dans les formes où il est intervenu.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_41">
+                <div class="article-header">
+                    <h3>Article 41</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La résidence en Côte d'Ivoire pendant la durée de l'assignation à résidence ou de l'exécution d'une peine d'emprisonnement n'est pas prise en considération dans le calcul des stages requis pour les divers modes d'acquisition de la nationalité ivoirienne.</p>
+                </div>
+            </div>
+            
+            <h2>CHAPITRE II : DES EFFETS DE L'ACQUISITION DE LA NATIONALITÉ IVOIRIENNE</h2>
+            
+            <div class="article" id="Article_42">
+                <div class="article-header">
+                    <h3>Article 42</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>L'individu qui a acquis la nationalité ivoirienne jouit, à dater du jour de cette acquisition, de tous les droits attachés à la qualité d'Ivoirien, sous réserve des incapacités prévues à l'article 43 du présent code ou dans les lois spéciales.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_43">
+                <div class="article-header">
+                    <h3>Article 43</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p class="modification-note">(Loi n° 2004-662 du 17/12/2004)</p>
+                    <p>L'étranger naturalisé est soumis aux incapacités suivantes :</p>
+                    <ol>
+                        <li>pendant un délai de dix ans à partir du décret de naturalisation, il ne peut être investi de fonctions ou de mandats électifs pour l'exercice desquels la qualité d'Ivoirien est nécessaire ;</li>
+                        <li>pendant un délai de cinq ans à partir du décret de naturalisation, il ne peut être électeur lorsque la qualité d'Ivoirien est nécessaire pour permettre l'inscription sur les listes électorales ;</li>
+                        <li>pendant un délai de cinq ans à partir du décret de naturalisation, il ne peut être nommé à des fonctions publiques rétribuées par l'Etat, inscrit à un barreau, nommé titulaire d'un office ministériel ou exercer une profession libérale régie par un ordre national.</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_44">
+                <div class="article-header">
+                    <h3>Article 44</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le naturalisé qui a rendu à la Côte d'Ivoire des services exceptionnels ou celui dont la naturalisation présente pour la Côte d'Ivoire un intérêt exceptionnel, peut être relevé en tout ou en partie des incapacités prévues à l'article 43, par le décret de naturalisation.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_45">
+                <div class="article-header">
+                    <h3>Article 45</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p class="modification-note">(Loi n° 2024-236 du 24/04/2024</p>
+                    <p>Devient de plein droit ivoirien, au même titre que ses parents, 
+à condition que la Filiation soit établie conformément à la loi 
+ivoirienne :</p>
+                    <ol>
+                        <li>l'enfant mineur, légitime ou légitimé, dont le père ou la mère acquiert la nationalité ivoirienne ;</li>
+                        <li>l'enfant mineur, né hors mariage, dont celui des parents qui 
+exerce l'autorité parentale dans les conditions fixées par la loi 
+sur la minorité, acquiert la nationalité ivoirienne.</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_46">
+                <div class="article-header">
+                    <h3>Article 46</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les dispositions de l'article précédent ne sont pas applicables :</p>
+                    <ol>
+                        <li>à l'enfant mineur marié ;</li>
+                        <li>à celui qui sert ou a servi dans les armées de son pays d'origine.</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_47">
+                <div class="article-header">
+                    <h3>Article 47</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Est exclu du bénéfice de l'article 45, l'enfant mineur :</p>
+                    <ol>
+                        <li>qui a été frappé d'un arrêté d'expulsion ou d'un arrêté d'assignation à résidence non expressément rapporté dans les formes où il est intervenu ;</li>
+                        <li>qui a fait l'objet d'une condamnation supérieure à six mois d'emprisonnement pour infraction qualifiée crime ou délit ;</li>
+                        <li>qui, en vertu des dispositions de l'article 39, ne peut acquérir la nationalité ivoirienne ;</li>
+                        <li class="modification-note">Abrogé par la loi n° 72-852 du 21/12/1972</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <section class="group">
+            <h2>TITRE IV : DE LA PERTE ET DE LA DÉCHÉANCE DE LA NATIONALITÉ IVOIRIENNE</h2>
+            <h2>CHAPITRE PREMIER : DE LA PERTE DE LA NATIONALITÉ IVOIRIENNE</h2>
+            
+            <div class="article" id="Article_48">
+                <div class="article-header">
+                    <h3>Article 48</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Perd la nationalité ivoirienne, l'Ivoirien majeur qui acquiert volontairement une nationalité étrangère, ou qui déclare reconnaître une telle nationalité.</p>
+                    <p>Toutefois, pendant un délai de quinze ans à compter de l'inscription sur les tableaux de recensement, la perte est subordonnée à l'autorisation du Gouvernement par décret pris sur rapport du garde des Sceaux, ministre de la Justice, et après avis du ministre de la Santé publique et du ministre de la Défense nationale.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_49">
+                <div class="article-header">
+                    <h3>Article 49</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p class="modification-note">(Loi n° 72-852 du 21/12/1972)</p>
+                    <p>L'Ivoirien même mineur, qui par l'effet d'une loi étrangère, possède de plein droit une double nationalité, peut être autorisé par décret à perdre la qualité d'Ivoirien.</p>
+                    <p>Le mineur doit le cas échéant, être autorisé ou représenté dans les conditions prévues à l'article 30.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_50">
+                <div class="article-header">
+                    <h3>Article 50</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>L'Ivoirien qui perd la nationalité ivoirienne est libéré de son allégeance à l'égard de la Côte d'Ivoire :</p>
+                    <ol>
+                        <li>dans le cas prévu à l'article 48, à la date de l'acquisition de la nationalité étrangère ;</li>
+                        <li>dans le cas prévu à l'article 49, à la date du décret l'autorisant à perdre la qualité d'Ivoirien.</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_51">
+                <div class="article-header">
+                    <h3>Article 51</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La femme ivoirienne qui épouse un étranger conserve la nationalité ivoirienne, à moins qu'elle ne déclare expressément, avant la célébration du mariage, dans les conditions et dans les formes prévues aux articles 57 et suivants, qu'elle répudie cette nationalité.</p>
+                    <p>La déclaration peut être faite sans autorisation, même si la femme est mineure.</p>
+                    <p>Cette déclaration n'est valable que lorsque la femme acquiert ou peut acquérir la nationalité du mari, par application de la loi nationale de celui-ci.</p>
+                    <p>La femme est, dans ce cas, libérée de son allégeance à l'égard de la Côte d'Ivoire à la date de la célébration du mariage.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_52">
+                <div class="article-header">
+                    <h3>Article 52</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>L'Ivoirien qui se comporte en fait comme le national d'un pays étranger peut, d'office, s'il a également la nationalité de ce pays, être déclaré, par décret, avoir perdu la qualité d'Ivoirien.</p>
+                    <p>Il est libéré dans ce cas, de son allégeance à l'égard de la Côte d'Ivoire à la date de ce décret.</p>
+                    <p>La mesure prise à son égard peut être étendue à son conjoint et à ses enfants mineurs s'ils ont eux-mêmes une nationalité étrangère. Elle ne peut toutefois être étendue aux enfants mineurs si elle ne l'est également au conjoint.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_53">
+                <div class="article-header">
+                    <h3>Article 53</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Perd la nationalité ivoirienne, l'Ivoirien qui, remplissant un emploi dans un service public d'un Etat étranger ou dans une armée étrangère, le conserve nonobstant l'injonction de le résigner qui lui aura été faite par le Gouvernement ivoirien.</p>
+                    <p>Six mois après la notification de cette injonction l'intéressé sera, par décret, déclaré d'office avoir perdu la nationalité ivoirienne s'il n'a, au cours de ce délai, résigné son emploi, à moins qu'il ne soit établi qu'il a été dans l'impossibilité absolue de le faire. Dans ce dernier cas le délai de six mois court seulement du jour où la cause de l'impossibilité a disparu.</p>
+                    <p>L'intéressé est libéré de son allégeance à l'égard de la Côte d'Ivoire à la date du décret.</p>
+                </div>
+            </div>
+            
+            <h2>CHAPITRE II : DE LA DÉCHÉANCE DE LA NATIONALITÉ IVOIRIENNE</h2>
+            
+            <div class="article" id="Article_54">
+                <div class="article-header">
+                    <h3>Article 54</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>L'individu qui a acquis la qualité d'Ivoirien peut, par décret, être déchu de la nationalité ivoirienne :</p>
+                    <ol>
+                        <li>s'il est condamné pour un acte qualifié crime ou délit contre la sûreté intérieure ou extérieure de l'Etat ;</li>
+                        <li>s'il est condamné pour un acte qualifié crime ou délit contre les institutions ;</li>
+                        <li>s'il s'est livré au profit d'un Etat étranger à des actes incompatibles avec la qualité d'Ivoirien et préjudiciables aux intérêts de la Côte d'Ivoire ;</li>
+                        <li>s'il a été condamné en Côte d'Ivoire ou à l'étranger pour un acte qualifié crime par la loi ivoirienne et ayant entraîné une condamnation à une peine d'au moins cinq années d'emprisonnement.</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_55">
+                <div class="article-header">
+                    <h3>Article 55</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La déchéance n'est encourue que si les faits reprochés à l'intéressé et visés à l'article 54 se sont produits dans un délai de dix ans à compter de la date de l'acquisition de la nationalité ivoirienne.</p>
+                    <p>Elle ne peut être prononcée que dans le délai de deux ans à compter de la perpétration desdits faits.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_56">
+                <div class="article-header">
+                    <h3>Article 56</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La déchéance peut être étendue au conjoint et aux enfants mineurs de l'intéressé, à condition qu'ils soient d'origine étrangère et qu'ils aient conservé une nationalité étrangère.</p>
+                    <p>Elle ne peut toutefois être étendue aux enfants mineurs si elle ne l'est également au conjoint.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="group">
+            <h2>TITRE V : DES CONDITIONS ET DE LA FORME DES ACTES RELATIFS A L'ACQUISITION OU A LA PERTE DE LA NATIONALITÉ IVOIRIENNE</h2>
+            <h2>CHAPITRE PREMIER : DECLARATIONS DE NATIONALITÉ ET DE LEUR ENREGISTREMENT</h2>
+            
+            <div class="article" id="Article_57">
+                <div class="article-header">
+                    <h3>Article 57</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p class="modification-note">(Loi n° 72-852 du 21/12/1972)</p>
+                    <p>Toute déclaration en vue :</p>
+                    <ol>
+                        <li>de décliner la nationalité ivoirienne ;</li>
+                        <li>de répudier la nationalité ivoirienne dans les cas prévus par la loi, est souscrite devant le président du tribunal de première instance, ou un magistrat délégué, ou le juge de la section de tribunal du ressort dans lequel le déclarant a sa résidence.</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_58">
+                <div class="article-header">
+                    <h3>Article 58</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Lorsque le déclarant se trouve à l'étranger la déclaration est souscrite devant les agents diplomatiques et consulaires ivoiriens.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_59">
+                <div class="article-header">
+                    <h3>Article 59</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Toute déclaration de nationalité, souscrite conformément aux articles précédents, doit être à peine de nullité, enregistrée au ministère de la Justice.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_60">
+                <div class="article-header">
+                    <h3>Article 60</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Si l'intéressé ne remplit pas les conditions requises par la loi, le ministre de la Justice doit refuser d'enregistrer la déclaration. Cette décision de refus est notifiée, avec ses motifs, au déclarant.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_61">
+                <div class="article-header">
+                    <h3>Article 61</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p class="modification-note">Abrogé par la loi n° 72-852 du 21/12/1972</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_62">
+                <div class="article-header">
+                    <h3>Article 62</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p class="modification-note">(Loi n° 72-852 du 21/12/1972)</p>
+                    <p>Si à l'expiration du délai de six mois après la date à laquelle la déclaration a été souscrite, il n'est pas intervenu une décision de refus d'enregistrement, le ministre de la Justice doit remettre au déclarant, sur sa demande, copie de la déclaration avec mention de l'enregistrement effectué.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_63">
+                <div class="article-header">
+                    <h3>Article 63</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La validité d'une déclaration enregistrée peut toujours être contestée par le ministère public et par toute personne intéressée. Dans ce dernier cas, le ministère public doit toujours être mis en cause.</p>
+                </div>
+            </div>
+            
+            <h2>CHAPITRE II : DES DÉCISIONS RELATIVES AUX NATURALISATIONS ET AUX RÉINTÉGRATIONS</h2>
+            
+            <div class="article" id="Article_64">
+                <div class="article-header">
+                    <h3>Article 64</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les décrets de naturalisation et de réintégration sont publiés au Journal officiel de la République de Côte d'Ivoire. Ils prennent effet à la date de leur signature sans toutefois qu'il soit porté atteinte à la validité des actes passés par l'intéressé, ni aux droits acquis par les tiers, antérieurement à la publication du décret, sur le fondement de l'extranéité de l'impétrant.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_65">
+                <div class="article-header">
+                    <h3>Article 65</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Lorsque l'étranger a sciemment fait une fausse déclaration, présenté une pièce contenant une assertion mensongère ou erronée ou employé des manœuvres frauduleuses à l'effet d'obtenir la naturalisation ou la réintégration, le décret intervenu peut être rapporté par décret pris sur rapport du ministre de la Justice.</p>
+                    <p>L'intéressé dûment averti, a la faculté de produire des pièces et mémoires.</p>
+                    <p>Le décret de retrait devra intervenir dans le délai de deux ans à partir de la découverte de la fraude.</p>
+                    <p>Toutefois, lorsque la validité des actes passés antérieurement au décret de retrait était subordonnée à l'acquisition par l'intéressé de la qualité d'Ivoirien, cette validité ne peut être contestée pour le motif que l'intéressé n'a pas acquis cette nationalité.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_66">
+                <div class="article-header">
+                    <h3>Article 66</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Toute personne qui, moyennant une rétribution, une promesse ou un avantage quelconque, direct ou indirect, même non convenu à l'avance, aura offert, accepté de prêter ou prêté à un étranger en instance de naturalisation ou de réintégration son entremise auprès des administrations ou des pouvoirs publics en vue de lui faciliter frauduleusement l'obtention de la nationalité ivoirienne sera punie, sans préjudice, le cas échéant, de l'application de peines plus fortes prévues par d'autres dispositions, d'un emprisonnement de six mois à deux ans et d'une amende de 50.000 à 500.000 francs.</p>
+                    <p>Le jugement de condamnation prononcera s'il y a lieu, confiscation au profit du Trésor des choses reçues ou de leur valeur.</p>
+                    <p>Toute convention qui a pour objet de faciliter à un étranger, dans les termes de l'article précédent, l'obtention de la naturalisation ou de la réintégration dans la nationalité ivoirienne est nulle et de nul effet comme contraire à l'ordre public et les sommes payées en exécution de cette convention seront confisquées au profit du Trésor.</p>
+                    <p>Tout décret rendu à la suite d'une convention de cette nature sera rapporté dans un délai d'un an à partir du jugement de condamnation prononcé conformément aux dispositions de l'article 66.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_67">
+                <div class="article-header">
+                    <h3>Article 67</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Toute convention qui a pour objet de faciliter à un étranger, dans les termes de l'article précédent, l'obtention de la naturalisation ou de la réintégration dans la nationalité ivoirienne est nulle et de nul effet comme contraire à l'ordre public et les sommes payées en exécution de cette convention seront confisquées au profit du Trésor.</p>
+                    <p>Tout décret rendu à la suite d'une convention de cette nature sera rapporté dans un délai d'un an à partir du jugement de condamnation prononcé conformément aux dispositions de l'article 66.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_68">
+                <div class="article-header">
+                    <h3>Article 68</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Lorsque le ministre de la Justice déclare irrecevable une demande de naturalisation ou de réintégration, sa décision est motivée.</p>
+                    <p>Elle est notifiée à l'intéressé.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_69">
+                <div class="article-header">
+                    <h3>Article 69</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le rejet d'une demande de naturalisation ou de réintégration n'est pas motivé et n'est susceptible d'aucun recours. Il est notifiée à l'intéressé, par le ministre de la Justice.</p>
+                </div>
+            </div>
+            
+            <h2>CHAPITRE III : DES DÉCISIONS RELATIVES A LA PERTE DE LA NATIONALITÉ IVOIRIENNE</h2>
+            
+            <div class="article" id="Article_70">
+                <div class="article-header">
+                    <h3>Article 70</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les décrets portant autorisation de perdre la nationalité ivoirienne sont publiés au Journal officiel de la République de Côte d'Ivoire.</p>
+                    <p>Ils prennent effet à la date de leur signature, sans toutefois qu'il soit porté atteinte à la validité des actes passés par l'intéressé, ni aux droits acquis par des tiers antérieurement à la publication du décret, sur le fondement de la nationalité ivoirienne de l'impétrant.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_71">
+                <div class="article-header">
+                    <h3>Article 71</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le rejet d'une demande formée en vue d'obtenir l'autorisation de perdre la qualité d'Ivoirien, n'est pas motivé et n'est susceptible d'aucun recours. Il est notifié à l'intéressé par le ministre de la Justice.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_72">
+                <div class="article-header">
+                    <h3>Article 72</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Dans le cas où le Gouvernement déclare, conformément aux articles 52 et 53, qu'un individu a perdu la nationalité ivoirienne, il est statué par décret. l'intéressé, dûment averti, a la faculté de produire des pièces et mémoires.</p>
+                    <p>Le décret qui, dans les conditions prévues à l'article 52, étend la déclaration de perte de la nationalité ivoirienne au conjoint et aux enfants mineurs de l'intéressé est pris dans les mêmes formes.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_73">
+                <div class="article-header">
+                    <h3>Article 73</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les décrets qui déclarent, dans les cas prévus à l'article précédent, qu'un individu a perdu la nationalité ivoirienne sont publiés et produisent leurs effets dans les conditions visées à l'article 70.</p>
+                </div>
+            </div>
+            
+            <h2>CHAPITRE IV : DES DÉCRETS DE DÉCHÉANCE</h2>
+            
+            <div class="article" id="Article_74">
+                <div class="article-header">
+                    <h3>Article 74</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Lorsque le ministre de la Justice décide de poursuivre la déchéance de la nationalité ivoirienne à l'encontre d'un individu tombant sous le coup des dispositions de l'article 54, il notifie la mesure envisagée à la personne de l'intéressé ou à son domicile; à défaut de domicile connu, la mesure envisagée est publiée au Journal officiel de la République de Côte d'Ivoire.</p>
+                    <p>L'intéressé a la faculté dans le délai d'un mois à dater de l'insertion au Journal officiel ou de la notification, d'adresser au ministre de la Justice des pièces et mémoires.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_75">
+                <div class="article-header">
+                    <h3>Article 75</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La déchéance de la nationalité ivoirienne est prononcée par décret pris sur le rapport du ministre de la Justice.</p>
+                    <p>Le décret qui, dans les conditions prévues à l'article 56, étend la déchéance au conjoint et aux enfants mineurs de la personne déchue est pris dans les mêmes formes.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_76">
+                <div class="article-header">
+                    <h3>Article 76</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les décrets de déchéance sont publiés et produisent leurs effets dans les conditions visées à l'article 70.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="group">
+            <h2>TITRE VI : DU CONTENTIEUX DE LA NATIONALITÉ</h2>
+            <h2>CHAPITRE PREMIER : DE LA COMPÉTENCE DES TRIBUNAUX JUDICIAIRES</h2>
+            
+            <div class="article" id="Article_77">
+                <div class="article-header">
+                    <h3>Article 77</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p class="modification-note">(Loi n° 72-852 du 21/12/1972)</p>
+                    <p>La juridiction civile de droit commun est seule compétente pour connaître des contestations sur la nationalité.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_78">
+                <div class="article-header">
+                    <h3>Article 78</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p class="modification-note">(Loi n° 72-852 du 21/12/1972)</p>
+                    <p>L'exception de nationalité ivoirienne et l'exception d'extranéité sont d'ordre public; elles doivent être soulevées d'office par le juge.</p>
+                    <p>Elles constituent devant toute autre juridiction que la juridiction civile de droit commun une question préjudicielle qui oblige le juge à surseoir à statuer jusqu'à ce que la question ait été tranchée selon la procédure réglée par les articles 86 et suivants du présent code.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_79">
+                <div class="article-header">
+                    <h3>Article 79</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Si l'exception de nationalité ivoirienne ou d'extranéité est soulevée devant une juridiction répressive autre que la Cour d'assises, la partie qui invoque l'exception, ou le ministère public dans le cas où l'intéressé est titulaire d'un certificat de nationalité ivoirienne délivré conformément aux articles 97 et suivants, doivent être renvoyés à se pourvoir dans les trente jours devant le tribunal civil compétent.</p>
+                    <p>La juridiction répressive sursoit à statuer jusqu'à ce que la question de nationalité ait été tranchée ou jusqu'à ce que soit expiré le délai ci-dessus imparti dans le cas où le tribunal civil n'a pas été saisi.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_80">
+                <div class="article-header">
+                    <h3>Article 80</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p class="modification-note">(Loi n° 72-852 du 21/12/1972)</p>
+                    <p>L'action intentée par la voie principale est portée devant la juridiction du lieu de naissance de celui dont la nationalité est en cause, ou, s'il n'est pas né en Côte d'Ivoire, devant le tribunal de première instance d'Abidjan.</p>
+                    <p>Il ne peut être dérogé à cette règle de compétence qui doit être soulevée d'office par le juge.</p>
+                </div>
+            </div>
+            
+            <h2>CHAPITRE II : DE LA PROCÉDURE DEVANT LES TRIBUNAUX JUDICIAIRES</h2>
+            
+            <div class="article" id="Article_81">
+                <div class="article-header">
+                    <h3>Article 81</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p class="modification-note">(Loi n° 72-852 du 21/12/1972)</p>
+                    <p>La juridiction compétente à l'article précédent est saisie par la voie ordinaire.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_82">
+                <div class="article-header">
+                    <h3>Article 82</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p class="modification-note">(Loi n° 72-852 du 21/12/1972)</p>
+                    <p>Tout individu peut intenter devant la juridiction compétente une action dont l'objet principal et direct est de faire juger qu'il a ou qu'il n'a pas la nationalité ivoirienne. Le Procureur de la République a seul qualité pour défendre à l'action, sans préjudice du droit d'intervention des tiers intéressés.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_83">
+                <div class="article-header">
+                    <h3>Article 83</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Procureur de la République a seul qualité pour intenter contre tout individu une action dont l'objet principal et direct est d'établir si le défendeur a ou n'a pas la nationalité ivoirienne, sans préjudice du droit qui appartient à tout intéressé d'intervenir à l'action ou de contester, conformément à l'article 63, la validité d'une déclaration enregistrée.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_84">
+                <div class="article-header">
+                    <h3>Article 84</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Procureur est tenu d'agir s'il en est requis par une administration publique ou par une tierce personne ayant soulevé l'exception de nationalité devant une juridiction qui a sursis à statuer en application de l'article 78. Le tiers requérant devra être mis en cause et, sauf s'il obtient l'assistance judiciaire, fournir caution de payer les frais de l'instance et les dommages et intérêts auxquels il pourrait être condamné.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_85">
+                <div class="article-header">
+                    <h3>Article 85</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p class="modification-note">(Loi n° 72-852 du 21/12/1972)</p>
+                    <p>Lorsque l'Etat est partie principale devant la juridiction civile, où une question de nationalité est posée à titre incident, il ne peut être représenté que par le Procureur de la République, en ce qui concerne la contestation sur la nationalité.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_86">
+                <div class="article-header">
+                    <h3>Article 86</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Dans toutes les instances qui ont pour objet, à titre principal ou à titre incident, une contestation sur la nationalité, conformément aux dispositions contenues dans le présent chapitre, une copie de l'acte introductif d'instance est déposée au ministère de la Justice.</p>
+                    <p>Toute demande à laquelle n'est pas jointe la justification de ce dépôt est déclarée irrecevable.</p>
+                    <p>Aucune décision au fond ne peut intervenir avant l'expiration du délai de trente jours à dater audit dépôt.</p>
+                    <p>Exceptionnellement ce délai est réduit à dix jours lorsque la contestation sur la nationalité a fait l'objet d'une question préjudicielle devant une juridiction statuant en matière électorale.</p>
+                    <p>Les dispositions du présent article sont applicables à l'exercice des voies de recours.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_87">
+                <div class="article-header">
+                    <h3>Article 87</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Toutes les décisions définitives rendue en matière de nationalité dans les conditions visées aux articles précédents, ont à l'égard de tous, l'autorité de la chose jugée.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_88">
+                <div class="article-header">
+                    <h3>Article 88</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les décisions des juridictions répressives n'ont jamais l'autorité de la chose jugée sur les questions de nationalité lorsque la juridiction civile n'a pas été appelée à se prononcer conformément aux dispositions de l'article 79.</p>
+                </div>
+            </div>
+            
+            <h2>CHAPITRE III : DE LA PREUVE DE LA NATIONALITÉ DEVANT LES TRIBUNAUX JUDICIAIRES</h2>
+            
+            <div class="article" id="Article_89">
+                <div class="article-header">
+                    <h3>Article 89</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La charge de la preuve, en matière de nationalité, incombe à celui qui, par voie d'action ou par voie d'exception, prétend avoir ou non la nationalité ivoirienne.</p>
+                    <p>Toutefois, cette charge incombe à celui qui, par les mêmes voies, conteste la qualité d'Ivoirien à un individu titulaire d'un certificat de nationalité ivoirienne délivré conformément aux articles 97 et suivants.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_90">
+                <div class="article-header">
+                    <h3>Article 90</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p class="modification-note">Abrogé par la loi n° 72-852 du 21/12/1972</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_91">
+                <div class="article-header">
+                    <h3>Article 91</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Dans le cas où la loi donne la faculté de souscrire une déclaration en vue de décliner la qualité d'Ivoirien, la preuve qu'une telle déclaration n'a pas été souscrite ne peut résulter que d'une attestation délivrée par le ministre de la Justice à la demande de tout requérant.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_92">
+                <div class="article-header">
+                    <h3>Article 92</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La preuve d'un décret de naturalisation ou de réintégration résulte de la production soit de l'ampliation de ce décret, soit d'un exemplaire du Journal officiel où le décret a été publié.</p>
+                    <p>Lorsque cette pièce ne peut être produite, il peut y être supplée par une attestation constatant l'existence du décret et délivrée par le ministre de la Justice à la demande de tout requérant.</p>
+                    <p>Lorsque la nationalité ivoirienne est attribuée ou acquise autrement que par naturalisation ou réintégration, la preuve ne peut être faite qu'en établissant l'existence de toutes les conditions requêtes par la loi.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_93">
+                <div class="article-header">
+                    <h3>Article 93</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p class="modification-note">(Loi n° 72-852 du 21/12/1972)</p>
+                    <p>Lorsque la nationalité ivoirienne est attribuée ou acquise autrement que par naturalisation ou réintégration, la preuve ne peut être faite qu'en établissant l'existence de toutes les conditions requises par la loi.</p>
+       </div>
+            </div>
+            
+            <div class="article" id="Article_94">
+                <div class="article-header">
+                    <h3>Article 94</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Lorsque la perte ou la déchéance de la nationalité ivoirienne résulte d'un décret pris conformément aux dispositions des articles 49, 52, 53 et 54, la preuve de ce décret se fait dans les conditions prévues à l'article 92.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_95">
+                <div class="article-header">
+                    <h3>Article 95</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Lorsque la nationalité ivoirienne se perd autrement que par l'un des modes prévus à l'article 94, la preuve n'en peut résulter qu'en établissant l'existence des faits et des actes qui ont pour conséquence la perte de la nationalité ivoirienne.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_96">
+                <div class="article-header">
+                    <h3>Article 96</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>En dehors des cas de perte ou de déchéance de la nationalité ivoirienne, la preuve de l'extranéité peut être faite par tous les moyens.</p>
+                    <p>Néanmoins, la preuve de l'extranéité d'un individu qui a la possession d'état d'Ivoirien peut seulement être établie en démontrant que l'intéressé ne remplit aucune des conditions exigées par la loi pour avoir la qualité d'Ivoirien.</p>
+                </div>
+            </div>
+            
+            <h2>CHAPITRE IV : DES CERTIFICATS DE NATIONALITÉ IVOIRIENNE</h2>
+            
+            <div class="article" id="Article_97">
+                <div class="article-header">
+                    <h3>Article 97</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p class="modification-note">(Loi n° 72-852 du 21/12/1972)</p>
+                    <p>Le président du tribunal de première instance, un magistrat délégué ou le juge de la section de tribunal ont seuls qualité pour délivrer un certificat de nationalité à toute personne justifiant qu'elle a cette qualité.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_98">
+                <div class="article-header">
+                    <h3>Article 98</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le certificat de nationalité indique, en se référant aux titres II et III du présent code, la disposition légale en vertu de laquelle l'intéressé a la qualité d'Ivoirien, ainsi que les documents qui ont permis de l'établir. Il fait foi jusqu'à preuve du contraire.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_99">
+                <div class="article-header">
+                    <h3>Article 99</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p class="modification-note">(Loi n° 2024-236 du 24/04/2024)</p>
+                    <p>Pendant le délai imparti au Gouvernement, par l'article 14, 
+pour s'opposer à l'acquisition de la nationalité ivoirienne par le 
+conjoint, étranger de 1 'Ivoirien, un certificat provisoire de natio-
+nalité peut être délivré par le juge compétent</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_100">
+                <div class="article-header">
+                    <h3>Article 100</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p class="modification-note">(Loi n° 72-852 du 21/12/1972)</p>
+                    <p>Lorsque le juge compétent refuse de délivrer un certificat de nationalité, l'intéressé peut saisir le ministre de la Justice qui décide, s'il y a lieu, de procéder à cette délivrance.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="group">
+            <h2>TITRE VII : DISPOSITIONS TRANSITOIRES</h2>
+            
+            <div class="article" id="Article_101">
+                <div class="article-header">
+                    <h3>Article 101</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La femme étrangère, qui a épousé un Ivoirien, antérieurement à la publication de la présente loi, dispose d'un délai de six mois à compter de cette publication pour décliner la qualité d'Ivoirienne.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_102">
+                <div class="article-header">
+                    <h3>Article 102</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La femme ivoirienne qui, ayant épousé un étranger antérieurement à la publication de la présente loi, a acquis la nationalité du mari par application de la loi nationale de celui-ci dispose d'un délai de six mois à compter de cette publication, pour répudier la nationalité ivoirienne.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_103">
+                <div class="article-header">
+                    <h3>Article 103</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p class="modification-note">Abrogé par la loi n° 72-852 du 21/12/1972</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_104">
+                <div class="article-header">
+                    <h3>Article 104</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le délai de six mois pendant lequel le Gouvernement peut s'opposer à l'acquisition de la nationalité ivoirienne pour quelque cause que ce soit est suspendu jusqu'au 1er janvier 1963.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_105">
+                <div class="article-header">
+                    <h3>Article 105</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Par dérogation aux dispositions de l'article 26, les personnes ayant eu leur résidence habituelle en Côte d'Ivoire antérieurement au 7 août 1960 peuvent être naturalisées sans condition de stage si elles formulent leur demande dans le délai d'un an à compter de la mise en vigueur du présent code.</p>
+                    <p>Les personnes visées à l'alinéa précédent peuvent être, par le décret de naturalisation, relevées en tout ou en partie des incapacités prévues à l'article 43.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_106">
+                <div class="article-header">
+                    <h3>Article 106</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les personnes ayant établi leur domicile en Côte d'Ivoire antérieurement au 7 août 1960 qui n'acquièrent pas la nationalité ivoirienne, soit de plein droit, soit volontairement conservent cependant à titre personnel tous les droits acquis dont elles bénéficiaient avant cette date, à l'exception des droits d'électorat et d'éligibilité aux assemblées politiques.</p>
+                    <p>Le transfert du domicile, à l'étranger entraîne la perte du bénéfice des dispositions de l'alinéa précédent.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_107">
+                <div class="article-header">
+                    <h3>Article 107</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La présente loi sera exécutée comme loi de l'Etat et publiée au Journal officiel de la République de Côte d'Ivoire.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>Mis à jour 2024</p>
+        </footer>
+    </main>
+
+  <button id="tocFloatBtn" title="Sommaire" class="btn"><i class="fa-solid fa-clipboard-list"></i></button>
+<div id="tocOverlay"></div>
+<aside id="tocPanel"><header><h3><i class="fa-solid fa-kit-medical"></i> Sommaire</h3></header><div class="toc-list" id="tocList"></div></aside>
+<div id="voiceBar" role="region" aria-label="Lecteur vocal">
+  <button id="vPrev" title="Article précédent"><i class="fas fa-backward"></i></button>
+  <button id="vPlay" title="Lire / Reprendre"><i class="fas fa-play"></i></button>
+  <button id="vPause" title="Pause"><i class="fas fa-pause"></i></button>
+  <button id="vStop" title="Arrêter"><i class="fas fa-stop"></i></button>
+  <button id="vNext" title="Article suivant"><i class="fas fa-forward"></i></button>
+  <span class="now" id="vNow">—</span>
+</div>
+<div id="fsOverlay">
+  <div id="fsHeader">
+    <button id="fsClose" title="Fermer"><i class="fas fa-xmark"></i></button>
+    <div class="ttl" id="fsTitle"></div>
+    <button id="fsPlay" title="Lecture"><i class="fas fa-play"></i></button>
+  </div>
+  <div id="fsBody"><article class="article"><div class="article-content" id="fsContent"></div></article></div>
+  <button id="fsNavPrev" title="Précédent"><i class="fas fa-chevron-left"></i></button>
+  <button id="fsNavNext" title="Suivant"><i class="fas fa-chevron-right"></i></button>
+</div>
+
+<script>
+function initSearchFeature() {
+    const searchBtn = document.createElement('button');
+    searchBtn.className = 'btn';
+    searchBtn.id = 'searchBtn';
+    searchBtn.title = 'Rechercher';
+    searchBtn.innerHTML = '<i class="fas fa-search"></i>';
+    document.querySelector('.control-buttons').appendChild(searchBtn);
+
+    const searchInterface = document.createElement('div');
+    searchInterface.id = 'searchInterface';
+    searchInterface.style.cssText = `
+        position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+        width: calc(100% - 40px); max-width: 550px; background: #fff;
+        padding: 10px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        z-index: 1800; display: none; align-items: center; gap: 5px; transition: .25s ease;
+    `;
+    searchInterface.innerHTML = `
+        <input type="text" id="searchInput" placeholder="Rechercher..." style="flex-grow: 1; padding: 8px; border: 1px solid #d6e2ef; border-radius: 5px;">
+        <button id="searchPrevBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-up"></i></button>
+        <button id="searchNextBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-down"></i></button>
+        <span id="searchResultsCount" style="flex-shrink: 0; padding: 0 5px; min-width: 40px; text-align: center;"></span>
+        <button id="closeSearchBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-times"></i></button>
+    `;
+    document.body.appendChild(searchInterface);
+
+    let searchResults = [];
+    let currentSearchIndex = -1;
+    let originalContents = new Map();
+
+    function performSearch() {
+        const searchTerm = document.getElementById('searchInput').value.trim();
+        if (!originalContents.size) {
+            document.querySelectorAll('.article-content, h2, h3').forEach(el => originalContents.set(el, el.innerHTML));
+        }
+        originalContents.forEach((content, el) => el.innerHTML = content);
+        searchResults = [];
+        currentSearchIndex = -1;
+        if (!searchTerm) { updateSearchUI(); return; }
+
+        const regex = new RegExp(searchTerm.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&'), 'gi');
+        originalContents.forEach((content, element) => {
+            element.innerHTML = content.replace(regex, match => `<mark>${match}</mark>`);
+        });
+        searchResults = Array.from(document.querySelectorAll('mark'));
+        if (searchResults.length > 0) navigateResults(true, false);
+        updateSearchUI();
+        window.dispatchEvent(new Event('reflowArticles'));
+    }
+
+    function navigateResults(isNext, shouldWrap = true) {
+        if (!searchResults.length) return;
+        searchResults.forEach(mark => mark.style.backgroundColor = '');
+        if (shouldWrap) {
+            currentSearchIndex = isNext ? (currentSearchIndex + 1) % searchResults.length : (currentSearchIndex - 1 + searchResults.length) % searchResults.length;
+        } else {
+            currentSearchIndex = 0;
+        }
+        const currentMark = searchResults[currentSearchIndex];
+        currentMark.style.backgroundColor = 'var(--accent)';
+        currentMark.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        updateSearchUI();
+    }
+
+    function updateSearchUI() {
+        document.getElementById('searchResultsCount').textContent = searchResults.length > 0 ? `${currentSearchIndex + 1}/${searchResults.length}` : '0/0';
+    }
+
+    function resetSearch() {
+        originalContents.forEach((content, el) => el.innerHTML = content);
+        originalContents.clear();
+        document.getElementById('searchInput').value = '';
+        searchResults = []; currentSearchIndex = -1;
+        updateSearchUI();
+    }
+
+    searchBtn.addEventListener('click', () => {
+        const isVisible = searchInterface.style.display === 'flex';
+        searchInterface.style.display = isVisible ? 'none' : 'flex';
+        if (isVisible) resetSearch(); else document.getElementById('searchInput').focus();
+    });
+    document.getElementById('searchInput').addEventListener('input', performSearch);
+    document.getElementById('searchNextBtn').addEventListener('click', () => navigateResults(true));
+    document.getElementById('searchPrevBtn').addEventListener('click', () => navigateResults(false));
+    document.getElementById('closeSearchBtn').addEventListener('click', () => {
+        searchInterface.style.display = 'none';
+        resetSearch();
+    });
+}
+</script>
+
+
+<script>
+(function(){
+  function extractEnumeration(s){
+    const re = /(\d{1,2})(?:\s*°)?(?:\))?(?:\.)?\s+/g; const matches = []; let m;
+    while ((m = re.exec(s))){ const idx=m.index; const prev = idx>0 ? s.charAt(idx-1) : " "; if (/\d/.test(prev)) continue; matches.push({num:parseInt(m[1],10), start:idx, end:re.lastIndex}); }
+    if (matches.length < 2) return null;
+    for (let i=1;i<matches.length;i++){ if (matches[i].num !== matches[i-1].num + 1) return null; }
+    const intro = s.slice(0, matches[0].start).trim().replace(/[:;,\-]\s*$/, ""); const items = [];
+    for (let i=0;i<matches.length;i++){ const st=matches[i].end; const en=(i+1<matches.length)?matches[i+1].start:s.length; let seg = s.slice(st,en).trim().replace(/^[;,:-]\s*/,"").replace(/[;,\s]+$/,""); items.push(seg); }
+    return {intro, start: matches[0].num, items};
+  }
+  function transformNode(node){
+    if (node.querySelector('ol')) return;
+    const plain = node.textContent.replace(/\s+/g,' ').trim(); const res = extractEnumeration(plain); if (!res) return;
+    const frag = document.createElement('div'); if (res.intro){ const p=document.createElement('p'); p.textContent=res.intro; frag.appendChild(p); }
+    const ol=document.createElement('ol'); if (res.start!==1) ol.setAttribute('start', String(res.start));
+    res.items.forEach(it=>{ const li=document.createElement('li'); li.textContent=it; ol.appendChild(li); });
+    frag.appendChild(ol); node.innerHTML=frag.innerHTML;
+  }
+  function run(){ document.querySelectorAll('.article-content').forEach(transformNode);
+    document.querySelectorAll('.article-content li').forEach(li=>{
+      const s = li.textContent.replace(/\s+/g,' ').trim(); const res = extractEnumeration(s);
+      if (res){ li.innerHTML=''; if (res.intro){ const span=document.createElement('span'); span.textContent=res.intro+' :'; li.appendChild(span); }
+        const ol=document.createElement('ol'); if (res.start!==1) ol.setAttribute('start', String(res.start));
+        res.items.forEach(it=>{ const li2=document.createElement('li'); li2.textContent=it; ol.appendChild(li2); }); li.appendChild(ol); }
+    });
+  }
+  window.addEventListener('DOMContentLoaded', ()=>setTimeout(run, 60));
+  window.addEventListener('reflowArticles', run);
+})();
+</script>
+
+
+<script>
+(function(){
+  const $ = s=>document.querySelector(s);
+  const $$ = s=>Array.from(document.querySelectorAll(s));
+  function buildTOC(){
+    const toc = document.getElementById('tocList'); if(!toc) return; toc.innerHTML='';
+    $$('.group').forEach((grp, gi)=>{
+      const gh = grp.querySelector('h2')?.textContent.trim() || `Groupe ${gi+1}`;
+      const gl = document.createElement('a'); gl.textContent=gh; gl.href='#'; gl.style.fontWeight='700';
+      gl.addEventListener('click', e=>{ e.preventDefault(); grp.scrollIntoView({behavior:'smooth', block:'start'}); hideTOC(); });
+      toc.appendChild(gl);
+      const sub = document.createElement('div'); sub.className='toc-sub';
+      grp.querySelectorAll('.article').forEach((art, ai)=>{
+        const at = art.querySelector('.article-header h3')?.textContent.trim() || `Article ${ai+1}`;
+        const a = document.createElement('a'); a.textContent=at; a.href='#';
+        a.addEventListener('click', e=>{ e.preventDefault(); art.scrollIntoView({behavior:'smooth', block:'start'}); hideTOC(); });
+        sub.appendChild(a);
+        if (!art.querySelector('.open-fs')){
+          const btn = document.createElement('button'); btn.className='open-fs'; btn.innerHTML='<i class="fas fa-maximize"></i>';
+          btn.title='Plein écran'; btn.addEventListener('click', ()=>openFS(artIndex(art))); art.querySelector('.article-header')?.appendChild(btn);
+        }
+      });
+      toc.appendChild(sub);
+    });
+  }
+  function showTOC(){ document.getElementById('tocOverlay').classList.add('show'); document.getElementById('tocPanel').classList.add('open'); }
+  function hideTOC(){ document.getElementById('tocOverlay').classList.remove('show'); document.getElementById('tocPanel').classList.remove('open'); }
+  document.addEventListener('DOMContentLoaded', ()=>{
+    const floatBtn = document.getElementById('tocFloatBtn');
+    if (floatBtn) floatBtn.addEventListener('click', showTOC);
+    const overlay = document.getElementById('tocOverlay');
+    if (overlay) overlay.addEventListener('click', hideTOC);
+    const headerBtn = document.getElementById('tocHeaderBtn');
+    if (headerBtn) headerBtn.addEventListener('click',showTOC);
+  });
+  const articles = $$('.article');
+  function artIndex(el){ return articles.indexOf(el); }
+  function getArticle(i){ return articles[Math.max(0, Math.min(articles.length-1, i))]; }
+  function artTitle(i){ const el=getArticle(i); return el? (el.querySelector('.article-header h3')?.textContent.trim()||'') : ''; }
+  function artText(i){ const el=getArticle(i); return el? (el.querySelector('.article-content')?.innerText.trim()||'') : ''; }
+  const synth = window.speechSynthesis;
+  let current = 0, utter = null, playing = false, paused = false, inFS=false;
+  function speakIndex(i){ stopSpeak(); current=i; const text=artText(i); if(!text){ nextArticle(); return; }
+    utter = new SpeechSynthesisUtterance(text); utter.lang='fr-FR'; utter.rate=1; utter.pitch=1;
+    utter.onend = ()=>{ if(playing && !paused){ nextArticle(); } };
+    try{ synth.speak(utter);}catch(e){ console.warn(e); }
+    playing=true; paused=false; updateUI(); highlightCurrent(); }
+  function highlightCurrent(){ articles.forEach(a=>a.classList.remove('reading')); const el=getArticle(current); if(el){ el.classList.add('reading'); if(!inFS) el.scrollIntoView({behavior:'smooth', block:'center'}); } document.getElementById('vNow').textContent = artTitle(current) || '—'; }
+  function pauseSpeak(){ if(synth && synth.speaking){ synth.pause(); paused=true; playing=true; } }
+  function resumeSpeak(){ if(synth && paused){ synth.resume(); paused=false; } else { speakIndex(current); } updateUI(); }
+  function stopSpeak(){ if(synth){ try{synth.cancel();}catch(e){} } playing=false; paused=false; updateUI(); }
+  function prevArticle(){ current=Math.max(0,current-1); if(playing){ speakIndex(current);} else {highlightCurrent();} if(inFS) openFS(current); }
+  function nextArticle(){ current=Math.min(articles.length-1,current+1); if(playing){ speakIndex(current);} else {highlightCurrent();} if(inFS) openFS(current); }
+  document.addEventListener('DOMContentLoaded', ()=>{
+    document.getElementById('vPlay').addEventListener('click', ()=>{ if(!playing || paused){ resumeSpeak(); } else { pauseSpeak(); } });
+    document.getElementById('vPause').addEventListener('click', ()=>pauseSpeak());
+    document.getElementById('vStop').addEventListener('click', ()=>{ stopSpeak(); });
+    document.getElementById('vPrev').addEventListener('click', prevArticle);
+    document.getElementById('vNext').addEventListener('click', nextArticle);
+  });
+  function updateUI(){ document.getElementById('vPlay').innerHTML = paused || !playing ? '<i class="fas fa-play"></i>' : '<i class="fas fa-pause"></i>'; }
+  let touchStartX=null;
+  function openFS(i){ inFS=true; current=i; document.getElementById('fsTitle').textContent=artTitle(i); document.getElementById('fsContent').textContent=artText(i); document.getElementById('fsOverlay').classList.add('show'); document.body.style.overflow='hidden'; speakIndex(i); }
+  function closeFS(){ inFS=false; document.getElementById('fsOverlay').classList.remove('show'); document.body.style.overflow=''; }
+  document.addEventListener('DOMContentLoaded', ()=>{
+    document.getElementById('fsClose').addEventListener('click', ()=>{ closeFS(); });
+    document.getElementById('fsPlay').addEventListener('click', ()=>{ if(!playing || paused){ resumeSpeak(); } else { pauseSpeak(); } });
+    document.getElementById('fsNavPrev').addEventListener('click', ()=>{ prevArticle(); });
+    document.getElementById('fsNavNext').addEventListener('click', ()=>{ nextArticle(); });
+    $$('.article .open-fs').forEach((btn, idx)=> btn.addEventListener('click', ()=>openFS(idx)));
+    $$('.article').forEach((art, idx)=> art.addEventListener('dblclick', ()=>openFS(idx)));
+    document.getElementById('fsOverlay').addEventListener('touchstart', (e)=>{ window.__touchX = e.changedTouches[0].clientX; }, {passive:true});
+    document.getElementById('fsOverlay').addEventListener('touchend', (e)=>{ const dx = e.changedTouches[0].clientX - (window.__touchX||0); const TH=50; if(dx<-TH){ nextArticle(); } else if(dx>TH){ prevArticle(); } }, {passive:true});
+  });
+  window.addEventListener('reflowArticles', ()=>{ buildTOC(); });
+  buildTOC();
+})();
+</script>
+
+<script>initSearchFeature(); window.dispatchEvent(new Event('reflowArticles'));</script>
+<footer>Source HTML structurée par vos soins, mise en forme selon le modèle. Thème médical (bleu ciel).</footer>
+
+<script>
+(function(){
+  function isInteractive(el){
+    if (!el) return false;
+    if (el.tagName){
+      const tag = el.tagName.toLowerCase();
+      if (tag === 'input' || tag === 'textarea' || tag === 'select') return true;
+    }
+    if (el.isContentEditable) return true;
+    if (el.closest && el.closest('#searchInterface')) return true;
+    return false;
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    document.body.classList.add('no-select');
+  });
+  document.addEventListener('contextmenu', function(e){
+    if (!isInteractive(e.target)) e.preventDefault();
+  }, {capture:true});
+  document.addEventListener('selectstart', function(e){
+    if (!isInteractive(e.target)) e.preventDefault();
+  }, {capture:true});
+  ['copy','cut','paste','dragstart'].forEach(function(type){
+    document.addEventListener(type, function(e){
+      if (!isInteractive(document.activeElement)) e.preventDefault();
+    }, {capture:true});
+  });
+  document.addEventListener('keydown', function(e){
+    const k = (e.key || '').toLowerCase();
+    const combo = (e.ctrlKey || e.metaKey) && ['c','x','a','s','p','insert'].includes(k);
+    if (combo && !isInteractive(document.activeElement)) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  }, {capture:true});
+})();
+</script>
+
+  <script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js"));
+  }
+</script>
+  <!-- PWA Install Button -->
+<button id="pwa-install-btn" aria-label="Installer l'application" hidden>Installer</button>
+<style>
+  #pwa-install-btn{
+    position:fixed; right:16px; bottom:16px; z-index:9999;
+    padding:10px 14px; border:none; border-radius:999px;
+    background:#22c55e; color:white; font:600 14px system-ui,Segoe UI,Roboto,Arial,sans-serif;
+    box-shadow:0 8px 20px rgba(34,197,94,.35);
+  }
+  #pwa-install-btn[hidden]{ display:none; }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    #pwa-install-btn{ bottom: calc(16px + env(safe-area-inset-bottom)); }
+  }
+</style>
+<script>
+  (function(){
+    let deferredPrompt;
+    const btnId = "pwa-install-btn";
+    function ensureBtn(){
+      let b = document.getElementById(btnId);
+      if(!b){
+        b = document.createElement("button");
+        b.id = btnId;
+        b.textContent = "Installer";
+        document.body.appendChild(b);
+      }
+      return b;
+    }
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      const btn = ensureBtn();
+      btn.hidden = false;
+      btn.onclick = async () => {
+        btn.hidden = true;
+        deferredPrompt.prompt();
+        await deferredPrompt.userChoice;
+        deferredPrompt = null;
+      };
+    });
+    if (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) {
+      const btn = document.getElementById(btnId);
+      if(btn) btn.hidden = true;
+    }
+  })();
+</script>
+  <!-- Auth UI minimal -->
+<style>
+  .auth-box{position:fixed; top:12px; right:12px; z-index:9998; background:#ffffff; color:#111827; border-radius:12px; padding:10px 12px; box-shadow:0 10px 24px rgba(0,0,0,.12); font:500 14px system-ui,Segoe UI,Roboto,Arial}
+  .auth-box h2{margin:0 0 6px; font-size:14px}
+  .auth-box form{display:flex; gap:6px; flex-wrap:wrap; align-items:center}
+  .auth-box input{padding:6px 8px; border:1px solid #e5e7eb; border-radius:8px}
+  .auth-box button{background:#22c55e; color:#fff; border:none; padding:6px 10px; border-radius:8px; cursor:pointer}
+  .auth-box .row{display:flex; gap:6px; flex-wrap:wrap}
+  .views-badge{position:fixed; left:12px; bottom:12px; z-index:9998; background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px; font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)}
+</style><!-- Admin link (visible only when logged-in) -->
+<style>
+  .admin-link{
+    position:fixed; right:16px; bottom:88px; z-index:9998;
+    display:none; align-items:center; gap:8px;
+    padding:10px 14px; border-radius:999px; text-decoration:none;
+    background:#111827; color:#fff; font:600 14px system-ui,Segoe UI,Roboto,Arial;
+    box-shadow:0 8px 20px rgba(0,0,0,.3);
+    border:1px solid rgba(255,255,255,.1);
+  }
+  body.logged-in .admin-link{ display:inline-flex; }
+  .admin-link:hover{ filter:brightness(1.1); }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    .admin-link{ bottom: calc(88px + env(safe-area-inset-bottom)); }
+  }
+</style>
+<a href="admin.html" class="admin-link" title="Tableau de bord">Admin</a>
+  <script type="module" src="assets/firebase-app.js"></script>
+  <script>window.autoCountAndBind && window.autoCountAndBind();</script>
+
+<!-- Floating Auth Button + Modal -->
+<style>
+  #auth-fab{
+    position:fixed; right:16px; bottom:68px; z-index:9998;
+    width:48px; height:48px; border-radius:999px; border:none; cursor:pointer;
+    background:#111827; color:#fff; display:grid; place-items:center;
+    box-shadow:0 8px 20px rgba(0,0,0,.35); border:1px solid rgba(255,255,255,.1);
+  }
+  body.logged-in #auth-fab::after{ content:"✓"; }
+  #auth-fab::after{ content:"👤"; font-size:20px; }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    #auth-fab{ bottom: calc(68px + env(safe-area-inset-bottom)); }
+  }
+  .views-badge{
+    position:fixed; left:12px; bottom:12px; z-index:9998; 
+    background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px;
+    font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)
+  }
+  dialog#auth-modal{
+    border:none; border-radius:16px; padding:0; width:min(90vw,420px);
+    box-shadow:0 24px 72px rgba(0,0,0,.35); overflow:hidden;
+  }
+  dialog::backdrop{ background:rgba(0,0,0,.4); }
+  .auth-modal-head{background:#0f172a; color:#fff; padding:12px 16px; display:flex; justify-content:space-between; align-items:center}
+  .auth-modal-body{padding:16px; background:#111827; color:#e5e7eb}
+  .auth-modal-body label{display:block; font-size:13px; margin-top:8px; opacity:.9}
+  .auth-modal-body input{width:100%; padding:10px 12px; border-radius:10px; border:1px solid #1f2937; background:#0b1021; color:#e5e7eb}
+  .auth-actions{display:flex; gap:8px; margin-top:14px}
+  .btn{border:none; border-radius:10px; padding:10px 12px; cursor:pointer; font-weight:600}
+  .btn-primary{background:#22c55e; color:white}
+  .btn-ghost{background:transparent; color:#e5e7eb; border:1px solid #374151}
+  .muted{opacity:.8}
+</style>
+
+<dialog id="auth-modal">
+  <div class="auth-modal-head">
+    <strong>Connexion</strong>
+    <button class="btn btn-ghost" id="auth-close" aria-label="Fermer">✕</button>
+  </div>
+  <div class="auth-modal-body">
+    <p class="muted">Connecte-toi pour accéder à l’admin et une meilleure expérience.</p>
+    <label>Email</label>
+    <input type="email" id="auth-email" placeholder="email@exemple.com" required>
+    <label>Mot de passe</label>
+    <input type="password" id="auth-pass" placeholder="••••••••" required>
+    <div class="auth-actions">
+      <button class="btn btn-primary" id="btn-login">Connexion</button>
+      <button class="btn btn-ghost" id="btn-register">Créer un compte</button>
+      <button class="btn btn-ghost" id="btn-logout">Déconnexion</button>
+    </div>
+    <div id="auth-msg" class="muted" style="margin-top:8px;"></div>
+  </div>
+</dialog>
+
+<script type="module">
+  import { authRegister, authLogin, authLogout } from "./assets/firebase-app.js";
+
+  const fab = document.getElementById("auth-fab");
+  const modal = document.getElementById("auth-modal");
+  const closeBtn = document.getElementById("auth-close");
+  const email = document.getElementById("auth-email");
+  const pass = document.getElementById("auth-pass");
+  const msg  = document.getElementById("auth-msg");
+  const btnLogin = document.getElementById("btn-login");
+  const btnRegister = document.getElementById("btn-register");
+  const btnLogout = document.getElementById("btn-logout");
+
+  function openModal(){ try{ modal.showModal(); }catch{ modal.setAttribute("open",""); } }
+  function closeModal(){ modal.close?.(); modal.removeAttribute("open"); }
+
+  fab?.addEventListener("click", openModal);
+  closeBtn?.addEventListener("click", closeModal);
+
+  async function handle(run){
+    msg.textContent = "";
+    try{
+      await run(email.value.trim(), pass.value);
+      msg.textContent = "✅ Opération réussie.";
+      setTimeout(()=>{ closeModal(); }, 500);
+    }catch(e){
+      console.error(e);
+      msg.textContent = "❌ " + (e?.message || "Erreur");
+    }
+  }
+
+  btnLogin?.addEventListener("click", () => handle(authLogin));
+  btnRegister?.addEventListener("click", () => handle(authRegister));
+  btnLogout?.addEventListener("click", async () => {
+    msg.textContent = "";
+    try{ await authLogout(); msg.textContent = "✅ Déconnecté."; }catch(e){ msg.textContent = "❌ " + (e?.message||"Erreur"); }
+  });
+</script>
+
+
+<!-- Per-card view counters -->
+<style>
+  .card-views-badge{
+    position:absolute; top:8px; right:8px;
+    background:rgba(17,24,39,.9); color:#fff;
+    padding:4px 8px; border-radius:999px; font:600 12px system-ui,Segoe UI,Roboto,Arial;
+    box-shadow:0 6px 14px rgba(0,0,0,.25);
+    pointer-events:none;
+  }
+  .card-views-wrap{ position:relative; }
+</style>
+<script type="module">
+  import { getViewCount } from "./assets/firebase-app.js";
+  function basename(href){
+    try{ const u = new URL(href, location.href);
+         const file = u.pathname.split('/').pop() || 'index.html';
+         return file.replace(/\.html$/i,''); }
+    catch{ return (href.split('/').pop()||'index.html').replace(/\.html$/i,''); }
+  }
+  async function attachCounterTo(el, docId){
+    let container = el.closest('.card, .item, .panel, .box, .article, .doc, .tile');
+    if(!container){ container = el.parentElement; }
+    if(container && !container.classList.contains('card-views-wrap')){
+      container.classList.add('card-views-wrap');
+    }
+    const host = container || el;
+    if(host.querySelector('.card-views-badge[data-doc="'+docId+'"]')) return;
+    const badge = document.createElement('span');
+    badge.className = 'card-views-badge';
+    badge.dataset.doc = docId;
+    badge.textContent = 'Vues: …';
+    host.appendChild(badge);
+    try{ const n = await getViewCount(docId);
+         badge.textContent = 'Vues: ' + n; }
+    catch{ badge.textContent = 'Vues: —'; }
+  }
+  async function initCardCounters(){
+    const links = Array.from(document.querySelectorAll('[data-doc-id], a[href$=".html"]'))
+      .filter(a => {
+        const id = a.getAttribute('data-doc-id') || basename(a.getAttribute('href')||'');
+        return id && !['index','admin','offline'].includes(id.toLowerCase());
+      });
+    const handled = new Set();
+    for(const a of links){
+      const id = a.getAttribute('data-doc-id') || basename(a.getAttribute('href')||'');
+      if(!id || handled.has(id)) continue;
+      handled.add(id);
+      attachCounterTo(a, id);
+    }
+  }
+  initCardCounters();
+  const obs = new MutationObserver(()=>initCardCounters());
+  obs.observe(document.body, { childList:true, subtree:true });
+</script>
+
+</body>
+</html> 
