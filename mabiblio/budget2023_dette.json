@@ -1,0 +1,274 @@
+{
+  "dette_total": "3743444154549",
+  "categories": [
+    {
+      "code": "INT",
+      "nom": "Intérêts et frais (intérieur + extérieur)",
+      "montant": "2879877786342",
+      "lignes": [
+        {
+          "code": "78011201943",
+          "description": "Payer les intérêts de la dette auprès du Fonds Monetaire International (FMI)",
+          "montant": "11453565750"
+        },
+        {
+          "code": "78011201944",
+          "description": "Payer les intérêts de la dette auprès de la Banque Islamique de Développement",
+          "montant": "4759455770"
+        },
+        {
+          "code": "78011201945",
+          "description": "Payer les intérêts de la dette auprès de la Société Générale Corporate and Investment bank (SGCIB)",
+          "montant": "11352330040"
+        },
+        {
+          "code": "78011201946",
+          "description": "Payer les intérêts de la dette auprès du Crédit Agricole Corporate Investment Bank (CACIB)",
+          "montant": "776781426"
+        },
+        {
+          "code": "78011202029",
+          "description": "Payer les intérêts de la dette auprès de la Banque Mondiale et IDA",
+          "montant": "25915424535"
+        },
+        {
+          "code": "78011202051",
+          "description": "Payer les intérêts de la dette auprès de la Banque Africaine de Développement (BAD)",
+          "montant": "5625342108"
+        },
+        {
+          "code": "78011202052",
+          "description": "Payer les intérêts de la dette auprès de la BIDC - CEDEAO",
+          "montant": "2565775935"
+        },
+        {
+          "code": "78011202053",
+          "description": "Payer les intérêts de la dette auprès de la Banque Industrielle et Commerciale de Chine (ICBC)",
+          "montant": "15559917755"
+        },
+        {
+          "code": "78011202128",
+          "description": "Payer les intérêts de la dette auprès du Crédit Suisse",
+          "montant": "4767773097"
+        },
+        {
+          "code": "78011202129",
+          "description": "Payer les intérêts de la dette auprès du MUFG Bank",
+          "montant": "6893731944"
+        },
+        {
+          "code": "78011202131",
+          "description": "Payer les intérêts de la dette auprès de KBC Bank",
+          "montant": "590349985"
+        },
+        {
+          "code": "78011202132",
+          "description": "Payer les intérêts de la dette auprès d'autres banques extérieures",
+          "montant": "27470375178"
+        },
+        {
+          "code": "78011202149",
+          "description": "Payer les intérêts de la dette auprès des autres Créanciers à l'Extérieur",
+          "montant": "40545447174"
+        },
+        {
+          "code": "78011202191",
+          "description": "Payer les intérêts de la dette auprès de la Banque commerciale théocoslovaque (XSOB)",
+          "montant": "824319286"
+        },
+        {
+          "code": "78011202197",
+          "description": "Payer les intérêts de la dette auprès du Internationale Nederlanden Groep (ING Bank)",
+          "montant": "3733224224"
+        },
+        {
+          "code": "78011202215",
+          "description": "Payer les intérêts de la dette auprès de la Banque Européenne d'Investissement (BEI)",
+          "montant": "564508309"
+        },
+        {
+          "code": "78011202217",
+          "description": "Payer les intérêts des titres Eurobonds",
+          "montant": "342636422917"
+        },
+        {
+          "code": "78011202247",
+          "description": "Payer les intérêts de la dette auprès de la Vnechtorgbank (VTB)",
+          "montant": "2386146284"
+        },
+        {
+          "code": "78011202271",
+          "description": "Payer les intérêts de la dette auprès des Organisation des Pays Exportateurs de Pétrole",
+          "montant": "458482647"
+        },
+        {
+          "code": "78011202338",
+          "description": "Payer les intérêts de la dette auprès du Fonds Saoudien",
+          "montant": "768612125"
+        },
+        {
+          "code": "78011201502",
+          "description": "Payer les intérêts des Souscriptions aux Emprunts Obligataires de l'Etat",
+          "montant": null
+        },
+        {
+          "code": "78011201503",
+          "description": "Payer les intérêts des Bons du Trésor",
+          "montant": null
+        },
+        {
+          "code": "78011201506",
+          "description": "Payer les frais et commissions sur titres publics",
+          "montant": null
+        },
+        {
+          "code": "78011202048",
+          "description": "Payer les intérêts des dettes titrisées - Passifs audités",
+          "montant": null
+        },
+        {
+          "code": "78011202150",
+          "description": "Payer les intérêts des Divers financements structurés",
+          "montant": null
+        },
+        {
+          "code": "78011202305",
+          "description": "Payer les intérêts de la dette auprès de la BCEAO - Découverts du Trésor à l'Intérieur du Plafond",
+          "montant": null
+        },
+        {
+          "code": "78011202314",
+          "description": "Payer les intérêts des Obligations du Trésor",
+          "montant": null
+        },
+        {
+          "code": "78011202320",
+          "description": "Payer les intérêts de la dette auprès de la BCEAO - Remboursement allocation DTS",
+          "montant": null
+        },
+        {
+          "code": "78011202440",
+          "description": "Payer les intérêts de la dette auprès de la BACI - Titrisation de dette",
+          "montant": null
+        },
+        {
+          "code": "78011201519",
+          "description": "Payer les intérêts de la dette auprès de la BOAD",
+          "montant": null
+        },
+        {
+          "code": "78011201520",
+          "description": "Payer les intérêts de la dette auprès du FIDA",
+          "montant": null
+        },
+        {
+          "code": "78011201521",
+          "description": "Payer les intérêts de la dette au Fonds Kowétien",
+          "montant": null
+        },
+        {
+          "code": "78011201522",
+          "description": "Payer les intérêts de la dette auprès du Club de Paris",
+          "montant": null
+        },
+        {
+          "code": "78011201523",
+          "description": "Payer les intérêts de la dette auprès de la BADEA - PAL",
+          "montant": null
+        },
+        {
+          "code": "78011201524",
+          "description": "Payer les intérêts de la dette auprès d'AFREXIMBANK",
+          "montant": null
+        }
+      ]
+    },
+    {
+      "code": "CAP",
+      "nom": "Remboursement du capital (extérieur)",
+      "montant": "863566368207",
+      "lignes": [
+        {
+          "code": "78011201948",
+          "description": "Rembourser le capital de la dette auprès du Fonds Saoudien",
+          "montant": "2148744000"
+        },
+        {
+          "code": "78011201949",
+          "description": "Rembourser le capital de la dette auprès de la Société Générale Corporate and Investment Bank (SGCIB)",
+          "montant": "69437762695"
+        },
+        {
+          "code": "78011202054",
+          "description": "Rembourser le capital de la dette auprès de la BOAD",
+          "montant": "33669227791"
+        },
+        {
+          "code": "78011202055",
+          "description": "Rembourser le capital des titres EUROBONDS",
+          "montant": "32491508400"
+        },
+        {
+          "code": "78011202099",
+          "description": "Rembourser le capital de la dette auprès de l'Organisation des Pays Exportateurs de Pétrole (OPEP)",
+          "montant": "2754724050"
+        },
+        {
+          "code": "78011202130",
+          "description": "Rembourser le capital de la dette auprès d'autres banques extérieures",
+          "montant": "107231985567"
+        },
+        {
+          "code": "78011202133",
+          "description": "Rembourser le capital de la dette auprès du MUFG Bank",
+          "montant": "61762035549"
+        },
+        {
+          "code": "78011202134",
+          "description": "Rembourser le capital de la dette auprès de Internationale Nederlanden Groep (ING Bank)",
+          "montant": "12742099170"
+        },
+        {
+          "code": "78011202135",
+          "description": "Rembourser le capital de la dette auprès de KBC Bank",
+          "montant": "8459115259"
+        },
+        {
+          "code": "78011202136",
+          "description": "Rembourser le capital de la dette auprès du Crédit Suisse",
+          "montant": "26349208836"
+        },
+        {
+          "code": "78011202189",
+          "description": "Rembourser le capital de la dette auprès du Crédit Agricole Corporate Investment Bank (CACIB)",
+          "montant": "7113965099"
+        },
+        {
+          "code": "78011202248",
+          "description": "Rembourser le capital de la dette auprès du Club de Paris",
+          "montant": "225073873634"
+        },
+        {
+          "code": "78011202315",
+          "description": "Rembourser le capital de la dette auprès de la Banque Industrielle et Commerciale de Chine (ICBC)",
+          "montant": "54665035807"
+        },
+        {
+          "code": "78011202324",
+          "description": "Rembourser le capital de la dette auprès de la Banque Islamique de Développement",
+          "montant": "20312668719"
+        },
+        {
+          "code": "78011202326",
+          "description": "Rembourser le capital de la dette auprès du Fonds Monétaire International (FMI)",
+          "montant": "195596046735"
+        },
+        {
+          "code": "78011202350",
+          "description": "Rembourser le capital de la dette auprès de la BIDC - CEDEAO",
+          "montant": "3758366896"
+        }
+      ]
+    }
+  ]
+}

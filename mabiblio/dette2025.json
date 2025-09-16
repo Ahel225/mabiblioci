@@ -1,0 +1,504 @@
+{
+  "type_dette": "Dette Publique",
+  "montant_total_ae": "13.964.872.606.056",
+  "montant_total_cp": "13.964.872.606.056",
+  "categories_dette": [
+
+        {
+          "nom": "01 Budget Général",
+          "montant_ae": "13.964.872.606.056"
+        },
+        {
+          "nom": "01001 Recettes intérieures Budgétaires",
+          "montant_ae": "7.597.428.900.000"
+        },
+        {
+          "nom": "7 COMPTES DE PRODUITS",
+          "montant_ae": "7.597.428.900.000"
+        },
+        {
+          "nom": "0100101001 Recettes fiscales",
+          "montant_ae": "7.387.044.900.000"
+        },
+        {
+          "nom": "71 Recettes fiscales",
+          "montant_ae": "7.387.044.900.000"
+        },
+        {
+          "nom": "711 Impôts sur les revenus, les bénéfices et les gains en capital",
+          "montant_ae": "2.021.759.742.700"
+        },
+        {
+          "nom": "7111 Impôt général sur le revenu et acompte d'impôt sur le revenu du secteur informel",
+          "montant_ae": "503.191.484.774"
+        },
+        {
+          "nom": "7112 Impôts sur les revenus des capitaux mobiliers",
+          "montant_ae": "263.200.000.000"
+        },
+        {
+          "nom": "7114 Impôt sur les bénéfices",
+          "montant_ae": "1.255.368.257.926"
+        },
+        {
+          "nom": "712 Impôts sur les salaires versés et autres rémunérations",
+          "montant_ae": "393.148.923.862"
+        },
+        {
+          "nom": "7121 Impôts à la charge des salariés",
+          "montant_ae": "325.663.951.330"
+        },
+        {
+          "nom": "7122 Impôts à la charge des employeurs",
+          "montant_ae": "67.484.972.532"
+        },
+        {
+          "nom": "713 Impôts sur le patrimoine",
+          "montant_ae": "55.486.963.940"
+        },
+        {
+          "nom": "7132  Impôts perçus sur mutations des biens meubles et immeubles",
+          "montant_ae": "55.486.963.940"
+        },
+        {
+          "nom": "714 Autres impôts directs",
+          "montant_ae": "61.441.700.000"
+        },
+        {
+          "nom": "7142 Patentes",
+          "montant_ae": "17.332.905.442"
+        },
+        {
+          "nom": "7144 Taxe spéciale sur les transports privés de marchandises",
+          "montant_ae": "1.691.959.834"
+        },
+        {
+          "nom": "7145 Licences",
+          "montant_ae": "1.179.220.694"
+        },
+        {
+          "nom": "7146 Impôt des microentreprises",
+          "montant_ae": "22.351.700.000"
+        },
+        {
+          "nom": "7147 Taxe de l'Entreprenant",
+          "montant_ae": "18.450.000.000"
+        },
+        {
+          "nom": "7149 Autres impôts directs",
+          "montant_ae": "435.914.030"
+        },
+        {
+          "nom": "715 Impôts et taxes intérieurs sur les biens et services",
+          "montant_ae": "1.732.699.905.503"
+        },
+        {
+          "nom": "7151  Impôts et taxes généraux",
+          "montant_ae": "1.269.809.669.816"
+        },
+        {
+          "nom": "7152 Droits d'accises et taxes spécifiques perçus en régime intérieur",
+          "montant_ae": "263.717.446.902"
+        },
+        {
+          "nom": "7153 Autres taxes spéciales perçues en régime intérieur",
+          "montant_ae": "199.172.788.785"
+        },
+        {
+          "nom": "716 Droits de timbre et d'enregistrement",
+          "montant_ae": "313.728.036.060"
+        },
+        {
+          "nom": "7161 Droits de timbres et visa",
+          "montant_ae": "42.472.451.280"
+        },
+        {
+          "nom": "7162 Droits d'enregistrement",
+          "montant_ae": "269.610.584.780"
+        },
+        {
+          "nom": "7163  Vignettes",
+          "montant_ae": "1.645.000.000"
+        },
+        {
+          "nom": "717 Droits et taxes à l'importation",
+          "montant_ae": "2.011.003.308.727"
+        },
+        {
+          "nom": "7171 Droits de douane",
+          "montant_ae": "701.407.904.418"
+        },
+        {
+          "nom": "7174 Redevance statistique",
+          "montant_ae": "99.818.960.622"
+        },
+        {
+          "nom": "",
+          "montant_ae": "Ressources"
+        },
+        {
+          "nom": "7175 Taxes générales sur les biens et services importés",
+          "montant_ae": "940.148.745.846"
+        },
+        {
+          "nom": "7176 Taxes spécifiques sur les biens et services importés",
+          "montant_ae": "259.169.382.854"
+        },
+        {
+          "nom": "7179 Autres droits et taxes à l'importation",
+          "montant_ae": "10.458.314.987"
+        },
+        {
+          "nom": "718 Droits et taxes à l'exportation",
+          "montant_ae": "789.835.000.000"
+        },
+        {
+          "nom": "7181 Droits uniques de sortie sur produits agricoles et dérivés",
+          "montant_ae": "785.477.540.125"
+        },
+        {
+          "nom": "7182 Droits de sortie sur minerais",
+          "montant_ae": "761.622.672"
+        },
+        {
+          "nom": "7189  Autres droits et taxes à l'exportation",
+          "montant_ae": "3.595.837.203"
+        },
+        {
+          "nom": "719 Autres recettes fiscales",
+          "montant_ae": "7.941.319.208"
+        },
+        {
+          "nom": "7192 Remises spéciales sur obligations cautionnées",
+          "montant_ae": "563.615.949"
+        },
+        {
+          "nom": "7193 Intérêts de crédit d'enlèvement douanier",
+          "montant_ae": "591.454.875"
+        },
+        {
+          "nom": "7194 Remises de crédit d'enlèvement douanier",
+          "montant_ae": "5.062.512.512"
+        },
+        {
+          "nom": "7195 Intérêts de retard sur admission temporaire",
+          "montant_ae": "1.723.735.872"
+        },
+        {
+          "nom": "0100101002 Recettes non fiscales",
+          "montant_ae": "210.384.000.000"
+        },
+        {
+          "nom": "72 Recettes non fiscales",
+          "montant_ae": "180.120.000.000"
+        },
+        {
+          "nom": "721 Revenus de l'entreprise et du domaine",
+          "montant_ae": "53.460.000.000"
+        },
+        {
+          "nom": "7211 Redevances de brevets et droits d'auteurs",
+          "montant_ae": "773.295.518"
+        },
+        {
+          "nom": "7212 Revenus des actifs incorporels",
+          "montant_ae": "60.000.000"
+        },
+        {
+          "nom": "7213 Excédent d'exploitation des unités de production marchande des administrations publiques",
+          "montant_ae": "132.813.890"
+        },
+        {
+          "nom": "7214 Redevances et revenus divers du domaine",
+          "montant_ae": "52.493.890.592"
+        },
+        {
+          "nom": "722 Droits et frais administratifs",
+          "montant_ae": "20.590.000.000"
+        },
+        {
+          "nom": "7221 Rémunérations pour services rendus par les services",
+          "montant_ae": "19.765.377.841"
+        },
+        {
+          "nom": "7222 Droit de recherche minière",
+          "montant_ae": "3.807.247"
+        },
+        {
+          "nom": "7229 Autres droits et frais administratifs",
+          "montant_ae": "820.814.912"
+        },
+        {
+          "nom": "723 Amendes et condamnations pécuniaires",
+          "montant_ae": "970.000.000"
+        },
+        {
+          "nom": "7232 Produits des amendes de composition",
+          "montant_ae": "9.092.743"
+        },
+        {
+          "nom": "7233 Produits des amendes forfaitaires",
+          "montant_ae": "690.418.731"
+        },
+        {
+          "nom": "7234 Produits des amendes civiles",
+          "montant_ae": "927.58"
+        },
+        {
+          "nom": "7235 Produits des amendes judiciaires",
+          "montant_ae": "223.002.953"
+        },
+        {
+          "nom": "7236 Produits des pénalités et condamnations pécuniaires non fiscales",
+          "montant_ae": "6.012.763"
+        },
+        {
+          "nom": "7239 Autres produits d'amendes, pénalités, condamnations et confiscations non fiscales",
+          "montant_ae": "40.545.230"
+        },
+        {
+          "nom": "729 Autres recettes non fiscales",
+          "montant_ae": "105.100.000.000"
+        },
+        {
+          "nom": "7299 Autres recettes non fiscales",
+          "montant_ae": "105.100.000.000"
+        },
+        {
+          "nom": "77 Produits financiers",
+          "montant_ae": "30.264.000.000"
+        },
+        {
+          "nom": "",
+          "montant_ae": "Ressources"
+        },
+        {
+          "nom": "779 Autres produits financiers",
+          "montant_ae": "30.264.000.000"
+        },
+        {
+          "nom": "7791 Revenus des participations",
+          "montant_ae": "30.264.000.000"
+        },
+        {
+          "nom": "01002 Recettes Extérieures Budgétaires",
+          "montant_ae": "267.934.278.587"
+        },
+        {
+          "nom": "1 COMPTES DE RESSOURCES A MOYEN ET LONG TERMES",
+          "montant_ae": "105.484.278.587"
+        },
+        {
+          "nom": "0100201001 Dons Projets",
+          "montant_ae": "105.484.278.587"
+        },
+        {
+          "nom": "12 Dons projets et legs",
+          "montant_ae": "105.484.278.587"
+        },
+        {
+          "nom": "121 Dons projets des institutions internationales",
+          "montant_ae": "85.570.110.994"
+        },
+        {
+          "nom": "1211 Dons-projets de la Banque Mondiale",
+          "montant_ae": "9.500.000.000"
+        },
+        {
+          "nom": "1212 Dons-projets du FED",
+          "montant_ae": "2.684.491.043"
+        },
+        {
+          "nom": "1213 Dons-projets de la BAD",
+          "montant_ae": "1.500.000.000"
+        },
+        {
+          "nom": "1215 Dons-projets de l'UNICEF",
+          "montant_ae": "1.380.700.000"
+        },
+        {
+          "nom": "1216 Dons-projets du PNUD",
+          "montant_ae": "13.292.287.144"
+        },
+        {
+          "nom": "1218 Dons-projets du Fonds pour l'environnement mondial",
+          "montant_ae": "5.909.220.000"
+        },
+        {
+          "nom": "1219 Dons-projets d'autres organismes internationaux",
+          "montant_ae": "51.303.412.807"
+        },
+        {
+          "nom": "122 Dons projets des gouvernements affiliés au club de Paris",
+          "montant_ae": "8.395.604.650"
+        },
+        {
+          "nom": "1220 Dons projets des gouvernements affiliés au club de Paris",
+          "montant_ae": "8.395.604.650"
+        },
+        {
+          "nom": "123 Dons projets des gouvernements non affiliés au club de Paris",
+          "montant_ae": "11.518.562.943"
+        },
+        {
+          "nom": "1230 Dons projets des gouvernements non affiliés au club de Paris",
+          "montant_ae": "11.518.562.943"
+        },
+        {
+          "nom": "7 COMPTES DE PRODUITS",
+          "montant_ae": "162.450.000.000"
+        },
+        {
+          "nom": "0100201002 Don Programmes",
+          "montant_ae": "162.450.000.000"
+        },
+        {
+          "nom": "74 Dons programmes et legs",
+          "montant_ae": "162.450.000.000"
+        },
+        {
+          "nom": "741 Dons des institutions internationales",
+          "montant_ae": "13.750.000.000"
+        },
+        {
+          "nom": "7411 Dons des institutions internationales financières",
+          "montant_ae": "13.750.000.000"
+        },
+        {
+          "nom": "742 Dons des gouvernements étrangers",
+          "montant_ae": "148.700.000.000"
+        },
+        {
+          "nom": "7421 Dons de Gouvernements européens (groupe 1)",
+          "montant_ae": "148.700.000.000"
+        },
+        {
+          "nom": "03001 Recettes intérieures de tresorerie",
+          "montant_ae": "3.194.306.011.809"
+        },
+        {
+          "nom": "1 COMPTES DE RESSOURCES A MOYEN ET LONG TERMES",
+          "montant_ae": "3.115.110.011.809"
+        },
+        {
+          "nom": "0300101004 Autres Emprunts intérieurs",
+          "montant_ae": "3.115.110.011.809"
+        },
+        {
+          "nom": "17 Autres emprunts",
+          "montant_ae": "3.115.110.011.809"
+        },
+        {
+          "nom": "176 Autres emprunts intérieurs",
+          "montant_ae": "3.115.110.011.809"
+        },
+        {
+          "nom": "1761 Autres emprunts intérieurs. Emprunts obligataires",
+          "montant_ae": "1.359.622.814.106"
+        },
+        {
+          "nom": "1762 Autres emprunts intérieurs. Obligations du Trésor",
+          "montant_ae": "1.153.756.148.777"
+        },
+        {
+          "nom": "1764 Autres emprunts intérieurs auprès des institutions financières et du système bancaire intérieur",
+          "montant_ae": "163.650.232.841"
+        },
+        {
+          "nom": "",
+          "montant_ae": "Ressources"
+        },
+        {
+          "nom": "1766 Autres emprunts intérieurs auprès d'autres organismes",
+          "montant_ae": "41.501.960.822"
+        },
+        {
+          "nom": "1769 Autres emprunts intérieurs",
+          "montant_ae": "396.578.855.263"
+        },
+        {
+          "nom": "2 COMPTES D'IMMOBILISATIONS",
+          "montant_ae": "78.196.000.000"
+        },
+        {
+          "nom": "0300101002 Prêts retrocédés",
+          "montant_ae": "78.196.000.000"
+        },
+        {
+          "nom": "27 Prêts et avances",
+          "montant_ae": "78.196.000.000"
+        },
+        {
+          "nom": "277 Prêts rétrocédés",
+          "montant_ae": "78.196.000.000"
+        },
+        {
+          "nom": "2772 Prêts rétrocédés - versements aux entreprises publiques non financières nationales",
+          "montant_ae": "78.196.000.000"
+        },
+        {
+          "nom": "7 COMPTES DE PRODUITS",
+          "montant_ae": "1.000.000.000"
+        },
+        {
+          "nom": "0300101002 Prêts retrocédés",
+          "montant_ae": "1.000.000.000"
+        },
+        {
+          "nom": "75 Recettes exceptionnelles",
+          "montant_ae": "1.000.000.000"
+        },
+        {
+          "nom": "754 Cessions d'immobilisations",
+          "montant_ae": "1.000.000.000"
+        },
+        {
+          "nom": "7541 Cessions d'actifs",
+          "montant_ae": "1.000.000.000"
+        },
+        {
+          "nom": "03002 Recettes extérieures de trésorerie",
+          "montant_ae": "2.905.203.415.660"
+        },
+        {
+          "nom": "1 COMPTES DE RESSOURCES A MOYEN ET LONG TERMES",
+          "montant_ae": "2.905.203.415.660"
+        },
+        {
+          "nom": "0300201001 Emprunts Projets",
+          "montant_ae": "1.338.103.415.660"
+        },
+        {
+          "nom": "11 Emprunts et avances",
+          "montant_ae": "1.338.103.415.660"
+        },
+        {
+          "nom": "111 Emprunts projets des institutions internationales",
+          "montant_ae": "1.338.103.415.660"
+        },
+        {
+          "nom": "1111 Emprunts-projets de la Banque Mondiale",
+          "montant_ae": "1.338.103.415.660"
+        },
+        {
+          "nom": "0300201002 Emprunts Programmes",
+          "montant_ae": "1.567.100.000.000"
+        },
+        {
+          "nom": "13 Emprunts programmes et d'ajustement",
+          "montant_ae": "1.567.100.000.000"
+        },
+        {
+          "nom": "131 Emprunts programmes des institutions internationales",
+          "montant_ae": "1.567.100.000.000"
+        },
+        {
+          "nom": "1311 Emprunts programmes de la Banque Mondiale",
+          "montant_ae": "1.567.100.000.000"
+        },
+        {
+          "nom": "Total Ressources",
+          "montant_ae": "13.964.872.606.056"
+        }
+  ]
+  }

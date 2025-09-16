@@ -1,0 +1,186 @@
+{
+  "ressources_total": "11694363921834",
+  "categories": [
+    {
+      "code": "01",
+      "nom": "Budget Général",
+      "montant": "10726850868384",
+      "sous_categories": [
+        {
+          "code": "01001",
+          "nom": "Recettes intérieures Budgétaires",
+          "montant": "5390168101460",
+          "types": [
+            {
+              "nom": "7 COMPTES DE PRODUITS",
+              "montant": "5390168101460",
+              "comptes": []
+            },
+            {
+              "nom": "0100101001 Recettes fiscales",
+              "montant": "5282064101460",
+              "comptes": []
+            },
+            {
+              "nom": "Recettes non fiscales",
+              "montant": "108104000000",
+              "comptes": []
+            }
+          ]
+        },
+        {
+          "code": "01002",
+          "nom": "Recettes Extérieures Budgétaires",
+          "montant": "321686613306",
+          "types": [
+            {
+              "nom": "1 COMPTES DE RESSOURCES A MOYEN ET LONG TERMES",
+              "montant": "321686613306",
+              "comptes": [
+                {
+                  "code": "0100201001",
+                  "description": "Dons Projets",
+                  "montant": "119326613306"
+                },
+                {
+                  "code": "0100201002",
+                  "description": "Dons Programmes",
+                  "montant": "202360000000"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "03001",
+          "nom": "Recettes intérieures de tresorerie",
+          "montant": "3138270153618",
+          "types": [
+            {
+              "nom": "1 COMPTES DE RESSOURCES A MOYEN ET LONG TERMES",
+              "montant": "3133770153618",
+              "comptes": [
+                {
+                  "code": "0300101004",
+                  "description": "Autres Emprunts intérieurs",
+                  "montant": "3104570153618"
+                },
+                {
+                  "code": "0300101005",
+                  "description": "Remboursements de prêts rétrocédés",
+                  "montant": "29200000000"
+                }
+              ]
+            },
+            {
+              "nom": "Produits de cession des actifs",
+              "montant": "4500000000",
+              "comptes": []
+            }
+          ]
+        },
+        {
+          "code": "03002",
+          "nom": "Recettes extérieures de trésorerie",
+          "montant": "1876726000000",
+          "types": [
+            {
+              "nom": "1 COMPTES DE RESSOURCES A MOYEN ET LONG TERMES",
+              "montant": "1876726000000",
+              "comptes": [
+                {
+                  "code": "0300201001",
+                  "description": "Emprunts Projets",
+                  "montant": "1556726000000"
+                },
+                {
+                  "code": "0300201002",
+                  "description": "Emprunts Programmes",
+                  "montant": "320000000000"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "71",
+      "nom": "Recettes fiscales",
+      "montant": "5282064101460",
+      "sous_categories": []
+    },
+    {
+      "code": "72",
+      "nom": "Recettes non fiscales",
+      "montant": "108104000000",
+      "sous_categories": []
+    },
+    {
+      "code": "12",
+      "nom": "Dons projets et legs",
+      "montant": "119326613306",
+      "sous_categories": []
+    },
+    {
+      "code": "74",
+      "nom": "Dons programmes et legs",
+      "montant": "202360000000",
+      "sous_categories": []
+    },
+    {
+      "code": "17",
+      "nom": "Autres emprunts (intérieurs)",
+      "montant": "3104570153618",
+      "sous_categories": []
+    },
+    {
+      "code": "16",
+      "nom": "Emprunts programmes",
+      "montant": "320000000000",
+      "sous_categories": []
+    },
+    {
+      "code": "15",
+      "nom": "Emprunts projets",
+      "montant": "1556726000000",
+      "sous_categories": []
+    },
+    {
+      "code": "27",
+      "nom": "Prêts et avances (remboursements des prêts rétrocédés)",
+      "montant": "29200000000",
+      "sous_categories": []
+    },
+    {
+      "code": "75",
+      "nom": "Recettes exceptionnelles (cessions d’actifs)",
+      "montant": "4500000000",
+      "sous_categories": []
+    },
+    {
+      "code": "03",
+      "nom": "Comptes Spéciaux du Trésor",
+      "montant": "996713053450",
+      "sous_categories": [
+        {
+          "code": "02001",
+          "nom": "Recettes Intérieures des CST",
+          "montant": "967513053450",
+          "types": [
+            {
+              "nom": "7 COMPTES DE PRODUITS",
+              "montant": "967513053450",
+              "comptes": []
+            },
+            {
+              "nom": "0200101001 Recettes des Comptes d'affectation spéciale",
+              "montant": "967513053450",
+              "comptes": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

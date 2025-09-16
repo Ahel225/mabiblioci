@@ -1,0 +1,182 @@
+{
+  "ressources_total": "15339170690054.0",
+  "categories": [
+    {
+      "code": "01",
+      "nom": "Budget Général",
+      "montant": "13964872606056",
+      "sous_categories": [
+        {
+          "code": "01001",
+          "nom": "Recettes intérieures Budgétaires",
+          "montant": "7597428900000",
+          "types": [
+            {
+              "nom": "7 COMPTES DE PRODUITS",
+              "montant": "7597428900000",
+              "comptes": []
+            },
+            {
+              "nom": "0100101001 Recettes fiscales",
+              "montant": "7387044900000",
+              "comptes": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "71",
+      "nom": "Recettes fiscales",
+      "montant": "7387044900000",
+      "sous_categories": []
+    },
+    {
+      "code": "72",
+      "nom": "Recettes non fiscales",
+      "montant": "180120000000",
+      "sous_categories": []
+    },
+    {
+      "code": "77",
+      "nom": "Produits financiers",
+      "montant": "30264000000",
+      "sous_categories": [
+        {
+          "code": "01002",
+          "nom": "Recettes Extérieures Budgétaires",
+          "montant": "267934278587",
+          "types": [
+            {
+              "nom": "1 COMPTES DE RESSOURCES A MOYEN ET LONG TERMES",
+              "montant": "105484278587",
+              "comptes": [
+                {
+                  "code": "0100201001",
+                  "description": "Dons Projets",
+                  "montant": "105484278587"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "12",
+      "nom": "Dons projets et legs",
+      "montant": "105484278587",
+      "sous_categories": []
+    },
+    {
+      "code": "74",
+      "nom": "Dons programmes et legs",
+      "montant": "162450000000",
+      "sous_categories": [
+        {
+          "code": "03001",
+          "nom": "Recettes intérieures de tresorerie",
+          "montant": "3194306011809",
+          "types": [
+            {
+              "nom": "1 COMPTES DE RESSOURCES A MOYEN ET LONG TERMES",
+              "montant": "3115110011809",
+              "comptes": [
+                {
+                  "code": "0300101004",
+                  "description": "Autres Emprunts intérieurs",
+                  "montant": "3115110011809"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "17",
+      "nom": "Autres emprunts",
+      "montant": "3115110011809",
+      "sous_categories": []
+    },
+    {
+      "code": "27",
+      "nom": "Prêts et avances",
+      "montant": "78196000000",
+      "sous_categories": []
+    },
+    {
+      "code": "75",
+      "nom": "Recettes exceptionnelles",
+      "montant": "1000000000",
+      "sous_categories": [
+        {
+          "code": "03002",
+          "nom": "Recettes extérieures de trésorerie",
+          "montant": "2905203415660",
+          "types": [
+            {
+              "nom": "1 COMPTES DE RESSOURCES A MOYEN ET LONG TERMES",
+              "montant": "2905203415660",
+              "comptes": [
+                {
+                  "code": "0300201001",
+                  "description": "Emprunts Projets",
+                  "montant": "1338103415660"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "15",
+      "nom": "Emprunts projets",
+      "montant": "1338103415660",
+      "sous_categories": []
+    },
+    {
+      "code": "17",
+      "nom": "Autres emprunts",
+      "montant": "315000000000",
+      "sous_categories": []
+    },
+    {
+      "code": "16",
+      "nom": "Emprunts programmes",
+      "montant": "1252100000000",
+      "sous_categories": []
+    },
+    {
+      "code": "03",
+      "nom": "Comptes Spéciaux du Trésor",
+      "montant": "1374298083998",
+      "sous_categories": [
+        {
+          "code": "02001",
+          "nom": "Recettes Intérieures des CST",
+          "montant": "1374298083998",
+          "types": [
+            {
+              "nom": "7 COMPTES DE PRODUITS",
+              "montant": "1374298083998",
+              "comptes": []
+            },
+            {
+              "nom": "0200101001 Recettes des Comptes d'affectation spéciale",
+              "montant": "1374298083998",
+              "comptes": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "73",
+      "nom": "Transferts reçus d'autres budgets",
+      "montant": "1374298083998",
+      "sous_categories": []
+    }
+  ]
+}

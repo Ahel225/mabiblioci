@@ -1,0 +1,531 @@
+{
+  "type_dette": "Dette Publique",
+  "montant_total_ae": "5635653207605",
+  "montant_total_cp": "5635653207605",
+  "categories_dette": [
+    {
+      "code": "11018",
+      "nom": "Dettes Intérieures",
+      "montant_ae": "3340558574023",
+      "montant_cp": "3340558574023",
+      "types": [
+        {
+          "nom": "2 Biens et services",
+          "montant_ae": "627090174369",
+          "montant_cp": "627090174369",
+          "lignes_dette": [
+            {
+              "code": "78011201502",
+              "description": "Payer les intérêts des Souscriptions aux Emprunts Obligataires de l'Etat",
+              "montant_ae": "306949038007",
+              "montant_cp": "306949038007"
+            },
+            {
+              "code": "78011201503",
+              "description": "Payer les intérêts des Bons du Trésor",
+              "montant_ae": "23431053971",
+              "montant_cp": "23431053971"
+            },
+            {
+              "code": "78011201506",
+              "description": "Payer les frais et commissions sur titres publics",
+              "montant_ae": "49000000000",
+              "montant_cp": "49000000000"
+            },
+            {
+              "code": "78011202048",
+              "description": "Payer les intérêts des dettes titrisée-Passifs audités",
+              "montant_ae": "61946009",
+              "montant_cp": "61946009"
+            },
+            {
+              "code": "78011202150",
+              "description": "Payer les intérêts des Divers financements structurés",
+              "montant_ae": "96039851215",
+              "montant_cp": "96039851215"
+            },
+            {
+              "code": "78011202314",
+              "description": "Payer les intérêts des Obligations du Trésor",
+              "montant_ae": "142772186226",
+              "montant_cp": "142772186226"
+            },
+            {
+              "code": "78011202320",
+              "description": "Payer les intérêts de la dette auprès de la BCEAO - Remboursement allocation DTS",
+              "montant_ae": "247494612",
+              "montant_cp": "247494612"
+            },
+            {
+              "code": "78011202476",
+              "description": "Payer les intérêts de la dette auprès de la CGRAE-Dette titrisée",
+              "montant_ae": "2121875000",
+              "montant_cp": "2121875000"
+            },
+            {
+              "code": "90011290173",
+              "description": "Payer les intérêts de la dette auprès de la BCEAO - Restructuration de dette",
+              "montant_ae": "6466729329",
+              "montant_cp": "6466729329"
+            }
+          ]
+        },
+        {
+          "nom": "3 Transferts",
+          "montant_ae": "2713468399654",
+          "montant_cp": "2713468399654",
+          "lignes_dette": [
+            {
+              "code": "78011201509",
+              "description": "Rembourser le capital de la dette auprès de Atlantique Telecom Titre DTF",
+              "montant_ae": "1743155371",
+              "montant_cp": "1743155371"
+            },
+            {
+              "code": "78011201510",
+              "description": "Rembourser le capital des dettes titrisées-Passifs audités",
+              "montant_ae": "1955511302",
+              "montant_cp": "1955511302"
+            },
+            {
+              "code": "78011201512",
+              "description": "Rembourser le capital des Souscriptions aux Emprunts Obligataires de l'Etat",
+              "montant_ae": "806451737342",
+              "montant_cp": "806451737342"
+            },
+            {
+              "code": "78011201513",
+              "description": "Rembourser le capital des Bons du Trésor",
+              "montant_ae": "743180000000",
+              "montant_cp": "743180000000"
+            },
+            {
+              "code": "78011201893",
+              "description": "Rembourser le capital de la dette auprès de la BACI-titrisation arriérés de créances (18,48 mrds)",
+              "montant_ae": "375714286",
+              "montant_cp": "375714286"
+            },
+            {
+              "code": "78011202246",
+              "description": "Rembourser le capital des Obligations du Trésor",
+              "montant_ae": "726523096000",
+              "montant_cp": "726523096000"
+            },
+            {
+              "code": "78011202267",
+              "description": "Rembourser le capital des Divers financements structurés",
+              "montant_ae": "342077717744",
+              "montant_cp": "342077717744"
+            },
+            {
+              "code": "78011202478",
+              "description": "Rembourser le capital de la dette auprès de la CGRAE-Dette titrisée",
+              "montant_ae": "31300000000",
+              "montant_cp": "31300000000"
+            },
+            {
+              "code": "78011202480",
+              "description": "Rembourser le capital de la dette auprès du Conseil Café Cacao-Dette titrisée",
+              "montant_ae": "23024583333",
+              "montant_cp": "23024583333"
+            },
+            {
+              "code": "78011202482",
+              "description": "Rembourser le capital de la dette auprès de Ivoire Facility Management (IFM)-Dette titrisée",
+              "montant_ae": "4754412102",
+              "montant_cp": "4754412102"
+            },
+            {
+              "code": "78011202485",
+              "description": "Rembourser le capital de la dette auprès de la BGFI Bank-Dette titrisée",
+              "montant_ae": "211428571",
+              "montant_cp": "211428571"
+            },
+            {
+              "code": "78011202487",
+              "description": "Rembourser le capital de la dette auprès de la BICICI-Dette titrisée",
+              "montant_ae": "92857143",
+              "montant_cp": "92857143"
+            },
+            {
+              "code": "78011202489",
+              "description": "Rembourser le capital de la dette auprès de Ecobank-Dette titrisée",
+              "montant_ae": "7441932599",
+              "montant_cp": "7441932599"
+            },
+            {
+              "code": "78011202491",
+              "description": "Rembourser le capital de la dette auprès de la SIB-Dette titrisée",
+              "montant_ae": "28571429",
+              "montant_cp": "28571429"
+            },
+            {
+              "code": "90011290175",
+              "description": "Rembourser le capital de la dette auprès de la BCEAO - Restructuration de dette",
+              "montant_ae": "12490878260",
+              "montant_cp": "12490878260"
+            },
+            {
+              "code": "90011290176",
+              "description": "Rembourser le capital de la dette auprès de la MANSA BANK-Dette titrisée",
+              "montant_ae": "5591250000",
+              "montant_cp": "5591250000"
+            },
+            {
+              "code": "90011290177",
+              "description": "Rembourser le capital de la dette auprès de la Banque D'Abidjan (BDA)-Dette titrisée",
+              "montant_ae": "296420172",
+              "montant_cp": "296420172"
+            },
+            {
+              "code": "90011290178",
+              "description": "Rembourser le capital de la dette auprès de la Banque Populaire de Côte d'Ivoire (BPCI) -Dette titrisée",
+              "montant_ae": "5929134000",
+              "montant_cp": "5929134000"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "12019",
+      "nom": "Dettes Extérieures",
+      "montant_ae": "2295094643582",
+      "montant_cp": "2295094643582",
+      "types": [
+        {
+          "nom": "2 Biens et services",
+          "montant_ae": "887561214509",
+          "montant_cp": "887561214509",
+          "lignes_dette": [
+            {
+              "code": "78011201519",
+              "description": "Payer les intérêts de la dette auprès de la BOAD",
+              "montant_ae": "15437600021",
+              "montant_cp": "15437600021"
+            },
+            {
+              "code": "78011201520",
+              "description": "Payer les intérêts de la dette auprès du FIDA",
+              "montant_ae": "446588844",
+              "montant_cp": "446588844"
+            },
+            {
+              "code": "78011201521",
+              "description": "Payer les intérêts de la dette au Fonds Kowétien",
+              "montant_ae": "1055319436",
+              "montant_cp": "1055319436"
+            },
+            {
+              "code": "78011201522",
+              "description": "Payer les intérêts de la dette auprès du Club de PARIS",
+              "montant_ae": "35910113987",
+              "montant_cp": "35910113987"
+            },
+            {
+              "code": "78011201523",
+              "description": "Payer les intérêts de la dette auprès de la BADEA - PAL",
+              "montant_ae": "1934796976",
+              "montant_cp": "1934796976"
+            },
+            {
+              "code": "78011201525",
+              "description": "Payer les intérêts de la dette auprès de Bank Of China (BOC)",
+              "montant_ae": "20640037122",
+              "montant_cp": "20640037122"
+            },
+            {
+              "code": "78011201845",
+              "description": "Payer les frais financiers, commissions et honoraires aux autres organismes",
+              "montant_ae": "20000000000",
+              "montant_cp": "20000000000"
+            },
+            {
+              "code": "78011201943",
+              "description": "Payer les intérêts de la dette auprès du Fonds Monetaire International (FMI)",
+              "montant_ae": "27311663798",
+              "montant_cp": "27311663798"
+            },
+            {
+              "code": "78011201944",
+              "description": "Payer les intérêts de la dette auprès de la Banque Islamique de Développement",
+              "montant_ae": "12991397669",
+              "montant_cp": "12991397669"
+            },
+            {
+              "code": "78011201945",
+              "description": "Payer les intérêts de la dette auprès de la Société Générale Corporate and Investment bank (SGCIB)",
+              "montant_ae": "20368723539",
+              "montant_cp": "20368723539"
+            },
+            {
+              "code": "78011201946",
+              "description": "Payer les intérêts de la dette auprès du Crédit Agricole Corporate Investment Bank (CACIB)",
+              "montant_ae": "15129865661",
+              "montant_cp": "15129865661"
+            },
+            {
+              "code": "78011202029",
+              "description": "Payer les intérêts de la dette auprès de la Banque Mondiale et IDA",
+              "montant_ae": "44643369359",
+              "montant_cp": "44643369359"
+            },
+            {
+              "code": "78011202051",
+              "description": "Payer les intérêts de la dette auprès de la Banque Africaine de Développement (BAD)",
+              "montant_ae": "19754666814",
+              "montant_cp": "19754666814"
+            },
+            {
+              "code": "78011202052",
+              "description": "Payer les intérêts de la dette auprès de la BIDC - CEDEAO",
+              "montant_ae": "7972547131",
+              "montant_cp": "7972547131"
+            },
+            {
+              "code": "78011202053",
+              "description": "Payer les intérêts de la dette auprès de la Banque Industrielle et Commerciale de Chine (ICBC)",
+              "montant_ae": "20786786720",
+              "montant_cp": "20786786720"
+            },
+            {
+              "code": "78011202129",
+              "description": "Payer les intérêts de la dette auprès du MUFG Bank",
+              "montant_ae": "28568608889",
+              "montant_cp": "28568608889"
+            },
+            {
+              "code": "78011202131",
+              "description": "Payer les intérêts de la dette auprès de KBC Bank",
+              "montant_ae": "1971633320",
+              "montant_cp": "1971633320"
+            },
+            {
+              "code": "78011202132",
+              "description": "Payer les intérêts de la dette auprès d'autres banques extérieures",
+              "montant_ae": "137578481458",
+              "montant_cp": "137578481458"
+            },
+            {
+              "code": "78011202149",
+              "description": "Payer les intérêts de la dette auprès des autres Créanciers à l'Extérieur",
+              "montant_ae": "41333518935",
+              "montant_cp": "41333518935"
+            },
+            {
+              "code": "78011202191",
+              "description": "Payer les intérêts de la dette auprès de la Banque Commerciale tchécoslovaque (XSOB)",
+              "montant_ae": "1497632501",
+              "montant_cp": "1497632501"
+            },
+            {
+              "code": "78011202197",
+              "description": "Payer les intérêts de la dette auprès du Internationale Nederlanden Groep (ING Bank)",
+              "montant_ae": "8910327857",
+              "montant_cp": "8910327857"
+            },
+            {
+              "code": "78011202215",
+              "description": "Payer les intérêts de la dette auprès de la Banque Européenne d'Investissement (BEI)",
+              "montant_ae": "1770435355",
+              "montant_cp": "1770435355"
+            },
+            {
+              "code": "78011202217",
+              "description": "Payer les intérêts des titres Eurobonds",
+              "montant_ae": "394812554629",
+              "montant_cp": "394812554629"
+            },
+            {
+              "code": "78011202247",
+              "description": "Payer les intérêts de la dette auprès de la Vnechtorgbank (VTB)",
+              "montant_ae": "834323306",
+              "montant_cp": "834323306"
+            },
+            {
+              "code": "78011202271",
+              "description": "Payer les intérêts de la dette auprès des Organisation des Pays Exportateurs de Pétrole",
+              "montant_ae": "2188238632",
+              "montant_cp": "2188238632"
+            },
+            {
+              "code": "78011202338",
+              "description": "Payer les intérêts de la dette auprès du Fonds Saoudien",
+              "montant_ae": "867121961",
+              "montant_cp": "867121961"
+            },
+            {
+              "code": "78011202492",
+              "description": "Payer les intérêts de la dette auprès de l'Asian Infrastructure Investment Bank (AIIB)",
+              "montant_ae": "2844860589",
+              "montant_cp": "2844860589"
+            }
+          ]
+        },
+        {
+          "nom": "3 Transferts",
+          "montant_ae": "1407533429073",
+          "montant_cp": "1407533429073",
+          "lignes_dette": [
+            {
+              "code": "78011201527",
+              "description": "Rembourser le capital de la dette auprès de la Banque Africaine de Développement (BAD)",
+              "montant_ae": "24986378535",
+              "montant_cp": "24986378535"
+            },
+            {
+              "code": "78011201528",
+              "description": "Rembourser le capital de la dette auprès de la Banque Mondiale et IDA",
+              "montant_ae": "47036392960",
+              "montant_cp": "47036392960"
+            },
+            {
+              "code": "78011201529",
+              "description": "Rembourser le capital de la dette auprès de la Banque Européenne d'Investissement (BEI)",
+              "montant_ae": "7270648038",
+              "montant_cp": "7270648038"
+            },
+            {
+              "code": "78011201530",
+              "description": "Rembourser le capital de la dette auprès du FIDA",
+              "montant_ae": "1660000000",
+              "montant_cp": "1660000000"
+            },
+            {
+              "code": "78011201531",
+              "description": "Rembourser le capital de la dette auprès de la Banque Islamique de Développement",
+              "montant_ae": "18140000000",
+              "montant_cp": "18140000000"
+            },
+            {
+              "code": "78011201532",
+              "description": "Rembourser le capital de la dette auprès du Fonds Kowétien",
+              "montant_ae": "1055319436",
+              "montant_cp": "1055319436"
+            },
+            {
+              "code": "78011201533",
+              "description": "Rembourser le capital de la dette auprès de la BADEA - PAL",
+              "montant_ae": "1934796976",
+              "montant_cp": "1934796976"
+            },
+            {
+              "code": "78011201534",
+              "description": "Rembourser le capital de la dette auprès du Club de PARIS",
+              "montant_ae": "35910113987",
+              "montant_cp": "35910113987"
+            },
+            {
+              "code": "78011201535",
+              "description": "Rembourser le capital de la dette auprès de la BOAD",
+              "montant_ae": "15437600021",
+              "montant_cp": "15437600021"
+            },
+            {
+              "code": "78011201536",
+              "description": "Rembourser le capital de la dette auprès de la BIDC - CEDEAO",
+              "montant_ae": "7972547131",
+              "montant_cp": "7972547131"
+            },
+            {
+              "code": "78011201537",
+              "description": "Rembourser le capital de la dette auprès de Bank Of China (BOC)",
+              "montant_ae": "20640037122",
+              "montant_cp": "20640037122"
+            },
+            {
+              "code": "78011201538",
+              "description": "Rembourser le capital de la dette auprès de la Banque Industrielle et Commerciale de Chine (ICBC)",
+              "montant_ae": "20786786720",
+              "montant_cp": "20786786720"
+            },
+            {
+              "code": "78011201539",
+              "description": "Rembourser le capital de la dette auprès de la Société Générale Corporate and Investment bank (SGCIB)",
+              "montant_ae": "20368723539",
+              "montant_cp": "20368723539"
+            },
+            {
+              "code": "78011201540",
+              "description": "Rembourser le capital de la dette auprès du Crédit Agricole Corporate Investment Bank (CACIB)",
+              "montant_ae": "15129865661",
+              "montant_cp": "15129865661"
+            },
+            {
+              "code": "78011201541",
+              "description": "Rembourser le capital de la dette auprès du Internationale Nederlanden Groep (ING Bank)",
+              "montant_ae": "8910327857",
+              "montant_cp": "8910327857"
+            },
+            {
+              "code": "78011201542",
+              "description": "Rembourser le capital de la dette auprès de la Banque Commerciale tchécoslovaque (XSOB)",
+              "montant_ae": "1497632501",
+              "montant_cp": "1497632501"
+            },
+            {
+              "code": "78011201543",
+              "description": "Rembourser le capital de la dette auprès de la Vnechtorgbank (VTB)",
+              "montant_ae": "834323306",
+              "montant_cp": "834323306"
+            },
+            {
+              "code": "78011201544",
+              "description": "Rembourser le capital de la dette auprès des Organisation des Pays Exportateurs de Pétrole",
+              "montant_ae": "2188238632",
+              "montant_cp": "2188238632"
+            },
+            {
+              "code": "78011201545",
+              "description": "Rembourser le capital de la dette auprès du Fonds Saoudien",
+              "montant_ae": "867121961",
+              "montant_cp": "867121961"
+            },
+            {
+              "code": "78011201546",
+              "description": "Rembourser le capital de la dette auprès du MUFG Bank",
+              "montant_ae": "28568608889",
+              "montant_cp": "28568608889"
+            },
+            {
+              "code": "78011201547",
+              "description": "Rembourser le capital de la dette auprès de KBC Bank",
+              "montant_ae": "1971633320",
+              "montant_cp": "1971633320"
+            },
+            {
+              "code": "78011201548",
+              "description": "Rembourser le capital de la dette auprès d'autres banques extérieures",
+              "montant_ae": "137578481458",
+              "montant_cp": "137578481458"
+            },
+            {
+              "code": "78011201549",
+              "description": "Rembourser le capital de la dette auprès des autres Créanciers à l'Extérieur",
+              "montant_ae": "41333518935",
+              "montant_cp": "41333518935"
+            },
+            {
+              "code": "78011201550",
+              "description": "Rembourser le capital des titres Eurobonds",
+              "montant_ae": "394812554629",
+              "montant_cp": "394812554629"
+            },
+            {
+              "code": "78011201947",
+              "description": "Rembourser le capital de la dette auprès du Fonds Monetaire International (FMI)",
+              "montant_ae": "27311663798",
+              "montant_cp": "27311663798"
+            },
+            {
+              "code": "78011202493",
+              "description": "Rembourser le capital de la dette auprès de l'Asian Infrastructure Investment Bank (AIIB)",
+              "montant_ae": "2844860589",
+              "montant_cp": "2844860589"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

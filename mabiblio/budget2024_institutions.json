@@ -1,0 +1,1878 @@
+{
+  "institutions": [
+    {
+      "code": "101",
+      "nom": "Représentation Nationale",
+      "montant_ae": "34000704604",
+      "montant_cp": "34000704604",
+      "programmes": [
+        {
+          "code": "13001",
+          "nom": "Assemblée Nationale",
+          "montant_ae": "34000704604",
+          "montant_cp": "34000704604",
+          "natures": [
+            {
+              "nom": "1 Personnel",
+              "montant_ae": "17593087473",
+              "montant_cp": "17593087473",
+              "lignes_budgetaires": [
+                {
+                  "code": "78011100323",
+                  "description": "Prendre en charge les salaires du personnel de l'Assemblée Nationale",
+                  "montant_ae": "17593087473",
+                  "montant_cp": "17593087473"
+                }
+              ]
+            },
+            {
+              "nom": "2 Biens et services",
+              "montant_ae": "206638132",
+              "montant_cp": "206638132",
+              "lignes_budgetaires": [
+                {
+                  "code": "78011100299",
+                  "description": "Prendre en charge les factures d'eau, d'électricité et de téléphone",
+                  "montant_ae": "206638132",
+                  "montant_cp": "206638132"
+                }
+              ]
+            },
+            {
+              "nom": "3 Transferts",
+              "montant_ae": "14700978999",
+              "montant_cp": "14700978999",
+              "lignes_budgetaires": [
+                {
+                  "code": "78011100240",
+                  "description": "Faire le transfert à l'Assemblée Nationale / Allocation viagère Anciens Députés",
+                  "montant_ae": "8001081564",
+                  "montant_cp": "8001081564"
+                },
+                {
+                  "code": "78011100298",
+                  "description": "Faire le transfert à l'Assemblée Nationale",
+                  "montant_ae": "6699897435",
+                  "montant_cp": "6699897435"
+                }
+              ]
+            },
+            {
+              "nom": "4 Investissements",
+              "montant_ae": "1500000000",
+              "montant_cp": "1500000000",
+              "lignes_budgetaires": [
+                {
+                  "code": "78011100287",
+                  "description": "Réaliser la réhabilitation et l'équipement de l'assemblée Nationale",
+                  "montant_ae": "500000000",
+                  "montant_cp": "500000000"
+                },
+                {
+                  "code": "78011100361",
+                  "description": "Mettre en oeuvre le projet E-Parlement",
+                  "montant_ae": "1000000000",
+                  "montant_cp": "1000000000"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "102",
+      "nom": "Sénat",
+      "montant_ae": "11588094793",
+      "montant_cp": "11588094793",
+      "programmes": [
+        {
+          "code": "13030",
+          "nom": "Assemblée Représentative",
+          "montant_ae": "11588094793",
+          "montant_cp": "11588094793",
+          "natures": [
+            {
+              "nom": "1 Personnel",
+              "montant_ae": "8247946516",
+              "montant_cp": "8247946516",
+              "lignes_budgetaires": [
+                {
+                  "code": "11011100015",
+                  "description": "Assurer les charges salariales du Sénat",
+                  "montant_ae": "8247946516",
+                  "montant_cp": "8247946516"
+                }
+              ]
+            },
+            {
+              "nom": "2 Biens et services",
+              "montant_ae": "140148277",
+              "montant_cp": "140148277",
+              "lignes_budgetaires": [
+                {
+                  "code": "11011100013",
+                  "description": "Gérer les abonnements du Sénat",
+                  "montant_ae": "140148277",
+                  "montant_cp": "140148277"
+                }
+              ]
+            },
+            {
+              "nom": "3 Transferts",
+              "montant_ae": "3200000000",
+              "montant_cp": "3200000000",
+              "lignes_budgetaires": [
+                {
+                  "code": "11011100012",
+                  "description": "Faire le transfert au Sénat",
+                  "montant_ae": "3200000000",
+                  "montant_cp": "3200000000"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "103",
+      "nom": "Présidence de la République",
+      "montant_ae": "108491594600",
+      "montant_cp": "108491594600",
+      "programmes": [
+        {
+          "code": "13002",
+          "nom": "Autorité Exécutive Suprême",
+          "montant_ae": "53646802160",
+          "montant_cp": "53646802160",
+          "natures": [
+            {
+              "nom": "1 Personnel",
+              "montant_ae": "14117782703",
+              "montant_cp": "14117782703",
+              "lignes_budgetaires": [
+                {
+                  "code": "78011100222",
+                  "description": "Prendre en charge les salaires du personnel de la Présidence de la République",
+                  "montant_ae": "12600000000",
+                  "montant_cp": "12600000000"
+                },
+                {
+                  "code": "78011100301",
+                  "description": "Prendre en charge les salaires, les dépenses de personnels fonctionnaires",
+                  "montant_ae": "1517782703",
+                  "montant_cp": "1517782703"
+                }
+              ]
+            },
+            {
+              "nom": "2 Biens et services",
+              "montant_ae": "4630270179",
+              "montant_cp": "4630270179",
+              "lignes_budgetaires": [
+                {
+                  "code": "78011100220",
+                  "description": "Prendre en charge les frais d'abonnement et de factures d'eau, d'électricité et de téléphone",
+                  "montant_ae": "4630270179",
+                  "montant_cp": "4630270179"
+                }
+              ]
+            },
+            {
+              "nom": "3 Transferts",
+              "montant_ae": "34898749278",
+              "montant_cp": "34898749278",
+              "lignes_budgetaires": [
+                {
+                  "code": "78011100288",
+                  "description": "Fonds spéciaux - Transferts aux Institutions - Présidence de la République",
+                  "montant_ae": "29930024809",
+                  "montant_cp": "29930024809"
+                },
+                {
+                  "code": "78011100296",
+                  "description": "Prendre en charge les honoraires des Agents sous Convention BNETD",
+                  "montant_ae": "19977498",
+                  "montant_cp": "19977498"
+                },
+                {
+                  "code": "78011100300",
+                  "description": "Prendre en charge les visites d'Etat",
+                  "montant_ae": "3787551463",
+                  "montant_cp": "3787551463"
+                },
+                {
+                  "code": "78011100360",
+                  "description": "Prendre en charge le contrat d'entretien et de maintenance des installations techniques du bâtiment Esplanade",
+                  "montant_ae": "1161195508",
+                  "montant_cp": "1161195508"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "13003",
+          "nom": "Inspection et Audit",
+          "montant_ae": "6912277679",
+          "montant_cp": "6912277679",
+          "natures": [
+            {
+              "nom": "1 Personnel",
+              "montant_ae": "2550287248",
+              "montant_cp": "2550287248",
+              "lignes_budgetaires": [
+                {
+                  "code": "78011100321",
+                  "description": "Prendre en charge les salaires du personnel de l'Inspection Générale d'Etat (IGE)",
+                  "montant_ae": "2550287248",
+                  "montant_cp": "2550287248"
+                }
+              ]
+            },
+            {
+              "nom": "3 Transferts",
+              "montant_ae": "4020990431",
+              "montant_cp": "4020990431",
+              "lignes_budgetaires": [
+                {
+                  "code": "78011100223",
+                  "description": "Inspecter et auditer les services de l'Etat concernés",
+                  "montant_ae": "3920990431",
+                  "montant_cp": "3920990431"
+                },
+                {
+                  "code": "78011100272",
+                  "description": "Exécuter les activités au titre du CONAFIP/IGE",
+                  "montant_ae": "100000000",
+                  "montant_cp": "100000000"
+                }
+              ]
+            },
+            {
+              "nom": "4 Investissements",
+              "montant_ae": "341000000",
+              "montant_cp": "341000000",
+              "lignes_budgetaires": [
+                {
+                  "code": "78011100362",
+                  "description": "Construire les bâtiments annexes et réhabiliter le siège de l'Inspection Générale d'Etat (IGE)",
+                  "montant_ae": "341000000",
+                  "montant_cp": "341000000"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "13004",
+          "nom": "Autorité de Suivi-Contrôle",
+          "montant_ae": "4458391172",
+          "montant_cp": "4458391172",
+          "natures": [
+            {
+              "nom": "3 Transferts",
+              "montant_ae": "4458391172",
+              "montant_cp": "4458391172",
+              "lignes_budgetaires": [
+                {
+                  "code": "78011100330",
+                  "description": "Mettre en oeuvre la politique de l'Haute Autorité de la bonne gouvernance en matière de prévention et de lutte contre",
+                  "montant_ae": "3110319727",
+                  "montant_cp": "3110319727"
+                },
+                {
+                  "code": "90011100005",
+                  "description": "Mettre en oeuvre les activités de lutte contre la corruption / MCC",
+                  "montant_ae": "1348071445",
+                  "montant_cp": "1348071445"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "13005",
+          "nom": "Autorité Administrative de Sécurité",
+          "montant_ae": "37211554262",
+          "montant_cp": "37211554262",
+          "natures": [
+            {
+              "nom": "3 Transferts",
+              "montant_ae": "22211554262",
+              "montant_cp": "22211554262",
+              "lignes_budgetaires": [
+                {
+                  "code": "78011100225",
+                  "description": "Subventionner ANSI / Coordination et comités (CNS)",
+                  "montant_ae": "82073017",
+                  "montant_cp": "82073017"
+                },
+                {
+                  "code": "78011100226",
+                  "description": "Veiller à la Sécurisation des Elections",
+                  "montant_ae": "2750000000",
+                  "montant_cp": "2750000000"
+                },
+                {
+                  "code": "78011100228",
+                  "description": "Mettre en oeuvre la politique de la Présidence en matière de Sécurité Nationale",
+                  "montant_ae": "17250000000",
+                  "montant_cp": "17250000000"
+                },
+                {
+                  "code": "78011100273",
+                  "description": "Détecter et entraver à l'intérieur comme à l'extérieur du territoire national, les activités de terrorisme, de subversion,",
+                  "montant_ae": "1255041245",
+                  "montant_cp": "1255041245"
+                },
+                {
+                  "code": "90011100001",
+                  "description": "Prendre en charge les opérations du Groupement Spécial de Répression de l'Orpaillage Illégal (GS-ROI)",
+                  "montant_ae": "874440000",
+                  "montant_cp": "874440000"
+                }
+              ]
+            },
+            {
+              "nom": "4 Investissements",
+              "montant_ae": "15000000000",
+              "montant_cp": "15000000000",
+              "lignes_budgetaires": [
+                {
+                  "code": "78011100304",
+                  "description": "Faire le transfert d'Equipement des structures de défense et de sécurité / CNS",
+                  "montant_ae": "15000000000",
+                  "montant_cp": "15000000000"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "13006",
+          "nom": "Autorité Normative de Régulation",
+          "montant_ae": "200000000",
+          "montant_cp": "200000000",
+          "natures": [
+            {
+              "nom": "3 Transferts",
+              "montant_ae": "200000000",
+              "montant_cp": "200000000",
+              "lignes_budgetaires": [
+                {
+                  "code": "78011100316",
+                  "description": "Mettre en oeuvre la politique de l'Autorité Nationale de Régulation des Marchés Publics en matière de marchés publics",
+                  "montant_ae": "200000000",
+                  "montant_cp": "200000000"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "13007",
+          "nom": "Structures sous-tutelles de la Présidence de la République",
+          "montant_ae": "6062569327",
+          "montant_cp": "6062569327",
+          "natures": [
+            {
+              "nom": "1 Personnel",
+              "montant_ae": "306450000",
+              "montant_cp": "306450000",
+              "lignes_budgetaires": [
+                {
+                  "code": "78011100271",
+                  "description": "Transférer les crédits des subventions d'équilibre personnel à la Commission Nationale du Mécanisme Africain d'Evalua",
+                  "montant_ae": "306450000",
+                  "montant_cp": "306450000"
+                }
+              ]
+            },
+            {
+              "nom": "3 Transferts",
+              "montant_ae": "4839466651",
+              "montant_cp": "4839466651",
+              "lignes_budgetaires": [
+                {
+                  "code": "11011100014",
+                  "description": "Transférer les crédits de la Fondation HOUPHOUET BOIGNY à Yamoussoukro",
+                  "montant_ae": "806000000",
+                  "montant_cp": "806000000"
+                },
+                {
+                  "code": "13007010018",
+                  "description": "Organiser la communication et la diffusion des messages de paix et de cohésion nationale (RADIO de la PAIX)",
+                  "montant_ae": "1100000000",
+                  "montant_cp": "1100000000"
+                },
+                {
+                  "code": "78011100230",
+                  "description": "Transférer les crédits de MCC/TRESHOLD",
+                  "montant_ae": "328403802",
+                  "montant_cp": "328403802"
+                },
+                {
+                  "code": "78011100231",
+                  "description": "Coordonner l'Unité de Suivi des indicateurs MCC-Côte d'Ivoire",
+                  "montant_ae": "253380943",
+                  "montant_cp": "253380943"
+                },
+                {
+                  "code": "78011100232",
+                  "description": "Transférer les crédits de l'Académie des Sciences et de la culture",
+                  "montant_ae": "559976706",
+                  "montant_cp": "559976706"
+                },
+                {
+                  "code": "78011100305",
+                  "description": "Appuyer le développement économique",
+                  "montant_ae": "80100000",
+                  "montant_cp": "80100000"
+                },
+                {
+                  "code": "78011100331",
+                  "description": "Transférer les crédits de la Commission National du Mécanisme Africain d'Evaluation par les Pairs (CNMAEP)",
+                  "montant_ae": "663605200",
+                  "montant_cp": "663605200"
+                },
+                {
+                  "code": "78018000005",
+                  "description": "Transférer les crédits au Centre d'Excellence Régional Contre la Faim et la Malnutrition de l'Afrique de l'Ouest et du Ce",
+                  "montant_ae": "900000000",
+                  "montant_cp": "900000000"
+                },
+                {
+                  "code": "78018000006",
+                  "description": "Transférer les Crédits au Conseil National de Politique Economique (CNPE)",
+                  "montant_ae": "148000000",
+                  "montant_cp": "148000000"
+                }
+              ]
+            },
+            {
+              "nom": "4 Investissements",
+              "montant_ae": "916652676",
+              "montant_cp": "916652676",
+              "lignes_budgetaires": [
+                {
+                  "code": "78011100234",
+                  "description": "Programme de Valorisation des Compétences Féminines",
+                  "montant_ae": "916652676",
+                  "montant_cp": "916652676"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "105",
+      "nom": "Conseil Economique, Social, Environnemental et Culturel",
+      "montant_ae": "7963693980",
+      "montant_cp": "7963693980",
+      "programmes": [
+        {
+          "code": "13008",
+          "nom": "Autorité Consultative",
+          "montant_ae": "7963693980",
+          "montant_cp": "7963693980",
+          "natures": [
+            {
+              "nom": "1 Personnel",
+              "montant_ae": "5322835054",
+              "montant_cp": "5322835054",
+              "lignes_budgetaires": [
+                {
+                  "code": "78011100322",
+                  "description": "Prendre en charge les salaires du personnel du Conseil Economique, Social, Environnemental et Culturel",
+                  "montant_ae": "5322835054",
+                  "montant_cp": "5322835054"
+                }
+              ]
+            },
+            {
+              "nom": "2 Biens et services",
+              "montant_ae": "90858926",
+              "montant_cp": "90858926",
+              "lignes_budgetaires": [
+                {
+                  "code": "78011100277",
+                  "description": "Prendre en charge les dépenses liées aux activités d'abonnement",
+                  "montant_ae": "90858926",
+                  "montant_cp": "90858926"
+                }
+              ]
+            },
+            {
+              "nom": "3 Transferts",
+              "montant_ae": "2550000000",
+              "montant_cp": "2550000000",
+              "lignes_budgetaires": [
+                {
+                  "code": "78011100307",
+                  "description": "Mener des études et émettre des avis sur la politique Economique Sociale Environnementale et Culturelle du Gouverne",
+                  "montant_ae": "2550000000",
+                  "montant_cp": "2550000000"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "106",
+      "nom": "Conseil Constitutionnel",
+      "montant_ae": "2851637545",
+      "montant_cp": "2851637545",
+      "programmes": [
+        {
+          "code": "13014",
+          "nom": "Pouvoir Public de Contrôle de Conformité des Lois et Règlements",
+          "montant_ae": "2851637545",
+          "montant_cp": "2851637545",
+          "natures": [
+            {
+              "nom": "1 Personnel",
+              "montant_ae": "1500100000",
+              "montant_cp": "1500100000",
+              "lignes_budgetaires": [
+                {
+                  "code": "78036000149",
+                  "description": "Prendre en charge les salaires du personnel fonctionnaire et des contractuels du Conseil Constitutionnel",
+                  "montant_ae": "1500100000",
+                  "montant_cp": "1500100000"
+                }
+              ]
+            },
+            {
+              "nom": "2 Biens et services",
+              "montant_ae": "39201881",
+              "montant_cp": "39201881",
+              "lignes_budgetaires": [
+                {
+                  "code": "78036000110",
+                  "description": "Prendre en charge les frais d'abonnement et de factures d'eau, d'électricité et de téléphone",
+                  "montant_ae": "39201881",
+                  "montant_cp": "39201881"
+                }
+              ]
+            },
+            {
+              "nom": "3 Transferts",
+              "montant_ae": "1312335664",
+              "montant_cp": "1312335664",
+              "lignes_budgetaires": [
+                {
+                  "code": "78033000133",
+                  "description": "Mettre en oeuvre la politique du conseil constitutionnel en matière de régulation du fonctionnement des pouvoirs publ",
+                  "montant_ae": "1312335664",
+                  "montant_cp": "1312335664"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "107",
+      "nom": "Grande Chancellerie",
+      "montant_ae": "2303367844",
+      "montant_cp": "2303367844",
+      "programmes": [
+        {
+          "code": "13009",
+          "nom": "Gestion du Code des Valeurs et des Distinctions",
+          "montant_ae": "2303367844",
+          "montant_cp": "2303367844",
+          "natures": [
+            {
+              "nom": "1 Personnel",
+              "montant_ae": "1072735354",
+              "montant_cp": "1072735354",
+              "lignes_budgetaires": [
+                {
+                  "code": "78011100285",
+                  "description": "Gérer les dépenses de personnel",
+                  "montant_ae": "201034474",
+                  "montant_cp": "201034474"
+                },
+                {
+                  "code": "78011100328",
+                  "description": "Prendre en charge les salaire du personnel",
+                  "montant_ae": "871700880",
+                  "montant_cp": "871700880"
+                }
+              ]
+            },
+            {
+              "nom": "2 Biens et services",
+              "montant_ae": "21999662",
+              "montant_cp": "21999662",
+              "lignes_budgetaires": [
+                {
+                  "code": "78011100238",
+                  "description": "Gérer les activitées d'abonnement",
+                  "montant_ae": "21999662",
+                  "montant_cp": "21999662"
+                }
+              ]
+            },
+            {
+              "nom": "3 Transferts",
+              "montant_ae": "1208632828",
+              "montant_cp": "1208632828",
+              "lignes_budgetaires": [
+                {
+                  "code": "78011100237",
+                  "description": "Assurer le fonctionnement de la Grande Chancellerie",
+                  "montant_ae": "1158632828",
+                  "montant_cp": "1158632828"
+                },
+                {
+                  "code": "78011100278",
+                  "description": "Acquerir des médailles de distinction",
+                  "montant_ae": "50000000",
+                  "montant_cp": "50000000"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "108",
+      "nom": "Primature et Services Rattachés (Premier Ministre, Chef du Gouvernement, Ministre des Sports et du Cadre de Vie)",
+      "montant_ae": "84324210528",
+      "montant_cp": "84324210528",
+      "programmes": [
+        {
+          "code": "13010",
+          "nom": "Autorité Exécutive et de Coordination",
+          "montant_ae": "24769036399",
+          "montant_cp": "24769036399",
+          "natures": [
+            {
+              "nom": "1 Personnel",
+              "montant_ae": "8342400000",
+              "montant_cp": "8342400000",
+              "lignes_budgetaires": [
+                {
+                  "code": "78013300428",
+                  "description": "Prendre en charge les salaires du personnel de la Primature",
+                  "montant_ae": "8342400000",
+                  "montant_cp": "8342400000"
+                }
+              ]
+            },
+            {
+              "nom": "2 Biens et services",
+              "montant_ae": "211800000",
+              "montant_cp": "211800000",
+              "lignes_budgetaires": [
+                {
+                  "code": "78013300425",
+                  "description": "Régie / Convention BNETD",
+                  "montant_ae": "211800000",
+                  "montant_cp": "211800000"
+                }
+              ]
+            },
+            {
+              "nom": "3 Transferts",
+              "montant_ae": "9374453351",
+              "montant_cp": "9374453351",
+              "lignes_budgetaires": [
+                {
+                  "code": "78013300424",
+                  "description": "Transférer au Prix d'Excellence",
+                  "montant_ae": "1222400700",
+                  "montant_cp": "1222400700"
+                },
+                {
+                  "code": "78013300426",
+                  "description": "Direction de la Solde/Gestion des conférences et missions",
+                  "montant_ae": "77000000",
+                  "montant_cp": "77000000"
+                },
+                {
+                  "code": "78013300427",
+                  "description": "Prendre en charge les missions en Côte d'Ivoire",
+                  "montant_ae": "37000000",
+                  "montant_cp": "37000000"
+                },
+                {
+                  "code": "78013300613",
+                  "description": "Prendre en charge les honoraires des agents sous contrats BNETD",
+                  "montant_ae": "159402718",
+                  "montant_cp": "159402718"
+                },
+                {
+                  "code": "78013300645",
+                  "description": "Transférer au Programme de Renforcement des capacités PRIMATURE",
+                  "montant_ae": "100000000",
+                  "montant_cp": "100000000"
+                },
+                {
+                  "code": "78013300648",
+                  "description": "Mettre en oeuvre la politique de la Nation telle que définie par le Président de la République.",
+                  "montant_ae": "7680112833",
+                  "montant_cp": "7680112833"
+                },
+                {
+                  "code": "90098000003",
+                  "description": "Assurer le fonctionnement du Comité Interministériel pour la Formation des Enseignants (CIFE)",
+                  "montant_ae": "98537100",
+                  "montant_cp": "98537100"
+                }
+              ]
+            },
+            {
+              "nom": "4 Investissements",
+              "montant_ae": "6840383048",
+              "montant_cp": "6840383048",
+              "lignes_budgetaires": [
+                {
+                  "code": "78013300419",
+                  "description": "Réhabiliter extension annexe Primature",
+                  "montant_ae": "460383048",
+                  "montant_cp": "460383048"
+                },
+                {
+                  "code": "78013300420",
+                  "description": "Equiper la Primature",
+                  "montant_ae": "380000000",
+                  "montant_cp": "380000000"
+                },
+                {
+                  "code": "90013390141",
+                  "description": "Fonds d'études et pilotage/3ème C2D",
+                  "montant_ae": "6000000000",
+                  "montant_cp": "6000000000"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "13011",
+          "nom": "Coordination Action Gouvernementale",
+          "montant_ae": "1826348911",
+          "montant_cp": "1826348911",
+          "natures": [
+            {
+              "nom": "1 Personnel",
+              "montant_ae": "383721454",
+              "montant_cp": "383721454",
+              "lignes_budgetaires": [
+                {
+                  "code": "78013300533",
+                  "description": "Prendre en charge les salaires du personnel du Secrétariat Général du Gouvernement",
+                  "montant_ae": "383721454",
+                  "montant_cp": "383721454"
+                }
+              ]
+            },
+            {
+              "nom": "3 Transferts",
+              "montant_ae": "1442627457",
+              "montant_cp": "1442627457",
+              "lignes_budgetaires": [
+                {
+                  "code": "78013300430",
+                  "description": "Transférer les crédits au SGG-BGVA",
+                  "montant_ae": "126096880",
+                  "montant_cp": "126096880"
+                },
+                {
+                  "code": "78013300431",
+                  "description": "Transférer les crédits au SGG-JO",
+                  "montant_ae": "65256583",
+                  "montant_cp": "65256583"
+                },
+                {
+                  "code": "78013300518",
+                  "description": "Coordonner l'action gouvernementale",
+                  "montant_ae": "1251273994",
+                  "montant_cp": "1251273994"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "13012",
+          "nom": "Audit et Contrôle à posteriori de la dépense publique",
+          "montant_ae": "2299714798",
+          "montant_cp": "2299714798",
+          "natures": [
+            {
+              "nom": "1 Personnel",
+              "montant_ae": "73945099",
+              "montant_cp": "73945099",
+              "lignes_budgetaires": [
+                {
+                  "code": "78013300521",
+                  "description": "Prendre en charge les salaires du personnel de l'Inspection Générale des Finances - PM",
+                  "montant_ae": "66945099",
+                  "montant_cp": "66945099"
+                },
+                {
+                  "code": "78013300557",
+                  "description": "Prendre en charge les salaires du personnel de l'IGF/Comité de suivi des recommandations des services de contrôle et",
+                  "montant_ae": "7000000",
+                  "montant_cp": "7000000"
+                }
+              ]
+            },
+            {
+              "nom": "3 Transferts",
+              "montant_ae": "2125769699",
+              "montant_cp": "2125769699",
+              "lignes_budgetaires": [
+                {
+                  "code": "78013300434",
+                  "description": "Transférer les crédits à l'IGF / Fonds d'appui",
+                  "montant_ae": "205614812",
+                  "montant_cp": "205614812"
+                },
+                {
+                  "code": "78013300435",
+                  "description": "Transférer les crédits à L'IGF / CONAFIP",
+                  "montant_ae": "380000000",
+                  "montant_cp": "380000000"
+                },
+                {
+                  "code": "78013300529",
+                  "description": "Transférer les crédits à l'IGF/Comité de suivi des remboursements des crédits de TVA",
+                  "montant_ae": "30524913",
+                  "montant_cp": "30524913"
+                },
+                {
+                  "code": "78013300540",
+                  "description": "Contrôler le bon fonctionnement des Services Rattachés, des Directions Centrales et Services Extérieurs, des Etablisse",
+                  "montant_ae": "657434974",
+                  "montant_cp": "657434974"
+                },
+                {
+                  "code": "78013300541",
+                  "description": "Transférer à l'IGF / Brigade de lutte contre la corruption",
+                  "montant_ae": "221995000",
+                  "montant_cp": "221995000"
+                },
+                {
+                  "code": "78013300542",
+                  "description": "Transférer les crédits à l'IGF / Comité de suivi des recommandations des services de contrôle et d'Inspection",
+                  "montant_ae": "40000000",
+                  "montant_cp": "40000000"
+                },
+                {
+                  "code": "78013300586",
+                  "description": "Transférer à l'IGF / Comité d'identification des recettes non fiscales",
+                  "montant_ae": "22000000",
+                  "montant_cp": "22000000"
+                },
+                {
+                  "code": "78013300650",
+                  "description": "Inspection Générale des Finances - PM / Audit Interne",
+                  "montant_ae": "568200000",
+                  "montant_cp": "568200000"
+                }
+              ]
+            },
+            {
+              "nom": "4 Investissements",
+              "montant_ae": "100000000",
+              "montant_cp": "100000000",
+              "lignes_budgetaires": [
+                {
+                  "code": "78013300656",
+                  "description": "Construire et équiper un immeuble R+2 au siège de la BLC/IGF",
+                  "montant_ae": "100000000",
+                  "montant_cp": "100000000"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "13013",
+          "nom": "Structures sous-tutelles de la Primature",
+          "montant_ae": "53257392394",
+          "montant_cp": "53257392394",
+          "natures": [
+            {
+              "nom": "1 Personnel",
+              "montant_ae": "4524530552",
+              "montant_cp": "4524530552",
+              "lignes_budgetaires": [
+                {
+                  "code": "78011100221",
+                  "description": "Transférer les crédits des subventions équilibre personnel au Centre National de Télédétection et d'Information Géogr",
+                  "montant_ae": "838674772",
+                  "montant_cp": "838674772"
+                },
+                {
+                  "code": "78013300437",
+                  "description": "Prendre en charge les salaires du personnel des structures sous-tutelles",
+                  "montant_ae": "928817180",
+                  "montant_cp": "928817180"
+                },
+                {
+                  "code": "78013300558",
+                  "description": "Prendre en charge le salaire du personnel à l'INCI",
+                  "montant_ae": "522810871",
+                  "montant_cp": "522810871"
+                },
+                {
+                  "code": "78013300617",
+                  "description": "Transférer les crédits de prise en charge du salaire du personnel du Comité de privatisation",
+                  "montant_ae": "348268269",
+                  "montant_cp": "348268269"
+                },
+                {
+                  "code": "78041100065",
+                  "description": "Transférer les subventions équilibre personnel au CEPICI",
+                  "montant_ae": "1752414460",
+                  "montant_cp": "1752414460"
+                },
+                {
+                  "code": "78046000504",
+                  "description": "Transférer les crédits de subventions équilibre personnel au Centre d'Information & Communication Gouvernementale",
+                  "montant_ae": "133545000",
+                  "montant_cp": "133545000"
+                }
+              ]
+            },
+            {
+              "nom": "2 Biens et services",
+              "montant_ae": "693206164",
+              "montant_cp": "693206164",
+              "lignes_budgetaires": [
+                {
+                  "code": "78013300438",
+                  "description": "Prendre en charge les frais d'abonnement et de factures d'eau, d'électricité et de téléphone des Structures sous-tutelle",
+                  "montant_ae": "693206164",
+                  "montant_cp": "693206164"
+                }
+              ]
+            },
+            {
+              "nom": "3 Transferts",
+              "montant_ae": "12191958949",
+              "montant_cp": "12191958949",
+              "lignes_budgetaires": [
+                {
+                  "code": "13013010049",
+                  "description": "Transférer les crédits à la Commission Nationale des Frontières de Côte d'Ivoire ( CNFCI )",
+                  "montant_ae": "829047706",
+                  "montant_cp": "829047706"
+                },
+                {
+                  "code": "78011100274",
+                  "description": "Mettre en oeuvre la stratégie du Bureau National d'Etudes Techniques et de Développement (BNETD) en matière d'étu",
+                  "montant_ae": "1702799623",
+                  "montant_cp": "1702799623"
+                },
+                {
+                  "code": "78011100276",
+                  "description": "Transférer les crédits au Comité de Pilotage des Partenariats Public-Privé(CNPPP)",
+                  "montant_ae": "2174400340",
+                  "montant_cp": "2174400340"
+                },
+                {
+                  "code": "78011100282",
+                  "description": "Transférer les crédits au Comité National de la Zone de Libre-échange Continentale Africaine(CN-ZLECAf)",
+                  "montant_ae": "228500000",
+                  "montant_cp": "228500000"
+                },
+                {
+                  "code": "78011100306",
+                  "description": "Mettre en oeuvre la politique du Centre National de Télédétection et d'Information Géographique (CNTIG) en matière",
+                  "montant_ae": "442443616",
+                  "montant_cp": "442443616"
+                },
+                {
+                  "code": "78013300527",
+                  "description": "Transférer les crédits au Comité de Privatisiation",
+                  "montant_ae": "514715000",
+                  "montant_cp": "514715000"
+                },
+                {
+                  "code": "78013300585",
+                  "description": "Transférer les crédits à l'Imprimerie Nationale de Côte d'Ivoire",
+                  "montant_ae": "1410686383",
+                  "montant_cp": "1410686383"
+                },
+                {
+                  "code": "78013300624",
+                  "description": "Transférer les crédits à l'ONEG",
+                  "montant_ae": "198423431",
+                  "montant_cp": "198423431"
+                },
+                {
+                  "code": "78013300652",
+                  "description": "Transférer les crédits au Secrétariat Permanent du Comité Interministériel Action de L'Etat en Mer",
+                  "montant_ae": "350355829",
+                  "montant_cp": "350355829"
+                },
+                {
+                  "code": "78032000030",
+                  "description": "Transférer les crédits à la Plateforme Nationale de Réduction des Risques et de Gestion des Catastrophes",
+                  "montant_ae": "256790000",
+                  "montant_cp": "256790000"
+                },
+                {
+                  "code": "78041100062",
+                  "description": "Transférer les crédits relatifs à la promotion de□□ l'Investissement",
+                  "montant_ae": "734242219",
+                  "montant_cp": "734242219"
+                },
+                {
+                  "code": "78041100072",
+                  "description": "Transférer les crédits au CEPICI",
+                  "montant_ae": "687797438",
+                  "montant_cp": "687797438"
+                },
+                {
+                  "code": "78041100080",
+                  "description": "Transférer les crédits relatifs aux activités du Doing Business",
+                  "montant_ae": "324929583",
+                  "montant_cp": "324929583"
+                },
+                {
+                  "code": "78046000388",
+                  "description": "Assister le gouvernement dans sa communication gouvernementale",
+                  "montant_ae": "604817706",
+                  "montant_cp": "604817706"
+                },
+                {
+                  "code": "78046000561",
+                  "description": "Renforcer les capacités des agents de l'Etat à l'utilisation des outils informatiques",
+                  "montant_ae": "250000000",
+                  "montant_cp": "250000000"
+                },
+                {
+                  "code": "78047400004",
+                  "description": "Transférer les Crédits à la Coordination pour la mise en oeuvre du Plan d'Urgence pour la Commune D'Abobo (CPUCA)",
+                  "montant_ae": "150947185",
+                  "montant_cp": "150947185"
+                },
+                {
+                  "code": "78081000119",
+                  "description": "Transférer les crédits au Comité d'Organisation de la Coupe Africaine des Nations (COCAN) 2022",
+                  "montant_ae": "881062890",
+                  "montant_cp": "881062890"
+                },
+                {
+                  "code": "90013300024",
+                  "description": "Fonds Communs de Matérialisation des Frontières",
+                  "montant_ae": "450000000",
+                  "montant_cp": "450000000"
+                }
+              ]
+            },
+            {
+              "nom": "4 Investissements",
+              "montant_ae": "35847696729",
+              "montant_cp": "35847696729",
+              "lignes_budgetaires": [
+                {
+                  "code": "28092200009",
+                  "description": "CLP-BOUNA",
+                  "montant_ae": "520882072",
+                  "montant_cp": "520882072"
+                },
+                {
+                  "code": "41092200018",
+                  "description": "CCFP-ZOUHAN-HOUNIEN",
+                  "montant_ae": "287115552",
+                  "montant_cp": "287115552"
+                },
+                {
+                  "code": "78011100243",
+                  "description": "Suivre l'exécution du PA-PSGOUV/Primature et Services Rattachés",
+                  "montant_ae": "500000000",
+                  "montant_cp": "500000000"
+                },
+                {
+                  "code": "78032000032",
+                  "description": "Transférer les crédits de la réalisation de la Cartographie Nationale des Risques de catastrophes d'origine naturelle en",
+                  "montant_ae": "180000000",
+                  "montant_cp": "180000000"
+                },
+                {
+                  "code": "78047400003",
+                  "description": "Projet d'urgence infrastructure Abobo",
+                  "montant_ae": "4000000000",
+                  "montant_cp": "4000000000"
+                },
+                {
+                  "code": "78074000436",
+                  "description": "Projet d'appui multi sectoriel de nutrition et de développement de la petite enfance",
+                  "montant_ae": "473340413",
+                  "montant_cp": "473340413"
+                },
+                {
+                  "code": "78074000662",
+                  "description": "Programme National Multisectoriel de Nutrition / Secteur Gouvernance Primature",
+                  "montant_ae": "1019461192",
+                  "montant_cp": "1019461192"
+                },
+                {
+                  "code": "90011100006",
+                  "description": "Coordonner, suivre et évaluer le PSGOUV/Primature",
+                  "montant_ae": "900000000",
+                  "montant_cp": "900000000"
+                },
+                {
+                  "code": "90013390136",
+                  "description": "Projet de Cohésion Sociale des régions du Golfe de Guinée (COSO)",
+                  "montant_ae": "18500000000",
+                  "montant_cp": "18500000000"
+                },
+                {
+                  "code": "90013390142",
+                  "description": "Mettre en oeuvre le Projet Abidjan Legacy Program",
+                  "montant_ae": "1219600000",
+                  "montant_cp": "1219600000"
+                },
+                {
+                  "code": "90013390148",
+                  "description": "Programme d'amélioration du climat des affaires",
+                  "montant_ae": "750000000",
+                  "montant_cp": "750000000"
+                },
+                {
+                  "code": "90013390149",
+                  "description": "Projet Intégré de Nutrition et de Développement de la Petite Enfance (PINUT-DPE)",
+                  "montant_ae": "7497297500",
+                  "montant_cp": "7497297500"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "22221",
+          "nom": "Renforcement des capacités",
+          "montant_ae": "2171718026",
+          "montant_cp": "2171718026",
+          "natures": [
+            {
+              "nom": "1 Personnel",
+              "montant_ae": "223880075",
+              "montant_cp": "223880075",
+              "lignes_budgetaires": [
+                {
+                  "code": "78013300573",
+                  "description": "Transférer les crédits des subventions d'équilibre personnel au Secrétariat National au Renforcement des Capacités",
+                  "montant_ae": "223880075",
+                  "montant_cp": "223880075"
+                }
+              ]
+            },
+            {
+              "nom": "2 Biens et services",
+              "montant_ae": "15837951",
+              "montant_cp": "15837951",
+              "lignes_budgetaires": [
+                {
+                  "code": "90013300015",
+                  "description": "Coordonner les actions de renforcement de capacité des acteurs du secteur pubic, privé et de la société civile",
+                  "montant_ae": "15837951",
+                  "montant_cp": "15837951"
+                }
+              ]
+            },
+            {
+              "nom": "3 Transferts",
+              "montant_ae": "487500000",
+              "montant_cp": "487500000",
+              "lignes_budgetaires": [
+                {
+                  "code": "78013300566",
+                  "description": "Transférer les crédits au secrétariat national au renforcement des capacités (snrc)",
+                  "montant_ae": "487500000",
+                  "montant_cp": "487500000"
+                }
+              ]
+            },
+            {
+              "nom": "4 Investissements",
+              "montant_ae": "1370000000",
+              "montant_cp": "1370000000",
+              "lignes_budgetaires": [
+                {
+                  "code": "78013300499",
+                  "description": "Pacarc",
+                  "montant_ae": "365000000",
+                  "montant_cp": "365000000"
+                },
+                {
+                  "code": "78013300621",
+                  "description": "Programme pays de renforcement des capacités (PPRC)",
+                  "montant_ae": "1005000000",
+                  "montant_cp": "1005000000"
+                }
+              ]
+            },
+            {
+              "nom": "2 Biens et services",
+              "montant_ae": "74500000",
+              "montant_cp": "74500000",
+              "lignes_budgetaires": [
+                {
+                  "code": "78013300679",
+                  "description": "Mettre en place et opérationnaliser les outils de valorisation et de promotion des compétences nationales",
+                  "montant_ae": "62000000",
+                  "montant_cp": "62000000"
+                },
+                {
+                  "code": "90013300016",
+                  "description": "Concevoir et réaliser un plan de promotion des compétences nationales",
+                  "montant_ae": "12500000",
+                  "montant_cp": "12500000"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "109",
+      "nom": "Médiateur de la République",
+      "montant_ae": "5439273732",
+      "montant_cp": "5439273732",
+      "programmes": [
+        {
+          "code": "13933",
+          "nom": "Médiation et Gestion des Conflits",
+          "montant_ae": "5439273732",
+          "montant_cp": "5439273732",
+          "natures": [
+            {
+              "nom": "1 Personnel",
+              "montant_ae": "3854726826",
+              "montant_cp": "3854726826",
+              "lignes_budgetaires": [
+                {
+                  "code": "78011100284",
+                  "description": "Prendre en charge les salariales du personnel des fonctionnaires et contractuels de la Médiature",
+                  "montant_ae": "3854726826",
+                  "montant_cp": "3854726826"
+                }
+              ]
+            },
+            {
+              "nom": "2 Biens et services",
+              "montant_ae": "59672946",
+              "montant_cp": "59672946",
+              "lignes_budgetaires": [
+                {
+                  "code": "78011100268",
+                  "description": "Prendre en charge les frais d'abonnement et de factures d'eau, d'électricité et de téléphone",
+                  "montant_ae": "59672946",
+                  "montant_cp": "59672946"
+                }
+              ]
+            },
+            {
+              "nom": "3 Transferts",
+              "montant_ae": "1524873960",
+              "montant_cp": "1524873960",
+              "lignes_budgetaires": [
+                {
+                  "code": "78011100294",
+                  "description": "Conduire la médiation entre l'administration et les administrés, mais également entre les administrés eux-mêmes, en v",
+                  "montant_ae": "1524873960",
+                  "montant_cp": "1524873960"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "110",
+      "nom": "Commission Electorale Indépendante",
+      "montant_ae": "31531445062",
+      "montant_cp": "31531445062",
+      "programmes": [
+        {
+          "code": "13017",
+          "nom": "Autorité Administrative d'Organisation et Gestion des Elections",
+          "montant_ae": "5331445062",
+          "montant_cp": "5331445062",
+          "natures": [
+            {
+              "nom": "1 Personnel",
+              "montant_ae": "2922054188",
+              "montant_cp": "2922054188",
+              "lignes_budgetaires": [
+                {
+                  "code": "78016001373",
+                  "description": "Effectuer le transfert des subventions équilibre personnel à la CEI",
+                  "montant_ae": "2922054188",
+                  "montant_cp": "2922054188"
+                }
+              ]
+            },
+            {
+              "nom": "2 Biens et services",
+              "montant_ae": "580352909",
+              "montant_cp": "580352909",
+              "lignes_budgetaires": [
+                {
+                  "code": "13017010007",
+                  "description": "Gérer les activitées d'abonnement",
+                  "montant_ae": "580352909",
+                  "montant_cp": "580352909"
+                }
+              ]
+            },
+            {
+              "nom": "3 Transferts",
+              "montant_ae": "1829037965",
+              "montant_cp": "1829037965",
+              "lignes_budgetaires": [
+                {
+                  "code": "78010200102",
+                  "description": "Assurer le fonctionnement courant des services centraux de la CEI",
+                  "montant_ae": "40000000",
+                  "montant_cp": "40000000"
+                },
+                {
+                  "code": "78016001372",
+                  "description": "Faire le transfert Commission Électorale Indépendante",
+                  "montant_ae": "1789037965",
+                  "montant_cp": "1789037965"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "13932",
+          "nom": "Fonctionnement des Commissions Electorales Locales",
+          "montant_ae": "8000000000",
+          "montant_cp": "8000000000",
+          "natures": [
+            {
+              "nom": "2 Biens et services",
+              "montant_ae": "8000000000",
+              "montant_cp": "8000000000",
+              "lignes_budgetaires": [
+                {
+                  "code": "13932010001",
+                  "description": "Assurer le fonctionnement des Commissions Electorales Locales de la CEI",
+                  "montant_ae": "8000000000",
+                  "montant_cp": "8000000000"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "13971",
+          "nom": "Révision de la liste électorale",
+          "montant_ae": "18200000000",
+          "montant_cp": "18200000000",
+          "natures": [
+            {
+              "nom": "2 Biens et services",
+              "montant_ae": "18200000000",
+              "montant_cp": "18200000000",
+              "lignes_budgetaires": [
+                {
+                  "code": "13971010001",
+                  "description": "Réviser la liste électorale",
+                  "montant_ae": "18200000000",
+                  "montant_cp": "18200000000"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "111",
+      "nom": "Chambre Nationale des Rois et Chefs Traditionnels",
+      "montant_ae": "4271069446",
+      "montant_cp": "4271069446",
+      "programmes": [
+        {
+          "code": "13020",
+          "nom": "Valorisation des Us et Coutumes et Promotion de la Cohésion Sociale",
+          "montant_ae": "4271069446",
+          "montant_cp": "4271069446",
+          "natures": [
+            {
+              "nom": "2 Biens et services",
+              "montant_ae": "135069446",
+              "montant_cp": "135069446",
+              "lignes_budgetaires": [
+                {
+                  "code": "11011100017",
+                  "description": "Gérer les abonnements de la chambre des Rois",
+                  "montant_ae": "135069446",
+                  "montant_cp": "135069446"
+                }
+              ]
+            },
+            {
+              "nom": "3 Transferts",
+              "montant_ae": "4136000000",
+              "montant_cp": "4136000000",
+              "lignes_budgetaires": [
+                {
+                  "code": "11011100016",
+                  "description": "Assurer le fonctionnement de la chambre des rois et des chefs traditionnels",
+                  "montant_ae": "4136000000",
+                  "montant_cp": "4136000000"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "114",
+      "nom": "Cour de Cassation",
+      "montant_ae": "6605687094",
+      "montant_cp": "6605687094",
+      "programmes": [
+        {
+          "code": "13028",
+          "nom": "Contrôle de l'Application et Interprétation des Lois",
+          "montant_ae": "6605687094",
+          "montant_cp": "6605687094",
+          "natures": [
+            {
+              "nom": "1 Personnel",
+              "montant_ae": "3315369720",
+              "montant_cp": "3315369720",
+              "lignes_budgetaires": [
+                {
+                  "code": "78011100302",
+                  "description": "Prendre en charge les salaires du personnel de la cour de cassation",
+                  "montant_ae": "196694184",
+                  "montant_cp": "196694184"
+                },
+                {
+                  "code": "78011100312",
+                  "description": "Prendre en charge les rémunérations des fonctionnaires de la Cour de Cassation",
+                  "montant_ae": "3118675536",
+                  "montant_cp": "3118675536"
+                }
+              ]
+            },
+            {
+              "nom": "2 Biens et services",
+              "montant_ae": "93779620",
+              "montant_cp": "93779620",
+              "lignes_budgetaires": [
+                {
+                  "code": "78011100317",
+                  "description": "Prendre en charge les frais d'abonnement et de factures d'eau, d'électricité et de téléphone",
+                  "montant_ae": "93779620",
+                  "montant_cp": "93779620"
+                }
+              ]
+            },
+            {
+              "nom": "3 Transferts",
+              "montant_ae": "2946537754",
+              "montant_cp": "2946537754",
+              "lignes_budgetaires": [
+                {
+                  "code": "78011100269",
+                  "description": "Examiner les requêtes, les pouvoirs, les enrôlements, les sursis à exécution et autres dossiers",
+                  "montant_ae": "988312949",
+                  "montant_cp": "988312949"
+                },
+                {
+                  "code": "78011100286",
+                  "description": "Examiner les décisions rendues par les cours et tribunaux de l'ordre judiciaire",
+                  "montant_ae": "1068317513",
+                  "montant_cp": "1068317513"
+                },
+                {
+                  "code": "78036000180",
+                  "description": "Prendre en charge diverses autres dépenses de la Cour de Cassation (Primes du personnel, rémunération des décision",
+                  "montant_ae": "889907292",
+                  "montant_cp": "889907292"
+                }
+              ]
+            },
+            {
+              "nom": "4 Investissements",
+              "montant_ae": "250000000",
+              "montant_cp": "250000000",
+              "lignes_budgetaires": [
+                {
+                  "code": "78033000123",
+                  "description": "Réhabiliter les locaux de la Cour de Cassation",
+                  "montant_ae": "124000000",
+                  "montant_cp": "124000000"
+                },
+                {
+                  "code": "78033000151",
+                  "description": "Construire le siège de la Cour de Cassation",
+                  "montant_ae": "126000000",
+                  "montant_cp": "126000000"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "115",
+      "nom": "Cour des Comptes",
+      "montant_ae": "7272701859",
+      "montant_cp": "7272701859",
+      "programmes": [
+        {
+          "code": "13935",
+          "nom": "Juridiction Financière de l'Ordre Administratif",
+          "montant_ae": "7272701859",
+          "montant_cp": "7272701859",
+          "natures": [
+            {
+              "nom": "1 Personnel",
+              "montant_ae": "4009447595",
+              "montant_cp": "4009447595",
+              "lignes_budgetaires": [
+                {
+                  "code": "78011100251",
+                  "description": "Prendre en charge les salaires du personnel de la Cour des Comptes",
+                  "montant_ae": "741776203",
+                  "montant_cp": "741776203"
+                },
+                {
+                  "code": "78011100319",
+                  "description": "Prendre en charge les rémunérations des fonctionnaires de la Cour des Comptes",
+                  "montant_ae": "3267671392",
+                  "montant_cp": "3267671392"
+                }
+              ]
+            },
+            {
+              "nom": "2 Biens et services",
+              "montant_ae": "125969072",
+              "montant_cp": "125969072",
+              "lignes_budgetaires": [
+                {
+                  "code": "78011100250",
+                  "description": "Prendre en charge les frais d'abonnement et de factures d'eau, d'électricité et de téléphone de la Cour des Comptes",
+                  "montant_ae": "125969072",
+                  "montant_cp": "125969072"
+                }
+              ]
+            },
+            {
+              "nom": "3 Transferts",
+              "montant_ae": "2137285192",
+              "montant_cp": "2137285192",
+              "lignes_budgetaires": [
+                {
+                  "code": "78033000140",
+                  "description": "Mettre en oeuvre la politique de la Cour des Comptes en matière de Jugement des comptes publics, de contrôle de ge",
+                  "montant_ae": "2137285192",
+                  "montant_cp": "2137285192"
+                }
+              ]
+            },
+            {
+              "nom": "4 Investissements",
+              "montant_ae": "1000000000",
+              "montant_cp": "1000000000",
+              "lignes_budgetaires": [
+                {
+                  "code": "78011100252",
+                  "description": "Construire et Équiper le siège de la Cour des Comptes",
+                  "montant_ae": "1000000000",
+                  "montant_cp": "1000000000"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "116",
+      "nom": "Parquet Général",
+      "montant_ae": "1279960342",
+      "montant_cp": "1279960342",
+      "programmes": [
+        {
+          "code": "13029",
+          "nom": "Parquet Général",
+          "montant_ae": "1279960342",
+          "montant_cp": "1279960342",
+          "natures": [
+            {
+              "nom": "1 Personnel",
+              "montant_ae": "415604000",
+              "montant_cp": "415604000",
+              "lignes_budgetaires": [
+                {
+                  "code": "78011100303",
+                  "description": "Prendre en charge les salaires du personnel du Parquet Général",
+                  "montant_ae": "415604000",
+                  "montant_cp": "415604000"
+                }
+              ]
+            },
+            {
+              "nom": "2 Biens et services",
+              "montant_ae": "58401696",
+              "montant_cp": "58401696",
+              "lignes_budgetaires": [
+                {
+                  "code": "78011100283",
+                  "description": "Prendre en charge les frais d'abonnement et de factures d'eau, d'électricité et de téléphone du Parquet Général",
+                  "montant_ae": "58401696",
+                  "montant_cp": "58401696"
+                }
+              ]
+            },
+            {
+              "nom": "3 Transferts",
+              "montant_ae": "805954646",
+              "montant_cp": "805954646",
+              "lignes_budgetaires": [
+                {
+                  "code": "78033000139",
+                  "description": "Mettre en oeuvre la politique du Parquet Général en matière de veille de la bonne application des lois et règlements a",
+                  "montant_ae": "805954646",
+                  "montant_cp": "805954646"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "117",
+      "nom": "Parquet Général près la Cour des Comptes",
+      "montant_ae": "1668482039",
+      "montant_cp": "1668482039",
+      "programmes": [
+        {
+          "code": "13934",
+          "nom": "Ministère Public près la Cour des Comptes",
+          "montant_ae": "1668482039",
+          "montant_cp": "1668482039",
+          "natures": [
+            {
+              "nom": "1 Personnel",
+              "montant_ae": "545547068",
+              "montant_cp": "545547068",
+              "lignes_budgetaires": [
+                {
+                  "code": "78011100267",
+                  "description": "Prendre en charge les salaires du personnel du PGPCC",
+                  "montant_ae": "545547068",
+                  "montant_cp": "545547068"
+                }
+              ]
+            },
+            {
+              "nom": "2 Biens et services",
+              "montant_ae": "7934971",
+              "montant_cp": "7934971",
+              "lignes_budgetaires": [
+                {
+                  "code": "78011100324",
+                  "description": "Prendre en charge les frais d'abonnement et de factures d'eau, d'électricité et de téléphone",
+                  "montant_ae": "7934971",
+                  "montant_cp": "7934971"
+                }
+              ]
+            },
+            {
+              "nom": "3 Transferts",
+              "montant_ae": "1115000000",
+              "montant_cp": "1115000000",
+              "lignes_budgetaires": [
+                {
+                  "code": "78033000146",
+                  "description": "Mettre en oeuvre la politique du Parquet Général près de la Cour des Comptes en matière de bonne application des lo",
+                  "montant_ae": "1115000000",
+                  "montant_cp": "1115000000"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "118",
+      "nom": "Conseil d'Etat",
+      "montant_ae": "4880060122",
+      "montant_cp": "4880060122",
+      "programmes": [
+        {
+          "code": "13025",
+          "nom": "Juridiction de l'Ordre administratif",
+          "montant_ae": "4880060122",
+          "montant_cp": "4880060122",
+          "natures": [
+            {
+              "nom": "1 Personnel",
+              "montant_ae": "2002858551",
+              "montant_cp": "2002858551",
+              "lignes_budgetaires": [
+                {
+                  "code": "78011100246",
+                  "description": "Prendre en charge les salaires du personnel",
+                  "montant_ae": "223933309",
+                  "montant_cp": "223933309"
+                },
+                {
+                  "code": "78011100313",
+                  "description": "Prendre en charge les rémunérations des fonctionnaires du Conseil d'Etat",
+                  "montant_ae": "1778925242",
+                  "montant_cp": "1778925242"
+                }
+              ]
+            },
+            {
+              "nom": "2 Biens et services",
+              "montant_ae": "45936747",
+              "montant_cp": "45936747",
+              "lignes_budgetaires": [
+                {
+                  "code": "78011100311",
+                  "description": "Prendre en charge les frais d'abonnement et de factures d'eau, d'électricité et de téléphone",
+                  "montant_ae": "45936747",
+                  "montant_cp": "45936747"
+                }
+              ]
+            },
+            {
+              "nom": "3 Transferts",
+              "montant_ae": "2831264824",
+              "montant_cp": "2831264824",
+              "lignes_budgetaires": [
+                {
+                  "code": "78011100245",
+                  "description": "Mettre en oeuvre la politique du Conseil d'Etat en matière contentieuse et consultative",
+                  "montant_ae": "1982132412",
+                  "montant_cp": "1982132412"
+                },
+                {
+                  "code": "78036000181",
+                  "description": "Prendre en charge diverses autres dépenses du Conseil d'Etat (Primes du personnel, rémunération des décisionnaires",
+                  "montant_ae": "849132412",
+                  "montant_cp": "849132412"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "119",
+      "nom": "Haut Représentant du Président de la République",
+      "montant_ae": "2098650919",
+      "montant_cp": "2098650919",
+      "programmes": [
+        {
+          "code": "13031",
+          "nom": "Haut Représentant du Président de la République",
+          "montant_ae": "2098650919",
+          "montant_cp": "2098650919",
+          "natures": [
+            {
+              "nom": "2 Biens et services",
+              "montant_ae": "86650919",
+              "montant_cp": "86650919",
+              "lignes_budgetaires": [
+                {
+                  "code": "90011100033",
+                  "description": "Prendre en charge les frais d'abonnement et de facture d'eau, d'électricité et de téléphone",
+                  "montant_ae": "86650919",
+                  "montant_cp": "86650919"
+                }
+              ]
+            },
+            {
+              "nom": "3 Transferts",
+              "montant_ae": "2012000000",
+              "montant_cp": "2012000000",
+              "lignes_budgetaires": [
+                {
+                  "code": "90011100032",
+                  "description": "Transférer les crédits de fonctionnement au Haut Représentant du Président de la République",
+                  "montant_ae": "2012000000",
+                  "montant_cp": "2012000000"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "120",
+      "nom": "Conseil Supérieur de la Magistrature",
+      "montant_ae": "1475808866",
+      "montant_cp": "1475808866",
+      "programmes": [
+        {
+          "code": "13032",
+          "nom": "Conseil Supérieur de la Magistrature",
+          "montant_ae": "1475808866",
+          "montant_cp": "1475808866",
+          "natures": [
+            {
+              "nom": "2 Biens et services",
+              "montant_ae": "40000000",
+              "montant_cp": "40000000",
+              "lignes_budgetaires": [
+                {
+                  "code": "90011100035",
+                  "description": "Prendre en charge les frais d'abonnement et de factures d'eau, d'électricité et de téléphone",
+                  "montant_ae": "40000000",
+                  "montant_cp": "40000000"
+                }
+              ]
+            },
+            {
+              "nom": "3 Transferts",
+              "montant_ae": "1435808866",
+              "montant_cp": "1435808866",
+              "lignes_budgetaires": [
+                {
+                  "code": "90011100034",
+                  "description": "Transférer les crédits de fonctionnement au Conseil Supérieur de la Magistrature",
+                  "montant_ae": "1435808866",
+                  "montant_cp": "1435808866"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "montant_total_ae": "318046443375.0",
+  "montant_total_cp": "318046443375.0"
+}
