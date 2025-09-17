@@ -12,6 +12,8 @@
       --primary: #0ea5e9;
       --secondary: #6366f1;
       --accent: #f97316;
+      --success: #10b981;
+      --warning: #f59e0b;
       --background: #f8fafc;
       --card-bg: #ffffff;
       --text: #1e293b;
@@ -25,6 +27,8 @@
       --primary: #0ea5e9;
       --secondary: #818cf8;
       --accent: #fb923c;
+      --success: #34d399;
+      --warning: #fbbf24;
       --background: #0f172a;
       --card-bg: #1e293b;
       --text: #f1f5f9;
@@ -101,7 +105,22 @@
     }
     
     .btn-secondary {
-      background-color: var(--card-bg);
+      background-color: var(--secondary);
+      color: white;
+    }
+    
+    .btn-accent {
+      background-color: var(--accent);
+      color: white;
+    }
+    
+    .btn-success {
+      background-color: var(--success);
+      color: white;
+    }
+    
+    .btn-outline {
+      background-color: transparent;
       color: var(--text);
       border: 1px solid var(--border);
     }
@@ -130,7 +149,7 @@
       margin: 0 auto;
     }
     
-    .search-box {
+    .search-container {
       max-width: 600px;
       margin: 30px auto;
       position: relative;
@@ -160,6 +179,60 @@
       color: var(--text-muted);
     }
     
+    .search-results {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--card-bg);
+      border-radius: 0 0 var(--radius) var(--radius);
+      box-shadow: var(--shadow);
+      max-height: 300px;
+      overflow-y: auto;
+      z-index: 100;
+      display: none;
+      border: 1px solid var(--border);
+      border-top: none;
+    }
+    
+    .search-results.visible {
+      display: block;
+    }
+    
+    .search-result-item {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    
+    .search-result-item:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+    
+    .search-result-item h3 {
+      margin: 0 0 4px 0;
+      font-size: 1rem;
+      color: var(--primary);
+    }
+    
+    .search-result-item p {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+    
+    .search-result-item small {
+      color: var(--text-muted);
+      font-size: 0.75rem;
+    }
+    
+    .no-results {
+      padding: 16px;
+      text-align: center;
+      color: var(--text-muted);
+    }
+    
     .categories {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -174,6 +247,8 @@
       box-shadow: var(--shadow);
       border: 1px solid var(--border);
       transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
     }
     
     .category-card:hover {
@@ -208,16 +283,25 @@
       color: var(--text-muted);
       margin-bottom: 20px;
       font-size: 0.95rem;
+      flex-grow: 1;
+    }
+    
+    .category-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
     }
     
     .category-link {
-      display: inline-block;
-      padding: 8px 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 12px;
       background-color: var(--primary);
       color: white;
       border-radius: 8px;
       font-weight: 500;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       text-decoration: none;
       transition: all 0.2s ease;
     }
@@ -250,6 +334,14 @@
         gap: 15px;
         text-align: center;
       }
+      
+      .category-buttons {
+        flex-direction: column;
+      }
+      
+      .category-link {
+        justify-content: center;
+      }
     }
   </style>
 </head>
@@ -261,7 +353,7 @@
         <span>Codes Essentiels</span>
       </div>
       <div class="nav-buttons">
-        <button class="btn btn-secondary" id="themeToggle">
+        <button class="btn btn-primary" id="themeToggle">
           <i class="fas fa-moon"></i> Thème
         </button>
       </div>
@@ -271,15 +363,16 @@
       <h1>Textes juridiques fondamentaux</h1>
       <p>Porte-documents des codes et textes de loi essentiels, accessible à tous les citoyens</p>
       
-      <div class="search-box">
-        <input type="text" class="search-input" placeholder="Rechercher un texte, une référence...">
+      <div class="search-container">
+        <input type="text" class="search-input" id="searchInput" placeholder="Rechercher un texte, une référence...">
         <div class="search-icon">
           <i class="fas fa-search"></i>
         </div>
+        <div class="search-results" id="searchResults"></div>
       </div>
     </section>
     
-    <main class="categories">
+    <main class="categories" id="documentsContainer">
       <div class="category-card">
         <div class="category-header">
           <div class="category-icon" style="background-color: #6366f1;">
@@ -288,7 +381,17 @@
           <h3 class="category-title">Textes Législatifs</h3>
         </div>
         <p class="category-desc">Constitution, Code de la nationalité, lois organiques et textes fondamentaux</p>
-        <a href="constitution.html" class="category-link">Consulter</a>
+        <div class="category-buttons">
+          <a href="constitution.html" class="category-link">
+            <i class="fas fa-book"></i> Constitution
+          </a>
+          <a href="code_de_nationalite.html" class="category-link">
+            <i class="fas fa-scroll"></i> Nationalité
+          </a>
+          <a href="lois_organiques.html" class="category-link">
+            <i class="fas fa-scale-balanced"></i> Lois organiques
+          </a>
+        </div>
       </div>
       
       <div class="category-card">
@@ -299,7 +402,11 @@
           <h3 class="category-title">Statuts et Règlements</h3>
         </div>
         <p class="category-desc">Statut général, décrets d'application, pensions, indices et statuts spécifiques</p>
-        <a href="statuts.html" class="category-link">Consulter</a>
+        <div class="category-buttons">
+          <a href="statuts.html" class="category-link">
+            <i class="fas fa-eye"></i> Consulter
+          </a>
+        </div>
       </div>
       
       <div class="category-card">
@@ -310,7 +417,11 @@
           <h3 class="category-title">Salaires</h3>
         </div>
         <p class="category-desc">Grilles salariales des fonctionnaires et agents de l'État par grades et échelons</p>
-        <a href="#" class="category-link">Consulter</a>
+        <div class="category-buttons">
+          <a href="#" class="category-link" id="btn-salaires">
+            <i class="fas fa-lock"></i> Accès restreint
+          </a>
+        </div>
       </div>
       
       <div class="category-card">
@@ -321,7 +432,11 @@
           <h3 class="category-title">Déontologie</h3>
         </div>
         <p class="category-desc">Codes de déontologie des personnels de l'éducation, médicale et autres professions</p>
-        <a href="deontologie.html" class="category-link">Consulter</a>
+        <div class="category-buttons">
+          <a href="deontologie.html" class="category-link">
+            <i class="fas fa-eye"></i> Consulter
+          </a>
+        </div>
       </div>
       
       <div class="category-card">
@@ -329,21 +444,89 @@
           <div class="category-icon" style="background-color: #ec4899;">
             <i class="fas fa-ring"></i>
           </div>
-          <h3 class="category-title">Droit de la Famille</h3>
+          <h3 class="category-title">Mariage</h3>
         </div>
-        <p class="category-desc">Mariage, divorce, minorité, adoption, succession et état civil</p>
-        <a href="loi_mariage.html" class="category-link">Consulter</a>
+        <p class="category-desc">Conditions de formation, droits et obligations des époux, régimes matrimoniaux</p>
+        <div class="category-buttons">
+          <a href="loi_mariage.html" class="category-link">
+            <i class="fas fa-eye"></i> Consulter
+          </a>
+        </div>
       </div>
       
       <div class="category-card">
         <div class="category-header">
           <div class="category-icon" style="background-color: #ef4444;">
-            <i class="fas fa-gavel"></i>
+            <i class="fas fa-balance-scale"></i>
           </div>
-          <h3 class="category-title">Droit Pénal</h3>
+          <h3 class="category-title">Divorce</h3>
         </div>
-        <p class="category-desc">Code pénal, règlement pénal et code de procédure pénale</p>
-        <a href="code_penal.html" class="category-link">Consulter</a>
+        <p class="category-desc">Procédures, effets juridiques et modalités de dissolution du mariage</p>
+        <div class="category-buttons">
+          <a href="loi_divorce.html" class="category-link">
+            <i class="fas fa-eye"></i> Consulter
+          </a>
+        </div>
+      </div>
+      
+      <div class="category-card">
+        <div class="category-header">
+          <div class="category-icon" style="background-color: #f59e0b;">
+            <i class="fas fa-child"></i>
+          </div>
+          <h3 class="category-title">Minorité</h3>
+        </div>
+        <p class="category-desc">Statut du mineur, protection de l'enfance, autorité parentale, émancipation</p>
+        <div class="category-buttons">
+          <a href="loiminorite.html" class="category-link">
+            <i class="fas fa-eye"></i> Consulter
+          </a>
+        </div>
+      </div>
+      
+      <div class="category-card">
+        <div class="category-header">
+          <div class="category-icon" style="background-color: #8b5cf6;">
+            <i class="fas fa-hands-helping"></i>
+          </div>
+          <h3 class="category-title">Adoption</h3>
+        </div>
+        <p class="category-desc">Conditions et procédures, adoption plénière et simple, droits des parties</p>
+        <div class="category-buttons">
+          <a href="document-adoption.html" class="category-link">
+            <i class="fas fa-eye"></i> Consulter
+          </a>
+        </div>
+      </div>
+      
+      <div class="category-card">
+        <div class="category-header">
+          <div class="category-icon" style="background-color: #06b6d4;">
+            <i class="fas fa-landmark"></i>
+          </div>
+          <h3 class="category-title">Succession</h3>
+        </div>
+        <p class="category-desc">Dévolution, testaments, donations, réserve héréditaire et partage des biens</p>
+        <div class="category-buttons">
+          <a href="loi_succession.html" class="category-link">
+            <i class="fas fa-eye"></i> Consulter
+          </a>
+        </div>
+      </div>
+      
+      <div class="category-card">
+        <div class="category-header">
+          <div class="category-icon" style="background-color: #0ea5e9;">
+            <i class="fas fa-id-card"></i>
+          </div>
+          <h3 class="category-title">État Civil</h3>
+        </div>
+        <p class="category-desc">Actes de naissance, mariage, décès, rectification et reconstitution</p>
+        <div class="category-buttons">
+          <a href="loietatcivil.html" class="category-link">
+            <i class="fas fa-eye"></i> Consulter
+          </a>
+        </div>
       </div>
       
       <div class="category-card">
@@ -354,7 +537,35 @@
           <h3 class="category-title">Pensions</h3>
         </div>
         <p class="category-desc">Loi générale et décret d'application sur les pensions des fonctionnaires</p>
-        <a href="ordonnancepension.html" class="category-link">Consulter</a>
+        <div class="category-buttons">
+          <a href="ordonnancepension.html" class="category-link">
+            <i class="fas fa-file-contract"></i> Loi
+          </a>
+          <a href="decret_pension.html" class="category-link">
+            <i class="fas fa-file-alt"></i> Décret
+          </a>
+        </div>
+      </div>
+      
+      <div class="category-card">
+        <div class="category-header">
+          <div class="category-icon" style="background-color: #ef4444;">
+            <i class="fas fa-gavel"></i>
+          </div>
+          <h3 class="category-title">Droit Pénal</h3>
+        </div>
+        <p class="category-desc">Code pénal, règlement pénal et code de procédure pénale</p>
+        <div class="category-buttons">
+          <a href="code_penal.html" class="category-link">
+            <i class="fas fa-book"></i> Code pénal
+          </a>
+          <a href="code_penal_reglement.html" class="category-link">
+            <i class="fas fa-scroll"></i> Règlement
+          </a>
+          <a href="cpp.html" class="category-link">
+            <i class="fas fa-scale-balanced"></i> CPP
+          </a>
+        </div>
       </div>
       
       <div class="category-card">
@@ -365,7 +576,11 @@
           <h3 class="category-title">Budget de l'État</h3>
         </div>
         <p class="category-desc">Détails du budget par ministère, programmes et lignes budgétaires</p>
-        <a href="budget.html" class="category-link">Consulter</a>
+        <div class="category-buttons">
+          <a href="budget.html" class="category-link">
+            <i class="fas fa-eye"></i> Ouvrir le Hub
+          </a>
+        </div>
       </div>
     </main>
     
@@ -375,6 +590,217 @@
   </div>
 
   <script>
+    // Index de recherche complet avec tous les documents
+    const searchIndex = [
+      {
+        title: "Constitution",
+        description: "Texte fondamental qui organise les pouvoirs publics et garantit les droits des citoyens",
+        url: "constitution.html",
+        category: "Textes Législatifs",
+        keywords: ["constitution", "fondamental", "pouvoirs publics", "citoyens", "droit", "loi fondamentale"]
+      },
+      {
+        title: "Code de la nationalité",
+        description: "Règles d'acquisition, de perte et de preuve de la nationalité",
+        url: "code_de_nationalite.html",
+        category: "Textes Législatifs",
+        keywords: ["nationalité", "acquisition", "perte", "preuve", "citoyenneté"]
+      },
+      {
+        title: "Lois organiques",
+        description: "Textes qui précisent et complètent la Constitution",
+        url: "lois_organiques.html",
+        category: "Textes Législatifs",
+        keywords: ["lois organiques", "constitution", "complément", "précision"]
+      },
+      {
+        title: "Statuts et Règlements",
+        description: "Statut général, décrets d'application, pensions, indices et statuts spécifiques",
+        url: "statuts.html",
+        category: "Statuts",
+        keywords: ["statut", "règlement", "décret", "pension", "indice", "fonctionnaire", "agent État"]
+      },
+      {
+        title: "Salaires des fonctionnaires",
+        description: "Grilles salariales des fonctionnaires et agents de l'État par grades et échelons",
+        url: "#",
+        category: "Salaires",
+        keywords: ["salaire", "fonctionnaire", "grade", "échelon", "grille", "rémunération", "traitement"]
+      },
+      {
+        title: "Codes de Déontologie",
+        description: "Codes de déontologie des personnels de l'éducation, médicale et autres professions",
+        url: "deontologie.html",
+        category: "Déontologie",
+        keywords: ["déontologie", "éducation", "médical", "médecine", "profession", "éthique"]
+      },
+      {
+        title: "Loi relative au mariage",
+        description: "Conditions de formation, droits et obligations des époux, régimes matrimoniaux",
+        url: "loi_mariage.html",
+        category: "Famille",
+        keywords: ["mariage", "époux", "régime matrimonial", "contrat mariage", "union"]
+      },
+      {
+        title: "Loi relative au divorce",
+        description: "Procédures, effets juridiques et modalités de dissolution du mariage",
+        url: "loi_divorce.html",
+        category: "Famille",
+        keywords: ["divorce", "séparation corps", "dissolution mariage", "procédure divorce"]
+      },
+      {
+        title: "Loi relative à la minorité",
+        description: "Statut du mineur, protection de l'enfance, autorité parentale, émancipation",
+        url: "loiminorite.html",
+        category: "Famille",
+        keywords: ["mineur", "protection enfance", "autorité parentale", "émancipation", "enfant"]
+      },
+      {
+        title: "Loi relative à l'adoption",
+        description: "Conditions et procédures, adoption plénière et simple, droits des parties",
+        url: "document-adoption.html",
+        category: "Famille",
+        keywords: ["adoption", "adoption plénière", "adoption simple", "procédure adoption"]
+      },
+      {
+        title: "Loi relative à la succession",
+        description: "Dévolution, testaments, donations, réserve héréditaire et partage des biens",
+        url: "loi_succession.html",
+        category: "Succession",
+        keywords: ["succession", "testament", "donation", "réserve héréditaire", "partage", "héritage"]
+      },
+      {
+        title: "Loi relative à l'état civil",
+        description: "Actes de naissance, mariage, décès, rectification et reconstitution",
+        url: "loietatcivil.html",
+        category: "État Civil",
+        keywords: ["état civil", "naissance", "mariage", "décès", "acte", "rectification", "reconstitution"]
+      },
+      {
+        title: "Loi sur les pensions",
+        description: "Loi générale sur les pensions des fonctionnaires",
+        url: "ordonnancepension.html",
+        category: "Pensions",
+        keywords: ["pension", "fonctionnaire", "retraite", "liquidation", "droit"]
+      },
+      {
+        title: "Décret sur les pensions",
+        description: "Décret d'application de la loi sur les pensions",
+        url: "decret_pension.html",
+        category: "Pensions",
+        keywords: ["pension", "décret", "application", "fonctionnaire", "retraite"]
+      },
+      {
+        title: "Code pénal",
+        description: "Textes relatifs aux infractions et aux peines",
+        url: "code_penal.html",
+        category: "Droit Pénal",
+        keywords: ["pénal", "infraction", "peine", "délit", "crime", "contravention"]
+      },
+      {
+        title: "Règlement pénal",
+        description: "Règlement d'application du code pénal",
+        url: "code_penal_reglement.html",
+        category: "Droit Pénal",
+        keywords: ["pénal", "règlement", "application", "procédure"]
+      },
+      {
+        title: "Code de procédure pénale",
+        description: "Règles de procédure applicables en matière pénale",
+        url: "cpp.html",
+        category: "Droit Pénal",
+        keywords: ["procédure pénale", "enquête", "instruction", "jugement", "recours"]
+      },
+      {
+        title: "Budget de l'État",
+        description: "Détails du budget par ministère, programmes et lignes budgétaires",
+        url: "budget.html",
+        category: "Finances",
+        keywords: ["budget", "finances", "ministère", "programme", "ligne budgétaire", "dépense", "recette"]
+      },
+      {
+        title: "Hub des emplois",
+        description: "Familles d'emplois, grades, échelons, salaire brut/net, primes et indemnités",
+        url: "hub_emplois/index.html",
+        category: "Emplois",
+        keywords: ["emploi", "salaires", "indices", "grades", "échelons", "prime", "indemnité"]
+      }
+    ];
+
+    // Fonction de recherche
+    function performSearch(query) {
+      if (!query.trim()) {
+        return [];
+      }
+      
+      const searchTerms = query.toLowerCase().split(/\s+/).filter(term => term.length > 0);
+      
+      return searchIndex.filter(item => {
+        const searchableText = (
+          item.title.toLowerCase() + ' ' + 
+          item.description.toLowerCase() + ' ' + 
+          item.category.toLowerCase() + ' ' + 
+          item.keywords.join(' ')
+        );
+        
+        return searchTerms.every(term => searchableText.includes(term));
+      });
+    }
+
+    // Afficher les résultats de recherche
+    function displaySearchResults(results) {
+      const resultsContainer = document.getElementById('searchResults');
+      resultsContainer.innerHTML = '';
+      
+      if (results.length === 0) {
+        resultsContainer.innerHTML = '<div class="no-results">Aucun résultat trouvé</div>';
+        resultsContainer.classList.add('visible');
+        return;
+      }
+      
+      results.forEach(result => {
+        const resultElement = document.createElement('div');
+        resultElement.className = 'search-result-item';
+        resultElement.innerHTML = `
+          <h3>${result.title}</h3>
+          <p>${result.description}</p>
+          <small>Catégorie: ${result.category}</small>
+        `;
+        
+        resultElement.addEventListener('click', () => {
+          window.location.href = result.url;
+        });
+        
+        resultsContainer.appendChild(resultElement);
+      });
+      
+      resultsContainer.classList.add('visible');
+    }
+
+    // Cacher les résultats de recherche
+    function hideSearchResults() {
+      document.getElementById('searchResults').classList.remove('visible');
+    }
+
+    // Filtrer les documents visibles en fonction de la recherche
+    function filterDocuments(query) {
+      const documents = document.querySelectorAll('.category-card');
+      const results = performSearch(query);
+      
+      if (!query.trim()) {
+        // Afficher tous les documents si la recherche est vide
+        documents.forEach(doc => doc.style.display = 'flex');
+        hideSearchResults();
+        return;
+      }
+      
+      // Cacher tous les documents
+      documents.forEach(doc => doc.style.display = 'none');
+      
+      // Afficher les résultats de recherche
+      displaySearchResults(results);
+    }
+
     // Gestion du thème
     const themeToggle = document.getElementById('themeToggle');
     const themeIcon = themeToggle.querySelector('i');
@@ -392,19 +818,51 @@
       }
     }
     
-    // Vérifier le thème sauvegardé ou la préférence système
-    const savedTheme = localStorage.getItem('theme');
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    
-    if (savedTheme) {
-      setTheme(savedTheme);
-    } else if (systemPrefersDark) {
-      setTheme('dark');
-    }
-    
-    themeToggle.addEventListener('click', () => {
-      const currentTheme = document.documentElement.getAttribute('data-theme');
-      setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+    // Initialisation
+    document.addEventListener('DOMContentLoaded', () => {
+      // Configuration du thème
+      const savedTheme = localStorage.getItem('theme');
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      
+      if (savedTheme) {
+        setTheme(savedTheme);
+      } else if (systemPrefersDark) {
+        setTheme('dark');
+      }
+      
+      themeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+      });
+      
+      // Configuration de la recherche
+      const searchInput = document.getElementById('searchInput');
+      
+      searchInput.addEventListener('input', (e) => {
+        filterDocuments(e.target.value);
+      });
+      
+      // Cacher les résultats quand on clique ailleurs
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.search-container')) {
+          hideSearchResults();
+        }
+      });
+      
+      // Touche Echap pour vider la recherche
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          searchInput.value = '';
+          filterDocuments('');
+          searchInput.blur();
+        }
+      });
+      
+      // Accès restreint aux salaires
+      document.getElementById('btn-salaires').addEventListener('click', (e) => {
+        e.preventDefault();
+        alert('Accès restreint. Veuillez contacter l\'administrateur pour obtenir un code d\'accès.');
+      });
     });
   </script>
 </body>
