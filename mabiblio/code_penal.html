@@ -80,7 +80,6 @@ footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c6785;font-
     </div>
     <div class="control-buttons">
       <button class="btn" id="tocHeaderBtn" title="Sommaire"><i class="fa-solid fa-list-ol"></i></button>
-      <button class="btn" id="searchBtn" title="Rechercher"><i class="fas fa-search"></i></button>
       <button class="btn" title="Haut de page" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fa-solid fa-angles-up"></i></button>
     </div>
   </div>
@@ -12076,307 +12075,456 @@ footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c6785;font-
 </div>
 
 <script>
-(function(){
-  const $ = s=>document.querySelector(s);
-  const $$ = s=>Array.from(document.querySelectorAll(s));
-  
-  function buildTOC(){
-    const toc = document.getElementById('tocList'); if(!toc) return; toc.innerHTML='';
-    $$('.group').forEach((grp, gi)=>{
-      const gh = grp.querySelector('h2, h3')?.textContent.trim() || `Groupe ${gi+1}`;
-      const gl = document.createElement('a'); gl.textContent=gh; gl.href='#'; gl.style.fontWeight='700';
-      gl.addEventListener('click', e=>{ e.preventDefault(); grp.scrollIntoView({behavior:'smooth', block:'start'}); hideTOC(); });
-      toc.appendChild(gl);
-      const sub = document.createElement('div'); sub.className='toc-sub';
-      grp.querySelectorAll('.article').forEach((art, ai)=>{
-        const at = art.querySelector('.article-header h5')?.textContent.trim() || `Article ${ai+1}`;
-        const a = document.createElement('a'); a.textContent=at; a.href='#';
-        a.addEventListener('click', e=>{ e.preventDefault(); art.scrollIntoView({behavior:'smooth', block:'start'}); hideTOC(); });
-        sub.appendChild(a);
-        if (!art.querySelector('.open-fs')){
-          const btn = document.createElement('button'); btn.className='open-fs'; btn.innerHTML='<i class="fas fa-maximize"></i>';
-          btn.title='Plein écran'; btn.addEventListener('click', ()=>openFS(artIndex(art))); art.querySelector('.article-header')?.appendChild(btn);
-        }
-      });
-      toc.appendChild(sub);
-    });
-  }
-  
-  function showTOC(){ document.getElementById('tocOverlay').classList.add('show'); document.getElementById('tocPanel').classList.add('open'); }
-  function hideTOC(){ document.getElementById('tocOverlay').classList.remove('show'); document.getElementById('tocPanel').classList.remove('open'); }
-
-  document.addEventListener('DOMContentLoaded', ()=>{
-    const floatBtn = document.getElementById('tocFloatBtn');
-    if (floatBtn) floatBtn.addEventListener('click', showTOC);
-    const overlay = document.getElementById('tocOverlay');
-    if (overlay) overlay.addEventListener('click', hideTOC);
-    const headerBtn = document.getElementById('tocHeaderBtn');
-    if (headerBtn) headerBtn.addEventListener('click', showTOC);
-  });
-  
-  const articles = $$('.article');
-  function artIndex(el){ return articles.indexOf(el); }
-  function getArticle(i){ return articles[Math.max(0, Math.min(articles.length-1, i))]; }
-  function artTitle(i){ const el=getArticle(i); return el? (el.querySelector('.article-header h5')?.textContent.trim()||'') : ''; }
-  function artText(i){ const el=getArticle(i); return el? (el.querySelector('.article-content')?.innerText.trim()||'') : ''; }
-  const synth = window.speechSynthesis;
-  let current = 0, utter = null, playing = false, paused = false, inFS=false;
-  
-  function speakIndex(i){ 
-    stopSpeak(); 
-    current=i; 
-    const text=artText(i); 
-    if(!text){ nextArticle(); return; }
-    
-    utter = new SpeechSynthesisUtterance(text); 
-    utter.lang='fr-FR'; 
-    utter.rate=1; 
-    utter.pitch=1;
-    
-    utter.onend = ()=>{ 
-      if(playing && !paused){ 
-        nextArticle(); 
-      } 
-    };
-    
-    try{ synth.speak(utter);}catch(e){ console.warn(e); }
-    
-    playing=true; 
-    paused=false; 
-    updateUI(); 
-    highlightCurrent(); 
-  }
-
-  function highlightCurrent(){ 
-    articles.forEach(a=>a.classList.remove('reading')); 
-    const el=getArticle(current); 
-    if(el){ 
-      el.classList.add('reading'); 
-      if(!inFS) el.scrollIntoView({behavior:'smooth', block:'center'}); 
-    } 
-    document.getElementById('vNow').textContent = artTitle(current) || '—'; 
-  }
-  
-  function pauseSpeak(){ 
-    if(synth && synth.speaking){ 
-      synth.pause(); 
-      paused=true; 
-      playing=true; 
-    } 
-  }
-  
-  function resumeSpeak(){ 
-    if(synth && paused){ 
-      synth.resume(); 
-      paused=false; 
-    } else { 
-      speakIndex(current); 
-    } 
-    updateUI(); 
-  }
-  
-  function stopSpeak(){ 
-    if(synth){ 
-      try{synth.cancel();}catch(e){} 
-    } 
-    playing=false; 
-    paused=false; 
-    articles.forEach(a=>a.classList.remove('reading')); 
-    document.getElementById('vNow').textContent = '—';
-    updateUI(); 
-  }
-
-  function prevArticle(){ 
-    current=Math.max(0,current-1); 
-    if(playing){ 
-      speakIndex(current);
-    } else {
-      highlightCurrent();
-    } 
-    if(inFS) openFS(current); 
-  }
-  
-  function nextArticle(){ 
-    current=Math.min(articles.length-1,current+1); 
-    if(playing){ 
-      speakIndex(current);
-    } else {
-      highlightCurrent();
-    } 
-    if(inFS) openFS(current); 
-  }
-  
-  document.addEventListener('DOMContentLoaded', ()=>{
-    document.getElementById('vPlay').addEventListener('click', ()=>{ 
-      if(!playing || paused){ 
-        resumeSpeak(); 
-      } else { 
-        pauseSpeak(); 
-      } 
-    });
-    document.getElementById('vPause').addEventListener('click', ()=>pauseSpeak());
-    document.getElementById('vStop').addEventListener('click', ()=>{ stopSpeak(); });
-    document.getElementById('vPrev').addEventListener('click', prevArticle);
-    document.getElementById('vNext').addEventListener('click', nextArticle);
-    document.getElementById('voiceBar').classList.add('active'); // Activer la barre vocale par défaut
-  });
-
-  function updateUI(){ 
-    document.getElementById('vPlay').innerHTML = paused || !playing ? '<i class="fas fa-play"></i>' : '<i class="fas fa-pause"></i>'; 
-  }
-  
-  function openFS(i){ 
-    inFS=true; 
-    current=i; 
-    document.getElementById('fsTitle').textContent=artTitle(i); 
-    document.getElementById('fsContent').textContent=artText(i); 
-    document.getElementById('fsOverlay').classList.add('show'); 
-    document.body.style.overflow='hidden'; 
-    stopSpeak(); // Arrêter la lecture en cours pour la relancer en mode plein écran
-    speakIndex(i); 
-  }
-
-  function closeFS(){ 
-    inFS=false; 
-    document.getElementById('fsOverlay').classList.remove('show'); 
-    document.body.style.overflow=''; 
-    stopSpeak(); // Arrêter la lecture à la sortie du mode plein écran
-  }
-
-  document.addEventListener('DOMContentLoaded', ()=>{
-    document.getElementById('fsClose').addEventListener('click', ()=>{ closeFS(); });
-    document.getElementById('fsPlay').addEventListener('click', ()=>{ 
-      if(!playing || paused){ 
-        resumeSpeak(); 
-      } else { 
-        pauseSpeak(); 
-      } 
-    });
-    document.getElementById('fsNavPrev').addEventListener('click', ()=>{ prevArticle(); });
-    document.getElementById('fsNavNext').addEventListener('click', ()=>{ nextArticle(); });
-    document.querySelectorAll('.article .open-fs').forEach((btn, idx)=> btn.addEventListener('click', ()=>openFS(idx)));
-    document.querySelectorAll('.article').forEach((art, idx)=> art.addEventListener('dblclick', ()=>openFS(idx)));
-    document.getElementById('fsOverlay').addEventListener('touchstart', (e)=>{ window.__touchX = e.changedTouches[0].clientX; }, {passive:true});
-    document.getElementById('fsOverlay').addEventListener('touchend', (e)=>{ const dx = e.changedTouches[0].clientX - (window.__touchX||0); const TH=50; if(dx<-TH){ nextArticle(); } else if(dx>TH){ prevArticle(); } }, {passive:true});
-  });
-
-  window.addEventListener('reflowArticles', ()=>{ buildTOC(); });
-  buildTOC();
-})();
-</script>
-
-
-<script>
 function initSearchFeature() {
-    const searchBtn = document.getElementById('searchBtn');
+    const bar = document.querySelector('.control-buttons');
+    const searchBtn = document.createElement('button');
+    searchBtn.className = 'btn'; searchBtn.id = 'searchBtn'; searchBtn.title = 'Rechercher';
+    searchBtn.innerHTML = '<i class="fas fa-search"></i>'; bar.appendChild(searchBtn);
     const searchInterface = document.createElement('div');
     searchInterface.id = 'searchInterface';
-    searchInterface.style.cssText = `
-        position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+    searchInterface.style.cssText = `position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
         width: calc(100% - 40px); max-width: 550px; background: #fff;
         padding: 10px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        z-index: 1800; display: none; align-items: center; gap: 5px; transition: .25s ease;
-    `;
+        z-index: 1000; display: none; align-items: center; gap: 5px; transition: .25s ease;`;
     searchInterface.innerHTML = `
-        <input type="text" id="searchInput" placeholder="Rechercher..." style="flex-grow: 1; padding: 8px; border: 1px solid #d6e2ef; border-radius: 5px;">
+        <input type="text" id="searchInput" placeholder="Rechercher..." style="flex-grow: 1; padding: 8px; border: 1px solid #e6e2da; border-radius: 5px;">
         <button id="searchPrevBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-up"></i></button>
         <button id="searchNextBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-down"></i></button>
         <span id="searchResultsCount" style="flex-shrink: 0; padding: 0 5px; min-width: 40px; text-align: center;"></span>
-        <button id="closeSearchBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-times"></i></button>
-    `;
+        <button id="closeSearchBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-times"></i></button>`;
     document.body.appendChild(searchInterface);
-
-    let searchResults = [];
-    let currentSearchIndex = -1;
-    let originalContents = new Map();
-
+    let searchResults = []; let currentSearchIndex = -1; let originalContents = new Map();
     function performSearch() {
         const searchTerm = document.getElementById('searchInput').value.trim();
-        if (!originalContents.size) {
-            document.querySelectorAll('.article-content, h2, h3, h5').forEach(el => originalContents.set(el, el.innerHTML));
-        }
+        if (!originalContents.size) { document.querySelectorAll('.article-content, h2, h3').forEach(el => originalContents.set(el, el.innerHTML)); }
         originalContents.forEach((content, el) => el.innerHTML = content);
-        searchResults = [];
-        currentSearchIndex = -1;
+        searchResults = []; currentSearchIndex = -1;
         if (!searchTerm) { updateSearchUI(); return; }
-
         const regex = new RegExp(searchTerm.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&'), 'gi');
-        originalContents.forEach((content, element) => {
-            element.innerHTML = content.replace(regex, match => `<mark>${match}</mark>`);
-        });
+        originalContents.forEach((content, element) => { element.innerHTML = content.replace(regex, match => `<mark>${match}</mark>`); });
         searchResults = Array.from(document.querySelectorAll('mark'));
         if (searchResults.length > 0) navigateResults(true, false);
-        updateSearchUI();
-        window.dispatchEvent(new Event('reflowArticles'));
+        updateSearchUI(); window.dispatchEvent(new Event('reflowArticles'));
     }
-
     function navigateResults(isNext, shouldWrap = true) {
         if (!searchResults.length) return;
         searchResults.forEach(mark => mark.style.backgroundColor = '');
-        if (shouldWrap) {
-            currentSearchIndex = isNext ? (currentSearchIndex + 1) % searchResults.length : (currentSearchIndex - 1 + searchResults.length) % searchResults.length;
-        } else {
-            currentSearchIndex = 0;
-        }
+        currentSearchIndex = shouldWrap ? (isNext ? (currentSearchIndex + 1) % searchResults.length : (currentSearchIndex - 1 + searchResults.length) % searchResults.length) : 0;
         const currentMark = searchResults[currentSearchIndex];
         currentMark.style.backgroundColor = 'var(--accent)';
         currentMark.scrollIntoView({ behavior: 'smooth', block: 'center' });
         updateSearchUI();
     }
-
-    function updateSearchUI() {
-        document.getElementById('searchResultsCount').textContent = searchResults.length > 0 ? `${currentSearchIndex + 1}/${searchResults.length}` : '0/0';
-    }
-    
-    function resetSearch() {
-        originalContents.forEach((content, el) => el.innerHTML = content);
-        originalContents.clear();
-        document.getElementById('searchInput').value = '';
-        searchResults = []; currentSearchIndex = -1;
-        updateSearchUI();
-    }
-
-    searchBtn.addEventListener('click', () => {
-        const isVisible = searchInterface.style.display === 'flex';
-        searchInterface.style.display = isVisible ? 'none' : 'flex';
-        if (isVisible) resetSearch(); else document.getElementById('searchInput').focus();
-    });
+    function updateSearchUI() { document.getElementById('searchResultsCount').textContent = searchResults.length > 0 ? `${currentSearchIndex + 1}/${searchResults.length}` : '0/0'; }
+    function resetSearch() { originalContents.forEach((content, el) => el.innerHTML = content); originalContents.clear(); document.getElementById('searchInput').value = ''; searchResults = []; currentSearchIndex = -1; updateSearchUI(); }
+    searchBtn.addEventListener('click', () => { const isVisible = searchInterface.style.display === 'flex'; searchInterface.style.display = isVisible ? 'none' : 'flex'; if (isVisible) resetSearch(); else document.getElementById('searchInput').focus(); });
     document.getElementById('searchInput').addEventListener('input', performSearch);
     document.getElementById('searchNextBtn').addEventListener('click', () => navigateResults(true));
     document.getElementById('searchPrevBtn').addEventListener('click', () => navigateResults(false));
-    document.getElementById('closeSearchBtn').addEventListener('click', () => {
-        searchInterface.style.display = 'none';
-        resetSearch();
-    });
+    document.getElementById('closeSearchBtn').addEventListener('click', () => { searchInterface.style.display = 'none'; resetSearch(); });
 }
+</script>
+
+<script>
+(function(){
+  function extractEnumeration(s){
+    const re = /(\d{1,2})(?:\s*°)?(?:\))?(?:\.)?\s+/g; const matches = []; let m;
+    while ((m = re.exec(s))){ const idx=m.index; const prev = idx>0 ? s.charAt(idx-1) : " "; if (/\d/.test(prev)) continue; matches.push({num:parseInt(m[1],10), start:idx, end:re.lastIndex}); }
+    if (matches.length < 2) return null;
+    for (let i=1;i<matches.length;i++){ if (matches[i].num !== matches[i-1].num + 1) return null; }
+    const intro = s.slice(0, matches[0].start).trim().replace(/[:;,\-]\s*$/, ""); const items = [];
+    for (let i=0;i<matches.length;i++){ const st=matches[i].end; const en=(i+1<matches.length)?matches[i+1].start:s.length; let seg = s.slice(st,en).trim().replace(/^[;,:-]\s*/,"").replace(/[;,\s]+$/,""); items.push(seg); }
+    return {intro, start: matches[0].num, items};
+  }
+  function transformNode(node){
+    if (node.querySelector('ol')) return;
+    const plain = node.textContent.replace(/\s+/g,' ').trim(); const res = extractEnumeration(plain); if (!res) return;
+    const frag = document.createElement('div'); if (res.intro){ const p=document.createElement('p'); p.textContent=res.intro; frag.appendChild(p); }
+    const ol=document.createElement('ol'); if (res.start!==1) ol.setAttribute('start', String(res.start));
+    res.items.forEach(it=>{ const li=document.createElement('li'); li.textContent=it; ol.appendChild(li); });
+    frag.appendChild(ol); node.innerHTML=frag.innerHTML;
+  }
+  function run(){ document.querySelectorAll('.article-content').forEach(transformNode);
+    document.querySelectorAll('.article-content li').forEach(li=>{
+      const s = li.textContent.replace(/\s+/g,' ').trim(); const res = extractEnumeration(s);
+      if (res){ li.innerHTML=''; if (res.intro){ const span=document.createElement('span'); span.textContent=res.intro+' :'; li.appendChild(span); }
+        const ol=document.createElement('ol'); if (res.start!==1) ol.setAttribute('start', String(res.start));
+        res.items.forEach(it=>{ const li2=document.createElement('li'); li2.textContent=it; ol.appendChild(li2); }); li.appendChild(ol); }
+    });
+  }
+  window.addEventListener('DOMContentLoaded', ()=>setTimeout(run, 60));
+  window.addEventListener('reflowArticles', run);
+})();
+</script>
+
+<script>
+(function(){
+  const $ = s=>document.querySelector(s);
+  const $$ = s=>Array.from(document.querySelectorAll(s));
+  function buildTOC(){
+    const toc = document.getElementById('tocList'); toc.innerHTML='';
+    $$('.group').forEach((grp, gi)=>{
+      const gh = grp.querySelector('h2')?.textContent.trim() || `Groupe ${gi+1}`;
+      const gl = document.createElement('a'); gl.textContent=gh; gl.href='#'; gl.style.fontWeight='700';
+      gl.addEventListener('click', e=>{ e.preventDefault(); grp.scrollIntoView({behavior:'smooth', block:'start'}); hideTOC(); });
+      toc.appendChild(gl);
+      const sub = document.createElement('div'); sub.className='toc-sub';
+      grp.querySelectorAll('.article').forEach((art, ai)=>{
+        const at = art.querySelector('h3')?.textContent.trim() || `Article ${ai+1}`;
+        const a = document.createElement('a'); a.textContent=at; a.href='#';
+        a.addEventListener('click', e=>{ e.preventDefault(); art.scrollIntoView({behavior:'smooth', block:'start'}); hideTOC(); });
+        sub.appendChild(a);
+        if (!art.querySelector('.open-fs')){
+          const btn = document.createElement('button'); btn.className='open-fs'; btn.innerHTML='<i class="fas fa-expand"></i>';
+          btn.title='Plein écran'; btn.addEventListener('click', ()=>openFS(artIndex(art))); art.prepend(btn);
+        }
+      });
+      toc.appendChild(sub);
+    });
+  }
+  function showTOC(){ document.getElementById('tocOverlay').classList.add('show'); document.getElementById('tocPanel').classList.add('open'); }
+  function hideTOC(){ document.getElementById('tocOverlay').classList.remove('show'); document.getElementById('tocPanel').classList.remove('open'); }
+  document.getElementById('tocFloatBtn').addEventListener('click', showTOC);
+  document.getElementById('tocOverlay').addEventListener('click', hideTOC);
+  buildTOC();
+  const articles = $$('.article');
+  function artIndex(el){ return articles.indexOf(el); }
+  function getArticle(i){ return articles[Math.max(0, Math.min(articles.length-1, i))]; }
+  function artTitle(i){ const el=getArticle(i); return el? (el.querySelector('h3')?.textContent.trim()||'') : ''; }
+  function artText(i){ const el=getArticle(i); return el? (el.querySelector('.article-content')?.innerText.trim()||'') : ''; }
+  const synth = window.speechSynthesis;
+  let current = 0, utter = null, playing = false, paused = false, inFS=false;
+  function speakIndex(i){ stopSpeak(); current=i; const text=artText(i); if(!text){ nextArticle(); return; }
+    utter = new SpeechSynthesisUtterance(text); utter.lang='fr-FR'; utter.rate=1; utter.pitch=1;
+    utter.onend = ()=>{ if(playing && !paused){ nextArticle(); } };
+    try{ synth.speak(utter);}catch(e){ console.warn(e); }
+    playing=true; paused=false; updateUI(); highlightCurrent(); }
+  function highlightCurrent(){ articles.forEach(a=>a.classList.remove('reading')); const el=getArticle(current); if(el){ el.classList.add('reading'); if(!inFS) el.scrollIntoView({behavior:'smooth', block:'center'}); } document.getElementById('vNow').textContent = artTitle(current) || '—'; }
+  function pauseSpeak(){ if(synth && synth.speaking){ synth.pause(); paused=true; playing=true; } }
+  function resumeSpeak(){ if(synth && paused){ synth.resume(); paused=false; } else { speakIndex(current); } updateUI(); }
+  function stopSpeak(){ if(synth){ try{synth.cancel();}catch(e){} } playing=false; paused=false; updateUI(); }
+  function prevArticle(){ current=Math.max(0,current-1); if(playing){ speakIndex(current);} else {highlightCurrent();} if(inFS) openFS(current); }
+  function nextArticle(){ current=Math.min(articles.length-1,current+1); if(playing){ speakIndex(current);} else {highlightCurrent();} if(inFS) openFS(current); }
+  document.getElementById('vPlay').addEventListener('click', ()=>{ if(!playing || paused){ resumeSpeak(); } else { pauseSpeak(); } });
+  document.getElementById('vPause').addEventListener('click', ()=>pauseSpeak());
+  document.getElementById('vStop').addEventListener('click', ()=>{ stopSpeak(); });
+  document.getElementById('vPrev').addEventListener('click', prevArticle);
+  document.getElementById('vNext').addEventListener('click', nextArticle);
+  function updateUI(){ document.getElementById('vPlay').innerHTML = paused || !playing ? '<i class="fas fa-play"></i>' : '<i class="fas fa-pause"></i>'; }
+  let touchStartX=null;
+  function openFS(i){ inFS=true; current=i; document.getElementById('fsTitle').textContent=artTitle(i); document.getElementById('fsContent').textContent=artText(i); document.getElementById('fsOverlay').classList.add('show'); document.body.style.overflow='hidden'; speakIndex(i); }
+  function closeFS(){ inFS=false; document.getElementById('fsOverlay').classList.remove('show'); document.body.style.overflow=''; }
+  document.getElementById('fsClose').addEventListener('click', ()=>{ closeFS(); });
+  document.getElementById('fsPlay').addEventListener('click', ()=>{ if(!playing || paused){ resumeSpeak(); } else { pauseSpeak(); } });
+  document.getElementById('fsNavPrev').addEventListener('click', ()=>{ prevArticle(); });
+  document.getElementById('fsNavNext').addEventListener('click', ()=>{ nextArticle(); });
+  $$('.article .open-fs').forEach((btn, idx)=> btn.addEventListener('click', ()=>openFS(idx)));
+  $$('.article').forEach((art, idx)=> art.addEventListener('dblclick', ()=>openFS(idx)));
+  document.getElementById('fsOverlay').addEventListener('touchstart', (e)=>{ touchStartX = e.changedTouches[0].clientX; }, {passive:true});
+  document.getElementById('fsOverlay').addEventListener('touchend', (e)=>{ if(touchStartX==null) return; const dx=e.changedTouches[0].clientX - touchStartX; const TH=50; if(dx<-TH){ nextArticle(); } else if(dx>TH){ prevArticle(); } touchStartX=null; }, {passive:true});
+  window.addEventListener('reflowArticles', ()=>{ buildTOC(); });
+  buildTOC();
+})();
+</script>
+
+<script>initSearchFeature(); window.dispatchEvent(new Event('reflowArticles'));</script>
+<footer>Voir aussi : <a href="annexe_magistrature_RESP.html">Annexes — Statut de la Magistrature</a></footer>
+
+<script>
+(function(){
+  function bindTOCButtons(){
+    var panel = document.getElementById('tocPanel');
+    var overlay = document.getElementById('tocOverlay');
+    function show(){ overlay && overlay.classList.add('show'); panel && panel.classList.add('open'); }
+    function hide(){ overlay && overlay.classList.remove('show'); panel && panel.classList.remove('open'); }
+    var b1 = document.getElementById('tocFloatBtn');
+    var b2 = document.getElementById('tocHeaderBtn');
+    if (b1) b1.addEventListener('click', show);
+    if (b2) b2.addEventListener('click', show);
+    if (overlay) overlay.addEventListener('click', hide);
+  }
+  document.addEventListener('DOMContentLoaded', bindTOCButtons);
+})();
 </script>
 
 
 <script>
 (function(){
+  // Activer le mode no-select
+  document.addEventListener('DOMContentLoaded', function(){
+    document.body.classList.add('no-select');
+  });
+
   function isInteractive(el){
     if (!el) return false;
-    if (el.tagName){
+    if (el.tagName) {
       const tag = el.tagName.toLowerCase();
-      if (['input','textarea','select'].includes(tag)) return true;
+      if (tag === 'input' || tag === 'textarea') return true;
     }
     if (el.isContentEditable) return true;
-    if (el.closest && el.closest('#searchInterface')) return true;
+    if (el.closest && el.closest('#searchInterface')) return true; // autoriser la saisie dans la recherche
     return false;
   }
-  document.addEventListener('DOMContentLoaded', ()=>{ document.body.classList.add('no-select'); });
-  document.addEventListener('contextmenu', e=>{ if (!isInteractive(e.target)) e.preventDefault(); }, {capture:true});
-  document.addEventListener('selectstart', e=>{ if (!isInteractive(e.target)) e.preventDefault(); }, {capture:true});
-  ['copy','cut','paste','dragstart'].forEach(type=>{
-    document.addEventListener(type, e=>{ if (!isInteractive(document.activeElement)) e.preventDefault(); }, {capture:true});
+
+  // Bloquer le menu contextuel hors champs
+  document.addEventListener('contextmenu', function(e){
+    if (!isInteractive(e.target)) e.preventDefault();
+  }, {capture:true});
+
+  // Bloquer sélection
+  document.addEventListener('selectstart', function(e){
+    if (!isInteractive(e.target)) e.preventDefault();
+  }, {capture:true});
+
+  // Bloquer copier/coller/couper hors champs
+  ['copy','cut','paste','dragstart'].forEach(function(type){
+    document.addEventListener(type, function(e){
+      if (!isInteractive(document.activeElement)) e.preventDefault();
+    }, {capture:true});
   });
-  document.addEventListener('keydown', e=>{
-    const k=(e.key||'').toLowerCase();
-    const combo=(e.ctrlKey||e.metaKey)&&['c','x','a','s','p','insert'].includes(k);
-    if(combo && !isInteractive(document.activeElement)){ e.preventDefault(); e.stopPropagation(); }
+
+  // Bloquer Ctrl/Cmd + C/X/A/S/P... hors champs
+  document.addEventListener('keydown', function(e){
+    const k = (e.key || '').toLowerCase();
+    const combo = (e.ctrlKey || e.metaKey) && ['c','x','a','s','p','insert'].includes(k);
+    if (combo && !isInteractive(document.activeElement)) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
   }, {capture:true});
 })();
 </script>
 
-</body>
-</html>
+  <script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js"));
+  }
+</script>
+  <!-- PWA Install Button -->
+<button id="pwa-install-btn" aria-label="Installer l'application" hidden>Installer</button>
+<style>
+  #pwa-install-btn{
+    position:fixed; right:16px; bottom:16px; z-index:9999;
+    padding:10px 14px; border:none; border-radius:999px;
+    background:#22c55e; color:white; font:600 14px system-ui,Segoe UI,Roboto,Arial,sans-serif;
+    box-shadow:0 8px 20px rgba(34,197,94,.35);
+  }
+  #pwa-install-btn[hidden]{ display:none; }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    #pwa-install-btn{ bottom: calc(16px + env(safe-area-inset-bottom)); }
+  }
+</style>
+<script>
+  (function(){
+    let deferredPrompt;
+    const btnId = "pwa-install-btn";
+    function ensureBtn(){
+      let b = document.getElementById(btnId);
+      if(!b){
+        b = document.createElement("button");
+        b.id = btnId;
+        b.textContent = "Installer";
+        document.body.appendChild(b);
+      }
+      return b;
+    }
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      const btn = ensureBtn();
+      btn.hidden = false;
+      btn.onclick = async () => {
+        btn.hidden = true;
+        deferredPrompt.prompt();
+        await deferredPrompt.userChoice;
+        deferredPrompt = null;
+      };
+    });
+    if (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) {
+      const btn = document.getElementById(btnId);
+      if(btn) btn.hidden = true;
+    }
+  })();
+</script>
+  <!-- Auth UI minimal -->
+<style>
+  .auth-box{position:fixed; top:12px; right:12px; z-index:9998; background:#ffffff; color:#111827; border-radius:12px; padding:10px 12px; box-shadow:0 10px 24px rgba(0,0,0,.12); font:500 14px system-ui,Segoe UI,Roboto,Arial}
+  .auth-box h4{margin:0 0 6px; font-size:14px}
+  .auth-box form{display:flex; gap:6px; flex-wrap:wrap; align-items:center}
+  .auth-box input{padding:6px 8px; border:1px solid #e5e7eb; border-radius:8px}
+  .auth-box button{background:#22c55e; color:#fff; border:none; padding:6px 10px; border-radius:8px; cursor:pointer}
+  .auth-box .row{display:flex; gap:6px; flex-wrap:wrap}
+  .views-badge{position:fixed; left:12px; bottom:12px; z-index:9998; background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px; font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)}
+</style><!-- Admin link (visible only when logged-in) -->
+<style>
+  .admin-link{
+    position:fixed; right:16px; bottom:88px; z-index:9998;
+    display:none; align-items:center; gap:8px;
+    padding:10px 14px; border-radius:999px; text-decoration:none;
+    background:#111827; color:#fff; font:600 14px system-ui,Segoe UI,Roboto,Arial;
+    box-shadow:0 8px 20px rgba(0,0,0,.3);
+    border:1px solid rgba(255,255,255,.1);
+  }
+  body.logged-in .admin-link{ display:inline-flex; }
+  .admin-link:hover{ filter:brightness(1.1); }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    .admin-link{ bottom: calc(88px + env(safe-area-inset-bottom)); }
+  }
+</style>
+<a href="admin.html" class="admin-link" title="Tableau de bord">Admin</a>
+  <script type="module" src="assets/firebase-app.js"></script>
+  <script>window.autoCountAndBind && window.autoCountAndBind();</script>
+  
+<!-- Floating Auth Button + Modal -->
+<style>
+  #auth-fab{
+    position:fixed; right:16px; bottom:68px; z-index:9998;
+    width:48px; height:48px; border-radius:999px; border:none; cursor:pointer;
+    background:#111827; color:#fff; display:grid; place-items:center;
+    box-shadow:0 8px 20px rgba(0,0,0,.35); border:1px solid rgba(255,255,255,.1);
+  }
+  body.logged-in #auth-fab::after{ content:"✓"; }
+  #auth-fab::after{ content:"👤"; font-size:20px; }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    #auth-fab{ bottom: calc(68px + env(safe-area-inset-bottom)); }
+  }
+  .views-badge{
+    position:fixed; left:12px; bottom:12px; z-index:9998; 
+    background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px;
+    font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)
+  }
+  dialog#auth-modal{
+    border:none; border-radius:16px; padding:0; width:min(90vw,420px);
+    box-shadow:0 24px 72px rgba(0,0,0,.35); overflow:hidden;
+  }
+  dialog::backdrop{ background:rgba(0,0,0,.4); }
+  .auth-modal-head{background:#0f172a; color:#fff; padding:12px 16px; display:flex; justify-content:space-between; align-items:center}
+  .auth-modal-body{padding:16px; background:#111827; color:#e5e7eb}
+  .auth-modal-body label{display:block; font-size:13px; margin-top:8px; opacity:.9}
+  .auth-modal-body input{width:100%; padding:10px 12px; border-radius:10px; border:1px solid #1f2937; background:#0b1021; color:#e5e7eb}
+  .auth-actions{display:flex; gap:8px; margin-top:14px}
+  .btn{border:none; border-radius:10px; padding:10px 12px; cursor:pointer; font-weight:600}
+  .btn-primary{background:#22c55e; color:white}
+  .btn-ghost{background:transparent; color:#e5e7eb; border:1px solid #374151}
+  .muted{opacity:.8}
+</style>
+
+<button id="auth-fab" title="Connexion / Compte"></button>
+<div class="views-badge">Vues : <span id="viewCounter">0</span></div>
+
+<dialog id="auth-modal">
+  <div class="auth-modal-head">
+    <strong>Connexion</strong>
+    <button class="btn btn-ghost" id="auth-close" aria-label="Fermer">✕</button>
+  </div>
+  <div class="auth-modal-body">
+    <p class="muted">Connecte-toi pour accéder à l’admin et une meilleure expérience.</p>
+    <label>Email</label>
+    <input type="email" id="auth-email" placeholder="email@exemple.com" required>
+    <label>Mot de passe</label>
+    <input type="password" id="auth-pass" placeholder="••••••••" required>
+    <div class="auth-actions">
+      <button class="btn btn-primary" id="btn-login">Connexion</button>
+      <button class="btn btn-ghost" id="btn-register">Créer un compte</button>
+      <button class="btn btn-ghost" id="btn-logout">Déconnexion</button>
+    </div>
+    <div id="auth-msg" class="muted" style="margin-top:8px;"></div>
+  </div>
+</dialog>
+
+<script type="module">
+  import { authRegister, authLogin, authLogout } from "./assets/firebase-app.js";
+
+  const fab = document.getElementById("auth-fab");
+  const modal = document.getElementById("auth-modal");
+  const closeBtn = document.getElementById("auth-close");
+  const email = document.getElementById("auth-email");
+  const pass = document.getElementById("auth-pass");
+  const msg  = document.getElementById("auth-msg");
+  const btnLogin = document.getElementById("btn-login");
+  const btnRegister = document.getElementById("btn-register");
+  const btnLogout = document.getElementById("btn-logout");
+
+  function openModal(){ try{ modal.showModal(); }catch{ modal.setAttribute("open",""); } }
+  function closeModal(){ modal.close?.(); modal.removeAttribute("open"); }
+
+  fab?.addEventListener("click", openModal);
+  closeBtn?.addEventListener("click", closeModal);
+
+  async function handle(run){
+    msg.textContent = "";
+    try{
+      await run(email.value.trim(), pass.value);
+      msg.textContent = "✅ Opération réussie.";
+      setTimeout(()=>{ closeModal(); }, 500);
+    }catch(e){
+      console.error(e);
+      msg.textContent = "❌ " + (e?.message || "Erreur");
+    }
+  }
+
+  btnLogin?.addEventListener("click", () => handle(authLogin));
+  btnRegister?.addEventListener("click", () => handle(authRegister));
+  btnLogout?.addEventListener("click", async () => {
+    msg.textContent = "";
+    try{ await authLogout(); msg.textContent = "✅ Déconnecté."; }catch(e){ msg.textContent = "❌ " + (e?.message||"Erreur"); }
+  });
+</script>
+
+
+<!-- Per-card view counters -->
+<style>
+  .card-views-badge{
+    position:absolute; top:8px; right:8px;
+    background:rgba(17,24,39,.9); color:#fff;
+    padding:4px 8px; border-radius:999px; font:600 12px system-ui,Segoe UI,Roboto,Arial;
+    box-shadow:0 6px 14px rgba(0,0,0,.25);
+    pointer-events:none;
+  }
+  .card-views-wrap{ position:relative; }
+</style>
+<script type="module">
+  import { getViewCount } from "./assets/firebase-app.js";
+  function basename(href){
+    try{ const u = new URL(href, location.href);
+         const file = u.pathname.split('/').pop() || 'index.html';
+         return file.replace(/\.html$/i,''); }
+    catch{ return (href.split('/').pop()||'index.html').replace(/\.html$/i,''); }
+  }
+  async function attachCounterTo(el, docId){
+    let container = el.closest('.card, .item, .panel, .box, .article, .doc, .tile');
+    if(!container){ container = el.parentElement; }
+    if(container && !container.classList.contains('card-views-wrap')){
+      container.classList.add('card-views-wrap');
+    }
+    const host = container || el;
+    if(host.querySelector('.card-views-badge[data-doc="'+docId+'"]')) return;
+    const badge = document.createElement('span');
+    badge.className = 'card-views-badge';
+    badge.dataset.doc = docId;
+    badge.textContent = 'Vues: …';
+    host.appendChild(badge);
+    try{ const n = await getViewCount(docId);
+         badge.textContent = 'Vues: ' + n; }
+    catch{ badge.textContent = 'Vues: —'; }
+  }
+  async function initCardCounters(){
+    const links = Array.from(document.querySelectorAll('[data-doc-id], a[href$=".html"]'))
+      .filter(a => {
+        const id = a.getAttribute('data-doc-id') || basename(a.getAttribute('href')||'');
+        return id && !['index','admin','offline'].includes(id.toLowerCase());
+      });
+    const handled = new Set();
+    for(const a of links){
+      const id = a.getAttribute('data-doc-id') || basename(a.getAttribute('href')||'');
+      if(!id || handled.has(id)) continue;
+      handled.add(id);
+      attachCounterTo(a, id);
+    }
+  }
+  initCardCounters();
+  const obs = new MutationObserver(()=>initCardCounters());
+  obs.observe(document.body, { childList:true, subtree:true });
+</script>
+
+</body></html>
