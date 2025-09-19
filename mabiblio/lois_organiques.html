@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0ea5e9" id="meta-theme-color" />
+  <title>Lois organiques — Institutions • Cartes</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/icon-192.png">
+  <style>
+    :root {
+      --primary: #0ea5e9; --secondary: #6366f1; --accent: #f97316; --success: #10b981;
+      --background: #f8fafc; --card-bg: #ffffff; --text: #1e293b; --text-muted: #64748b;
+      --border: #e2e8f0; --shadow: 0 4px 6px rgba(0,0,0,.05), 0 1px 3px rgba(0,0,0,.1);
+      --radius: 12px;
+    }
+    [data-theme="dark"] {
+      --primary:#0ea5e9; --secondary:#818cf8; --accent:#fb923c; --success:#34d399;
+      --background:#0f172a; --card-bg:#1e293b; --text:#f1f5f9; --text-muted:#94a3b8; --border:#334155;
+      --shadow: 0 4px 6px rgba(0,0,0,.2), 0 1px 3px rgba(0,0,0,.3);
+    }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; background:var(--background); color:var(--text); }
+    .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+    header { display:flex; justify-content:space-between; align-items:center; padding:20px 0; margin-bottom: 10px; border-bottom: 1px solid var(--border); }
+    .logo { display:flex; align-items:center; gap:10px; font-weight:700; font-size:1.5rem; color:var(--primary); }
+    .logo i { font-size:1.8rem; }
+    .hero { text-align:center; margin-bottom: 8px; }
+    .hero h1 { font-size: 2rem; color: var(--primary); }
+    .hero p { color:var(--text-muted); max-width:760px; margin: 8px auto 0; }
+    .toolbar { margin-top:14px; display:flex; justify-content:center; gap:10px; }
+    .search { display:flex; align-items:center; gap:10px; background:var(--card-bg); border:1px solid var(--border); border-radius: 12px; padding: 10px 12px; width: min(740px, 100%); box-shadow: var(--shadow); position: relative; }
+    .search i { color: var(--text-muted); }
+    .search input { border:none; outline:none; width:100%; font-size:1rem; background:transparent; color:var(--text); }
+    .search .clear { border:1px solid var(--border); background:transparent; border-radius: 10px; padding:6px 10px; cursor:pointer; color:var(--text-muted); }
+    .search .clear:hover { border-color: var(--primary); color: var(--primary); }
+    .result-info { text-align:center; color:var(--text-muted); font-size:.9rem; margin-top:8px; }
+    .categories { display:grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; margin-top:18px; }
+    .category-card { background:var(--card-bg); border:1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 18px; display:flex; flex-direction:column; gap:12px; transition: transform .2s ease, box-shadow .2s ease; }
+    .category-card:hover { transform: translateY(-4px); box-shadow: 0 10px 24px rgba(0,0,0,.12); }
+    .category-header { display:flex; align-items:center; gap:12px; }
+    .category-icon { width:42px; height:42px; border-radius:12px; display:grid; place-items:center; background: rgba(14,165,233,.12); color:#0284c7; }
+    .category-title { font-weight:700; font-size:1.05rem; }
+    .category-sub { color:var(--text-muted); font-size:.92rem; }
+    .category-actions { display:flex; justify-content:center; gap:10px; margin-top:auto; }
+    .btn { padding:10px 14px; border-radius:10px; border:1px solid var(--border); background:#fff; color:var(--text); cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; gap:8px; }
+    .btn-primary { background:var(--primary); border-color: var(--primary); color:#fff; }
+    .btn-outline { background:transparent; }
+    mark { background: #fde68a; padding: 0 .15em; border-radius: 4px; }
+    .hidden { display:none !important; }
+    footer { margin:28px 0 12px; color:var(--text-muted); text-align:center; font-size:.9rem; }
+    
+    /* Styles ajoutés pour les résultats de recherche */
+    .search-results {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--card-bg);
+      border-radius: 0 0 var(--radius) var(--radius);
+      box-shadow: var(--shadow);
+      max-height: 300px;
+      overflow-y: auto;
+      z-index: 100;
+      display: none;
+      border: 1px solid var(--border);
+      border-top: none;
+    }
+    
+    .search-results.visible {
+      display: block;
+    }
+    
+    .search-result-item {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    
+    .search-result-item:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+    
+    .search-result-item h3 {
+      margin: 0 0 4px 0;
+      font-size: 1rem;
+      color: var(--primary);
+    }
+    
+    .search-result-item p {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+    
+    .search-result-item small {
+      color: var(--text-muted);
+      font-size: 0.75rem;
+    }
+    
+    .no-results {
+      padding: 16px;
+      text-align: center;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo"><i class="fa-solid fa-scale-balanced"></i> <span>Hub — Lois organiques</span></div>
+      <div class="nav-buttons"></div>
+    </header>
+    <section class="hero">
+      <h1>Institutions — cartes d'accès</h1>
+      <p>Accédez rapidement aux versions HTML harmonisées (même gabarit) des lois organiques : Conseil constitutionnel, Conseil d'État, Cour de cassation, Cour des comptes, Médiateur de la République.</p>
+      <div class="toolbar">
+        <div class="search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input id="searchInput" type="search" placeholder="Rechercher (ex. "cassation", "n° 2020-967", "Médiateur"…)" autocomplete="off" />
+          <button id="clearBtn" class="clear" title="Effacer"><i class="fa-solid fa-xmark"></i></button>
+          <div class="search-results" id="searchResults"></div>
+        </div>
+      </div>
+      <div class="result-info"><span id="count">5</span> résultat(s)</div>
+      <div class="result-info hidden" id="emptyMsg">Aucun résultat — essayez un autre mot-clé.</div>
+    </section>
+    <section class="categories">
+
+      <article class="category-card" data-title="Médiateur de la République">
+        <div class="category-header">
+          <div class="category-icon"><i class="fa-solid fa-handshake-simple"></i></div>
+          <div>
+            <div class="category-title" data-field="title">Médiateur de la République</div>
+            <div class="category-sub" data-field="subtitle">Loi organique n° 2022-220 — 25 MARS 2022</div>
+          </div>
+        </div>
+        <p class="category-sub" data-field="desc">LOI ORGANIQUE N° 2022-220 DU 25 MARS 2022</p>
+        <div class="category-actions">
+          <a class="btn btn-primary" href="loi_organique_mediature_republique.html" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ouvrir</a>
+        </div>
+      </article>
+    
+      <article class="category-card" data-title="Cour de cassation">
+        <div class="category-header">
+          <div class="category-icon"><i class="fa-solid fa-gavel"></i></div>
+          <div>
+            <div class="category-title" data-field="title">Cour de cassation</div>
+            <div class="category-sub" data-field="subtitle">Loi organique n° 2020-967 — 17 Décembre 2020</div>
+          </div>
+        </div>
+        <p class="category-sub" data-field="desc">LOI ORGANIQUE n° 2020-967 du 17 Décembre 2020 déterminant les attributions, la composition, l'organisation et le fonctionnement de la Cour de Cassation.</p>
+        <div class="category-actions">
+          <a class="btn btn-primary" href="loi_organique_cour_de_cassation_converted.html" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ouvrir</a>
+        </div>
+      </article>
+    
+      <article class="category-card" data-title="Cour des comptes">
+        <div class="category-header">
+          <div class="category-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+          <div>
+            <div class="category-title" data-field="title">Cour des comptes</div>
+            <div class="category-sub" data-field="subtitle">Loi organique n° 2015-494 — 07 Juillet 2015</div>
+          </div>
+        </div>
+        <p class="category-sub" data-field="desc">Loi organique n° 2015-494 du 07 Juillet 2015 déterminant les attributions, la composition, l'organisation et le fonctionnement de la Cour des comptes.</p>
+        <div class="category-actions">
+          <a class="btn btn-primary" href="loi_organique_cour_des_comptes_converted.html" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ouvrir</a>
+        </div>
+      </article>
+    
+      <article class="category-card" data-title="Conseil d'État">
+        <div class="category-header">
+          <div class="category-icon"><i class="fa-solid fa-landmark"></i></div>
+          <div>
+            <div class="category-title" data-field="title">Conseil d'État</div>
+            <div class="category-sub" data-field="subtitle">Loi organique n° 2020-968 — 17 Décembre 2020</div>
+          </div>
+        </div>
+        <p class="category-sub" data-field="desc">LOI organique n° 2020-968 du 17 Décembre 2020 déterminant les attributions, la composition, l'organisation et le fonctionnement du Conseil d'Etat.</p>
+        <div class="category-actions">
+          <a class="btn btn-primary" href="loi_organique_conseil_etat_converted.html" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ouvrir</a>
+        </div>
+      </article>
+    
+      <article class="category-card" data-title="Conseil constitutionnel">
+        <div class="category-header">
+          <div class="category-icon"><i class="fa-solid fa-landmark-dome"></i></div>
+          <div>
+            <div class="category-title" data-field="title">Conseil constitutionnel</div>
+            <div class="category-sub" data-field="subtitle"></div>
+          </div>
+        </div>
+        <p class="category-sub" data-field="desc">Loi Organique relative au Conseil Constitutionnel</p>
+        <div class="category-actions">
+          <a class="btn btn-primary" href="loi_organique_conseil_constitutionnel.html" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ouvrir</a>
+        </div>
+      </article>
+    
+    </section>
+    <footer>Fichiers locaux — génération automatique de cartes • © Hub CI</footer>
+  </div>
+
+  <script>
+    // Index de recherche pour les lois organiques
+    const searchIndex = [
+      {
+        title: "Médiateur de la République",
+        description: "LOI ORGANIQUE N° 2022-220 DU 25 MARS 2022",
+        url: "loi_organique_mediature_republique.html",
+        keywords: ["médiateur", "république", "2022-220", "25 mars 2022"]
+      },
+      {
+        title: "Cour de cassation",
+        description: "LOI ORGANIQUE n° 2020-967 du 17 Décembre 2020 déterminant les attributions, la composition, l'organisation et le fonctionnement de la Cour de Cassation",
+        url: "loi_organique_cour_de_cassation_converted.html",
+        keywords: ["cassation", "cour", "2020-967", "17 décembre 2020", "justice", "jugement"]
+      },
+      {
+        title: "Cour des comptes",
+        description: "Loi organique n° 2015-494 du 07 Juillet 2015 déterminant les attributions, la composition, l'organisation et le fonctionnement de la Cour des comptes",
+        url: "loi_organique_cour_des_comptes_converted.html",
+        keywords: ["comptes", "cour", "2015-494", "7 juillet 2015", "finances", "budget"]
+      },
+      {
+        title: "Conseil d'État",
+        description: "LOI organique n° 2020-968 du 17 Décembre 2020 déterminant les attributions, la composition, l'organisation et le fonctionnement du Conseil d'Etat",
+        url: "loi_organique_conseil_etat_converted.html",
+        keywords: ["conseil", "état", "2020-968", "17 décembre 2020", "administration", "gouvernement"]
+      },
+      {
+        title: "Conseil constitutionnel",
+        description: "Loi Organique relative au Conseil Constitutionnel",
+        url: "loi_organique_conseil_constitutionnel.html",
+        keywords: ["constitutionnel", "conseil", "constitution", "loi fondamentale"]
+      }
+    ];
+
+    // Accent-insensitive normalization
+    const norm = s => (s||'')
+      .toString()
+      .normalize('NFD')
+      .replace(/\p{Diacritic}/gu, '')
+      .toLowerCase();
+
+    const input = document.getElementById('searchInput');
+    const clearBtn = document.getElementById('clearBtn');
+    const cards = Array.from(document.querySelectorAll('.category-card'));
+    const fieldsSel = ['[data-field="title"]', '[data-field="subtitle"]', '[data-field="desc"]'];
+    const countEl = document.getElementById('count');
+    const emptyMsg = document.getElementById('emptyMsg');
+    const searchResults = document.getElementById('searchResults');
+
+    // Save original HTML to restore when clearing highlights
+    cards.forEach(card => {
+      fieldsSel.forEach(sel => {
+        const el = card.querySelector(sel);
+        if (el) el.dataset.orig = el.innerHTML;
+      });
+    });
+
+    function highlight(el, q) {
+      if (!el) return;
+      el.innerHTML = el.dataset.orig || el.innerHTML;
+      if (!q) return;
+      const txt = el.textContent;
+      const idxs = [];
+      const base = norm(txt);
+      const nQ = norm(q);
+      if (!nQ) return;
+      // Find all occurrences (naive, but OK given small content)
+      let pos = 0, start;
+      while ((start = base.indexOf(nQ, pos)) !== -1) {
+        idxs.push([start, start + nQ.length]);
+        pos = start + nQ.length;
+      }
+      if (!idxs.length) return;
+      // Rebuild with <mark>
+      let out = '', last = 0;
+      for (const [a,b] of idxs) {
+        out += txt.slice(last, a) + '<mark>' + txt.slice(a, b) + '</mark>';
+        last = b;
+      }
+      out += txt.slice(last);
+      el.innerHTML = out;
+    }
+
+    // Fonction de recherche
+    function performSearch(query) {
+      if (!query.trim()) {
+        return [];
+      }
+      
+      const searchTerms = query.toLowerCase().split(/\s+/).filter(term => term.length > 0);
+      
+      return searchIndex.filter(item => {
+        const searchableText = (
+          item.title.toLowerCase() + ' ' + 
+          item.description.toLowerCase() + ' ' + 
+          item.keywords.join(' ')
+        );
+        
+        return searchTerms.every(term => searchableText.includes(term));
+      });
+    }
+
+    // Afficher les résultats de recherche
+    function displaySearchResults(results) {
+      searchResults.innerHTML = '';
+      
+      if (results.length === 0) {
+        searchResults.innerHTML = '<div class="no-results">Aucun résultat trouvé</div>';
+        searchResults.classList.add('visible');
+        return;
+      }
+      
+      results.forEach(result => {
+        const resultElement = document.createElement('div');
+        resultElement.className = 'search-result-item';
+        resultElement.innerHTML = `
+          <h3>${result.title}</h3>
+          <p>${result.description}</p>
+        `;
+        
+        resultElement.addEventListener('click', () => {
+          window.location.href = result.url;
+          searchResults.classList.remove('visible');
+        });
+        
+        searchResults.appendChild(resultElement);
+      });
+      
+      searchResults.classList.add('visible');
+    }
+
+    // Cacher les résultats de recherche
+    function hideSearchResults() {
+      searchResults.classList.remove('visible');
+    }
+
+    function applyFilter() {
+      const q = input.value.trim();
+      let visible = 0;
+      
+      // Si la recherche est vide, afficher tous les documents
+      if (!q) {
+        cards.forEach(card => {
+          card.classList.remove('hidden');
+          // reset highlights
+          fieldsSel.forEach(sel => {
+            const el = card.querySelector(sel);
+            if (el && el.dataset.orig) el.innerHTML = el.dataset.orig;
+          });
+        });
+        visible = cards.length;
+        hideSearchResults();
+      } else {
+        // Filtrer les cartes
+        cards.forEach(card => {
+          // reset highlights first
+          fieldsSel.forEach(sel => {
+            const el = card.querySelector(sel);
+            if (el && el.dataset.orig) el.innerHTML = el.dataset.orig;
+          });
+          
+          const hay = fieldsSel.map(sel => {
+            const el = card.querySelector(sel);
+            return el ? el.textContent : '';
+          }).join(' ');
+          
+          const match = norm(hay).includes(norm(q));
+          if (match) {
+            card.classList.remove('hidden');
+            visible++;
+            // highlight
+            fieldsSel.forEach(sel => highlight(card.querySelector(sel), q));
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+        
+        // Afficher les résultats de recherche dans le panneau déroulant
+        const results = performSearch(q);
+        displaySearchResults(results);
+      }
+      
+      countEl.textContent = String(visible);
+      emptyMsg.classList.toggle('hidden', visible !== 0);
+    }
+
+    input.addEventListener('input', applyFilter);
+    clearBtn.addEventListener('click', () => { 
+      input.value=''; 
+      input.focus(); 
+      applyFilter(); 
+    });
+    
+    window.addEventListener('keydown', (e) => {
+      if (e.key === '/' && document.activeElement !== input) {
+        e.preventDefault();
+        input.focus();
+      }
+    });
+
+    // Cacher les résultats quand on clique ailleurs
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.search')) {
+        hideSearchResults();
+      }
+    });
+
+    // Touche Echap pour vider la recherche
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        input.value = '';
+        applyFilter();
+        input.blur();
+      }
+    });
+
+    // init
+    applyFilter();
+  </script>
+</body>
+</html>

@@ -1,0 +1,1509 @@
+<!DOCTYPE html>
+<html lang='fr'>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Loi Organique relative au Conseil Constitutionnel</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f9f5; --paper:#ffffff; --ink:#0f2a1f;
+  --primary:#2e7d32; --primary-700:#1b5e20; --accent:#8bc34a; --accent-2:#f1f8e9;
+  --muted:#e8f5e8; --shadow:0 12px 28px rgba(0,0,0,.08); --radius:18px; --transition:.25s ease;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.6}
+header{position:sticky;top:0;z-index:60;background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(255,255,255,.88));backdrop-filter:saturate(1.1) blur(8px);border-bottom:1px solid #e6f2e6}
+.container{max-width:1120px;margin:0 auto;padding:14px 16px;display:flex;align-items:center;gap:12px}
+.logo{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:radial-gradient(circle at 30% 30%, var(--accent), #c5e1a5);color:var(--primary-700);box-shadow:var(--shadow);font-size:18px}
+h1{margin:0;font-family:'Playfair Display',serif;font-size:20px;color:var(--primary-700)}
+.sub{color:#4c8c4f;font-size:12px;margin-top:2px}
+.control-buttons{margin-left:auto;display:flex;gap:8px;align-items:center}
+.btn{min-width:38px;height:38px;border-radius:12px;border:1px solid #d5e8d4;background:#fff;color:var(--primary-700);display:grid;place-items:center;cursor:pointer;box-shadow:var(--shadow);transition:var(--transition)}
+.btn:hover{transform:translateY(-1px)}
+.wrapper{max-width:1120px;margin:16px auto;padding:0 12px}
+.group{background:var(--paper);border:1px solid #e2eee2;border-radius:var(--radius);box-shadow:var(--shadow);margin:14px 0;overflow:hidden}
+.group>h2{margin:0;padding:14px 16px;background:linear-gradient(180deg,#ffffff,#f1f8e9);border-bottom:1px solid #e2eee2;color:var(--primary-700);font-size:18px;font-family:'Playfair Display',serif}
+.article{margin:10px 10px 14px 10px;padding:12px 14px;border-left:6px solid var(--primary);background:#fff;border-radius:14px;box-shadow:0 1px 0 rgba(0,0,0,.03)}
+.article-header{display:flex; align-items:center; gap:8px; margin:0 0 6px 0;}
+.article-header h3{margin:0; color:var(--primary-700);}
+.article .open-fs{ order:2; margin-left:auto; width:34px; height:34px; border:1px solid #d5e8d4; background:#fff; border-radius:10px; cursor:pointer; }
+.article-content p{margin:.5rem 0}.article-content ul,.article-content ol{margin:.5rem 0 .8rem 1.25rem}
+.article-content ol>li, .article-content ul>li{ padding:8px 0; line-height:1.7; border-bottom:1px solid #eaf6ea; }
+.article-content ol>li:last-child, .article-content ul>li:last-child{ border-bottom:0; }
+.article-content li > ol > li, .article-content li > ul > li{ padding:6px 0; border-bottom:1px dashed #eaf6ea; }
+.article-content li > ol > li:last-child, .article-content li > ul > li:last-child{ border-bottom:0; }
+.reading{ outline:2px solid var(--accent); outline-offset:2px; border-left-color:var(--accent) !important; background:linear-gradient(180deg,#fff, var(--accent-2)) }
+mark{background:rgba(139,195,74,.45)}
+/* Floating TOC */
+#tocFloatBtn{position:fixed; right:14px; bottom:120px; width:46px; height:46px; border-radius:50%; border:none; background:var(--primary); color:#fff; display:grid; place-items:center; box-shadow:0 10px 24px rgba(0,0,0,.25); z-index:1500;}
+#tocPanel{position:fixed; top:0; right:0; height:100%; width:86%; max-width:420px; background:#fff; border-left:1px solid #e2eee2; box-shadow:-16px 0 35px rgba(0,0,0,.2); transform:translateX(100%); transition:transform .25s ease; z-index:1600; overflow:auto;}
+#tocOverlay{position:fixed; inset:0; background:rgba(0,0,0,.28); backdrop-filter:blur(2px); display:none; z-index:1590}
+#tocPanel.open{ transform:none } #tocOverlay.show{ display:block }
+#tocPanel header{position:sticky; top:0; background:#fff; padding:12px 14px; border-bottom:1px solid #e2eee2}
+#tocPanel h3{margin:0; color:var(--primary-700)} #tocPanel .toc-list{padding:12px 14px}
+#tocPanel .toc-list a{display:block; padding:6px 0; color:#2e7d32; text-decoration:none}
+#tocPanel .toc-sub{margin-left:10px; border-left:2px solid #e8f5e8; padding-left:8px}
+/* Voice bar */
+#voiceBar{position:fixed; left:50%; transform:translateX(-50%); bottom:14px; background:var(--primary-700); color:#fff; z-index:1550; border-radius:22px; padding:8px 12px; display:flex; gap:10px; align-items:center; box-shadow:0 12px 28px rgba(0,0,0,.3)}
+#voiceBar button{width:34px; height:34px; border-radius:10px; border:1px solid #c8e6c9; background:transparent; color:#e8f5e9; display:grid; place-items:center; cursor:pointer}
+#voiceBar .now{font-size:12px; max-width:52vw; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:#f1f8e9}
+/* Fullscreen */
+#fsOverlay{ position:fixed; inset:0; background:#fff; z-index:1700; display:none; }
+#fsOverlay.show{ display:block } #fsHeader{ position:sticky; top:0; background:#fff; padding:10px 14px; border-bottom:1px solid #e2eee2; display:flex; align-items:center; gap:10px }
+#fsHeader .ttl{ font-weight:700; color:var(--primary-700); flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
+#fsHeader button{ width:36px; height:36px; border-radius:10px; border:1px solid #d5e8d4; background:#fff; }
+#fsBody{ padding:14px; height:calc(100% - 58px); overflow:auto } #fsBody .article-content{ font-size:1.04rem }
+#fsNavPrev,#fsNavNext{ position:fixed; top:50%; transform:translateY(-50%); width:42px; height:42px; border-radius:50%; border:none; background:var(--primary); color:#fff; display:grid; place-items:center; z-index:1710; opacity:.9 }
+#fsNavPrev{ left:10px } #fsNavNext{ right:10px }
+footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c8c4f;font-size:12px}
+
+/* ===== Anti-sélection / anti-copie ===== */
+.no-select, .no-select *:not(input):not(textarea):not(.selectable){
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  -webkit-touch-callout: none !important;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="logo"><i class="fa-solid fa-scale-balanced"></i></div>
+    <div>
+      <h1>LOI ORGANIQUE n° 2020-967 du 17 Décembre 2020 déterminant les attributions, la composition, l&#x27;organisation et le fonctionnement de la Cour de Cassation.</h1>
+      <div class="sub">Conversion automatique — même gabarit (Conseil Constitutionnel)</div>
+    </div>
+    <div class="control-buttons">
+      <button class="btn" id="tocHeaderBtn" title="Sommaire"><i class="fa-solid fa-book"></i></button>
+      <button class="btn" title="Haut de page" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fa-solid fa-angles-up"></i></button>
+    </div>
+  </div>
+</header>
+
+<main class="wrapper">
+
+<section class="group">
+<h2>TITRE 1 : DISPOSITIONS GENERALES</h2>
+
+            <div class="article" id="Article_1">
+                <div class="article-header">
+                    <h3>Article 1</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La présente loi organique a pour objet de déterminer les attributions, la composition, l&#x27;organisation et le fonctionnement de la Cour de Cassation.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_2">
+                <div class="article-header">
+                    <h3>Article 2</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour de Cassation est l&#x27;une des institutions juridictionnelles représentatives du pouvoir judiciaire. Elle est la plus haute juridiction de l&#x27;ordre judiciaire.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_3">
+                <div class="article-header">
+                    <h3>Article 3</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour de Cassation est dirigée par un Président.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_4">
+                <div class="article-header">
+                    <h3>Article 4</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le ressort de la Cour de Cassation s&#x27;étend à tout le territoire de la République.</p><p>Le siège de la Cour de Cassation est fixé à Abidjan. La Cour de Cassation peut siéger en tout autre lieu du territoire national si les circonstances l&#x27;exigent.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_5">
+                <div class="article-header">
+                    <h3>Article 5</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour de Cassation veille à l&#x27;application de la loi par les juridictions de l&#x27;ordre judiciaire.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_6">
+                <div class="article-header">
+                    <h3>Article 6</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les fonctions du ministère public près la Cour de Cassation sont exercées par un Parquet général dont la composition, l&#x27;organisation et le fonctionnement sont fixés par une loi.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Section 2 : Principes statutaires</h2>
+
+            <div class="article" id="Article_7">
+                <div class="article-header">
+                    <h3>Article 7</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>En cas de première nomination à la Cour de Cassation dans des fonctions judiciaires, les magistrats prêtent serment, en audience solennelle, devant la Cour de Cassation, en ces termes :</p><p>« Je jure de bien et fidèlement remplir mes fonctions et de me conduire en tout comme un digne et loyal magistrat ».</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_8">
+                <div class="article-header">
+                    <h3>Article 8</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Statut de la Magistrature est applicable aux magistrats de la Cour de Cassation pour tout ce qui n&#x27;est pas prévu par la présente loi organique.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_9">
+                <div class="article-header">
+                    <h3>Article 9</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les franchissements automatiques d&#x27;échelon de rémunération des magistrats de la Cour de Cassation sont constatés par décisions du Président de la Cour de Cassation.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_10">
+                <div class="article-header">
+                    <h3>Article 10</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La composition des costumes des magistrats de la Cour de Cassation est fixée par décret, sur proposition du Conseil supérieur de la Magistrature.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_Il">
+                <div class="article-header">
+                    <h3>Article Il</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>. - Il peut être procédé au remplacement du magistrat de la Cour de Cassation en position de disponibilité, de détachement ou empêché pour quelque cause que ce soit d&#x27;exercer ses fonctions. A l&#x27;expiration de la période de détachement ou de disponibilité ou lorsque la cause de l&#x27;empêchement vient à cesser, il réintègre la Cour de Cassation conformément aux dispositions en vigueur.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_12">
+                <div class="article-header">
+                    <h3>Article 12</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les magistrats de la Cour de Cassation cessent leurs fonctions avec jouissance de tous les droits et avantages liés à la dernière fonction exercée.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>TITRE II : ATTRIBUTIONS DE LA COUR DE CASSATION</h2>
+
+            <div class="article" id="Article_13">
+                <div class="article-header">
+                    <h3>Article 13</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour de Cassation a des attributions contentieuses et consultatives.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_14">
+                <div class="article-header">
+                    <h3>Article 14</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Sous réserve des matières relevant de la compétence d&#x27;autres juridictions de l&#x27;ordre judiciaire, la Cour de Cassation statue souverainement sur les pourvois en cassation dirigés contre les arrêts et jugements rendus en dernier ressort par les juridictions statuant en matière civile, commerciale, sociale et pénale.</p><p>Elle connaît en outre :</p><p>— des demandes en révision ;</p><p>— des demandes de renvoi d&#x27;une juridiction à une autre ;</p><p>— des prises à partie ;</p><p>— des récusations ;</p><p>— des inscriptions de faux ;</p><p>— des règlements de juges ;</p><p>— des demandes en annulation des actes par lesquels les juges de l&#x27;ordre judiciaire excèdent leurs pouvoirs ;</p><p>— des recours contre ses arrêts ;</p><p>— des demandes en interprétation et en rectification ;</p><p>— de la tierce opposition.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_15">
+                <div class="article-header">
+                    <h3>Article 15</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour de Cassation émet des avis sur toute question de droit entrant dans le champ de ses compétences, qui lui est soumise par voie de requête par les Premiers Présidents des Cours d&#x27;Appel, les Procureurs généraux près lesdites Cours, les Présidents des Tribunaux, et les Procureurs de la République prés lesdits tribunaux, les ordres constitués et les institutions universitaires de sciences juridiques.</p><p>La Cour de Cassation émet également des avis sur toute matière entrant dans le champ de ses compétences, qui lui est soumise par le Président de la République ou par le Gouvernement.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>TITRE III : COMPOSITION ET ORGANISATION DE LA COUR DE CASSATION</h2>
+
+</section>
+<section class="group">
+<h2>Chapitre 1 : Composition</h2>
+
+</section>
+<section class="group">
+<h2>Section 1 : Emplois</h2>
+
+            <div class="article" id="Article_16">
+                <div class="article-header">
+                    <h3>Article 16</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour de Cassation est composée de magistrats du siège. Elle est dotée d&#x27;un secrétariat général et d&#x27;un greffe.</p><p>Les magistrats du siège sont :</p><p>— le président de Cour de Cassation;</p><p>— les Présidents de Chambre ;</p><p>— les conseillers ;</p><p>— les conseillers référendaires ;</p><p>— les auditeurs.</p><p>Le secrétariat général est composé d&#x27;un secrétaire général.</p><p>Les membres du greffe sont:</p><p>— le greffier en chef;</p><p>— les greffiers.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Section 2 : Nominations aux différents emplois</h2>
+
+            <div class="article" id="Article_17">
+                <div class="article-header">
+                    <h3>Article 17</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Président de la Cour de Cassation est nommé par le Président de la République pour une durée de cinq ans renouvelables une fois, parmi les personnalités reconnues pour leur compétence et leur expertise avérées en matière juridique.</p><p>Le Président de la Cour de Cassation est Président d&#x27;institution.</p><p>Avant d&#x27;entrer en fonction, le Président de la Cour de Cassation prête serment devant le Président de la République en ces termes :</p><p>« Je jure de bien et fidèlement remplir ma fonction, de l&#x27;exercer en toute impartialité, dans le respect de la Constitution, de garder le secret des délibérations et des votes, de ne prendre aucune position publique, de ne donner aucune consultation, à titre privé, sur les questions relevant de la compétence de la Cour de Cassation et de me conduire en tout comme un digne et loyal magistrat. »</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_18">
+                <div class="article-header">
+                    <h3>Article 18</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les présidents de chambre sont des magistrats hors hiérarchie du groupe A choisis parmi les conseillers à la Cour de Cassation.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_19">
+                <div class="article-header">
+                    <h3>Article 19</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les conseillers sont des magistrats hors hiérarchie.</p><p>Ils sont désignés parmi :</p><p>— les magistrats hors hiérarchie;</p><p>— les magistrats appartenant depuis deux ans au moins au premier groupe du premier grade</p><p>— les conseillers référendaires comptant au moins deux ans d&#x27;ancienneté comme conseillers référendaires du premier groupe.</p><p>Les conseillers à ta Cour de Cassation qui totalisent plus de cinq ans d&#x27;ancienneté en qualité de magistrats hors hiérarchie du groupe B peuvent être nommés au groupe A, sur proposition du Président de la Cour de Cassation, après avis conforme du Conseil supérieur de la Magistrature.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_20">
+                <div class="article-header">
+                    <h3>Article 20</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les conseillers référendaires sont choisis parmi les magistrats du premier grade.</p><p>Ils assistent les conseillers dans la préparation des rapports et des décisions des chambres sans voix délibérative.</p><p>Ils ne participent pas aux audiences.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_21">
+                <div class="article-header">
+                    <h3>Article 21</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les conseillers référendaires sont choisis également parmi les personnes titulaires d&#x27;un doctorat en droit ou d&#x27;un diplôme équivalent et ayant au moins six ans de pratique professionnelle en cette qualité.</p><p>Le nombre des conseillers référendaires nommés au titre du présent article ne peut excéder le dixième du nombre des auditeurs de justice issus du concours prévu par le Statut de la Magistrature.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_22">
+                <div class="article-header">
+                    <h3>Article 22</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les auditeurs sont choisis parmi les magistrats du deuxième grade.</p><p>Les auditeurs sont également choisis parmi les personnes titulaires d&#x27;un doctorat en droit ayant au moins cinq années d&#x27;expérience professionnelle en cette qualité.</p><p>Le nombre des auditeurs nommés au titre de l&#x27;alinéa 2 du présent article ne peut excéder le dixième du nombre des auditeurs de justice issus du concours prévu par le Statut de la Magistrature.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_23">
+                <div class="article-header">
+                    <h3>Article 23</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les auditeurs assistent les conseillers dans la préparation des rapports et des décisions sans voix délibérative.</p><p>Ils ne participent pas aux audiences.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_24">
+                <div class="article-header">
+                    <h3>Article 24</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le classement indiciaire, les règles de promotion de grade, d&#x27;échelon ou éventuellement de reclassement, le régime indemnitaire des magistrats sont applicables aux conseillers référendaires et aux auditeurs visés aux articles 21 alinéa 1 et 22 alinéa 2 de la présente loi organique.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_25">
+                <div class="article-header">
+                    <h3>Article 25</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les magistrats de la Cour de Cassation, à l&#x27;exception du Président, sont nommés par décret sur proposition du Conseil supérieur de la Magistrature et sur présentation du ministre de la Justice.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_26">
+                <div class="article-header">
+                    <h3>Article 26</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les magistrats de la Cour de Cassation sont installés dans leurs fonctions en audience solennelle de la Cour de Cassation.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_27">
+                <div class="article-header">
+                    <h3>Article 27</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le greffier en chef de la Cour de Cassation est nommé par décret, sur proposition du ministre de la Justice. Il est choisi parmi les administrateurs des Greffes et Parquets ayant au moins cinq années d&#x27;ancienneté dans cette catégorie.</p><p>Le Greffier en chef de la Cour de Cassation est assisté de greffiers.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Chapitre 2 : Organisation de la Cour de Cassation</h2>
+
+</section>
+<section class="group">
+<h2>Section 1 : Le Président de la Cour de Cassation</h2>
+
+            <div class="article" id="Article_28">
+                <div class="article-header">
+                    <h3>Article 28</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Président de la Cour de Cassation exerce des fonctions administratives et juridictionnelles.</p><p>Le Président de la Cour de Cassation est suppléé en cas d&#x27;absence ou d&#x27;empêchement, par le Président de chambre le plus ancien dans le grade le plus élevé.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_29">
+                <div class="article-header">
+                    <h3>Article 29</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Président de la Cour de Cassation est chargé de l&#x27;administration et de la discipline de la Cour de Cassation.</p><p>D assure la direction générale, l&#x27;organisation et le fonctionnement des services intérieurs de la Cour de Cassation.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_30">
+                <div class="article-header">
+                    <h3>Article 30</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Président arrête le règlement intérieur de la Cour de Cassation, après délibération de l&#x27;assemblée générale.</p><p>Le Président de la Cour de Cassation publie annuellement un rapport sur les activités de la Cour de Cassation.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_31">
+                <div class="article-header">
+                    <h3>Article 31</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Président de la Cour de Cassation repartit par ordonnance au début de chaque année judiciaire, les présidents de chambre, les conseillers, les conseillers référendaires et les auditeurs de la Cour de Cassation entre les différentes chambres.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_32">
+                <div class="article-header">
+                    <h3>Article 32</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Président de la Cour de Cassation assure, sur proposition du greffier en chef de la Cour de Cassation, la répartition des greffiers entre les différentes chambres.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_33">
+                <div class="article-header">
+                    <h3>Article 33</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Président de la Cour de Cassation préside, quand il le juge nécessaire, toute chambre de la Cour.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_34">
+                <div class="article-header">
+                    <h3>Article 34</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Pour son fonctionnement, la Cour de Cassation dispose de services administratifs dont les attributions, la composition, l&#x27;organisation et le fonctionnement sont déterminés par le règlement intérieur de la Cour de Cassation.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Section 2 : Les Chambres de la Cour de Cassation</h2>
+
+            <div class="article" id="Article_35">
+                <div class="article-header">
+                    <h3>Article 35</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour de Cassation est composée de chambres civiles, commerciales, pénales et sociales, présidées chacune par un président de chambre.</p><p>La répartition des attributions entre les différentes chambres civiles est déterminée par ordonnance du Président de la Cour de Cassation. Il en est de même pour la répartition des attributions entre chacune des chambres commerciales, pénales et sociales.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_36">
+                <div class="article-header">
+                    <h3>Article 36</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Chaque chambre de la Cour de Cassation comprend:</p><p>— un président de chambre ;</p><p>— deux conseillers au moins.</p><p>Le nombre de conseillers par chambre est fixé par le Président de la Cour de Cassation compte tenu du volume d&#x27;affaires de chaque chambre.</p><p>En cas d&#x27;absence ou d&#x27;empêchement du Président de chambre, la chambre est présidée par le conseiller le plus ancien.</p><p>Chaque chambre est assistée d&#x27;un greffier.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_37">
+                <div class="article-header">
+                    <h3>Article 37</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Procureur général près la Cour de Cassation peut recevoir et demander en communication les dossiers de toutes les procédures inscrites aux rôles des chambres de la Cour de Cassation.</p><p>En cas de pourvoi des parties, le Procureur général près la Cour de Cassation a la faculté, comme partie jointe, de conclure dans l&#x27;intérêt de la loi.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Section 3 : Le Cabinet du Président de la Cour de Cassation</h2>
+            
+
+            <div class="article" id="Article_38">
+                <div class="article-header">
+                    <h3>Article 38</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Cabinet du Président de la Cour de Cassation est composé:</p><p>— d&#x27;un directeur de Cabinet;</p><p>— d&#x27;un chef de Cabinet;</p><p>— de cinq conseillers dont au moins trois magistrats ;</p><p>— de deux chargés de mission;</p><p>— d&#x27;un chef du secrétariat particulier.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Section 4 : Le secrétaire général de la Cour de Cassation</h2>
+
+            <div class="article" id="Article_39">
+                <div class="article-header">
+                    <h3>Article 39</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour de Cassation est dotée d&#x27;un secrétariat général dirigé par un secrétaire général.</p><p>Le secrétaire général de la Cour de Cassation est nommé par décret pris en Conseil des ministres, parmi les magistrats hors hiérarchie, sur proposition du Président de la Cour de Cassation.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_40">
+                <div class="article-header">
+                    <h3>Article 40</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le secrétaire général assure, sous l&#x27;autorité du Président, le fonctionnement des services administratifs de la Cour de Cassation.</p><p>Le secrétaire général peut recevoir du Président délégation de signature en matière de gestion du personnel.</p><p>II assiste le Président dans la coordination des travaux et l&#x27;organisation des audiences de la Cour.</p><p>Il est chargé notamment de :</p><p>— la tenue du fichier général des sommaires des arrêts rendus par la Cour de Cassation;</p><p>— la publication des arrêts de la Cour de Cassation;</p><p>— la préparation, l&#x27;étude et l&#x27;établissement de tous les actes relatifs à la gestion des magistrats et autres personnels nommés à la Cour de Cassation;</p><p>— la direction du service de documentation et d&#x27;études de la Cour de Cassation;</p><p>— la réception des copies des décisions de la Cour de Cassation.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Section 5 : Le greffier en chef de la Cour de Cassation</h2>
+
+            <div class="article" id="Article_41">
+                <div class="article-header">
+                    <h3>Article 41</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le greffier en chef assure l&#x27;administration du greffe de la Cour de Cassation.</p><p>Il est placé sous l&#x27;autorité du secrétaire général.</p><p>Il propose au secrétaire général de la Cour de Cassation, la répartition des greffiers dans les différents services.</p><p>Il prépare les audiences de la Cour de Cassation.</p><p>Il veille à l&#x27;archivage, à la délivrance des expéditions, certificats et extraits des décisions rendues, assure la réception des consignations et le recouvrement des frais.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>TITRE IV : FONCTIONNEMENT DE LA COUR DE CASSATION</h2>
+
+</section>
+<section class="group">
+<h2>Chapitre 1 : Formations de la Cour de Cassation</h2>
+
+            <div class="article" id="Article_42">
+                <div class="article-header">
+                    <h3>Article 42</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les formations de la Cour de Cassation sont les types de réunions que tient la Cour de Cassation.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_43">
+                <div class="article-header">
+                    <h3>Article 43</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour de Cassation se réunit:</p><p>— en audience solennelle ;</p><p>— en assemblée générale;</p><p>— en assemblée plénière ;</p><p>— en chambre mixte ;</p><p>— en audience ordinaire.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_44">
+                <div class="article-header">
+                    <h3>Article 44</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La présence du ministère public est obligatoire aux audiences solennelles de la Cour de Cassation, devant les assemblées plénières et générales, et devant les chambres mixtes.</p><p>Le ministère public ne participe pas aux délibérations, sauf en assemblée générale, pour adopter ou modifier le règlement intérieur de la Cour de Cassation, débattre de toutes les questions intéressant l&#x27;organisation et la discipline de la Cour.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_45">
+                <div class="article-header">
+                    <h3>Article 45</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour de Cassation se réunit en audience solennelle pour:</p><p>— son audience de rentrée ;</p><p>— recevoir le serment de ses membres;</p><p>— procéder à l&#x27;installation de ses membres.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_46">
+                <div class="article-header">
+                    <h3>Article 46</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>L&#x27;audience solennelle d&#x27;installation des magistrats de la Cour de Cassation est composée :</p><p>— du Président de la Cour de Cassation, Président;</p><p>— de quatre Présidents de chambre, membres ;</p><p>— de six conseillers, membres.</p><p>La Cour est assistée du greffier en chef ou d&#x27;un greffier de la Cour de Cassation.</p><p>L&#x27;audience a lieu en présence du procureur général près la Cour de Cassation.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_47">
+                <div class="article-header">
+                    <h3>Article 47</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour de Cassation se réunit en assemblée générale pour adopter ou modifier le règlement intérieur de la Cour, débattre de toutes les questions intéressant l&#x27;organisation et la discipline de la Cour et émettre les avis sur les questions qui lui sont soumises en application de l&#x27;article 15 de la présente loi organique.</p><p>L&#x27;assemblée générale comprend l&#x27;ensemble des magistrats de la Cour de Cassation. Elle est présidée par le Président de la Cour de Cassation. Elle ne délibère valablement qu&#x27;avec les deux tiers au moins des magistrats qui la composent</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_48">
+                <div class="article-header">
+                    <h3>Article 48</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour de Cassation se réunit en assemblée plénière, lorsqu&#x27;une affaire pose une question de principe, notamment lorsqu&#x27;il existe des solutions divergentes soit entre les juges du fond, soit entre les juges du fond et la Cour de Cassation, et dans les autres cas prévus par la présente loi organique.</p><p>L&#x27;assemblée plénière est présidée par le Président de la Cour de Cassation. Elle est composée, outre le Président, des présidents de chambre et d&#x27;un conseiller par chambre.</p><p>Elle est valablement constituée avec les deux tiers au moins des présidents de chambre et des conseillers qui la composent.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_49">
+                <div class="article-header">
+                    <h3>Article 49</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour de Cassation se réunit en chambre mixte pour statuer sur les questions relevant de la compétence de plusieurs chambres, si la question a reçu ou est susceptible de recevoir, devant ces chambres, des solutions divergentes.</p><p>La chambre mixte est présidée par le Président de la Cour de Cassation. Elle est composée, outre le Président, des présidents de chambres et des conseillers composant les chambres concernées.</p><p>L&#x27;assemblée mixte est valablement constituée avec la moitié au moins des membres composant ces chambres. Elle comprend sept magistrats au moins.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_50">
+                <div class="article-header">
+                    <h3>Article 50</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour de Cassation se réunit en audience ordinaire pour juger les affaires dont elle est saisie.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_51">
+                <div class="article-header">
+                    <h3>Article 51</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>En formation de jugement, la Cour siège et délibère en nombre impair.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Chapitre 2 : Procédures devant la Cour de Cassation</h2>
+
+</section>
+<section class="group">
+<h2>Section 1 : Le pourvoi en cassation</h2>
+
+            <div class="article" id="Article_52">
+                <div class="article-header">
+                    <h3>Article 52</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le pourvoi en cassation est une voie de recours extraordinaire qui a pour but d&#x27;obtenir l&#x27;annulation de la décision attaquée et de remettre les parties en l&#x27;état où elles se trouvaient auparavant.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_53">
+                <div class="article-header">
+                    <h3>Article 53</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Sous réserve des matières dévolues à d&#x27;autres juridictions, la Cour de Cassation a compétence pour statuer sur les recours en cassation dirigés contre les arrêts et jugements rendus en dernier ressort par les juridictions de l&#x27;ordre judiciaire.</p><p>La Cour de Cassation ne connaît pas du fond des affaires, sauf disposition législative contraire.</p><p>Sous - section 1 : Les conditions et formes du pourvoi</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_54">
+                <div class="article-header">
+                    <h3>Article 54</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour de Cassation est saisie suivant les conditions et formes prévues par le Code de procédure civile et commerciale, le Code de procédure pénale et les lois spéciales.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_55">
+                <div class="article-header">
+                    <h3>Article 55</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>A peine d&#x27;irrecevabilité, l&#x27;acte de pourvoi doit viser l&#x27;un au moins des cas d&#x27;ouverture à cassation prévus par la législation en vigueur.</p><p>Le moyen de cassation précise, à peine d&#x27;irrecevabilité :</p><p>— ta partie de ta décision critiquée ;</p><p>— le grief fait à la décision attaquée.</p><p>Les moyens nouveaux ne sont pas recevables.</p><p>Peuvent néanmoins être invoqués pour la première fois, les moyens nés de ta décision attaquée et les moyens d&#x27;ordre public.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_56">
+                <div class="article-header">
+                    <h3>Article 56</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Devant la Cour de Cassation, le ministère d&#x27;avocat est obligatoire, à peine d&#x27;irrecevabilité du pourvoi.</p><p>L&#x27;admission au bénéfice de l&#x27;assistance judiciaire est prononcée par le bureau de l&#x27;assistance judiciaire dans les conditions prévues par la loi. En ce cas, le délai pour se pourvoir court à compter du jour de la notification de la décision du bureau d&#x27;assistance judiciaire.</p><p>A l&#x27;égard du défendeur, la demande d&#x27;assistance judiciaire doit être formée dans le mois de la notification du pourvoi. Elle suspend le délai prévu à l&#x27;article 59 alinéa 2 de la présente loi organique.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_57">
+                <div class="article-header">
+                    <h3>Article 57</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le délai entre la date de signification du pourvoi celle fixée pour l&#x27;audience est d&#x27;un mois au moins, sans excéder deux mois. Les règles relatives aux augmentations de délai de distances sont applicables.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_58">
+                <div class="article-header">
+                    <h3>Article 58</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Toute conclusion produite devant la Cour de Cassation doit être accompagnée, sous peine d&#x27;irrecevabilité, d&#x27;au moins deux copies signées par l&#x27;avocat ainsi que d&#x27;autant d&#x27;exemplaires qu&#x27;il y a de parties désignées à la décision entreprise.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_59">
+                <div class="article-header">
+                    <h3>Article 59</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le dossier d&#x27;appel ou de première instance est transmis par le greffier en chef de la juridiction qui a rendu la décision attaquée au Greffier en chef de la Cour de Cassation.</p><p>Dès réception, le greffier en chef de la Cour de Cassation transmet immédiatement le dossier au Président de la Cour de Cassation qui l&#x27;attribue à la chambre compétente, après avoir désigné, parmi les conseillers de ladite chambre, un rapporteur aux fins de la mise en état et fixe un délai pour le dépôt du rapport. Ce délai ne saurait dépasser trois mois.</p><p>Le Président de la Cour de Cassation peut se désigner lui-même ou désigner le président de la chambre compétente comme rapporteur.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_60">
+                <div class="article-header">
+                    <h3>Article 60</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>A la date fixée dans l&#x27;exploit, l&#x27;affaire est appelée.</p><p>La chambre compétente statue obligatoirement, dès la première audience, sur la recevabilité du pourvoi.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_61">
+                <div class="article-header">
+                    <h3>Article 61</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le rapporteur prend toutes mesures nécessaires pour parvenir à la mise en état de l&#x27;affaire dans le délai imparti par le président de la chambre. Il peut enjoindre aux parties de déposer des conclusions complémentaires dans un délai qu&#x27;il impartit, à peine d&#x27;irrecevabilité.</p><p>Si, à l&#x27;expiration du délai prévu à l&#x27;article 59 alinéa 2 de ta présente loi organique, le rapporteur n&#x27;est pas en mesure de déposer son rapport, il en avise le président de la chambre qui peut, par ordonnance motivée, soit accorder un dernier délai de mise en état qu&#x27;il fixe souverainement et qui ne peut excéder deux mois, soit déclarer terminée la mise en état et enjoindre au rapporteur de déposer son rapport en l&#x27;état.</p><p>Le dossier en état est transmis, sans délai, au procureur général près la Cour de Cassation, pour les conclusions écrites du ministère public.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_62">
+                <div class="article-header">
+                    <h3>Article 62</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les parties peuvent, sans déplacement des pièces du dossier, en prendre connaissance au greffe de la Cour de Cassation.</p><p>Aucun mémoire ni aucune pièce ne peut être produit après le dépôt du rapport au greffe, sauf à la demande expresse du rapporteur.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_63">
+                <div class="article-header">
+                    <h3>Article 63</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les affaires sont jugées devant la Cour de Cassation sur pièces, sauf si les parties ont, dans le pourvoi, dans un mémoire ou dans une correspondance, déclaré qu&#x27;elles entendent présenter des observations orales.</p><p>Le ministère public peut prendre des réquisitions orales.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_64">
+                <div class="article-header">
+                    <h3>Article 64</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les arrêts de la Cour de Cassation sont motivés. Ils visent les textes dont il est fait application. Ils mentionnent les noms et prénoms des présidents, conseillers et rapporteurs qui les ont rendus, du greffier, ceux du représentant du ministère public et des avocats, les noms, prénoms, qualité, profession et domicile des parties ainsi que l&#x27;énoncé des moyens exposés.</p><p>Les minutes des arrêts sont signées dans le délai d&#x27;un mois à compter du prononcé de la décision, par le président, le conseiller-rapporteur et le greffier.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Sous-section 2 : Les effets du pourvoi</h2>
+
+            <div class="article" id="Article_65">
+                <div class="article-header">
+                    <h3>Article 65</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>L&#x27;exercice du pourvoi en cassation est suspensif dans les conditions prévues par les lois en vigueur.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_66">
+                <div class="article-header">
+                    <h3>Article 66</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Si la Cour de Cassation juge le pourvoi bien fondé, elle casse la décision entreprise et renvoie la cause et les parties, soit devant la même juridiction autrement composée, soit devant une autre juridiction de même nature expressément désignée.</p><p>En cas de cassation pour incompétence, la Cour de Cassation renvoie l&#x27;affaire devant la juridiction compétente.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_67">
+                <div class="article-header">
+                    <h3>Article 67</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Lorsque, après cassation d&#x27;un premier arrêt ou jugement rendu en dernier ressort, le deuxième arrêt ou jugement rendu dans la même affaire, entre les mêmes parties, est attaqué, le Président de la Cour de Cassation saisit l&#x27;assemblée plénière par ordonnance de renvoi.</p><p>Un conseiller n&#x27;appartenant pas à la chambre qui a statué sur le premier pourvoi est désigné par le Président pour présenter le rapport devant l&#x27;assemblée, qui doit se prononcer sur le pourvoi, même si les conditions de sa saisine n&#x27;étaient pas réunies.</p><p>Si le deuxième arrêt ou jugement rendu encourt la cassation pour les mêmes motifs que les premiers, l&#x27;assemblée plénière évoque et statue définitivement.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_68">
+                <div class="article-header">
+                    <h3>Article 68</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Lorsque la cassation prononcée n&#x27;implique pas qu&#x27;il soit à nouveau statué sur le fond, la Cour casse sans renvoi.</p><p>Il y a également lieu à cassation sans renvoi lorsqu&#x27;en matière pénale, la peine qui a été prononcée en application d&#x27;une fausse interprétation de la loi ou d&#x27;une erreur de droit n&#x27;est pas supérieure à la peine légalement encourue. Cette disposition ne s&#x27;applique que si le minimum et le maximum de la peine résultant des dispositions qui auraient dû être appliquées sont identiques à ceux des dispositions qui ont été appliquées.</p><p>Il y a enfin lieu à cassation sans renvoi en matière pénale, lorsque les faits tels qu&#x27;ils ont été retenus par les juges du fond ne constituent pas une infraction pénale.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_69">
+                <div class="article-header">
+                    <h3>Article 69</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Lorsque le pourvoi en cassation est rejeté, la partie qui l&#x27;a formé ne peut plus se pourvoir en cassation dans la même affaire, sous quelque prétexte et par quelque moyen que ce soit.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_70">
+                <div class="article-header">
+                    <h3>Article 70</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La décision est signifiée aux parties à leur domicile réel ou élu, par la partie la plus diligente. Copie est adressée au secrétaire général de la Cour de Cassation par le greffier en chef de ladite Cour.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_71">
+                <div class="article-header">
+                    <h3>Article 71</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La signification contient la sommation prévue à l&#x27;article 93 de la présente loi organique.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_72">
+                <div class="article-header">
+                    <h3>Article 72</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les arrêts de la Cour de Cassation sont transcrits sur les registres des juridictions dont les décisions ont fait l&#x27;objet de pourvoi et annexés aux minutes desdites décisions.</p><p>A cet effet, le greffier en chef de la Cour de Cassation communique au Procureur général près la Cour de Cassation, un extrait de la décision. Celui-ci transmet une copie de l&#x27;arrêt au parquet compétent qui fait procéder immédiatement à la transcription.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_73">
+                <div class="article-header">
+                    <h3>Article 73</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Procureur général près la Cour de Cassation peut saisir le Président de la Cour de Cassation, aux fins de suspension, lorsque l&#x27;exécution d&#x27;une décision de justice est susceptible de troubler gravement l&#x27;ordre public, notamment en matière économique et sociale.</p><p>L&#x27;assemblée plénière de la Cour de Cassation, sur convocation du Président et sous la présidence de celui-ci, statue sur les réquisitions du Procureur général.</p><p>La requête du Procureur général transmise au Président de la Cour de Cassation suspend provisoirement l&#x27;exécution de la décision.</p><p>Elle est notifiée sans délai aux parties.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Section 2 : Procédures spéciales</h2>
+
+</section>
+<section class="group">
+<h2>Sous-section 1 : Règlement de juges</h2>
+
+            <div class="article" id="Article_74">
+                <div class="article-header">
+                    <h3>Article 74</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour de Cassation connait des recours en règlement des juges de l&#x27;Ordre judiciaire.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_75">
+                <div class="article-header">
+                    <h3>Article 75</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La requête en règlement de juges est déposée au greffe de la Cour de Cassation par la partie intéressée.</p><p>Elle est inscrite sur le registre d&#x27;ordre tenu par le greffier en chef de la Cour de Cassation.</p><p>La requête et les pièces qui y sont jointes sont marquées d&#x27;un timbre indiquant la date de réception.</p><p>Le greffier en chef en avise sans délai les parties en cause et les greffiers des juridictions entre lesquelles il sera réglé de juges.</p><p>Les dossiers des procédures sont, dans le délai de huitaine, adressés au greffier en chef de la Cour de Cassation qui les transmet dès réception au Président de la Cour de Cassation.</p><p>Il est ensuite procédé conformément aux dispositions de la sous-section 1 du présent chapitre relatives aux conditions et forme du pourvoi en cassation.</p><p>La Cour de Cassation statue en assemblée plénière, après réquisitions du ministère public.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Sous-section 2 : Renvoi d&#x27;une juridiction à une autre</h2>
+
+            <div class="article" id="Article_76">
+                <div class="article-header">
+                    <h3>Article 76</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>En matière de renvoi d&#x27;une juridiction à une autre, il est procédé conformément aux dispositions de la sous-section 1 du présent chapitre relatives aux conditions et forme du pourvoi en cassation.</p><p>La Cour de Cassation statue en assemblée plénière, après réquisitions du ministère public.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Sous-section 3 : Demande en révision</h2>
+
+            <div class="article" id="Article_77">
+                <div class="article-header">
+                    <h3>Article 77</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Il est statué sur les demandes en révision par l&#x27;assemblée plénière de la Cour de Cassation, après les réquisitions du ministère public.</p><p>Les régies applicables en cette matière sont celles prévues par le Code de procédure pénale ou le Code de procédure civile et commerciale.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Sous-section 4 : Prise à partie</h2>
+
+            <div class="article" id="Article_78">
+                <div class="article-header">
+                    <h3>Article 78</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les prises à partie formées contre les magistrats des Cours d&#x27;appel de l&#x27;Ordre judiciaire et de la Cour de Cassation sont portées devant cette dernière.</p><p>Il est statué sur l&#x27;admission de la prise à partie, dirigée contre les magistrats, par ordonnance du Président de la Cour de Cassation, après réquisitions écrites du Procureur général près la Cour de Cassation.</p><p>La prise à partie est jugée par l&#x27;assemblée plénière de la Cour de Cassation, le ministère public entendu.</p><p>La prise à partie visant le Président de la Cour de Cassation est portée devant l&#x27;assemblée plénière. L&#x27;assemblée plénière est dans cette hypothèse présidée par le président de chambre le plus ancien. Elle statue par arrêt non susceptible de recours.</p><p>Il est procédé conformément aux dispositions de la sous-section 1 du présent chapitre relatives aux conditions et forme du pourvoi en cassation.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Sous-section 5 : Récusation</h2>
+
+            <div class="article" id="Article_79">
+                <div class="article-header">
+                    <h3>Article 79</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La demande en récusation d&#x27;un Premier Président de Cour d&#x27;appel. ou d&#x27;un juge à la Cour de Cassation doit être motivée et adressée au Président de la Cour de Cassation qui, après réquisitions du Procureur général près la Cour de Cassation, statue par ordonnance non susceptible de recours.</p><p>La demande en récusation visant le Président de la Cour de Cassation est portée devant l&#x27;assemblée plénière présidée par le président de chambre le plus ancien.</p><p>Elle statue par arrêt non susceptible de recours.</p><p>Il est procédé comme prévu dans le Code de procédure civile, commerciale et administrative.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Sous-section 6 : Inscription de faux</h2>
+
+            <div class="article" id="Article_80">
+                <div class="article-header">
+                    <h3>Article 80</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La demande en inscription de faux contre une pièce produite devant la Cour de Cassation est formée par requête déposée au greffe de la Cour de Cassation et adressée au président de la chambre ayant en charge le dossier.</p><p>La requête est transmise sans délai au rapporteur si celui-ci est toujours saisi et au Président de chambre dans le cas contraire.</p><p>Le greffier transmet une copie de la requête au Procureur général près la Cour de Cassation pour ses observations écrites.</p><p>Le rapporteur ou le président fixe par ordonnance le délai dans lequel la partie qui a produit la pièce arguée de faux doit déclarer si elle entend s&#x27;en servir.</p><p>S&#x27;il n&#x27;est pas fait de réponse ou en cas de réponse négative, la demande est rejetée après avis du Procureur général.</p><p>Si la partie déclare qu&#x27;elle entend se servir de la pièce, la chambre saisie ou l&#x27;assemblée plénière, après réquisitions du Procureur général, peut :</p><p>— soit surseoir à statuer sur le pourvoi jusqu&#x27;à l&#x27;intervention de la décision sur le faux et dans ce cas, la chambre saisie impartit un délai d&#x27;un mois à cette partie pour saisir la juridiction compétente;</p><p>— soit passer outre, si elle constate que la décision ne dépend pas de la pièce arguée de faux ou si la partie n&#x27;a pas saisi la juridiction compétente dans le délai fixé ci-dessus.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Sous-section 7 : Demandes en annulation des actes des juges pour excès de pouvoir</h2>
+
+            <div class="article" id="Article_81">
+                <div class="article-header">
+                    <h3>Article 81</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Procureur général près la Cour de Cassation, sur plainte à lui adressée par toute personne intéressée, peut déférer devant l&#x27;assemblée plénière de la Cour de Cassation les actes par lesquels les juges de l&#x27;Ordre judiciaire excèdent leurs pouvoirs.</p><p>La Cour de Cassation saisie annule, le cas échéant, les actes déférés.</p><p>L&#x27;annulation vaut à l&#x27;égard de tous.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Sous-section 8 : Recours contre les arrêts de la Cour de Cassation</h2>
+
+            <div class="article" id="Article_82">
+                <div class="article-header">
+                    <h3>Article 82</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Il peut être exercé devant la Cour de Cassation un recours en rétractation :</p><p>— contre les décisions rendues sur pièces fausses;</p><p>— si la partie a été condamnée pour n&#x27;avoir pu représenter une pièce décisive retenue par son adversaire ;</p><p>— si la décision est intervenue sans qu&#x27;aient été observées les dispositions des articles 14, 35, 36, 48, 49, 51, 63, 64 alinéa l, 66 et 87 de la présente loi organique.</p><p>Le recours en rétractation est recevable dans le délai de deux mois à compter de la signification de la décision.</p><p>Il ne peut être formé aucun autre recours en rétractation en cas de rejet du recours initial.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_83">
+                <div class="article-header">
+                    <h3>Article 83</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Un recours en rectification peut être exercé contre les décisions entachées d&#x27;erreur matérielle.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_84">
+                <div class="article-header">
+                    <h3>Article 84</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les recours prévus aux articles 82 et 83 de la présente loi organique sont formés par requête, déposée au greffe de la Cour de Cassation.</p><p>Il est ensuite procédé conformément aux dispositions des articles 69 et 76 de la présente loi organique.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_85">
+                <div class="article-header">
+                    <h3>Article 85</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>L&#x27;arrêt dont les termes sont obscurs ou ambigus peut être interprété par la chambre qui l&#x27;a rendu sans qu&#x27;il ne soit porté atteinte à l&#x27;autorité de la chose jugée. L&#x27;interprétation demandée doit présenter un intérêt pour la partie qui la sollicite.</p><p>La procédure applicable est celle prévue en la matière par le Code de procédure civile, commerciale et administrative.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Sous-section 9 : Tierce opposition</h2>
+
+            <div class="article" id="Article_86">
+                <div class="article-header">
+                    <h3>Article 86</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La tierce opposition est une voie de recours par laquelle une personne autre que les parties engagées dans l&#x27;instance, peut attaquer un arrêt qui lui cause préjudice et demander à la Cour d&#x27;en supprimer les effets en ce qui la concerne personnellement.</p><p>La procédure applicable est celle prévue en la matière par le Code de procédure civile, commerciale et administrative.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Chapitre 3 : Déroulement de l&#x27;audience</h2>
+
+            <div class="article" id="Article_87">
+                <div class="article-header">
+                    <h3>Article 87</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour de Cassation statue en audience publique, le ministère public entendu.</p><p>La Cour de Cassation peut ordonner le huis clos si l&#x27;ordre public et les bonnes mœurs le commandent.</p><p>Le Président a la police de l&#x27;audience.</p><p>Les personnes qui assistent aux audiences doivent se tenir le chef découvert, dans le respect et le silence. Toutes les instructions du Président relatives au maintien de l&#x27;ordre sont exécutées sans délai.</p><p>Si l&#x27;un des assistants trouble l&#x27;ordre de quelque manière que ce soit, le Président ordonne son expulsion. S&#x27;il résiste ou cause du tumulte, il est saisi et déposé pour vingt-quatre heures à la maison d&#x27;arrêt où il est reçu sur présentation de l&#x27;ordre du Président.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_88">
+                <div class="article-header">
+                    <h3>Article 88</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Si le trouble est causé par une personne exerçant une fonction auprès d&#x27;elle, la Cour de Cassation peut, outre l&#x27;application de l&#x27;article 87 alinéa 5 de la présente loi organique, la suspendre de l&#x27;exercice desdites fonctions. La suspension, pour la première fois, ne peut excéder trois mois.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_89">
+                <div class="article-header">
+                    <h3>Article 89</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Aucun recours ne peut être exercé contre les décisions prévues par les articles 87 et 88 de la présente loi organique.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_90">
+                <div class="article-header">
+                    <h3>Article 90</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Président dresse séance tenante procès-verbal contre ceux qui outragent la Cour ou commettent une infraction de droit commun et les met à la disposition du Procureur de la République compétent pour être procédé conformément à la loi.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Chapitre 4 : Frais de procédure</h2>
+
+            <div class="article" id="Article_91">
+                <div class="article-header">
+                    <h3>Article 91</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les frais de procédure, en matière pénale, sont avancés par l&#x27;Etat sur le chapitre des frais de justice criminelle, correctionnelle et de simple police.</p><p>Les actes sont enregistrés en débet.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_92">
+                <div class="article-header">
+                    <h3>Article 92</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>L&#x27;arrêt statuant sur le recours, liquide le montant des frais et condamne la partie perdante aux dépens.</p><p>Toutefois, il peut laisser les frais à la charge de l&#x27;Etat, par décision motivée.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_93">
+                <div class="article-header">
+                    <h3>Article 93</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Dans le cas où elle rejette un pourvoi ayant effet suspensif, la Cour de Cassation doit, par le même arrêt et disposition motivée, après réquisitions du Procureur général près la Cour de Cassation, dire si le pourvoi présentait un caractère abusif ou dilatoire.</p><p>Dans l&#x27;affirmative, elle condamne le demandeur à une amende civile qui ne peut être inférieure à 500.000 francs ou excéder cinq fois le montant total des frais.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_94">
+                <div class="article-header">
+                    <h3>Article 94</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La signification de l&#x27;arrêt contient sommation d&#x27;avoir à régler le montant des frais de procédure et, s&#x27;il y a lieu, de l&#x27;amende dans un délai de trois mois.</p><p>En cas de non-paiement dans le délai fixé ci-dessus, le dossier est transmis au Procureur général près la Cour de Cassation qui saisit le Procureur de la République de la résidence de l&#x27;intéressé par l&#x27;intermédiaire du Procureur général compétent pour être procédé ainsi qu&#x27;il est prévu par le Code de procédure pénale en matière de contrainte par corps.</p><p>Les dispositions des articles ci-dessus s&#x27;appliquent à la personne physique ayant agi en justice es-qualité.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>TITRE V : DISPOSITIONS FINANCIERES</h2>
+
+            <div class="article" id="Article_95">
+                <div class="article-header">
+                    <h3>Article 95</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour de Cassation jouit de l&#x27;autonomie financière.</p><p>Le budget fait l&#x27;objet de propositions préparées par le service financier et est inscrit au projet de loi des finances au titre de la Cour de Cassation.</p><p>Le Président de la Cour de Cassation exerce les fonctions d&#x27;ordonnateur dans les conditions déterminées par le règlement de la comptabilité publique.</p><p>Le trésorier de la Cour de Cassation exerce la fonction d&#x27;agent comptable dans les conditions déterminées par le règlement de la comptabilité publique.</p><p>Il a la qualité de comptable public. Il est nommé par arrêté du ministre chargé de l&#x27;Economie et des Finances.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>TITRE VI : DISPOSITIONS TRANSITOIRES ET FINALES</h2>
+
+            <div class="article" id="Article_96">
+                <div class="article-header">
+                    <h3>Article 96</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les membres de l&#x27;ancienne Cour de Cassation de la Cour suprême sont, de plein droit, membres de la Cour de Cassation.</p><p>Les personnes titulaires de la maîtrise en droit exerçant les fonctions d&#x27;auditeur à l&#x27;ancienne Cour de Cassation de la Cour suprême sont nommés auditeurs à la Cour de Cassation.</p><p>Dès l&#x27;installation de la Cour de Cassation, les dossiers dont sont saisis les Présidents de la Cour suprême et le Président de l&#x27;ancienne Cour de Cassation de la Cour suprême, lui sont transmis.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_97">
+                <div class="article-header">
+                    <h3>Article 97</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La présente loi organique abroge la loi organique n° 2018-976 du 27 décembre 2018 déterminant la composition, l&#x27;organisation et le fonctionnement de la Cour suprême et la loi n° 2018-977 du 27 décembre 2018 déterminant les attributions, la composition, l&#x27;organisation et le fonctionnement de la Cour de Cassation.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_98">
+                <div class="article-header">
+                    <h3>Article 98</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La présente loi sera publiée au Journal officiel de la République de Côte d&#x27;Ivoire et exécutée comme loi de l&#x27;Etat.</p><p>Fait à Abidjan, le 17 décembre 2020.</p><p>Alassane OUATTARA.</p>
+                </div>
+            </div>
+            
+</section>
+</main>
+<div id="tocOverlay"></div>
+<aside id="tocPanel"><header><h3><i class="fa-solid fa-landmark"></i> Sommaire</h3></header><div class="toc-list" id="tocList"></div></aside>
+<div id="voiceBar" role="region" aria-label="Lecteur vocal">
+  <button id="vPrev" title="Article précédent"><i class="fas fa-backward"></i></button>
+  <button id="vPlay" title="Lire / Reprendre"><i class="fas fa-play"></i></button>
+  <button id="vPause" title="Pause"><i class="fas fa-pause"></i></button>
+  <button id="vStop" title="Arrêter"><i class="fas fa-stop"></i></button>
+  <button id="vNext" title="Article suivant"><i class="fas fa-forward"></i></button>
+  <span class="now" id="vNow">—</span>
+</div>
+<div id="fsOverlay"><div id="fsHeader"><button id="fsClose" title="Fermer"><i class="fas fa-xmark"></i></button><div class="ttl" id="fsTitle"></div><button id="fsPlay" title="Lecture"><i class="fas fa-play"></i></button></div><div id="fsBody"><article class="article"><div class="article-content" id="fsContent"></div></article></div><button id="fsNavPrev" title="Précédent"><i class="fas fa-chevron-left"></i></button><button id="fsNavNext" title="Suivant"><i class="fas fa-chevron-right"></i></button></div>
+
+<button id="tocFloatBtn" title="Sommaire" class="btn"><i class="fa-solid fa-book"></i></button>
+<div id="tocOverlay"></div>
+<aside id="tocPanel">
+  <header>
+    <h3><i class="fa-solid fa-scale-balanced"></i> Sommaire</h3>
+  </header>
+  <div class="toc-list" id="tocList"></div>
+</aside>
+
+<div id="voiceBar" role="region" aria-label="Lecteur vocal">
+  <button id="vPrev" title="Article précédent"><i class="fas fa-backward"></i></button>
+  <button id="vPlay" title="Lire / Reprendre"><i class="fas fa-play"></i></button>
+  <button id="vPause" title="Pause"><i class="fas fa-pause"></i></button>
+  <button id="vStop" title="Arrêter"><i class="fas fa-stop"></i></button>
+  <button id="vNext" title="Article suivant"><i class="fas fa-forward"></i></button>
+  <span class="now" id="vNow">—</span>
+</div>
+
+<div id="fsOverlay">
+  <div id="fsHeader">
+    <button id="fsClose" title="Fermer"><i class="fas fa-xmark"></i></button>
+    <div class="ttl" id="fsTitle"></div>
+    <button id="fsPlay" title="Lecture"><i class="fas fa-play"></i></button>
+  </div>
+  <div id="fsBody">
+    <article class="article">
+      <div class="article-content" id="fsContent"></div>
+    </article>
+  </div>
+  <button id="fsNavPrev" title="Précédent"><i class="fas a-chevron-left"></i></button>
+  <button id="fsNavNext" title="Suivant"><i class="fas fa-chevron-right"></i></button>
+</div>
+
+<script>
+// Fonction pour initialiser la fonctionnalité de recherche
+function initSearchFeature() {
+    const searchBtn = document.createElement('button');
+    searchBtn.className = 'btn';
+    searchBtn.id = 'searchBtn';
+    searchBtn.title = 'Rechercher';
+    searchBtn.innerHTML = '<i class="fas fa-search"></i>';
+    document.querySelector('.control-buttons').appendChild(searchBtn);
+    
+    const searchInterface = document.createElement('div');
+    searchInterface.id = 'searchInterface';
+    searchInterface.style.cssText = `
+        position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+        width: calc(100% - 40px); max-width: 550px; background: #fff;
+        padding: 10px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        z-index: 1800; display: none; align-items: center; gap: 5px; transition: .25s ease;
+    `;
+    searchInterface.innerHTML = `
+        <input type="text" id="searchInput" placeholder="Rechercher..." style="flex-grow: 1; padding: 8px; border: 1px solid #d6e6d6; border-radius: 5px;">
+        <button id="searchPrevBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-up"></i></button>
+        <button id="searchNextBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-down"></i></button>
+        <span id="searchResultsCount" style="flex-shrink: 0; padding: 0 5px; min-width: 40px; text-align: center;"></span>
+        <button id="closeSearchBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-times"></i></button>
+    `;
+    document.body.appendChild(searchInterface);
+
+    let searchResults = [];
+    let currentSearchIndex = -1;
+    let originalContents = new Map();
+
+    function performSearch() {
+        const searchTerm = document.getElementById('searchInput').value.trim();
+        if (!originalContents.size) {
+            document.querySelectorAll('.article-content, h2, h3').forEach(el => originalContents.set(el, el.innerHTML));
+        }
+        originalContents.forEach((content, el) => el.innerHTML = content);
+        searchResults = [];
+        currentSearchIndex = -1;
+        if (!searchTerm) { updateSearchUI(); return; }
+
+        const regex = new RegExp(searchTerm.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&'), 'gi');
+        originalContents.forEach((content, element) => {
+            element.innerHTML = content.replace(regex, match => `<mark>${match}</mark>`);
+        });
+        searchResults = Array.from(document.querySelectorAll('mark'));
+        if (searchResults.length > 0) navigateResults(true, false);
+        updateSearchUI();
+        window.dispatchEvent(new Event('reflowArticles'));
+    }
+
+    function navigateResults(isNext, shouldWrap = true) {
+        if (!searchResults.length) return;
+        searchResults.forEach(mark => mark.style.backgroundColor = '');
+        if (shouldWrap) {
+            currentSearchIndex = isNext ? (currentSearchIndex + 1) % searchResults.length : (currentSearchIndex - 1 + searchResults.length) % searchResults.length;
+        } else {
+            currentSearchIndex = 0;
+        }
+        const currentMark = searchResults[currentSearchIndex];
+        currentMark.style.backgroundColor = 'var(--accent)';
+        currentMark.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        updateSearchUI();
+    }
+
+    function updateSearchUI() {
+        document.getElementById('searchResultsCount').textContent = searchResults.length > 0 ? `${currentSearchIndex + 1}/${searchResults.length}` : '0/0';
+    }
+    
+    function resetSearch() {
+        originalContents.forEach((content, el) => el.innerHTML = content);
+        originalContents.clear();
+        document.getElementById('searchInput').value = '';
+        searchResults = []; currentSearchIndex = -1;
+        updateSearchUI();
+    }
+
+    searchBtn.addEventListener('click', () => {
+        const isVisible = searchInterface.style.display === 'flex';
+        searchInterface.style.display = isVisible ? 'none' : 'flex';
+        if (isVisible) resetSearch(); else document.getElementById('searchInput').focus();
+    });
+    document.getElementById('searchInput').addEventListener('input', performSearch);
+    document.getElementById('searchNextBtn').addEventListener('click', () => navigateResults(true));
+    document.getElementById('searchPrevBtn').addEventListener('click', () => navigateResults(false));
+    document.getElementById('closeSearchBtn').addEventListener('click', () => {
+        searchInterface.style.display = 'none';
+        resetSearch();
+    });
+}
+
+// Fonction pour transformer les énumérations en listes ordonnées
+(function(){
+  function extractEnumeration(s){
+    const re = /(\d{1,2})(?:\s*°)?(?:\))?(?:\.)?\s+/g; const matches = []; let m;
+    while ((m = re.exec(s))){ const idx=m.index; const prev = idx>0 ? s.charAt(idx-1) : " "; if (/\d/.test(prev)) continue; matches.push({num:parseInt(m[1],10), start:idx, end:re.lastIndex}); }
+    if (matches.length < 2) return null;
+    for (let i=1;i<matches.length;i++){ if (matches[i].num !== matches[i-1].num + 1) return null; }
+    const intro = s.slice(0, matches[0].start).trim().replace(/[:;,\-]\s*$/, ""); const items = [];
+    for (let i=0;i<matches.length;i++){ const st=matches[i].end; const en=(i+1<matches.length)?matches[i+1].start:s.length; let seg = s.slice(st,en).trim().replace(/^[;,:-]\s*/,"").replace(/[;,\s]+$/,""); items.push(seg); }
+    return {intro, start: matches[0].num, items};
+  }
+  function transformNode(node){
+    if (node.querySelector('ol')) return;
+    const plain = node.textContent.replace(/\s+/g,' ').trim(); const res = extractEnumeration(plain); if (!res) return;
+    const frag = document.createElement('div'); if (res.intro){ const p=document.createElement('p'); p.textContent=res.intro; frag.appendChild(p); }
+    const ol=document.createElement('ol'); if (res.start!==1) ol.setAttribute('start', String(res.start));
+    res.items.forEach(it=>{ const li=document.createElement('li'); li.textContent=it; ol.appendChild(li); });
+    frag.appendChild(ol); node.innerHTML=frag.innerHTML;
+  }
+  function run(){ document.querySelectorAll('.article-content').forEach(transformNode); }
+  window.addEventListener('DOMContentLoaded', ()=>setTimeout(run, 60));
+  window.addEventListener('reflowArticles', run);
+})();
+
+// Fonction pour construire la table des matières
+(function(){
+  const $ = s=>document.querySelector(s);
+  const $$ = s=>Array.from(document.querySelectorAll(s));
+  function buildTOC(){
+    const toc = document.getElementById('tocList'); if(!toc) return; toc.innerHTML='';
+    $$('.group').forEach((grp, gi)=>{
+      const gh = grp.querySelector('h2')?.textContent.trim() || `Groupe ${gi+1}`;
+      const gl = document.createElement('a'); gl.textContent=gh; gl.href='#'; gl.style.fontWeight='700';
+      gl.addEventListener('click', e=>{ e.preventDefault(); grp.scrollIntoView({behavior:'smooth', block:'start'}); hideTOC(); });
+      toc.appendChild(gl);
+      const sub = document.createElement('div'); sub.className='toc-sub';
+      grp.querySelectorAll('.article').forEach((art, ai)=>{
+        const at = art.querySelector('.article-header h3')?.textContent.trim() || `Article ${ai+1}`;
+        const a = document.createElement('a'); a.textContent=at; a.href='#';
+        a.addEventListener('click', e=>{ e.preventDefault(); art.scrollIntoView({behavior:'smooth', block:'start'}); hideTOC(); });
+        sub.appendChild(a);
+        if (!art.querySelector('.open-fs')){
+          const btn = document.createElement('button'); btn.className='open-fs'; btn.innerHTML='<i class="fas fa-maximize"></i>';
+          btn.title='Plein écran'; btn.addEventListener('click', ()=>openFS(artIndex(art))); art.querySelector('.article-header')?.appendChild(btn);
+        }
+      });
+      toc.appendChild(sub);
+    });
+  }
+  function showTOC(){ document.getElementById('tocOverlay').classList.add('show'); document.getElementById('tocPanel').classList.add('open'); }
+  function hideTOC(){ document.getElementById('tocOverlay').classList.remove('show'); document.getElementById('tocPanel').classList.remove('open'); }
+  document.addEventListener('DOMContentLoaded', ()=>{
+    const floatBtn = document.getElementById('tocFloatBtn');
+    if (floatBtn) floatBtn.addEventListener('click', showTOC);
+    const overlay = document.getElementById('tocOverlay');
+    if (overlay) overlay.addEventListener('click', hideTOC);
+    const headerBtn = document.getElementById('tocHeaderBtn');
+    if (headerBtn) headerBtn.addEventListener('click', showTOC);
+  });
+  const articles = $$('.article');
+  function artIndex(el){ return articles.indexOf(el); }
+  function getArticle(i){ return articles[Math.max(0, Math.min(articles.length-1, i))]; }
+  function artTitle(i){ const el=getArticle(i); return el? (el.querySelector('.article-header h3')?.textContent.trim()||'') : ''; }
+  function artText(i){ const el=getArticle(i); return el? (el.querySelector('.article-content')?.innerText.trim()||'') : ''; }
+  const synth = window.speechSynthesis;
+  let current = 0, utter = null, playing = false, paused = false, inFS=false;
+  function speakIndex(i){ stopSpeak(); current=i; const text=artText(i); if(!text){ nextArticle(); return; }
+    utter = new SpeechSynthesisUtterance(text); utter.lang='fr-FR'; utter.rate=1; utter.pitch=1;
+    utter.onend = ()=>{ if(playing && !paused){ nextArticle(); } };
+    try{ synth.speak(utter);}catch(e){ console.warn(e); }
+    playing=true; paused=false; updateUI(); highlightCurrent(); }
+  function highlightCurrent(){ articles.forEach(a=>a.classList.remove('reading')); const el=getArticle(current); if(el){ el.classList.add('reading'); if(!inFS) el.scrollIntoView({behavior:'smooth', block:'center'}); } document.getElementById('vNow').textContent = artTitle(current) || '—'; }
+  function pauseSpeak(){ if(synth && synth.speaking){ synth.pause(); paused=true; playing=true; } }
+  function resumeSpeak(){ if(synth && paused){ synth.resume(); paused=false; } else { speakIndex(current); } updateUI(); }
+  function stopSpeak(){ if(synth){ try{synth.cancel();}catch(e){} } playing=false; paused=false; updateUI(); }
+  function prevArticle(){ current=Math.max(0,current-1); if(playing){ speakIndex(current);} else {highlightCurrent();} if(inFS) openFS(current); }
+  function nextArticle(){ current=Math.min(articles.length-1,current+1); if(playing){ speakIndex(current);} else {highlightCurrent();} if(inFS) openFS(current); }
+  document.addEventListener('DOMContentLoaded', ()=>{
+    document.getElementById('vPlay').addEventListener('click', ()=>{ if(!playing || paused){ resumeSpeak(); } else { pauseSpeak(); } });
+    document.getElementById('vPause').addEventListener('click', ()=>pauseSpeak());
+    document.getElementById('vStop').addEventListener('click', ()=>{ stopSpeak(); });
+    document.getElementById('vPrev').addEventListener('click', prevArticle);
+    document.getElementById('vNext').addEventListener('click', nextArticle);
+  });
+  function updateUI(){ document.getElementById('vPlay').innerHTML = paused || !playing ? '<i class="fas fa-play"></i>' : '<i class="fas fa-pause"></i>'; }
+  function openFS(i){ inFS=true; current=i; document.getElementById('fsTitle').textContent=artTitle(i); document.getElementById('fsContent').textContent=artText(i); document.getElementById('fsOverlay').classList.add('show'); document.body.style.overflow='hidden'; speakIndex(i); }
+  function closeFS(){ inFS=false; document.getElementById('fsOverlay').classList.remove('show'); document.body.style.overflow=''; }
+  document.addEventListener('DOMContentLoaded', ()=>{
+    document.getElementById('fsClose').addEventListener('click', ()=>{ closeFS(); });
+    document.getElementById('fsPlay').addEventListener('click', ()=>{ if(!playing || paused){ resumeSpeak(); } else { pauseSpeak(); } });
+    document.getElementById('fsNavPrev').addEventListener('click', ()=>{ prevArticle(); });
+    document.getElementById('fsNavNext').addEventListener('click', ()=>{ nextArticle(); });
+    document.querySelectorAll('.article .open-fs').forEach((btn, idx)=> btn.addEventListener('click', ()=>openFS(idx)));
+  });
+  window.addEventListener('DOMContentLoaded', buildTOC);
+})();
+
+// Initialisation de la fonctionnalité de recherche
+document.addEventListener('DOMContentLoaded', initSearchFeature);
+</script>
+</body>
+</html>

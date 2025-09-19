@@ -1,0 +1,2277 @@
+<!DOCTYPE html>
+<html lang='fr'>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Loi Organique relative au Conseil Constitutionnel</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f9f5; --paper:#ffffff; --ink:#0f2a1f;
+  --primary:#2e7d32; --primary-700:#1b5e20; --accent:#8bc34a; --accent-2:#f1f8e9;
+  --muted:#e8f5e8; --shadow:0 12px 28px rgba(0,0,0,.08); --radius:18px; --transition:.25s ease;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.6}
+header{position:sticky;top:0;z-index:60;background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(255,255,255,.88));backdrop-filter:saturate(1.1) blur(8px);border-bottom:1px solid #e6f2e6}
+.container{max-width:1120px;margin:0 auto;padding:14px 16px;display:flex;align-items:center;gap:12px}
+.logo{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:radial-gradient(circle at 30% 30%, var(--accent), #c5e1a5);color:var(--primary-700);box-shadow:var(--shadow);font-size:18px}
+h1{margin:0;font-family:'Playfair Display',serif;font-size:20px;color:var(--primary-700)}
+.sub{color:#4c8c4f;font-size:12px;margin-top:2px}
+.control-buttons{margin-left:auto;display:flex;gap:8px;align-items:center}
+.btn{min-width:38px;height:38px;border-radius:12px;border:1px solid #d5e8d4;background:#fff;color:var(--primary-700);display:grid;place-items:center;cursor:pointer;box-shadow:var(--shadow);transition:var(--transition)}
+.btn:hover{transform:translateY(-1px)}
+.wrapper{max-width:1120px;margin:16px auto;padding:0 12px}
+.group{background:var(--paper);border:1px solid #e2eee2;border-radius:var(--radius);box-shadow:var(--shadow);margin:14px 0;overflow:hidden}
+.group>h2{margin:0;padding:14px 16px;background:linear-gradient(180deg,#ffffff,#f1f8e9);border-bottom:1px solid #e2eee2;color:var(--primary-700);font-size:18px;font-family:'Playfair Display',serif}
+.article{margin:10px 10px 14px 10px;padding:12px 14px;border-left:6px solid var(--primary);background:#fff;border-radius:14px;box-shadow:0 1px 0 rgba(0,0,0,.03)}
+.article-header{display:flex; align-items:center; gap:8px; margin:0 0 6px 0;}
+.article-header h3{margin:0; color:var(--primary-700);}
+.article .open-fs{ order:2; margin-left:auto; width:34px; height:34px; border:1px solid #d5e8d4; background:#fff; border-radius:10px; cursor:pointer; }
+.article-content p{margin:.5rem 0}.article-content ul,.article-content ol{margin:.5rem 0 .8rem 1.25rem}
+.article-content ol>li, .article-content ul>li{ padding:8px 0; line-height:1.7; border-bottom:1px solid #eaf6ea; }
+.article-content ol>li:last-child, .article-content ul>li:last-child{ border-bottom:0; }
+.article-content li > ol > li, .article-content li > ul > li{ padding:6px 0; border-bottom:1px dashed #eaf6ea; }
+.article-content li > ol > li:last-child, .article-content li > ul > li:last-child{ border-bottom:0; }
+.reading{ outline:2px solid var(--accent); outline-offset:2px; border-left-color:var(--accent) !important; background:linear-gradient(180deg,#fff, var(--accent-2)) }
+mark{background:rgba(139,195,74,.45)}
+/* Floating TOC */
+#tocFloatBtn{position:fixed; right:14px; bottom:120px; width:46px; height:46px; border-radius:50%; border:none; background:var(--primary); color:#fff; display:grid; place-items:center; box-shadow:0 10px 24px rgba(0,0,0,.25); z-index:1500;}
+#tocPanel{position:fixed; top:0; right:0; height:100%; width:86%; max-width:420px; background:#fff; border-left:1px solid #e2eee2; box-shadow:-16px 0 35px rgba(0,0,0,.2); transform:translateX(100%); transition:transform .25s ease; z-index:1600; overflow:auto;}
+#tocOverlay{position:fixed; inset:0; background:rgba(0,0,0,.28); backdrop-filter:blur(2px); display:none; z-index:1590}
+#tocPanel.open{ transform:none } #tocOverlay.show{ display:block }
+#tocPanel header{position:sticky; top:0; background:#fff; padding:12px 14px; border-bottom:1px solid #e2eee2}
+#tocPanel h3{margin:0; color:var(--primary-700)} #tocPanel .toc-list{padding:12px 14px}
+#tocPanel .toc-list a{display:block; padding:6px 0; color:#2e7d32; text-decoration:none}
+#tocPanel .toc-sub{margin-left:10px; border-left:2px solid #e8f5e8; padding-left:8px}
+/* Voice bar */
+#voiceBar{position:fixed; left:50%; transform:translateX(-50%); bottom:14px; background:var(--primary-700); color:#fff; z-index:1550; border-radius:22px; padding:8px 12px; display:flex; gap:10px; align-items:center; box-shadow:0 12px 28px rgba(0,0,0,.3)}
+#voiceBar button{width:34px; height:34px; border-radius:10px; border:1px solid #c8e6c9; background:transparent; color:#e8f5e9; display:grid; place-items:center; cursor:pointer}
+#voiceBar .now{font-size:12px; max-width:52vw; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:#f1f8e9}
+/* Fullscreen */
+#fsOverlay{ position:fixed; inset:0; background:#fff; z-index:1700; display:none; }
+#fsOverlay.show{ display:block } #fsHeader{ position:sticky; top:0; background:#fff; padding:10px 14px; border-bottom:1px solid #e2eee2; display:flex; align-items:center; gap:10px }
+#fsHeader .ttl{ font-weight:700; color:var(--primary-700); flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
+#fsHeader button{ width:36px; height:36px; border-radius:10px; border:1px solid #d5e8d4; background:#fff; }
+#fsBody{ padding:14px; height:calc(100% - 58px); overflow:auto } #fsBody .article-content{ font-size:1.04rem }
+#fsNavPrev,#fsNavNext{ position:fixed; top:50%; transform:translateY(-50%); width:42px; height:42px; border-radius:50%; border:none; background:var(--primary); color:#fff; display:grid; place-items:center; z-index:1710; opacity:.9 }
+#fsNavPrev{ left:10px } #fsNavNext{ right:10px }
+footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c8c4f;font-size:12px}
+
+/* ===== Anti-sélection / anti-copie ===== */
+.no-select, .no-select *:not(input):not(textarea):not(.selectable){
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  -webkit-touch-callout: none !important;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="logo"><i class="fa-solid fa-scale-balanced"></i></div>
+    <div>
+      <h1>Loi organique n° 2015-494 du 07 Juillet 2015 déterminant les attributions, la composition, l&#x27;organisation et le fonctionnement de la Cour des comptes.</h1>
+      <div class="sub">Conversion automatique — même gabarit (Conseil Constitutionnel)</div>
+    </div>
+    <div class="control-buttons">
+      <button class="btn" id="tocHeaderBtn" title="Sommaire"><i class="fa-solid fa-book"></i></button>
+      <button class="btn" title="Haut de page" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fa-solid fa-angles-up"></i></button>
+    </div>
+  </div>
+</header>
+
+<main class="wrapper">
+            
+</section>
+<section class="group">
+<h2>TITRE I : ATTRIBUTIONS DE LA COUR DES COMPTES</h2>
+
+
+            <div class="article" id="Article_1">
+                <div class="article-header">
+                    <h3>Article 1</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour des comptes est la juridiction suprême de contrôle des finances publiques.</p><p>Elle a des attributions juridictionnelles, de contrôle et de consultation.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_2">
+                <div class="article-header">
+                    <h3>Article 2</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour des comptes connaît :</p><p>— en appel, des jugements rendus par les chambres régionales comptes ;</p><p>— en cassation, des pourvois dirigés contre les arrêts définitifs rendus par elle-même.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_3">
+                <div class="article-header">
+                    <h3>Article 3</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour des comptes juge les comptes des comptables publics conformément au droit budgétaire et au règlement général sur la comptabilité publique.</p><p>Elle juge les comptes que lui rendent les personnes qu&#x27;elle a déclarées comptables de fait.</p><p>Elle sanctionne les fautes de gestion.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_4">
+                <div class="article-header">
+                    <h3>Article 4</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour des comptes dispose d&#x27;un pouvoir de contrôle de la gestion des services de l&#x27;Etat, des établissements publics nationaux et des collectivités territoriales. Elle s&#x27;assure de l&#x27;effectivité du recouvrement des ressources publiques, du bon emploi des crédits, fonds et valeurs gérés par les agents de l&#x27;Etat et par les autres personnes morales de droit public.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_5">
+                <div class="article-header">
+                    <h3>Article 5</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour des comptes assure également la vérification des comptes et le contrôle de la gestion :</p><p>— des sociétés, groupements ou organismes, quel que soit leur statut juridique, dans lesquels l&#x27;Etat, les collectivités territoriales, personnes ou établissements publics nationaux, les organismes soumis au contrôle de la Cour des comptes détiennent directement, séparément ou ensemble, plus de la moitié du capital ou des voix dans les organes délibérants ;</p><p>— des personnes morales dans lesquelles l&#x27;Etat ou des organismes soumis au contrôle de la Cour des comptes détiennent directement, séparément ou ensemble, une participation au capital permettant d&#x27;exercer un pouvoir prépondérant de décision ou de gestion ;</p><p>— des services publics concédés.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_6">
+                <div class="article-header">
+                    <h3>Article 6</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour des comptes contrôle la gestion des organismes de sécurité et de prévoyance sociale, y compris les organismes de droit privé qui assurent, en tout ou en partie, la gestion d&#x27;un régime de prévoyance légalement obligatoire.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_7">
+                <div class="article-header">
+                    <h3>Article 7</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour des comptes contrôle la gestion de tout organisme ou association qui bénéficie d&#x27;un concours financier de l&#x27;Etat ou d&#x27;une autre personne morale de droit public ainsi que de tout organisme bénéficiant du concours financier des entreprises publiques et de leurs filiales.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_8">
+                <div class="article-header">
+                    <h3>Article 8</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour des comptes contrôle la conformité de l&#x27;emploi des ressources collectées auprès du public avec les objectifs énoncés lors de l&#x27;appel à la générosité publique.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_9">
+                <div class="article-header">
+                    <h3>Article 9</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les comptes d&#x27;emploi des crédits alloués aux pouvoirs publics constitutionnels dotés d&#x27;un comptable public ou d&#x27;un agent comptable tenant lieu de comptable public sont adressés, après la clôture de chaque exercice, au président de la Cour des comptes, en vue de leur vérification dans le respect de leur autonomie financière.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_10">
+                <div class="article-header">
+                    <h3>Article 10</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour des comptes assiste l&#x27;Assemblée nationale et le Gouvernement dans le contrôle de l&#x27;exécution des lois de finances et dans les domaines relevant de sa compétence.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_11">
+                <div class="article-header">
+                    <h3>Article 11</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour des comptes adresse au Président de la République et présente à l&#x27;Assemblée nationale et au Conseil économique et social, au plus tard à la fin de l&#x27;année suivant la clôture de l&#x27;exercice, un rapport public annuel dans lequel elle expose ses observations et en tire les enseignements.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_12">
+                <div class="article-header">
+                    <h3>Article 12</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour des comptes peut adresser au Président de la République et présenter à l&#x27;Assemblée nationale et au Conseil économique et social, des rapports de synthèse sur des sujets particuliers.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_13">
+                <div class="article-header">
+                    <h3>Article 13</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour des comptes peut être consultée par le Gouvernement, l&#x27;Assemblée nationale ou le Conseil économique et social, sur des questions économiques, financières ou de gestion des services de l&#x27;Etat et des collectivités publiques.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_14">
+                <div class="article-header">
+                    <h3>Article 14</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour des comptes reçoit la déclaration de patrimoine du Président de la République lors de son entrée en fonction et à la fin de celle-ci conformément à la législation en vigueur.</p><p>Elle reçoit également la déclaration de patrimoine des membres, du secrétaire général, des directeurs et chefs de service de la Haute Autorité pour la Bonne Gouvernance.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>TITRE II ;COMPOSITION ET ORGANISATION DE LA COUR DES COMPTES</h2>
+
+
+            
+</section>
+<section class="group">
+<h2>CHAPITRE PREMIER : Composition</h2>
+
+            
+</section>
+<section class="group">
+<h2>Section 1 : Emplois</h2>
+
+            
+
+            <div class="article" id="Article_15">
+                <div class="article-header">
+                    <h3>Article 15</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour des comptes est composée de magistrats du siège, de magistrats du ministère public et de membres du greffe.</p><p>Les magistrats du siège sont :</p><p>— le président ;</p><p>— les deux vice-présidents ;</p><p>— les présidents de chambre ;</p><p>— les conseillers-maîtres ;</p><p>— les conseillers référendaires ;</p><p>— les auditeurs.</p><p>Les magistrats du ministère public sont :</p><p>— le procureur général ;</p><p>— les deux procureurs généraux adjoints ;</p><p>— les premiers avocats généraux ;</p><p>— les avocats généraux.</p><p>Les membres du greffe sont :</p><p>— le greffier en chef ;</p><p>— les greffiers de chambre ;</p><p>— les greffiers.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Section 2 : Président, vice-présidents et présidents de chambre</h2>
+
+
+            <div class="article" id="Article_16">
+                <div class="article-header">
+                    <h3>Article 16</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le président de la Cour des comptes est choisi parmi les magistrats hors hiérarchie du groupe A.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_17">
+                <div class="article-header">
+                    <h3>Article 17</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les vice-présidents de la Cour des comptes sont des magistrats hors hiérarchie du groupe A, choisis parmi les présidents de chambre ou les premiers avocats généraux.</p><p>Les présidents de chambre sont exclusivement choisis parmi les conseillers maîtres ou parmi les avocats généraux, magistrats hors hiérarchie du groupe B, après trois ans.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Section 3 : Conseillers et auditeurs</h2>
+            
+
+            <div class="article" id="Article_18">
+                <div class="article-header">
+                    <h3>Article 18</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les conseillers-maîtres sont des magistrats hors hiérarchie du groupe B choisis parmi :</p><p>— les magistrats hors hiérarchie et les magistrats appartenant depuis deux ans au moins au le groupe du le grade ;</p><p>— les professeurs titulaires ou les maîtres de conférences des facultés de droit, des sciences économiques et de gestion ayant au moins dix années de pratique professionnelle ;</p><p>— les personnalités titulaires du doctorat en droit ou en sciences économiques et de gestion connues pour leur compétence en matière juridique, économique et financière comptant quinze années au moins de pratique professionnelle.</p><p>Le nombre des conseillers-maîtres nommés en application des 2e et 3e tirets du présent article ne peut excéder le tiers des conseillers-maîtres en poste.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_19">
+                <div class="article-header">
+                    <h3>Article 19</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les conseillers référendaires sont des magistrats du premier grade. Ils sont choisis parmi :</p><p>— les magistrats appartenant depuis trois ans au moins au premier groupe du deuxième grade ;</p><p>— les titulaires d&#x27;un diplôme de troisième cycle ayant au moins dix années d&#x27;expérience professionnelle en matière juridique, économique, financière ou de gestion ;</p><p>— les personnalités reconnues pour leurs compétences en matière juridique, économique, financière ou disposant d&#x27;une expérience et d&#x27;une expertise techniques avérées et particulièrement utiles au bon exercice des contrôles de la Cour, âgées de trente-cinq ans au moins et ayant au moins dix années d&#x27;expérience pratique.</p><p>Le nombre des conseillers référendaires nommés en application des 2e et 3e tirets du présent article ne peut excéder le tiers des conseillers référendaires en poste.</p>
+
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_20">
+                <div class="article-header">
+                    <h3>Article 20</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les nominations faites en application des 2e et 3e tirets des articles 18 et 19 de la présente loi ne peuvent intervenir qu&#x27;après un avis émis par la Commission consultative de Recrutement, prévue à l&#x27;article 38 de la présente loi sur l&#x27;aptitude des candidats à exercer les fonctions de conseiller-maître ou référendaire.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_21">
+                <div class="article-header">
+                    <h3>Article 21</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les auditeurs sont des magistrats du deuxième grade. Ils sont choisis parmi :</p><p>— les magistrats du deuxième grade ;</p><p>— les titulaires de la maîtrise en droit, en sciences économiques ou de gestion, diplômés du cycle supérieur de l&#x27;Ecole nationale d&#x27;Administration ;</p><p>— les personnalités reconnues pour leurs compétences en matière juridique, économique, financière ou de gestion et ayant au moins cinq années d&#x27;expérience pratique.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_22">
+                <div class="article-header">
+                    <h3>Article 22</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les candidats prévus aux 2e et 3e tirets de l&#x27;article précédent sont recrutés par appel à candidature organisé par la Cour des comptes. Ils sont astreints à un stage d&#x27;une durée d&#x27;un an dont les modalités sont fixées par ordonnance du président.</p><p>A l&#x27;issue du stage, ils sont évalués par la Commission consultative de Recrutement, qui dresse la liste destinée au Conseil supérieur de la magistrature pour avis, en vue de leur nomination en qualité d&#x27;auditeurs.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Section 4 : Procureur général, procureurs généraux adjoints, premiers avocats généraux et avocats généraux</h2>
+            
+
+            <div class="article" id="Article_23">
+                <div class="article-header">
+                    <h3>Article 23</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le procureur général est choisi parmi les magistrats hors hiérarchie du groupe A.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_24">
+                <div class="article-header">
+                    <h3>Article 24</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les procureurs généraux adjoints sont choisis parmi les premiers avocats généraux près la Cour des comptes ou les présidents de chambre de la Cour des comptes.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_25">
+                <div class="article-header">
+                    <h3>Article 25</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les premiers avocats généraux sont choisis parmi les avocats généraux près la Cour des comptes ou les conseillers-maîtres, magistrats hors hiérarchie du groupe B, après trois ans.</p><p>Les avocats généraux sont choisis parmi les magistrats hors hiérarchie et les magistrats appartenant depuis deux ans au moins au premier groupe du premier grade.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Section 5 : Greffier en chef greffiers de chambre et greffiers</h2>
+            
+
+            <div class="article" id="Article_26">
+                <div class="article-header">
+                    <h3>Article 26</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le greffier en chef est nommé par décret sur proposition du ministre chargé de la Justice. Il est choisi parmi les administrateurs des greffes et parquets.</p><p>Les greffiers de chambre sont nommés par arrêté du ministre chargé de la Justice, parmi les attachés des greffes et parquets.</p><p>Les greffiers sont nommés par arrêté du ministre chargé de la Justice, parmi les attachés des greffes et parquets ou parmi les secrétaires des greffes et parquets ayant au moins cinq années d&#x27;ancienneté.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Section 6 : Principes statutaires</h2>
+
+            
+
+            <div class="article" id="Article_27">
+                <div class="article-header">
+                    <h3>Article 27</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le président de la Cour des comptes, président de la Commission consultative de Recrutement, prévue à l&#x27;article 38 de la présente loi, fait des propositions au Conseil supérieur de la magistrature, pour le recrutement des magistrats du siège de la Cour des comptes.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_28">
+                <div class="article-header">
+                    <h3>Article 28</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les propositions de la Commission consultative de Recrutement sont transmises au Conseil supérieur de la magistrature pour avis.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_29">
+                <div class="article-header">
+                    <h3>Article 29</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les magistrats de la Cour des comptes sont nommés par décret pris en Conseil des ministres, sur proposition du Conseil supérieur de la magistrature et sur présentation du ministre chargé de la Justice.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_30">
+                <div class="article-header">
+                    <h3>Article 30</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Lors de la première installation, les magistrats prêtent, devant la Cour des comptes, en audience solennelle, le serment prévu pour les magistrats.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_31">
+                <div class="article-header">
+                    <h3>Article 31</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le statut des magistrats est applicable aux magistrats de la Cour des comptes pour tout ce qui n&#x27;est pas prévu par la présente loi organique.</p><p>Les décisions qui, aux termes du statut des magistrats, doivent intervenir par décret sont prises dans la même forme mais sur proposition du Conseil supérieur de la magistrature et après avis du président de la Cour des comptes.</p><p>Les autres décisions sont prises par ordonnance du président de la Cour des comptes.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_32">
+                <div class="article-header">
+                    <h3>Article 32</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Lorsque le détachement ou la disponibilité des magistrats de la Cour des comptes prend fin, ils réintègrent d&#x27;office la Cour des comptes.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>CHAPITRE 2 : Organisation de la Cour des comptes</h2>
+
+            <div class="article" id="Article_33">
+                <div class="article-header">
+                    <h3>Article 33</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le président de la Cour des comptes est chargé de l&#x27;administration et de la discipline de la Cour. Il en assure la direction générale, l&#x27;organisation et la coordination des travaux.</p><p>Il répartit, par ordonnance, les magistrats dans les chambres.</p><p>Il contrôle les travaux et les activités des magistrats autres que ceux affectés au ministère public.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_34">
+                <div class="article-header">
+                    <h3>Article 34</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le président arrête le règlement intérieur de la Cour des comptes, après délibération de l&#x27;assemblée générale de la Cour.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_35">
+                <div class="article-header">
+                    <h3>Article 35</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le président assure la gestion administrative des personnels et des moyens affectés à la Cour.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_36">
+                <div class="article-header">
+                    <h3>Article 36</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>En cas d&#x27;absence ou d&#x27;empêchement, le président de la Cour des comptes est remplacé dans ses fonctions par un vice-président.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_37">
+                <div class="article-header">
+                    <h3>Article 37</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour des comptes dispose d&#x27;un service de vérification composé de vérificateurs recrutés à la demande du président, par le ministère en charge de la Fonction publique.</p><p>Le service de vérification est dirigé par un chef de service nommé par ordonnance du président.</p><p>Des vérificateurs peuvent aussi être recrutés par le président de la Cour des comptes par contrat.</p><p>Les vérifications ont lieu sous la responsabilité des conseillers-maîtres, des conseillers référendaires et des auditeurs.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_38">
+                <div class="article-header">
+                    <h3>Article 38</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Une Commission consultative de Recrutement est placée auprès du président de la Cour des comptes qui la préside. Elle est consultée par le président sur les questions de recrutement de l&#x27;ensemble des magistrats et du personnel de la Cour des comptes.</p><p>La composition, l&#x27;organisation et le fonctionnement de la Commission consultative de Recrutement sont prévus au règlement intérieur de la Cour des comptes.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_39">
+                <div class="article-header">
+                    <h3>Article 39</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour des comptes peut recourir, pour des enquêtes à caractère technique, à l&#x27;assistance d&#x27;experts extérieurs désignés par le président.</p><p>Placés sous l&#x27;autorité des magistrats chargés du contrôle, ces sont assujettis au secret professionnel. Ils sont rémunérés par vacation, dont le taux est fixé par la réglementation en vigueur.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_40">
+                <div class="article-header">
+                    <h3>Article 40</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour des comptes comprend un greffe dirigé par un greffier en chef assisté de greffiers de chambre et de greffiers.</p><p>Le greffier en chef de la Cour des comptes assure la répartition des greffiers de chambre et des greffiers dans les différentes chambres de la Cour des comptes et les différents services du ministère public.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_41">
+                <div class="article-header">
+                    <h3>Article 41</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le greffe enregistre les comptes et les autres documents comptables produits à la Cour des comptes et en assure la distribution aux chambres selon le programme des travaux de la Cour.</p><p>Il veille à l&#x27;archivage desdits comptes et documents en relation avec le service des archives.</p><p>Le greffe conserve pendant cinq ans les pièces vérifiées et garde pendant trente ans au moins les comptes jugés et les pièces frappées d&#x27;observations ainsi que les originaux des rapports et arrêts définitifs.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>CHAPITRE 3 : Organisation du ministère public près la Cour des comptes</h2>
+
+            <div class="article" id="Article_42">
+                <div class="article-header">
+                    <h3>Article 42</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le procureur général assure les fonctions du ministère public près la Cour des comptes. Il assure l&#x27;administration et la discipline du parquet général.</p><p>Le procureur général près la Cour des comptes est placé sous l&#x27;autorité du ministre de la Justice.</p><p>Les procureurs généraux adjoints, les premiers avocats généraux et les avocats généraux participent, sous sa direction, à l&#x27;exercice de ses fonctions.</p><p>Le ministère public est soumis au principe de la subordination hiérarchique. Il est indivisible.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_43">
+                <div class="article-header">
+                    <h3>Article 43</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le procureur général est suppléé, en cas d&#x27;absence ou d&#x27;empêchement, par un procureur général adjoint.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_44">
+                <div class="article-header">
+                    <h3>Article 44</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le procureur général peut requérir l&#x27;application de la loi devant toutes les chambres et en toutes matières.</p><p>Il bénéficie en tant que de besoin des services administratifs de la Cour des comptes.</p><p>Il est présent ou représenté dans les formations consultatives de la Cour quand il n&#x27;en est pas membre.</p><p>Il veille à la bonne application des lois et règlements au sein de la Cour.</p><p>Il exerce les fonctions du ministère public par voie de réquisitions ou de conclusions écrites. Toutefois, il peut faire des observations orales complémentaires devant les différentes formations juridictionnelles.</p><p>Les rapports et arrêts définitifs sur les gestions patentes, les saisines pour gestion de fait ou faute de gestion et les recours en révision ou pourvois en cassation lui sont obligatoirement communiqués pour avis.</p><p>Il peut communiquer directement avec les autorités administratives ou judiciaires par note du ministère public.</p><p>Il tient l&#x27;état des ordonnateurs et des comptables publics ainsi que celui des services de l&#x27;Etat, des collectivités locales et des entreprises ou organismes assujettis au contrôle de la Cour des comptes. A cette fin, il lui est adressé, sur instructions du ministre chargé des Finances publiques au début de chaque année, la liste des postes comptables, celle des comptables publics assignataires et l&#x27;arrêté portant liste des entreprises publiques. Il est de même destinataire du procès-verbal relatif à la réception des comptes des comptables publics par le greffe de la Cour.</p><p>Il est informé par le greffier en chef des retards dans la production de comptes et des pièces justificatives.</p><p>Il est consulté par le président de la Cour des comptes avant toute décision de destruction des liasses.</p><p>Il défère à la Cour des comptes les opérations présumées constitutives de gestion de fait. Il requiert l&#x27;application des amendes prévues.</p><p>II suit, en relation avec les services habilités du ministère en charge des Finances publiques, l&#x27;exécution des arrêts définitifs et décisions de la Cour des comptes.</p><p>Le procureur général exerce un contrôle sur les activités des parquets près les chambres régionales des comptes.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>CHAPITRE 4 :Formations de la Cour des comptes</h2>
+
+            <div class="article" id="Article_45">
+                <div class="article-header">
+                    <h3>Article 45</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour des comptes se réunit, soit en audience solennelle, soit en chambre du conseil, soit en chambres réunies, soit en audience ordinaire, soit en assemblée générale.</p><p>En cas de besoin, des sections peuvent être créées au sein des chambres par ordonnance du président de la Cour des comptes.</p><p>Le président préside les audiences solennelles, la chambre du conseil, les chambres réunies. Il peut, en outre, présider toutes les autres formations de la Cour.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_46">
+                <div class="article-header">
+                    <h3>Article 46</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour des comptes se réunit en audience solennelle pour recevoir le serment des magistrats, des greffiers et des comptables publics, l&#x27;installation des membres de la Cour ou pour l&#x27;audience de rentrée de la Cour. L&#x27;audience solennelle est publique.</p><p>L&#x27;audience solennelle comprend l&#x27;ensemble des magistrats de la Cour des comptes.</p><p>Elle ne délibère valablement qu&#x27;avec la moitié au moins de ses membres présents.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_47">
+                <div class="article-header">
+                    <h3>Article 47</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La chambre du conseil se compose du président, des présidents de chambre et des conseillers-maîtres.</p><p>Elle est saisie des projets de rapport public, du projet de rapport sur l&#x27;exécution des lois de finances, de la déclaration générale de conformité et des rapports sur les entreprises publiques, les délégations de service public, les organismes de sécurité et de prévoyance sociale et les organismes bénéficiant d&#x27;un concours financier de l&#x27;Etat.</p><p>Elle adopte le budget, le programme annuel d&#x27;activité et les rapports annuels de la Cour des comptes.</p><p>Elle délibère sur le rapport d&#x27;exécution des dotations budgétaires de la Cour, pour chaque exercice budgétaire, effectué par un magistrat désigné par le président de la Cour.</p><p>Elle délibère sur toutes les affaires qui lui sont soumises par le président de la Cour et sur toutes les questions en matière d&#x27;organisation et de fonctionnement de la Cour pour lesquelles le président de la Cour estime cet avis nécessaire.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_48">
+                <div class="article-header">
+                    <h3>Article 48</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les chambres réunies de la Cour des comptes comprennent le président, les présidents de chambres et deux conseillers-maîtres par chambre.</p><p>Elles ne délibèrent valablement qu&#x27;avec les trois quarts au moins de ces magistrats. Le président en assure la présidence.</p><p>En chambre réunie, la Cour des comptes :</p><p>— statue sur les recours en cassation ;</p><p>— formule des avis sur les questions de droit ;</p><p>— statue sur des questions relevant de plusieurs chambres ou pour l&#x27;examen de rapports traitant de questions relevant des attributions de plusieurs chambres.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_49">
+                <div class="article-header">
+                    <h3>Article 49</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour des comptes se réunit en audience ordinaire pour juger les affaires qui sont de sa compétence. La Cour comprend plusieurs chambres.</p><p>Chaque chambre est composée d&#x27;un président de chambre, de conseillers-maîtres, de conseillers référendaires et d&#x27;auditeurs.</p><p>En cas d&#x27;empêchement du président de chambre, le conseiller-maître le plus ancien préside la formation. A défaut, la présidence de la formation est assurée par le conseiller référendaire le plus ancien dans le grade le plus élevé.</p><p>La chambre, composée d&#x27;au moins trois magistrats, siège et délibère en nombre impair.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_50">
+                <div class="article-header">
+                    <h3>Article 50</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour des comptes se réunit en assemblée générale pour adopter ou modifier le règlement intérieur de la Cour, débattre de toutes questions intéressant l&#x27;organisation et la discipline de la Cour. L&#x27;assemblée générale comprend l&#x27;ensemble des magistrats de la Cour. Elle est présidée par le président de la Cour. Elle ne délibère valablement qu&#x27;avec les deux tiers au moins des magistrats.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_51">
+                <div class="article-header">
+                    <h3>Article 51</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La présence du ministère public est obligatoire devant les assemblées générales, la chambre du conseil, les chambres réunies, lors des audiences ordinaires et solennelles.</p><p>Le ministère public ne participe pas aux délibérations, sauf en assemblée générale, pour adopter ou modifier le règlement intérieur de la Cour, débattre de toutes questions intéressant l&#x27;organisation et la discipline de la Cour.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>TITRE III : PROCEDURES DEVANT LA COUR DES COMPTES</h2>
+  
+</section>
+<section class="group">
+<h2>CHAPITRE PREMIER : Principes généraux</h2>
+
+
+            <div class="article" id="Article_52">
+                <div class="article-header">
+                    <h3>Article 52</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les délibérations de la Cour des comptes sont exprimées en la forme d&#x27;arrêts définitifs ou de communications aux intéressés ou aux autorités administratives compétentes.</p><p>Les délibérations sont prises à la majorité des voix. En cas de partage des voix, celle du président est prépondérante.</p><p>A l&#x27;exception de l&#x27;audience solennelle et des audiences de jugement au cours desquelles la Cour statue sur une amende, une faute de gestion ou une gestion de fait, les audiences des diverses formations se déroulent à huis clos.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_53">
+                <div class="article-header">
+                    <h3>Article 53</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour des comptes statue suivant les cas, soit en premier et dernier ressort, soit en dernier ressort. Ses arrêts définitifs sont, à peine de nullité, motivés. Les voies de recours admises contre les arrêts définitifs sont la révision et la cassation devant les chambres réunies.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_54">
+                <div class="article-header">
+                    <h3>Article 54</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les magistrats ont tous pouvoirs d&#x27;investigation pour l&#x27;instruction des affaires qui leur sont attribuées.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_55">
+                <div class="article-header">
+                    <h3>Article 55</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les magistrats de la Cour des comptes peuvent demander aux directeurs ou chefs de service, aux comptables et aux autorités de tutelle la production de tous documents de quelque nature que ce soit et tous renseignements relatifs à la gestion des services et organismes soumis au contrôle de la Cour.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_56">
+                <div class="article-header">
+                    <h3>Article 56</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les magistrats peuvent se transporter chez les comptables, les directeurs, les chefs et administrateurs des services ou organismes soumis au contrôle de la Cour des comptes ou dont les comptes sont soumis à son jugement.</p><p>Ces derniers doivent prendre toutes dispositions pour permettre aux magistrats de prendre connaissance des écritures tenues et de tous les documents, en particulier, des pièces préparant et justifiant le recouvrement des recettes, l&#x27;engagement, la liquidation, l&#x27;ordonnancement et le paiement des dépenses.</p><p>Les magistrats peuvent se faire délivrer copie des pièces nécessaires à leur contrôle.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_57">
+                <div class="article-header">
+                    <h3>Article 57</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les magistrats ont accès à tous immeubles, locaux et propriétés compris dans les patrimoines de l&#x27;Etat ou des autres personnes morales soumises au jugement ou au contrôle de la Cour des comptes, et ont le droit de procéder à la vérification des fournitures, matériels, travaux et constructions ainsi que de toute comptabilité.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_58">
+                <div class="article-header">
+                    <h3>Article 58</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les magistrats ont le pouvoir d&#x27;entendre tout directeur ou représentant des services et des organismes soumis à son contrôle, tout gestionnaire de fonds publics, tout dirigeant d&#x27;entreprises publiques, tout membre d&#x27;une institution ou corps de contrôle, sur injonction du président de la Cour des comptes.</p><p>Les directeurs des services et des organismes soumis au contrôle de la Cour des comptes, ainsi que les autorités de tutelle sont tenus de communiquer à la Cour et à sa demande, tout rapport de vérification, de contrôle d&#x27;un service ou d&#x27;un organisme soumis à son contrôle.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_59">
+                <div class="article-header">
+                    <h3>Article 59</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>L&#x27;obligation de secret professionnel n&#x27;est pas opposable aux magistrats de la Cour des comptes à l&#x27;occasion des enquêtes et investigations effectuées dans l&#x27;exercice de leurs fonctions.</p><p>Lorsque les communications et auditions portent sur des sujets à caractère secret concernant la défense nationale, les affaires étrangères, la sécurité intérieure ou extérieure de l&#x27;Etat, sur des éléments confidentiels de la gestion industrielle, commerciale ou financière des entreprises publiques ou sur un dossier faisant l&#x27;objet d&#x27;une information judiciaire, le président de la Cour des comptes et le procureur général prennent toutes dispositions pour garantir le secret des enquêtes, des investigations et des observations.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_60">
+                <div class="article-header">
+                    <h3>Article 60</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Toute vérification sur place donne lieu à un ordre de missi6n établi par le président de la Cour des comptes.</p><p>Toutefois, si le contrôle doit se faire au domicile des personnes citées à l&#x27;article 55 de la présente loi, une autorisation du président de la Cour est nécessaire.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>CHAPITRE 2 : Contrôle juridictionnel</h2>
+
+</section>
+<section class="group">
+<h2>Section 1</h2>
+
+            <div class="article" id="Article_Intro">
+                <div class="article-header">
+                    <h3>Préambule</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Production des comptes par les comptables publics.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_61">
+                <div class="article-header">
+                    <h3>Article 61</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour des comptes vérifie les comptes des comptables publics de l&#x27;Etat, des collectivités territoriales, des établissements publics nationaux ainsi que ceux des entreprises dont le capital est souscrit exclusivement ou conjointement par l&#x27;Etat, lorsque ces organismes sont dotés d&#x27;un comptable public.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_62">
+                <div class="article-header">
+                    <h3>Article 62</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Tous les comptables publics des collectivités territoriales, des établissements publics nationaux et des organismes publics sont astreints à produire annuellement, à la Cour des comptes, un compte de gestion ou un compte financier, appuyés des pièces justificatives, dans le délai imparti et au plus tard le 30 juin de l&#x27;année suivant la clôture de l&#x27;exercice concerné.</p><p>Les comptes en état d&#x27;examen sont transmis à la Cour des comptes.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_63">
+                <div class="article-header">
+                    <h3>Article 63</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>En cas de décès ou d&#x27;empêchement absolu du comptable, l&#x27;obligation de présenter les comptes incombe à un comptable d&#x27;office nommé par arrêté du ministre chargé des Finances publiques.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_64">
+                <div class="article-header">
+                    <h3>Article 64</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>A défaut de comptable, le compte ne peut être signé et présenté que par un fondé de pouvoirs expressément désigné par le ministre chargé des Finances publiques.</p><p>L&#x27;arrêté nommant le commis d&#x27;office fixe le délai imparti à ce &#x27; pour présenter le compte. Le compte est toujours rendu au non, titulaire de l&#x27;emploi.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_65">
+                <div class="article-header">
+                    <h3>Article 65</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>En cas de mutation ou de cessation de fonction, l&#x27;obligation de l&#x27;exacte reprise du solde des opérations n&#x27;est pas opposable au comptable qui se sera libéré de ses obligations lors de la passation des charges.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_66">
+                <div class="article-header">
+                    <h3>Article 66</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Sauf décision contraire du ministre chargé des Finances publiques prise pour des cas individuels, les comptables remplacés en cours d&#x27;année sont dispensés de rendre un compte séparé de leur gestion.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_67">
+                <div class="article-header">
+                    <h3>Article 67</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Chaque comptable certifie le compte en faisant précéder sa signature de la mention suivant laquelle il s&#x27;approprie expressément les recettes et les dépenses de la gestion relativement à la période de gestion.</p><p>Cette certification ne dispense pas les comptables cessant leur service ou entrant en fonction de produire à la Cour des comptes les pièces prévues par les règlements en cas de mutation.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_68">
+                <div class="article-header">
+                    <h3>Article 68</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Sauf cas de force majeure ou de toute autre cause non imputable au comptable, les comptes présentés à la Cour des comptes sont soumis à un délai de prescription de jugement de cinq ans.</p><p>Dans un tel cas, la Cour rend un arrêt définitif de décharge.</p><p>L&#x27;acte de mise en jeu de la responsabilité du comptable public ne peut plus intervenir au-delà du 31 décembre de la cinquième année qui suit celle au cours de laquelle le comptable a produit ses comptes au juge des comptes.</p><p>L&#x27;action en déclaration de gestion de fait se prescrit pour les actes constitutifs de gestion de fait commis plus de dix ans avant la date à laquelle le juge des Comptes en est saisi ou s&#x27;en est saisi d&#x27;office.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Section 2 : Instruction des comptes</h2>
+
+
+            <div class="article" id="Article_69">
+                <div class="article-header">
+                    <h3>Article 69</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La procédure d&#x27;instruction de la Cour des comptes est écrite et contradictoire. Au cours de l&#x27;instruction, les membres de la Cour sont tenus d&#x27;observer l&#x27;obligation de secret professionnel.</p><p>Le magistrat rapporteur peut exiger de l&#x27;ordonnateur, du contrôleur, du comptable public ou de tout autre responsable, toutes précisions ou justifications qu&#x27;il juge nécessaires dans la limite des compétences de chacun et des documents qu&#x27;il est tenu de conserver en application des dispositions réglementaires en vigueur.</p><p>Tout refus de produire les justifications ou précisions demandées entraîne l&#x27;application de l&#x27;amende prévue par la réglementation en vigueur sur la base d&#x27;un rapport présenté par le magistrat rapporteur au président de la Chambre, lequel le transmet au procureur général près la Cour des comptes qui requiert du président l&#x27;application de ladite amende.</p><p>Le magistrat rapporteur peut effectuer sur place toutes les enquêtes et investigations qu&#x27;il estime nécessaires à la réalisation de sa mission.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Section 3 : Jugement des comptes</h2>
+
+
+            <div class="article" id="Article_70">
+                <div class="article-header">
+                    <h3>Article 70</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour des comptes apprécie la régularité des justifications des opérations inscrites dans les comptes.</p><p>Elle établit par ses arrêts définitifs si les comptables publics sont :</p><p>— déchargés ;</p><p>— quittes ;</p><p>— en avance ;</p><p>— en débet.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_71">
+                <div class="article-header">
+                    <h3>Article 71</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Lorsque la Cour des comptes ne retient aucune irrégularité à la charge du comptable public, elle statue par arrêt définitif lui donnant décharge de sa gestion.</p><p>Lorsque le comptable public est sorti de fonction et que sa gestion a été reconnue irréprochable ou que les omissions, les irrégularités ou déficits reprochés ont été reconnus irréprochables et les débets, s&#x27;il en avait été prononcés, apurés, la Cour le déclare définitivement quitte.</p><p>La Cour autorise la restitution au comptable public de son cautionnement réel ou le dégagement de sa caution personnelle, ainsi que la mainlevée et la radiation des oppositions et inscriptions hypothécaires frappant ses biens à raison de sa gestion.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_72">
+                <div class="article-header">
+                    <h3>Article 72</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Si le compte est excédentaire, l&#x27;arrêt définitif décharge le comptable en le constituant en avance.</p><p>Dans son arrêt définitif, la Cour des comptes fixe également le solde des opérations en fin de gestion et fait obligation au comptable de le prendre en charge au compte de la gestion suivante.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_73">
+                <div class="article-header">
+                    <h3>Article 73</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Lorsque la Cour des comptes constate des irrégularités mettant en cause la responsabilité du comptable, elle enjoint à ce dernier d&#x27;apporter la preuve de leur rectification ou de produire des justifications complémentaires.</p><p>Les charges relevées contre le comptable sont portées à sa connaissance par un arrêt provisoire. Cet arrêt peut comporter communication de pièces, à charge de réintégration.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_74">
+                <div class="article-header">
+                    <h3>Article 74</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Lorsqu&#x27;un comptable public ne répond pas dans le délai fixé à une injonction qui lui est adressée par la Cour, il encourt l&#x27;amende prévue par la réglementation en vigueur.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_75">
+                <div class="article-header">
+                    <h3>Article 75</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le comptable dispose d&#x27;un délai de deux mois, à compter de la notification à lui faite, pour répondre aux injonctions prononcées par l&#x27;arrêt provisoire.</p><p>En cas de mutation du comptable ou de sortie de fonction, le comptable en exercice est tenu de donner suite aux injonctions portant sur la gestion de son prédécesseur.</p><p>Il communique à ce dernier une copie de l&#x27;arrêt définitif et des réponses destinées à y satisfaire et adresse ses réponses à la Cour des comptes après acquiescement du comptable sorti de fonction ou muté, qui dispose d&#x27;un délai d&#x27;un mois pour donner suite aux observations formulées.</p><p>A défaut d&#x27;acquiescement du comptable sorti ou muté dans le délai indiqué, le comptable en fonction transmet ses réponses à la Cour.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_76">
+                <div class="article-header">
+                    <h3>Article 76</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Lorsque l&#x27;apurement des gestions présente des difficultés particulières, le ministre chargé des Finances publiques commet d&#x27;office un agent chargé de donner suite aux injonctions, en lieu et place du comptable.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_77">
+                <div class="article-header">
+                    <h3>Article 77</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Si le comptable satisfait aux injonctions formulées par l&#x27;arrêt provisoire ou produit toutes justifications reconnues valables, la Cour des comptes lève les charges qu&#x27;elle avait prononcées.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_78">
+                <div class="article-header">
+                    <h3>Article 78</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Si les réponses produites par le comptable ne sont pas jugées satisfaisantes, la Cour des comptes confirme par arrêt définitif les charges qu&#x27;elle avait prononcées et le constitue en débet. Elle peut toutefois, avant de se prononcer à titre définitif, rendre sur un même compte plusieurs arrêts provisoires.</p><p>La Cour condamne le comptable à solder son débet, avec les intérêts de droit, au Trésor ou à la caisse de la collectivité locale ou de l&#x27;établissement public intéressé.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_79">
+                <div class="article-header">
+                    <h3>Article 79</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Si dans l&#x27;examen des comptes, la Cour des comptes découvre des faux ou des concussions, il en est rendu compte aux ministres techniques, au ministre chargé des Finances publiques et référé au procureur général près la Cour.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Section 4 : Gestion de fait</h2>
+
+
+            <div class="article" id="Article_80">
+                <div class="article-header">
+                    <h3>Article 80</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Est comptable de fait toute personne qui, sans avoir la qualité de comptable public ou sans agir sous le contrôle et pour le compte d&#x27;un comptable public, s&#x27;ingère dans le recouvrement de recettes destinées à un organisme public doté d&#x27;un poste comptable ou dépendant d&#x27;un tel poste. Dans un tel cas, elle doit rendre compte au juge financier de l&#x27;emploi des fonds et valeurs qu&#x27;elle a irrégulièrement détenus ou maniés.</p><p>Est également comptable de fait toute personne qui reçoit ou manie directement ou indirectement des fonds ou valeurs extraits irrégulièrement de la caisse d&#x27;un organisme public ou toute personne qui, sans avoir la qualité de comptable public, procède à des opérations portant sur des fonds ou valeurs n&#x27;appartenant pas aux organismes publics, mais que les comptables publics sont exclusivement chargés d&#x27;exécuter en vertu de la réglementation en vigueur.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_81">
+                <div class="article-header">
+                    <h3>Article 81</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les gestions irrégulières entraînent, pour leurs auteurs déclarés comptables de fait par la Cour, les mêmes obligations et responsabilités que les gestions patentes.</p><p>En cas de poursuites exercées contre l&#x27;intéressé devant la juridiction pénale et lorsque l&#x27;action n&#x27;est pas prescrite, la Cour réunie en Chambre du conseil, délibère sur la suite à donner à l&#x27;affaire après le jugement pénal.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_82">
+                <div class="article-header">
+                    <h3>Article 82</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les ministres, les représentants légaux des collectivités territoriales et des établissements publics nationaux, les chefs de Cour et des Parquets généraux et de tous les corps de contrôle sont tenus de déférer à la Cour des comptes toutes gestions de fait qu&#x27;ils découvrent dans leurs services.</p><p>La même obligation incombe aux autorités de tutelle technique et financière desdits établissements et collectivités pour toutes les gestions de fait dont ils ont connaissance.</p><p>La Cour se saisit d&#x27;office des gestions de fait relevées lors de la vérification ou du contrôle des comptes qui lui sont soumis.</p><p>La Cour statue sur l&#x27;acte introductif d&#x27;instance. Elle doit, si elle écarte la déclaration de gestion de fait, rendre un arrêt définitif de non-lieu.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_83">
+                <div class="article-header">
+                    <h3>Article 83</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Si l&#x27;instruction fait apparaître des actes susceptibles de constituer des malversations, le magistrat rapporteur ordonne le séquestre des biens du comptable de fait. Le séquestre est administré et liquidé dans les conditions prévues par le Code pénal.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_84">
+                <div class="article-header">
+                    <h3>Article 84</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour des comptes déclare d&#x27;abord la gestion de fait par arrêt provisoire requérant le comptable de fait de produire son compte, et lui impartit un délai de trois mois, à compter de sa notification, pour répondre à l&#x27;arrêt.</p><p>Au cours de l&#x27;instruction, le magistrat rapporteur peut entendre le mis en cause. L&#x27;intéressé peut se faire assister du conseil de son choix.</p><p>Si l&#x27;intéressé produit son compte sans aucune réserve, la Cour confirme par arrêt définitif la déclaration de gestion de fait et statue sur le compte.</p><p>S&#x27;il conteste l&#x27;arrêt provisoire, la Cour examine les moyens invoqués et, lorsqu&#x27;elle maintient, à titre définitif, la déclaration de gestion de fait, renouvelle l&#x27;injonction de rendre compte dans le délai prévu à l&#x27;alinéa 1 du présent article.</p><p>En l&#x27;absence de toute réponse, elle statue, à titre définitif, après l&#x27;expiration du délai imparti pour contredire.</p><p>En cas de besoin, la Cour peut demander la nomination d&#x27;un commis d&#x27;office pour produire le compte en lieu et place du comptable de fait défaillant et à ses frais.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_85">
+                <div class="article-header">
+                    <h3>Article 85</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Dans le cas où la gestion de fait n&#x27;a pas fait l&#x27;objet de poursuite pénale, le comptable de fait peut être condamné par la Cour des comptes à une amende calculée en fonction de sa responsabilité personnelle ou suivant l&#x27;importance et la durée de la détention ou du maniement des fonds et valeurs, sans pouvoir toutefois excéder le total des sommes indûment détenues ou maniées.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_86">
+                <div class="article-header">
+                    <h3>Article 86</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Si plusieurs personnes ont participé, en même temps, à une gestion de fait, elles sont déclarées conjointement et solidairement comptables de fait et ne produisent qu&#x27;un seul compte.</p><p>Suivant les opérations auxquelles chacune d&#x27;elles a pris part, la solidarité peut porter sur tout ou partie des opérations de la gestion de fait.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_87">
+                <div class="article-header">
+                    <h3>Article 87</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le compte de la gestion de fait, dûment certifié et signé, appuyé de justifications, doit indiquer les recettes, les dépenses et faire ressortir le résultat. Ce compte doit être unique et englober toutes les opérations de la gestion de fait quelle qu&#x27;en puisse être la durée.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_88">
+                <div class="article-header">
+                    <h3>Article 88</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le compte de la gestion de fait doit être produit à la Cour avec les pièces justificatives. Il est jugé comme les comptabilités patentes.</p><p>Le juge des comptes peut, hors le cas de mauvaise foi ou d&#x27;infidélité du comptable de fait, suppléer par des considérations d&#x27;équité, à l&#x27;insuffisance des justifications produites.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Section 5 : Fautes de gestion</h2>
+
+
+            <div class="article" id="Article_89">
+                <div class="article-header">
+                    <h3>Article 89</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Constitue une faute de gestion toute atteinte aux lois et règlements régissant les finances publiques ou toute atteinte à toute loi et à un règlement particulier régissant les autres organismes sous contrôle de la Cour des comptes, et notamment :</p><p>1) la violation des règles relatives à l&#x27;exécution des recettes et des dépenses de l&#x27;Etat, des collectivités territoriales et des autres organismes publics ;</p><p>2) la violation des règles relatives à la gestion des biens appartenant à l&#x27;Etat et aux autres organismes publics ;</p><p>3) l&#x27;approbation donnée à une décision violant les règles visées aux 1&#x27; et 2&#x27; tirets du présent article par une autorité chargée de la tutelle ou du contrôle desdits organismes ;</p><p>4) le fait, pour toute personne dans l&#x27;exercice de ses fonctions, d&#x27;octroyer ou de tenter d&#x27;octroyer à elle-même ou à autrui un avantage injustifié, pécuniaire ou en nature ;</p><p>5) le fait d&#x27;avoir entraîné la condamnation d&#x27;une personne morale de droit public ou une personne morale de droit privé chargée de la gestion d&#x27;un service public, en raison de l&#x27;inexécution totale ou partielle ou de l&#x27;exécution tardive d&#x27;une décision de justice ;</p><p>6) le fait d&#x27;avoir dans l&#x27;exercice de ses fonctions ou attributions, en méconnaissance de ses obligations, procuré ou tenté de procurer à autrui ou à soi-même directement ou indirectement, un avantage injustifié, pécuniaire ou en nature, entraînant un préjudice pour le trésor public, la collectivité ou l&#x27;organisme intéressé ;</p><p>7) le fait d&#x27;avoir produit à l&#x27;appui ou à l&#x27;occasion des liquidations des dépenses, des fausses certifications ;</p><p>8) le fait d&#x27;avoir omis sciemment de souscrire les déclarations que les comptables publics sont tenus de fournir aux administrations fiscales conformément aux lois en vigueur ou d&#x27;avoir fourni sciemment des déclarations inexactes ou incomplètes.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_90">
+                <div class="article-header">
+                    <h3>Article 90</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Sont justiciables au titre des fautes de gestion :</p><p>— tout agent de l&#x27;Etat, tout membre d&#x27;un cabinet ministériel, tout agent de collectivité territoriale, tout agent d&#x27;établissement public national ;</p><p>— tout représentant, administrateur ou agent des organismes soumis au contrôle de la Cour des comptes ;</p><p>— tout représentant légal des collectivités et des établissements publics nationaux ;</p><p>— tous ceux qui exercent en fait les fonctions des personnes désignées ci-dessus ;</p><p>— tout contrôleur des engagements de dépenses et tout contrôleur financier ainsi que tout fonctionnaire ou agent placé sous les ordres d&#x27;un contrôleur des engagements de dépenses.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_91">
+                <div class="article-header">
+                    <h3>Article 91</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les auteurs de faute de gestion ne sont passibles d&#x27;aucune sanction s&#x27;ils peuvent exciper d&#x27;un ordre écrit préalablement donné par leur supérieur hiérarchique ou par la personne légalement habilitée à donner un tel ordre dont la responsabilité se substitue dans ce cas à la leur.</p><p>Tout fonctionnaire ou agent placé sous l&#x27;autorité d&#x27;un comptable public peut être, toutefois, déclaré responsable pécuniairement dans les mêmes conditions que le titulaire du poste s&#x27;il est prouvé que le déficit ou le manquant résulte d&#x27;une infidélité ou d&#x27;une négligence notoire de sa part, le chef de poste, dans ce cas, n&#x27;étant tenu qu&#x27;à titre subsidiaire.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_92">
+                <div class="article-header">
+                    <h3>Article 92</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour des comptes statue, soit d&#x27;office, soit à la requête du représentant légal de tout organisme soumis à son contrôle, sur les faits relevés à la charge des personnes mises en cause.</p><p>Le président de Chambre peut, dans tous les cas, prescrire, lorsqu&#x27;elle n&#x27;a pas eu lieu, une enquête administrative préalable.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_93">
+                <div class="article-header">
+                    <h3>Article 93</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>L&#x27;arrêt définitif est notifié à l&#x27;intéressé, au ministre chargé des Finances publiques, au ministre de tutelle technique dont il dépend ou dépendait et le cas échéant, à l&#x27;autorité ayant pouvoir disciplinaire sur l&#x27;intéressé et aux ministres chargés de l&#x27;Emploi ou de la Fonction publique.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_94">
+                <div class="article-header">
+                    <h3>Article 94</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les poursuites devant la Cour des comptes ne font pas obstacle à l&#x27;exercice de l&#x27;action pénale.</p><p>En cas de poursuites pénales concomitantes, il est sursis aux poursuites devant la Cour des comptes jusqu&#x27;à la fin de l&#x27;action pénale.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_95">
+                <div class="article-header">
+                    <h3>Article 95</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Si l&#x27;instruction fait apparaître des faits autorisant l&#x27;Etat à se porter partie civile ou susceptibles de constituer des délits ou des crimes, le procureur général informe le procureur de la République compétent de l&#x27;infraction et le ministre dont relève l&#x27;intéressé.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_96">
+                <div class="article-header">
+                    <h3>Article 96</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Si l&#x27;instruction permet de relever des faits qui paraissent de nature à justifier une sanction disciplinaire, le président de la Cour des comptes porte les faits à la connaissance de l&#x27;autorité ayant pouvoir disciplinaire sur l&#x27;intéressé et notamment le ministre chargé de la Fonction publique dans le cas des personnes relevant du Statut général de la Fonction publique.</p><p>Cette autorité est tenue, dans les trois mois, de faire connaître à la Cour des comptes, par une communication motivée, les mesures qu&#x27;elle a prises. A défaut, le président de la Cour en informe le Président de la République.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_97">
+                <div class="article-header">
+                    <h3>Article 97</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les faits prévus aux articles 80 et 89 de la présente loi ne peuvent plus faire l&#x27;objet de poursuites devant la Cour des comptes après l&#x27;expiration d&#x27;un délai de dix ans à compter du jour où ils ont été commis.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Section 6 : Sanctions</h2>
+            
+
+            <div class="article" id="Article_98">
+                <div class="article-header">
+                    <h3>Article 98</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les sanctions prononcées par la Cour des comptes sont :</p><p>— l&#x27;amende pour non-production des comptes et des documents justificatifs par le comptable dans les délais prescrits ;</p><p>— l&#x27;amende pour non-réponse aux injonctions dans les délais prescrits ;</p><p>— l&#x27;amende en cas de gestion de fait ;</p><p>— l&#x27;amende en cas de faute de gestion ;</p><p>— l&#x27;amende pour entrave à la Cour ;</p><p>— le débet.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_99">
+                <div class="article-header">
+                    <h3>Article 99</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Tout comptable qui ne présente pas son compte dans les délais prescrits par les règlements est condamné par la Cour des comptes à une amende de 200.000 francs par mois de retard.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_100">
+                <div class="article-header">
+                    <h3>Article 100</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Tout comptable qui ne répond pas aux injonctions prononcées sur ses comptes dans le délai de deux mois est condamné par la Cour des comptes à une amende de 100.000 francs par injonction et par mois de retard à compter de la date de notification, s&#x27;il ne fournit aucune excuse admissible au sujet de ce retard.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_101">
+                <div class="article-header">
+                    <h3>Article 101</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le commis d&#x27;office substitué au comptable défaillant pour présenter un compte ou satisfaire aux injonctions, le comptable en exercice chargé de présenter le compte des opérations effectuées par des comptables sortis de fonction ou de répondre à des injonctions portant sur la gestion de ses prédécesseurs, sont passibles des amendes prévues ci-dessus, à raison des retards qui leur sont personnellement imputables.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_102">
+                <div class="article-header">
+                    <h3>Article 102</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les auteurs des faits constitutifs de fautes de gestion prévus à l&#x27;article 89 sont passibles personnellement d&#x27;une amende de 500.000 francs, sans préjudice des poursuites pénales éventuelles.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_103">
+                <div class="article-header">
+                    <h3>Article 103</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Tout fonctionnaire ou agent de l&#x27;Etat, de collectivité territoriale et d&#x27;établissement public national et autres organismes placés sous le contrôle de la Cour des comptes, qui ne répond pas ou ne satisfait pas à une demande de documents ou de renseignements relatifs à la gestion des services ou organismes soumis au contrôle de la Cour est passible d&#x27;une amende de 100.000 francs par mois de retard à compter d&#x27;un délai imparti par la Cour.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_104">
+                <div class="article-header">
+                    <h3>Article 104</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Dix mois après la clôture de l&#x27;exercice comptable, tout directeur de société d&#x27;Etat ou de société à participation financière publique ou de tout organisme soumis au contrôle de la Cour des comptes qui ne lui transmet pas les comptes annuels et autres documents financiers et comptables de l&#x27;organisme qu&#x27;il dirige est passible d&#x27;une amende de 200.000 francs.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_105">
+                <div class="article-header">
+                    <h3>Article 105</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>A défaut de paiement volontaire, le procureur général peut saisir l&#x27;agent judiciaire du Trésor à toutes fins utiles.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Section 7 : Notification des arrêts définie</h2>
+            
+
+            <div class="article" id="Article_106">
+                <div class="article-header">
+                    <h3>Article 106</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les arrêts définitifs de la Cour des comptes concernant les comptables patents, les comptables de fait et les coupables de fautes de gestion sont notifiés par le procureur général aux autorités administratives et par le greffier en chef aux comptables publics et autres justiciables.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_107">
+                <div class="article-header">
+                    <h3>Article 107</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les comptables publics et autres justiciables déposent au greffe de la Cour des comptes leurs réponses aux arrêts définitifs.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_108">
+                <div class="article-header">
+                    <h3>Article 108</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Tout comptable public sorti de fonction est tenu, jusqu&#x27;à sa libération définitive, de notifier directement son nouveau domicile et tout changement ultérieur de domicile au procureur général.</p><p>Il doit également faire directement la même notification à son successeur, s&#x27;il s&#x27;agit d&#x27;un comptable supérieur du Trésor, au comptable supérieur compétent dans les autres cas.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>CHAPITRE 3 : Voies de recours</h2>
+
+            <div class="article" id="Article_109">
+                <div class="article-header">
+                    <h3>Article 109</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les arrêts définitifs de la Cour des comptes sont exécutoires à la diligence du procureur général. Le ministre compétent en ce qui concerne l&#x27;Etat et l&#x27;ordonnateur du budget de la collectivité territoriale, de l&#x27;établissement public national ou de l&#x27;organisme de l&#x27;intéressé sont tenus informés desdits arrêts.</p><p>Toutefois, les arrêts de débets sont exécutés à la diligence de l&#x27;agent judiciaire du Trésor.</p><p>Lorsque, six mois après la notification de l&#x27;arrêt, la décision n&#x27;a pas été exécutée, la Cour des comptes en informe le Président de la République.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_110">
+                <div class="article-header">
+                    <h3>Article 110</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le comptable public ou le gestionnaire mis en débet par arrêt définitif de la Cour des comptes peut former un recours administratif auprès du ministre chargé des Finances publiques relativement aux modalités d&#x27;exécution de cet arrêt.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_111">
+                <div class="article-header">
+                    <h3>Article 111</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les arrêts définitifs de la Cour des comptes peuvent faire l&#x27;objet de pourvoi en cassation et de recours en révision.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Section 1 : Pourvoi en cassation</h2>
+
+            <div class="article" id="Article_112">
+                <div class="article-header">
+                    <h3>Article 112</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le comptable ou gestionnaire ou leurs ayants droit qui, à titre personnel ou par l&#x27;intermédiaire d&#x27;un mandataire, allèguent une violation de la loi, un vice de forme, un défaut de motivation ou l&#x27;incompétence de la Cour des comptes peuvent dans le délai de soixante jours suivant celui de la notification de l&#x27;arrêt définitif rendu par la Cour, se pourvoir en cassation devant les Chambres réunies, par requête déposée au greffe de la Cour.</p><p>Le même pourvoi est ouvert dans le même délai et dans les mêmes formes au ministre chargé des Finances publiques, au ministre intéressé, au procureur général près la Cour des comptes, au directeur général du Trésor et de la Comptabilité publique et aux représentants légaux des organismes publics concernés.</p><p>Le recours est instruit et jugé conformément aux dispositions du Code de procédure civile, commerciale et administrative.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_113">
+                <div class="article-header">
+                    <h3>Article 113</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le recours n&#x27;est pas suspensif. Les chambres réunies de la Cour des comptes statuent sans renvoi.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Section 2 : Recours en révision</h2>
+
+            <div class="article" id="Article_114">
+                <div class="article-header">
+                    <h3>Article 114</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour des comptes, nonobstant l&#x27;arrêt définitif sur un compte ou une faute de gestion, peut procéder, à sa révision, suite :</p><p>— à une erreur, à une omission, à un faux ou à un double emploi découvert postérieurement à l&#x27;arrêt définitif ;</p><p>— à des faits nouveaux ;</p><p>— à la découverte de documents constituant décharge de responsabilité.</p><p>Cette révision est faite soit sur demande du comptable ou du gestionnaire, appuyée des pièces justificatives, soit à la demande du ministre chargé des Finances publiques ou des représentants légaux des personnes morales publiques concernées, soit sur réquisition du procureur général près la Cour des comptes, soit d&#x27;office.</p><p>Le recours en révision n&#x27;est soumis à aucun délai. Il n&#x27;a pas d&#x27;effet suspensif.</p><p>Le recours en révision ne peut être formé que contre un arrêt qui a définitivement jugé un compte.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_115">
+                <div class="article-header">
+                    <h3>Article 115</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La demande en révision est adressée par voie de requête au président de la Cour des comptes.</p><p>Elle comporte l&#x27;exposé des faits et moyens invoqués par le requérant. Elle est accompagnée d&#x27;une copie de l&#x27;arrêt définitif à réviser et des justificatifs.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_116">
+                <div class="article-header">
+                    <h3>Article 116</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Si la Cour des comptes estime, après instruction, que les pièces produites ne justifient pas l&#x27;ouverture d&#x27;une instance en révision, elle rejette la demande. Sa décision est sans recours.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_11">
+                <div class="article-header">
+                    <h3>Article 11</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>7. Quand elle admet la demande, la Cour des comptes prend par le même arrêt définitif et pour ce qui concerne le comptable, une décision préparatoire de mise en état de révision du compte.</p><p>Elle impartit au comptable un délai de deux mois pour produire les justifications supplémentaires éventuellement nécessaires à la révision lorsque celle-ci est demandée par lui, ou faire valoir ses moyens lorsque la révision est engagée contre lui.</p><p>Le délai est le même lorsqu&#x27;il s&#x27;agit d&#x27;un gestionnaire.</p><p>Après examen des réponses ou après expiration du délai imparti, les chambres réunies de la Cour des comptes statuent sur le fond.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_118">
+                <div class="article-header">
+                    <h3>Article 118</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Lorsque la Cour des comptes décide la révision à titre définitif, elle annule l&#x27;arrêt définitif déféré, ordonne au besoin des garanties à prendre et procède au jugement des opérations contestées dans la forme d&#x27;une instance ordinaire.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_119">
+                <div class="article-header">
+                    <h3>Article 119</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Lorsque la Cour des comptes agissant d&#x27;office estime, après instruction, que les faits dont la preuve est rapportée permettent d&#x27;ouvrir une instance en révision, elle prend un arrêt préparatoire de mise en état de révision des comptes pour le comptable ou le gestionnaire concerné et procède conformément aux règles prévues à l&#x27;article précédent.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>CHAPITRE 4 : Contrôle non juridictionnel</h2>
+
+            
+</section>
+<section class="group">
+<h2>Section 1 : Dispositions générales</h2>
+
+
+            <div class="article" id="Article_120">
+                <div class="article-header">
+                    <h3>Article 120</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le contrôle exercé par la Cour des comptes en vertu du présent chapitre vise à apprécier la qualité de la gestion et à formuler, le cas échéant, des recommandations sur les moyens susceptibles d&#x27;en améliorer les méthodes et d&#x27;en accroître l&#x27;efficacité et le rendement.</p><p>Il englobe tous les aspects de la gestion, y compris les systèmes d&#x27;organisation et d&#x27;administration.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_121">
+                <div class="article-header">
+                    <h3>Article 121</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Dans le cadre du contrôle de la gestion, la Cour des comptes apprécie la réalisation des objectifs assignés, les moyens utilisés, les coûts de biens et services produits, les prix pratiqués et les résultats financiers obtenus.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_122">
+                <div class="article-header">
+                    <h3>Article 122</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le contrôle de la gestion apprécie également la régularité et la sincérité des comptabilités, ainsi que la matérialité des opérations qui y sont décrites.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_123">
+                <div class="article-header">
+                    <h3>Article 123</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour des comptes assure le contrôle de la gestion et de l&#x27;emploi des fonds publics sur les services de l&#x27;Etat et sur les collectivités territoriales.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_124">
+                <div class="article-header">
+                    <h3>Article 124</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour des comptes assure le contrôle de la gestion et de l&#x27;emploi des fonds publics sur les établissements publics nationaux, les sociétés d&#x27;Etat, les sociétés à participation financière publique ainsi que les organismes de prévoyance et de sécurité sociales et les organismes bénéficiant d&#x27;un concours financier public.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_125">
+                <div class="article-header">
+                    <h3>Article 125</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour des comptes assure le contrôle sur les organismes bénéficiant de ressources collectées par appel à la générosité publique. Ce contrôle vise à s&#x27;assurer que l&#x27;emploi des ressources collectées est conforme aux objectifs visés par l&#x27;appel à la générosité publique.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Section 2 : Contrôle des services de l&#x27;Etat et des collectivités territoriales</h2>
+
+
+            <div class="article" id="Article_126">
+                <div class="article-header">
+                    <h3>Article 126</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les services et collectivités objet de ce contrôle sont tenus de produire à la Cour des comptes, les comptes relatifs à l&#x27;emploi des ressources allouées dans les formes et selon les conditions prévues par la législation et la réglementation en vigueur.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_127">
+                <div class="article-header">
+                    <h3>Article 127</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Si, lors du contrôle, la Cour des comptes constate des irrégularités imputables aux administrateurs ou relève des lacunes dans la réglementation ou des insuffisances dans l&#x27;organisation administrative et comptable, le président de la Cour en informe par référés les autorités compétentes afin de leur faire connaître les dispositions à prendre.</p><p>La Cour peut également indiquer les mesures requises.</p><p>Les référés adressés à cet effet sont transmis par le procureur général près la Cour, en ampliation, au ministre chargé des Finances publiques.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_128">
+                <div class="article-header">
+                    <h3>Article 128</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les autorités compétentes sont tenues de répondre dans les trois mois aux référés du président de la Cour des comptes. Celui-ci transmet, par le biais du procureur général près la Cour copie des réponses reçues au ministre chargé des Finances publiques.</p><p>Le président de la Cour des comptes porte à la connaissance du Président de la République les infractions à ces dispositions et lui signale, le cas échéant, les référés qui n&#x27;ont pas reçu de réponses ou qui n&#x27;ont pas reçu de réponses satisfaisantes.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_129">
+                <div class="article-header">
+                    <h3>Article 129</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les irrégularités administratives de moindre importance peuvent faire l&#x27;objet des notes du président de la Cour des comptes, adressées aux autorités compétentes. S&#x27;il n&#x27;y est pas répondu ou si la réponse n&#x27;est pas satisfaisante, la question soulevée peut être portée à la connaissance du ministre chargé des Finances publiques par référé.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_130">
+                <div class="article-header">
+                    <h3>Article 130</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Au cas où elle relève des fautes ou négligences ayant compromis les intérêts financiers de l&#x27;Etat, de l&#x27;organisme ou de la collectivité contrôlés, la Cour des comptes peut, dans tous les cas, demander qu&#x27;une action disciplinaire soit engagée contre les auteurs de ces fautes ou négligences.</p><p>L&#x27;autorité compétente est tenue, dans le délai de six mois, de faire connaître au président de la Cour la décision intervenue.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Section 3 : Contrôle des entreprises publiques et des organismes à participation financière publique</h2>
+
+            <div class="article" id="Article_131">
+                <div class="article-header">
+                    <h3>Article 131</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour des comptes exerce un contrôle sur les sociétés d&#x27;Etat, les entreprises et organismes à participation financière publique dans les conditions fixées par la présente loi.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_132">
+                <div class="article-header">
+                    <h3>Article 132</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La liste des sociétés d&#x27;Etat et des entreprises et organismes à participation financière publique est établie chaque année par arrêté du ministre chargé des Finances publiques et notifiée par celui-ci à la Cour des comptes. Cette liste a valeur énonciative.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_133">
+                <div class="article-header">
+                    <h3>Article 133</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les comptes annuels, notamment le compte de résultat, le bilan et les états annexés accompagnés de tous les documents comptables et financiers dont la tenue est exigée par les règles prévues par les Actes uniformes du Traité relatif à l&#x27;harmonisation du droit des affaires en Afrique et propres à l&#x27;entreprise considérée, sont transmis à la Cour des comptes après avoir été arrêtés par le conseil d&#x27;administration ou l&#x27;organe en tenant lieu.</p><p>La Cour des comptes reçoit également les rapports des commissaires aux comptes, des commissaires du Gouvernement et des agents chargés du contrôle technique, administratif ou financier y compris tout rapport spécial, ainsi que le rapport d&#x27;activité produit par le conseil d&#x27;administration ou l&#x27;organe en tenant lieu, lorsque ce rapport est prévu par les règles propres à la personne morale contrôlée.</p><p>Sauf dispositions législatives ou statutaires contraires, la transmission de ces documents a lieu dans les quatre mois qui suivent la clôture de l&#x27;exercice. Les ministres de tutelle fixent s&#x27;il y a lieu, les délais supplémentaires et qui, à titre exceptionnel, pourraient être nécessaires à certaines entreprises pour la présentation de leurs comptes.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_134">
+                <div class="article-header">
+                    <h3>Article 134</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les établissements et sociétés susmentionnés sont tenus de conserver les pièces justificatives de leurs opérations à la disposition de la Cour des comptes pour les vérifications qui ont lieu sur place.</p><p>Le délai de conservation des documents comptables et financiers est de droit commun.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_135">
+                <div class="article-header">
+                    <h3>Article 135</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le rapport établi par le magistrat chargé de la vérification est communiqué par le président de Chambre au directeur de l&#x27;entreprise, qui répond aux observations dans le délai d&#x27;un mois, par mémoire écrit, appuyé de justificatifs.</p><p>La Cour des comptes arrête alors définitivement le rapport dans lequel elle exprime son avis sur la régularité et la sincérité des comptes annuels ; elle propose, le cas échéant, les redressements nécessaires et porte son avis sur la qualité de la gestion de l&#x27;entreprise ou de l&#x27;organisme.</p><p>Elle signale éventuellement les modifications qui lui paraissent devoir être apportées au système de gestion ou à l&#x27;organisation de l&#x27;entreprise ou de l&#x27;organisme.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_136">
+                <div class="article-header">
+                    <h3>Article 136</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Pour arrêter le rapport particulier, la Cour des comptes siège et statue en Chambre du conseil. Elle peut, toutefois, s&#x27;adjoindre à titre consultatif, un représentant du ministre dont relève l&#x27;activité technique de l&#x27;entreprise contrôlée, le procureur général près la Cour, le contrôleur financier ou budgétaire de cette entreprise ou un représentant du ministre chargé des Finances publiques.</p><p>Le directeur de l&#x27;organisation contrôlée soutient son mémoire au cours de l&#x27;audience.</p><p>La Cour porte le rapport particulier, signé par le président, à la connaissance du ministre chargé des Finances publiques et du ministre dont relève l&#x27;activité technique de l&#x27;entreprise ou de l&#x27;organisme contrôlé.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_137">
+                <div class="article-header">
+                    <h3>Article 137</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les observations de la Cour des comptes sont communiquées par le procureur général près la Cour aux autorités de tutelle de l&#x27;organisation ou l&#x27;entreprise ou de l&#x27;organisme contrôlé.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Section 4 : Contrôle des délégations de service public</h2>
+
+            <div class="article" id="Article_138">
+                <div class="article-header">
+                    <h3>Article 138</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Pour les vérifications des conditions d&#x27;exécution des conventions de délégation de service public passées par les services et organismes soumis au contrôle de la Cour des comptes, les magistrats de la Cour des comptes peuvent prendre connaissance, auprès des co-contractants, des factures, livres et registres se rapportant aux opérations visées par lesdites conventions. Ils peuvent demander par écrit toute justification complémentaire et obtenir copie de ceux des documents présentés qu&#x27;ils estiment utiles.</p><p>Un avis d&#x27;enquête est établi préalablement par le président de la Cour des comptes.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_139">
+                <div class="article-header">
+                    <h3>Article 139</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les observations et, le cas échéant, les autres suites définitivement retenues par la Cour des comptes sont communiquées à l&#x27;intéressé.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+                    
+<h2>Section 5 : Contrôle des organismes de sécurité et de prévoyance sociales</h2>
+
+            <div class="article" id="Article_Intro">
+                <div class="article-header">
+                    <h3>Préambule</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_140">
+                <div class="article-header">
+                    <h3>Article 140</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le contrôle des organismes de sécurité et de prévoyance sociales porte sur l&#x27;ensemble de leurs activités ainsi que sur les comptes, documents et résultats obtenus.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_141">
+                <div class="article-header">
+                    <h3>Article 141</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les organismes de sécurité et de prévoyance sociales présentent à la Cour des comptes un exemplaire de leurs comptes établis suivant les règles comptables propres à chacun d&#x27;eux, accompagnés des budgets ou états de prévision et de tous les documents, notamment les procès-verbaux de situation de caisse, de banque et de portefeuille.</p><p>Sauf dispositions législatives ou statutaires contraires, la transmission de ces documents a lieu dans les quatre mois qui suivent la clôture de l&#x27;exercice. Les ministres de tutelle fixent, s&#x27;il y a lieu, les délais supplémentaires qui, à titre exceptionnel, pourraient être nécessaires à certaines entreprises pour la présentation de leurs comptes.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_142">
+                <div class="article-header">
+                    <h3>Article 142</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les documents mentionnés à l&#x27;article précédent sont accompagnés des rapports, y compris les rapports spéciaux établis par les commissaires aux comptes, la commission de contrôle ou les agents chargés de l&#x27;exercice du contrôle technique, administratif, budgétaire ou financier, ainsi que du rapport annuel d&#x27;activité approuvé par le conseil d&#x27;administration, chaque fois que ces rapports sont exigés par les règlements propres à chaque organisme.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_143">
+                <div class="article-header">
+                    <h3>Article 143</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les pièces justificatives de recettes et de dépenses sont conservées au siège de l&#x27;organisme à la disposition de la Cour pour les vérifications qui ont lieu sur place.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_144">
+                <div class="article-header">
+                    <h3>Article 144</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le rapport établi par le magistrat rapporteur est communiqué par le président de Chambre au directeur de l&#x27;organisme contrôlé, qui répond aux observations dans un délai d&#x27;un mois par un mémoire écrit appuyé des justificatifs.</p><p>Pour arrêter le rapport, la Cour des comptes statue en Chambre du conseil. Ses observations sont communiquées aux autorités de tutelle par le procureur général près la Cour.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Section 6 : Contrôle des organismes bénéficiant d&#x27;un concours financier public</h2>
+
+
+            <div class="article" id="Article_145">
+                <div class="article-header">
+                    <h3>Article 145</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les organismes dont la gestion n&#x27;est pas assujettie aux règles de la comptabilité publique peuvent, quels que soient leur statut juridique et la forme de concours qui leur sont apportés par l&#x27;Etat, une collectivité territoriale, un établissement public national ou une autre personne morale de droit public, faire l&#x27;objet du contrôle de la Cour des comptes.</p><p>Le concours fait l&#x27;objet d&#x27;un compte d&#x27;emploi tenu à la disposition de la Cour des comptes. Si ce concours dépasse 50% des ressources totales de l&#x27;organisme bénéficiaire, le contrôle s&#x27;exerce sur l&#x27;ensemble de la gestion.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_146">
+                <div class="article-header">
+                    <h3>Article 146</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le contrôle des organismes bénéficiant d&#x27;un concours financier s&#x27;effectue sur place, au vu des pièces et des documents comptables que les représentants des organismes précités sont tenus de présenter à tout magistrat chargé du contrôle.</p><p>La procédure définie par la présente loi et la réglementation en vigueur est applicable en la matière. Les observations de la Cour des comptes sont adressées aux ministres intéressés, à l&#x27;ordonnateur de l&#x27;organisme concédant et aux dirigeants des organismes bénéficiant du concours, par voie de référé ou de note du président.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Section 7 : Contrôle des organismes bénéficiaires de la générosité publique</h2>
+
+
+            <div class="article" id="Article_147">
+                <div class="article-header">
+                    <h3>Article 147</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le contrôle de la Cour des comptes peut porter sur les comptes relatifs à l&#x27;emploi des ressources collectées par les organismes qui font appel à la générosité publique. Ce contrôle vise à s&#x27;assurer que l&#x27;emploi des ressources collectées est conforme aux objectifs visés par l&#x27;appel à la générosité publique.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_148">
+                <div class="article-header">
+                    <h3>Article 148</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les organismes, objet de la demande de contrôle prévue à l&#x27;article précédent, sont tenus de produire à la Cour des comptes, les comptes relatifs à l&#x27;emploi des ressources collectées, dans les formes et selon les conditions prévues par la législation et la réglementation en vigueur.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_149">
+                <div class="article-header">
+                    <h3>Article 149</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le président charge l&#x27;une des Chambres de la Cour des comptes de procéder au contrôle de l&#x27;emploi des ressources collectées par l&#x27;organisme concerné. A cet effet, le président de la Chambre désigne un conseiller maître qui procède au contrôle demandé.</p><p>Les observations provisoirement arrêtées par la Chambre sont adressées aux dirigeants de l&#x27;organisme.</p><p>Au vu des réponses faites par les dirigeants ou à défaut de réponse, la Cour des comptes arrête ses observations définitives, qui sont adressées aux ministres intéressés et sont rendues publiques suivant les modes du droit commun.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>CHAPITRE 5 : Assistance au Gouvernement et à l&#x27;Assemblée nationale</h2>
+
+
+            <div class="article" id="Article_150">
+                <div class="article-header">
+                    <h3>Article 150</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour des comptes peut prêter conseil au Gouvernement et à l&#x27;Assemblée nationale pour toutes les questions d&#x27;intérêt économique et financier dont elle a connaissance.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_151">
+                <div class="article-header">
+                    <h3>Article 151</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>A la demande de l&#x27;autorité exécutive ou législative ou de sa propre initiative, la Cour des comptes peut effectuer des diagnostics et toutes études sur les domaines concernant les organismes qu&#x27;elle contrôle. Les résultats sont consignés soit dans des rapports particuliers, soit dans le rapport annuel.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_152">
+                <div class="article-header">
+                    <h3>Article 152</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Dans le cadre de l&#x27;assistance que la Cour des comptes prête à l&#x27;Assemblée nationale à l&#x27;occasion de l&#x27;examen du rapport sur l&#x27;exécution de la loi des finances accompagnant la déclaration générale de conformité ou la certification des comptes conformément aux textes en vigueur, la Cour répond aux demandes de précisions complémentaires que lui soumet le président de l&#x27;Assemblée nationale.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_153">
+                <div class="article-header">
+                    <h3>Article 153</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour des comptes peut faire sur place toutes les investigations et vérifications qu&#x27;elle estime nécessaires à l&#x27;analyse des conditions d&#x27;exécution des budgets des départements ministériels et autres organismes bénéficiant de crédits inscrits au budget de l&#x27;Etat.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_154">
+                <div class="article-header">
+                    <h3>Article 154</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Dans le cadre de l&#x27;assistance qu&#x27;elle prête au Gouvernement et à l&#x27;Assemblée nationale, la Cour des comptes peut inscrire dans ses programmes d&#x27;activités, des missions d&#x27;évaluation de politiques publiques, de programmes et de projets publics.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_155">
+                <div class="article-header">
+                    <h3>Article 155</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour des comptes établit un rapport annuel dans lequel elle expose ses observations les plus pertinentes accompagnées des réponses des services et organismes concernés et en tire les enseignements.</p><p>Ce rapport est adressé au Président de la République et présenté à l&#x27;Assemblée nationale et au Conseil économique et social.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_156">
+                <div class="article-header">
+                    <h3>Article 156</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les différents rapports annuels et particuliers sont publiés au Journal officiel de la République de Côte d&#x27;Ivoire.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>TITRE IV : DISPOSITIONS FINANCIERES</h2>
+
+            <div class="article" id="Article_157">
+                <div class="article-header">
+                    <h3>Article 157</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour des comptes et le ministère public près ladite Cour jouissent de l&#x27;autonomie financière.</p><p>Les budgets font l&#x27;objet de propositions préparées par les services financiers respectifs et inscrites au projet de loi des finances au titre de la Cour des comptes et du ministère public près ladite Cour.</p><p>Le président de la Cour des comptes et le procureur général près ladite Cour exercent, chacun en ce qui le concerne, les fonctions d&#x27;ordonnateur délégué dans les conditions déterminées par le règlement de la comptabilité publique.</p><p>Le trésorier de la Cour des comptes et le trésorier du ministère public près ladite Cour exercent les fonctions d&#x27;agents comptables, dans les conditions déterminées par le règlement de la comptabilité publique.</p><p>Ils ont la qualité de comptable public. Ils sont nommés par arrêté du ministre chargé des Finances publiques.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_158">
+                <div class="article-header">
+                    <h3>Article 158</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Il est rendu compte de l&#x27;exécution des dotations budgétaires de la Cour des comptes et du ministère public prés ladite Cour à la Chambre du conseil sur rapport d&#x27;un magistrat désigné, chaque année, par le président de la Cour des comptes.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>TITRE V : DISPOSITIONS TRANSITOIRES ET FINALES</h2>
+
+
+            <div class="article" id="Article_159">
+                <div class="article-header">
+                    <h3>Article 159</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour suprême demeure compétente pour les affaires pendantes devant elle et relevant de la compétence de la Cour des comptes jusqu&#x27;à la mise en place de celle-ci.</p><p>Les membres de la Chambre des comptes de la Cour suprême sont, de plein droit, membres de la Cour des comptes.</p><p>Dès l&#x27;installation de la Cour des comptes, la Cour suprême lui transmet les dossiers des affaires dont elle est saisie et dans lesquelles elle n&#x27;a pas encore statué.</p><p>Les délais impartis à la Cour des comptes par la présente loi ne commencent à courir qu&#x27;à compter de son installation.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_160">
+                <div class="article-header">
+                    <h3>Article 160</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Pour l&#x27;installation des magistrats de la Cour des comptes et du ministère public près ladite Cour, la Cour siégeant en audience solennelle est composée :</p><p>— du président de la Cour suprême, président ;</p><p>— de deux vice-présidents de la Cour suprême ;</p><p>— de deux conseillers à la Cour suprême.</p><p>La Cour est assistée d&#x27;un secrétaire de Chambre.</p><p>L&#x27;audience a lieu en présence du ministère public près la Cour suprême.</p><p>En cas d&#x27;empêchement, le président de la Cour suprême est remplacé par un vice-président.</p><p>En cas d&#x27;empêchement d&#x27;un vice-président, il est remplacé par le conseiller le plus ancien dans le grade le plus élevé.</p><p>En cas d&#x27;empêchement d&#x27;un conseiller, il est remplacé par un autre conseiller.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_161">
+                <div class="article-header">
+                    <h3>Article 161</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Sont abrogées toutes les dispositions antérieures contraires à la présente loi, notamment celles de la loi n° 94-440 du 16 août 1994 déterminant la composition, l&#x27;organisation, les attributions et le fonctionnement de la Cour suprême telle que modifiée par la loi n° 97-243 du 25 avril 1997, en ce qui concerne la Chambre des comptes.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_162">
+                <div class="article-header">
+                    <h3>Article 162</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La présente loi sera publiée au Journal officiel de la République de Côte d&#x27;Ivoire et exécutée comme loi de l&#x27;Etat.</p>
+                </div>
+            </div>
+                        <div class="article" id="Article_162">
+                <div class="article-header">
+            <p>Fait à Abidjan, le 7 juillet 2015.</p><p>Alassane OUATTARA</p>
+                </div>
+                        </div>
+</section>
+</main>
+<div id="tocOverlay"></div>
+<aside id="tocPanel"><header><h3><i class="fa-solid fa-landmark"></i> Sommaire</h3></header><div class="toc-list" id="tocList"></div></aside>
+<div id="voiceBar" role="region" aria-label="Lecteur vocal">
+  <button id="vPrev" title="Article précédent"><i class="fas fa-backward"></i></button>
+  <button id="vPlay" title="Lire / Reprendre"><i class="fas fa-play"></i></button>
+  <button id="vPause" title="Pause"><i class="fas fa-pause"></i></button>
+  <button id="vStop" title="Arrêter"><i class="fas fa-stop"></i></button>
+  <button id="vNext" title="Article suivant"><i class="fas fa-forward"></i></button>
+  <span class="now" id="vNow">—</span>
+</div>
+<div id="fsOverlay"><div id="fsHeader"><button id="fsClose" title="Fermer"><i class="fas fa-xmark"></i></button><div class="ttl" id="fsTitle"></div><button id="fsPlay" title="Lecture"><i class="fas fa-play"></i></button></div><div id="fsBody"><article class="article"><div class="article-content" id="fsContent"></div></article></div><button id="fsNavPrev" title="Précédent"><i class="fas fa-chevron-left"></i></button><button id="fsNavNext" title="Suivant"><i class="fas fa-chevron-right"></i></button></div>
+
+<button id="tocFloatBtn" title="Sommaire" class="btn"><i class="fa-solid fa-book"></i></button>
+<div id="tocOverlay"></div>
+<aside id="tocPanel">
+  <header>
+    <h3><i class="fa-solid fa-scale-balanced"></i> Sommaire</h3>
+  </header>
+  <div class="toc-list" id="tocList"></div>
+</aside>
+
+<div id="voiceBar" role="region" aria-label="Lecteur vocal">
+  <button id="vPrev" title="Article précédent"><i class="fas fa-backward"></i></button>
+  <button id="vPlay" title="Lire / Reprendre"><i class="fas fa-play"></i></button>
+  <button id="vPause" title="Pause"><i class="fas fa-pause"></i></button>
+  <button id="vStop" title="Arrêter"><i class="fas fa-stop"></i></button>
+  <button id="vNext" title="Article suivant"><i class="fas fa-forward"></i></button>
+  <span class="now" id="vNow">—</span>
+</div>
+
+<div id="fsOverlay">
+  <div id="fsHeader">
+    <button id="fsClose" title="Fermer"><i class="fas fa-xmark"></i></button>
+    <div class="ttl" id="fsTitle"></div>
+    <button id="fsPlay" title="Lecture"><i class="fas fa-play"></i></button>
+  </div>
+  <div id="fsBody">
+    <article class="article">
+      <div class="article-content" id="fsContent"></div>
+    </article>
+  </div>
+  <button id="fsNavPrev" title="Précédent"><i class="fas a-chevron-left"></i></button>
+  <button id="fsNavNext" title="Suivant"><i class="fas fa-chevron-right"></i></button>
+</div>
+
+<script>
+// Fonction pour initialiser la fonctionnalité de recherche
+function initSearchFeature() {
+    const searchBtn = document.createElement('button');
+    searchBtn.className = 'btn';
+    searchBtn.id = 'searchBtn';
+    searchBtn.title = 'Rechercher';
+    searchBtn.innerHTML = '<i class="fas fa-search"></i>';
+    document.querySelector('.control-buttons').appendChild(searchBtn);
+    
+    const searchInterface = document.createElement('div');
+    searchInterface.id = 'searchInterface';
+    searchInterface.style.cssText = `
+        position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+        width: calc(100% - 40px); max-width: 550px; background: #fff;
+        padding: 10px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        z-index: 1800; display: none; align-items: center; gap: 5px; transition: .25s ease;
+    `;
+    searchInterface.innerHTML = `
+        <input type="text" id="searchInput" placeholder="Rechercher..." style="flex-grow: 1; padding: 8px; border: 1px solid #d6e6d6; border-radius: 5px;">
+        <button id="searchPrevBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-up"></i></button>
+        <button id="searchNextBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-down"></i></button>
+        <span id="searchResultsCount" style="flex-shrink: 0; padding: 0 5px; min-width: 40px; text-align: center;"></span>
+        <button id="closeSearchBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-times"></i></button>
+    `;
+    document.body.appendChild(searchInterface);
+
+    let searchResults = [];
+    let currentSearchIndex = -1;
+    let originalContents = new Map();
+
+    function performSearch() {
+        const searchTerm = document.getElementById('searchInput').value.trim();
+        if (!originalContents.size) {
+            document.querySelectorAll('.article-content, h2, h3').forEach(el => originalContents.set(el, el.innerHTML));
+        }
+        originalContents.forEach((content, el) => el.innerHTML = content);
+        searchResults = [];
+        currentSearchIndex = -1;
+        if (!searchTerm) { updateSearchUI(); return; }
+
+        const regex = new RegExp(searchTerm.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&'), 'gi');
+        originalContents.forEach((content, element) => {
+            element.innerHTML = content.replace(regex, match => `<mark>${match}</mark>`);
+        });
+        searchResults = Array.from(document.querySelectorAll('mark'));
+        if (searchResults.length > 0) navigateResults(true, false);
+        updateSearchUI();
+        window.dispatchEvent(new Event('reflowArticles'));
+    }
+
+    function navigateResults(isNext, shouldWrap = true) {
+        if (!searchResults.length) return;
+        searchResults.forEach(mark => mark.style.backgroundColor = '');
+        if (shouldWrap) {
+            currentSearchIndex = isNext ? (currentSearchIndex + 1) % searchResults.length : (currentSearchIndex - 1 + searchResults.length) % searchResults.length;
+        } else {
+            currentSearchIndex = 0;
+        }
+        const currentMark = searchResults[currentSearchIndex];
+        currentMark.style.backgroundColor = 'var(--accent)';
+        currentMark.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        updateSearchUI();
+    }
+
+    function updateSearchUI() {
+        document.getElementById('searchResultsCount').textContent = searchResults.length > 0 ? `${currentSearchIndex + 1}/${searchResults.length}` : '0/0';
+    }
+    
+    function resetSearch() {
+        originalContents.forEach((content, el) => el.innerHTML = content);
+        originalContents.clear();
+        document.getElementById('searchInput').value = '';
+        searchResults = []; currentSearchIndex = -1;
+        updateSearchUI();
+    }
+
+    searchBtn.addEventListener('click', () => {
+        const isVisible = searchInterface.style.display === 'flex';
+        searchInterface.style.display = isVisible ? 'none' : 'flex';
+        if (isVisible) resetSearch(); else document.getElementById('searchInput').focus();
+    });
+    document.getElementById('searchInput').addEventListener('input', performSearch);
+    document.getElementById('searchNextBtn').addEventListener('click', () => navigateResults(true));
+    document.getElementById('searchPrevBtn').addEventListener('click', () => navigateResults(false));
+    document.getElementById('closeSearchBtn').addEventListener('click', () => {
+        searchInterface.style.display = 'none';
+        resetSearch();
+    });
+}
+
+// Fonction pour transformer les énumérations en listes ordonnées
+(function(){
+  function extractEnumeration(s){
+    const re = /(\d{1,2})(?:\s*°)?(?:\))?(?:\.)?\s+/g; const matches = []; let m;
+    while ((m = re.exec(s))){ const idx=m.index; const prev = idx>0 ? s.charAt(idx-1) : " "; if (/\d/.test(prev)) continue; matches.push({num:parseInt(m[1],10), start:idx, end:re.lastIndex}); }
+    if (matches.length < 2) return null;
+    for (let i=1;i<matches.length;i++){ if (matches[i].num !== matches[i-1].num + 1) return null; }
+    const intro = s.slice(0, matches[0].start).trim().replace(/[:;,\-]\s*$/, ""); const items = [];
+    for (let i=0;i<matches.length;i++){ const st=matches[i].end; const en=(i+1<matches.length)?matches[i+1].start:s.length; let seg = s.slice(st,en).trim().replace(/^[;,:-]\s*/,"").replace(/[;,\s]+$/,""); items.push(seg); }
+    return {intro, start: matches[0].num, items};
+  }
+  function transformNode(node){
+    if (node.querySelector('ol')) return;
+    const plain = node.textContent.replace(/\s+/g,' ').trim(); const res = extractEnumeration(plain); if (!res) return;
+    const frag = document.createElement('div'); if (res.intro){ const p=document.createElement('p'); p.textContent=res.intro; frag.appendChild(p); }
+    const ol=document.createElement('ol'); if (res.start!==1) ol.setAttribute('start', String(res.start));
+    res.items.forEach(it=>{ const li=document.createElement('li'); li.textContent=it; ol.appendChild(li); });
+    frag.appendChild(ol); node.innerHTML=frag.innerHTML;
+  }
+  function run(){ document.querySelectorAll('.article-content').forEach(transformNode); }
+  window.addEventListener('DOMContentLoaded', ()=>setTimeout(run, 60));
+  window.addEventListener('reflowArticles', run);
+})();
+
+// Fonction pour construire la table des matières
+(function(){
+  const $ = s=>document.querySelector(s);
+  const $$ = s=>Array.from(document.querySelectorAll(s));
+  function buildTOC(){
+    const toc = document.getElementById('tocList'); if(!toc) return; toc.innerHTML='';
+    $$('.group').forEach((grp, gi)=>{
+      const gh = grp.querySelector('h2')?.textContent.trim() || `Groupe ${gi+1}`;
+      const gl = document.createElement('a'); gl.textContent=gh; gl.href='#'; gl.style.fontWeight='700';
+      gl.addEventListener('click', e=>{ e.preventDefault(); grp.scrollIntoView({behavior:'smooth', block:'start'}); hideTOC(); });
+      toc.appendChild(gl);
+      const sub = document.createElement('div'); sub.className='toc-sub';
+      grp.querySelectorAll('.article').forEach((art, ai)=>{
+        const at = art.querySelector('.article-header h3')?.textContent.trim() || `Article ${ai+1}`;
+        const a = document.createElement('a'); a.textContent=at; a.href='#';
+        a.addEventListener('click', e=>{ e.preventDefault(); art.scrollIntoView({behavior:'smooth', block:'start'}); hideTOC(); });
+        sub.appendChild(a);
+        if (!art.querySelector('.open-fs')){
+          const btn = document.createElement('button'); btn.className='open-fs'; btn.innerHTML='<i class="fas fa-maximize"></i>';
+          btn.title='Plein écran'; btn.addEventListener('click', ()=>openFS(artIndex(art))); art.querySelector('.article-header')?.appendChild(btn);
+        }
+      });
+      toc.appendChild(sub);
+    });
+  }
+  function showTOC(){ document.getElementById('tocOverlay').classList.add('show'); document.getElementById('tocPanel').classList.add('open'); }
+  function hideTOC(){ document.getElementById('tocOverlay').classList.remove('show'); document.getElementById('tocPanel').classList.remove('open'); }
+  document.addEventListener('DOMContentLoaded', ()=>{
+    const floatBtn = document.getElementById('tocFloatBtn');
+    if (floatBtn) floatBtn.addEventListener('click', showTOC);
+    const overlay = document.getElementById('tocOverlay');
+    if (overlay) overlay.addEventListener('click', hideTOC);
+    const headerBtn = document.getElementById('tocHeaderBtn');
+    if (headerBtn) headerBtn.addEventListener('click', showTOC);
+  });
+  const articles = $$('.article');
+  function artIndex(el){ return articles.indexOf(el); }
+  function getArticle(i){ return articles[Math.max(0, Math.min(articles.length-1, i))]; }
+  function artTitle(i){ const el=getArticle(i); return el? (el.querySelector('.article-header h3')?.textContent.trim()||'') : ''; }
+  function artText(i){ const el=getArticle(i); return el? (el.querySelector('.article-content')?.innerText.trim()||'') : ''; }
+  const synth = window.speechSynthesis;
+  let current = 0, utter = null, playing = false, paused = false, inFS=false;
+  function speakIndex(i){ stopSpeak(); current=i; const text=artText(i); if(!text){ nextArticle(); return; }
+    utter = new SpeechSynthesisUtterance(text); utter.lang='fr-FR'; utter.rate=1; utter.pitch=1;
+    utter.onend = ()=>{ if(playing && !paused){ nextArticle(); } };
+    try{ synth.speak(utter);}catch(e){ console.warn(e); }
+    playing=true; paused=false; updateUI(); highlightCurrent(); }
+  function highlightCurrent(){ articles.forEach(a=>a.classList.remove('reading')); const el=getArticle(current); if(el){ el.classList.add('reading'); if(!inFS) el.scrollIntoView({behavior:'smooth', block:'center'}); } document.getElementById('vNow').textContent = artTitle(current) || '—'; }
+  function pauseSpeak(){ if(synth && synth.speaking){ synth.pause(); paused=true; playing=true; } }
+  function resumeSpeak(){ if(synth && paused){ synth.resume(); paused=false; } else { speakIndex(current); } updateUI(); }
+  function stopSpeak(){ if(synth){ try{synth.cancel();}catch(e){} } playing=false; paused=false; updateUI(); }
+  function prevArticle(){ current=Math.max(0,current-1); if(playing){ speakIndex(current);} else {highlightCurrent();} if(inFS) openFS(current); }
+  function nextArticle(){ current=Math.min(articles.length-1,current+1); if(playing){ speakIndex(current);} else {highlightCurrent();} if(inFS) openFS(current); }
+  document.addEventListener('DOMContentLoaded', ()=>{
+    document.getElementById('vPlay').addEventListener('click', ()=>{ if(!playing || paused){ resumeSpeak(); } else { pauseSpeak(); } });
+    document.getElementById('vPause').addEventListener('click', ()=>pauseSpeak());
+    document.getElementById('vStop').addEventListener('click', ()=>{ stopSpeak(); });
+    document.getElementById('vPrev').addEventListener('click', prevArticle);
+    document.getElementById('vNext').addEventListener('click', nextArticle);
+  });
+  function updateUI(){ document.getElementById('vPlay').innerHTML = paused || !playing ? '<i class="fas fa-play"></i>' : '<i class="fas fa-pause"></i>'; }
+  function openFS(i){ inFS=true; current=i; document.getElementById('fsTitle').textContent=artTitle(i); document.getElementById('fsContent').textContent=artText(i); document.getElementById('fsOverlay').classList.add('show'); document.body.style.overflow='hidden'; speakIndex(i); }
+  function closeFS(){ inFS=false; document.getElementById('fsOverlay').classList.remove('show'); document.body.style.overflow=''; }
+  document.addEventListener('DOMContentLoaded', ()=>{
+    document.getElementById('fsClose').addEventListener('click', ()=>{ closeFS(); });
+    document.getElementById('fsPlay').addEventListener('click', ()=>{ if(!playing || paused){ resumeSpeak(); } else { pauseSpeak(); } });
+    document.getElementById('fsNavPrev').addEventListener('click', ()=>{ prevArticle(); });
+    document.getElementById('fsNavNext').addEventListener('click', ()=>{ nextArticle(); });
+    document.querySelectorAll('.article .open-fs').forEach((btn, idx)=> btn.addEventListener('click', ()=>openFS(idx)));
+  });
+  window.addEventListener('DOMContentLoaded', buildTOC);
+})();
+
+// Initialisation de la fonctionnalité de recherche
+document.addEventListener('DOMContentLoaded', initSearchFeature);
+</script>
+</body>
+</html>

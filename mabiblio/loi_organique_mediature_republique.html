@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang='fr'>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Loi Organique n° 2022-220 du 25 mars 2022 - Médiateur de la République</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f9f5; --paper:#ffffff; --ink:#0f2a1f;
+  --primary:#2e7d32; --primary-700:#1b5e20; --accent:#8bc34a; --accent-2:#f1f8e9;
+  --muted:#e8f5e8; --shadow:0 12px 28px rgba(0,0,0,.08); --radius:18px; --transition:.25s ease;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.6}
+header{position:sticky;top:0;z-index:60;background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(255,255,255,.88));backdrop-filter:saturate(1.1) blur(8px);border-bottom:1px solid #e6f2e6}
+.container{max-width:1120px;margin:0 auto;padding:14px 16px;display:flex;align-items:center;gap:12px}
+.logo{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:radial-gradient(circle at 30% 30%, var(--accent), #c5e1a5);color:var(--primary-700);box-shadow:var(--shadow);font-size:18px}
+h1{margin:0;font-family:'Playfair Display',serif;font-size:20px;color:var(--primary-700)}
+.sub{color:#4c8c4f;font-size:12px;margin-top:2px}
+.control-buttons{margin-left:auto;display:flex;gap:8px;align-items:center}
+.btn{min-width:38px;height:38px;border-radius:12px;border:1px solid #d5e8d4;background:#fff;color:var(--primary-700);display:grid;place-items:center;cursor:pointer;box-shadow:var(--shadow);transition:var(--transition)}
+.btn:hover{transform:translateY(-1px)}
+.wrapper{max-width:1120px;margin:16px auto;padding:0 12px}
+.group{background:var(--paper);border:1px solid #e2eee2;border-radius:var(--radius);box-shadow:var(--shadow);margin:14px 0;overflow:hidden}
+.group>h2{margin:0;padding:14px 16px;background:linear-gradient(180deg,#ffffff,#f1f8e9);border-bottom:1px solid #e2eee2;color:var(--primary-700);font-size:18px;font-family:'Playfair Display',serif}
+.article{margin:10px 10px 14px 10px;padding:12px 14px;border-left:6px solid var(--primary);background:#fff;border-radius:14px;box-shadow:0 1px 0 rgba(0,0,0,.03)}
+.article-header{display:flex; align-items:center; gap:8px; margin:0 0 6px 0;}
+.article-header h3{margin:0; color:var(--primary-700);}
+.article .open-fs{ order:2; margin-left:auto; width:34px; height:34px; border:1px solid #d5e8d4; background:#fff; border-radius:10px; cursor:pointer; }
+.article-content p{margin:.5rem 0}.article-content ul,.article-content ol{margin:.5rem 0 .8rem 1.25rem}
+.article-content ol>li, .article-content ul>li{ padding:8px 0; line-height:1.7; border-bottom:1px solid #eaf6ea; }
+.article-content ol>li:last-child, .article-content ul>li:last-child{ border-bottom:0; }
+.article-content li > ol > li, .article-content li > ul > li{ padding:6px 0; border-bottom:1px dashed #eaf6ea; }
+.article-content li > ol > li:last-child, .article-content li > ul > li:last-child{ border-bottom:0; }
+.reading{ outline:2px solid var(--accent); outline-offset:2px; border-left-color:var(--accent) !important; background:linear-gradient(180deg,#fff, var(--accent-2)) }
+mark{background:rgba(139,195,74,.45)}
+/* Floating TOC */
+#tocFloatBtn{position:fixed; right:14px; bottom:120px; width:46px; height:46px; border-radius:50%; border:none; background:var(--primary); color:#fff; display:grid; place-items:center; box-shadow:0 10px 24px rgba(0,0,0,.25); z-index:1500;}
+#tocPanel{position:fixed; top:0; right:0; height:100%; width:86%; max-width:420px; background:#fff; border-left:1px solid #e2eee2; box-shadow:-16px 0 35px rgba(0,0,0,.2); transform:translateX(100%); transition:transform .25s ease; z-index:1600; overflow:auto;}
+#tocOverlay{position:fixed; inset:0; background:rgba(0,0,0,.28); backdrop-filter:blur(2px); display:none; z-index:1590}
+#tocPanel.open{ transform:none } #tocOverlay.show{ display:block }
+#tocPanel header{position:sticky; top:0; background:#fff; padding:12px 14px; border-bottom:1px solid #e2eee2}
+#tocPanel h3{margin:0; color:var(--primary-700)} #tocPanel .toc-list{padding:12px 14px}
+#tocPanel .toc-list a{display:block; padding:6px 0; color:#2e7d32; text-decoration:none}
+#tocPanel .toc-sub{margin-left:10px; border-left:2px solid #e8f5e8; padding-left:8px}
+/* Voice bar */
+#voiceBar{position:fixed; left:50%; transform:translateX(-50%); bottom:14px; background:var(--primary-700); color:#fff; z-index:1550; border-radius:22px; padding:8px 12px; display:flex; gap:10px; align-items:center; box-shadow:0 12px 28px rgba(0,0,0,.3)}
+#voiceBar button{width:34px; height:34px; border-radius:10px; border:1px solid #c8e6c9; background:transparent; color:#e8f5e9; display:grid; place-items:center; cursor:pointer}
+#voiceBar .now{font-size:12px; max-width:52vw; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:#f1f8e9}
+/* Fullscreen */
+#fsOverlay{ position:fixed; inset:0; background:#fff; z-index:1700; display:none; }
+#fsOverlay.show{ display:block } #fsHeader{ position:sticky; top:0; background:#fff; padding:10px 14px; border-bottom:1px solid #e2eee2; display:flex; align-items:center; gap:10px }
+#fsHeader .ttl{ font-weight:700; color:var(--primary-700); flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
+#fsHeader button{ width:36px; height:36px; border-radius:10px; border:1px solid #d5e8d4; background:#fff; }
+#fsBody{ padding:14px; height:calc(100% - 58px); overflow:auto } #fsBody .article-content{ font-size:1.04rem }
+#fsNavPrev,#fsNavNext{ position:fixed; top:50%; transform:translateY(-50%); width:42px; height:42px; border-radius:50%; border:none; background:var(--primary); color:#fff; display:grid; place-items:center; z-index:1710; opacity:.9 }
+#fsNavPrev{ left:10px } #fsNavNext{ right:10px }
+footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c8c4f;font-size:12px}
+
+/* ===== Anti-sélection / anti-copie ===== */
+.no-select, .no-select *:not(input):not(textarea):not(.selectable){
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  -webkit-touch-callout: none !important;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="logo"><i class="fa-solid fa-scale-balanced"></i></div>
+    <div>
+      <h1>LOI ORGANIQUE N° 2022-220 DU 25 MARS 2022</h1>
+      <div class="sub">FIXANT LES ATTRIBUTIONS, L'ORGANISATION ET LE FONCTIONNEMENT DU MÉDIATEUR DE LA RÉPUBLIQUE</div>
+    </div>
+    <div class="control-buttons">
+      <button class="btn" id="tocHeaderBtn" title="Sommaire"><i class="fa-solid fa-book"></i></button>
+      <button class="btn" title="Haut de page" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fa-solid fa-angles-up"></i></button>
+    </div>
+  </div>
+</header>
+
+<main class="wrapper">
+
+<section class="group">
+<h2>CHAPITRE I : DISPOSITIONS GÉNÉRALES</h2>
+
+            <div class="article" id="Article_1">
+                <div class="article-header">
+                    <h3>Article 1</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La présente loi organique a pour objet de fixer les attributions, l'organisation et le fonctionnement de l'Organe de Médiation dénommé « le Médiateur de la République ».</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_2">
+                <div class="article-header">
+                    <h3>Article 2</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Médiateur de la République est une autorité administrative indépendante investie d'une mission de service public. Le Médiateur de la République ne reçoit d'instruction d'aucune autorité. Le Médiateur de la République est l'intercesseur gracieux entre l'Administration et les administrés.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_3">
+                <div class="article-header">
+                    <h3>Article 3</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le siège du Médiateur de la République est dénommé la Médiature.</p>
+                </div>
+            </div>
+            
+</section>
+
+<section class="group">
+<h2>CHAPITRE II : ATTRIBUTIONS</h2>
+
+            <div class="article" id="Article_4">
+                <div class="article-header">
+                    <h3>Article 4</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Médiateur de la République est chargé de régler par la médiation, sans préjudice des compétences reconnues par les lois et règlements aux autres Institutions et Structures de l'État, les différends de toute nature :</p>
+                    <ul>
+                        <li>opposant l'administration publique aux administrés ;</li>
+                        <li>opposant les collectivités territoriales, les Établissements publics et tout autre organe investi d'une mission de service public aux administrés ;</li>
+                        <li>impliquant les communautés urbaines, villageoises ou toute autre entité communautaire.</li>
+                    </ul>
+                    <p>Le Médiateur de la République est également chargé de contribuer au renforcement de la cohésion sociale.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_5">
+                <div class="article-header">
+                    <h3>Article 5</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Médiateur de la République peut à la demande du Président de la République, du Président de l'Assemblée Nationale ou du Président du Sénat, contribuer à toute action de conciliation entre l'Administration Publique et les Organisations sociales et professionnelles.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_6">
+                <div class="article-header">
+                    <h3>Article 6</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Médiateur de la République peut être sollicité pour des missions relatives aux questions de réconciliation et de paix au niveau national, régional ou international.</p>
+                </div>
+            </div>
+            
+</section>
+
+<section class="group">
+<h2>CHAPITRE III : ORGANISATION</h2>
+
+            <div class="article" id="Article_7">
+                <div class="article-header">
+                    <h3>Article 7</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Médiateur de la République est nommé par le Président de la République, après avis du Président de l'Assemblée Nationale et du Président du Sénat, pour un mandat de six ans non renouvelable.</p>
+                    <p>Il peut être mis fin à ses fonctions, avant l'expiration de ce délai, en cas d'empêchement absolu constaté par le Conseil Constitutionnel saisi par le Président de la République. Il est pourvu à son remplacement dans un délai de huit jours.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_8">
+                <div class="article-header">
+                    <h3>Article 8</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Médiateur de la République ne peut être poursuivi, recherché, arrêté, détenu ou jugé à l'occasion des opinions ou des actes émis par lui dans l'exercice de ses fonctions.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_9">
+                <div class="article-header">
+                    <h3>Article 9</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les fonctions de Médiateur de la République sont incompatibles avec l'exercice de toute fonction politique, de tout autre emploi public et de toute activité professionnelle.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_10">
+                <div class="article-header">
+                    <h3>Article 10</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Avant son entrée en fonction, le Médiateur de la République prête serment devant le Conseil Constitutionnel en ces termes : « Je m'engage à bien et fidèlement remplir ma fonction, à l'exercer en toute indépendance et en toute impartialité dans le respect de la Constitution et à garder le secret des délibérations, même après la cessation de mes fonctions ».</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_11">
+                <div class="article-header">
+                    <h3>Article 11</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Médiateur de la République est le Chef de l'Administration de la Médiature. Il est assisté d'un Secrétariat Général dirigé par un Secrétaire Général, nommé par décret pris en Conseil des Ministres, sur proposition du Médiateur de la République.</p>
+                    <p>L'organisation et le fonctionnement du Secrétariat Général sont déterminés par décret pris en Conseil des Ministres, sur proposition du Médiateur de la République.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_12">
+                <div class="article-header">
+                    <h3>Article 12</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Médiateur de la République est aidé dans sa mission par des Médiateurs délégués nommés par décret, sur proposition du Médiateur de la République.</p>
+                    <p>Le nombre des Médiateurs délégués et les règles les régissant sont définis par décret pris en Conseil des Ministres, sur proposition du Médiateur de la République.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_13">
+                <div class="article-header">
+                    <h3>Article 13</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les Médiateurs délégués ne peuvent être poursuivis, recherchés, arrêtés, détenus ou jugés à l'occasion des opinions ou des actes émis par eux dans l'exercice de leurs fonctions.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_14">
+                <div class="article-header">
+                    <h3>Article 14</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les fonctions de Médiateur délégué sont incompatibles avec l'exercice de toute fonction publique, de tout autre emploi public et de toute activité professionnelle salariée et de toute activité politique.</p>
+                </div>
+            </div>
+            
+</section>
+
+<section class="group">
+<h2>CHAPITRE IV : FONCTIONNEMENT</h2>
+
+            <div class="article" id="Article_15">
+                <div class="article-header">
+                    <h3>Article 15</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Médiateur de la République peut être saisi :</p>
+                    <ul>
+                        <li>par toute personne physique ou morale qui estime, à l'occasion d'une affaire la concernant, qu'un des organismes mentionnés à l'article 4 de la présente loi, n'a pas fonctionné conformément à la mission de service public qu'il doit assurer ;</li>
+                        <li>par les communautés urbaines ou villageoises à l'occasion des litiges les opposant entre elles ou les opposant aux tiers.</li>
+                    </ul>
+                    <p>La saisine du Médiateur de la République se fait par requête sans délai.</p>
+                    <p>Toutefois, sous peine d'irrecevabilité, le requérant joint à sa demande la preuve par tout moyen des démarches qu'il a préalablement effectuées pour permettre au service mis en cause d'examiner ses griefs.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_16">
+                <div class="article-header">
+                    <h3>Article 16</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Médiateur de la République peut se saisir d'office de toutes questions relevant de sa compétence.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_17">
+                <div class="article-header">
+                    <h3>Article 17</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Médiateur de la République n'est pas compétent pour connaître :</p>
+                    <ul>
+                        <li>des différends qui peuvent s'élever entre personnes physiques et morales privées, sauf les cas de conflits communautaires ;</li>
+                        <li>des conflits individuels de travail entre employeurs et salariés ;</li>
+                        <li>d'une affaire pendante devant une juridiction, ou remettre en cause ou critiquer le bien-fondé d'une décision de justice.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_18">
+                <div class="article-header">
+                    <h3>Article 18</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Toute personne, physique ou morale, publique ou privée, sollicitée par le Médiateur de la République ou les Médiateurs délégués est tenue de fournir les renseignements ou les avis nécessaires au règlement du litige, sauf si la loi et les règlements en vigueur lui imposent le secret professionnel ou le devoir de réserve.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_19">
+                <div class="article-header">
+                    <h3>Article 19</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les demandes d'avis adressées par le Médiateur de la République aux parties sont assorties d'un délai de réponse.</p>
+                    <p>A défaut de réaction d'une administration après deux relances, le Médiateur de la République peut adresser un rapport spécial au Président de la République et lui proposer de donner à l'administration concernée, toute instruction qu'il juge utile.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_20">
+                <div class="article-header">
+                    <h3>Article 20</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les Ministres et toutes les autorités publiques ou privées prêtent leur concours au Médiateur de la République dans l'exercice de ses attributions. A cet effet, ils sont tenus d'autoriser les agents placés sous leur autorité à répondre aux questions et éventuellement aux convocations de celui-ci.</p>
+                    <p>Le Médiateur de la République peut procéder à des vérifications sur place dans les locaux de l'administration mise en cause. A l'occasion de ces vérifications, il peut entendre toute personne susceptible de lui fournir des informations. Le responsable de l'administration mise en cause ne peut s'y opposer que pour des motifs graves et impérieux liés à la défense nationale ou à la sécurité publique.</p>
+                    <p>En cas d'entrave à l'exercice de sa mission, le Médiateur de la République procède conformément à l'article 19 alinéa 2 de la présente loi organique.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_21">
+                <div class="article-header">
+                    <h3>Article 21</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Médiateur de la République analyse la requête dont il est saisi, fait des investigations et propose des solutions.</p>
+                    <p>Le Médiateur de la République procède au règlement des litiges ou différends selon l'équité, le bon sens, les coutumes, les usages et les bonnes mœurs, sans préjudice des lois et règlements en vigueur.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_22">
+                <div class="article-header">
+                    <h3>Article 22</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les délibérations du Médiateur de la République sont secrètes. Indépendamment des sanctions pénales prévues par la législation en vigueur, il est interdit, sous peine de révocation, au Médiateur de la République ou au Médiateur délégué d'exciper ou d'user de sa qualité pour d'autres motifs que l'exercice de sa mission, de violer le secret des délibérations ou de communiquer à des tiers des documents reçus ou établis.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_23">
+                <div class="article-header">
+                    <h3>Article 23</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les médiations relatives à des litiges opposant deux ou plusieurs personnes donnent lieu à la rédaction d'un procès-verbal lorsque le Médiateur de la République parvient à les rapprocher.</p>
+                    <p>Les procès-verbaux dûment signés par les parties en cause valent renonciation à toute action judiciaire portant sur le même objet, la même cause et entre les mêmes parties.</p>
+                    <p>La partie la plus diligente peut, par requête, solliciter du président du tribunal dans le ressort duquel le procès-verbal a été établi, l'apposition de la formule exécutoire.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_24">
+                <div class="article-header">
+                    <h3>Article 24</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les médiations pour litiges nés du mauvais fonctionnement de l'administration donnent lieu à la formulation de recommandations adressées par le Médiateur de la République à l'administration en cause.</p>
+                    <p>Le Médiateur de la République est informé de la suite réservée aux recommandations qu'il formule dans le cadre du traitement des réclamations. Il en informe le requérant.</p>
+                    <p>Ces recommandations sont assorties d'un délai de mise en œuvre. En cas d'inertie de l'administration dans le délai fixé, le Médiateur de la République peut enjoindre à la personne mise en cause de prendre, dans un délai déterminé, les mesures nécessaires.</p>
+                    <p>Lorsqu'il n'a pas été donné suite à son injonction, le Médiateur de la République procède conformément à l'article 19 alinéa 2 de la présente loi organique.</p>
+                    <p>Le Médiateur de la République peut rendre publiques, le cas échéant, ces recommandations.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_25">
+                <div class="article-header">
+                    <h3>Article 25</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Médiateur de la République établit un rapport d'activité chaque année. Ce rapport présenté solennellement au Président de la République, avec ampliation au Président de l'Assemblée Nationale et au Président du Sénat, est publié au Journal Officiel de la République de Côte d'Ivoire.</p>
+                    <p>Le Médiateur de la République peut établir des rapports spéciaux sur des situations de mauvais fonctionnement de l'administration, assortis, le cas échéant, de propositions de réformes législatives, réglementaires ou administratives.</p>
+                </div>
+            </div>
+            
+</section>
+
+<section class="group">
+<h2>CHAPITRE V : DISPOSITIONS FINANCIÈRES</h2>
+
+            <div class="article" id="Article_26">
+                <div class="article-header">
+                    <h3>Article 26</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Médiateur de la République jouit de l'autonomie financière.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_27">
+                <div class="article-header">
+                    <h3>Article 27</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les crédits nécessaires au fonctionnement du Médiateur de la République sont inscrits au budget de l'État.</p>
+                    <p>Ces crédits sont gérés conformément aux règles de la comptabilité publique.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_28">
+                <div class="article-header">
+                    <h3>Article 28</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Médiateur de la République est l'ordonnateur des dépenses.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_29">
+                <div class="article-header">
+                    <h3>Article 29</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La rémunération, les avantages et indemnités de toute nature du Médiateur de la République sont déterminés par décret pris en Conseil des Ministres.</p>
+                </div>
+            </div>
+            
+</section>
+
+<section class="group">
+<h2>CHAPITRE VI : DISPOSITIONS DIVERSES ET FINALES</h2>
+
+            <div class="article" id="Article_30">
+                <div class="article-header">
+                    <h3>Article 30</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Des décrets pris en Conseil des Ministres déterminent les modalités d'application de la présente loi organique.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_31">
+                <div class="article-header">
+                    <h3>Article 31</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La présente loi organique abroge toutes dispositions antérieures contraires, notamment la loi n°2007-540 du 1er août 2007 fixant les attributions, l'organisation et le fonctionnement de l'Organe de Médiation dénommé "le Médiateur de la République".</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_32">
+                <div class="article-header">
+                    <h3>Article 32</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La présente loi organique sera publiée au Journal officiel de la République de Côte d'Ivoire et exécutée comme loi de l'État.</p>
+                    <p>Fait à Abidjan, le 25 mars 2022</p>
+                </div>
+            </div>
+            
+</section>
+
+</main>
+
+<div id="tocOverlay"></div>
+<aside id="tocPanel"><header><h3><i class="fa-solid fa-landmark"></i> Sommaire</h3></header><div class="toc-list" id="tocList"></div></aside>
+<div id="voiceBar" role="region" aria-label="Lecteur vocal">
+  <button id="vPrev" title="Article précédent"><i class="fas fa-backward"></i></button>
+  <button id="vPlay" title="Lire / Reprendre"><i class="fas fa-play"></i></button>
+  <button id="vPause" title="Pause"><i class="fas fa-pause"></i></button>
+  <button id="vStop" title="Arrêter"><i class="fas fa-stop"></i></button>
+  <button id="vNext" title="Article suivant"><i class="fas fa-forward"></i></button>
+  <span class="now" id="vNow">—</span>
+</div>
+<div id="fsOverlay"><div id="fsHeader"><button id="fsClose" title="Fermer"><i class="fas fa-xmark"></i></button><div class="ttl" id="fsTitle"></div><button id="fsPlay" title="Lecture"><i class="fas fa-play"></i></button></div><div id="fsBody"><article class="article"><div class="article-content" id="fsContent"></div></article></div><button id="fsNavPrev" title="Précédent"><i class="fas fa-chevron-left"></i></button><button id="fsNavNext" title="Suivant"><i class="fas fa-chevron-right"></i></button></div>
+
+<button id="tocFloatBtn" title="Sommaire" class="btn"><i class="fa-solid fa-book"></i></button>
+<div id="tocOverlay"></div>
+<aside id="tocPanel">
+  <header>
+    <h3><i class="fa-solid fa-scale-balanced"></i> Sommaire</h3>
+  </header>
+  <div class="toc-list" id="tocList"></div>
+</aside>
+
+<div id="voiceBar" role="region" aria-label="Lecteur vocal">
+  <button id="vPrev" title="Article précédent"><i class="fas fa-backward"></i></button>
+  <button id="vPlay" title="Lire / Reprendre"><i class="fas fa-play"></i></button>
+  <button id="vPause" title="Pause"><i class="fas fa-pause"></i></button>
+  <button id="vStop" title="Arrêter"><i class="fas fa-stop"></i></button>
+  <button id="vNext" title="Article suivant"><i class="fas fa-forward"></i></button>
+  <span class="now" id="vNow">—</span>
+</div>
+
+<div id="fsOverlay">
+  <div id="fsHeader">
+    <button id="fsClose" title="Fermer"><i class="fas fa-xmark"></i></button>
+    <div class="ttl" id="fsTitle"></div>
+    <button id="fsPlay" title="Lecture"><i class="fas fa-play"></i></button>
+  </div>
+  <div id="fsBody">
+    <article class="article">
+      <div class="article-content" id="fsContent"></div>
+    </article>
+  </div>
+  <button id="fsNavPrev" title="Précédent"><i class="fas a-chevron-left"></i></button>
+  <button id="fsNavNext" title="Suivant"><i class="fas fa-chevron-right"></i></button>
+</div>
+
+<script>
+// Fonction pour initialiser la fonctionnalité de recherche
+function initSearchFeature() {
+    const searchBtn = document.createElement('button');
+    searchBtn.className = 'btn';
+    searchBtn.id = 'searchBtn';
+    searchBtn.title = 'Rechercher';
+    searchBtn.innerHTML = '<i class="fas fa-search"></i>';
+    document.querySelector('.control-buttons').appendChild(searchBtn);
+    
+    const searchInterface = document.createElement('div');
+    searchInterface.id = 'searchInterface';
+    searchInterface.style.cssText = `
+        position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+        width: calc(100% - 40px); max-width: 550px; background: #fff;
+        padding: 10px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        z-index: 1800; display: none; align-items: center; gap: 5px; transition: .25s ease;
+    `;
+    searchInterface.innerHTML = `
+        <input type="text" id="searchInput" placeholder="Rechercher..." style="flex-grow: 1; padding: 8px; border: 1px solid #d6e6d6; border-radius: 5px;">
+        <button id="searchPrevBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-up"></i></button>
+        <button id="searchNextBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-down"></i></button>
+        <span id="searchResultsCount" style="flex-shrink: 0; padding: 0 5px; min-width: 40px; text-align: center;"></span>
+        <button id="closeSearchBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-times"></i></button>
+    `;
+    document.body.appendChild(searchInterface);
+
+    let searchResults = [];
+    let currentSearchIndex = -1;
+    let originalContents = new Map();
+
+    function performSearch() {
+        const searchTerm = document.getElementById('searchInput').value.trim();
+        if (!originalContents.size) {
+            document.querySelectorAll('.article-content, h2, h3').forEach(el => originalContents.set(el, el.innerHTML));
+        }
+        originalContents.forEach((content, el) => el.innerHTML = content);
+        searchResults = [];
+        currentSearchIndex = -1;
+        if (!searchTerm) { updateSearchUI(); return; }
+
+        const regex = new RegExp(searchTerm.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&'), 'gi');
+        originalContents.forEach((content, element) => {
+            element.innerHTML = content.replace(regex, match => `<mark>${match}</mark>`);
+        });
+        searchResults = Array.from(document.querySelectorAll('mark'));
+        if (searchResults.length > 0) navigateResults(true, false);
+        updateSearchUI();
+        window.dispatchEvent(new Event('reflowArticles'));
+    }
+
+    function navigateResults(isNext, shouldWrap = true) {
+        if (!searchResults.length) return;
+        searchResults.forEach(mark => mark.style.backgroundColor = '');
+        if (shouldWrap) {
+            currentSearchIndex = isNext ? (currentSearchIndex + 1) % searchResults.length : (currentSearchIndex - 1 + searchResults.length) % searchResults.length;
+        } else {
+            currentSearchIndex = 0;
+        }
+        const currentMark = searchResults[currentSearchIndex];
+        currentMark.style.backgroundColor = 'var(--accent)';
+        currentMark.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        updateSearchUI();
+    }
+
+    function updateSearchUI() {
+        document.getElementById('searchResultsCount').textContent = searchResults.length > 0 ? `${currentSearchIndex + 1}/${searchResults.length}` : '0/0';
+    }
+    
+    function resetSearch() {
+        originalContents.forEach((content, el) => el.innerHTML = content);
+        originalContents.clear();
+        document.getElementById('searchInput').value = '';
+        searchResults = []; currentSearchIndex = -1;
+        updateSearchUI();
+    }
+
+    searchBtn.addEventListener('click', () => {
+        const isVisible = searchInterface.style.display === 'flex';
+        searchInterface.style.display = isVisible ? 'none' : 'flex';
+        if (isVisible) resetSearch(); else document.getElementById('searchInput').focus();
+    });
+    document.getElementById('searchInput').addEventListener('input', performSearch);
+    document.getElementById('searchNextBtn').addEventListener('click', () => navigateResults(true));
+    document.getElementById('searchPrevBtn').addEventListener('click', () => navigateResults(false));
+    document.getElementById('closeSearchBtn').addEventListener('click', () => {
+        searchInterface.style.display = 'none';
+        resetSearch();
+    });
+}
+
+// Fonction pour transformer les énumérations en listes ordonnées
+(function(){
+  function extractEnumeration(s){
+    const re = /(\d{1,2})(?:\s*°)?(?:\))?(?:\.)?\s+/g; const matches = []; let m;
+    while ((m = re.exec(s))){ const idx=m.index; const prev = idx>0 ? s.charAt(idx-1) : " "; if (/\d/.test(prev)) continue; matches.push({num:parseInt(m[1],10), start:idx, end:re.lastIndex}); }
+    if (matches.length < 2) return null;
+    for (let i=1;i<matches.length;i++){ if (matches[i].num !== matches[i-1].num + 1) return null; }
+    const intro = s.slice(0, matches[0].start).trim().replace(/[:;,\-]\s*$/, ""); const items = [];
+    for (let i=0;i<matches.length;i++){ const st=matches[i].end; const en=(i+1<matches.length)?matches[i+1].start:s.length; let seg = s.slice(st,en).trim().replace(/^[;,:-]\s*/,"").replace(/[;,\s]+$/,""); items.push(seg); }
+    return {intro, start: matches[0].num, items};
+  }
+  function transformNode(node){
+    if (node.querySelector('ol')) return;
+    const plain = node.textContent.replace(/\s+/g,' ').trim(); const res = extractEnumeration(plain); if (!res) return;
+    const frag = document.createElement('div'); if (res.intro){ const p=document.createElement('p'); p.textContent=res.intro; frag.appendChild(p); }
+    const ol=document.createElement('ol'); if (res.start!==1) ol.setAttribute('start', String(res.start));
+    res.items.forEach(it=>{ const li=document.createElement('li'); li.textContent=it; ol.appendChild(li); });
+    frag.appendChild(ol); node.innerHTML=frag.innerHTML;
+  }
+  function run(){ document.querySelectorAll('.article-content').forEach(transformNode); }
+  window.addEventListener('DOMContentLoaded', ()=>setTimeout(run, 60));
+  window.addEventListener('reflowArticles', run);
+})();
+
+// Fonction pour construire la table des matières
+(function(){
+  const $ = s=>document.querySelector(s);
+  const $$ = s=>Array.from(document.querySelectorAll(s));
+  function buildTOC(){
+    const toc = document.getElementById('tocList'); if(!toc) return; toc.innerHTML='';
+    $$('.group').forEach((grp, gi)=>{
+      const gh = grp.querySelector('h2')?.textContent.trim() || `Groupe ${gi+1}`;
+      const gl = document.createElement('a'); gl.textContent=gh; gl.href='#'; gl.style.fontWeight='700';
+      gl.addEventListener('click', e=>{ e.preventDefault(); grp.scrollIntoView({behavior:'smooth', block:'start'}); hideTOC(); });
+      toc.appendChild(gl);
+      const sub = document.createElement('div'); sub.className='toc-sub';
+      grp.querySelectorAll('.article').forEach((art, ai)=>{
+        const at = art.querySelector('.article-header h3')?.textContent.trim() || `Article ${ai+1}`;
+        const a = document.createElement('a'); a.textContent=at; a.href='#';
+        a.addEventListener('click', e=>{ e.preventDefault(); art.scrollIntoView({behavior:'smooth', block:'start'}); hideTOC(); });
+        sub.appendChild(a);
+        if (!art.querySelector('.open-fs')){
+          const btn = document.createElement('button'); btn.className='open-fs'; btn.innerHTML='<i class="fas fa-maximize"></i>';
+          btn.title='Plein écran'; btn.addEventListener('click', ()=>openFS(artIndex(art))); art.querySelector('.article-header')?.appendChild(btn);
+        }
+      });
+      toc.appendChild(sub);
+    });
+  }
+  function showTOC(){ document.getElementById('tocOverlay').classList.add('show'); document.getElementById('tocPanel').classList.add('open'); }
+  function hideTOC(){ document.getElementById('tocOverlay').classList.remove('show'); document.getElementById('tocPanel').classList.remove('open'); }
+  document.addEventListener('DOMContentLoaded', ()=>{
+    const floatBtn = document.getElementById('tocFloatBtn');
+    if (floatBtn) floatBtn.addEventListener('click', showTOC);
+    const overlay = document.getElementById('tocOverlay');
+    if (overlay) overlay.addEventListener('click', hideTOC);
+    const headerBtn = document.getElementById('tocHeaderBtn');
+    if (headerBtn) headerBtn.addEventListener('click', showTOC);
+  });
+  const articles = $$('.article');
+  function artIndex(el){ return articles.indexOf(el); }
+  function getArticle(i){ return articles[Math.max(0, Math.min(articles.length-1, i))]; }
+  function artTitle(i){ const el=getArticle(i); return el? (el.querySelector('.article-header h3')?.textContent.trim()||'') : ''; }
+  function artText(i){ const el=getArticle(i); return el? (el.querySelector('.article-content')?.innerText.trim()||'') : ''; }
+  const synth = window.speechSynthesis;
+  let current = 0, utter = null, playing = false, paused = false, inFS=false;
+  function speakIndex(i){ stopSpeak(); current=i; const text=artText(i); if(!text){ nextArticle(); return; }
+    utter = new SpeechSynthesisUtterance(text); utter.lang='fr-FR'; utter.rate=1; utter.pitch=1;
+    utter.onend = ()=>{ if(playing && !paused){ nextArticle(); } };
+    try{ synth.speak(utter);}catch(e){ console.warn(e); }
+    playing=true; paused=false; updateUI(); highlightCurrent(); }
+  function highlightCurrent(){ articles.forEach(a=>a.classList.remove('reading')); const el=getArticle(current); if(el){ el.classList.add('reading'); if(!inFS) el.scrollIntoView({behavior:'smooth', block:'center'}); } document.getElementById('vNow').textContent = artTitle(current) || '—'; }
+  function pauseSpeak(){ if(synth && synth.speaking){ synth.pause(); paused=true; playing=true; } }
+  function resumeSpeak(){ if(synth && paused){ synth.resume(); paused=false; } else { speakIndex(current); } updateUI(); }
+  function stopSpeak(){ if(synth){ try{synth.cancel();}catch(e){} } playing=false; paused=false; updateUI(); }
+  function prevArticle(){ current=Math.max(0,current-1); if(playing){ speakIndex(current);} else {highlightCurrent();} if(inFS) openFS(current); }
+  function nextArticle(){ current=Math.min(articles.length-1,current+1); if(playing){ speakIndex(current);} else {highlightCurrent();} if(inFS) openFS(current); }
+  document.addEventListener('DOMContentLoaded', ()=>{
+    document.getElementById('vPlay').addEventListener('click', ()=>{ if(!playing || paused){ resumeSpeak(); } else { pauseSpeak(); } });
+    document.getElementById('vPause').addEventListener('click', ()=>pauseSpeak());
+    document.getElementById('vStop').addEventListener('click', ()=>{ stopSpeak(); });
+    document.getElementById('vPrev').addEventListener('click', prevArticle);
+    document.getElementById('vNext').addEventListener('click', nextArticle);
+  });
+  function updateUI(){ document.getElementById('vPlay').innerHTML = paused || !playing ? '<i class="fas fa-play"></i>' : '<i class="fas fa-pause"></i>'; }
+  function openFS(i){ inFS=true; current=i; document.getElementById('fsTitle').textContent=artTitle(i); document.getElementById('fsContent').textContent=artText(i); document.getElementById('fsOverlay').classList.add('show'); document.body.style.overflow='hidden'; speakIndex(i); }
+  function closeFS(){ inFS=false; document.getElementById('fsOverlay').classList.remove('show'); document.body.style.overflow=''; }
+  document.addEventListener('DOMContentLoaded', ()=>{
+    document.getElementById('fsClose').addEventListener('click', ()=>{ closeFS(); });
+    document.getElementById('fsPlay').addEventListener('click', ()=>{ if(!playing || paused){ resumeSpeak(); } else { pauseSpeak(); } });
+    document.getElementById('fsNavPrev').addEventListener('click', ()=>{ prevArticle(); });
+    document.getElementById('fsNavNext').addEventListener('click', ()=>{ nextArticle(); });
+    document.querySelectorAll('.article .open-fs').forEach((btn, idx)=> btn.addEventListener('click', ()=>openFS(idx)));
+  });
+  window.addEventListener('DOMContentLoaded', buildTOC);
+})();
+
+// Initialisation de la fonctionnalité de recherche
+document.addEventListener('DOMContentLoaded', initSearchFeature);
+</script>
+</body>
+</html>

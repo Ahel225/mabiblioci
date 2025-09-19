@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Loi Organique relative au Conseil Constitutionnel</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f9f5; --paper:#ffffff; --ink:#0f2a1f;
+  --primary:#2e7d32; --primary-700:#1b5e20; --accent:#8bc34a; --accent-2:#f1f8e9;
+  --muted:#e8f5e8; --shadow:0 12px 28px rgba(0,0,0,.08); --radius:18px; --transition:.25s ease;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.6}
+header{position:sticky;top:0;z-index:60;background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(255,255,255,.88));backdrop-filter:saturate(1.1) blur(8px);border-bottom:1px solid #e6f2e6}
+.container{max-width:1120px;margin:0 auto;padding:14px 16px;display:flex;align-items:center;gap:12px}
+.logo{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:radial-gradient(circle at 30% 30%, var(--accent), #c5e1a5);color:var(--primary-700);box-shadow:var(--shadow);font-size:18px}
+h1{margin:0;font-family:'Playfair Display',serif;font-size:20px;color:var(--primary-700)}
+.sub{color:#4c8c4f;font-size:12px;margin-top:2px}
+.control-buttons{margin-left:auto;display:flex;gap:8px;align-items:center}
+.btn{min-width:38px;height:38px;border-radius:12px;border:1px solid #d5e8d4;background:#fff;color:var(--primary-700);display:grid;place-items:center;cursor:pointer;box-shadow:var(--shadow);transition:var(--transition)}
+.btn:hover{transform:translateY(-1px)}
+.wrapper{max-width:1120px;margin:16px auto;padding:0 12px}
+.group{background:var(--paper);border:1px solid #e2eee2;border-radius:var(--radius);box-shadow:var(--shadow);margin:14px 0;overflow:hidden}
+.group>h2{margin:0;padding:14px 16px;background:linear-gradient(180deg,#ffffff,#f1f8e9);border-bottom:1px solid #e2eee2;color:var(--primary-700);font-size:18px;font-family:'Playfair Display',serif}
+.article{margin:10px 10px 14px 10px;padding:12px 14px;border-left:6px solid var(--primary);background:#fff;border-radius:14px;box-shadow:0 1px 0 rgba(0,0,0,.03)}
+.article-header{display:flex; align-items:center; gap:8px; margin:0 0 6px 0;}
+.article-header h3{margin:0; color:var(--primary-700);}
+.article .open-fs{ order:2; margin-left:auto; width:34px; height:34px; border:1px solid #d5e8d4; background:#fff; border-radius:10px; cursor:pointer; }
+.article-content p{margin:.5rem 0}.article-content ul,.article-content ol{margin:.5rem 0 .8rem 1.25rem}
+.article-content ol>li, .article-content ul>li{ padding:8px 0; line-height:1.7; border-bottom:1px solid #eaf6ea; }
+.article-content ol>li:last-child, .article-content ul>li:last-child{ border-bottom:0; }
+.article-content li > ol > li, .article-content li > ul > li{ padding:6px 0; border-bottom:1px dashed #eaf6ea; }
+.article-content li > ol > li:last-child, .article-content li > ul > li:last-child{ border-bottom:0; }
+.reading{ outline:2px solid var(--accent); outline-offset:2px; border-left-color:var(--accent) !important; background:linear-gradient(180deg,#fff, var(--accent-2)) }
+mark{background:rgba(139,195,74,.45)}
+/* Floating TOC */
+#tocFloatBtn{position:fixed; right:14px; bottom:120px; width:46px; height:46px; border-radius:50%; border:none; background:var(--primary); color:#fff; display:grid; place-items:center; box-shadow:0 10px 24px rgba(0,0,0,.25); z-index:1500;}
+#tocPanel{position:fixed; top:0; right:0; height:100%; width:86%; max-width:420px; background:#fff; border-left:1px solid #e2eee2; box-shadow:-16px 0 35px rgba(0,0,0,.2); transform:translateX(100%); transition:transform .25s ease; z-index:1600; overflow:auto;}
+#tocOverlay{position:fixed; inset:0; background:rgba(0,0,0,.28); backdrop-filter:blur(2px); display:none; z-index:1590}
+#tocPanel.open{ transform:none } #tocOverlay.show{ display:block }
+#tocPanel header{position:sticky; top:0; background:#fff; padding:12px 14px; border-bottom:1px solid #e2eee2}
+#tocPanel h3{margin:0; color:var(--primary-700)} #tocPanel .toc-list{padding:12px 14px}
+#tocPanel .toc-list a{display:block; padding:6px 0; color:#2e7d32; text-decoration:none}
+#tocPanel .toc-sub{margin-left:10px; border-left:2px solid #e8f5e8; padding-left:8px}
+/* Voice bar */
+#voiceBar{position:fixed; left:50%; transform:translateX(-50%); bottom:14px; background:var(--primary-700); color:#fff; z-index:1550; border-radius:22px; padding:8px 12px; display:flex; gap:10px; align-items:center; box-shadow:0 12px 28px rgba(0,0,0,.3)}
+#voiceBar button{width:34px; height:34px; border-radius:10px; border:1px solid #c8e6c9; background:transparent; color:#e8f5e9; display:grid; place-items:center; cursor:pointer}
+#voiceBar .now{font-size:12px; max-width:52vw; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:#f1f8e9}
+/* Fullscreen */
+#fsOverlay{ position:fixed; inset:0; background:#fff; z-index:1700; display:none; }
+#fsOverlay.show{ display:block } #fsHeader{ position:sticky; top:0; background:#fff; padding:10px 14px; border-bottom:1px solid #e2eee2; display:flex; align-items:center; gap:10px }
+#fsHeader .ttl{ font-weight:700; color:var(--primary-700); flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
+#fsHeader button{ width:36px; height:36px; border-radius:10px; border:1px solid #d5e8d4; background:#fff; }
+#fsBody{ padding:14px; height:calc(100% - 58px); overflow:auto } #fsBody .article-content{ font-size:1.04rem }
+#fsNavPrev,#fsNavNext{ position:fixed; top:50%; transform:translateY(-50%); width:42px; height:42px; border-radius:50%; border:none; background:var(--primary); color:#fff; display:grid; place-items:center; z-index:1710; opacity:.9 }
+#fsNavPrev{ left:10px } #fsNavNext{ right:10px }
+footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c8c4f;font-size:12px}
+
+/* ===== Anti-sélection / anti-copie ===== */
+.no-select, .no-select *:not(input):not(textarea):not(.selectable){
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  -webkit-touch-callout: none !important;
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <div class="logo"><i class="fa-solid fa-scale-balanced"></i></div>
+    <div>
+      <h1>Loi Organique relative au Conseil Constitutionnel</h1>
+      <div class="sub">LOI organique n° 2022-222 du 25 mars 2022 • République de Côte d'Ivoire</div>
+    </div>
+    <div class="control-buttons">
+      <button class="btn" id="tocHeaderBtn" title="Sommaire"><i class="fa-solid fa-book"></i></button>
+      <button class="btn" title="Haut de page" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fa-solid fa-angles-up"></i></button>
+    </div>
+  </div>
+</header>
+<main class="wrapper">
+   <section class="group">
+            <h2>TITRE PREMIER : DISPOSITIONS GÉNÉRALES</h2>
+            
+            <div class="article" id="Article_1">
+                <div class="article-header">
+                    <h3>Article 1</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La présente loi organique fixe, conformément à l'article 136 de la Constitution, les règles d'organisation et de fonctionnement du Conseil constitutionnel, la procédure et les délais qui lui sont impartis pour statuer.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_2">
+                <div class="article-header">
+                    <h3>Article 2</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Conseil constitutionnel est une juridiction constitutionnelle. Il est indépendant et impartial.</p>
+                    <p>Le Conseil constitutionnel est l'organe régulateur du fonctionnement des pouvoirs publics.</p>
+                    <p>Le Conseil constitutionnel est juge de la conformité de la loi au bloc de constitutionnalité.</p>
+                    <p>Le Conseil constitutionnel est juge du contrôle de l'élection présidentielle et des élections parlementaires.</p>
+                    <p>Le Conseil constitutionnel contrôle la régularité des opérations de référendum et en proclame les résultats.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="group">
+            <h2>TITRE II : ORGANISATION</h2>
+            
+            <div class="article" id="Article_3">
+                <div class="article-header">
+                    <h3>Article 3</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Conseil constitutionnel se compose :</p>
+                    <ul>
+                        <li>d'un Président ;</li>
+                        <li>des anciens Présidents de la République qui en sont membres de droit, sauf renonciation expresse de leur part ;</li>
+                        <li>de six Conseillers désignés à raison de trois par le Président de la République, deux par le Président de l'Assemblée nationale et un par le Président du Sénat.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_4">
+                <div class="article-header">
+                    <h3>Article 4</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les membres du Conseil constitutionnel, autres que les membres de droit, sont nommés par décret du Président de la République pour une durée de six ans non renouvelable parmi les personnalités reconnues pour leur compétence et leur expertise avérées en matière juridique ou administrative.</p>
+                    <p>Avant leur entrée en fonction, ils prêtent serment conformément aux dispositions de la Constitution :</p>
+                    <ul>
+                        <li>le Président, devant le Président de la République ;</li>
+                        <li>les Conseillers, devant le Président du Conseil constitutionnel.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_5">
+                <div class="article-header">
+                    <h3>Article 5</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Conseil constitutionnel est renouvelé par moitié tous les trois ans.</p>
+                    <p>Les fonctions des Conseillers dont le mandat vient à expiration cessent à la prestation de serment des nouveaux Conseillers.</p>
+                    <p>Toutefois les membres du Conseil Constitutionnel dont le mandat arrive à expiration au cours de l'année des élections générales demeurent en fonction jusqu'au terme desdites élections.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_6">
+                <div class="article-header">
+                    <h3>Article 6</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Pendant la durée de leurs fonctions, les membres du Conseil constitutionnel sont assimilés aux magistrats de l'ordre judiciaire.</p>
+                    <p>Ils jouissent des droits et avantages prévus par les lois et règlements pour la protection physique et morale des magistrats et sont soumis aux obligations imposées aux magistrats à l'occasion et dans l'exercice de leurs fonctions.</p>
+                    <p>Les traitements, indemnités et avantages en nature alloués aux conseillers sont déterminés par décret.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_7">
+                <div class="article-header">
+                    <h3>Article 7</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les fonctions de membres du Conseil constitutionnel sont incompatibles avec l'exercice de toute fonction politique, de tout emploi public ou mandat électif et de toute activité professionnelle.</p>
+                    <p>Est démis d'office tout membre du Conseil se trouvant dans un des cas d'incompatibilité dûment constaté par le Conseil.</p>
+                    <p>Les modalités du constat et du prononcé de la démission d'office sont déterminées par le règlement intérieur du Conseil constitutionnel.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_8">
+                <div class="article-header">
+                    <h3>Article 8</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>En cas de décès, de démission ou d'empêchement absolu pour quelque cause que ce soit, le Président et les conseillers sont remplacés dans un délai de huit jours, pour la durée du mandat restant à courir, conformément aux dispositions de l'article 3 de la présente loi organique.</p>
+                    <p>L'empêchement absolu est constaté par le Conseil.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_9">
+                <div class="article-header">
+                    <h3>Article 9</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Aucun membre du Conseil constitutionnel ne peut, pendant la durée de son mandat, être poursuivi, arrêté, détenu ou jugé en matière criminelle ou correctionnelle qu'avec l'autorisation du Conseil, sauf les cas de flagrant délit.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_10">
+                <div class="article-header">
+                    <h3>Article 10</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>L'administration et la discipline du Conseil constitutionnel sont assurées par le Président.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_11">
+                <div class="article-header">
+                    <h3>Article 11</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Un Secrétaire général, nommé par le Président de la République sur proposition du Président du Conseil constitutionnel, dirige les services administratifs du Conseil.</p>
+                    <p>Il est placé sous l'autorité du Président du Conseil constitutionnel.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_12">
+                <div class="article-header">
+                    <h3>Article 12</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Secrétaire général prend les mesures nécessaires à la préparation et à l'organisation des travaux du Conseil constitutionnel.</p>
+                    <p>Il assiste aux délibérations sans y prendre part.</p>
+                    <p>Il signe avec le Président, les décisions et les avis du Conseil.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_13">
+                <div class="article-header">
+                    <h3>Article 13</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Un règlement administratif pris par le Président du Conseil constitutionnel détermine la composition, l'organisation et le fonctionnement des services du Conseil constitutionnel.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="group">
+            <h2>TITRE III : FONCTIONNEMENT</h2>
+            
+            <div class="article" id="Article_14">
+                <div class="article-header">
+                    <h3>Article 14</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Conseil constitutionnel se réunit sur convocation de son Président.</p>
+                    <p>En cas d'empêchement, le Président est suppléé par le membre le plus ancien.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_15">
+                <div class="article-header">
+                    <h3>Article 15</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>A la demande du Président, les membres du Conseil sont convoqués par tous moyens par le Secrétaire Général qui avise les parties intéressées.</p>
+                    <p>Le Conseil constitutionnel siège en toutes matières à huis clos.</p>
+                    <p>En matière électorale, les parties, leurs représentants, les experts et conseils, participent aux débats.</p>
+                    <p>Dans les autres matières, le Conseil constitutionnel peut inviter les requérants à participer aux débats.</p>
+                    <p>Les requérants peuvent, à leur demande, être autorisés à faire des observations orales.</p>
+                    <p>Les décisions et avis du Conseil constitutionnel sont rendus par cinq membres au moins, sauf en cas de force majeure dûment constatée par procès-verbal.</p>
+                    <p>Les décisions et avis du Conseil constitutionnel sont adoptés à la majorité des membres présents.</p>
+                    <p>En cas de partage de voix, celle du Président ou de son suppléant est prépondérante.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_16">
+                <div class="article-header">
+                    <h3>Article 16</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Conseil constitutionnel peut procéder à toutes mesures d'instruction, notamment entendre tout expert ou sachant, et se faire communiquer tout document utile.</p>
+                    <p>Le rapporteur désigné pour une affaire peut procéder à toutes mesures d'instruction.</p>
+                    <p>Il peut, notamment, entendre les membres du Gouvernement, les fonctionnaires et agents des administrations, des services publics et privés sont tenus de lui fournir les renseignements ayant un lien avec l'objet de la saisine, sans qu'il puisse lui être opposé le secret professionnel.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_17">
+                <div class="article-header">
+                    <h3>Article 17</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Conseil constitutionnel peut recourir à des rapporteurs adjoints choisis parmi les magistrats, les avocats, les enseignants de Droit ou tout juriste, en vue de porter assistance aux conseillers.</p>
+                    <p>Toute personne, participant à quelque titre que ce soit aux travaux du Conseil Constitutionnel, est tenue au respect du secret.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_18">
+                <div class="article-header">
+                    <h3>Article 18</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Lorsque le Conseil constitutionnel est saisi en application des articles 72 alinéa 1, 113 et 134 de la Constitution :</p>
+                    <ul>
+                        <li>le Président de la République peut se faire représenter à l'audience par un membre du Gouvernement ;</li>
+                        <li>le Président de l'Assemblée nationale peut se faire représenter par un député ;</li>
+                        <li>le Président du Sénat peut se faire représenter par un sénateur ;</li>
+                        <li>le Président d'un Groupe parlementaire de députés peut se faire représenter par un député dudit groupe ;</li>
+                        <li>le Président d'un Groupe parlementaire de sénateurs peut se faire représenter par un sénateur dudit groupe ;</li>
+                        <li>le représentant d'un collectif de députés peut être suppléé par un membre dudit collectif ;</li>
+                        <li>le représentant d'un collectiv de sénateurs peut être suppléé par un membre dudit collectif ;</li>
+                        <li>le représentant des associations de défense des droits de l'homme légalement constituées, relativement aux lois sur les libertés publiques, par un membre du bureau.</li>
+                    </ul>
+                    <p>Chaque représentant peut se faire assister d'experts ou de conseils.</p>
+                    <p>Le représentant du collectif des députés ou des sénateurs doit être connu au moment de la saisine.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_19">
+                <div class="article-header">
+                    <h3>Article 19</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les décisions du Conseil constitutionnel portent les mentions suivantes : « Au nom du peuple de Côte d'Ivoire, le Conseil constitutionnel... ».</p>
+                    <p>Elles sont motivées et signées du Président et du Secrétaire Général.</p>
+                    <p>Une expédition des décisions rendues par le Conseil constitutionnel est adressée par son Président au Président de la République aux fins d'en assurer la publication et l'exécution.</p>
+                    <p>Une expédition est transmise au Président de l'Assemblée nationale, au Président du Sénat, aux parlementaires ou au représentant des associations de défense des droits de l'Homme légalement constituées qui ont saisi le Conseil constitutionnel.</p>
+                    <p>Lorsque le Conseil constitutionnel est saisi par voie d'exception, expédition de la décision rendue est transmise au requérant, ainsi qu'à la juridiction devant laquelle l'exception d'inconstitutionnalité est soulevée, pour permettre à celle-ci de reprendre le cours normal de l'instance.</p>
+                    <p>Les décisions du Conseil constitutionnel sont publiées au Journal Officiel de la République de Côte d'Ivoire.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_20">
+                <div class="article-header">
+                    <h3>Article 20</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les décisions du Conseil constitutionnel sont rendues en audience publique sur rapport d'un de ses membres et ne sont susceptibles d'aucun recours.</p>
+                    <p>Elles s'imposent aux pouvoirs publics, à toutes les autorités administratives, juridictionnelles, militaires et à toute personne physique ou morale.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="group">
+            <h2>TITRE IV : PROCÉDURES ET DÉLAIS</h2>
+            <h2>CHAPITRE I : PROCÉDURE COMMUNE</h2>
+            
+            <div class="article" id="Article_21">
+                <div class="article-header">
+                    <h3>Article 21</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La saisine du Conseil constitutionnel est faite par requête écrite comportant l'identité et l'adresse du demandeur.</p>
+                    <p>La requête est datée et signée par le demandeur ou son représentant dûment mandaté. Elle est accompagnée de toutes les pièces justificatives, notamment le ou les textes de loi qui la fondent.</p>
+                    <p>Elle doit contenir un exposé sommaire des faits, des motifs et des moyens invoqués.</p>
+                    <p>La requête en dix exemplaires originaux ainsi que les pièces justificatives sont déposées ou transmis au Secrétariat Général du Conseil constitutionnel.</p>
+                    <p>Lorsqu'il s'agit d'une contestation née de consultations populaires, la saisine obéit aux conditions de forme et de fond propres à chaque consultation.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="group">
+            <h2>CHAPITRE II : PROCÉDURES PARTICULIÈRES</h2>
+            <h2>SECTION I : En matière de contrôle de constitutionnalité</h2>
+            
+            <div class="article" id="Article_22">
+                <div class="article-header">
+                    <h3>Article 22</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Conseil constitutionnel peut être saisi par voie d'action ou par voie d'exception.</p>
+                    <p>Il est saisi par voie d'action avant l'entrée en vigueur de la loi.</p>
+                    <p>Il est saisi par voie d'exception après la promulgation de la loi.</p>
+                    <p>Les projets ou propositions de loi et les projets d'ordonnance peuvent être soumis au Conseil constitutionnel pour avis.</p>
+                    <p>Le Conseil constitutionnel constate, par une décision motivée, le caractère législatif ou réglementaire des dispositions qui lui sont soumises.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_23">
+                <div class="article-header">
+                    <h3>Article 23</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les engagements internationaux visés à l'article 120 de la Constitution, avant leur ratification, doivent être déférés au Conseil constitutionnel par le Président de la République, le Président de l'Assemblée Nationale, le Président du Sénat pour un contrôle de leur conformité à la Constitution.</p>
+                    <p>Les lois constitutionnelles adoptées par voie parlementaire, les lois organiques avant leur promulgation, les lois d'autorisation en vue de la ratification des traités internationaux visés à l'article 120 de la Constitution, les règlements des assemblées parlementaires avant leur mise en application doivent être déférés au Conseil constitutionnel par le Président de la République, le Président de l'Assemblée nationale ou le Président du Sénat pour un contrôle de conformité à la Constitution.</p>
+                    <p>Aux mêmes fins, les lois ordinaires, avant leur promulgation, peuvent être déférées au Conseil constitutionnel par le Président de la République, le Président de l'Assemblée Nationale, le Président du Sénat, par un dixième au moins des députés ou des sénateurs ou par les groupes parlementaires.</p>
+                    <p>Les associations des Droits de l'Homme légalement constituées peuvent déférer au Conseil constitutionnel, les lois relatives aux libertés publiques.</p>
+                    <p>La lettre de transmission indique, le cas échéant, qu'il y a urgence.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_24">
+                <div class="article-header">
+                    <h3>Article 24</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Tout plaideur peut soulever l'exception d'inconstitutionnalité d'une loi devant toute Juridiction.</p>
+                    <p>La Juridiction devant laquelle l'exception d'inconstitutionnalité est soulevée sursont à statuer et impartit au plaideur un délai de quinze jours pour saisir le Conseil constitutionnel.</p>
+                    <p>À l'expiration du délai fixé, si le plaideur ne rapporte pas la preuve de la saisine du Conseil constitutionnel, la Juridiction statue.</p>
+                    <p>La saisine se fait par voie de requête.</p>
+                    <p>Le requérant peut prouver par tous moyens :</p>
+                    <ul>
+                        <li>sa qualité de plaideur ;</li>
+                        <li>qu'il a soulevé l'inconstitutionnalité de la loi ou d'une disposition de loi devant la juridiction saisie ;</li>
+                        <li>qu'il a respecté le délai de quinze jours à lui imparti par la juridiction.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_25">
+                <div class="article-header">
+                    <h3>Article 25</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Lorsque le Conseil constitutionnel est saisi d'un recours en inconstitutionnalité par voie d'exception, le Greffe délivre au requérant un récépissé attestant du dépôt de la requête.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_26">
+                <div class="article-header">
+                    <h3>Article 26</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Conseil constitutionnel statue dans le délai d'un mois à compter de sa saisine.</p>
+                    <p>Ce délai est réduit à huit jours en cas d'urgence à la demande du Président de la République, du Président de l'Assemblée nationale ou du Président du Sénat.</p>
+                    <p>Lorsque le Conseil constitutionnel est saisi par voie d'exception, le délai est de trois mois.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_27">
+                <div class="article-header">
+                    <h3>Article 27</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Lorsque le Conseil constitutionnel est saisi en application de l'article 23 de la présente loi organique, il se prononce sur la conformité à la Constitution des dispositions qui lui sont déférées.</p>
+                    <p>Lorsqu'il est saisi en application de l'article 24 de la présente loi organique, il se prononce sur la constitutionnalité de la loi ou de la disposition de loi contestée.</p>
+                    <p>Le Conseil constitutionnel peut déclarer la loi ou la disposition de loi conforme ou non conforme à la Constitution.</p>
+                    <p>Lorsque le Conseil constitutionnel déclare une disposition de loi non conforme à la Constitution, cette disposition ne peut être promulguée ni mise en application.</p>
+                    <p>Lorsque le Conseil constitutionnel déclare une disposition de loi non conforme à la Constitution, cette disposition est abrogée de plein droit.</p>
+                    <p>La décision du Conseil constitutionnel s'impose à tous.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="group">
+            <h2>SECTION II : En matière de contentieux électoral</h2>
+            
+            <div class="article" id="Article_28">
+                <div class="article-header">
+                    <h3>Article 28</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Conseil constitutionnel est juge du contentieux de l'élection présidentielle et des élections parlementaires.</p>
+                    <p>Il statue sur la régularité de l'élection du Président de la République et des parlementaires.</p>
+                    <p>Il vérifie la régularité des opérations électorales et proclame les résultats définitifs.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_29">
+                <div class="article-header">
+                    <h3>Article 29</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Conseil constitutionnel est saisi par tout candidat ou tout parti politique ayant présenté un candidat à l'élection présidentielle ou parlementaire.</p>
+                    <p>La saisine doit être faite dans les conditions et délais prévus par le code électoral.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_30">
+                <div class="article-header">
+                    <h3>Article 30</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Conseil constitutionnel statue dans les conditions et délais prévus par le code électoral.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="group">
+            <h2>SECTION III : En matière de référendum</h2>
+            
+            <div class="article" id="Article_31">
+                <div class="article-header">
+                    <h3>Article 31</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Conseil constitutionnel veille à la régularité des opérations de référendum et en proclame les résultats.</p>
+                    <p>Le Conseil constitutionnel est consulté par le Président de la République sur l'organisation des opérations de référendum.</p>
+                    <p>Le Conseil constitutionnel établit et publie la liste des bureaux de vote et des centres de dépouillement.</p>
+                    <p>Le Conseil constitutionnel désigne les délégués chargés de surveiller les opérations de vote et de dépouillement.</p>
+                    <p>Le Conseil constitutionnel reçoit les procès-verbaux établis par les commissions chargées du recensement des votes.</p>
+                    <p>Le Conseil constitutionnel examine les réclamations et proclame les résultats du référendum.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_32">
+                <div class="article-header">
+                    <h3>Article 32</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Conseil constitutionnel est saisi par tout électeur, tout candidat ou tout parti politique.</p>
+                    <p>La saisine doit être faite dans les conditions et délais prévus par le code électoral.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_33">
+                <div class="article-header">
+                    <h3>Article 33</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Conseil constitutionnel statue dans les conditions et délais prévus par le code électoral.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="group">
+            <h2>SECTION IV : En matière de conflits d'attributions</h2>
+            
+            <div class="article" id="Article_34">
+                <div class="article-header">
+                    <h3>Article 34</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Conseil constitutionnel est compétent pour régler les conflits d'attributions entre les institutions de l'État.</p>
+                    <p>Le Conseil constitutionnel est saisi par le Président de la République, le Président de l'Assemblée nationale ou le Président du Sénat.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_35">
+                <div class="article-header">
+                    <h3>Article 35</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Conseil constitutionnel statue dans un délai d'un mois à compter de sa saisine.</p>
+                    <p>Ce délai est réduit à huit jours en cas d'urgence.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="group">
+            <h2>SECTION V : En matière de statut des anciens Présidents de la République</h2>
+            
+            <div class="article" id="Article_36">
+                <div class="article-header">
+                    <h3>Article 36</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Conseil constitutionnel est compétent pour se prononcer sur le statut des anciens Présidents de la République.</p>
+                    <p>Le Conseil constitutionnel est saisi par le Président de la République ou par l'ancien Président de la République concerné.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_37">
+                <div class="article-header">
+                    <h3>Article 37</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Conseil constitutionnel statue dans un délai d'un mois à compter de sa saisine.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="group">
+            <h2>TITRE V : DISPOSITIONS FINALES</h2>
+            
+            <div class="article" id="Article_38">
+                <div class="article-header">
+                    <h3>Article 38</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Conseil constitutionnel établit son règlement intérieur.</p>
+                    <p>Le règlement intérieur détermine les modalités d'application de la présente loi organique.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_39">
+                <div class="article-header">
+                    <h3>Article 39</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La présente loi organique abroge toutes dispositions contraires, notamment la loi organique n° 94-442 du 16 août 1994 relative au Conseil constitutionnel.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_40">
+                <div class="article-header">
+                    <h3>Article 40</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La présente loi organique sera exécutée comme loi de l'État.</p>
+                </div>
+            </div>
+        </section>
+</main>
+
+<div id="tocOverlay"></div>
+<aside id="tocPanel"><header><h3><i class="fa-solid fa-landmark"></i> Sommaire</h3></header><div class="toc-list" id="tocList"></div></aside>
+<div id="voiceBar" role="region" aria-label="Lecteur vocal">
+  <button id="vPrev" title="Article précédent"><i class="fas fa-backward"></i></button>
+  <button id="vPlay" title="Lire / Reprendre"><i class="fas fa-play"></i></button>
+  <button id="vPause" title="Pause"><i class="fas fa-pause"></i></button>
+  <button id="vStop" title="Arrêter"><i class="fas fa-stop"></i></button>
+  <button id="vNext" title="Article suivant"><i class="fas fa-forward"></i></button>
+  <span class="now" id="vNow">—</span>
+</div>
+<div id="fsOverlay"><div id="fsHeader"><button id="fsClose" title="Fermer"><i class="fas fa-xmark"></i></button><div class="ttl" id="fsTitle"></div><button id="fsPlay" title="Lecture"><i class="fas fa-play"></i></button></div><div id="fsBody"><article class="article"><div class="article-content" id="fsContent"></div></article></div><button id="fsNavPrev" title="Précédent"><i class="fas fa-chevron-left"></i></button><button id="fsNavNext" title="Suivant"><i class="fas fa-chevron-right"></i></button></div>
+
+<button id="tocFloatBtn" title="Sommaire" class="btn"><i class="fa-solid fa-book"></i></button>
+<div id="tocOverlay"></div>
+<aside id="tocPanel">
+  <header>
+    <h3><i class="fa-solid fa-scale-balanced"></i> Sommaire</h3>
+  </header>
+  <div class="toc-list" id="tocList"></div>
+</aside>
+
+<div id="voiceBar" role="region" aria-label="Lecteur vocal">
+  <button id="vPrev" title="Article précédent"><i class="fas fa-backward"></i></button>
+  <button id="vPlay" title="Lire / Reprendre"><i class="fas fa-play"></i></button>
+  <button id="vPause" title="Pause"><i class="fas fa-pause"></i></button>
+  <button id="vStop" title="Arrêter"><i class="fas fa-stop"></i></button>
+  <button id="vNext" title="Article suivant"><i class="fas fa-forward"></i></button>
+  <span class="now" id="vNow">—</span>
+</div>
+
+<div id="fsOverlay">
+  <div id="fsHeader">
+    <button id="fsClose" title="Fermer"><i class="fas fa-xmark"></i></button>
+    <div class="ttl" id="fsTitle"></div>
+    <button id="fsPlay" title="Lecture"><i class="fas fa-play"></i></button>
+  </div>
+  <div id="fsBody">
+    <article class="article">
+      <div class="article-content" id="fsContent"></div>
+    </article>
+  </div>
+  <button id="fsNavPrev" title="Précédent"><i class="fas a-chevron-left"></i></button>
+  <button id="fsNavNext" title="Suivant"><i class="fas fa-chevron-right"></i></button>
+</div>
+
+<script>
+// Fonction pour initialiser la fonctionnalité de recherche
+function initSearchFeature() {
+    const searchBtn = document.createElement('button');
+    searchBtn.className = 'btn';
+    searchBtn.id = 'searchBtn';
+    searchBtn.title = 'Rechercher';
+    searchBtn.innerHTML = '<i class="fas fa-search"></i>';
+    document.querySelector('.control-buttons').appendChild(searchBtn);
+    
+    const searchInterface = document.createElement('div');
+    searchInterface.id = 'searchInterface';
+    searchInterface.style.cssText = `
+        position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+        width: calc(100% - 40px); max-width: 550px; background: #fff;
+        padding: 10px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        z-index: 1800; display: none; align-items: center; gap: 5px; transition: .25s ease;
+    `;
+    searchInterface.innerHTML = `
+        <input type="text" id="searchInput" placeholder="Rechercher..." style="flex-grow: 1; padding: 8px; border: 1px solid #d6e6d6; border-radius: 5px;">
+        <button id="searchPrevBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-up"></i></button>
+        <button id="searchNextBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-down"></i></button>
+        <span id="searchResultsCount" style="flex-shrink: 0; padding: 0 5px; min-width: 40px; text-align: center;"></span>
+        <button id="closeSearchBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-times"></i></button>
+    `;
+    document.body.appendChild(searchInterface);
+
+    let searchResults = [];
+    let currentSearchIndex = -1;
+    let originalContents = new Map();
+
+    function performSearch() {
+        const searchTerm = document.getElementById('searchInput').value.trim();
+        if (!originalContents.size) {
+            document.querySelectorAll('.article-content, h2, h3').forEach(el => originalContents.set(el, el.innerHTML));
+        }
+        originalContents.forEach((content, el) => el.innerHTML = content);
+        searchResults = [];
+        currentSearchIndex = -1;
+        if (!searchTerm) { updateSearchUI(); return; }
+
+        const regex = new RegExp(searchTerm.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&'), 'gi');
+        originalContents.forEach((content, element) => {
+            element.innerHTML = content.replace(regex, match => `<mark>${match}</mark>`);
+        });
+        searchResults = Array.from(document.querySelectorAll('mark'));
+        if (searchResults.length > 0) navigateResults(true, false);
+        updateSearchUI();
+        window.dispatchEvent(new Event('reflowArticles'));
+    }
+
+    function navigateResults(isNext, shouldWrap = true) {
+        if (!searchResults.length) return;
+        searchResults.forEach(mark => mark.style.backgroundColor = '');
+        if (shouldWrap) {
+            currentSearchIndex = isNext ? (currentSearchIndex + 1) % searchResults.length : (currentSearchIndex - 1 + searchResults.length) % searchResults.length;
+        } else {
+            currentSearchIndex = 0;
+        }
+        const currentMark = searchResults[currentSearchIndex];
+        currentMark.style.backgroundColor = 'var(--accent)';
+        currentMark.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        updateSearchUI();
+    }
+
+    function updateSearchUI() {
+        document.getElementById('searchResultsCount').textContent = searchResults.length > 0 ? `${currentSearchIndex + 1}/${searchResults.length}` : '0/0';
+    }
+    
+    function resetSearch() {
+        originalContents.forEach((content, el) => el.innerHTML = content);
+        originalContents.clear();
+        document.getElementById('searchInput').value = '';
+        searchResults = []; currentSearchIndex = -1;
+        updateSearchUI();
+    }
+
+    searchBtn.addEventListener('click', () => {
+        const isVisible = searchInterface.style.display === 'flex';
+        searchInterface.style.display = isVisible ? 'none' : 'flex';
+        if (isVisible) resetSearch(); else document.getElementById('searchInput').focus();
+    });
+    document.getElementById('searchInput').addEventListener('input', performSearch);
+    document.getElementById('searchNextBtn').addEventListener('click', () => navigateResults(true));
+    document.getElementById('searchPrevBtn').addEventListener('click', () => navigateResults(false));
+    document.getElementById('closeSearchBtn').addEventListener('click', () => {
+        searchInterface.style.display = 'none';
+        resetSearch();
+    });
+}
+
+// Fonction pour transformer les énumérations en listes ordonnées
+(function(){
+  function extractEnumeration(s){
+    const re = /(\d{1,2})(?:\s*°)?(?:\))?(?:\.)?\s+/g; const matches = []; let m;
+    while ((m = re.exec(s))){ const idx=m.index; const prev = idx>0 ? s.charAt(idx-1) : " "; if (/\d/.test(prev)) continue; matches.push({num:parseInt(m[1],10), start:idx, end:re.lastIndex}); }
+    if (matches.length < 2) return null;
+    for (let i=1;i<matches.length;i++){ if (matches[i].num !== matches[i-1].num + 1) return null; }
+    const intro = s.slice(0, matches[0].start).trim().replace(/[:;,\-]\s*$/, ""); const items = [];
+    for (let i=0;i<matches.length;i++){ const st=matches[i].end; const en=(i+1<matches.length)?matches[i+1].start:s.length; let seg = s.slice(st,en).trim().replace(/^[;,:-]\s*/,"").replace(/[;,\s]+$/,""); items.push(seg); }
+    return {intro, start: matches[0].num, items};
+  }
+  function transformNode(node){
+    if (node.querySelector('ol')) return;
+    const plain = node.textContent.replace(/\s+/g,' ').trim(); const res = extractEnumeration(plain); if (!res) return;
+    const frag = document.createElement('div'); if (res.intro){ const p=document.createElement('p'); p.textContent=res.intro; frag.appendChild(p); }
+    const ol=document.createElement('ol'); if (res.start!==1) ol.setAttribute('start', String(res.start));
+    res.items.forEach(it=>{ const li=document.createElement('li'); li.textContent=it; ol.appendChild(li); });
+    frag.appendChild(ol); node.innerHTML=frag.innerHTML;
+  }
+  function run(){ document.querySelectorAll('.article-content').forEach(transformNode); }
+  window.addEventListener('DOMContentLoaded', ()=>setTimeout(run, 60));
+  window.addEventListener('reflowArticles', run);
+})();
+
+// Fonction pour construire la table des matières
+(function(){
+  const $ = s=>document.querySelector(s);
+  const $$ = s=>Array.from(document.querySelectorAll(s));
+  function buildTOC(){
+    const toc = document.getElementById('tocList'); if(!toc) return; toc.innerHTML='';
+    $$('.group').forEach((grp, gi)=>{
+      const gh = grp.querySelector('h2')?.textContent.trim() || `Groupe ${gi+1}`;
+      const gl = document.createElement('a'); gl.textContent=gh; gl.href='#'; gl.style.fontWeight='700';
+      gl.addEventListener('click', e=>{ e.preventDefault(); grp.scrollIntoView({behavior:'smooth', block:'start'}); hideTOC(); });
+      toc.appendChild(gl);
+      const sub = document.createElement('div'); sub.className='toc-sub';
+      grp.querySelectorAll('.article').forEach((art, ai)=>{
+        const at = art.querySelector('.article-header h3')?.textContent.trim() || `Article ${ai+1}`;
+        const a = document.createElement('a'); a.textContent=at; a.href='#';
+        a.addEventListener('click', e=>{ e.preventDefault(); art.scrollIntoView({behavior:'smooth', block:'start'}); hideTOC(); });
+        sub.appendChild(a);
+        if (!art.querySelector('.open-fs')){
+          const btn = document.createElement('button'); btn.className='open-fs'; btn.innerHTML='<i class="fas fa-maximize"></i>';
+          btn.title='Plein écran'; btn.addEventListener('click', ()=>openFS(artIndex(art))); art.querySelector('.article-header')?.appendChild(btn);
+        }
+      });
+      toc.appendChild(sub);
+    });
+  }
+  function showTOC(){ document.getElementById('tocOverlay').classList.add('show'); document.getElementById('tocPanel').classList.add('open'); }
+  function hideTOC(){ document.getElementById('tocOverlay').classList.remove('show'); document.getElementById('tocPanel').classList.remove('open'); }
+  document.addEventListener('DOMContentLoaded', ()=>{
+    const floatBtn = document.getElementById('tocFloatBtn');
+    if (floatBtn) floatBtn.addEventListener('click', showTOC);
+    const overlay = document.getElementById('tocOverlay');
+    if (overlay) overlay.addEventListener('click', hideTOC);
+    const headerBtn = document.getElementById('tocHeaderBtn');
+    if (headerBtn) headerBtn.addEventListener('click', showTOC);
+  });
+  const articles = $$('.article');
+  function artIndex(el){ return articles.indexOf(el); }
+  function getArticle(i){ return articles[Math.max(0, Math.min(articles.length-1, i))]; }
+  function artTitle(i){ const el=getArticle(i); return el? (el.querySelector('.article-header h3')?.textContent.trim()||'') : ''; }
+  function artText(i){ const el=getArticle(i); return el? (el.querySelector('.article-content')?.innerText.trim()||'') : ''; }
+  const synth = window.speechSynthesis;
+  let current = 0, utter = null, playing = false, paused = false, inFS=false;
+  function speakIndex(i){ stopSpeak(); current=i; const text=artText(i); if(!text){ nextArticle(); return; }
+    utter = new SpeechSynthesisUtterance(text); utter.lang='fr-FR'; utter.rate=1; utter.pitch=1;
+    utter.onend = ()=>{ if(playing && !paused){ nextArticle(); } };
+    try{ synth.speak(utter);}catch(e){ console.warn(e); }
+    playing=true; paused=false; updateUI(); highlightCurrent(); }
+  function highlightCurrent(){ articles.forEach(a=>a.classList.remove('reading')); const el=getArticle(current); if(el){ el.classList.add('reading'); if(!inFS) el.scrollIntoView({behavior:'smooth', block:'center'}); } document.getElementById('vNow').textContent = artTitle(current) || '—'; }
+  function pauseSpeak(){ if(synth && synth.speaking){ synth.pause(); paused=true; playing=true; } }
+  function resumeSpeak(){ if(synth && paused){ synth.resume(); paused=false; } else { speakIndex(current); } updateUI(); }
+  function stopSpeak(){ if(synth){ try{synth.cancel();}catch(e){} } playing=false; paused=false; updateUI(); }
+  function prevArticle(){ current=Math.max(0,current-1); if(playing){ speakIndex(current);} else {highlightCurrent();} if(inFS) openFS(current); }
+  function nextArticle(){ current=Math.min(articles.length-1,current+1); if(playing){ speakIndex(current);} else {highlightCurrent();} if(inFS) openFS(current); }
+  document.addEventListener('DOMContentLoaded', ()=>{
+    document.getElementById('vPlay').addEventListener('click', ()=>{ if(!playing || paused){ resumeSpeak(); } else { pauseSpeak(); } });
+    document.getElementById('vPause').addEventListener('click', ()=>pauseSpeak());
+    document.getElementById('vStop').addEventListener('click', ()=>{ stopSpeak(); });
+    document.getElementById('vPrev').addEventListener('click', prevArticle);
+    document.getElementById('vNext').addEventListener('click', nextArticle);
+  });
+  function updateUI(){ document.getElementById('vPlay').innerHTML = paused || !playing ? '<i class="fas fa-play"></i>' : '<i class="fas fa-pause"></i>'; }
+  function openFS(i){ inFS=true; current=i; document.getElementById('fsTitle').textContent=artTitle(i); document.getElementById('fsContent').textContent=artText(i); document.getElementById('fsOverlay').classList.add('show'); document.body.style.overflow='hidden'; speakIndex(i); }
+  function closeFS(){ inFS=false; document.getElementById('fsOverlay').classList.remove('show'); document.body.style.overflow=''; }
+  document.addEventListener('DOMContentLoaded', ()=>{
+    document.getElementById('fsClose').addEventListener('click', ()=>{ closeFS(); });
+    document.getElementById('fsPlay').addEventListener('click', ()=>{ if(!playing || paused){ resumeSpeak(); } else { pauseSpeak(); } });
+    document.getElementById('fsNavPrev').addEventListener('click', ()=>{ prevArticle(); });
+    document.getElementById('fsNavNext').addEventListener('click', ()=>{ nextArticle(); });
+    document.querySelectorAll('.article .open-fs').forEach((btn, idx)=> btn.addEventListener('click', ()=>openFS(idx)));
+  });
+  window.addEventListener('DOMContentLoaded', buildTOC);
+})();
+
+// Initialisation de la fonctionnalité de recherche
+document.addEventListener('DOMContentLoaded', initSearchFeature);
+</script>
+</body>
+</html>

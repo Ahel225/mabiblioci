@@ -1,0 +1,2062 @@
+<!DOCTYPE html>
+<html lang='fr'>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Loi Organique relative au Conseil Constitutionnel</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f9f5; --paper:#ffffff; --ink:#0f2a1f;
+  --primary:#2e7d32; --primary-700:#1b5e20; --accent:#8bc34a; --accent-2:#f1f8e9;
+  --muted:#e8f5e8; --shadow:0 12px 28px rgba(0,0,0,.08); --radius:18px; --transition:.25s ease;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.6}
+header{position:sticky;top:0;z-index:60;background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(255,255,255,.88));backdrop-filter:saturate(1.1) blur(8px);border-bottom:1px solid #e6f2e6}
+.container{max-width:1120px;margin:0 auto;padding:14px 16px;display:flex;align-items:center;gap:12px}
+.logo{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:radial-gradient(circle at 30% 30%, var(--accent), #c5e1a5);color:var(--primary-700);box-shadow:var(--shadow);font-size:18px}
+h1{margin:0;font-family:'Playfair Display',serif;font-size:20px;color:var(--primary-700)}
+.sub{color:#4c8c4f;font-size:12px;margin-top:2px}
+.control-buttons{margin-left:auto;display:flex;gap:8px;align-items:center}
+.btn{min-width:38px;height:38px;border-radius:12px;border:1px solid #d5e8d4;background:#fff;color:var(--primary-700);display:grid;place-items:center;cursor:pointer;box-shadow:var(--shadow);transition:var(--transition)}
+.btn:hover{transform:translateY(-1px)}
+.wrapper{max-width:1120px;margin:16px auto;padding:0 12px}
+.group{background:var(--paper);border:1px solid #e2eee2;border-radius:var(--radius);box-shadow:var(--shadow);margin:14px 0;overflow:hidden}
+.group>h2{margin:0;padding:14px 16px;background:linear-gradient(180deg,#ffffff,#f1f8e9);border-bottom:1px solid #e2eee2;color:var(--primary-700);font-size:18px;font-family:'Playfair Display',serif}
+.article{margin:10px 10px 14px 10px;padding:12px 14px;border-left:6px solid var(--primary);background:#fff;border-radius:14px;box-shadow:0 1px 0 rgba(0,0,0,.03)}
+.article-header{display:flex; align-items:center; gap:8px; margin:0 0 6px 0;}
+.article-header h3{margin:0; color:var(--primary-700);}
+.article .open-fs{ order:2; margin-left:auto; width:34px; height:34px; border:1px solid #d5e8d4; background:#fff; border-radius:10px; cursor:pointer; }
+.article-content p{margin:.5rem 0}.article-content ul,.article-content ol{margin:.5rem 0 .8rem 1.25rem}
+.article-content ol>li, .article-content ul>li{ padding:8px 0; line-height:1.7; border-bottom:1px solid #eaf6ea; }
+.article-content ol>li:last-child, .article-content ul>li:last-child{ border-bottom:0; }
+.article-content li > ol > li, .article-content li > ul > li{ padding:6px 0; border-bottom:1px dashed #eaf6ea; }
+.article-content li > ol > li:last-child, .article-content li > ul > li:last-child{ border-bottom:0; }
+.reading{ outline:2px solid var(--accent); outline-offset:2px; border-left-color:var(--accent) !important; background:linear-gradient(180deg,#fff, var(--accent-2)) }
+mark{background:rgba(139,195,74,.45)}
+/* Floating TOC */
+#tocFloatBtn{position:fixed; right:14px; bottom:120px; width:46px; height:46px; border-radius:50%; border:none; background:var(--primary); color:#fff; display:grid; place-items:center; box-shadow:0 10px 24px rgba(0,0,0,.25); z-index:1500;}
+#tocPanel{position:fixed; top:0; right:0; height:100%; width:86%; max-width:420px; background:#fff; border-left:1px solid #e2eee2; box-shadow:-16px 0 35px rgba(0,0,0,.2); transform:translateX(100%); transition:transform .25s ease; z-index:1600; overflow:auto;}
+#tocOverlay{position:fixed; inset:0; background:rgba(0,0,0,.28); backdrop-filter:blur(2px); display:none; z-index:1590}
+#tocPanel.open{ transform:none } #tocOverlay.show{ display:block }
+#tocPanel header{position:sticky; top:0; background:#fff; padding:12px 14px; border-bottom:1px solid #e2eee2}
+#tocPanel h3{margin:0; color:var(--primary-700)} #tocPanel .toc-list{padding:12px 14px}
+#tocPanel .toc-list a{display:block; padding:6px 0; color:#2e7d32; text-decoration:none}
+#tocPanel .toc-sub{margin-left:10px; border-left:2px solid #e8f5e8; padding-left:8px}
+/* Voice bar */
+#voiceBar{position:fixed; left:50%; transform:translateX(-50%); bottom:14px; background:var(--primary-700); color:#fff; z-index:1550; border-radius:22px; padding:8px 12px; display:flex; gap:10px; align-items:center; box-shadow:0 12px 28px rgba(0,0,0,.3)}
+#voiceBar button{width:34px; height:34px; border-radius:10px; border:1px solid #c8e6c9; background:transparent; color:#e8f5e9; display:grid; place-items:center; cursor:pointer}
+#voiceBar .now{font-size:12px; max-width:52vw; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:#f1f8e9}
+/* Fullscreen */
+#fsOverlay{ position:fixed; inset:0; background:#fff; z-index:1700; display:none; }
+#fsOverlay.show{ display:block } #fsHeader{ position:sticky; top:0; background:#fff; padding:10px 14px; border-bottom:1px solid #e2eee2; display:flex; align-items:center; gap:10px }
+#fsHeader .ttl{ font-weight:700; color:var(--primary-700); flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
+#fsHeader button{ width:36px; height:36px; border-radius:10px; border:1px solid #d5e8d4; background:#fff; }
+#fsBody{ padding:14px; height:calc(100% - 58px); overflow:auto } #fsBody .article-content{ font-size:1.04rem }
+#fsNavPrev,#fsNavNext{ position:fixed; top:50%; transform:translateY(-50%); width:42px; height:42px; border-radius:50%; border:none; background:var(--primary); color:#fff; display:grid; place-items:center; z-index:1710; opacity:.9 }
+#fsNavPrev{ left:10px } #fsNavNext{ right:10px }
+footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c8c4f;font-size:12px}
+
+/* ===== Anti-sélection / anti-copie ===== */
+.no-select, .no-select *:not(input):not(textarea):not(.selectable){
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  -webkit-touch-callout: none !important;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="logo"><i class="fa-solid fa-scale-balanced"></i></div>
+    <div>
+      <h1>LOI organique n° 2020-968 du 17 Décembre 2020 déterminant les attributions, la composition, l&#x27;organisation et le fonctionnement du Conseil d &#x27;Etat.</h1>
+      <div class="sub">Conversion automatique — même gabarit (Conseil Constitutionnel)</div>
+    </div>
+    <div class="control-buttons">
+      <button class="btn" id="tocHeaderBtn" title="Sommaire"><i class="fa-solid fa-book"></i></button>
+      <button class="btn" title="Haut de page" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fa-solid fa-angles-up"></i></button>
+    </div>
+  </div>
+</header>
+
+<main class="wrapper">
+<section class="group">
+
+<section class="group">
+<h2>TITRE 1 : DISPOSITIONS GENERALES</h2>
+
+</section>
+<section class="group">
+<h2>Section 1 : Dispositions préliminaires</h2>
+
+            <div class="article" id="Article_1">
+                <div class="article-header">
+                    <h3>Article 1</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La présente loi organique détermine les attributions, la composition, l&#x27;organisation et le fonctionnement du Conseil d&#x27;Etat.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_2">
+                <div class="article-header">
+                    <h3>Article 2</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Conseil d&#x27;Etat est l&#x27;une des institutions juridictionnelles représentatives du pouvoir judiciaire. Il est la plus haute juridiction de l&#x27;ordre administratif.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_3">
+                <div class="article-header">
+                    <h3>Article 3</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Conseil d&#x27;Etat est dirigé par un Président.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_4">
+                <div class="article-header">
+                    <h3>Article 4</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le ressort du Conseil d&#x27;Etat s&#x27;étend à tout le territoire de la République.</p><p>Le siège du Conseil d&#x27;Etat est fixé à Abidjan. Le Conseil d&#x27;Etat peut siéger en tout autre lieu du territoire national si les circonstances l&#x27;exigent.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_5">
+                <div class="article-header">
+                    <h3>Article 5</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les fonctions du ministère public près le Conseil d&#x27;Etat sont exercées par un Parquet général dont la composition, l&#x27;organisation et le fonctionnement sont fixés par une loi.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Section 2 : Principes statutaires</h2>
+
+            <div class="article" id="Article_6">
+                <div class="article-header">
+                    <h3>Article 6</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>En cas de première nomination au Conseil d&#x27;Etat dans des fonctions judiciaires, les magistrats prêtent serment, en audience solennelle, devant le Conseil d&#x27;Etat, en ces termes :</p><p>« Je jure de bien et fidèlement remplir mes fonctions et de me conduire en tout comme un digne et loyal magistrat ».</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_7">
+                <div class="article-header">
+                    <h3>Article 7</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Statut de la magistrature est applicable aux magistrats du Conseil d&#x27;Etat en tout ce qui n&#x27;est pas prévu par la présente loi organique.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_8">
+                <div class="article-header">
+                    <h3>Article 8</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les franchissements automatiques d&#x27;échelon de rémunération des magistrats du Conseil d&#x27;Etat sont constatés par décisions du Président du Conseil d&#x27;Etat.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_9">
+                <div class="article-header">
+                    <h3>Article 9</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La composition des costumes des magistrats du Conseil d&#x27;Etat est fixée par décret, sur proposition du Conseil supérieur de la magistrature.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_10">
+                <div class="article-header">
+                    <h3>Article 10</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Il peut être procédé au remplacement du magistrat du Conseil d&#x27;Etat en position de disponibilité, de détachement ou empêché pour quelque cause que ce soit d&#x27;exercer ses fonctions. A l&#x27;expiration de la période de détachement ou de disponibilité ou lorsque la cause de l&#x27;empêchement vient à cesser, il réintègre le Conseil d&#x27;Etat conformément aux dispositions en vigueur.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_11">
+                <div class="article-header">
+                    <h3>Article 11</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les magistrats du Conseil d&#x27;Etat cessent leurs fonctions avec jouissance de tous les droits et avantages liés à la dernière fonction exercée.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>TITRE II : ATTRIBUTIONS</h2>
+
+            <div class="article" id="Article_12">
+                <div class="article-header">
+                    <h3>Article 12</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Conseil d&#x27;Etat veille à l&#x27;application de la loi par les juridictions administratives et juge la légalité des actes administratifs et la responsabilité des personnes publiques et services publics.</p><p>Il exerce des attributions contentieuses et consultatives.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>CHAPITRE 1 : Attributions contentieuses</h2>
+
+            <div class="article" id="Article_13">
+                <div class="article-header">
+                    <h3>Article 13</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Conseil d&#x27;Etat statue souverainement :</p><p>— sur les recours en cassation dirigés contre les décisions rendues soit en premier et dernier ressort, soit en dernier ressort par les juridictions administratives de droit commun ou par les juridictions administratives spécialisées ;</p><p>— en premier et dernier ressort sur les recours en annulation pour excès de pouvoir formés contre les décisions administratives émanant des autorités administratives centrales, ou des organismes ayant une compétence nationale ;</p><p>— en premier et dernier ressort sur les recours dirigés contre les actes administratifs dont le champ d&#x27;application s&#x27;étend au-delà du ressort d&#x27;un seul tribunal administratif ;</p><p>—</p><p>sur les recours en interprétation et en appréciation de la légalité des actes dont le contentieux relève de sa compétence ;</p><p>— sur le contentieux des élections des organes des collectivités territoriales et des élections à caractère administratif.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_14">
+                <div class="article-header">
+                    <h3>Article 14</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les tribunaux administratifs, juges de droit commun du contentieux administratif, en premier ressort, sous réserve des compétences attribuées au Conseil d&#x27;Etat, les Cours administratives d&#x27;appel et les juridictions administratives spécialisées peuvent saisir le Conseil d&#x27;Etat pour solliciter des avis contentieux lorsqu&#x27;il se présente une question de droit nouvelle soulevant une difficulté sérieuse.</p><p>Les Cours administratives d&#x27;appel connaissent des décisions rendues en premier ressort par les tribunaux administratifs et les juridictions administratives spécialisées.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>CHAPITRE 2 : Attributions consultatives</h2>
+
+            <div class="article" id="Article_15">
+                <div class="article-header">
+                    <h3>Article 15</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Conseil d&#x27;Etat émet des avis sur tout projet de texte qui lui est soumis par le Président de la République et par les membres du Gouvernement.</p><p>Il peut être consulté par le Premier Ministre ou les ministres sur les difficultés en matière administrative.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_16">
+                <div class="article-header">
+                    <h3>Article 16</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Conseil d&#x27;Etat donne son avis sur les projets de textes pour lesquels son intervention est prévue par les dispositions constitutionnelles, législatives ou réglementaires.</p><p>Il propose, en outre, les modifications qu&#x27;il juge nécessaires.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_17">
+                <div class="article-header">
+                    <h3>Article 17</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Conseil d&#x27;Etat peut, de sa propre initiative, faire des études sur des thèmes d&#x27;intérêt public et faire des propositions aux pouvoirs publics sur les réformes d&#x27;ordre législatif, réglementaire ou administratif qui lui paraissent indispensables ou conformes à l&#x27;intérêt général.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_18">
+                <div class="article-header">
+                    <h3>Article 18</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les membres du Conseil d&#x27;Etat peuvent participer</p><p>aux travaux des commissions ou conseils à caractère administratif ou juridique institués auprès des administrations, établissements ou entreprises publics, et être chargés de toutes missions auprès des mêmes administrations, établissements ou entreprises ainsi qu&#x27;auprès des organisations internationales dont la Côte d&#x27;Ivoire fait partie, à condition que ces activités soient compatibles avec leurs fonctions au sein du Conseil d&#x27;Etat et qu&#x27;ils aient préalablement obtenu l&#x27;accord du Président du Conseil d&#x27;Etat.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>TITRE III : COMPOSITION ET ORGANISATION</h2>
+
+</section>
+<section class="group">
+<h2>CHAPITRE 1 : Composition</h2>
+
+            <div class="article" id="Article_19">
+                <div class="article-header">
+                    <h3>Article 19</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Conseil d&#x27;Etat est composé de magistrats et de conseille en service extraordinaire, tous membres du siège.</p><p>Il est doté d&#x27;un secrétariat général et d&#x27;un greffe.</p><p>Les membres du siège sont :</p><p>a) les magistrats du siège :</p><p>— le Président du Conseil d&#x27;Etat ;</p><p>— les présidents de Section ;</p><p>— les présidents de Chambre ;</p><p>— les présidents de Formation ;</p><p>— les conseillers d&#x27;Etat ;</p><p>— les conseillers référendaires ;</p><p>— les auditeurs.</p><p>b) conseillers en service extraordinaire :</p><p>— les conseillers d&#x27;Etat en service extraordinaire ;</p><p>— les conseillers référendaires en service extraordinaire.</p><p>Le secrétariat général est composé d&#x27;un secrétaire général.</p><p>Les membres du greffe sont :</p><p>— le greffier en chef ;</p><p>— les greffiers.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_20">
+                <div class="article-header">
+                    <h3>Article 20</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Président du Conseil d&#x27;Etat est nommé par le Président de la République pour une durée de cinq ans renouvelables une fois, parmi les personnalités reconnues pour leur compétence et leur expertise avérées en matière juridique.</p><p>Le Président du Conseil d&#x27;Etat est Président d&#x27;institution.</p><p>Avant d&#x27;entrer en fonction, le Président du Conseil d&#x27;Etat prête serment devant le Président de la République en ces termes :</p><p>« Je jure de bien et fidèlement remplir ma fonction, de l&#x27;exercer en toute impartialité, dans le respect de la Constitution, de garder le secret des délibérations et des votes, de ne prendre aucune position publique, de ne donner aucune consultation, à titre privé, sur les questions relevant de la compétence du Conseil d&#x27;Etat et de me conduire en tout comme un digne et loyal magistrat ».</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_21">
+                <div class="article-header">
+                    <h3>Article 21</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le président de la Section du Contentieux et le président de la Section consultative sont des magistrats hors hiérarchie du groupe A, choisis parmi les présidents de Chambre et de Formation. Ils sont désignés par ordonnance du Président du Conseil d&#x27;Etat en cette qualité.</p><p>Les présidents de Chambre et de Formation sont des magistrats hors hiérarchie du groupe A.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_22">
+                <div class="article-header">
+                    <h3>Article 22</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les conseillers d&#x27;Etat sont des magistrats hors hiérarchie. Ils sont désignés parmi :</p><p>a) les magistrats hors hiérarchie ;</p><p>b) les magistrats appartenant depuis deux ans au moins au premier groupe du premier grade ;</p><p>c) les conseillers référendaires comptant au moins deux ans d&#x27;ancienneté comme conseillers référendaires du premier groupe ;</p><p>d) les personnalités connues pour leur compétence en matière juridique ou administrative et comptant vingt années au moins de pratique professionnelle ;</p><p>e) les personnalités titulaires d&#x27;un doctorat en droit ou d&#x27;un diplôme équivalent et ayant quinze ans au moins de pratique professionnelle en cette qualité ;</p><p>f) les professeurs agrégés ou titulaires des facultés de droit ayant deux ans au moins de pratique professionnelle, en cette qualité.</p><p>Le nombre de conseillers d&#x27;Etat désignés en application des paragraphes d, e et f ne peut excéder le quart de l&#x27;effectif des conseillers d&#x27;Etat. Ils acquièrent la qualité de magistrat.</p><p>Les conseillers d&#x27;Etat totalisant trois ans d&#x27;ancienneté et de service effectif au Conseil d&#x27;Etat peuvent être élevés au groupe A, sur proposition du Président du Conseil d&#x27;Etat, après avis conforme du Conseil supérieur de la Magistrature.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_23">
+                <div class="article-header">
+                    <h3>Article 23</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les conseillers d&#x27;Etat en service extraordinaire sont nommés, pour une durée de quatre ans renouvelables une fois, pour exercer des fonctions consultatives. Ils ne peuvent être affectés à la Section du Contentieux.</p><p>Ils sont choisis parmi les personnalités qualifiées dans les différents domaines de l&#x27;activité nationale.</p><p>Ils bénéficient durant leur mandat d&#x27;une indemnité fixée par décret. Ils n&#x27;ont pas la qualité de magistrat.</p><p>Toutefois, ils sont soumis, durant leur mandat, aux mêmes obligations que les magistrats.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_24">
+                <div class="article-header">
+                    <h3>Article 24</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les conseillers d&#x27;Etat en service extraordinaire qui exercent une activité professionnelle privée, ne peuvent, dans l&#x27;exercice de cette activité, mentionner ou laisser mentionner leur qualité de membre du Conseil d&#x27;Etat.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_25">
+                <div class="article-header">
+                    <h3>Article 25</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les conseillers référendaires sont choisis parmi les magistrats du premier grade.</p><p>Ils sont également choisis parmi les personnes titulaires d&#x27;un doctorat en droit ou d&#x27;un diplôme équivalent et ayant au moins six ans de pratique professionnelle, en cette qualité.</p><p>Ils assistent les conseillers d&#x27;Etat dans leurs fonctions et participent à l&#x27;élaboration des rapports et décisions avec voix délibérative.</p><p>Ils participent aux audiences.</p><p>Les trois quarts au moins des emplois vacants de conseillers référendaires sont réservés aux auditeurs ayant atteint le grade requis.</p><p>Les conseillers référendaires du premier groupe sont des magistrats du premier grade, premier groupe et ceux du deuxième groupe, des magistrats du premier grade, deuxième groupe.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_26">
+                <div class="article-header">
+                    <h3>Article 26</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les conseillers référendaires en service extraordinaire sont nommés, pour une durée de quatre ans renouvelables une fois, pour exercer des fonctions consultatives.</p><p>Ils ne peuvent être affectés à la Section du Contentieux.</p><p>Ils sont choisis parmi les personnalités qualifiées dans les différents domaines de l&#x27;activité nationale.</p><p>Ils bénéficient durant leur mandat d&#x27;une indemnité fixée par décret. Ils n&#x27;ont pas la qualité de magistrat.</p><p>Toutefois, ils sont soumis, durant leur mandat, aux mêmes obligations que les magistrats.</p><p>Les conseillers référendaires en service extraordinaire qui exercent une activité professionnelle privée, ne peuvent, dans l&#x27;exercice de cette activité, mentionner ou laisser mentionner leur qualité de membre du Conseil d&#x27;Etat.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_27">
+                <div class="article-header">
+                    <h3>Article 27</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les auditeurs du conseil d&#x27;Etat sont choisis parmi les magistrats du deuxième grade.</p><p>Les auditeurs sont également choisis parmi les personnes titulaires d&#x27;un doctorat en droit ou d&#x27;un diplôme équivalent. Leur nombre ne peut excéder le quart des postes à pourvoir.</p><p>Les auditeurs prévus à l&#x27;alinéa premier du présent article sont des magistrats du deuxième grade, premier groupe.</p><p>Les auditeurs prévus à l&#x27;alinéa 2 du présent article sont des magistrats du deuxième grade, deuxième groupe.</p><p>Ils assistent les conseillers d&#x27;Etat dans la préparation des rapports, des décisions et des travaux du Conseil d&#x27;Etat.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_28">
+                <div class="article-header">
+                    <h3>Article 28</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les magistrats du Conseil d&#x27;Etat, à l&#x27;exception du Président, sont nommés par décret, sur proposition du Conseil supérieur de la Magistrature et sur présentation du ministre de la Justice.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_29">
+                <div class="article-header">
+                    <h3>Article 29</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les magistrats du Conseil d&#x27;Etat sont installés dans leurs fonctions en audience solennelle du Conseil d&#x27;Etat.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_30">
+                <div class="article-header">
+                    <h3>Article 30</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le secrétaire général du Conseil d&#x27;Etat est nommé par décret pris en Conseil des ministres parmi les magistrats hors hiérarchie sur proposition du Président du Conseil d&#x27;Etat.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_31">
+                <div class="article-header">
+                    <h3>Article 31</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le greffier en chef du Conseil d&#x27;Etat est nommé par décret, sur proposition du ministre de la Justice. Il est choisi parmi les administrateurs des Greffes et Parquets ayant au moins cinq années d&#x27;ancienneté dans cette catégorie.</p><p>Le greffier en chef du Conseil d&#x27;Etat est assisté de greffiers.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>CHAPITRE 2 : Organisation</h2>
+
+</section>
+<section class="group">
+<h2>Section 1 : Le Président du Conseil d&#x27;Etat</h2>
+
+            <div class="article" id="Article_32">
+                <div class="article-header">
+                    <h3>Article 32</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Président du Conseil d&#x27;Etat exerce des fonctions administratives et juridictionnelles.</p><p>Il peut présider chacune des Chambres et Formations du Conseil d&#x27;Etat.</p><p>Le Président du Conseil d&#x27;Etat est suppléé, en cas d&#x27;absence ou d&#x27;empêchement, par le président de la Section du Contentieux, et, le cas échéant, par le président de la Section consultative.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_33">
+                <div class="article-header">
+                    <h3>Article 33</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Président du Conseil d&#x27;Etat est chargé de l&#x27;administration et de la discipline du Conseil d&#x27;Etat.</p><p>Il arrête le règlement intérieur du Conseil d&#x27;État après délibération de l&#x27;assemblée générale.</p><p>Au début de chaque année judiciaire, il répartit, par ordonnance, les présidents de Chambre, les conseillers d&#x27;Etat, les conseillers référendaires et les auditeurs du Conseil d&#x27;Etat entre les différentes Chambres.</p><p>II répartit également par ordonnance, les présidents de Formation, les conseillers d&#x27;Etat, les conseillers d&#x27;Etat en service extraordinaire, les conseillers référendaires, les conseillers référendaires en service extraordinaire et les auditeurs du Conseil d&#x27;Etat entre les différentes Formations.</p><p>Le Président du Conseil d&#x27;Etat assure, sur proposition du greffier en chef du Conseil d&#x27;Etat, la répartition des greffiers entre les différentes Chambres.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_34">
+                <div class="article-header">
+                    <h3>Article 34</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Une Commission consultative chargée de faire des propositions au Conseil supérieur de la Magistrature, pour le recrutement, la nomination, l&#x27;avancement et la promotion des magistrats du Conseil d&#x27;Etat est placée auprès du Président du Conseil d&#x27;Etat. Présidée par le président du Conseil d&#x27;Etat, elle comprend les deux présidents de Section et les présidents de Chambre et de Formation.</p><p>La composition, l&#x27;organisation et le fonctionnement de la Commission consultative d&#x27;avancement et de recrutement sont prévus au règlement intérieur du Conseil d&#x27;Etat.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_35">
+                <div class="article-header">
+                    <h3>Article 35</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Président du Conseil d&#x27;Etat fait annuellement un rapport au Président de la République, au Président de l&#x27;Assemblée nationale et au Président du Sénat, sur les procédures devant le Conseil d&#x27;Etat.</p><p>Ce rapport fait également état des difficultés d&#x27;exécution des décisions rendues.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Section 2 : Les sections du Conseil d&#x27;Etat</h2>
+
+            <div class="article" id="Article_36">
+                <div class="article-header">
+                    <h3>Article 36</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Conseil d&#x27;Etat est structuré en deux sections :</p><p>— la section du Contentieux ;</p><p>— la section consultative.</p><p>Paragraphe 1 : La section du Contentieux</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_37">
+                <div class="article-header">
+                    <h3>Article 37</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La section du Contentieux est juge de toutes les affaires qui relèvent des activités juridictionnelles du Conseil d&#x27;Etat.</p><p>La section du Contentieux, dans sa formation ordinaire, comprend plusieurs Chambres. Chaque Chambre comprend au moins trois magistrats. Elle est présidée par un président de Chambre, assisté d&#x27;au moins un conseiller d&#x27;Etat et d&#x27;au moins un conseiller référendaire.</p><p>En cas d&#x27;absence ou d&#x27;empêchement du président de Chambre, la Chambre est présidée par le conseiller d&#x27;Etat le plus ancien dans le grade le plus élevé.</p><p>Le président de la section du Contentieux peut, en accord avec le Président du Conseil d&#x27;Etat, présider chacune des Chambres.</p><p>Paragraphe 2 : La section consultative</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_38">
+                <div class="article-header">
+                    <h3>Article 38</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Section consultative comprend deux formations :</p><p>— la formation Administration ;</p><p>— la formation Economie et Finances.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_39">
+                <div class="article-header">
+                    <h3>Article 39</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La section consultative est composée d&#x27;un président, de deux présidents de Formation, de conseillers d&#x27;Etat, de conseillers d&#x27;Etat en service extraordinaire, de conseillers référendaires, de conseillers référendaires en service extraordinaire et d&#x27;auditeurs.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_40">
+                <div class="article-header">
+                    <h3>Article 40</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La formation Administration est chargée de préparer l&#x27;avis du Conseil d&#x27;Etat sur toute question relevant de la réglementation et du fonctionnement de l&#x27;administration publique.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_41">
+                <div class="article-header">
+                    <h3>Article 41</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La formation Economie et Finances est chargée de préparer l&#x27;avis du Conseil d&#x27;Etat sur toute question à caractère économique et financier.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_42">
+                <div class="article-header">
+                    <h3>Article 42</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Chaque formation comprend un président, des conseillers d&#x27;Etat, des conseillers d&#x27;Etat en service extraordinaire, des conseillers référendaires, des conseillers référendaires en service extraordinaire et des auditeurs.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_43">
+                <div class="article-header">
+                    <h3>Article 43</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le président de la section consultative peut, en accord avec le Président du Conseil d&#x27;Etat, présider chacune des formations.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Section 3 : Le cabinet du Président du Conseil d&#x27;Etat</h2>
+
+            <div class="article" id="Article_44">
+                <div class="article-header">
+                    <h3>Article 44</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le cabinet du Président du Conseil d&#x27;Etat est composé :</p><p>— d&#x27;un directeur de cabinet ;</p><p>— d&#x27;un chef de cabinet ;</p><p>— de cinq conseillers dont au moins trois magistrats ;</p><p>— de deux chargés de missions ;</p><p>— d&#x27;un chef du secrétariat particulier.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Section 4</h2>
+
+            <div class="article" id="Article_Intro">
+                <div class="article-header">
+                    <h3>Préambule</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le secrétaire général du Conseil d&#x27;Etat</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_45">
+                <div class="article-header">
+                    <h3>Article 45</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le conseil d&#x27;Etat est doté d&#x27;un secrétariat général dirigé par un secrétaire général.</p><p>Le secrétaire général du Conseil d&#x27;Etat est nommé par décret pris eu Conseil des ministres, parmi les magistrats hors hiérarchie, sur proposition du Président du Conseil d&#x27;Etat.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_46">
+                <div class="article-header">
+                    <h3>Article 46</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le secrétaire général assure, sous l&#x27;autorité du Président, le fonctionnement des services administratifs du Conseil d&#x27;Etat.</p><p>Le secrétaire général peut recevoir du Président délégation de signature en matière de gestion du personnel.</p><p>Il assiste le Président dans la coordination des travaux et l&#x27;organisation des audiences de la Cour.</p><p>Il est chargé notamment de :</p><p>— la tenue du fichier général des sommaires des arrêts rendus par le Conseil d&#x27;Etat ;</p><p>— la publication des arrêts du Conseil d&#x27;Etat ;</p><p>— la préparation, de l&#x27;étude et de l&#x27;établissement de tous les actes relatifs à la gestion des magistrats et autres personnels nominés au Conseil d&#x27;Etat ;</p><p>— la répartition des greffiers dans les différents services du siège de la Cour de Cassation ;</p><p>— la direction du Service de Documentation et d&#x27;études du Conseil d&#x27;Etat ;</p><p>— la réception des copies des décisions du Conseil d&#x27;Etat.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Section 5 : Le greffier en chef du Conseil d&#x27;Etat</h2>
+
+            <div class="article" id="Article_47">
+                <div class="article-header">
+                    <h3>Article 47</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le greffier en chef assure l&#x27;administration du greffe du Conseil d&#x27;Etat.</p><p>Il est placé sous l&#x27;autorité du secrétaire général.</p><p>Il propose au secrétaire général du Conseil d&#x27;Etat, la répartition des greffiers dans les différents services.</p><p>Il prépare les audiences du Conseil d&#x27;Etat.</p><p>Il veille à l&#x27;archivage, à la délivrance des expéditions, certificats et extraits des décisions rendues, assure la réception des consignations et le recouvrement des frais.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>TITRE IV : FONCTIONNEMENT</h2>
+
+</section>
+<section class="group">
+<h2>SOUS-TITRE 1 : FORMATIONS DU CONSEIL D&#x27;ETAT</h2>
+
+            <div class="article" id="Article_48">
+                <div class="article-header">
+                    <h3>Article 48</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Conseil d&#x27;Etat se reunit :</p><p>— en audience solennelle ;</p><p>— en assemblée générale ;</p><p>— en assemblée plénière ;</p><p>— en Chambre mixte ;</p><p>— en audience ordinaire.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_49">
+                <div class="article-header">
+                    <h3>Article 49</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La présence du ministère public est obligatoire aux audiences solennelles et ordinaires, devant les assemblées plénières et générales, et devant les Chambres mixtes du Conseil d&#x27;Etat.</p><p>Le ministère public ne participe pas aux délibérations, sauf en assemblée générale, pour adopter ou modifier le règlement intérieur du Conseil d&#x27;Etat, débattre de toutes les questions intéressant l&#x27;organisation et la discipline de la Cour.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_50">
+                <div class="article-header">
+                    <h3>Article 50</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Conseil d&#x27;Etat se réunit en audience solennelle pour :</p><p>— son audience de rentrée ;</p><p>— recevoir le serment des magistrats du Conseil d&#x27;Etat ;</p><p>— procéder à l&#x27;installation de ses membres.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_51">
+                <div class="article-header">
+                    <h3>Article 51</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>L&#x27;audience solennelle du Conseil d&#x27;Etat est composée :</p><p>— du Président du Conseil d&#x27;Etat, Président ;</p><p>— des présidents de Sections, membres ;</p><p>— d&#x27;au moins deux présidents de Chambre, membres ;</p><p>— d&#x27;au moins deux présidents de Formation, membres ;</p><p>— d&#x27;au moins deux conseillers d&#x27;Etat, membres ;</p><p>— d&#x27;au moins deux conseillers référendaires, membres</p><p>— d&#x27;au moins deux auditeurs, membres.</p><p>Le Conseil d&#x27;Etat est assisté du greffier en chef ou d&#x27;un greffier du Conseil d&#x27;Etat.</p><p>L&#x27;audience a lieu en présence du Procureur général près le Conseil d&#x27;Etat.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_52">
+                <div class="article-header">
+                    <h3>Article 52</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Conseil d&#x27;Etat se réunit en assemblée générale pour adopter ou modifier le règlement intérieur du Conseil d&#x27;Etat, débattre de toutes questions intéressant l&#x27;organisation et la discipline du Conseil d&#x27;Etat, émettre des avis sur les questions qui lui sont soumises en application de l&#x27;article 15 de la présente loi organique.</p><p>L&#x27;assemblée générale comprend l&#x27;ensemble des magistrats du Conseil d&#x27;Etat et des conseillers en service extraordinaire. Elle est présidée par le Président du Conseil d&#x27;Etat.</p><p>Elle ne délibère valablement qu&#x27;avec les deux tiers au moins des magistrats qui la composent.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_53">
+                <div class="article-header">
+                    <h3>Article 53</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Conseil d&#x27;Etat se réunit en assemblée plénière lorsqu&#x27;une affaire pose une question de principe, notamment lorsqu&#x27;il existe des solutions divergentes soit entre les juridictions administratives, soit entre les juridictions administratives et le Conseil d&#x27;Etat, et dans les autres cas prévus par la présente loi organique.</p><p>L&#x27;assemblée plénière est présidée par le Président du Conseil d&#x27;Etat</p><p>Elle est composée, outre le Président du Conseil d&#x27;Etat, des présidents de Section, des présidents de Chambre et de Formation, d&#x27;un conseiller d&#x27;Etat et d&#x27;un conseiller référendaire de chacune des Chambres. Elle siège en nombre impair.</p><p>L&#x27;assemblée plénière est valablement constituée avec les deux tiers au moins des présidents de Chambre, des conseillers d&#x27;Etat et des conseillers référendaires.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_54">
+                <div class="article-header">
+                    <h3>Article 54</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Conseil d&#x27;Etat se réunit en Chambre mixte pour statuer sur les questions de droit dont il est saisi par l&#x27;une des Chambres ou par le Président du Conseil d&#x27;Etat</p><p>La Chambre mixte est présidée par le-Président du Conseil d&#x27;Etat.</p><p>Elle est composée des membres des Chambres.</p><p>Elle est valablement constituée avec la moitié au moins des membres des Chambres.</p><p>En cas d&#x27;égalité des voix au moment de la délibération, celle du Président est prépondérante.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_55">
+                <div class="article-header">
+                    <h3>Article 55</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Conseil d&#x27;Etat se réunit en audience ordinaire pour juger les affaires dont il est saisi.</p><p>En audience ordinaire, le Conseil d&#x27;Etat comprend au moins trois magistrats. L&#x27;audience ordinaire est présidée par un président de Chambre, assisté d&#x27;au moins un conseiller d&#x27;Etat et d&#x27;au moins un conseiller référendaire.</p><p>En cas d&#x27;absence ou d&#x27;empêchement du président de Chambre, la Chambre est présidée par le conseiller d&#x27;Etat le plus ancien.</p><p>Le Président du Conseil d&#x27;Etat ou le Président de la section du contentieux peut présider chacune des chambres.</p><p>En audience ordinaire, la Chambre siège et délibère en nombre impair.</p><p>Le Conseil d&#x27;Etat est assisté du greffier en chef et d&#x27;un greffier du Conseil d&#x27;Etat.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_56">
+                <div class="article-header">
+                    <h3>Article 56</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les délibérations de toutes les assemblées sont secrètes.</p><p>Les décisions sont prises à la majorité.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>SOUS-TITRE 2 : LA FONCTION CONTENTIEUSE</h2>
+
+            <div class="article" id="Article_57">
+                <div class="article-header">
+                    <h3>Article 57</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les attributions prévues à l&#x27;article 13 de la présente loi organique sont exercées par la Section du Contentieux du Conseil d&#x27;Etat.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>CHAPITRE 1 : Procédures</h2>
+
+</section>
+<section class="group">
+<h2>Section 1 : Pourvoi en cassation</h2>
+
+            <div class="article" id="Article_58">
+                <div class="article-header">
+                    <h3>Article 58</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Conseil d&#x27;Etat est seul compétent pour statuer sur les recours en cassation dirigés contre les décisions rendues en dernier ressort par les juridictions administratives.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_59">
+                <div class="article-header">
+                    <h3>Article 59</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le pourvoi en cassation doit être formé dans le délai d&#x27;un mois à compter du jour de la signification à personne de la décision entreprise ou du jour où la partie à laquelle elle fait grief en a eu connaissance.</p><p>A peine d&#x27;irrecevabilité, l&#x27;acte de pourvoi doit viser l&#x27;un au moins des cas d&#x27;ouverture à cassation prévus par la législation en vigueur.</p><p>Le moyen de cassation précise à peine d&#x27;irrecevabilité :</p><p>— la partie de la décision critiquée ;</p><p>— le grief fait à la décision attaquée.</p><p>Les moyens nouveaux ne sont pas recevables.</p><p>Peuvent néanmoins être invoqués pour la première fois, les moyens nés de la décision attaquée et les moyens d&#x27;ordre public.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_60">
+                <div class="article-header">
+                    <h3>Article 60</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le pourvoi en cassation est formé par acte de commissaire de justice comportant assignation à comparaître devant le Conseil d&#x27;Etat, avec indication de la date et de l&#x27;heure de l&#x27;audience.</p><p>Le greffier en chef de la juridiction qui a rendu la décision attaquée, est tenu de transmettre le dossier de la procédure au greffe du Conseil d&#x27;Etat dans un délai de deux mois à compter de la date du pourvoi en cassation.</p><p>A la date indiquée dans l&#x27;exploit, l&#x27;affaire est appelée.</p><p>Toutefois, lorsque le pourvoi est formé par le Procureur général près le Conseil d&#x27;Etat, dans l&#x27;intérêt de la loi, le Conseil d&#x27;Etat est saisi par voie de requête. Cette requête est enrôlée à la diligence du Procureur général près le Conseil d&#x27;Etat.</p><p>Les pourvois formés contre les décisions à caractère juridictionnel des organismes administratifs et des ordres professionnels sont introduits par voie de requête déposée au greffe du Conseil d&#x27;Etat, dans les deux mois à compter de la notification des décisions. Copie en est transmise au Procureur général près le Conseil d&#x27;Etat par le greffier en chef du Conseil d&#x27;Etat.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_61">
+                <div class="article-header">
+                    <h3>Article 61</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le dossier du pourvoi est, dès réception, transmis par le greffier en chef en original au Président du Conseil d&#x27;Etat et en copie au Procureur général près le Conseil d&#x27;Etat.</p><p>Le Président du Conseil d&#x27;Etat transmet le dossier au président de la Section du Contentieux, après avoir désigné, parmi les Conseillers de la Chambre compétente de ladite Section, un rapporteur aux fins de la mise en état et fixe un délai pour le dépôt du rapport. Ce délai ne peut dépasser trois mois.</p><p>Le Président du Conseil d&#x27;Etat peut se désigner lui-même ou désigner le président de la Section du Contentieux ou le président de la Chambre compétente comme rapporteur.</p><p>Le président de la Section du Contentieux saisit la Chambre compétente dès réception du dossier.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_62">
+                <div class="article-header">
+                    <h3>Article 62</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le rapporteur assure, par la voie qu&#x27;il juge appropriée, la notification du pourvoi, de la requête ou du mémoire en cassation aux parties en cause auxquelles il fixe un délai pour déposer leurs observations et mémoires.</p><p>Il peut, à l&#x27;issue de ce délai, enjoindre aux parties de déposer, dans un nouveau délai, des mémoires complémentaires, pièces ou documents qu&#x27;il juge utiles.</p><p>Si à l&#x27;expiration du délai prévu à l&#x27;article 61 alinéa 2 de la présente loi organique, le rapporteur n&#x27;est pas en mesure de déposer son rapport, il en avise le président de Chambre, qui peut, par ordonnance motivée, soit accorder un dernier délai de mise en état qu&#x27;il fixe souverainement et qui ne peut excéder deux mois, soit déclarer terminée la mise en état et enjoindre au rapporteur de déposer son rapport en l&#x27;état.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_63">
+                <div class="article-header">
+                    <h3>Article 63</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les parties peuvent, sans déplacement des pièces du dossier, en prendre connaissance au greffe du Conseil d&#x27;Etat.</p><p>Aucun mémoire ni aucune pièce ne peut être produit après le dépôt du rapporteur au greffe, sauf à la demande expresse du rapporteur.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_64">
+                <div class="article-header">
+                    <h3>Article 64</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>L&#x27;affaire est jugée sur pièces. Toutefois, les parties peuvent être autorisées à présenter des observations orales si elles en ont fait la demande une semaine au moins avant la date d&#x27;audience.</p><p>Les observations orales doivent être accompagnées par le dépôt d&#x27;écritures.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_65">
+                <div class="article-header">
+                    <h3>Article 65</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les arrêts mentionnent les nom et prénoms des présidents, rapporteurs, conseillers d&#x27;Etat et conseillers référendaires qui les ont rendus, du greffier et ceux du représentant du ministère public qui a requis et des avocats qui ont postulé dans l&#x27;instance, les nom et prénoms, qualité, profession et domicile des parties et l&#x27;énoncé des moyens produits.</p><p>Les minutes des arrêts sont signées, dans les trente jours du prononcé de la décision, par le Président, le rapporteur et le greffier.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_66">
+                <div class="article-header">
+                    <h3>Article 66</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Lorsque le pourvoi en cassation est rejeté, la partie qui l&#x27;avait formé ne peut plus se pourvoir en cassation dans la même affaire, sous quelque prétexte et par quelque moyen que ce soit.</p><p>En cas de cassation, le Conseil d&#x27;Etat renvoie l&#x27;affaire devant un autre juridiction de même nature que celle qui a rendu la décision objet du pourvoi, expressément désignée, ou devant la même juridiction autrement composée.</p><p>Lorsque, après cassation d&#x27;un premier arrêté ou jugement rendu dans la même affaire entre les mêmes parties, le second arrêt ou jugement est attaqué, le Président du Conseil d&#x27;Etat saisit l&#x27;assemblée plénière par une ordonnance de renvoi.</p><p>Un membre du Conseil d&#x27;Etat appartenant à une Chambre autre que celle qui a rendu l&#x27;arrêt de renvoi est chargé, par le Président du Conseil d&#x27;Etat, du rapport devant l&#x27;assemblée plénière.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_67">
+                <div class="article-header">
+                    <h3>Article 67</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Si le deuxième arrêt ou jugement est cassé, l&#x27;assemblée plénière évoque et statue définitivement.</p><p>Le greffier en chef du Conseil d&#x27;Etat transmet une expédition de la décision au Procureur général près le Conseil d&#x27;Etat, qui le renvoie au parquet compétent pour transcription immédiate.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_68">
+                <div class="article-header">
+                    <h3>Article 68</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>En cas de cassation des décisions à caractère juridictionnel des organismes administratifs ou des ordres professionnels, le Conseil d&#x27;Etat évoque la cause et statue à nouveau.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Section 2 : Recours en annulation pour excès de pouvoir</h2>
+
+            <div class="article" id="Article_Intro">
+                <div class="article-header">
+                    <h3>Préambule</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Paragraphe 1 : Introduction du recours</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_69">
+                <div class="article-header">
+                    <h3>Article 69</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le recours en annulation pour excès de pouvoir a pour objet d&#x27;obtenir l&#x27;annulation d&#x27;un acte administratif en raison de son illégalité.</p><p>Le requérant peut assortir ses conclusions d&#x27;annulation d&#x27;une demande tendant à obtenir la réparation du préjudice causé par l&#x27;illégalité de l&#x27;acte attaqué.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_70">
+                <div class="article-header">
+                    <h3>Article 70</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le recours en annulation est irrecevable lorsque les intéressés disposent, pour faire valoir leurs droits, du recours ordinaire de pleine juridiction.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_71">
+                <div class="article-header">
+                    <h3>Article 71</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les recours en annulation pour excès de pouvoir formés contre les décisions administratives ne sont recevables que s&#x27;ils sont précédés d&#x27;un recours administratif préalable.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_72">
+                <div class="article-header">
+                    <h3>Article 72</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le recours administratif préalable résulte :</p><p>— soit d&#x27;un recours gracieux adressé à l&#x27;autorité dont émane la décision entreprise ;</p><p>— soit d&#x27;un recours hiérarchique porté devant l&#x27;autorité hiérarchiquement supérieure à celle dont émane la décision entreprise.</p><p>Le recours administratif préalable doit être formé, par écrit, dans le délai de deux mois, à compter de la publication, de la notification ou de la connaissance acquise de la décision entreprise.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_73">
+                <div class="article-header">
+                    <h3>Article 73</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Tout recours administratif préalable dont l&#x27;auteur justifie avoir saisi l&#x27;administration et auquel il n&#x27;a pas été répondu par cette dernière dans un délai de deux mois, est réputé rejeté à la date d&#x27;expiration de ce délai.</p><p>Si l&#x27;autorité administrative est un corps délibérant, le délai de deux mois est prolongé, le cas échéant, jusqu&#x27;à la fin de la première session légale qui suit le dépôt de la demande.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_74">
+                <div class="article-header">
+                    <h3>Article 74</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le recours devant le Conseil d&#x27;Etat est introduit par voie de requête dans le délai de deux mois à compter :</p><p>— soit de la notification du rejet total ou partiel du recours administratif préalable ;</p><p>— soit de l&#x27;expiration du délai prévu à l&#x27;article 73 de la présente loi organique.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_75">
+                <div class="article-header">
+                    <h3>Article 75</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Toute requête en annulation pour excès de pouvoir doit contenir les nom, prénoms, profession et domicile du requérant, l&#x27;objet de sa demande, l&#x27;exposé des moyens qu&#x27;il invoque, l&#x27;énonciation des pièces dont il entend se servir, et préciser la décision entreprise.</p><p>La requête doit être accompagnée :</p><p>a) de la pièce justifiant du dépôt du recours administratif, hiérarchique ou gracieux ;</p><p>b) de la copie de la décision entreprise ;</p><p>c) de huit exemplaires du dossier signés par le requérant ou son avocat et destinés à la notification aux autres parties. Ces copies ne sont pas assujetties au droit de timbre.</p><p>La signature de la requête par un avocat vaut constitution et élection de domicile en son étude.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_76">
+                <div class="article-header">
+                    <h3>Article 76</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Conseil d&#x27;Etat peut relever de la forclusion encourue le requérant qui a été empêché de respecter les délais prévus aux articles précédents par un cas de force majeure.</p><p>Paragraphe 2 : Instruction du recours</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_77">
+                <div class="article-header">
+                    <h3>Article 77</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les requêtes en annulation pour excès de pouvoir sont déposées au greffe du Conseil d&#x27;Etat.</p><p>Au moment du dépôt, elles sont inscrites sur le registre d&#x27;ordre tenu par le greffier en chef et marquées, ainsi que les pièces jointes, d&#x27;un timbre indiquant la date d&#x27;arrivée, contre paiement de frais de procédure dont le montant et les modalités de perception sont fixés par décret.</p><p>Le greffier en chef délivre, sans frais aux parties qui en font la demande, un certificat qui atteste l&#x27;arrivée au greffe, de la requête, des mémoires produits et des pièces jointes.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_78">
+                <div class="article-header">
+                    <h3>Article 78</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Après l&#x27;enregistrement au greffe, la requête est transmise au Président du Conseil d&#x27;Etat.</p><p>Une copie de la requête est transmise par le greffier en chef du Conseil d&#x27;Etat au Procureur général près le Conseil d&#x27;Etat.</p><p>Lorsqu&#x27;il apparaît, au vu de la requête, que la solution est d&#x27;ores et déjà certaine, le président de la Chambre saisie, sur proposition du rapporteur, peut, par ordonnance :</p><p>— donner acte des désistements ;</p><p>— rejeter les requêtes ne relevant manifestement pas de la compétence des juridictions administratives ;</p><p>— constater qu&#x27;il n&#x27;y a pas lieu de statuer, notamment sur une requête sans objet ;</p><p>— rejeter les requêtes manifestement irrecevables.</p><p>L&#x27;ordonnance rendue conformément aux dispositions de l&#x27;alinéa précédent peut faire l&#x27;objet de rétractation devant le Président du Conseil d&#x27;Etat.</p><p>Dans le cas contraire, le rapporteur désigné poursuit l&#x27;instruction.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_79">
+                <div class="article-header">
+                    <h3>Article 79</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le rapporteur met l&#x27;affaire en état. Il rend une ordonnance par laquelle il prescrit la transmission et la notification, par voie administrative ou par voie de commissaire de Justice, de la requête introductive d&#x27;instance à toutes les parties intéressées et fixe le délai dans lequel les réquisitions et mémoires en défense, accompagnés de toutes pièces utiles, doivent être déposés au greffe du Conseil d&#x27;Etat.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_80">
+                <div class="article-header">
+                    <h3>Article 80</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>A l&#x27;expiration du délai prévu à l&#x27;article 79 ci-dessus de la présente loi organique, le rapporteur ordonne la notification, par voie administrative ou par voie de commissaire de Justice, aux parties en cause, des copies de tous mémoires déposés en exécution dudit article et fixe un nouveau délai qu&#x27;il détermine, pour le dépôt au greffe des observations éventuelles des parties.</p><p>Le greffe transmet copie des mémoires et pièces sus visées au ministère public pour réquisitions dans le nouveau délai.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_81">
+                <div class="article-header">
+                    <h3>Article 81</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le rapporteur adresse une mise en demeure aux parties qui n&#x27;ont pas observé les délais impartis à l&#x27;article 79 de la présente loi organique.</p><p>Il peut, en cas de force majeure ou à la demande du Procureur général près le Conseil d&#x27;Etat, accorder un nouveau et dernier délai.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_82">
+                <div class="article-header">
+                    <h3>Article 82</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les parties ou leurs mandataires peuvent prendre connaissance des pièces au greffe du Conseil d&#x27;Etat, mais sans les déplacer.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_83">
+                <div class="article-header">
+                    <h3>Article 83</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le rapporteur peut, en tout état de cause, ordonner toutes mesures qui lui paraissent nécessaires à l&#x27;instruction de l&#x27;affaire, telles que production de pièces, comparution personnelle des parties, enquêtes, expertises, descentes sur les lieux, sans préjudice de celles auxquelles peut ultérieurement recourir le Conseil d&#x27;Etat.</p><p>Il est procédé à ces mesures suivant les règles de procédure en vigueur en matière administrative.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_84">
+                <div class="article-header">
+                    <h3>Article 84</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les décisions prises par le rapporteur pour l&#x27;instruction de l&#x27;affaire sont notifiées à l&#x27;auteur et au bénéficiaire de l&#x27;acte attaqué et à toutes autres personnes intéressées, par voie administrative ou par voie de commissaire de Justice ou par toutes autres voies appropriées.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_85">
+                <div class="article-header">
+                    <h3>Article 85</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Dès que le rapporteur estime que l&#x27;affaire est en état d&#x27;être jugée, il dresse un rapport écrit qui relate les incidents de procédure et l&#x27;accomplissement des formalités légales. Il expose les faits de la cause, les moyens et prétentions des parties, sans faire connaître son avis.</p><p>Le rapporteur fait des observations tendant à éclairer la formation de jugement sur les questions de droit et de fait du litige. Il procède à l&#x27;analyse des arguments des parties et expose sur l&#x27;état du droit et de la jurisprudence.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_86">
+                <div class="article-header">
+                    <h3>Article 86</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le rapport prévu à l&#x27;article précédent est notifié sans délai par voie administrative, par voie de commissaire de Justice ou toutes autres voies appropriées, aux parties par les soins du greffe. Copie en est transmise au Procureur général près le Conseil d&#x27;Etat.</p><p>Les parties ont un délai de quinze jours, à compter de la date de la notification, pour fournir leurs observations écrites et déclarer qu&#x27;elles entendent présenter à l&#x27;audience des observations orales qui ne peuvent porter sur des moyens nouveaux.</p><p>La notification prévue à l&#x27;alinéa premier du présent article contient, en outre, avis de la date de l&#x27;audience fixée par le Président de la Chambre.</p><p>Le rapporteur peut adresser une mise en demeure aux parties qui n&#x27;ont pas fait d&#x27;observations dans le délai prévu à l&#x27;alinéa 2 du présent article.</p><p>Il peut, en cas de force majeure, accorder un nouveau délai.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Section 3 : Sursis à exécution</h2>
+
+            <div class="article" id="Article_87">
+                <div class="article-header">
+                    <h3>Article 87</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Si une décision administrative faisant grief à une personne n&#x27;intéresse ni le maintien de l&#x27;ordre, ni la sécurité ou la tranquillité publique, elle peut faire l&#x27;objet d&#x27;une requête aux fins de sursis à exécution devant le Conseil d&#x27;Etat, après l&#x27;exercice du recours administratif préalable prévu à l&#x27;article 68 de la présente loi organique.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_88">
+                <div class="article-header">
+                    <h3>Article 88</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Conseil d&#x27;Etat peut ordonner la suspension de l&#x27;exécution de la décision entreprise, même de refus, ou de certains de ses effets, lorsque l&#x27;urgence le justifie et qu&#x27;il est fait état d&#x27;un moyen propre à créer, en l&#x27;état de l&#x27;instruction, un doute sérieux quant à la légalité de la décision.</p><p>La suspension ainsi prononcée reste en vigueur jusqu&#x27;à ce qu&#x27;il ait été statué sur la requête en annulation pour excès de pouvoir de la décision.</p><p>Toutefois, le sursis et ses effets deviennent caducs si, quatre mois après son prononcé, le bénéficiaire n&#x27;a pas déposé de requête aux fins d&#x27;annulation de la décision suspendue.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_89">
+                <div class="article-header">
+                    <h3>Article 89</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La demande de sursis est instruite et jugée dans un délai de quarante-cinq jours à compter de la date de désignation du rapporteur.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_90">
+                <div class="article-header">
+                    <h3>Article 90</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Une copie de l&#x27;arrêt est immédiatement notifiée, par voie administrative ou par voie de commissaire de Justice, au Procureur général près le Conseil d&#x27;Etat, à l&#x27;auteur de la décision entreprise et à toute autre personne intéressée.</p><p>Les effets de la décision administrative sont suspendus à partir de cette notification.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Section 4 : Référé administratif</h2>
+
+            <div class="article" id="Article_91">
+                <div class="article-header">
+                    <h3>Article 91</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Dans tous les cas d&#x27;urgence, le président du Conseil d&#x27;Etat ou, en cas d&#x27;absence ou d&#x27;empêchement, le Président de la Section du Contentieux, peut, même en son hôtel, sur simple requête :</p><p>— désigner un expert pour constater, sans délai, des faits susceptibles de donner lieu à un litige devant le Conseil d&#x27;Etat ;</p><p>— ordonner toutes autres mesures utiles, sans faire préjudice au principal ni obstacle à l&#x27;exécution d&#x27;aucune décision administrative. Dans ce cas, la requête est transmise, sans délai, au Procureur général près le Conseil d&#x27;Etat et immédiatement notifiée aux défendeurs éventuels, avec fixation d&#x27;un délai de réponse.</p><p>L&#x27;assistance d&#x27;un greffier n&#x27;est pas obligatoire.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Section 5 : Intervention</h2>
+
+            <div class="article" id="Article_92">
+                <div class="article-header">
+                    <h3>Article 92</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Toute personne qui y a intérêt peut intervenir dans l&#x27;instance engagée.</p><p>L&#x27;intervention est formée par requête déposée au greffe du Conseil d&#x27;Etat. En cas d&#x27;intervention volontaire, la recevabilité de la requête est conditionnée par le paiement de frais de procédure prévus à l&#x27;article 73 alinéa 2 de la présente loi organique.</p><p>Le rapporteur assure, par la voie qu&#x27;il juge opportune, la notification de la requête et, s&#x27;il y a lieu, des mémoires et pièces, aux parties en cause, auxquelles il fixe un délai pour déposer leurs observations et mémoires en réponse.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_93">
+                <div class="article-header">
+                    <h3>Article 93</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La décision sur l&#x27;instance principale ne peut être retardée par une intervention.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Section 6 : Vérification d&#x27;écriture et inscription de faux</h2>
+
+            <div class="article" id="Article_94">
+                <div class="article-header">
+                    <h3>Article 94</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Lorsqu&#x27;une partie dénie l&#x27;écriture ou la signature à elle attribuée ou déclare ne pas reconnaître celles attribuées à un tiers, le rapporteur peut, après réquisition du Procureur général près le Conseil d&#x27;Etat, passer outre, s&#x27;il estime que le moyen est purement dilatoire ou sans intérêt pour la solution du litige.</p><p>Dans le cas contraire, il paraphe la pièce et ordonne une vérification d&#x27;écriture tant par titres que par témoins et, s&#x27;il y a lieu, par expert.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_95">
+                <div class="article-header">
+                    <h3>Article 95</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les pièces pouvant être admises à titre de pièces de comparaison sont notamment les signatures apposées sur des actes authentiques, la partie de la pièce à vérifier qui n&#x27;est pas déniée.</p><p>Les pièces de comparaison sont paraphées par le rapporteur.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_96">
+                <div class="article-header">
+                    <h3>Article 96</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>S&#x27;il est prouvé par la vérification d&#x27;écriture que la pièce est écrite ou signée par celui qui la dénie, ce dernier est passible d&#x27;une amende civile de 500.000 à 3.000.000 de francs CFA, sans préjudice des dommages et intérêts et dépens.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_97">
+                <div class="article-header">
+                    <h3>Article 97</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La demande en inscription de faux contre une pièce produite devant le Conseil d&#x27;Etat est formée par requête déposée au greffe du Conseil d&#x27;Etat.</p><p>La requête est transmise au rapporteur, si celui-ci est toujours saisi, ou au président de Chambre, dans le cas contraire. Copie en est donnée au Procureur général près le Conseil d&#x27;Etat.</p><p>Le rapporteur ou le président de Chambre fixe, par ordonnance, le délai dans lequel la partie qui a produit la pièce arguée de faux doit déclarer si elle entend s&#x27;en servir.</p><p>S&#x27;il n&#x27;est pas fait de réponse ou en cas de réponse négative, la pièce est rejetée.</p><p>Si la partie déclare qu&#x27;elle entend se servir de la pièce, la Chambre saisie peut :</p><p>— soit passer outre, si elle constate que la décision ne dépend pas de la pièce arguée de faux ;</p><p>— soit surseoir à statuer sur le recours, jusqu&#x27;au prononcé de la décision définitive sur le faux.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Section 7 : Recours contre les arrêts du Conseil d&#x27;Etat</h2>
+
+            <div class="article" id="Article_Intro">
+                <div class="article-header">
+                    <h3>Préambule</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Paragraphe 1 : Tierce opposition</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_98">
+                <div class="article-header">
+                    <h3>Article 98</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La tierce opposition est une voie de recours par laquelle une personne, autre que les parties engagées dans l&#x27;instance, peut attaquer une décision qui lui cause préjudice et demander à la juridiction qui l&#x27;a rendue d&#x27;en supprimer les effets en ce qui la concerne personnellement.</p><p>La tierce opposition est recevable contre les arrêts rendus par le Conseil d&#x27;Etat, dans un délai de deux mois, à compter de leur notification ou de leur connaissance acquise.</p><p>Elle est introduite par voie de requête, instruite et jugée suivant les dispositions des articles 73 à 82 de la présente loi organique.</p><p>Sauf assistance judiciaire, le demandeur à la tierce opposition est tenu, lors de l&#x27;enrôlement de son acte introductif d&#x27;instance, de consigner au greffe du Conseil d&#x27;Etat, la somme fixe de 200.000 francs CFA.</p><p>Paragraphe 2 : Recours en révision</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_99">
+                <div class="article-header">
+                    <h3>Article 99</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Il peut être formé, devant le Conseil d&#x27;Etat, un recours en révision :</p><p>— contre les arrêts rendus sur pièces fausses ;</p><p>— si la partie a succombé pour n&#x27;avoir pas présenté une pièce décisive retenue par son adversaire ou produite mais non prise en compte par la juridiction ;</p><p>— si l&#x27;arrêt du Conseil d&#x27;Etat est intervenu sans qu&#x27;aient été observées les dispositions des articles 35, 47, 74 et 82 de la présente loi organique.</p><p>Le recours en révision est recevable dans le délai d&#x27;un mois à compter de la notification ou de la connaissance acquise de l&#x27;arrêt.</p><p>Toutefois, le délai prévu à l&#x27;alinéa précédent court à compter de la découverte du faux ou de la pièce décisive retenue par l&#x27;adversaire.</p><p>Le demandeur en révision qui succombe est condamné au paiement d&#x27;une amende dont le montant ne peut être inférieur à la somme 500.000 francs CFA, outre les autres frais.</p><p>Paragraphe 3 : Recours en rectification d&#x27;erreur matérielle</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_100">
+                <div class="article-header">
+                    <h3>Article 100</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Un recours en rectification peut être exercé contre les arrêts entachés d&#x27;une erreur matérielle.</p><p>Paragraphe 4 : Recours en interprétation</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_101">
+                <div class="article-header">
+                    <h3>Article 101</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La décision dont les termes sont obscurs ou ambigus peut être interprétée par le Conseil d&#x27;Etat, à condition qu&#x27;il ne soit pas porté atteinte à l&#x27;autorité de la chose jugée et que l&#x27;interprétation demandée présente un intérêt pour la partie qui l&#x27;a sollicitée.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_102">
+                <div class="article-header">
+                    <h3>Article 102</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les recours prévus aux articles 99, 100 et 101 précédents sont formés par requête déposée au greffe du Conseil d&#x27;Etat.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Section 8 : Recours en matière de contentieux électoral</h2>
+
+            <div class="article" id="Article_103">
+                <div class="article-header">
+                    <h3>Article 103</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Lorsque le Conseil d&#x27;Etat est saisi d&#x27;un recours en matière de contentieux électoral, la requête, datée, signée et accompagnée de toutes les pièces justificatives, est déposée et enregistrée au greffe du Conseil d&#x27;Etat, conformément aux dispositions régissant les élections concernées.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_104">
+                <div class="article-header">
+                    <h3>Article 104</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le rapporteur assure, par tous moyens, la mise en état du dossier. Le Conseil d&#x27;Etat statue sur pièces, le rapporteur entendu.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Section 9 : Règlements de juges</h2>
+
+            <div class="article" id="Article_105">
+                <div class="article-header">
+                    <h3>Article 105</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le règlement de juges est la décision par laquelle le Conseil d&#x27;Etat détermine laquelle de plusieurs juridictions administratives doit connaître d&#x27;une affaire.</p><p>Il y a lieu à règlement de juges dans les cas ci-après :</p><p>— lorsque plusieurs tribunaux de même degré se sont déclarés compétents à l&#x27;occasion d&#x27;un même litige par des jugements ayant acquis force de chose jugée ;</p><p>— lorsque plusieurs tribunaux de même degré se sont déclarés incompétents à l&#x27;occasion d&#x27;un même litige par des jugements ayant acquis force de chose jugée.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_106">
+                <div class="article-header">
+                    <h3>Article 106</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La requête en règlement de juges est déposée au greffe du Conseil d&#x27;Etat par la partie intéressée.</p><p>Elle est inscrite sur le registre d&#x27;ordre tenu par le greffier en chef du Conseil d&#x27;Etat et marquée, ainsi que les pièces qui y sont jointes, d&#x27;un timbre indiquant la date de réception.</p><p>Le greffier en chef avise immédiatement les parties en cause et les greffiers des juridictions entre lesquelles il sera réglé de juges.</p><p>Les dossiers de procédure sont, dans le délai de huit jours, adressés au greffier en chef du Conseil d&#x27;Etat, qui les transmet, dès réception, au Président du Conseil d&#x27;Etat.</p><p>II est ensuite procédé conformément à la Section 1 du présent chapitre.</p><p>Le Conseil d&#x27;Etat statue en assemblée plénière, après réquisitions du ministère public.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Section 10 : Renvoi d&#x27;une juridiction à une autre</h2>
+
+            <div class="article" id="Article_107">
+                <div class="article-header">
+                    <h3>Article 107</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Lorsque le Conseil d&#x27;Etat est saisi à tort, le président de la Section du Contentieux, saisi par le rapporteur, règle la question de compétence et attribue, le cas échéant, le jugement de tout ou partie de l&#x27;affaire à la juridiction qu&#x27;il déclare compétente.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_108">
+                <div class="article-header">
+                    <h3>Article 108</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Lorsqu&#x27;une juridiction administrative est saisie de conclusions qu&#x27;elle estime relever de la compétence du Conseil d&#x27;Etat, son président transmet, sans délai, le dossier au Conseil d&#x27;Etat, qui poursuit l&#x27;instruction de l&#x27;affaire.</p><p>Si l&#x27;instruction de l&#x27;affaire relève en tout ou partie de la compétence d&#x27;une autre juridiction, le rapporteur saisit le président de la Section du Contentieux, qui règle la question de compétence et attribue, le cas échéant, règlement de tout ou partie de l&#x27;affaire à la juridiction qu&#x27;il déclare compétente.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Section 11 : Connexité</h2>
+
+            <div class="article" id="Article_109">
+                <div class="article-header">
+                    <h3>Article 109</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Lorsque le Conseil d&#x27;Etat est saisi de conclusions relevant de sa compétence en premier et dernier ressort, il est également compétent pour connaître de conclusions connexes relevant normalement de la compétence en premier ressort d&#x27;un tribunal administratif.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_110">
+                <div class="article-header">
+                    <h3>Article 110</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Dans le cas où une juridiction administrative est saisie de conclusions relevant normalement de sa compétence, mais connexes à des conclusions présentées devant le Conseil d&#x27;Etat et relevant de la compétence en premier et dernier ressort de celui-ci, son président renvoie au Conseil d&#x27;Etat lesdites conclusions.</p><p>Dans ce cas, le président de la Section du Contentieux, saisi par la Chambre intéressée, ordonne le renvoi au Conseil d&#x27;Etat de la demande soumise à la juridiction administrative.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_111">
+                <div class="article-header">
+                    <h3>Article 111</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Dans le cas où une juridiction administrative est saisie de conclusions distinctes, mais connexes, relevant les unes de sa compétence et les autres de la compétence en premier et dernier ressort du Conseil d&#x27;Etat, son président renvoie l&#x27;ensemble de ces conclusions au Conseil d&#x27;Etat.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>Section 12 : Récusation</h2>
+
+            <div class="article" id="Article_112">
+                <div class="article-header">
+                    <h3>Article 112</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Toute demande de récusation d&#x27;un magistrat d&#x27;une juridiction administrative ou d&#x27;un magistrat du Conseil d&#x27;Etat autre que le Président du Conseil d&#x27;Etat doit être motivée et adressée au Président du Conseil d&#x27;Etat qui, après réquisitions du Procureur général près le Conseil d&#x27;Etat, statue par ordonnance non susceptible de recours.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>CHAPITRE 2 : Déroulement de l&#x27;audience</h2>
+
+            <div class="article" id="Article_113">
+                <div class="article-header">
+                    <h3>Article 113</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Hormis les référés et les recours en rectification d&#x27;erreur matérielle, le Conseil d&#x27;Etat statue en audience publique sur le rapport d&#x27;un conseiller, le ministère public entendu.</p><p>Le Conseil d&#x27;Etat peut ordonner le huis clos si l&#x27;ordre public et les bonnes moeurs le commandent.</p><p>Le Président a la police des audiences.</p><p>Ceux qui assistent aux audiences doivent se tenir le chef découvert, dans le respect et le silence. Toutes les instructions du Président relatives au maintien de l&#x27;ordre sont immédiatement exécutées.</p><p>Si l&#x27;un des assistants trouble l&#x27;ordre de quelque manière que ce soit, le Président ordonne son expulsion. S&#x27;il résiste ou cause du tumulte, il est saisi et déposé pour vingt-quatre heures à la maison d&#x27;arrêt, où il est reçu sur l&#x27;exhibition de l&#x27;ordre du Président.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_114">
+                <div class="article-header">
+                    <h3>Article 114</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Si le trouble est commis par une personne remplissant ou exerçant une fonction auprès de lui, le Président du Conseil d&#x27;Etat peut, outre l&#x27;application de l&#x27;article 113 ci-dessus, la suspendre de l&#x27;exercice de ses fonctions. La suspension, pour la première fois, ne peut excéder trois mois.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_115">
+                <div class="article-header">
+                    <h3>Article 115</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les décisions prévues par les articles 113 et 114 de la présente loi organique sont insusceptibles de recours.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_116">
+                <div class="article-header">
+                    <h3>Article 116</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Président dresse, séance tenante, procès-verbal contre ceux qui outragent le Conseil d&#x27;Etat ou commettent une infraction de droit commun, et les défère devant le Procureur de la République pour être procédé conformément à la loi.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>CHAPITRE 3 : Frais de procédure</h2>
+
+            <div class="article" id="Article_117">
+                <div class="article-header">
+                    <h3>Article 117</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>L&#x27;arrêt statuant définitivement sur le recours liquide le montant des frais et condamne la partie perdante à leur remboursement.</p><p>Il peut, cependant, laisser les frais à la charge de l&#x27;Etat par décision motivée.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_118">
+                <div class="article-header">
+                    <h3>Article 118</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Dans le cas où il rejette une demande, le Conseil d&#x27;Etat doit, dans le même arrêt et par disposition spécialement motivée, dire si cette demande présente un caractère dilatoire ou abusif.</p><p>Dans l&#x27;affirmative, il condamne le demandeur à une amende civile qui ne peut être inférieure à la somme de 500.000 francs CFA.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_119">
+                <div class="article-header">
+                    <h3>Article 119</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La notification de l&#x27;arrêt contient sommation d&#x27;avoir à régler le montant des frais et, s&#x27;il y a lieu, de l&#x27;amende civile dans un délai de trois mois.</p><p>En cas de non-paiement dans le délai fixé ci-dessus, le dossier est transmis au Procureur général près le Conseil d&#x27;Etat pour être procédé ainsi qu&#x27;il est prévu par le Code de procédure pénale en matière de contrainte par corps.</p><p>Les dispositions des articles ci-dessus s&#x27;appliquent aux personnes physiques ayant agi en leur nom propre ou au nom d&#x27;une personne morale.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>CHAPITRE 4 : Exécution des décisions</h2>
+
+            <div class="article" id="Article_120">
+                <div class="article-header">
+                    <h3>Article 120</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les décisions du Conseil d&#x27;Etat sont exécutoires. Elles s&#x27;imposent aux pouvoirs publics, à toute autorité administrative, juridictionnelle, militaire et à toute personne physique ou morale.</p><p>Les autorités publiques sont tenues de les exécuter et de les faire exécuter.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_121">
+                <div class="article-header">
+                    <h3>Article 121</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Lorsqu&#x27;une décision juridictionnelle passée en force de chose jugée a condamné une personne publique au paiement d&#x27;une somme d&#x27;argent dont le montant est fixé par la décision elle-même, cette somme doit être ordonnancée dans un délai de deux mois à compter de la notification de la décision de justice.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_122">
+                <div class="article-header">
+                    <h3>Article 122</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Lorsque les arrêts impliquent nécessairement qu&#x27;une personne de droit public ou un organisme de droit privé chargé de la gestion d&#x27;un service public prenne une mesure d&#x27;exécution dans un sens déterminé, le Conseil d&#x27;Etat, saisi de conclusions en ce sens, prescrit, par la même décision, cette mesure assortie, le cas échéant, d&#x27;un délai d&#x27;exécution.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_123">
+                <div class="article-header">
+                    <h3>Article 123</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Lorsque les arrêts impliquent nécessairement qu&#x27;une personne de droit public ou un organisme de droit privé chargé de la gestion d&#x27;un service public prenne à nouveau une décision, après une nouvelle instruction, le Conseil d&#x27;Etat, saisi de conclusions en ce sens, prescrit, par la même décision, que cette décision doit intervenir dans un délai déterminé.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_124">
+                <div class="article-header">
+                    <h3>Article 124</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Dans les cas visés aux articles 121, 122 et 123 de la présente loi organique, le Conseil d&#x27;Etat peut assortir la décision d&#x27;une astreinte, sans préjudice des dommages et intérêts.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_125">
+                <div class="article-header">
+                    <h3>Article 125</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Toute décision est notifiée aux parties à leur domicile réel ou élu par le greffier en chef ou par la partie la plus diligente. Il est procédé comme il est dit à l&#x27;article 119 de la présente loi organique.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_126">
+                <div class="article-header">
+                    <h3>Article 126</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les arrêts du Conseil d&#x27;Etat sont transcrits sur les registres des juridictions dont les décisions ont été entreprises ; ils sont annexés aux minutes desdites décisions.</p><p>Si un acte avait été publié au Journal officiel, l&#x27;arrêt d&#x27;annulation de cet acte fait l&#x27;objet de la même publication.</p><p>Copie des arrêts du Conseil d&#x27;Etat est transmise par le greffier en chef de ladite Cour au secrétaire général du Conseil d&#x27;Etat.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_127">
+                <div class="article-header">
+                    <h3>Article 127</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Lorsqu&#x27;une autorité administrative manifeste au bénéficiaire d&#x27;un arrêt son refus de l&#x27;exécuter ou en cas d&#x27;inexécution d&#x27;un arrêt, trois mois après sa notification, la partie intéressée peut, par requête, demander au Président du Conseil d&#x27;Etat d&#x27;en définir les mesures d&#x27;exécution.</p><p>Le Président du Conseil d&#x27;Etat fixe, s&#x27;il y a lieu, un délai d&#x27;exécution assorti d&#x27;astreinte comminatoire dont le montant ne peut être inférieur à la somme de 1.000.000 de francs CFA.</p><p>Les produits des astreintes liquidées peuvent être attribués au requérant, à l&#x27;Etat et au Fonds de soutien de la Justice. Les modalités d&#x27;application de cet alinéa seront précisées par décret.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_128">
+                <div class="article-header">
+                    <h3>Article 128</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Lorsqu&#x27;il s&#x27;avère que l&#x27;inexécution totale ou partielle d&#x27;un arrêt rendu par le Conseil d&#x27;Etat est due aux agissements d&#x27;un agent ou d&#x27;une autorité administrative, le Conseil d&#x27;Etat engage la responsabilité personnelle de ce dernier et prononce à son encontre une condamnation pécuniaire qui ne peut être inférieure à la somme de 500.000 francs CFA.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_129">
+                <div class="article-header">
+                    <h3>Article 129</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Si une autorité administrative se heurte à des difficultés d&#x27;exécution, elle peut, par requête, demander au Président du Conseil d&#x27;Etat les mesures adéquates.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>SOUS-TITRE 3 : LA FONCTION CONSULTATIVE</h2>
+
+            <div class="article" id="Article_130">
+                <div class="article-header">
+                    <h3>Article 130</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les attributions prévues aux articles 14 et 15 de la présente loi organique sont exercées par la section consultative du Conseil d&#x27;Etat.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>CHAPITRE 1 : Avis à la demande du Président de la République et des membres du Gouvernement</h2>
+
+            <div class="article" id="Article_131">
+                <div class="article-header">
+                    <h3>Article 131</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Dès réception de la demande d&#x27;avis, le Président du Conseil d&#x27;Etat désigne un rapporteur et lui impartit un délai pour le dépôt du projet d&#x27;avis.</p><p>Le Président du Conseil d&#x27;Etat peut se désigner lui-même ou désigner le Président de la section consultative ou un président de Formation comme rapporteur.</p><p>Le demandeur d&#x27;avis ou les administrations intéressées peuvent produire devant le Conseil d&#x27;Etat toutes observations et participer, à la demande du rapporteur, aux travaux de la formation.</p><p>Le Président du Conseil d&#x27;Etat, le président de la Section consultative ou le président de Formation peut appeler à prendre part aux travaux, avec voix consultative, les personnes dont les connaissances spéciales les rendent aptes à éclairer les discussions.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_132">
+                <div class="article-header">
+                    <h3>Article 132</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Président du Conseil d&#x27;Etat peut, en cas de besoin, constituer une commission spéciale pour se prononcer sur l&#x27;avis sollicité.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_133">
+                <div class="article-header">
+                    <h3>Article 133</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le projet d&#x27;avis est discuté et adopté par la Formation saisie.</p><p>L&#x27;avis ainsi émis ne lie, en aucun cas, le Conseil d&#x27;Etat dans ses attributions contentieuses.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_134">
+                <div class="article-header">
+                    <h3>Article 134</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Dans le cas où une affaire transmise à la section consultative relève de la compétence des deux formations, le président de la section consultative les réunit aux fins de délibérations.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>CHAPITRE 2 : Avis à l&#x27;initiative du Conseil d&#x27;Etat</h2>
+
+            <div class="article" id="Article_135">
+                <div class="article-header">
+                    <h3>Article 135</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La section consultative élabore les propositions que le Conseil d&#x27;Etat adresse aux pouvoirs publics en application de l&#x27;article 16 de la présente loi organique. Elle procède à des études à l&#x27;initiative du Président du Conseil d&#x27;Etat.</p><p>Les propositions ou études sont adoptées par l&#x27;assemblée générale.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>CHAPITRE 3 : Avis contentieux</h2>
+
+            <div class="article" id="Article_136">
+                <div class="article-header">
+                    <h3>Article 136</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Avant de statuer sur une requête soulevant une question de droit nouvelle, présentant une difficulté sérieuse, un tribunal administratif ou une juridiction administrative spécialisée peut demander un éclairage au Conseil d&#x27;Etat.</p><p>La décision de la juridiction sollicitant l&#x27;avis du Conseil d&#x27;Etat n&#x27;est susceptible d&#x27;aucun recours. La requête est transmise au Conseil d&#x27;Etat, qui examine, dans un délai de trois mois, la question soulevée. Il est sursis à toute décision au fond jusqu&#x27;à l&#x27;avis du Conseil d&#x27;Etat ou, à défaut, jusqu&#x27;à l&#x27;expiration du délai sus-indiqué.</p><p>Les parties et le Procureur général près le Conseil d&#x27;Etat peuvent produire des observations devant le Conseil d&#x27;Etat dans le délai d&#x27;un mois à partir de la notification qui leur a été faite de la décision de renvoi devant le Conseil d&#x27;Etat.</p><p>Les avis sont rendus par une formation spéciale, présidée par le Président du Conseil d&#x27;Etat ou par le président de la Section du Contentieux, et composée de présidents de Chambre.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_137">
+                <div class="article-header">
+                    <h3>Article 137</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La décision de la juridiction prononçant le renvoi d&#x27;une question en application de l&#x27;article 13 de la présente loi organique est adressée par le greffe ou par le secrétariat de cette juridiction au greffe du Conseil d&#x27;Etat avec le dossier de l&#x27;affaire dans les quinze jours du prononcé du jugement.</p><p>Les parties et l&#x27;autorité administrative intéressée sont avisées de cette transmission par la notification qui leur est faite de la décision.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_138">
+                <div class="article-header">
+                    <h3>Article 138</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>L&#x27;avis est notifié aux parties et à l&#x27;autorité administrative intéressée ; il est adressé à la juridiction qui a décidé le renvoi en même temps que lui est retourné le dossier de la procédure.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_139">
+                <div class="article-header">
+                    <h3>Article 139</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Président du Conseil d&#x27;Etat peut solliciter les réquisitions du Procureur général près le Conseil d&#x27;Etat.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>TITRE V : DISPOSITIONS FINANCIERES</h2>
+
+            <div class="article" id="Article_140">
+                <div class="article-header">
+                    <h3>Article 140</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Conseil d&#x27;Etat jouit de l&#x27;autonomie financière.</p><p>Le budget fait l&#x27;objet de propositions préparées par le service financier et est inscrit au projet de loi de finances au titre du Conseil d&#x27;Etat.</p><p>Le Président du Conseil d&#x27;Etat exerce les fonctions d&#x27;ordonnateur dans les conditions déterminées par le règlement de la Comptabilité publique.</p><p>Le trésorier du Conseil d&#x27;Etat exerce les fonctions d&#x27;Agent comptable, dans les conditions déterminées par le règlement de la Comptabilité publique.</p><p>Il a la qualité de comptable public. Il est nommé par arrêté du ministre chargé de l&#x27;Economie et des Finances.</p>
+                </div>
+            </div>
+            
+</section>
+<section class="group">
+<h2>TITRE VI : DISPOSITIONS DIVERSES, TRANSITOIRES ET FINALES</h2>
+
+            <div class="article" id="Article_141">
+                <div class="article-header">
+                    <h3>Article 141</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les membres de l&#x27;ancien Conseil d&#x27;Etat de la Cour suprême sont, de plein droit, membres du Conseil d&#x27;Etat.</p><p>Les personnes titulaires d&#x27;un doctorat ou d&#x27;une maîtrise en droit exerçant les fonctions d&#x27;auditeurs, avant l&#x27;entrée en vigueur de la présente loi organique, sont, à leur demande, nommées, à titre exceptionnel, conseillers référendaires au Conseil d&#x27;Etat.</p><p>Les greffiers de l&#x27;ancien Conseil d&#x27;Etat de la Cour suprême sont, de plein droit, membre du greffe du Conseil d&#x27;Etat.</p><p>Dès l&#x27;installation du Conseil d&#x27;Etat, l&#x27;ancien Conseil d&#x27;Etat de la Cour suprême lui transmet les dossiers des affaires dont elle a été saisie.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_142">
+                <div class="article-header">
+                    <h3>Article 142</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La présente loi organique abroge les dispositions de la loi n° 2018-978 du 27 décembre 2018 déterminant les attributions, l&#x27;organisation et le fonctionnement du Conseil d&#x27;Etat.</p>
+                </div>
+            </div>
+            
+
+            <div class="article" id="Article_143">
+                <div class="article-header">
+                    <h3>Article 143</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La présente loi sera publiée au Journal officiel de la République de Côte d&#x27;Ivoire et exécutée comme loi de l&#x27;Etat</p>
+                </div>
+            </div>
+                        <div class="article" id="Article_143">
+                <div class="article-header">
+            <p>Fait à Abidjan, le 17 décembre 2020.</p><p>Alassane Ouattara.</p>
+                </div>
+                        </div>
+            
+</section>
+</main>
+<div id="tocOverlay"></div>
+<aside id="tocPanel"><header><h3><i class="fa-solid fa-landmark"></i> Sommaire</h3></header><div class="toc-list" id="tocList"></div></aside>
+<div id="voiceBar" role="region" aria-label="Lecteur vocal">
+  <button id="vPrev" title="Article précédent"><i class="fas fa-backward"></i></button>
+  <button id="vPlay" title="Lire / Reprendre"><i class="fas fa-play"></i></button>
+  <button id="vPause" title="Pause"><i class="fas fa-pause"></i></button>
+  <button id="vStop" title="Arrêter"><i class="fas fa-stop"></i></button>
+  <button id="vNext" title="Article suivant"><i class="fas fa-forward"></i></button>
+  <span class="now" id="vNow">—</span>
+</div>
+<div id="fsOverlay"><div id="fsHeader"><button id="fsClose" title="Fermer"><i class="fas fa-xmark"></i></button><div class="ttl" id="fsTitle"></div><button id="fsPlay" title="Lecture"><i class="fas fa-play"></i></button></div><div id="fsBody"><article class="article"><div class="article-content" id="fsContent"></div></article></div><button id="fsNavPrev" title="Précédent"><i class="fas fa-chevron-left"></i></button><button id="fsNavNext" title="Suivant"><i class="fas fa-chevron-right"></i></button></div>
+
+<button id="tocFloatBtn" title="Sommaire" class="btn"><i class="fa-solid fa-book"></i></button>
+<div id="tocOverlay"></div>
+<aside id="tocPanel">
+  <header>
+    <h3><i class="fa-solid fa-scale-balanced"></i> Sommaire</h3>
+  </header>
+  <div class="toc-list" id="tocList"></div>
+</aside>
+
+<div id="voiceBar" role="region" aria-label="Lecteur vocal">
+  <button id="vPrev" title="Article précédent"><i class="fas fa-backward"></i></button>
+  <button id="vPlay" title="Lire / Reprendre"><i class="fas fa-play"></i></button>
+  <button id="vPause" title="Pause"><i class="fas fa-pause"></i></button>
+  <button id="vStop" title="Arrêter"><i class="fas fa-stop"></i></button>
+  <button id="vNext" title="Article suivant"><i class="fas fa-forward"></i></button>
+  <span class="now" id="vNow">—</span>
+</div>
+
+<div id="fsOverlay">
+  <div id="fsHeader">
+    <button id="fsClose" title="Fermer"><i class="fas fa-xmark"></i></button>
+    <div class="ttl" id="fsTitle"></div>
+    <button id="fsPlay" title="Lecture"><i class="fas fa-play"></i></button>
+  </div>
+  <div id="fsBody">
+    <article class="article">
+      <div class="article-content" id="fsContent"></div>
+    </article>
+  </div>
+  <button id="fsNavPrev" title="Précédent"><i class="fas a-chevron-left"></i></button>
+  <button id="fsNavNext" title="Suivant"><i class="fas fa-chevron-right"></i></button>
+</div>
+
+<script>
+// Fonction pour initialiser la fonctionnalité de recherche
+function initSearchFeature() {
+    const searchBtn = document.createElement('button');
+    searchBtn.className = 'btn';
+    searchBtn.id = 'searchBtn';
+    searchBtn.title = 'Rechercher';
+    searchBtn.innerHTML = '<i class="fas fa-search"></i>';
+    document.querySelector('.control-buttons').appendChild(searchBtn);
+    
+    const searchInterface = document.createElement('div');
+    searchInterface.id = 'searchInterface';
+    searchInterface.style.cssText = `
+        position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+        width: calc(100% - 40px); max-width: 550px; background: #fff;
+        padding: 10px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        z-index: 1800; display: none; align-items: center; gap: 5px; transition: .25s ease;
+    `;
+    searchInterface.innerHTML = `
+        <input type="text" id="searchInput" placeholder="Rechercher..." style="flex-grow: 1; padding: 8px; border: 1px solid #d6e6d6; border-radius: 5px;">
+        <button id="searchPrevBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-up"></i></button>
+        <button id="searchNextBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-down"></i></button>
+        <span id="searchResultsCount" style="flex-shrink: 0; padding: 0 5px; min-width: 40px; text-align: center;"></span>
+        <button id="closeSearchBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-times"></i></button>
+    `;
+    document.body.appendChild(searchInterface);
+
+    let searchResults = [];
+    let currentSearchIndex = -1;
+    let originalContents = new Map();
+
+    function performSearch() {
+        const searchTerm = document.getElementById('searchInput').value.trim();
+        if (!originalContents.size) {
+            document.querySelectorAll('.article-content, h2, h3').forEach(el => originalContents.set(el, el.innerHTML));
+        }
+        originalContents.forEach((content, el) => el.innerHTML = content);
+        searchResults = [];
+        currentSearchIndex = -1;
+        if (!searchTerm) { updateSearchUI(); return; }
+
+        const regex = new RegExp(searchTerm.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&'), 'gi');
+        originalContents.forEach((content, element) => {
+            element.innerHTML = content.replace(regex, match => `<mark>${match}</mark>`);
+        });
+        searchResults = Array.from(document.querySelectorAll('mark'));
+        if (searchResults.length > 0) navigateResults(true, false);
+        updateSearchUI();
+        window.dispatchEvent(new Event('reflowArticles'));
+    }
+
+    function navigateResults(isNext, shouldWrap = true) {
+        if (!searchResults.length) return;
+        searchResults.forEach(mark => mark.style.backgroundColor = '');
+        if (shouldWrap) {
+            currentSearchIndex = isNext ? (currentSearchIndex + 1) % searchResults.length : (currentSearchIndex - 1 + searchResults.length) % searchResults.length;
+        } else {
+            currentSearchIndex = 0;
+        }
+        const currentMark = searchResults[currentSearchIndex];
+        currentMark.style.backgroundColor = 'var(--accent)';
+        currentMark.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        updateSearchUI();
+    }
+
+    function updateSearchUI() {
+        document.getElementById('searchResultsCount').textContent = searchResults.length > 0 ? `${currentSearchIndex + 1}/${searchResults.length}` : '0/0';
+    }
+    
+    function resetSearch() {
+        originalContents.forEach((content, el) => el.innerHTML = content);
+        originalContents.clear();
+        document.getElementById('searchInput').value = '';
+        searchResults = []; currentSearchIndex = -1;
+        updateSearchUI();
+    }
+
+    searchBtn.addEventListener('click', () => {
+        const isVisible = searchInterface.style.display === 'flex';
+        searchInterface.style.display = isVisible ? 'none' : 'flex';
+        if (isVisible) resetSearch(); else document.getElementById('searchInput').focus();
+    });
+    document.getElementById('searchInput').addEventListener('input', performSearch);
+    document.getElementById('searchNextBtn').addEventListener('click', () => navigateResults(true));
+    document.getElementById('searchPrevBtn').addEventListener('click', () => navigateResults(false));
+    document.getElementById('closeSearchBtn').addEventListener('click', () => {
+        searchInterface.style.display = 'none';
+        resetSearch();
+    });
+}
+
+// Fonction pour transformer les énumérations en listes ordonnées
+(function(){
+  function extractEnumeration(s){
+    const re = /(\d{1,2})(?:\s*°)?(?:\))?(?:\.)?\s+/g; const matches = []; let m;
+    while ((m = re.exec(s))){ const idx=m.index; const prev = idx>0 ? s.charAt(idx-1) : " "; if (/\d/.test(prev)) continue; matches.push({num:parseInt(m[1],10), start:idx, end:re.lastIndex}); }
+    if (matches.length < 2) return null;
+    for (let i=1;i<matches.length;i++){ if (matches[i].num !== matches[i-1].num + 1) return null; }
+    const intro = s.slice(0, matches[0].start).trim().replace(/[:;,\-]\s*$/, ""); const items = [];
+    for (let i=0;i<matches.length;i++){ const st=matches[i].end; const en=(i+1<matches.length)?matches[i+1].start:s.length; let seg = s.slice(st,en).trim().replace(/^[;,:-]\s*/,"").replace(/[;,\s]+$/,""); items.push(seg); }
+    return {intro, start: matches[0].num, items};
+  }
+  function transformNode(node){
+    if (node.querySelector('ol')) return;
+    const plain = node.textContent.replace(/\s+/g,' ').trim(); const res = extractEnumeration(plain); if (!res) return;
+    const frag = document.createElement('div'); if (res.intro){ const p=document.createElement('p'); p.textContent=res.intro; frag.appendChild(p); }
+    const ol=document.createElement('ol'); if (res.start!==1) ol.setAttribute('start', String(res.start));
+    res.items.forEach(it=>{ const li=document.createElement('li'); li.textContent=it; ol.appendChild(li); });
+    frag.appendChild(ol); node.innerHTML=frag.innerHTML;
+  }
+  function run(){ document.querySelectorAll('.article-content').forEach(transformNode); }
+  window.addEventListener('DOMContentLoaded', ()=>setTimeout(run, 60));
+  window.addEventListener('reflowArticles', run);
+})();
+
+// Fonction pour construire la table des matières
+(function(){
+  const $ = s=>document.querySelector(s);
+  const $$ = s=>Array.from(document.querySelectorAll(s));
+  function buildTOC(){
+    const toc = document.getElementById('tocList'); if(!toc) return; toc.innerHTML='';
+    $$('.group').forEach((grp, gi)=>{
+      const gh = grp.querySelector('h2')?.textContent.trim() || `Groupe ${gi+1}`;
+      const gl = document.createElement('a'); gl.textContent=gh; gl.href='#'; gl.style.fontWeight='700';
+      gl.addEventListener('click', e=>{ e.preventDefault(); grp.scrollIntoView({behavior:'smooth', block:'start'}); hideTOC(); });
+      toc.appendChild(gl);
+      const sub = document.createElement('div'); sub.className='toc-sub';
+      grp.querySelectorAll('.article').forEach((art, ai)=>{
+        const at = art.querySelector('.article-header h3')?.textContent.trim() || `Article ${ai+1}`;
+        const a = document.createElement('a'); a.textContent=at; a.href='#';
+        a.addEventListener('click', e=>{ e.preventDefault(); art.scrollIntoView({behavior:'smooth', block:'start'}); hideTOC(); });
+        sub.appendChild(a);
+        if (!art.querySelector('.open-fs')){
+          const btn = document.createElement('button'); btn.className='open-fs'; btn.innerHTML='<i class="fas fa-maximize"></i>';
+          btn.title='Plein écran'; btn.addEventListener('click', ()=>openFS(artIndex(art))); art.querySelector('.article-header')?.appendChild(btn);
+        }
+      });
+      toc.appendChild(sub);
+    });
+  }
+  function showTOC(){ document.getElementById('tocOverlay').classList.add('show'); document.getElementById('tocPanel').classList.add('open'); }
+  function hideTOC(){ document.getElementById('tocOverlay').classList.remove('show'); document.getElementById('tocPanel').classList.remove('open'); }
+  document.addEventListener('DOMContentLoaded', ()=>{
+    const floatBtn = document.getElementById('tocFloatBtn');
+    if (floatBtn) floatBtn.addEventListener('click', showTOC);
+    const overlay = document.getElementById('tocOverlay');
+    if (overlay) overlay.addEventListener('click', hideTOC);
+    const headerBtn = document.getElementById('tocHeaderBtn');
+    if (headerBtn) headerBtn.addEventListener('click', showTOC);
+  });
+  const articles = $$('.article');
+  function artIndex(el){ return articles.indexOf(el); }
+  function getArticle(i){ return articles[Math.max(0, Math.min(articles.length-1, i))]; }
+  function artTitle(i){ const el=getArticle(i); return el? (el.querySelector('.article-header h3')?.textContent.trim()||'') : ''; }
+  function artText(i){ const el=getArticle(i); return el? (el.querySelector('.article-content')?.innerText.trim()||'') : ''; }
+  const synth = window.speechSynthesis;
+  let current = 0, utter = null, playing = false, paused = false, inFS=false;
+  function speakIndex(i){ stopSpeak(); current=i; const text=artText(i); if(!text){ nextArticle(); return; }
+    utter = new SpeechSynthesisUtterance(text); utter.lang='fr-FR'; utter.rate=1; utter.pitch=1;
+    utter.onend = ()=>{ if(playing && !paused){ nextArticle(); } };
+    try{ synth.speak(utter);}catch(e){ console.warn(e); }
+    playing=true; paused=false; updateUI(); highlightCurrent(); }
+  function highlightCurrent(){ articles.forEach(a=>a.classList.remove('reading')); const el=getArticle(current); if(el){ el.classList.add('reading'); if(!inFS) el.scrollIntoView({behavior:'smooth', block:'center'}); } document.getElementById('vNow').textContent = artTitle(current) || '—'; }
+  function pauseSpeak(){ if(synth && synth.speaking){ synth.pause(); paused=true; playing=true; } }
+  function resumeSpeak(){ if(synth && paused){ synth.resume(); paused=false; } else { speakIndex(current); } updateUI(); }
+  function stopSpeak(){ if(synth){ try{synth.cancel();}catch(e){} } playing=false; paused=false; updateUI(); }
+  function prevArticle(){ current=Math.max(0,current-1); if(playing){ speakIndex(current);} else {highlightCurrent();} if(inFS) openFS(current); }
+  function nextArticle(){ current=Math.min(articles.length-1,current+1); if(playing){ speakIndex(current);} else {highlightCurrent();} if(inFS) openFS(current); }
+  document.addEventListener('DOMContentLoaded', ()=>{
+    document.getElementById('vPlay').addEventListener('click', ()=>{ if(!playing || paused){ resumeSpeak(); } else { pauseSpeak(); } });
+    document.getElementById('vPause').addEventListener('click', ()=>pauseSpeak());
+    document.getElementById('vStop').addEventListener('click', ()=>{ stopSpeak(); });
+    document.getElementById('vPrev').addEventListener('click', prevArticle);
+    document.getElementById('vNext').addEventListener('click', nextArticle);
+  });
+  function updateUI(){ document.getElementById('vPlay').innerHTML = paused || !playing ? '<i class="fas fa-play"></i>' : '<i class="fas fa-pause"></i>'; }
+  function openFS(i){ inFS=true; current=i; document.getElementById('fsTitle').textContent=artTitle(i); document.getElementById('fsContent').textContent=artText(i); document.getElementById('fsOverlay').classList.add('show'); document.body.style.overflow='hidden'; speakIndex(i); }
+  function closeFS(){ inFS=false; document.getElementById('fsOverlay').classList.remove('show'); document.body.style.overflow=''; }
+  document.addEventListener('DOMContentLoaded', ()=>{
+    document.getElementById('fsClose').addEventListener('click', ()=>{ closeFS(); });
+    document.getElementById('fsPlay').addEventListener('click', ()=>{ if(!playing || paused){ resumeSpeak(); } else { pauseSpeak(); } });
+    document.getElementById('fsNavPrev').addEventListener('click', ()=>{ prevArticle(); });
+    document.getElementById('fsNavNext').addEventListener('click', ()=>{ nextArticle(); });
+    document.querySelectorAll('.article .open-fs').forEach((btn, idx)=> btn.addEventListener('click', ()=>openFS(idx)));
+  });
+  window.addEventListener('DOMContentLoaded', buildTOC);
+})();
+
+// Initialisation de la fonctionnalité de recherche
+document.addEventListener('DOMContentLoaded', initSearchFeature);
+</script>
+</body>
+</html>
