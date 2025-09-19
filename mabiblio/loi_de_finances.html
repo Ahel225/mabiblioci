@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Loi Organique relative aux Lois de Finances</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f9f5; --paper:#ffffff; --ink:#0f2a1f;
+  --primary:#2e7d32; --primary-700:#1b5e20; --accent:#8bc34a; --accent-2:#f1f8e9;
+  --muted:#e8f5e8; --shadow:0 12px 28px rgba(0,0,0,.08); --radius:18px; --transition:.25s ease;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.6}
+header{position:sticky;top:0;z-index:60;background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(255,255,255,.88));backdrop-filter:saturate(1.1) blur(8px);border-bottom:1px solid #e6f2e6}
+.container{max-width:1120px;margin:0 auto;padding:14px 16px;display:flex;align-items:center;gap:12px}
+.logo{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:radial-gradient(circle at 30% 30%, var(--accent), #c5e1a5);color:var(--primary-700);box-shadow:var(--shadow);font-size:18px}
+h1{margin:0;font-family:'Playfair Display',serif;font-size:20px;color:var(--primary-700)}
+.sub{color:#4c8c4f;font-size:12px;margin-top:2px}
+.control-buttons{margin-left:auto;display:flex;gap:8px;align-items:center}
+.btn{min-width:38px;height:38px;border-radius:12px;border:1px solid #d5e8d4;background:#fff;color:var(--primary-700);display:grid;place-items:center;cursor:pointer;box-shadow:var(--shadow);transition:var(--transition)}
+.btn:hover{transform:translateY(-1px)}
+.wrapper{max-width:1120px;margin:16px auto;padding:0 12px}
+.group{background:var(--paper);border:1px solid #e2eee2;border-radius:var(--radius);box-shadow:var(--shadow);margin:14px 0;overflow:hidden}
+.group>h2{margin:0;padding:14px 16px;background:linear-gradient(180deg,#ffffff,#f1f8e9);border-bottom:1px solid #e2eee2;color:var(--primary-700);font-size:18px;font-family:'Playfair Display',serif}
+.article{margin:10px 10px 14px 10px;padding:12px 14px;border-left:6px solid var(--primary);background:#fff;border-radius:14px;box-shadow:0 1px 0 rgba(0,0,0,.03)}
+.article-header{display:flex; align-items:center; gap:8px; margin:0 0 6px 0;}
+.article-header h3{margin:0; color:var(--primary-700);}
+.article .open-fs{ order:2; margin-left:auto; width:34px; height:34px; border:1px solid #d5e8d4; background:#fff; border-radius:10px; cursor:pointer; }
+.article-content p{margin:.5rem 0}.article-content ul,.article-content ol{margin:.5rem 0 .8rem 1.25rem}
+.article-content ol>li, .article-content ul>li{ padding:8px 0; line-height:1.7; border-bottom:1px solid #eaf6ea; }
+.article-content ol>li:last-child, .article-content ul>li:last-child{ border-bottom:0; }
+.article-content li > ol > li, .article-content li > ul > li{ padding:6px 0; border-bottom:1px dashed #eaf6ea; }
+.article-content li > ol > li:last-child, .article-content li > ul > li:last-child{ border-bottom:0; }
+.reading{ outline:2px solid var(--accent); outline-offset:2px; border-left-color:var(--accent) !important; background:linear-gradient(180deg,#fff, var(--accent-2)) }
+mark{background:rgba(139,195,74,.45)}
+/* Floating TOC */
+#tocFloatBtn{position:fixed; right:14px; bottom:120px; width:46px; height:46px; border-radius:50%; border:none; background:var(--primary); color:#fff; display:grid; place-items:center; box-shadow:0 10px 24px rgba(0,0,0,.25); z-index:1500;}
+#tocPanel{position:fixed; top:0; right:0; height:100%; width:86%; max-width:420px; background:#fff; border-left:1px solid #e2eee2; box-shadow:-16px 0 35px rgba(0,0,0,.2); transform:translateX(100%); transition:transform .25s ease; z-index:1600; overflow:auto;}
+#tocOverlay{position:fixed; inset:0; background:rgba(0,0,0,.28); backdrop-filter:blur(2px); display:none; z-index:1590}
+#tocPanel.open{ transform:none } #tocOverlay.show{ display:block }
+#tocPanel header{position:sticky; top:0; background:#fff; padding:12px 14px; border-bottom:1px solid #e2eee2}
+#tocPanel h3{margin:0; color:var(--primary-700)} #tocPanel .toc-list{padding:12px 14px}
+#tocPanel .toc-list a{display:block; padding:6px 0; color:#2e7d32; text-decoration:none}
+#tocPanel .toc-sub{margin-left:10px; border-left:2px solid #e8f5e8; padding-left:8px}
+/* Voice bar */
+#voiceBar{position:fixed; left:50%; transform:translateX(-50%); bottom:14px; background:var(--primary-700); color:#fff; z-index:1550; border-radius:22px; padding:8px 12px; display:flex; gap:10px; align-items:center; box-shadow:0 12px 28px rgba(0,0,0,.3)}
+#voiceBar button{width:34px; height:34px; border-radius:10px; border:1px solid #c8e6c9; background:transparent; color:#e8f5e9; display:grid; place-items:center; cursor:pointer}
+#voiceBar .now{font-size:12px; max-width:52vw; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:#f1f8e9}
+/* Fullscreen */
+#fsOverlay{ position:fixed; inset:0; background:#fff; z-index:1700; display:none; }
+#fsOverlay.show{ display:block } #fsHeader{ position:sticky; top:0; background:#fff; padding:10px 14px; border-bottom:1px solid #e2eee2; display:flex; align-items:center; gap:10px }
+#fsHeader .ttl{ font-weight:700; color:var(--primary-700); flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
+#fsHeader button{ width:36px; height:36px; border-radius:10px; border:1px solid #d5e8d4; background:#fff; }
+#fsBody{ padding:14px; height:calc(100% - 58px); overflow:auto } #fsBody .article-content{ font-size:1.04rem }
+#fsNavPrev,#fsNavNext{ position:fixed; top:50%; transform:translateY(-50%); width:42px; height:42px; border-radius:50%; border:none; background:var(--primary); color:#fff; display:grid; place-items:center; z-index:1710; opacity:.9 }
+#fsNavPrev{ left:10px } #fsNavNext{ right:10px }
+footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c8c4f;font-size:12px}
+
+/* ===== Anti-sélection / anti-copie ===== */
+.no-select, .no-select *:not(input):not(textarea):not(.selectable){
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  -webkit-touch-callout: none !important;
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <div class="logo"><i class="fa-solid fa-scale-balanced"></i></div>
+    <div>
+      <h1>Loi Organique relative aux Lois de Finances</h1>
+      <div class="sub">LOI organique n° 2014-336 du 5 juin 2014 • République de Côte d'Ivoire</div>
+    </div>
+    <div class="control-buttons">
+      <button class="btn" id="tocHeaderBtn" title="Sommaire"><i class="fa-solid fa-book"></i></button>
+      <button class="btn" title="Haut de page" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fa-solid fa-angles-up"></i></button>
+    </div>
+  </div>
+</header>
+<main class="wrapper">
+   <section class="group">
+            <h2>TITRE I : DISPOSITIONS GÉNÉRALES</h2>
+            
+            <div class="article" id="Article_1">
+                <div class="article-header">
+                    <h3>Article 1</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La présente loi fixe les règles relatives au contenu, à la présentation, à l'élaboration, à l'adoption, à l'exécution, à la modification et au contrôle des lois de finances.</p>
+                    <p>Elle détermine les conditions dans lesquelles est arrêtée la politique budgétaire à moyen terme pour l'ensemble des finances publiques.</p>
+                    <p>Elle énonce les principes fondamentaux relatifs à l'exécution des budgets publics, à la comptabilité publique et aux responsabilités des agents publics intervenant dans la gestion des finances publiques.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_2">
+                <div class="article-header">
+                    <h3>Article 2</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les lois de finances déterminent, pour un exercice, la nature, le montant et l'affectation des ressources et des charges de l'Etat.</p>
+                    <p>Elles tiennent compte d'un équilibre économique et financier qu'elles déterminent, sur la base des objectifs et des résultats des programmes définis dans le cadre des missions de l'Etat.</p>
+                    <p>Les programmes définissent des objectifs à moyen et long terme qui sont approuvés par le Parlement. Ils ne peuvent donner lieu à des engagements de l'Etat que dans les limites déterminées par les lois de finances.</p>
+                    <p>L'exercice court du 1er janvier au 31 décembre.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_3">
+                <div class="article-header">
+                    <h3>Article 3</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les lois de finances doivent également contenir toutes les dispositions relatives à l'assiette, au taux et aux modalités de recouvrement des impositions de toutes natures, qu'elles soient perçues par l'Etat ou affectées à d'autres organismes publics.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_4">
+                <div class="article-header">
+                    <h3>Article 4</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Aucune recette ne peut être liquidée ou encaissée, aucune dépense publique ne peut être engagée ou payée si elle n'a été au préalable autorisée par une loi de finances.</p>
+                    <p>Toutefois, des recettes non prévues par une loi de finances initiale peuvent être liquidées ou encaissées à conditions d'être autorisées par un décret pris en Conseil des ministres et régularisées dans la plus prochaine loi de finances.</p>
+                    <p>Lorsque des dispositions d'ordre législatif ou réglementaire doivent entraîner des charges nouvelles ou des pertes de ressources, aucun projet de loi ne peut être définitivement voté, aucun décret ne peut être signé tant que ces charges ou pertes de ressources n'ont pas été prévues, évaluées et soumises à l'avis conforme du ministre chargé des Finances.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_5">
+                <div class="article-header">
+                    <h3>Article 5</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Ont le caractère de lois de finances :</p>
+                    <ul>
+                        <li>la loi de finances de l'année ;</li>
+                        <li>les lois de finances rectificatives ;</li>
+                        <li>la loi de règlement.</li>
+                    </ul>
+                    <p>La loi de finances de l'année prévoit et autorise, pour chaque année civile, l'ensemble des ressources et des charges de l'Etat.</p>
+                    <p>Les lois de finances rectificatives modifient, en cours d'année, les dispositions de la loi de finances de l'année.</p>
+                    <p>La loi de règlement constate les résultats financiers de chaque année civile et rend compte de l'exécution du budget ainsi que de l'utilisation des crédits.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="group">
+            <h2>CHAPITRE 2 : RESSOURCES ET CHARGES DE L'ETAT</h2>
+            
+            <div class="article" id="Article_6">
+                <div class="article-header">
+                    <h3>Article 6</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les ressources et les charges de l'Etat sont constituées de recettes et de dépenses budgétaires ainsi que de ressources et de charges de trésorerie.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_7">
+                <div class="article-header">
+                    <h3>Article 7</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La loi de finances de l'année contient le budget de l'Etat pour l'année civile. Le budget décrit les recettes et les dépenses budgétaires autorisées par la loi de finances.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_8">
+                <div class="article-header">
+                    <h3>Article 8</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les recettes budgétaires de l'Etat comprennent :</p>
+                    <ul>
+                        <li>les impôts, les taxes ainsi que le produit des amendes ;</li>
+                        <li>les rémunérations des services rendus et redevances ;</li>
+                        <li>les fonds de concours, dons et legs ;</li>
+                        <li>les revenus des domaines et des participations financières ;</li>
+                        <li>les produits divers.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_9">
+                <div class="article-header">
+                    <h3>Article 9</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>L'autorisation de percevoir les impôts est annuelle. Le rendement des impôts dont le produit est affecté à l'Etat est évalué par les lois de finances.</p>
+                    <p>Les taxes parafiscales perçues dans un intérêt économique ou social au profit d'une personne morale de droit public ou privé autre que l'Etat, les collectivités décentralisées et les établissements publics administratifs sont établies par décret pris sur rapport du ministre chargé des finances et du ministre intéressé après avis de la Commission en charge des Affaires économiques et financières du Parlement.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_10">
+                <div class="article-header">
+                    <h3>Article 10</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le produit des amendes, des rémunérations pour services rendus, les revenus du domaine et des participations financières, les bénéfices des entreprises publiques et le montant des produits divers sont prévus et évalués par la loi de finances de l'année.</p>
+                    <p>En cours d'exercice, la rémunération des services rendus par l'Etat ne peut être établie et perçue que si elle est instituée par décret pris sur rapport du ministre en charge des Finances et du ministre intéressé.</p>
+                    <p>La perception de ces rémunérations, au-delà du 31 décembre, doit être prévue par la loi de finances.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_11">
+                <div class="article-header">
+                    <h3>Article 11</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les dépenses budgétaires de l'Etat comprennent les dépenses ordinaires et les dépenses en capital.</p>
+                    <p>Les dépenses ordinaires sont constituées :</p>
+                    <ul>
+                        <li>des dépenses de personnel ;</li>
+                        <li>des charges financières de la dette ;</li>
+                        <li>des dépenses d'acquisitions de biens et services ;</li>
+                        <li>des dépenses de transfert courant ;</li>
+                        <li>des dépenses en atténuation de recettes.</li>
+                    </ul>
+                    <p>Les dépenses en capital comprennent :</p>
+                    <ul>
+                        <li>les dépenses d'investissements exécutés par l'Etat ;</li>
+                        <li>les dépenses de transferts en capital.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_12">
+                <div class="article-header">
+                    <h3>Article 12</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les ressources de trésorerie de l'Etat comprennent :</p>
+                    <ul>
+                        <li>les produits provenant de la cession des actifs ;</li>
+                        <li>les produits des emprunts à court, moyen et long termes ;</li>
+                        <li>les dépôts sur les comptes des correspondants ;</li>
+                        <li>les remboursements de prêts et avances.</li>
+                    </ul>
+                    <p>Ces ressources de trésorerie sont évaluées et, s'agissant des emprunts à moyen et long termes, autorisées par une loi de finances.</p>
+                    <p>Pour les emprunts, seul le ministre en charge du Budget et des Finances a compétence pour négocier et signer les conventions ou les accords relatifs à la dette de l'Etat sans préjudice des prérogatives constitutionnelles du Président de la République en la matière. Il peut, en cas de besoin, déléguer ce pouvoir. Il est aussi le seul à pouvoir signer les conventions de garantie et aval octroyés par l'Etat à ses démembrements ou à des tiers.</p>
+                    <p>La variation nette de l'encours des emprunts à moyen et long termes, qui peuvent être émis, est plafonnée annuellement par une loi de finances.</p>
+                    <p>Les emprunts intérieurs à court terme sont émis par l'Etat, conformément aux autorisations générales données chaque année par les lois de finances.</p>
+                    <p>Les opérations de dépôt sont faites dans les conditions prévues par les règles de la comptabilité publique.</p>
+                    <p>Sauf disposition expresse d'une loi de finances, les titres d'emprunts publics sont libellés en monnaie nationale. Ils ne peuvent être utilisés ni comme moyen d'exonération fiscale ni comme moyen de paiement d'une dépense publique.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_13">
+                <div class="article-header">
+                    <h3>Article 13</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les charges de trésorerie de l'Etat comprennent :</p>
+                    <ul>
+                        <li>le remboursement des produits des emprunts extérieurs à court, moyen et long termes ;</li>
+                        <li>les remboursements d'emprunts intérieurs émis ;</li>
+                        <li>les retraits sur les comptes des correspondants ;</li>
+                        <li>les prêts et avances.</li>
+                    </ul>
+                    <p>Ces charges de trésorerie sont évaluées par une loi de finances.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_14">
+                <div class="article-header">
+                    <h3>Article 14</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Sauf dérogation accordée par décret, les organismes public autres que l'Etat sont tenus de déposer au Trésor public toutes leurs disponibilités.</p>
+                    <p>Le Trésor public est tenu d'assurer la liquidité de ces dépôts dans les conditions définies au moment du dépôt.</p>
+                </div>
+            </div>
+        </section>
+        
+<section class="group">
+            <h2>CHAPITRE 3 : NATURE ET PORTÉE DES AUTORISATIONS BUDGÉTAIRES</h2>
+            
+            <div class="article" id="Article_15">
+                <div class="article-header">
+                    <h3>Article 15</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les lois de finances répartissent les crédits budgétaires qu'elles ouvrent entre les différents ministères et institutions constitutionnelles.</p>
+                    <p>Les crédits ouverts dans le cadre des programmes sont mis à la disposition des ministres par le ministre chargé des Finances.</p>
+                    <p>A l'intérieur des ministères, ces crédits sont décomposés en programmes.</p>
+                    <p>Les crédits sont votés par programme.</p>
+                    <p>Les crédits ouverts par les lois de finances sont regroupés par programmes à l'intérieur de missions.</p>
+                    <p>Une mission comprend un ensemble de programmes concourant à une politique publique définie. Seul le Gouvernement peut créer, par décret, une mission.</p>
+                    <p>Un programme regroupe les crédits destinés à mettre en œuvre une action ou un ensemble cohérent d'actions relevant d'une politique publique clairement définie dans une perspective de moyen terme.</p>
+                    <p>Les crédits de chaque programme sont décomposés selon leur nature en crédits de :</p>
+                    <ul>
+                        <li>personnel ;</li>
+                        <li>biens et services ;</li>
+                        <li>investissements ;</li>
+                        <li>transferts.</li>
+                    </ul>
+                    <p>Un programme peut regrouper tout ou partie des crédits d'une direction, d'un service, d'un ensemble de directions ou de services d'un même ministère.</p>
+                    <p>A ces programmes sont associés des objectifs précis, définis en fonction de finalités d'intérêt général et des résultats attendus.</p>
+                    <p>Ces résultats, mesurés notamment par des indicateurs de performance, font l'objet d'évaluations régulières et donnent lieu à un rapport de performance élaboré en fin d'exercice par les ministères et par les institutions constitutionnelles concernés.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_16">
+                <div class="article-header">
+                    <h3>Article 16</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les responsables de programme sont nommés par décret sur proposition du ministre sectoriel dont ils relèvent. L'acte de nomination précise, le cas échéant, les conditions dans lesquelles les compétences d'ordonnateur leur sont déléguées, ainsi que les modalités de gestion du programme.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_17">
+                <div class="article-header">
+                    <h3>Article 17</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les crédits budgétaires non répartis en programmes sont répartis en dotations.</p>
+                    <p>Chaque dotation regroupe un ensemble de crédits globalisés destinés à couvrir des dépenses spécifiques auxquelles ne peuvent être directement associés des objectifs de politiques publiques ou des critères de performance.</p>
+                    <p>Font l'objet de dotations :</p>
+                    <ul>
+                        <li>les crédits destinés aux pouvoirs publics pour chacune des institutions constitutionnelles. Les crédits de la dotation de chaque institution constitutionnelle couvrent les dépenses de personnel, de biens et services, de transfert et d'investissement directement nécessaires à l'exercice de ses fonctions constitutionnelles ;</li>
+                        <li>les crédits globaux pour des dépenses accidentelles et imprévisibles ;</li>
+                        <li>les crédits destinés à couvrir les défauts de remboursement ou appel en garantie intervenus sur les comptes d'avances, de prêts, d'avals et de garanties ;</li>
+                        <li>les charges financières de la dette de l'Etat.</li>
+                    </ul>
+                    <p>Toutefois, les institutions qui gèrent des programmes opérationnels sont assujetties aux règles de gestion des programmes. Elles font l'objet d'évaluations régulières et donnent lieu à un rapport de performance élaboré en fin d'exercice.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_18">
+                <div class="article-header">
+                    <h3>Article 18</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les crédits répartis en programme ou en dotation et décomposés par nature conformément aux dispositions des articles 15 et 17 de la présente loi organique constituent des plafonds de dépense qui s'imposent dans l'exécution de la loi de finances aux ordonnateurs de crédits ainsi qu'aux comptables.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_19">
+                <div class="article-header">
+                    <h3>Article 19</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le budget général, les budgets annexes et les comptes spéciaux du Trésor sont présentés selon les classifications fonctionnelles, par programme, administrative et économique.</p>
+                    <p>La nomenclature budgétaire est construite dans le respect des articles 8, 15, 16, 18 et 19 alinéa 1 de la présente loi organique.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_20">
+                <div class="article-header">
+                    <h3>Article 20</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les crédits ouverts par les lois de finances sont constitués :</p>
+                    <ul>
+                        <li>de crédits de paiement, pour les dépenses de personnel, les acquisitions de biens et services et les dépenses de transfert ;</li>
+                        <li>d'autorisations d'engagement et de crédits de paiement, pour les dépenses d'investissement et les contrats de partenariats publics-privés.</li>
+                    </ul>
+                    <p>Les crédits de paiement constituent la limite supérieure des dépenses pouvant être ordonnancées ou payées en cours d'exercice.</p>
+                    <p>Les autorisations d'engagement constituent la limite supérieure des dépenses pouvant être juridiquement engagées en cours d'exercice pour la réalisation des investissements prévus par la loi de finances.</p>
+                    <p>Pour les opérations d'investissement, l'autorisation d'engagement couvre un ensemble de tranches opérationnelles annuelles destiné à être exécuté sur une période pluriannuelle à horizon glissant.</p>
+                    <p>Pour une opération d'investissement directement exécutée par l'Etat, l'autorisation d'engagement couvre une tranche constituant une unité individualisée formant un ensemble cohérent et de nature à être mise en service sans adjonction.</p>
+                    <p>Pour les contrats de partenariats publics-privés, par lesquels l'Etat confie à un tiers le financement, la réalisation, la maintenance ou l'exploitation d'opérations d'investissements d'intérêt public, les autorisations d'engagement couvrent, dès l'année où les contrats sont conclus, la totalité de l'engagement juridique.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_21">
+                <div class="article-header">
+                    <h3>Article 21</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Toutes les autorisations d'engagement et tous les crédits de paiement, ainsi que les plafonds d'autorisations d'emplois rémunérés par l'Etat sont limitatifs. Les autorisations d'engagement et les crédits de paiement sont ouverts à titre indicatif à l'intérieur d'un même programme.</p>
+                    <p>Il est interdit de transférer des crédits d'investissement au fonctionnement.</p>
+                    <p>Les créations et transformations d'emplois sont prévues par une loi de finances.</p>
+                    <p>Par exception, des transformations d'emplois peuvent être opérées par décret pris en Conseil des ministres.</p>
+                    <p>Ces transformations d'emplois, les recrutements, les avancements et les modifications de rémunérations ne peuvent être décidés s'ils sont de nature à provoquer un dépassement des crédits de paiement annuels préalablement ouverts.</p>
+                    <p>Si ces transformations ont une incidence sur la loi de finances initiale, elles doivent être approuvées par une loi de finances rectificative ou, à défaut, par la loi de règlement.</p>
+                    <p>Sauf dispositions spéciales d'une loi de finances prévoyant un engagement par anticipation sur les crédits de l'année suivante, les dépenses sur crédits limitatifs ne peuvent être engagées et ordonnancées que dans la limite des crédits ouverts.</p>
+                    <p>Par exception aux dispositions de l'alinéa précédent du présent article, les crédits relatifs aux charges financières de l'Etat sont évaluatifs. Ces crédits évaluatifs s'imputent, au besoin, au-delà de la dotation qui les concerne.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="group">
+            <h2>SECTION 2 : MODIFICATION BUDGÉTAIRE</h2>
+            
+            <div class="article" id="Article_22">
+                <div class="article-header">
+                    <h3>Article 22</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Des transferts et des virements de crédits peuvent, en cours d'exercice, modifier la répartition des crédits budgétaires entre programmes ou entre dotations ou même à l'intérieur d'un même programme ou d'une même dotation.</p>
+                    <p>Les transferts de crédits modifient la répartition des crédits budgétaires entre programmes de ministères distincts ou entre dotations d'institutions distinctes. Ils sont autorisés par décret pris en Conseil des ministres sur rapport conjoint du ministre en charge des Finances et des ministres ou des présidents d'institutions concernés.</p>
+                    <p>Les virements de crédits modifient la répartition des crédits budgétaires entre programmes d'un même ministère. S'ils ne changent pas la nature de la dépense, ils sont pris par arrêté interministériel du ministre intéressé et du ministre en charge des Finances. Dans le cas contraire, ils sont autorisés par décret sur rapport conjoint du ministre chargé des Finances et du ministre concerné.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_23">
+                <div class="article-header">
+                    <h3>Article 23</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>A l'intérieur d'une même dotation, les ordonnateurs peuvent, en cours d'exécution, modifier la nature des crédits pour les utiliser, s'ils sont libres d'emploi dans les cas ci-après :</p>
+                    <ul>
+                        <li>les crédits de personnel pour majorer les crédits de biens et services, de transfert ou d'investissement ;</li>
+                        <li>les crédits de biens et services pour majorer les crédits d'investissement.</li>
+                    </ul>
+                    <p>Le montant annuel cumulé des virements et transferts affectant un programme ne peut dépasser dix pour cent des crédits votés de ce programme ou de cette dotation.</p>
+                    <p>Si en cours d'exercice, un programme laissant apparaître des crédits disponibles et sans objet venait à être achevé, les crédits disponibles sur ce programme peuvent être virés à un autre programme du même ministère. Cette opération est autorisée par arrêté conjoint du ministre chargé des Finances et du ministre concerné.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_24">
+                <div class="article-header">
+                    <h3>Article 24</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La répartition par programme des crédits globaux pour des dépenses accidentelles et imprévisibles est autorisée par décret. Aucune dépense ne peut être directement imputée sur ces crédits globaux avant cette répartition.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_25">
+                <div class="article-header">
+                    <h3>Article 25</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>En cas d'urgence, des décrets d'avance, pris après information de la Commission en charge des finances du Parlement, peuvent ouvrir des crédits supplémentaires sans affecter l'équilibre budgétaire défini par la loi de finances. A cette fin, les décrets d'avance procèdent à l'annulation de crédits ou constatent des recettes supplémentaires de même montant. Le montant cumulé des crédits ainsi ouverts ne peut excéder 1 % des crédits ouverts par la loi de finances de l'année.</p>
+                    <p>En cas d'urgence et de nécessité impérieuse d'intérêt national, des crédits supplémentaires peuvent être ouverts par décret d'avance pris en Conseil des ministres. Le Parlement en est immédiatement informé.</p>
+                    <p>Dans les deux cas, un projet de loi de finances portant ratification de ces crédits est déposé immédiatement ou à l'ouverture de la plus proche session du Parlement.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_26">
+                <div class="article-header">
+                    <h3>Article 26</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Sous réserve des dispositions concernant les autorisations d'engagement, les crédits ouverts et les plafonds des autorisations d'emplois fixés au titre d'une année ne créent aucun droit au titre des années suivantes.</p>
+                    <p>Les autorisations d'engagement, au sens de l'article 20 de la présente loi organique disponibles sur un programme à la fin de l'année peuvent être reportées sur le même programme par décret pris en Conseil des ministres, majorant à une concurrence les crédits de l'année suivante.</p>
+                    <p>Les crédits de paiement ne peuvent être reportés.</p>
+                    <p>Par exception, les crédits de paiement relatifs aux dépenses d'investissement disponibles sur un programme à la fin de l'année peuvent être reportés sur le même programme dans la mesure où les reports de crédits retenus n'affectent pas l'équilibre budgétaire tel que défini à l'article 44 de la présente loi organique.</p>
+                    <p>Les reports s'effectuent par décret pris en Conseil des ministres, en majoration des crédits de paiement pour les investissements de l'année suivante, sous réserve de la disponibilité des financements correspondants.</p>
+                    <p>Ce décret, qui ne peut être pris qu'après clôture des comptes de l'exercice précédent, à la fin de la période complémentaire, est consécutif à un rapport du ministre chargé des Finances. Ce rapport évalue et justifie les ressources permettant de couvrir le financement des reports, sans dégradation du solde du budget autorisé de l'année en cours.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_27">
+                <div class="article-header">
+                    <h3>Article 27</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Des crédits budgétaires peuvent être annulés, par arrêté du ministre en charge des Finances en vertu de son pouvoir de régulation, après information du ministre sectoriel, lorsqu'ils sont devenus sans objet ou pour prévenir une détérioration des équilibres budgétaire et financier de la loi de Finances.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_28">
+                <div class="article-header">
+                    <h3>Article 28</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les décrets et arrêtés relatifs aux mouvements de crédits prévus aux articles 22 à 26 de la présente loi organique et qui affectent la spécialisation des crédits, sont transmis, dès leur signature, au Parlement pour ratification dans la plus prochaine loi de finances relative à l'exercice concerné et à la juridiction financière pour information.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="group">
+            <h2>CHAPITRE 4 : AFFECTATIONS BUDGÉTAIRES</h2>
+            
+            <div class="article" id="Article_29">
+                <div class="article-header">
+                    <h3>Article 29</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le budget de l'Etat comprend :</p>
+                    <ul>
+                        <li>le budget général ;</li>
+                        <li>les budgets annexes ;</li>
+                        <li>les comptes spéciaux du Trésor.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_30">
+                <div class="article-header">
+                    <h3>Article 30</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Sous réserve des dispositions concernant les budgets annexes et les comptes spéciaux du Trésor, les recettes et les dépenses budgétaires de l'Etat sont retracées, sous forme de recettes et de dépenses, dans le budget général.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_31">
+                <div class="article-header">
+                    <h3>Article 31</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Il est fait recette du montant intégral des produits, sans contraction entre les recettes et les dépenses. L'ensemble des recettes assurant l'exécution de l'ensemble des dépenses, toutes les dépenses et toutes les recettes sont imputées au budget général.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_32">
+                <div class="article-header">
+                    <h3>Article 32</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Par dérogation aux dispositions de l'article 31 de la présente loi organique, des procédures particulières peuvent permettre d'assurer une affectation au sein du budget général.</p>
+                    <p>Ces procédures sont celles des fonds de concours et des rétablissements de crédits.</p>
+                    <p>Les fonds de concours sont constitués par :</p>
+                    <ul>
+                        <li>des contributions volontaires versées par des personnes morales ou physiques, et notamment par les partenaires techniques et financiers, pour concourir avec ceux de l'Etat à des dépenses d'intérêt public ;</li>
+                        <li>des legs et des donations attribués à l'Etat.</li>
+                    </ul>
+                    <p>Les fonds de concours sont portés en recettes au budget général et un crédit supplémentaire de même montant est ouvert sur le programme concerné par arrêté du ministre en charge des Finances. L'emploi des fonds de concours doit être conforme à l'intention de la partie versante ou du donateur.</p>
+                    <p>Les rétablissements de crédits sont constitués par :</p>
+                    <ul>
+                        <li>les recettes provenant de remboursements de dépenses effectuées au titre d'un exercice antérieur ;</li>
+                        <li>les recettes provenant de remboursements de dépenses effectuées au titre de l'exercice en cours.</li>
+                    </ul>
+                    <p>Les rétablissements de crédits sont portés en recettes au budget général et un crédit supplémentaire de même montant est ouvert sur le programme concerné par arrêté du ministre en charge des Finances.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_33">
+                <div class="article-header">
+                    <h3>Article 33</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Des budgets annexes peuvent être créés par une loi de finances pour retracer les recettes et les dépenses de services de l'Etat dotés de l'autonomie financière.</p>
+                    <p>Le budget annexe est présenté en équilibre. Il est soumis aux mêmes règles de présentation et de gestion que le budget général.</p>
+                    <p>Le résultat du budget annexe est repris dans le budget général.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_34">
+                <div class="article-header">
+                    <h3>Article 34</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Des comptes spéciaux du Trésor peuvent être créés par une loi de finances pour retracer les opérations de trésorerie que l'Etat effectue pour le compte de tiers ou pour retracer des opérations financières de l'Etat ne relevant pas du budget général.</p>
+                    <p>Les comptes spéciaux du Trésor sont les suivants :</p>
+                    <ul>
+                        <li>les comptes d'affectation spéciale ;</li>
+                        <li>les comptes de commerce ;</li>
+                        <li>les comptes d'opérations monétaires ;</li>
+                        <li>les comptes de prêts ;</li>
+                        <li>les comptes d'avances ;</li>
+                        <li>les comptes de garantie.</li>
+                    </ul>
+                    <p>Les comptes spéciaux du Trésor sont présentés en équilibre. Ils sont soumis aux mêmes règles de présentation et de gestion que le budget général.</p>
+                    <p>Le résultat des comptes spéciaux du Trésor est repris dans le budget général.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_35">
+                <div class="article-header">
+                    <h3>Article 35</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les comptes d'affectation spéciale retracent les opérations financières de l'Etat dont l'affectation est définie par la loi.</p>
+                    <p>Les comptes de commerce retracent les opérations à caractère industriel ou commercial effectuées par l'Etat.</p>
+                    <p>Les comptes d'opérations monétaires retracent les opérations de change et les opérations sur l'or.</p>
+                    <p>Les comptes de prêts retracent les opérations de prêts consentis par l'Etat.</p>
+                    <p>Les comptes d'avances retracent les opérations d'avances consenties par l'Etat.</p>
+                    <p>Les comptes de garantie retracent les opérations de garantie accordées par l'Etat.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_36">
+                <div class="article-header">
+                    <h3>Article 36</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les budgets annexes et les comptes spéciaux du Trésor sont créés par une loi de finances. Ils peuvent être modifiés ou supprimés par une loi de finances.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_37">
+                <div class="article-header">
+                    <h3>Article 37</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les budgets annexes et les comptes spéciaux du Trésor sont rattachés pour ordre au budget général.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_38">
+                <div class="article-header">
+                    <h3>Article 38</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les crédits des budgets annexes et des comptes spéciaux du Trésor sont limitatifs.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="group">
+            <h2>CHAPITRE 5 : RÈGLES DE GESTION BUDGÉTAIRE</h2>
+            
+            <div class="article" id="Article_39">
+                <div class="article-header">
+                    <h3>Article 39</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>L'exécution du budget général, des budgets annexes et des comptes spéciaux du Trésor est soumise au principe de séparation des fonctions d'ordonnateur et de comptable.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_40">
+                <div class="article-header">
+                    <h3>Article 40</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les ordonnateurs sont les autorités habilitées à engager, à liquider et à ordonnancer les dépenses, ainsi qu'à émettre les titres de recettes.</p>
+                    <p>Les ordonnateurs sont :</p>
+                    <ul>
+                        <li>le Président de la République ;</li>
+                        <li>le Premier ministre ;</li>
+                        <li>les ministres ;</li>
+                        <li>les présidents des institutions constitutionnelles ;</li>
+                        <li>les responsables de programme ;</li>
+                        <li>les autres autorités désignées par décret.</li>
+                    </ul>
+                    <p>Les ordonnateurs peuvent déléguer leur signature.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_41">
+                <div class="article-header">
+                    <h3>Article 41</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les comptables publics sont les fonctionnaires habilités à effectuer des opérations de recettes et de dépenses pour le compte de l'Etat.</p>
+                    <p>Les comptables publics sont nommés par le ministre chargé des Finances.</p>
+                    <p>Les comptables publics sont personnellement et pécuniairement responsables des opérations qu'ils effectuent. Ils sont soumis aux contrôles de l'Inspection générale des Finances et de la Cour des comptes.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_42">
+                <div class="article-header">
+                    <h3>Article 42</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les ordonnateurs et les comptables publics sont tenus de se conformer aux dispositions de la présente loi organique et aux textes pris pour son application.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_43">
+                <div class="article-header">
+                    <h3>Article 43</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les ordonnateurs ne peuvent engager des dépenses que dans la limite des crédits ouverts et disponibles.</p>
+                    <p>Les comptables publics ne peuvent payer des dépenses que sur ordre des ordonnateurs et dans la limite des crédits ouverts et disponibles.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_44">
+                <div class="article-header">
+                    <h3>Article 44</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>L'exécution des recettes et des dépenses publiques est effectuée selon les principes de l'unité de caisse et de la séparation des ordonnateurs et des comptables.</p>
+                    <p>Le principe de l'unité de caisse implique que toutes les recettes perçues par les comptables publics sont versées au Trésor et que toutes les dépenses sont payées par le Trésor.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_45">
+                <div class="article-header">
+                    <h3>Article 45</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les opérations de recettes et de dépenses sont effectuées selon les procédures et dans les formes prévues par la réglementation en vigueur.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_46">
+                <div class="article-header">
+                    <h3>Article 46</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les ordonnateurs et les comptables publics sont tenus de rendre compte de leur gestion.</p>
+                    <p>Les comptables publics sont tenus de produire des comptes annuels.</p>
+                    <p>Les ordonnateurs sont tenus de produire un rapport annuel de performance.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_47">
+                <div class="article-header">
+                    <h3>Article 47</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les lois de finances peuvent prévoir des procédures dérogatoires aux règles de gestion budgétaire pour tenir compte de situations particulières.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="group">
+            <h2>CHAPITRE 6 : CONTRÔLE DE L'EXÉCUTION DE LA LOI DE FINANCES</h2>
+            
+            <div class="article" id="Article_48">
+                <div class="article-header">
+                    <h3>Article 48</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>L'exécution de la loi de finances est contrôlée par le Parlement et par la Cour des comptes.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_49">
+                <div class="article-header">
+                    <h3>Article 49</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Parlement contrôle l'exécution de la loi de finances par le biais de la commission en charge des finances et de la Cour des comptes.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_50">
+                <div class="article-header">
+                    <h3>Article 50</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour des comptes assiste le Parlement et le Gouvernement dans le contrôle de l'exécution des lois de finances.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_51">
+                <div class="article-header">
+                    <h3>Article 51</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour des comptes vérifie la régularité des recettes et des dépenses décrites dans les comptes de l'Etat et s'assure du bon emploi des crédits, fonds et valeurs gérés par les services de l'Etat.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_52">
+                <div class="article-header">
+                    <h3>Article 52</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La Cour des comptes produit un rapport annuel sur l'exécution de la loi de finances qu'elle adresse au Président de la République, au Premier ministre et au Président de l'Assemblée nationale.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_53">
+                <div class="article-header">
+                    <h3>Article 53</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Gouvernement présente au Parlement, dans les six mois de la clôture de l'exercice, un projet de loi de règlement de l'exercice accompagné du rapport de la Cour des comptes.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_54">
+                <div class="article-header">
+                    <h3>Article 54</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La loi de règlement constate le montant définitif des recettes et des dépenses du budget, ainsi que le résultat budgétaire qui en découle.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_55">
+                <div class="article-header">
+                    <h3>Article 55</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La loi de règlement arrête le compte de résultat et le bilan de l'Etat.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_56">
+                <div class="article-header">
+                    <h3>Article 56</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La loi de règlement peut comporter des dispositions de régularisation des crédits.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_57">
+                <div class="article-header">
+                    <h3>Article 57</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La loi de règlement est votée par le Parlement dans les conditions prévues par la Constitution.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="group">
+            <h2>CHAPITRE 7 : DISPOSITIONS DIVERSES ET TRANSITOIRES</h2>
+            
+            <div class="article" id="Article_58">
+                <div class="article-header">
+                    <h3>Article 58</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les dispositions de la présente loi organique s'appliquent aux lois de finances et aux lois de règlement.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_59">
+                <div class="article-header">
+                    <h3>Article 59</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les dispositions de la présente loi organique entrent en vigueur à compter de la loi de finances pour l'exercice 2015.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_60">
+                <div class="article-header">
+                    <h3>Article 60</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les dispositions des lois de finances antérieures à l'entrée en vigueur de la présente loi organique restent applicables jusqu'à leur abrogation expresse.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_61">
+                <div class="article-header">
+                    <h3>Article 61</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le Gouvernement est autorisé à prendre, par décret, toutes les mesures nécessaires à l'application de la présente loi organique.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_62">
+                <div class="article-header">
+                    <h3>Article 62</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La présente loi organique sera publiée au Journal officiel de la République de Côte d'Ivoire et exécutée comme loi de l'Etat.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="group">
+            <h2>CHAPITRE 8 : DISPOSITIONS FINALES</h2>
+            
+            <div class="article" id="Article_63">
+                <div class="article-header">
+                    <h3>Article 63</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Sont abrogées toutes dispositions contraires à la présente loi organique.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_64">
+                <div class="article-header">
+                    <h3>Article 64</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La présente loi organique sera révisée conformément aux dispositions de la Constitution.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="group">
+            <h2>TITRE III : DISPOSITIONS RELATIVES AUX COLLECTIVITÉS TERRITORIALES</h2>
+            
+            <div class="article" id="Article_65">
+                <div class="article-header">
+                    <h3>Article 65</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les dispositions de la présente loi organique s'appliquent aux collectivités territoriales dans les conditions prévues par le code des collectivités territoriales.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_66">
+                <div class="article-header">
+                    <h3>Article 66</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les budgets des collectivités territoriales sont établis et exécutés dans le respect des principes budgétaires définis par la présente loi organique.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_67">
+                <div class="article-header">
+                    <h3>Article 67</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les collectivités territoriales présentent leurs budgets en équilibre réel.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_68">
+                <div class="article-header">
+                    <h3>Article 68</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les budgets des collectivités territoriales sont exécutés selon les règles de la comptabilité publique.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_69">
+                <div class="article-header">
+                    <h3>Article 69</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les collectivités territoriales sont soumises au contrôle de la Cour des comptes.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_70">
+                <div class="article-header">
+                    <h3>Article 70</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les collectivités territoriales rendent compte de leur gestion dans les conditions prévues par le code des collectivités territoriales.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="group">
+            <h2>TITRE IV : DISPOSITIONS RELATIVES AUX ÉTABLISSEMENTS PUBLICS</h2>
+            
+            <div class="article" id="Article_71">
+                <div class="article-header">
+                    <h3>Article 71</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les dispositions de la présente loi organique s'appliquent aux établissements publics dans les conditions prévues par leurs textes constitutifs.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_72">
+                <div class="article-header">
+                    <h3>Article 72</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les budgets des établissements publics sont établis et exécutés dans le respect des principes budgétaires définis par la présente loi organique.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_73">
+                <div class="article-header">
+                    <h3>Article 73</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les établissements publics présentent leurs budgets en équilibre réel.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_74">
+                <div class="article-header">
+                    <h3>Article 74</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les budgets des établissements publics sont exécutés selon les règles de la comptabilité publique.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_75">
+                <div class="article-header">
+                    <h3>Article 75</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les établissements publics sont soumis au contrôle de la Cour des comptes.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_76">
+                <div class="article-header">
+                    <h3>Article 76</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les établissements publics rendent compte de leur gestion dans les conditions prévues par leurs textes constitutifs.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="group">
+            <h2>TITRE V : DISPOSITIONS RELATIVES AUX ENTREPRISES PUBLIQUES</h2>
+            
+            <div class="article" id="Article_77">
+                <div class="article-header">
+                    <h3>Article 77</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les dispositions de la présente loi organique s'appliquent aux entreprises publiques dans les conditions prévues par le code de commerce.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_78">
+                <div class="article-header">
+                    <h3>Article 78</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les entreprises publiques sont soumises aux règles de la comptabilité commerciale.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_79">
+                <div class="article-header">
+                    <h3>Article 79</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les entreprises publiques sont soumises au contrôle de la Cour des comptes.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_80">
+                <div class="article-header">
+                    <h3>Article 80</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les entreprises publiques rendent compte de leur gestion dans les conditions prévues par le code de commerce.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="group">
+            <h2>TITRE VI : DISPOSITIONS RELATIVES AUX PARTENARIATS PUBLIC-PRIVÉ</h2>
+            
+            <div class="article" id="Article_81">
+                <div class="article-header">
+                    <h3>Article 81</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les contrats de partenariat public-privé sont régis par les dispositions de la présente loi organique et par les textes particuliers qui les régissent.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_82">
+                <div class="article-header">
+                    <h3>Article 82</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les contrats de partenariat public-privé sont conclus dans le respect des principes de transparence, de concurrence et d'égalité de traitement.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_83">
+                <div class="article-header">
+                    <h3>Article 83</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les contrats de partenariat public-privé sont soumis à l'approbation préalable du ministre chargé des Finances.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_84">
+                <div class="article-header">
+                    <h3>Article 84</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les engagements financiers de l'Etat au titre des contrats de partenariat public-privé sont inscrits au budget de l'Etat.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_85">
+                <div class="article-header">
+                    <h3>Article 85</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les contrats de partenariat public-privé sont soumis au contrôle de la Cour des comptes.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="group">
+            <h2>TITRE VII : DISPOSITIONS RELATIVES À LA GESTION DE LA DETTE PUBLIQUE</h2>
+            
+            <div class="article" id="Article_86">
+                <div class="article-header">
+                    <h3>Article 86</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La gestion de la dette publique est régie par les dispositions de la présente loi organique et par les textes particuliers qui la régissent.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_87">
+                <div class="article-header">
+                    <h3>Article 87</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La dette publique comprend la dette de l'Etat, la dette des collectivités territoriales et la dette des établissements publics.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_88">
+                <div class="article-header">
+                    <h3>Article 88</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La dette de l'Etat est gérée par le ministre chargé des Finances.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_89">
+                <div class="article-header">
+                    <h3>Article 89</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La dette de l'Etat est inscrite au budget de l'Etat.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_90">
+                <div class="article-header">
+                    <h3>Article 90</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La dette de l'Etat est soumise au contrôle de la Cour des comptes.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="group">
+            <h2>TITRE VIII : DISPOSITIONS RELATIVES AUX FINANCES DES PARTIS POLITIQUES</h2>
+            
+            <div class="article" id="Article_91">
+                <div class="article-header">
+                    <h3>Article 91</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le financement des partis politiques est régi par les dispositions de la présente loi organique et par les textes particuliers qui le régissent.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_92">
+                <div class="article-header">
+                    <h3>Article 92</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les partis politiques bénéficient d'un financement public.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_93">
+                <div class="article-header">
+                    <h3>Article 93</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le financement public des partis politiques est inscrit au budget de l'Etat.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_94">
+                <div class="article-header">
+                    <h3>Article 94</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les partis politiques sont soumis au contrôle de la Cour des comptes.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_95">
+                <div class="article-header">
+                    <h3>Article 95</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les partis politiques rendent compte de leur gestion financière dans les conditions prévues par la loi.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="group">
+            <h2>TITRE IX : DISPOSITIONS RELATIVES AUX FINANCES DES ORGANISATIONS SYNDICALES</h2>
+            
+            <div class="article" id="Article_96">
+                <div class="article-header">
+                    <h3>Article 96</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Le financement des organisations syndicales est régi par les dispositions de la présente loi organique et par les textes particuliers qui le régissent.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_97">
+                <div class="article-header">
+                    <h3>Article 97</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les organisations syndicales bénéficient d'un financement public.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="group">
+            <h2>TITRE VII : DISPOSITIONS TRANSITOIRES ET FINALES</h2>
+            
+            <div class="article" id="Article_98">
+                <div class="article-header">
+                    <h3>Article 98</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Les modalités et les délais d'application des dispositions de la présente loi organique sont précisés par des textes législatifs et réglementaires, sur les matières concernant :</p>
+                    <ul>
+                        <li>la déconcentration de la fonction d'ordonnateur principal ;</li>
+                        <li>les programmes et les dotations tels que prévus aux articles 15, 16, 17, 18 et 19 de la présente loi organique et des annexes y relatives dans les articles 45, 46 et 50 ;</li>
+                        <li>la programmation pluriannuelle des dépenses, telle que prévue à l'article 54 de la présente loi organique ;</li>
+                        <li>les tableaux matriciels croisés prévus au 8° de l'article 45 de la présente loi organique ;</li>
+                        <li>les règles et procédures découlant du principe de la constatation des droits et obligations régissant la comptabilité générale prévus à l'article 74 de la présente loi organique.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_99">
+                <div class="article-header">
+                    <h3>Article 99</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>Toutes dispositions antérieures contraires à la présente loi sont abrogées, notamment celles de la loi organique n° 59-249 du 31 décembre 1959 relative aux lois de finances, modifiée et complétée par les lois n° 60-434 du 24 décembre 1960, n° 67-588 du 31 décembre 1967 et n° 70-214 du 24 mars 1970.</p>
+                </div>
+            </div>
+            
+            <div class="article" id="Article_100">
+                <div class="article-header">
+                    <h3>Article 100</h3>
+                    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+                </div>
+                <div class="article-content">
+                    <p>La présente loi sera publiée au Journal officiel de la République de Côte d'Ivoire et exécutée comme loi de l'Etat.</p>
+                    <p>Fait à Abidjan, le 5 juin 2014.</p>
+                    <p>Alassane OUATTARA</p>
+                </div>
+            </div>
+        </section>
+</main>
+
+<button id="tocFloatBtn" title="Sommaire" class="btn"><i class="fa-solid fa-book"></i></button>
+<div id="tocOverlay"></div>
+<aside id="tocPanel">
+  <header>
+    <h3><i class="fa-solid fa-scale-balanced"></i> Sommaire</h3>
+  </header>
+  <div class="toc-list" id="tocList"></div>
+</aside>
+
+<div id="voiceBar" role="region" aria-label="Lecteur vocal">
+  <button id="vPrev" title="Article précédent"><i class="fas fa-backward"></i></button>
+  <button id="vPlay" title="Lire / Reprendre"><i class="fas fa-play"></i></button>
+  <button id="vPause" title="Pause"><i class="fas fa-pause"></i></button>
+  <button id="vStop" title="Arrêter"><i class="fas fa-stop"></i></button>
+  <button id="vNext" title="Article suivant"><i class="fas fa-forward"></i></button>
+  <span class="now" id="vNow">—</span>
+</div>
+
+<div id="fsOverlay">
+  <div id="fsHeader">
+    <button id="fsClose" title="Fermer"><i class="fas fa-xmark"></i></button>
+    <div class="ttl" id="fsTitle"></div>
+    <button id="fsPlay" title="Lecture"><i class="fas fa-play"></i></button>
+  </div>
+  <div id="fsBody">
+    <article class="article">
+      <div class="article-content" id="fsContent"></div>
+    </article>
+  </div>
+  <button id="fsNavPrev" title="Précédent"><i class="fas a-chevron-left"></i></button>
+  <button id="fsNavNext" title="Suivant"><i class="fas fa-chevron-right"></i></button>
+</div>
+
+<script>
+// Fonction pour initialiser la fonctionnalité de recherche
+function initSearchFeature() {
+    const searchBtn = document.createElement('button');
+    searchBtn.className = 'btn';
+    searchBtn.id = 'searchBtn';
+    searchBtn.title = 'Rechercher';
+    searchBtn.innerHTML = '<i class="fas fa-search"></i>';
+    document.querySelector('.control-buttons').appendChild(searchBtn);
+    
+    const searchInterface = document.createElement('div');
+    searchInterface.id = 'searchInterface';
+    searchInterface.style.cssText = `
+        position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+        width: calc(100% - 40px); max-width: 550px; background: #fff;
+        padding: 10px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        z-index: 1800; display: none; align-items: center; gap: 5px; transition: .25s ease;
+    `;
+    searchInterface.innerHTML = `
+        <input type="text" id="searchInput" placeholder="Rechercher..." style="flex-grow: 1; padding: 8px; border: 1px solid #d6e6d6; border-radius: 5px;">
+        <button id="searchPrevBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-up"></i></button>
+        <button id="searchNextBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-down"></i></button>
+        <span id="searchResultsCount" style="flex-shrink: 0; padding: 0 5px; min-width: 40px; text-align: center;"></span>
+        <button id="closeSearchBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-times"></i></button>
+    `;
+    document.body.appendChild(searchInterface);
+
+    let searchResults = [];
+    let currentSearchIndex = -1;
+    let originalContents = new Map();
+
+    function performSearch() {
+        const searchTerm = document.getElementById('searchInput').value.trim();
+        if (!originalContents.size) {
+            document.querySelectorAll('.article-content, h2, h3').forEach(el => originalContents.set(el, el.innerHTML));
+        }
+        originalContents.forEach((content, el) => el.innerHTML = content);
+        searchResults = [];
+        currentSearchIndex = -1;
+        if (!searchTerm) { updateSearchUI(); return; }
+
+        const regex = new RegExp(searchTerm.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&'), 'gi');
+        originalContents.forEach((content, element) => {
+            element.innerHTML = content.replace(regex, match => `<mark>${match}</mark>`);
+        });
+        searchResults = Array.from(document.querySelectorAll('mark'));
+        if (searchResults.length > 0) navigateResults(true, false);
+        updateSearchUI();
+        window.dispatchEvent(new Event('reflowArticles'));
+    }
+
+    function navigateResults(isNext, shouldWrap = true) {
+        if (!searchResults.length) return;
+        searchResults.forEach(mark => mark.style.backgroundColor = '');
+        if (shouldWrap) {
+            currentSearchIndex = isNext ? (currentSearchIndex + 1) % searchResults.length : (currentSearchIndex - 1 + searchResults.length) % searchResults.length;
+        } else {
+            currentSearchIndex = 0;
+        }
+        const currentMark = searchResults[currentSearchIndex];
+        currentMark.style.backgroundColor = 'var(--accent)';
+        currentMark.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        updateSearchUI();
+    }
+
+    function updateSearchUI() {
+        document.getElementById('searchResultsCount').textContent = searchResults.length > 0 ? `${currentSearchIndex + 1}/${searchResults.length}` : '0/0';
+    }
+    
+    function resetSearch() {
+        originalContents.forEach((content, el) => el.innerHTML = content);
+        originalContents.clear();
+        document.getElementById('searchInput').value = '';
+        searchResults = []; currentSearchIndex = -1;
+        updateSearchUI();
+    }
+
+    searchBtn.addEventListener('click', () => {
+        const isVisible = searchInterface.style.display === 'flex';
+        searchInterface.style.display = isVisible ? 'none' : 'flex';
+        if (isVisible) resetSearch(); else document.getElementById('searchInput').focus();
+    });
+    document.getElementById('searchInput').addEventListener('input', performSearch);
+    document.getElementById('searchNextBtn').addEventListener('click', () => navigateResults(true));
+    document.getElementById('searchPrevBtn').addEventListener('click', () => navigateResults(false));
+    document.getElementById('closeSearchBtn').addEventListener('click', () => {
+        searchInterface.style.display = 'none';
+        resetSearch();
+    });
+}
+
+// Fonction pour transformer les énumérations en listes ordonnées
+(function(){
+  function extractEnumeration(s){
+    const re = /(\d{1,2})(?:\s*°)?(?:\))?(?:\.)?\s+/g; const matches = []; let m;
+    while ((m = re.exec(s))){ const idx=m.index; const prev = idx>0 ? s.charAt(idx-1) : " "; if (/\d/.test(prev)) continue; matches.push({num:parseInt(m[1],10), start:idx, end:re.lastIndex}); }
+    if (matches.length < 2) return null;
+    for (let i=1;i<matches.length;i++){ if (matches[i].num !== matches[i-1].num + 1) return null; }
+    const intro = s.slice(0, matches[0].start).trim().replace(/[:;,\-]\s*$/, ""); const items = [];
+    for (let i=0;i<matches.length;i++){ const st=matches[i].end; const en=(i+1<matches.length)?matches[i+1].start:s.length; let seg = s.slice(st,en).trim().replace(/^[;,:-]\s*/,"").replace(/[;,\s]+$/,""); items.push(seg); }
+    return {intro, start: matches[0].num, items};
+  }
+  function transformNode(node){
+    if (node.querySelector('ol')) return;
+    const plain = node.textContent.replace(/\s+/g,' ').trim(); const res = extractEnumeration(plain); if (!res) return;
+    const frag = document.createElement('div'); if (res.intro){ const p=document.createElement('p'); p.textContent=res.intro; frag.appendChild(p); }
+    const ol=document.createElement('ol'); if (res.start!==1) ol.setAttribute('start', String(res.start));
+    res.items.forEach(it=>{ const li=document.createElement('li'); li.textContent=it; ol.appendChild(li); });
+    frag.appendChild(ol); node.innerHTML=frag.innerHTML;
+  }
+  function run(){ document.querySelectorAll('.article-content').forEach(transformNode); }
+  window.addEventListener('DOMContentLoaded', ()=>setTimeout(run, 60));
+  window.addEventListener('reflowArticles', run);
+})();
+
+// Fonction pour construire la table des matières
+(function(){
+  const $ = s=>document.querySelector(s);
+  const $$ = s=>Array.from(document.querySelectorAll(s));
+  function buildTOC(){
+    const toc = document.getElementById('tocList'); if(!toc) return; toc.innerHTML='';
+    $$('.group').forEach((grp, gi)=>{
+      const gh = grp.querySelector('h2')?.textContent.trim() || `Groupe ${gi+1}`;
+      const gl = document.createElement('a'); gl.textContent=gh; gl.href='#'; gl.style.fontWeight='700';
+      gl.addEventListener('click', e=>{ e.preventDefault(); grp.scrollIntoView({behavior:'smooth', block:'start'}); hideTOC(); });
+      toc.appendChild(gl);
+      const sub = document.createElement('div'); sub.className='toc-sub';
+      grp.querySelectorAll('.article').forEach((art, ai)=>{
+        const at = art.querySelector('.article-header h3')?.textContent.trim() || `Article ${ai+1}`;
+        const a = document.createElement('a'); a.textContent=at; a.href='#';
+        a.addEventListener('click', e=>{ e.preventDefault(); art.scrollIntoView({behavior:'smooth', block:'start'}); hideTOC(); });
+        sub.appendChild(a);
+        if (!art.querySelector('.open-fs')){
+          const btn = document.createElement('button'); btn.className='open-fs'; btn.innerHTML='<i class="fas fa-maximize"></i>';
+          btn.title='Plein écran'; btn.addEventListener('click', ()=>openFS(artIndex(art))); art.querySelector('.article-header')?.appendChild(btn);
+        }
+      });
+      toc.appendChild(sub);
+    });
+  }
+  function showTOC(){ document.getElementById('tocOverlay').classList.add('show'); document.getElementById('tocPanel').classList.add('open'); }
+  function hideTOC(){ document.getElementById('tocOverlay').classList.remove('show'); document.getElementById('tocPanel').classList.remove('open'); }
+  document.addEventListener('DOMContentLoaded', ()=>{
+    const floatBtn = document.getElementById('tocFloatBtn');
+    if (floatBtn) floatBtn.addEventListener('click', showTOC);
+    const overlay = document.getElementById('tocOverlay');
+    if (overlay) overlay.addEventListener('click', hideTOC);
+    const headerBtn = document.getElementById('tocHeaderBtn');
+    if (headerBtn) headerBtn.addEventListener('click', showTOC);
+  });
+  const articles = $$('.article');
+  function artIndex(el){ return articles.indexOf(el); }
+  function getArticle(i){ return articles[Math.max(0, Math.min(articles.length-1, i))]; }
+  function artTitle(i){ const el=getArticle(i); return el? (el.querySelector('.article-header h3')?.textContent.trim()||'') : ''; }
+  function artText(i){ const el=getArticle(i); return el? (el.querySelector('.article-content')?.innerText.trim()||'') : ''; }
+  const synth = window.speechSynthesis;
+  let current = 0, utter = null, playing = false, paused = false, inFS=false;
+  function speakIndex(i){ stopSpeak(); current=i; const text=artText(i); if(!text){ nextArticle(); return; }
+    utter = new SpeechSynthesisUtterance(text); utter.lang='fr-FR'; utter.rate=1; utter.pitch=1;
+    utter.onend = ()=>{ if(playing && !paused){ nextArticle(); } };
+    try{ synth.speak(utter);}catch(e){ console.warn(e); }
+    playing=true; paused=false; updateUI(); highlightCurrent(); }
+  function highlightCurrent(){ articles.forEach(a=>a.classList.remove('reading')); const el=getArticle(current); if(el){ el.classList.add('reading'); if(!inFS) el.scrollIntoView({behavior:'smooth', block:'center'}); } document.getElementById('vNow').textContent = artTitle(current) || '—'; }
+  function pauseSpeak(){ if(synth && synth.speaking){ synth.pause(); paused=true; playing=true; } }
+  function resumeSpeak(){ if(synth && paused){ synth.resume(); paused=false; } else { speakIndex(current); } updateUI(); }
+  function stopSpeak(){ if(synth){ try{synth.cancel();}catch(e){} } playing=false; paused=false; updateUI(); }
+  function prevArticle(){ current=Math.max(0,current-1); if(playing){ speakIndex(current);} else {highlightCurrent();} if(inFS) openFS(current); }
+  function nextArticle(){ current=Math.min(articles.length-1,current+1); if(playing){ speakIndex(current);} else {highlightCurrent();} if(inFS) openFS(current); }
+  document.addEventListener('DOMContentLoaded', ()=>{
+    document.getElementById('vPlay').addEventListener('click', ()=>{ if(!playing || paused){ resumeSpeak(); } else { pauseSpeak(); } });
+    document.getElementById('vPause').addEventListener('click', ()=>pauseSpeak());
+    document.getElementById('vStop').addEventListener('click', ()=>{ stopSpeak(); });
+    document.getElementById('vPrev').addEventListener('click', prevArticle);
+    document.getElementById('vNext').addEventListener('click', nextArticle);
+  });
+  function updateUI(){ document.getElementById('vPlay').innerHTML = paused || !playing ? '<i class="fas fa-play"></i>' : '<i class="fas fa-pause"></i>'; }
+  function openFS(i){ inFS=true; current=i; document.getElementById('fsTitle').textContent=artTitle(i); document.getElementById('fsContent').textContent=artText(i); document.getElementById('fsOverlay').classList.add('show'); document.body.style.overflow='hidden'; speakIndex(i); }
+  function closeFS(){ inFS=false; document.getElementById('fsOverlay').classList.remove('show'); document.body.style.overflow=''; }
+  document.addEventListener('DOMContentLoaded', ()=>{
+    document.getElementById('fsClose').addEventListener('click', ()=>{ closeFS(); });
+    document.getElementById('fsPlay').addEventListener('click', ()=>{ if(!playing || paused){ resumeSpeak(); } else { pauseSpeak(); } });
+    document.getElementById('fsNavPrev').addEventListener('click', ()=>{ prevArticle(); });
+    document.getElementById('fsNavNext').addEventListener('click', ()=>{ nextArticle(); });
+    document.querySelectorAll('.article .open-fs').forEach((btn, idx)=> btn.addEventListener('click', ()=>openFS(idx)));
+  });
+  window.addEventListener('DOMContentLoaded', buildTOC);
+})();
+
+// Initialisation de la fonctionnalité de recherche
+document.addEventListener('DOMContentLoaded', initSearchFeature);
+</script>
+</body>
+</html>
