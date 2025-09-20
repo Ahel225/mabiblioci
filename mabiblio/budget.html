@@ -585,37 +585,38 @@ section[data-tab-panel="dette"] .dette-item .meta {
     }
 
     // ====== ⬇️ ÉTAPE 2 : rendu avec variation par ligne (à placer ici) ⬇️ ======
-    const filtered = allLines.filter(l=>{
-      const q = query;
-      return !q
-        || l.libelle.toLowerCase().includes(q)
-        || l.programme.toLowerCase().includes(q)
-        || l.nature.toLowerCase().includes(q)
-        || formatCFA(l.montant).toLowerCase().includes(q);
-    });
+    // ====== Rendu des lignes avec variation (YoY) ======
+const filtered = allLines.filter(l=>{
+  return !query
+    || l.libelle.toLowerCase().includes(query)
+    || l.programme.toLowerCase().includes(query)
+    || l.nature.toLowerCase().includes(query)
+    || formatCFA(l.montant).toLowerCase().includes(query);
+});
 
-    linesTableBody.innerHTML = filtered.length ? filtered.map(l=>{
-      const showYoY = prevEnabled && l.prevVal > 0;
-      const yoyBadge = showYoY ? renderYoY(l.montant, l.prevVal) : '';
-      return `
-        <tr>
-          <td>
-            <div class="line-libelle">${l.libelle}</div>
-            <div class="line-details">
-              <div><b>Programme:</b><div>${l.programme}</div></div>
-              <div><b>Nature:</b><div>${l.nature}</div></div>
-              <div><b>Montant:</b>
-                <div class="amount-box">
-                  ${yoyBadge ? `<span class="yoy">${yoyBadge}</span>` : ''}
-                  ${formatCFA(l.montant)} ${l.mode.toUpperCase()}
-                </div>
-              </div>
+// IMPORTANT : ne PAS re-wrapper renderYoY dans un <span class="yoy">,
+// car renderYoY renvoie déjà le badge .yoy up/down/flat (comme pour le total).
+linesTableBody.innerHTML = filtered.length ? filtered.map(l=>{
+  const showYoY = prevEnabled && l.prevVal > 0;
+  const yoyBadge = showYoY ? (renderYoY(l.montant, l.prevVal) + ' ') : '';
+  return `
+    <tr>
+      <td>
+        <div class="line-libelle">${l.libelle}</div>
+        <div class="line-details">
+          <div><b>Programme:</b><div>${l.programme}</div></div>
+          <div><b>Nature:</b><div>${l.nature}</div></div>
+          <div><b>Montant:</b>
+            <div class="amount-box">
+              ${yoyBadge}${formatCFA(l.montant)} ${l.mode.toUpperCase()}
             </div>
-          </td>
-        </tr>`;
-    }).join('') : `<tr><td><div class="hint" style="text-align:center;padding:20px">Aucune ligne ne correspond aux critères.</div></td></tr>`;
+          </div>
+        </div>
+      </td>
+    </tr>`;
+}).join('') : `<tr><td><div class="hint" style="text-align:center;padding:20px">Aucune ligne ne correspond aux critères.</div></td></tr>`;
 
-    depenseLinesCount.textContent = String(filtered.length);
+depenseLinesCount.textContent = String(filtered.length);
     // ====== ⬆️ FIN ÉTAPE 2 ⬆️ ======
   };
 })();
