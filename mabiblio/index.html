@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="light">
+
+<html data-theme="light" lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#0ea5e9" id="meta-theme-color" />
-  <title>Hub des Codes essentiels</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="icon" type="image/png" sizes="32x32" href="icons/icon-192.png">
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="#0ea5e9" id="meta-theme-color" name="theme-color"/>
+<title>Accueil — Droit du travail</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="icons/icon-192.png" rel="icon" sizes="32x32" type="image/png"/>
+<style>
     :root {
       --primary: #0ea5e9;
       --secondary: #6366f1;
@@ -346,250 +347,233 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="logo">
-        <i class="fas fa-scale-balanced"></i>
-        <span>Codes Essentiels</span>
-      </div>
-      <div class="nav-buttons">
-        <button class="btn btn-primary" id="themeToggle">
-          <i class="fas fa-moon"></i> Thème
+<div class="container">
+<header>
+<div class="logo">
+<i class="fas fa-scale-balanced"></i>
+<span>Codes Essentiels</span>
+</div>
+<div class="nav-buttons">
+<button class="btn btn-primary" id="themeToggle">
+<i class="fas fa-moon"></i> Thème
         </button>
-      </div>
-    </header>
-    
-    <section class="hero">
-      <h1>Textes juridiques fondamentaux</h1>
-      <p>Porte-documents des codes et textes de loi essentiels, accessible à tous les citoyens</p>
-      
-      <div class="search-container">
-        <input type="text" class="search-input" id="searchInput" placeholder="Rechercher un texte, une référence...">
-        <div class="search-icon">
-          <i class="fas fa-search"></i>
-        </div>
-        <div class="search-results" id="searchResults"></div>
-      </div>
-    </section>
-    
-    <main class="categories" id="documentsContainer">
-      <div class="category-card">
-        <div class="category-header">
-          <div class="category-icon" style="background-color: #6366f1;">
-            <i class="fas fa-gavel"></i>
-          </div>
-          <h3 class="category-title">Textes Législatifs</h3>
-        </div>
-        <p class="category-desc">Constitution, Code de la nationalité, lois organiques et textes fondamentaux</p>
-        <div class="category-buttons">
-          <a href="constitution.html" class="category-link">
-            <i class="fas fa-book"></i> Constitution
+</div>
+</header>
+<section class="hero">
+<h1>Textes juridiques fondamentaux</h1>
+<p>Porte-documents des codes et textes de loi essentiels, accessible à tous les citoyens</p>
+<div class="search-container">
+<input class="search-input" id="searchInput" placeholder="Rechercher un texte, une référence..." type="text"/>
+<div class="search-icon">
+<i class="fas fa-search"></i>
+</div>
+<div class="search-results" id="searchResults"></div>
+</div>
+</section>
+<main class="categories" id="documentsContainer">
+<div class="category-card">
+<div class="category-header">
+<div class="category-icon" style="background-color: #6366f1;">
+<i class="fas fa-gavel"></i>
+</div>
+<h3 class="category-title">Textes Législatifs</h3>
+</div>
+<p class="category-desc">Constitution, Code de la nationalité, lois organiques et textes fondamentaux</p>
+<div class="category-buttons">
+<a class="category-link" href="constitution.html">
+<i class="fas fa-book"></i> Constitution
           </a>
-          <a href="code_de_nationalite.html" class="category-link">
-            <i class="fas fa-scroll"></i> Nationalité
+<a class="category-link" href="code_de_nationalite.html">
+<i class="fas fa-scroll"></i> Nationalité
           </a>
-          <a href="lois_organiques.html" class="category-link">
-            <i class="fas fa-scale-balanced"></i> Lois organiques
+<a class="category-link" href="lois_organiques.html">
+<i class="fas fa-scale-balanced"></i> Lois organiques
           </a>
-        </div>
-      </div>
-      
-      <div class="category-card">
-        <div class="category-header">
-          <div class="category-icon" style="background-color: #f97316;">
-            <i class="fas fa-file-contract"></i>
-          </div>
-          <h3 class="category-title">Statuts et Règlements</h3>
-        </div>
-        <p class="category-desc">Statut général, décrets d'application, pensions, indices et statuts spécifiques</p>
-        <div class="category-buttons">
-          <a href="statuts.html" class="category-link">
-            <i class="fas fa-eye"></i> Consulter
+</div>
+</div>
+<div class="category-card">
+<div class="category-header">
+<div class="category-icon" style="background-color: #f97316;">
+<i class="fas fa-file-contract"></i>
+</div>
+<h3 class="category-title">Statuts et Règlements</h3>
+</div>
+<p class="category-desc">Statut général, décrets d'application, pensions, indices et statuts spécifiques</p>
+<div class="category-buttons">
+<a class="category-link" href="statuts.html">
+<i class="fas fa-eye"></i> Consulter
           </a>
-        </div>
-      </div>
-      
-      <div class="category-card">
-        <div class="category-header">
-          <div class="category-icon" style="background-color: #10b981;">
-            <i class="fas fa-briefcase"></i>
-          </div>
-          <h3 class="category-title">Salaires</h3>
-        </div>
-        <p class="category-desc">Grilles salariales des fonctionnaires et agents de l'État par grades et échelons</p>
-        <div class="category-buttons">
-          <a href="#" class="category-link" id="btn-salaires">
-            <i class="fas fa-lock"></i> Accès restreint
+</div>
+</div>
+<div class="category-card">
+<div class="category-header">
+<div class="category-icon" style="background-color: #10b981;">
+<i class="fas fa-briefcase"></i>
+</div>
+<h3 class="category-title">Salaires</h3>
+</div>
+<p class="category-desc">Grilles salariales des fonctionnaires et agents de l'État par grades et échelons</p>
+<div class="category-buttons">
+<a class="category-link" href="#" id="btn-salaires">
+<i class="fas fa-lock"></i> Accès restreint
           </a>
-        </div>
-      </div>
-      
-      <div class="category-card">
-        <div class="category-header">
-          <div class="category-icon" style="background-color: #8b5cf6;">
-            <i class="fas fa-hand-holding-heart"></i>
-          </div>
-          <h3 class="category-title">Déontologie</h3>
-        </div>
-        <p class="category-desc">Codes de déontologie des personnels de l'éducation, médicale et autres professions</p>
-        <div class="category-buttons">
-          <a href="deontologie.html" class="category-link">
-            <i class="fas fa-eye"></i> Consulter
+</div>
+</div>
+<div class="category-card">
+<div class="category-header">
+<div class="category-icon" style="background-color: #8b5cf6;">
+<i class="fas fa-hand-holding-heart"></i>
+</div>
+<h3 class="category-title">Déontologie</h3>
+</div>
+<p class="category-desc">Codes de déontologie des personnels de l'éducation, médicale et autres professions</p>
+<div class="category-buttons">
+<a class="category-link" href="deontologie.html">
+<i class="fas fa-eye"></i> Consulter
           </a>
-        </div>
-      </div>
-      
-      <div class="category-card">
-        <div class="category-header">
-          <div class="category-icon" style="background-color: #ec4899;">
-            <i class="fas fa-ring"></i>
-          </div>
-          <h3 class="category-title">Mariage</h3>
-        </div>
-        <p class="category-desc">Conditions de formation, droits et obligations des époux, régimes matrimoniaux</p>
-        <div class="category-buttons">
-          <a href="loi_mariage.html" class="category-link">
-            <i class="fas fa-eye"></i> Consulter
+</div>
+</div>
+<div class="category-card">
+<div class="category-header">
+<div class="category-icon" style="background-color: #ec4899;">
+<i class="fas fa-ring"></i>
+</div>
+<h3 class="category-title">Mariage</h3>
+</div>
+<p class="category-desc">Conditions de formation, droits et obligations des époux, régimes matrimoniaux</p>
+<div class="category-buttons">
+<a class="category-link" href="loi_mariage.html">
+<i class="fas fa-eye"></i> Consulter
           </a>
-        </div>
-      </div>
-      
-      <div class="category-card">
-        <div class="category-header">
-          <div class="category-icon" style="background-color: #ef4444;">
-            <i class="fas fa-balance-scale"></i>
-          </div>
-          <h3 class="category-title">Divorce</h3>
-        </div>
-        <p class="category-desc">Procédures, effets juridiques et modalités de dissolution du mariage</p>
-        <div class="category-buttons">
-          <a href="loi_divorce.html" class="category-link">
-            <i class="fas fa-eye"></i> Consulter
+</div>
+</div>
+<div class="category-card">
+<div class="category-header">
+<div class="category-icon" style="background-color: #ef4444;">
+<i class="fas fa-balance-scale"></i>
+</div>
+<h3 class="category-title">Divorce</h3>
+</div>
+<p class="category-desc">Procédures, effets juridiques et modalités de dissolution du mariage</p>
+<div class="category-buttons">
+<a class="category-link" href="loi_divorce.html">
+<i class="fas fa-eye"></i> Consulter
           </a>
-        </div>
-      </div>
-      
-      <div class="category-card">
-        <div class="category-header">
-          <div class="category-icon" style="background-color: #f59e0b;">
-            <i class="fas fa-child"></i>
-          </div>
-          <h3 class="category-title">Minorité</h3>
-        </div>
-        <p class="category-desc">Statut du mineur, protection de l'enfance, autorité parentale, émancipation</p>
-        <div class="category-buttons">
-          <a href="loiminorite.html" class="category-link">
-            <i class="fas fa-eye"></i> Consulter
+</div>
+</div>
+<div class="category-card">
+<div class="category-header">
+<div class="category-icon" style="background-color: #f59e0b;">
+<i class="fas fa-child"></i>
+</div>
+<h3 class="category-title">Minorité</h3>
+</div>
+<p class="category-desc">Statut du mineur, protection de l'enfance, autorité parentale, émancipation</p>
+<div class="category-buttons">
+<a class="category-link" href="loiminorite.html">
+<i class="fas fa-eye"></i> Consulter
           </a>
-        </div>
-      </div>
-      
-      <div class="category-card">
-        <div class="category-header">
-          <div class="category-icon" style="background-color: #8b5cf6;">
-            <i class="fas fa-hands-helping"></i>
-          </div>
-          <h3 class="category-title">Adoption</h3>
-        </div>
-        <p class="category-desc">Conditions et procédures, adoption plénière et simple, droits des parties</p>
-        <div class="category-buttons">
-          <a href="document-adoption.html" class="category-link">
-            <i class="fas fa-eye"></i> Consulter
+</div>
+</div>
+<div class="category-card">
+<div class="category-header">
+<div class="category-icon" style="background-color: #8b5cf6;">
+<i class="fas fa-hands-helping"></i>
+</div>
+<h3 class="category-title">Adoption</h3>
+</div>
+<p class="category-desc">Conditions et procédures, adoption plénière et simple, droits des parties</p>
+<div class="category-buttons">
+<a class="category-link" href="document-adoption.html">
+<i class="fas fa-eye"></i> Consulter
           </a>
-        </div>
-      </div>
-      
-      <div class="category-card">
-        <div class="category-header">
-          <div class="category-icon" style="background-color: #06b6d4;">
-            <i class="fas fa-landmark"></i>
-          </div>
-          <h3 class="category-title">Succession</h3>
-        </div>
-        <p class="category-desc">Dévolution, testaments, donations, réserve héréditaire et partage des biens</p>
-        <div class="category-buttons">
-          <a href="loi_succession.html" class="category-link">
-            <i class="fas fa-eye"></i> Consulter
+</div>
+</div>
+<div class="category-card">
+<div class="category-header">
+<div class="category-icon" style="background-color: #06b6d4;">
+<i class="fas fa-landmark"></i>
+</div>
+<h3 class="category-title">Succession</h3>
+</div>
+<p class="category-desc">Dévolution, testaments, donations, réserve héréditaire et partage des biens</p>
+<div class="category-buttons">
+<a class="category-link" href="loi_succession.html">
+<i class="fas fa-eye"></i> Consulter
           </a>
-        </div>
-      </div>
-      
-      <div class="category-card">
-        <div class="category-header">
-          <div class="category-icon" style="background-color: #0ea5e9;">
-            <i class="fas fa-id-card"></i>
-          </div>
-          <h3 class="category-title">État Civil</h3>
-        </div>
-        <p class="category-desc">Actes de naissance, mariage, décès, rectification et reconstitution</p>
-        <div class="category-buttons">
-          <a href="loietatcivil.html" class="category-link">
-            <i class="fas fa-eye"></i> Consulter
+</div>
+</div>
+<div class="category-card">
+<div class="category-header">
+<div class="category-icon" style="background-color: #0ea5e9;">
+<i class="fas fa-id-card"></i>
+</div>
+<h3 class="category-title">État Civil</h3>
+</div>
+<p class="category-desc">Actes de naissance, mariage, décès, rectification et reconstitution</p>
+<div class="category-buttons">
+<a class="category-link" href="loietatcivil.html">
+<i class="fas fa-eye"></i> Consulter
           </a>
-        </div>
-      </div>
-      
-      <div class="category-card">
-        <div class="category-header">
-          <div class="category-icon" style="background-color: #14b8a6;">
-            <i class="fas fa-umbrella-beach"></i>
-          </div>
-          <h3 class="category-title">Pensions</h3>
-        </div>
-        <p class="category-desc">Loi générale et décret d'application sur les pensions des fonctionnaires</p>
-        <div class="category-buttons">
-          <a href="ordonnancepension.html" class="category-link">
-            <i class="fas fa-file-contract"></i> Loi
+</div>
+</div>
+<div class="category-card">
+<div class="category-header">
+<div class="category-icon" style="background-color: #14b8a6;">
+<i class="fas fa-umbrella-beach"></i>
+</div>
+<h3 class="category-title">Pensions</h3>
+</div>
+<p class="category-desc">Loi générale et décret d'application sur les pensions des fonctionnaires</p>
+<div class="category-buttons">
+<a class="category-link" href="ordonnancepension.html">
+<i class="fas fa-file-contract"></i> Loi
           </a>
-          <a href="decret_pension.html" class="category-link">
-            <i class="fas fa-file-alt"></i> Décret
+<a class="category-link" href="decret_pension.html">
+<i class="fas fa-file-alt"></i> Décret
           </a>
-        </div>
-      </div>
-      
-      <div class="category-card">
-        <div class="category-header">
-          <div class="category-icon" style="background-color: #ef4444;">
-            <i class="fas fa-gavel"></i>
-          </div>
-          <h3 class="category-title">Droit Pénal</h3>
-        </div>
-        <p class="category-desc">Code pénal, règlement pénal et code de procédure pénale</p>
-        <div class="category-buttons">
-          <a href="code_penal.html" class="category-link">
-            <i class="fas fa-book"></i> Code pénal
+</div>
+</div>
+<div class="category-card">
+<div class="category-header">
+<div class="category-icon" style="background-color: #ef4444;">
+<i class="fas fa-gavel"></i>
+</div>
+<h3 class="category-title">Droit Pénal</h3>
+</div>
+<p class="category-desc">Code pénal, règlement pénal et code de procédure pénale</p>
+<div class="category-buttons">
+<a class="category-link" href="code_penal.html">
+<i class="fas fa-book"></i> Code pénal
           </a>
-          <a href="code_penal_reglement.html" class="category-link">
-            <i class="fas fa-scroll"></i> Règlement
+<a class="category-link" href="code_penal_reglement.html">
+<i class="fas fa-scroll"></i> Règlement
           </a>
-          <a href="cpp.html" class="category-link">
-            <i class="fas fa-scale-balanced"></i> CPP
+<a class="category-link" href="cpp.html">
+<i class="fas fa-scale-balanced"></i> CPP
           </a>
-        </div>
-      </div>
-      
-      <div class="category-card">
-        <div class="category-header">
-          <div class="category-icon" style="background-color: #06b6d4;">
-            <i class="fas fa-chart-pie"></i>
-          </div>
-          <h3 class="category-title">Budget de l'État</h3>
-        </div>
-        <p class="category-desc">Détails du budget par ministère, programmes et lignes budgétaires</p>
-        <div class="category-buttons">
-          <a href="budget.html" class="category-link">
-            <i class="fas fa-eye"></i> Ouvrir le Hub
+</div>
+</div>
+<div class="category-card">
+<div class="category-header">
+<div class="category-icon" style="background-color: #06b6d4;">
+<i class="fas fa-chart-pie"></i>
+</div>
+<h3 class="category-title">Budget de l'État</h3>
+</div>
+<p class="category-desc">Détails du budget par ministère, programmes et lignes budgétaires</p>
+<div class="category-buttons">
+<a class="category-link" href="budget.html">
+<i class="fas fa-eye"></i> Ouvrir le Hub
           </a>
-        </div>
-      </div>
-    </main>
-    
-    <footer>
-      <p>Hub des Codes essentiels © 2023 - Textes juridiques accessibles à tous</p>
-    </footer>
-  </div>
-
-  <script>
+</div>
+</div>
+<div class="category-card"><div class="category-header"><div class="category-icon" style="background-color: #0ea5e9;"><i class="fas fa-layer-group"></i></div><h3 class="category-title">Droit du travail — Tous les textes</h3></div><p class="category-desc">Liste complète des documents (Code, Décrets, Arrêtés, CCI).</p><div class="category-buttons"><a class="category-link" href="all_texts.html">Ouvrir la liste</a></div></main>
+<footer>
+<p>Hub des Codes essentiels © 2023 - Textes juridiques accessibles à tous</p>
+</footer>
+</div>
+<script>
     // Index de recherche complet avec tous les documents
     const searchIndex = [
       {
