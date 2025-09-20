@@ -86,6 +86,7 @@
     .nav-buttons {
       display: flex;
       gap: 10px;
+      align-items: center;
     }
     
     .btn {
@@ -321,6 +322,60 @@
       font-size: 0.9rem;
     }
     
+    /* Barre de recherche compacte */
+    .compact-search {
+      position: relative;
+      width: 250px;
+      margin-right: 10px;
+    }
+    
+    .compact-search-input {
+      width: 100%;
+      padding: 10px 40px 10px 15px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background-color: var(--card-bg);
+      color: var(--text);
+      font-size: 0.9rem;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+    }
+    
+    .compact-search-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      width: 300px;
+    }
+    
+    .compact-search-icon {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+    
+    .compact-search-results {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--card-bg);
+      border-radius: 0 0 var(--radius) var(--radius);
+      box-shadow: var(--shadow);
+      max-height: 300px;
+      overflow-y: auto;
+      z-index: 100;
+      display: none;
+      border: 1px solid var(--border);
+      border-top: none;
+    }
+    
+    .compact-search-results.visible {
+      display: block;
+    }
+    
     @media (max-width: 768px) {
       .categories {
         grid-template-columns: 1fr;
@@ -334,6 +389,21 @@
         flex-direction: column;
         gap: 15px;
         text-align: center;
+      }
+      
+      .nav-buttons {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .compact-search {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 10px;
+      }
+      
+      .compact-search-input:focus {
+        width: 100%;
       }
       
       .category-buttons {
@@ -354,6 +424,13 @@
 <span>Codes Essentiels</span>
 </div>
 <div class="nav-buttons">
+<div class="compact-search">
+<input class="compact-search-input" id="compactSearchInput" placeholder="Rechercher..." type="text"/>
+<div class="compact-search-icon">
+<i class="fas fa-search"></i>
+</div>
+<div class="compact-search-results" id="compactSearchResults"></div>
+</div>
 <button class="btn btn-primary" id="themeToggle">
 <i class="fas fa-moon"></i> Thème
         </button>
@@ -362,13 +439,6 @@
 <section class="hero">
 <h1>Textes juridiques fondamentaux</h1>
 <p>Porte-documents des codes et textes de loi essentiels, accessible à tous les citoyens</p>
-<div class="search-container">
-<input class="search-input" id="searchInput" placeholder="Rechercher un texte, une référence..." type="text"/>
-<div class="search-icon">
-<i class="fas fa-search"></i>
-</div>
-<div class="search-results" id="searchResults"></div>
-</div>
 </section>
 <main class="categories" id="documentsContainer">
 <div class="category-card">
@@ -711,7 +781,7 @@
       }
     ];
 
-    // Fonction de recherche
+    // Fonction de recherche améliorée
     function performSearch(query) {
       if (!query.trim()) {
         return [];
@@ -720,20 +790,23 @@
       const searchTerms = query.toLowerCase().split(/\s+/).filter(term => term.length > 0);
       
       return searchIndex.filter(item => {
+        // Créer un texte de recherche plus complet
         const searchableText = (
           item.title.toLowerCase() + ' ' + 
           item.description.toLowerCase() + ' ' + 
           item.category.toLowerCase() + ' ' + 
-          item.keywords.join(' ')
+          item.keywords.join(' ') + ' ' +
+          item.url.toLowerCase()
         );
         
+        // Vérifier si tous les termes de recherche sont présents
         return searchTerms.every(term => searchableText.includes(term));
       });
     }
 
-    // Afficher les résultats de recherche
-    function displaySearchResults(results) {
-      const resultsContainer = document.getElementById('searchResults');
+    // Afficher les résultats de recherche dans la barre compacte
+    function displayCompactSearchResults(results) {
+      const resultsContainer = document.getElementById('compactSearchResults');
       resultsContainer.innerHTML = '';
       
       if (results.length === 0) {
@@ -762,27 +835,8 @@
     }
 
     // Cacher les résultats de recherche
-    function hideSearchResults() {
-      document.getElementById('searchResults').classList.remove('visible');
-    }
-
-    // Filtrer les documents visibles en fonction de la recherche
-    function filterDocuments(query) {
-      const documents = document.querySelectorAll('.category-card');
-      const results = performSearch(query);
-      
-      if (!query.trim()) {
-        // Afficher tous les documents si la recherche est vide
-        documents.forEach(doc => doc.style.display = 'flex');
-        hideSearchResults();
-        return;
-      }
-      
-      // Cacher tous les documents
-      documents.forEach(doc => doc.style.display = 'none');
-      
-      // Afficher les résultats de recherche
-      displaySearchResults(results);
+    function hideCompactSearchResults() {
+      document.getElementById('compactSearchResults').classList.remove('visible');
     }
 
     // Gestion du thème
@@ -819,26 +873,41 @@
         setTheme(currentTheme === 'dark' ? 'light' : 'dark');
       });
       
-      // Configuration de la recherche
-      const searchInput = document.getElementById('searchInput');
+      // Configuration de la recherche compacte
+      const compactSearchInput = document.getElementById('compactSearchInput');
       
-      searchInput.addEventListener('input', (e) => {
-        filterDocuments(e.target.value);
+      compactSearchInput.addEventListener('input', (e) => {
+        const results = performSearch(e.target.value);
+        displayCompactSearchResults(results);
+      });
+      
+      // Recherche au clic sur l'icône
+      document.querySelector('.compact-search-icon').addEventListener('click', () => {
+        const results = performSearch(compactSearchInput.value);
+        displayCompactSearchResults(results);
+      });
+      
+      // Recherche avec la touche Entrée
+      compactSearchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          const results = performSearch(compactSearchInput.value);
+          displayCompactSearchResults(results);
+        }
       });
       
       // Cacher les résultats quand on clique ailleurs
       document.addEventListener('click', (e) => {
-        if (!e.target.closest('.search-container')) {
-          hideSearchResults();
+        if (!e.target.closest('.compact-search')) {
+          hideCompactSearchResults();
         }
       });
       
       // Touche Echap pour vider la recherche
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
-          searchInput.value = '';
-          filterDocuments('');
-          searchInput.blur();
+          compactSearchInput.value = '';
+          hideCompactSearchResults();
+          compactSearchInput.blur();
         }
       });
       
