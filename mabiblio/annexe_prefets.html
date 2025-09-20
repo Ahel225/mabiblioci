@@ -282,105 +282,8 @@ section[data-tab-panel="dette"] .dette-item .meta {
   text-align: center;
 }
 
-/* === Anti-débordement & responsivité des libellés === */
-
-/* Règle générale : on autorise la casse et le retour à la ligne intelligents */
-.line-libelle,
-.item .name,
-.ressource-item .name,
-.dette-item .name,
-.code,
-.code-badge {
-  overflow-wrap: anywhere;     /* permet de couper sur n'importe quel caractère si besoin */
-  word-break: break-word;      /* sécurité pour les très longues chaînes collées */
-  hyphens: auto;               /* césure propre si langue FR active */
-}
-
-/* Liste de gauche : nom sur 1 ligne + ellipsis (avec wrap autorisé si l'écran est minuscule) */
-.item .name{
-  display: -webkit-box;
-  -webkit-line-clamp: 1;       /* 1 ligne clamp */
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 100%;
-}
-
-/* Sur petits écrans, on autorise 2 lignes max pour lire un peu plus */
-@media (max-width: 420px){
-  .item .name{
-    -webkit-line-clamp: 2;     /* 2 lignes max */
-    line-clamp: 2;
-  }
-}
-
-/* Code secondaire sous le nom (toujours sur une seule ligne, ellipsis) */
-.item .code{
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* Table des lignes : le libellé ne déborde jamais et peut s’étaler sur plusieurs lignes */
-.line-libelle{
-  white-space: normal;        /* autorise le retour à la ligne */
-  max-width: 100%;
-}
-
-/* Grille des détails sous chaque ligne : colonnes flexibles, jamais trop étroites */
-.line-details{
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 8px;
-}
-
-/* Badges montants : rétrécir proprement si l’espace manque */
-.line-details > div > div,
-.item .amt,
-.ressource-item .amount,
-.dette-item .ae,
-.dette-item .cp{
-  min-width: 0;               /* permet la réduction dans les conteneurs étroits */
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-/* Panneau liste : s’il y a très peu de largeur, on force une colonne unique sans casse visuelle */
-@media (max-width: 360px){
-  .list{
-    padding-right: 2px;       /* évite l’apparition d’un scroll horizontal */
-  }
-}
-
-/* Ressources / Dette : noms longs clamped à 2 lignes max pour éviter l'effet "bloc" infini */
-.ressource-item .name,
-.dette-item .name{
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-/* Annule toute largeur fixe qui pourrait forcer un débordement sur mobile */
-.item .amt,
-.ressource-item .amount,
-.dette-item .ae,
-.dette-item .cp{
-  width: auto !important;
-}
-
-/* Le badge d’année est déjà protégé, on renforce légèrement la contrainte */
-#yearBadge{
-  max-width: 95vw;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
 
 </style>
-
 </head>
 <body>
   <header>
@@ -532,7 +435,7 @@ section[data-tab-panel="dette"] .dette-item .meta {
     const type = window.CURRENT_ACTIVE_TYPE;
     const linesTableBody = document.querySelector('#linesTable tbody');
 
-    // ⚠️ On bloque la variation si PREV.year est absent
+    // ⚠️ NOUVEAU : on bloque la variation si PREV.year est absent
     let prevMap = {};
     const prevEnabled = (window.PREV && window.PREV.year); 
 
@@ -584,43 +487,36 @@ section[data-tab-panel="dette"] .dette-item .meta {
       });
     }
 
-    // ====== ⬇️ ÉTAPE 2 : rendu avec variation par ligne (à placer ici) ⬇️ ======
-    // ====== Rendu des lignes avec variation (YoY) ======
-const filtered = allLines.filter(l=>{
-  return !query
-    || l.libelle.toLowerCase().includes(query)
-    || l.programme.toLowerCase().includes(query)
-    || l.nature.toLowerCase().includes(query)
-    || formatCFA(l.montant).toLowerCase().includes(query);
-});
+    const filtered = allLines.filter(l=>{
+      const libelleMatch = l.libelle.toLowerCase().includes(query);
+      const programmeMatch = l.programme.toLowerCase().includes(query);
+      const natureMatch = l.nature.toLowerCase().includes(query);
+      const montantMatch = formatCFA(l.montant).toLowerCase().includes(query);
+      return !query || libelleMatch || programmeMatch || natureMatch || montantMatch;
+    });
 
-// IMPORTANT : ne PAS re-wrapper renderYoY dans un <span class="yoy">,
-// car renderYoY renvoie déjà le badge .yoy up/down/flat (comme pour le total).
-linesTableBody.innerHTML = filtered.length ? filtered.map(l=>{
-  const showYoY = prevEnabled && l.prevVal > 0;
-  const yoyBadge = showYoY ? (renderYoY(l.montant, l.prevVal) + ' ') : '';
-  return `
-    <tr>
-      <td>
-        <div class="line-libelle">${l.libelle}</div>
-        <div class="line-details">
-          <div><b>Programme:</b><div>${l.programme}</div></div>
-          <div><b>Nature:</b><div>${l.nature}</div></div>
-          <div><b>Montant:</b>
-            <div class="amount-box">
-              ${yoyBadge}${formatCFA(l.montant)} ${l.mode.toUpperCase()}
+    linesTableBody.innerHTML = filtered.length ? filtered.map(l=>{
+      // ⚠️ NOUVEAU : pas de badge si prevEnabled=false
+      const showYoY = prevEnabled && l.prevVal > 0;
+      const yoy = showYoY ? renderYoY(l.montant, l.prevVal) + ' ' : '';
+      return `
+        <tr>
+          <td>
+            <div class="line-libelle">${l.libelle}</div>
+            <div class="line-details">
+              <div><b>Programme:</b><div>${l.programme}</div></div>
+              <div><b>Nature:</b><div>${l.nature}</div></div>
+              <div><b>Montant:</b><div>${yoy}${formatCFA(l.montant)} ${l.mode.toUpperCase()}</div></div>
             </div>
-          </div>
-        </div>
-      </td>
-    </tr>`;
-}).join('') : `<tr><td><div class="hint" style="text-align:center;padding:20px">Aucune ligne ne correspond aux critères.</div></td></tr>`;
+          </td>
+        </tr>`;
+    }).join('') : `<tr><td><div class="hint" style="text-align:center;padding:20px">Aucune ligne ne correspond aux critères.</div></td></tr>`;
 
-depenseLinesCount.textContent = String(filtered.length);
-    // ====== ⬆️ FIN ÉTAPE 2 ⬆️ ======
+    depenseLinesCount.textContent = String(filtered.length);
   };
 })();
 </script>
+
 
 
   <script>  
@@ -1499,63 +1395,6 @@ function renderYoY(curr, prev) {
   const absPct = Math.abs(pct).toLocaleString(undefined, {maximumFractionDigits:1}) + '%';
   return `<span class="yoy ${dir}" title="Variation vs N-1">${arrow} ${absPct}</span>`;
 }
-
-
-// --- Helpers pour variations ligne par ligne ---
-
-function _norm(s){
-  if (s == null) return '';
-  return String(s)
-    .toLowerCase()
-    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')  // accents
-    .replace(/[\u202f\u00a0]/g,' ')                   // espaces insécables
-    .replace(/\s+/g,' ')                              
-    .replace(/\b(fcfa|f\.?c\.?f\.?a\.?)\b/g,'')       // unité
-    .replace(/\s*[:\-–—]\s*/g,' - ')                  // séparateurs
-    .replace(/[()]/g,'')                               // parens parasites
-    .trim();
-}
-
-// Trouve l’entité N-1 correspondante (ministère/institution)
-function getPrevEntityFor(selectedItem, type, PREV){
-  if (!PREV) return null;
-  const arr = (type === 'ministere') ? (PREV.ministries || []) : (PREV.institutions || []);
-  const keyCode = (selectedItem.code || '').toString().trim();
-  const keyName = _norm(selectedItem.name || selectedItem.libelle || '');
-  let found = keyCode ? arr.find(e => String(e.code||'').trim() === keyCode) : null;
-  if (found) return found;
-  return arr.find(e => _norm(e.name || e.nom || '') === keyName) || null;
-}
-
-// Construit la map "programme|nature|libellé" -> montant N-1 (AE/CP)
-function buildPrevLinesMap(prevEntity, type, mode){
-  const map = {};
-  if (!prevEntity || !Array.isArray(prevEntity.programmes)) return map;
-
-  const num = v => (typeof v==='number') ? v
-                 : (typeof v==='string') ? (parseFloat(v.replace(/\s+/g,'').replace(/,/g,'.'))||0)
-                 : 0;
-
-  prevEntity.programmes.forEach(p=>{
-    const pName = p.nom || p.name || '';
-    (p.natures||[]).forEach(n=>{
-      const nName = n.nom || n.name || '';
-      const src = (type==='ministere') ? (n.lignes||[]) : (n.lignes_budgetaires||[]);
-      src.forEach(line=>{
-        const lib = line.libellé || line.libelle || line.description || 'Sans libellé';
-        const amount = (mode==='cp') ? num(line.montant_cp) : num(line.montant_ae);
-        const keyFull = _norm(`${pName}|${nName}|${lib}`);
-        const keyLib  = _norm(lib); // fallback si la structure N-1 diffère
-        map[keyFull] = Math.max(map[keyFull]||0, amount);
-        map[keyLib]  = Math.max(map[keyLib]||0, amount);
-      });
-    });
-  });
-  return map;
-}
-
-
-
 // === End helpers ===
 
 function formatCFA(amount) {
@@ -2042,5 +1881,175 @@ init();
 })();
 </script>
 
+
+<!-- === Variation Patch: line-by-line YoY (non-destructive) === -->
+<script>
+(function(){
+  if (window.__BUDGET_YOY_PATCH__) return; // avoid double-injection
+  window.__BUDGET_YOY_PATCH__ = true;
+
+  // -------- Helpers (idempotent) --------
+  window._norm = window._norm || function(s){
+    if (s == null) return '';
+    return String(s)
+      .toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g,'')  // accents
+      .replace(/[\u202f\u00a0]/g,' ')                   // nbsp/narrow spaces
+      .replace(/\s+/g,' ')
+      .replace(/\b(fcfa|f\.?c\.?f\.?a\.?)\b/g,'')       // currency tokens
+      .replace(/\s*[:\-–—]\s*/g,' - ')                  // separator unify
+      .replace(/[()]/g,'')
+      .trim();
+  };
+
+  window.getPrevEntityFor = window.getPrevEntityFor || function(selectedItem, type, PREV){
+    if (!PREV) return null;
+    const arr = (type === 'ministere') ? (PREV.ministries || []) : (PREV.institutions || []);
+    const keyCode = (selectedItem && selectedItem.code ? String(selectedItem.code).trim() : '');
+    const keyName = _norm((selectedItem && (selectedItem.name || selectedItem.libelle)) || '');
+    let found = keyCode ? arr.find(e => String(e.code||'').trim() === keyCode) : null;
+    if (found) return found;
+    return arr.find(e => _norm(e.name || e.nom || '') === keyName) || null;
+  };
+
+  window.buildPrevLinesMap = window.buildPrevLinesMap || function(prevEntity, type, mode){
+    const map = {};
+    if (!prevEntity || !Array.isArray(prevEntity.programmes)) return map;
+
+    const num = v => (typeof v==='number') ? v
+                   : (typeof v==='string') ? (parseFloat(v.replace(/\s+/g,'').replace(/,/g,'.'))||0)
+                   : 0;
+
+    prevEntity.programmes.forEach(p=>{
+      const pName = p.nom || p.name || '';
+      (p.natures||[]).forEach(n=>{
+        const nName = n.nom || n.name || '';
+        const src = (type==='ministere') ? (n.lignes||[]) : (n.lignes_budgetaires||[]);
+        src.forEach(line=>{
+          const lib = line.libellé || line.libelle || line.description || 'Sans libellé';
+          const amount = (mode==='cp') ? num(line.montant_cp) : num(line.montant_ae);
+          const keyFull = _norm(`${pName}|${nName}|${lib}`);
+          const keyLib  = _norm(lib); // fallback if structure differs
+          map[keyFull] = Math.max(map[keyFull]||0, amount);
+          map[keyLib]  = Math.max(map[keyLib]||0, amount);
+        });
+      });
+    });
+    return map;
+  };
+
+  // -------- Non-destructive override of filterTable --------
+  const __origFilterTable = window.filterTable;
+  window.filterTable = function(){
+    try{
+      // Keep original behavior for COGES or missing context
+      if (window.CURRENT_ACTIVE_TYPE === 'coges' || !window.CURRENT_ORIGINAL_DATA || !window.CURRENT_ACTIVE_TYPE){
+        if (typeof __origFilterTable === 'function') return __origFilterTable();
+        return;
+      }
+
+      const progSelEl = document.getElementById('progSel');
+      const natureSelEl = document.getElementById('natureSel');
+      const modeSelEl = document.getElementById('modeSel');
+      const qLineEl = document.getElementById('qLine');
+      const linesTbody = document.querySelector('#linesTable tbody');
+      if (!progSelEl || !natureSelEl || !modeSelEl || !qLineEl || !linesTbody){
+        if (typeof __origFilterTable === 'function') return __origFilterTable();
+        return;
+      }
+
+      const progFilter = progSelEl.value;
+      const natureFilter = natureSelEl.value;
+      const mode = modeSelEl.value;
+      const query = qLineEl.value.toLowerCase().trim();
+      const type = window.CURRENT_ACTIVE_TYPE;
+
+      // YoY availability
+      let prevMap = {};
+      const prevEnabled = (window.PREV && window.PREV.year);
+      if (prevEnabled){
+        const selectedListItem = (window.filteredData || [])[window.CURRENT_IDX];
+        if (selectedListItem){
+          const prevEntity = getPrevEntityFor(selectedListItem, type, window.PREV);
+          prevMap = buildPrevLinesMap(prevEntity, type, mode);
+        }
+      }
+
+      // Collect all lines
+      const allLines = [];
+      const root = window.CURRENT_ORIGINAL_DATA;
+      if (root && Array.isArray(root.programmes)){
+        root.programmes.forEach(prog=>{
+          const pName = prog?.nom || prog?.name || '';
+          if (progFilter && pName !== progFilter) return;
+          (prog?.natures||[]).forEach(nat=>{
+            const nName = nat?.nom || nat?.name || '';
+            if (natureFilter){
+              const [pf, nf] = natureFilter.split('::');
+              if ((pName !== pf) || (nName !== nf)) return;
+            }
+            const srcLines = (type === 'ministere') ? (nat.lignes || []) : (nat.lignes_budgetaires || []);
+            srcLines.forEach(line=>{
+              const lib = line.libellé || line.libelle || line.description || 'Sans libellé';
+              const montant = (mode === 'cp')
+                ? (parseFloat(line.montant_cp)||0)
+                : (parseFloat(line.montant_ae)||0);
+              const key = _norm(`${pName}|${nName}|${lib}`);
+              const prevVal = (prevEnabled ? (prevMap[key] || prevMap[_norm(lib)] || 0) : 0);
+              allLines.push({
+                libelle: lib,
+                programme: pName || 'Sans programme',
+                nature: nName || 'Sans nature',
+                montant,
+                prevVal,
+                mode
+              });
+            });
+          });
+        });
+      }
+
+      // Filter + render
+      const filtered = allLines.filter(l=>{
+        return !query
+          || l.libelle.toLowerCase().includes(query)
+          || l.programme.toLowerCase().includes(query)
+          || l.nature.toLowerCase().includes(query)
+          || String(l.montant).toLowerCase().includes(query)
+          || (window.formatCFA && formatCFA(l.montant).toLowerCase().includes(query));
+      });
+
+      linesTbody.innerHTML = filtered.length ? filtered.map(l=>{
+        const showYoY = prevEnabled && l.prevVal > 0;
+        const yoyBadge = showYoY ? (window.renderYoY ? (renderYoY(l.montant, l.prevVal) + ' ') : '') : '';
+        const amt = window.formatCFA ? formatCFA(l.montant) : l.montant.toLocaleString('fr-FR');
+        return `
+          <tr>
+            <td>
+              <div class="line-libelle">${l.libelle}</div>
+              <div class="line-details">
+                <div><b>Programme:</b><div>${l.programme}</div></div>
+                <div><b>Nature:</b><div>${l.nature}</div></div>
+                <div><b>Montant:</b>
+                  <div class="amount-box">
+                    ${yoyBadge}${amt} ${l.mode.toUpperCase()}
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>`;
+      }).join('') : `<tr><td><div class="hint" style="text-align:center;padding:20px">Aucune ligne ne correspond aux critères.</div></td></tr>`;
+
+      const depenseLinesCount = document.getElementById('depenseLinesCount');
+      if (depenseLinesCount) depenseLinesCount.textContent = String(filtered.length);
+    }catch(e){
+      // fallback failsafe
+      if (typeof __origFilterTable === 'function') return __origFilterTable();
+      console.error('[YoY Patch] filterTable override error:', e);
+    }
+  };
+})();
+</script>
+<!-- === End Variation Patch === -->
 </body>
 </html>
