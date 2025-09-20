@@ -1,507 +1,2046 @@
-
 <!DOCTYPE html>
-<html lang="fr"><head><meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Annexe — Décret du Corps préfectoral (Tableaux)</title>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
-<style>
-:root{--primary:#2c7a7b;--accent:#ff7a18;--bg:#f5fffb;--card:#ffffff;--muted:#eef6f6}
-*{box-sizing:border-box}
-body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:#0f2d2e}
-header{position:sticky;top:0;background:linear-gradient(90deg,var(--primary),#236060);color:#fff;padding:14px 16px;z-index:10;display:flex;align-items:center;gap:12px}
-header i{font-size:20px} h1{font-size:18px;margin:0}
-.container{padding:16px;max-width:1100px;margin:0 auto}
-.controls{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0 16px}
-.controls input, .controls select{width:100%;padding:10px 12px;border:1px solid #cbe0e0;border-radius:10px;background:#fff;outline:none}
-.card{background:var(--card);border:1px solid #d7ecec;border-radius:14px;box-shadow:0 6px 18px rgba(0,0,0,.06);padding:12px 10px;margin:14px 0}
-.card h2{margin:6px 8px 10px 8px;font-size:17px;color:#093a3c;display:flex;align-items:center;gap:8px}
-.table-wrap{overflow:auto;-webkit-overflow-scrolling:touch}
-table{border-collapse:separate;border-spacing:0;width:100%;min-width:680px}
-th,td{padding:10px 12px;border-bottom:1px solid #e6f0e0;text-align:left;font-size:14px}
-th{position:sticky;top:0;background:var(--muted);z-index:1}
-tr:hover{background:#fbfffe}
-.footer{padding:22px;color:#0f2d2e77;text-align:center}
-@media (max-width:640px){.controls{grid-template-columns:1fr} table{min-width:520px}}
-</style>  <link rel="manifest" href="manifest.webmanifest">
-  <meta name="theme-color" content="#22c55e">
-  <link rel="apple-touch-icon" href="icons/icon-192.png">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+  <title>Hub Budget de l'État – Dépenses</title>
+  <meta name="theme-color" content="#059669" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brand:#059669; --ring:rgba(5,150,105,.35);
+      --bg:#071023; --panel:#0b1229; --text:#e5e7eb; --muted:#9ca3af;
+    }
+    * { box-sizing: border-box; }
+    html,body { margin:0; padding:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial; color:var(--text);
+      background: linear-gradient(160deg, var(--bg) 0%, #0c1a36 100%);
+      min-height: 100vh;
+    }
+    header { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(10px);
+      background: rgba(7,16,35,.6); border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 12px 16px; }
+    .row { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+    .brand { display:flex; align-items:center; gap:10px; font-weight:900; letter-spacing:.2px; }
+    .dot { width:10px; height:10px; border-radius:50%; background:var(--brand); box-shadow:0 0 0 4px var(--ring); }
+    .pill { padding:6px 10px; border:1px solid rgba(255,255,255,.08); border-radius:999px; font-size:12px; color:#cbd5e1; }
+    .tabs { display:flex; gap:8px; overflow:auto; padding:8px 0; }
+    .tab { white-space:nowrap; padding:8px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.08);
+      cursor:pointer; font-weight:800; font-size:14px; color:#d1fae5; background: rgba(5,150,105,.12);
+    }
+    .tab.active { background: var(--brand); color:#06251d; border-color: transparent; }
+    main.wrap { padding: 14px 16px 40px; }
 
-<!-- HIDE AUTH/VIEWS WIDGETS OUTSIDE HOME (safe) -->
-<style>
-  #auth-fab, .views-badge, #auth-modal, .card-views-badge { display: none !important; }
+    /* Layout */
+    .layout { display:grid; grid-template-columns: 1fr; gap:12px; }
+    .sidebar { display: flex; flex-direction: column; gap: 12px; }
+    .main { display: none; } /* Initially hidden */
+
+    @media (min-width: 980px) {
+      .layout { grid-template-columns: 320px 1fr; }
+      .main { display: block !important; } /* Always show on desktop */
+      .sidebar.hidden { display: flex; }
+      .btn-back { display: none; }
+    }
+
+    .card { background: rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.06);
+      border-radius:16px; padding:14px;
+    }
+    .input, select, .btn { background: #0b1229; border:1px solid rgba(255,255,255,.08);
+      color:var(--text); padding:10px 12px; border-radius:12px; outline:none; width:100%;
+    }
+    .btn { background: var(--brand); color:#06251d; font-weight:800; border:none; cursor:pointer; width:auto; }
+    .input:focus, select:focus { border-color: var(--brand); box-shadow:0 0 0 4px var(--ring); }
+    .list { display:flex; flex-direction:column; gap:8px; max-height: 65vh; overflow:auto; }
+
+/* Uniformiser le cadre des montants (ministères & institutions) */
+.item .amt{
+  font-weight: 900;
+  font-size: 12px;
+  color: #bbf7d0;
+  background: rgba(5,150,105,.15);
+  border: 1px solid rgba(5,150,105,.35);
+  padding: 4px 10px;
+  border-radius: 999px;
+
+  /* Nouveau : cadre et centrage uniformes */
+  display: inline-flex;           /* garde un vrai badge */
+  align-items: center;
+  justify-content: center;        /* centre le contenu */
+  text-align: center;             /* sécurise le centrage du texte */
+  min-width: 120px;               /* largeur mini identique pour tous */
+  min-height: 24px;               /* hauteur mini identique pour tous */
+  gap: 6px;                       /* espace avec le badge YoY s’il est présent */
+}
+    .item:hover { background: rgba(255,255,255,.06); }
+
+/* Badge des montants (liste gauche) — centré et uniforme */
+.item .amt{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:140px;          /* largeur mini uniforme */
+  padding:2px 10px;
+  font-weight:900;
+  font-size:12px;
+  color:#bbf7d0;
+  background:rgba(5,150,105,.15);
+  border:1px solid rgba(5,150,105,.35);
+  border-radius:999px;
+  text-align:center;
+}
+
+    .item.active { outline: 2px solid var(--brand); background: rgba(5,150,105,.10); }
+    .item .name { font-weight:700; }
+    .item .code { 
+      font-size: 12px; 
+      color: var(--muted); 
+      margin-top: 4px;
+    }
+
+    .kpis { display:grid; grid-template-columns: repeat(12, 1fr); gap:12px; }
+    .kpi { grid-column: span 12; }
+    @media(min-width:700px) { .kpi { grid-column: span 4; } }
+    .kpi h3 { margin:0; font-size:13px; font-weight:800; color:#cbd5e1; }
+    .kpi .val { font-size:20px; font-weight:900; }
+    .hint { font-size:12px; color:#9ca3af; }
+
+    .table-wrap { overflow:auto; border-radius:12px; }
+    table { width:100%; border-collapse:collapse; }
+    th { display: none; } /* Hide headers, as info is in the cells */
+    tr { border-bottom:1px solid rgba(255,255,255,.08); }
+    td { padding:12px; }
+    .line-libelle { font-weight: 700; font-size: 14px; margin-bottom: 8px; }
+/* Blocs de détails — même look que .item .amt */
+.line-details{ 
+  display:grid; 
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+  gap:8px; 
+  font-size:12px; 
+}
+.line-details > div{
+  /* on enlève le fond rectangulaire précédent */
+  background:transparent; 
+  padding:0; 
+  border-radius:0;
+}
+.line-details > div > b{ 
+  display:block; 
+  color:var(--muted); 
+  margin-bottom:6px; 
+}
+.line-details > div > div{
+  /* le montant en pillule (mêmes styles que .item .amt) */
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:140px;
+  padding:2px 10px;
+  font-weight:900;
+  font-size:12px;
+  color:#bbf7d0;
+  background:rgba(5,150,105,.15);
+  border:1px solid rgba(5,150,105,.35);
+  border-radius:999px;
+  text-align:center;
+}
+    .progress { height:8px; background:#0b1229; border-radius:999px; overflow:hidden; border:1px solid rgba(255,255,255,.06); margin-top: 4px;}
+    .progress > span { display:block; height:100%; background: var(--brand); }
+
+    .error{background:#3f1d1d;border:1px solid #ef4444;color:#fecaca;padding:10px;border-radius:12px;margin-bottom:10px;display:none}
+    .success{background:#052e1c;border:1px solid #10b981;color:#d1fae5;padding:8px 10px;border-radius:10px;margin-bottom:10px;display:none}
+
+    .loading { display: inline-block; width: 20px; height: 20px; border: 3px solid rgba(5,150,105,.3);
+      border-radius: 50%; border-top-color: var(--brand); animation: spin 1s ease-in-out infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Styles spécifiques pour les ressources et la dette */
+.ressource-item, .dette-item{ font-family:inherit; }
+    .ressource-item:hover, .dette-item:hover { background: rgba(255,255,255,.06); }
+
+.ressource-item .amt, .dette-item .amt{
+  font-weight: 900;
+  font-size: 12px;
+  color: #bbf7d0;
+  background: rgba(5,150,105,.15);
+  border: 1px solid rgba(5,150,105,.35);
+  padding: 4px 10px;
+  border-radius: 999px;
+
+  /* Nouveau : cadre et centrage uniformes */
+  display: inline-flex;           /* garde un vrai badge */
+  align-items: center;
+  justify-content: center;        /* centre le contenu */
+  text-align: center;             /* sécurise le centrage du texte */
+  min-width: 120px;               /* largeur mini identique pour tous */
+  min-height: 24px;               /* hauteur mini identique pour tous */
+  gap: 6px;                       /* espace avec le badge YoY s’il est présent */
+}
+
+    .dette-category { margin-bottom: 20px; }
+    .dette-category h3 { margin-bottom: 10px; color: #cbd5e1; }
+    .dette-type { margin-left: 20px; margin-bottom: 15px; }
+    .dette-type h4 { margin-bottom: 8px; color: #9ca3af; }
+
+/* === YoY arrows & badge === */
+.yoy { font-size: 12px; font-weight: 800; padding: 2px 6px; border-radius: 9999px; display: inline-block; margin-right: 6px; }
+.yoy.up { background: rgba(34,197,94,.15); color: #22c55e; border:1px solid rgba(34,197,94,.4); }
+.yoy.down { background: rgba(239,68,68,.15); color: #ef4444; border:1px solid rgba(239,68,68,.4); }
+.yoy.flat { background: rgba(148,163,184,.15); color: #94a3b8; border:1px solid rgba(148,163,184,.35); }
+
+/* Encadré vert autour des montants */
+.amount-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 8px;
+  border: 2px solid #22c55e;   /* vert émeraude */
+  border-radius: 8px;
+  font-weight: 600;
+}
+.amount-box .yoy { margin-right: 4px; }
+
+
+/* Year pill can hold amount + year */
+#yearBadge { display:inline-flex; align-items:center; gap:8px; }
+#yearBadge .year { opacity:.9 }
+#yearBadge .year-amount { font-weight:900; }
+/* === End YoY === */
+
+
+/* === Strong layout override: stack for Ressources & Dette === */
+section[data-tab-panel="ressources"] .ressource-item,
+section[data-tab-panel="dette"] .dette-item {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 4px !important;
+  grid-template-columns: unset !important; /* cancel grid */
+}
+
+section[data-tab-panel="ressources"] .ressource-item .name,
+section[data-tab-panel="dette"] .dette-item .name {
+   font-weight:700 ;
+}
+
+section[data-tab-panel="ressources"] .ressource-item .amount,
+section[data-tab-panel="dette"] .dette-item .ae,
+section[data-tab-panel="dette"] .dette-item .cp,
+section[data-tab-panel="ressources"] .ressource-item .meta,
+section[data-tab-panel="dette"] .dette-item .meta {
+  width: 100% !important;
+}
+/* === End strong override === */
+
+
+/* === Single-line year badge on mobile === */
+#yearBadge { display:inline-flex; align-items:center; gap:6px; flex-wrap: nowrap; white-space: nowrap; max-width: 95vw; overflow: hidden; text-overflow: ellipsis; }
+#yearBadge .year-amount, #yearBadge .year { white-space: nowrap; }
+#yearBadge .yoy { flex-shrink: 0; }
+@media (max-width: 480px) {
+  #yearBadge { gap:4px; font-size: 12px; }
+}
+/* === End single-line badge === */
+
+/* Hover lisible (corrige "06" -> 0.06) */
+.ressource-item:hover, .dette-item:hover { background: rgba(255,255,255,0.06); }
+
+/* Uniformiser les montants Ressources & Dette en "pillule" verte
+   (cible le HTML réel: .amount, .ae, .cp) */
+.ressource-item .amount,
+.dette-item .ae,
+.dette-item .cp{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 140px;
+  padding: 2px 10px;
+  font-weight: 900;
+  font-size: 12px;
+  color: #bbf7d0;
+  background: rgba(5,150,105,.15);
+  border: 1px solid rgba(5,150,105,.35);
+  border-radius: 999px;
+  text-align: center;
+  width: auto !important;   /* annule le 100% imposé plus haut */
+}
+
+/* (Optionnel) Si tu utilises encore .amt quelque part, on l’aligne aussi */
+.ressource-item .amt,
+.dette-item .amt{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 140px;
+  padding: 2px 10px;
+  font-weight: 900;
+  font-size: 12px;
+  color: #bbf7d0;
+  background: rgba(5,150,105,.15);
+  border: 1px solid rgba(5,150,105,.35);
+  border-radius: 999px;
+  text-align: center;
+}
+
+/* === Anti-débordement & responsivité des libellés === */
+
+/* Règle générale : on autorise la casse et le retour à la ligne intelligents */
+.line-libelle,
+.item .name,
+.ressource-item .name,
+.dette-item .name,
+.code,
+.code-badge {
+  overflow-wrap: anywhere;     /* permet de couper sur n'importe quel caractère si besoin */
+  word-break: break-word;      /* sécurité pour les très longues chaînes collées */
+  hyphens: auto;               /* césure propre si langue FR active */
+}
+
+/* Liste de gauche : nom sur 1 ligne + ellipsis (avec wrap autorisé si l'écran est minuscule) */
+.item .name{
+  display: -webkit-box;
+  -webkit-line-clamp: 1;       /* 1 ligne clamp */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* Sur petits écrans, on autorise 2 lignes max pour lire un peu plus */
+@media (max-width: 420px){
+  .item .name{
+    -webkit-line-clamp: 2;     /* 2 lignes max */
+    line-clamp: 2;
+  }
+}
+
+/* Code secondaire sous le nom (toujours sur une seule ligne, ellipsis) */
+.item .code{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Table des lignes : le libellé ne déborde jamais et peut s’étaler sur plusieurs lignes */
+.line-libelle{
+  white-space: normal;        /* autorise le retour à la ligne */
+  max-width: 100%;
+}
+
+/* Grille des détails sous chaque ligne : colonnes flexibles, jamais trop étroites */
+.line-details{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 8px;
+}
+
+/* Badges montants : rétrécir proprement si l’espace manque */
+.line-details > div > div,
+.item .amt,
+.ressource-item .amount,
+.dette-item .ae,
+.dette-item .cp{
+  min-width: 0;               /* permet la réduction dans les conteneurs étroits */
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Panneau liste : s’il y a très peu de largeur, on force une colonne unique sans casse visuelle */
+@media (max-width: 360px){
+  .list{
+    padding-right: 2px;       /* évite l’apparition d’un scroll horizontal */
+  }
+}
+
+/* Ressources / Dette : noms longs clamped à 2 lignes max pour éviter l'effet "bloc" infini */
+.ressource-item .name,
+.dette-item .name{
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Annule toute largeur fixe qui pourrait forcer un débordement sur mobile */
+.item .amt,
+.ressource-item .amount,
+.dette-item .ae,
+.dette-item .cp{
+  width: auto !important;
+}
+
+/* Le badge d’année est déjà protégé, on renforce légèrement la contrainte */
+#yearBadge{
+  max-width: 95vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 </style>
 
 </head>
 <body>
-<header><i class="fa-solid fa-table"></i><h1>Annexe — Décret du Corps préfectoral • Tableaux</h1></header>
-<div class="container">
-<div class="controls">
-<input id="q" placeholder="Recherche rapide (toutes colonnes)…" type="search"/>
-<select id="tabSel"></select>
-</div>
-<div id="tables"></div>
-</div>
-<div id="templates" style="display:none"><div data-title="ANNEXE 1: INDICES APPLICABLES AUX MEMBRES DU CORPS PRÉFECTORAL" id="tmpl_table_0"><table>
-<thead>
-<tr>
-<th>GRADES</th>
-<th>FONCTION</th>
-<th>ECHELON</th>
-<th>INDICE</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td rowspan="3">Hors grade</td>
-<td rowspan="3">préfet de région</td>
-<td>3</td>
-<td>3450</td>
-</tr>
-<tr>
-<td>2</td>
-<td>3340</td>
-</tr>
-<tr>
-<td>1</td>
-<td>3165</td>
-</tr>
-<tr>
-<td rowspan="3">Grade I</td>
-<td rowspan="3">préfet de département</td>
-<td>3</td>
-<td>2995</td>
-</tr>
-<tr>
-<td>2</td>
-<td>2820</td>
-</tr>
-<tr>
-<td>1</td>
-<td>2645</td>
-</tr>
-<tr>
-<td rowspan="3">Grade II</td>
-<td rowspan="3">secrétaire général de préfecture</td>
-<td>3</td>
-<td>2475</td>
-</tr>
-<tr>
-<td>2</td>
-<td>2305</td>
-</tr>
-<tr>
-<td>1</td>
-<td>2130</td>
-</tr>
-<tr>
-<td rowspan="3">Grade III</td>
-<td rowspan="3">sous-préfet</td>
-<td>3</td>
-<td>1910</td>
-</tr>
-<tr>
-<td>2</td>
-<td>1680</td>
-</tr>
-<tr>
-<td>1</td>
-<td>1445</td>
-</tr>
-</tbody>
-</table></div><div data-title="ANNEXE 2: VÉHICULES DE COMMANDEMENT" id="tmpl_table_1"><table>
-<thead>
-<tr>
-<th>GRADES</th>
-<th>FONCTION</th>
-<th>TYPE DE VÉHICULES</th>
-<th>PUISSANCE FISCALE</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Hors grade</td>
-<td>préfets de région</td>
-<td>Tout terrain</td>
-<td>17 CV</td>
-</tr>
-<tr>
-<td>Hors grade</td>
-<td>préfets de région</td>
-<td>Berline</td>
-<td>11 CV</td>
-</tr>
-<tr>
-<td>Grade I</td>
-<td>préfets de département</td>
-<td>Tout terrain</td>
-<td>17 CV</td>
-</tr>
-<tr>
-<td>Grade II</td>
-<td>secrétaires généraux</td>
-<td>Tout terrain</td>
-<td>17 CV</td>
-</tr>
-<tr>
-<td>Grade III</td>
-<td>sous-préfets</td>
-<td>Tout terrain</td>
-<td>17 CV</td>
-</tr>
-</tbody>
-</table></div><div data-title="Indemnités destinées aux membres du Corps préfectoral exerçant en administration centrale" id="tmpl_table_2"><table>
-<thead>
-<tr>
-<th>GRADES</th>
-<th>INDEMNITÉ DE LOGEMENT</th>
-<th>INDEMNITÉ COMPENSATRICE</th>
-<th>INDEMNITÉ DE DÉPLACEMENT</th>
-<th>INDEMNITÉ SPÉCIFIQUE AU CORPS PRÉFECTORAL</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Hors grade</td>
-<td>250 000</td>
-<td>250 000</td>
-<td>250 000</td>
-<td>450 000</td>
-</tr>
-<tr>
-<td>Grade I</td>
-<td>200 000</td>
-<td>200 000</td>
-<td>200 000</td>
-<td>375 000</td>
-</tr>
-<tr>
-<td>Grade II</td>
-<td>175 000</td>
-<td>175 000</td>
-<td>175 000</td>
-<td>300 000</td>
-</tr>
-<tr>
-<td>Grade III</td>
-<td>150 000</td>
-<td>150 000</td>
-<td>150 000</td>
-<td>250 000</td>
-</tr>
-</tbody>
-</table></div><div data-title="Indemnités destinées aux membres du Corps préfectoral exerçant en administration territoriale" id="tmpl_table_3"><table>
-<thead>
-<tr>
-<th>GRADES</th>
-<th>INDEMNITÉ DE SUJÉTION</th>
-<th>INDEMNITÉ REPRÉSENTATIVE DE FRAIS</th>
-<th>INDEMNITÉ DE SOUVERAINETÉ</th>
-<th>INDEMNITÉ DE TUTELLE</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Hors grade</td>
-<td>250 000</td>
-<td>250 000</td>
-<td>250 000</td>
-<td>450 000</td>
-</tr>
-<tr>
-<td>Grade I</td>
-<td>200 000</td>
-<td>200 000</td>
-<td>200 000</td>
-<td>375 000</td>
-</tr>
-<tr>
-<td>Grade II</td>
-<td>175 000</td>
-<td>175 000</td>
-<td>175 000</td>
-<td>300 000</td>
-</tr>
-<tr>
-<td>Grade III</td>
-<td>150 000</td>
-<td>150 000</td>
-<td>150 000</td>
-<td>250 000</td>
-</tr>
-</tbody>
-</table></div></div>
-<div class="footer">Thème harmonisé avec le statut • mobile-first</div>
-<script>
-window.addEventListener('DOMContentLoaded', function(){
-  const state={tables:[], active:0};
-  function normalize(s){return (s||'').toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')}
-  function renderTables(){
-    const wrap=document.getElementById('tables'); wrap.innerHTML='';
-    state.tables.forEach((card,idx)=>{
-      const cardEl=document.createElement('div'); cardEl.className='card'; cardEl.dataset.index=idx;
-      const h2=document.createElement('h2'); h2.innerHTML='<i class="fa-solid fa-diagram-project"></i> '+card.title;
-      cardEl.appendChild(h2);
-      const tw=document.createElement('div'); tw.className='table-wrap';
-      const table=card.table.cloneNode(true);
-      const q=normalize(document.getElementById('q').value);
-      if(q && table.tBodies[0]){
-        const rows=[...table.tBodies[0].rows];
-        rows.forEach(r=>{const txt=normalize(r.innerText); r.style.display = txt.includes(q)?'':'none';});
-      }
-      tw.appendChild(table); cardEl.appendChild(tw); wrap.appendChild(cardEl);
-    });
-  }
-  document.getElementById('q').addEventListener('input', renderTables);
-  function initSelector(){
-    const sel=document.getElementById('tabSel'); sel.innerHTML='';
-    state.tables.forEach((t,i)=>{const opt=document.createElement('option'); opt.value=i; opt.textContent=t.title.replace(/\s+/g,' ').trim(); sel.appendChild(opt);});
-    sel.addEventListener('change',(e)=>{
-      const idx=parseInt(e.target.value,10);
-      document.querySelectorAll('.card').forEach((c,i)=>c.style.display=(i===idx||isNaN(idx))?'':'none');
-    });
-  }
-  // Boot from templates
-  state.tables = [];
-  document.querySelectorAll('#templates > div[id^=tmpl_table_]').forEach(div=>{
-    const title = div.dataset.title || 'Tableau';
-    const table = div.querySelector('table');
-    if(table){ state.tables.push({title, table}); }
-  });
-  initSelector(); renderTables();
-});
-</script>
-  <script>
-  if ("serviceWorker" in navigator) {
-    window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js"));
-  }
-</script>
-  <!-- PWA Install Button -->
-<button id="pwa-install-btn" aria-label="Installer l'application" hidden>Installer</button>
-<style>
-  #pwa-install-btn{
-    position:fixed; right:16px; bottom:16px; z-index:9999;
-    padding:10px 14px; border:none; border-radius:999px;
-    background:#22c55e; color:white; font:600 14px system-ui,Segoe UI,Roboto,Arial,sans-serif;
-    box-shadow:0 8px 20px rgba(34,197,94,.35);
-  }
-  #pwa-install-btn[hidden]{ display:none; }
-  @supports (padding-bottom: env(safe-area-inset-bottom)){
-    #pwa-install-btn{ bottom: calc(16px + env(safe-area-inset-bottom)); }
-  }
-</style>
-<script>
-  (function(){
-    let deferredPrompt;
-    const btnId = "pwa-install-btn";
-    function ensureBtn(){
-      let b = document.getElementById(btnId);
-      if(!b){
-        b = document.createElement("button");
-        b.id = btnId;
-        b.textContent = "Installer";
-        document.body.appendChild(b);
-      }
-      return b;
-    }
-    window.addEventListener("beforeinstallprompt", (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      const btn = ensureBtn();
-      btn.hidden = false;
-      btn.onclick = async () => {
-        btn.hidden = true;
-        deferredPrompt.prompt();
-        await deferredPrompt.userChoice;
-        deferredPrompt = null;
-      };
-    });
-    if (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) {
-      const btn = document.getElementById(btnId);
-      if(btn) btn.hidden = true;
-    }
-  })();
-</script>
-  <!-- Auth UI minimal -->
-<style>
-  .auth-box{position:fixed; top:12px; right:12px; z-index:9998; background:#ffffff; color:#111827; border-radius:12px; padding:10px 12px; box-shadow:0 10px 24px rgba(0,0,0,.12); font:500 14px system-ui,Segoe UI,Roboto,Arial}
-  .auth-box h4{margin:0 0 6px; font-size:14px}
-  .auth-box form{display:flex; gap:6px; flex-wrap:wrap; align-items:center}
-  .auth-box input{padding:6px 8px; border:1px solid #e5e7eb; border-radius:8px}
-  .auth-box button{background:#22c55e; color:#fff; border:none; padding:6px 10px; border-radius:8px; cursor:pointer}
-  .auth-box .row{display:flex; gap:6px; flex-wrap:wrap}
-  .views-badge{position:fixed; left:12px; bottom:12px; z-index:9998; background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px; font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)}
-</style><!-- Admin link (visible only when logged-in) -->
-<style>
-  .admin-link{
-    position:fixed; right:16px; bottom:88px; z-index:9998;
-    display:none; align-items:center; gap:8px;
-    padding:10px 14px; border-radius:999px; text-decoration:none;
-    background:#111827; color:#fff; font:600 14px system-ui,Segoe UI,Roboto,Arial;
-    box-shadow:0 8px 20px rgba(0,0,0,.3);
-    border:1px solid rgba(255,255,255,.1);
-  }
-  body.logged-in .admin-link{ display:inline-flex; }
-  .admin-link:hover{ filter:brightness(1.1); }
-  @supports (padding-bottom: env(safe-area-inset-bottom)){
-    .admin-link{ bottom: calc(88px + env(safe-area-inset-bottom)); }
-  }
-</style>
-<a href="admin.html" class="admin-link" title="Tableau de bord">Admin</a>
-  <script type="module" src="assets/firebase-app.js"></script>
-  <script>window.autoCountAndBind && window.autoCountAndBind();</script>
-  
-<!-- Floating Auth Button + Modal -->
-<style>
-  #auth-fab{
-    position:fixed; right:16px; bottom:68px; z-index:9998;
-    width:48px; height:48px; border-radius:999px; border:none; cursor:pointer;
-    background:#111827; color:#fff; display:grid; place-items:center;
-    box-shadow:0 8px 20px rgba(0,0,0,.35); border:1px solid rgba(255,255,255,.1);
-  }
-  body.logged-in #auth-fab::after{ content:"✓"; }
-  #auth-fab::after{ content:"👤"; font-size:20px; }
-  @supports (padding-bottom: env(safe-area-inset-bottom)){
-    #auth-fab{ bottom: calc(68px + env(safe-area-inset-bottom)); }
-  }
-  .views-badge{
-    position:fixed; left:12px; bottom:12px; z-index:9998; 
-    background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px;
-    font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)
-  }
-  dialog#auth-modal{
-    border:none; border-radius:16px; padding:0; width:min(90vw,420px);
-    box-shadow:0 24px 72px rgba(0,0,0,.35); overflow:hidden;
-  }
-  dialog::backdrop{ background:rgba(0,0,0,.4); }
-  .auth-modal-head{background:#0f172a; color:#fff; padding:12px 16px; display:flex; justify-content:space-between; align-items:center}
-  .auth-modal-body{padding:16px; background:#111827; color:#e5e7eb}
-  .auth-modal-body label{display:block; font-size:13px; margin-top:8px; opacity:.9}
-  .auth-modal-body input{width:100%; padding:10px 12px; border-radius:10px; border:1px solid #1f2937; background:#0b1021; color:#e5e7eb}
-  .auth-actions{display:flex; gap:8px; margin-top:14px}
-  .btn{border:none; border-radius:10px; padding:10px 12px; cursor:pointer; font-weight:600}
-  .btn-primary{background:#22c55e; color:white}
-  .btn-ghost{background:transparent; color:#e5e7eb; border:1px solid #374151}
-  .muted{opacity:.8}
-</style>
-
-<button id="auth-fab" title="Connexion / Compte"></button>
-<div class="views-badge">Vues : <span id="viewCounter">0</span></div>
-
-<dialog id="auth-modal">
-  <div class="auth-modal-head">
-    <strong>Connexion</strong>
-    <button class="btn btn-ghost" id="auth-close" aria-label="Fermer">✕</button>
-  </div>
-  <div class="auth-modal-body">
-    <p class="muted">Connecte-toi pour accéder à l’admin et une meilleure expérience.</p>
-    <label>Email</label>
-    <input type="email" id="auth-email" placeholder="email@exemple.com" required>
-    <label>Mot de passe</label>
-    <input type="password" id="auth-pass" placeholder="••••••••" required>
-    <div class="auth-actions">
-      <button class="btn btn-primary" id="btn-login">Connexion</button>
-      <button class="btn btn-ghost" id="btn-register">Créer un compte</button>
-      <button class="btn btn-ghost" id="btn-logout">Déconnexion</button>
+  <header>
+    <div class="wrap">
+      <div class="row">
+        <div class="brand"><span class="dot"></span> Hub Budget de l'État <span class="pill" id="yearBadge">—</span></div>
+        <div class="row" style="margin-left:auto">
+          <select id="yearSel"></select>
+        </div>
+      </div>
+      <div class="tabs">
+        <div class="tab active" data-tab="depenses">Dépenses</div>
+        <div class="tab" data-tab="ressources">Ressources</div>
+        <div class="tab" data-tab="dette">Dette publique</div>
+      </div>
     </div>
-    <div id="auth-msg" class="muted" style="margin-top:8px;"></div>
-  </div>
-</dialog>
+  </header>
 
-<script type="module">
-  import { authRegister, authLogin, authLogout } from "./assets/firebase-app.js";
+  <main class="wrap">
+    <div id="err" class="error"></div>
+    <div id="ok" class="success"></div>
 
-  const fab = document.getElementById("auth-fab");
-  const modal = document.getElementById("auth-modal");
-  const closeBtn = document.getElementById("auth-close");
-  const email = document.getElementById("auth-email");
-  const pass = document.getElementById("auth-pass");
-  const msg  = document.getElementById("auth-msg");
-  const btnLogin = document.getElementById("btn-login");
-  const btnRegister = document.getElementById("btn-register");
-  const btnLogout = document.getElementById("btn-logout");
+    <section data-tab-panel="depenses">
+      <div class="layout">
+        <aside class="sidebar" id="sidebar">
+          <div class="card">
+            <div class="tabs">
+              <div class="tab active" data-type="ministere">Ministères</div>
+              <div class="tab" data-type="institution">Institutions</div>
+              <div class="tab" data-type="coges">Coges</div>
+              <div class="tab" data-type="collectivites">Collectivités</div>
 
-  function openModal(){ try{ modal.showModal(); }catch{ modal.setAttribute("open",""); } }
-  function closeModal(){ modal.close?.(); modal.removeAttribute("open"); }
+            </div>
+          </div>
+          <div class="card">
+            <input type="text" id="qDepense" placeholder="Rechercher un ministère/institution…" class="input">
+          </div>
+          <div class="card">
+            <div class="list" id="depensesList"></div>
+          </div>
+        </aside>
+        <div class="main" id="mainPanel">
+          <div class="btn-back" onclick="showList()">← Retour à la liste</div>
+          <div class="card">
+            <h2 id="depenseName">Sélectionnez un ministère ou une institution</h2>
+            <div class="kpis">
+              <div class="kpi">
+                <h3>Budget total (AE)</h3>
+                <div class="val" id="depenseTotal">—</div>
+              </div>
+              <div class="kpi">
+                <h3>Programmes</h3>
+                <div class="val" id="depenseProgCount">—</div>
+              </div>
+              <div class="kpi">
+                <h3>Lignes de dépense</h3>
+                <div class="val" id="depenseLinesCount">—</div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="row">
+              <select id="progSel" class="input" style="width:auto">
+                <option value="">Tous les programmes</option>
+              </select>
+              <select id="natureSel" class="input" style="width:auto">
+                <option value="">Toutes les natures</option>
+              </select>
+              <select id="modeSel" class="input" style="width:auto">
+                <option value="ae">Autorisations d'engagement (AE)</option>
+                <option value="cp">Crédits de paiement (CP)</option>
+              </select>
+              <input type="text" id="qLine" placeholder="Rechercher…" class="input" style="width:auto">
+              <button class="btn" onclick="filterTable()">Filtrer</button>
+            </div>
+            <div class="table-wrap">
+              <table id="linesTable">
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  fab?.addEventListener("click", openModal);
-  closeBtn?.addEventListener("click", closeModal);
+    <section data-tab-panel="ressources" style="display:none">
+      <div class="card">
+        <h2>Ressources budgétaires</h2>
+        <div class="kpis">
+          <div class="kpi">
+            <h3>Total des ressources</h3>
+            <div class="val" id="ressourcesTotal">—</div>
+          </div>
+          <div class="kpi">
+            <h3>Nombre de catégories</h3>
+            <div class="val" id="ressourcesCategoriesCount">—</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="list" id="ressourcesList"></div>
+      </div>
+    </section>
 
-  async function handle(run){
-    msg.textContent = "";
-    try{
-      await run(email.value.trim(), pass.value);
-      msg.textContent = "✅ Opération réussie.";
-      setTimeout(()=>{ closeModal(); }, 500);
-    }catch(e){
-      console.error(e);
-      msg.textContent = "❌ " + (e?.message || "Erreur");
+    <section data-tab-panel="dette" style="display:none">
+      <div class="card">
+        <h2>Dette publique</h2>
+        <div class="kpis">
+          <div class="kpi">
+            <h3>Total dette (AE)</h3>
+            <div class="val" id="detteTotalAE">—</div>
+          </div>
+          <div class="kpi">
+            <h3>Total dette (CP)</h3>
+            <div class="val" id="detteTotalCP">—</div>
+          </div>
+          <div class="kpi">
+            <h3>Catégories de dette</h3>
+            <div class="val" id="detteCategoriesCount">—</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div id="detteContent"></div>
+      </div>
+    </section>
+  </main>
+
+<script>
+(function(){
+  const _origFilterTable = window.filterTable;
+
+  window.filterTable = function(){
+    // Cas Collectivités : on garde ton rendu spécial
+    if (window.CURRENT_ACTIVE_TYPE === 'coges'){
+      if (typeof _origFilterTable === 'function') return _origFilterTable();
+      return;
     }
-  }
 
-  btnLogin?.addEventListener("click", () => handle(authLogin));
-  btnRegister?.addEventListener("click", () => handle(authRegister));
-  btnLogout?.addEventListener("click", async () => {
-    msg.textContent = "";
-    try{ await authLogout(); msg.textContent = "✅ Déconnecté."; }catch(e){ msg.textContent = "❌ " + (e?.message||"Erreur"); }
-  });
-</script>
-
-
-<!-- Per-card view counters -->
-<style>
-  .card-views-badge{
-    position:absolute; top:8px; right:8px;
-    background:rgba(17,24,39,.9); color:#fff;
-    padding:4px 8px; border-radius:999px; font:600 12px system-ui,Segoe UI,Roboto,Arial;
-    box-shadow:0 6px 14px rgba(0,0,0,.25);
-    pointer-events:none;
-  }
-  .card-views-wrap{ position:relative; }
-</style>
-<script type="module">
-  import { getViewCount } from "./assets/firebase-app.js";
-  function basename(href){
-    try{ const u = new URL(href, location.href);
-         const file = u.pathname.split('/').pop() || 'index.html';
-         return file.replace(/\.html$/i,''); }
-    catch{ return (href.split('/').pop()||'index.html').replace(/\.html$/i,''); }
-  }
-  async function attachCounterTo(el, docId){
-    let container = el.closest('.card, .item, .panel, .box, .article, .doc, .tile');
-    if(!container){ container = el.parentElement; }
-    if(container && !container.classList.contains('card-views-wrap')){
-      container.classList.add('card-views-wrap');
+    if (!window.CURRENT_ORIGINAL_DATA || !window.CURRENT_ACTIVE_TYPE){
+      if (typeof _origFilterTable === 'function') return _origFilterTable();
+      return;
     }
-    const host = container || el;
-    if(host.querySelector('.card-views-badge[data-doc="'+docId+'"]')) return;
-    const badge = document.createElement('span');
-    badge.className = 'card-views-badge';
-    badge.dataset.doc = docId;
-    badge.textContent = 'Vues: …';
-    host.appendChild(badge);
-    try{ const n = await getViewCount(docId);
-         badge.textContent = 'Vues: ' + n; }
-    catch{ badge.textContent = 'Vues: —'; }
-  }
-  async function initCardCounters(){
-    const links = Array.from(document.querySelectorAll('[data-doc-id], a[href$=".html"]'))
-      .filter(a => {
-        const id = a.getAttribute('data-doc-id') || basename(a.getAttribute('href')||'');
-        return id && !['index','admin','offline'].includes(id.toLowerCase());
+
+    const progFilter = progSel.value;
+    const natureFilter = natureSel.value;
+    const mode = modeSel.value;
+    const query = qLine.value.toLowerCase().trim();
+    const type = window.CURRENT_ACTIVE_TYPE;
+    const linesTableBody = document.querySelector('#linesTable tbody');
+
+    // ⚠️ On bloque la variation si PREV.year est absent
+    let prevMap = {};
+    const prevEnabled = (window.PREV && window.PREV.year); 
+
+    if (prevEnabled){
+      const selectedListItem = (window.filteredData || [])[window.CURRENT_IDX];
+      if (selectedListItem){
+        const prevEntity = getPrevEntityFor(selectedListItem, type, window.PREV);
+        prevMap = buildPrevLinesMap(prevEntity, type, mode);
+      }
+    }
+
+    const allLines = [];
+    const root = window.CURRENT_ORIGINAL_DATA;
+    if (root.programmes){
+      root.programmes.forEach(prog=>{
+        const pName = prog.nom || prog.name || '';
+        if (progFilter && pName !== progFilter) return;
+
+        (prog.natures||[]).forEach(nat=>{
+          const nName = nat.nom || nat.name || '';
+          if (natureFilter){
+            const [pf, nf] = natureFilter.split('::');
+            if ((pName !== pf) || (nName !== nf)) return;
+          }
+
+          const srcLines = (type === 'ministere')
+            ? (nat.lignes || [])
+            : (nat.lignes_budgetaires || []);
+
+          srcLines.forEach(line=>{
+            const lib = line.libellé || line.libelle || line.description || 'Sans libellé';
+            const montant = (mode === 'cp')
+              ? (parseFloat(line.montant_cp)||0)
+              : (parseFloat(line.montant_ae)||0);
+
+            const key = _norm(`${pName}|${nName}|${lib}`);
+            const prevVal = (prevEnabled ? (prevMap[key] || 0) : 0);
+
+            allLines.push({
+              libelle: lib,
+              programme: pName || 'Sans programme',
+              nature: nName || 'Sans nature',
+              montant,
+              prevVal,
+              mode
+            });
+          });
+        });
       });
-    const handled = new Set();
-    for(const a of links){
-      const id = a.getAttribute('data-doc-id') || basename(a.getAttribute('href')||'');
-      if(!id || handled.has(id)) continue;
-      handled.add(id);
-      attachCounterTo(a, id);
     }
-  }
-  initCardCounters();
-  const obs = new MutationObserver(()=>initCardCounters());
-  obs.observe(document.body, { childList:true, subtree:true });
+
+    // ====== ⬇️ ÉTAPE 2 : rendu avec variation par ligne (à placer ici) ⬇️ ======
+    // ====== Rendu des lignes avec variation (YoY) ======
+const filtered = allLines.filter(l=>{
+  return !query
+    || l.libelle.toLowerCase().includes(query)
+    || l.programme.toLowerCase().includes(query)
+    || l.nature.toLowerCase().includes(query)
+    || formatCFA(l.montant).toLowerCase().includes(query);
+});
+
+// IMPORTANT : ne PAS re-wrapper renderYoY dans un <span class="yoy">,
+// car renderYoY renvoie déjà le badge .yoy up/down/flat (comme pour le total).
+linesTableBody.innerHTML = filtered.length ? filtered.map(l=>{
+  const showYoY = prevEnabled && l.prevVal > 0;
+  const yoyBadge = showYoY ? (renderYoY(l.montant, l.prevVal) + ' ') : '';
+  return `
+    <tr>
+      <td>
+        <div class="line-libelle">${l.libelle}</div>
+        <div class="line-details">
+          <div><b>Programme:</b><div>${l.programme}</div></div>
+          <div><b>Nature:</b><div>${l.nature}</div></div>
+          <div><b>Montant:</b>
+            <div class="amount-box">
+              ${yoyBadge}${formatCFA(l.montant)} ${l.mode.toUpperCase()}
+            </div>
+          </div>
+        </div>
+      </td>
+    </tr>`;
+}).join('') : `<tr><td><div class="hint" style="text-align:center;padding:20px">Aucune ligne ne correspond aux critères.</div></td></tr>`;
+
+depenseLinesCount.textContent = String(filtered.length);
+    // ====== ⬆️ FIN ÉTAPE 2 ⬆️ ======
+  };
+})();
 </script>
 
-</body></html>
+
+  <script>  
+// Configuration des années disponibles
+const AVAILABLE_YEARS = ['2024', '2025']; // Ajout de l'année spéciale "drena"
+
+// Configuration dynamique des URLs en fonction de l'année
+function getYearConfig(year) {
+  // Chemin de base pour les fichiers (ajustez si nécessaire)
+  const basePath = '';
+
+  if (year === 'drena') {
+    return {
+      label: 'DRENA',
+      drenaUrl: `${basePath}drena_data.json` // Remplacez par le chemin réel de votre fichier
+    };
+  }
+
+  return {
+    label: year,
+    ministeresUrl: `${basePath}budget${year}_ministeres.json`,
+    institutionsUrl: `${basePath}budget${year}_institutions.json`,
+    ressourcesUrl: `${basePath}budget${year}_ressources.json`,
+     detteUrl: `${basePath}budget${year}_dette.json`,
+    cogesUrlDash: `${basePath}budget${year}-coges.json`,
+    cogesUrlUnd: `${basePath}budget${year}_coges.json`
+  };
+}
+
+// Variables globales
+let DATA = { 
+  ministeres: [], 
+  institutions: [],
+  ressources: null,
+  dette: null,
+  coges: []
+};
+let ministries = [];
+let institutions = [];
+let coges = [];
+let filteredData = [];
+let CURRENT_IDX = -1;
+let CURRENT_ORIGINAL_DATA = null;
+let CURRENT_ACTIVE_TYPE = null;
+
+// Éléments DOM
+const yearSel = document.getElementById('yearSel');
+const yearBadge = document.getElementById('yearBadge');
+const qDepense = document.getElementById('qDepense');
+const depensesList = document.getElementById('depensesList');
+const sidebar = document.getElementById('sidebar');
+const mainPanel = document.getElementById('mainPanel');
+const depenseName = document.getElementById('depenseName');
+const depenseTotal = document.getElementById('depenseTotal');
+const depenseProgCount = document.getElementById('depenseProgCount');
+const depenseLinesCount = document.getElementById('depenseLinesCount');
+const progSel = document.getElementById('progSel');
+const natureSel = document.getElementById('natureSel');
+const modeSel = document.getElementById('modeSel');
+const qLine = document.getElementById('qLine');
+const linesTable = document.getElementById('linesTable').querySelector('tbody');
+const errEl = document.getElementById('err');
+const okEl = document.getElementById('ok');
+const ressourcesTotal = document.getElementById('ressourcesTotal');
+const ressourcesCategoriesCount = document.getElementById('ressourcesCategoriesCount');
+const ressourcesList = document.getElementById('ressourcesList');
+const detteTotalAE = document.getElementById('detteTotalAE');
+const detteTotalCP = document.getElementById('detteTotalCP');
+const detteCategoriesCount = document.getElementById('detteCategoriesCount');
+const detteContent = document.getElementById('detteContent');
+
+// Initialisation
+
+
+function processCogesData(raw, year) {
+  const items = [];
+  if (!Array.isArray(raw)) return items;
+  const curr = String(year ?? '');
+
+  const normNum = v => {
+    if (typeof v === 'number') return v;
+    if (typeof v === 'string') {
+      // tolère espaces, points, virgules
+      return parseFloat(v.replace(/\s+/g,'').replace(/,/g,'.')) || 0;
+    }
+    return 0;
+  };
+
+  raw.forEach(node => {
+    // --- Nouveau format hiérarchique : { drena, children:[ {type:'iepp'|'secondaire'|'coges', ...} ] }
+    if (node && node.drena && Array.isArray(node.children)) {
+      const drenaName = String(node.drena).replace(/^TOTAL\s+DRENA\s*/i,'').trim();
+
+      node.children.forEach(child => {
+        if (!child) return;
+
+        if (child.type === 'iepp') {
+          // total de l’IEPP pour l’année courante (si pas de totaux, on somme ses COGES)
+          const total =
+            (child.totaux && normNum(child.totaux[curr])) ||
+            (Array.isArray(child.children)
+               ? child.children
+                   .filter(c => c && c.type === 'coges')
+                   .reduce((s, c) => s + normNum(c?.montants?.[curr]), 0)
+               : 0);
+
+          const lines = (child.children || [])
+            .filter(c => c && c.type === 'coges')
+            .map(c => ({
+              nom_coges: c.label || 'COGES',
+              exercice_2024_fcfa: normNum(c?.montants?.['2024']),
+              exercice_2025_fcfa: normNum(c?.montants?.['2025'])
+            }));
+
+          items.push({
+            type: 'coges',
+            name: child.label || 'IEPP',
+            code: drenaName,              // badge/texte secondaire = DRENA parente
+            totalAE: total,
+            coges: lines,
+            originalIndex: items.length
+          });
+        }
+        else if (child.type === 'secondaire') {
+          // rendre visibles les établissements secondaires (enfants de la DRENA)
+          const total = normNum(child?.montants?.[curr]);
+          items.push({
+            type: 'coges',
+            name: child.label || 'Établissement secondaire',
+            code: drenaName,
+            totalAE: total,
+            // on les présente comme une "ligne" unique pour rester compatible avec le rendu existant
+            coges: [{
+              nom_coges: child.label || 'Établissement secondaire',
+              exercice_2024_fcfa: normNum(child?.montants?.['2024']),
+              exercice_2025_fcfa: normNum(child?.montants?.['2025'])
+            }],
+            originalIndex: items.length
+          });
+        }
+      });
+      return; // ce bloc est traité
+    }
+
+    // --- Ancien format (fallback) : [{ iepp:[ { iepp, total_2025_fcfa, coges:[...] } ] }]
+    if (Array.isArray(node?.iepp)) {
+      node.iepp.forEach((entry, idx) => {
+        const name = entry.iepp || `IEPP #${idx+1}`;
+        const total = normNum(entry.total_2025_fcfa || entry.sum_2025_fcfa);
+        const lines = Array.isArray(entry.coges) ? entry.coges.map(l => ({
+          nom_coges: l.nom_coges || l.label || 'COGES',
+          exercice_2024_fcfa: normNum(l.exercice_2024_fcfa || l?.montants?.['2024']),
+          exercice_2025_fcfa: normNum(l.exercice_2025_fcfa || l?.montants?.['2025'])
+        })) : [];
+
+        items.push({
+          type:'coges',
+          name,
+          code: entry.page || (idx+1),
+          totalAE: total,
+          coges: lines,
+          originalIndex: items.length
+        });
+      });
+    }
+  });
+
+  return items;
+}
+
+
+function renderCogesLines(entry) {
+  const lines = Array.isArray(entry.coges) ? entry.coges : [];
+  const rows = lines.map(l => {
+    const lib = l.nom_coges || 'COGES';
+    const y2024 = parseFloat(l.exercice_2024_fcfa)||0;
+    const y2025 = parseFloat(l.exercice_2025_fcfa)||0;
+    return `<tr>
+      <td>
+        <div class="line-libelle">${lib}</div>
+        <div class="line-details">
+          <div><b>2024</b><div>${formatCFA(y2024)}</div></div>
+          <div><b>2025</b><div>${formatCFA(y2025)}</div></div>
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+  return rows || '<tr><td class="hint">Aucune ligne COGES trouvée.</td></tr>';
+}
+
+function init() {
+  // Remplir le sélecteur d'années avec les années disponibles
+  yearSel.innerHTML = '';
+  AVAILABLE_YEARS.forEach(year => {
+    const option = document.createElement('option');
+    option.value = year;
+    option.textContent = year;
+    yearSel.appendChild(option);
+  });
+
+  // Charger l'année par défaut (première année disponible)
+  const defaultYear = AVAILABLE_YEARS[0];
+  yearSel.value = defaultYear;
+  loadYear(defaultYear);
+
+  // Événements
+  yearSel.addEventListener('change', () => loadYear(yearSel.value));
+  qDepense.addEventListener('input', () => renderDepensesList());
+
+  // Événements pour les filtres de tableau
+  [progSel, natureSel, modeSel].forEach(el => {
+    el.addEventListener('change', () => filterTable());
+  });
+  qLine.addEventListener('input', () => filterTable());
+
+  // Événements pour les onglets ministères/institutions
+  document.querySelectorAll('.tab[data-type]').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.tab[data-type]').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      // If the clicked subtab is "collectivites", render its custom list;
+      // otherwise, render the standard dépenses list.
+      if (tab.getAttribute('data-type') === 'collectivites') {
+        try { if (typeof showCollectivitesList === 'function') showCollectivitesList(); } catch(e){ /* ignore */ }
+      } else {
+        renderDepensesList();
+      }
+    });
+  });
+
+  // Événements pour les onglets principaux
+  document.querySelectorAll('.tab[data-tab]').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const tabName = tab.dataset.tab;
+
+      // Masquer tous les panels
+      document.querySelectorAll('section[data-tab-panel]').forEach(panel => {
+        panel.style.display = 'none';
+      });
+
+      // Afficher le panel correspondant
+      document.querySelector(`section[data-tab-panel="${tabName}"]`).style.display = 'block';
+
+      // Mettre à jour les onglets actifs
+      document.querySelectorAll('.tab[data-tab]').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+    });
+  });
+}
+
+// Fonction pour charger une année complète
+async function loadYear(year) {
+  const config = getYearConfig(year);
+  yearBadge.innerHTML = `<div class="loading"></div> Chargement…`;
+  hideError(); hideSuccess();
+  let nMinisteres = [], nInstitutions = [], nRessources = null, nDette = null;
+
+  try {
+    const [mRes, iRes, rRes, dRes, cResDash, cResUnd] = await Promise.all([
+      fetch(config.ministeresUrl),
+      fetch(config.institutionsUrl),
+      fetch(config.ressourcesUrl),
+      fetch(config.detteUrl),
+      fetch(config.cogesUrlDash).catch(()=>null),
+      fetch(config.cogesUrlUnd).catch(()=>null)
+    ]);
+
+    if (!mRes.ok) throw new Error('Ministeres ' + mRes.status);
+    if (!iRes.ok) throw new Error('Institutions ' + iRes.status);
+    if (!rRes.ok) throw new Error('Ressources ' + rRes.status);
+    if (!dRes.ok) throw new Error('Dette ' + dRes.status);
+
+    nMinisteres = await mRes.json();
+    nInstitutions = await iRes.json();
+    nRessources = await rRes.json();
+    nDette = await dRes.json();
+
+    // Chargement des données COGES
+    let nCogesRaw = null;
+    try { 
+      if (cResDash && cResDash.ok) nCogesRaw = await cResDash.json(); 
+    } catch(e){ console.warn('Erreur chargement COGES dash:', e); }
+
+    try { 
+      if (!nCogesRaw && cResUnd && cResUnd.ok) nCogesRaw = await cResUnd.json(); 
+    } catch(e){ console.warn('Erreur chargement COGES underscore:', e); }
+
+    DATA.coges = nCogesRaw || [];
+
+    // Store current data
+    DATA.ministeres = nMinisteres.ministères || nMinisteres.ministeres || nMinisteres.ministers || nMinisteres.ministeres || nMinisteres.ministères || nMinisteres.ministries || nMinisteres || [];
+    DATA.institutions = nInstitutions.institutions || nInstitutions || [];
+    DATA.ressources = nRessources;
+    DATA.dette = nDette;
+
+    // Process for list rendering
+    ministries = processMinisteresData(DATA.ministeres);
+    institutions = processInstitutionsData(DATA.institutions);
+    coges = processCogesData(DATA.coges, year);
+
+    // --- Fetch previous year for YoY ---
+    const prevYear = String(parseInt(year,10) - 1);
+    let PREV = { year: prevYear, ministries: {}, institutions: {}, budgetEtat: 0, detteAE: 0, detteCP: 0 };
+    try {
+      const prevCfg = getYearConfig(prevYear);
+      const [pm, pi, pr, pd] = await Promise.all([
+        fetch(prevCfg.ministeresUrl).then(r => r.ok ? r.json() : null).catch(()=>null),
+        fetch(prevCfg.institutionsUrl).then(r => r.ok ? r.json() : null).catch(()=>null),
+        fetch(prevCfg.ressourcesUrl).then(r => r.ok ? r.json() : null).catch(()=>null),
+        fetch(prevCfg.detteUrl).then(r => r.ok ? r.json() : null).catch(()=>null)
+      ]);
+
+      // Build prev maps
+      if (pm) {
+        const arr = processMinisteresData(pm.ministères || pm.ministeres || pm || []);
+        PREV.ministries = Object.fromEntries(arr.map(x => [x.code || x.name, x.totalAE]));
+      }
+      if (pi) {
+        const arr = processInstitutionsData(pi.institutions || pi || []);
+        PREV.institutions = Object.fromEntries(arr.map(x => [x.code || x.name, x.totalAE]));
+      }
+      if (pr) {
+        PREV.budgetEtat = computeBudgetEtatFromRessources(pr);
+      }
+      if (pd) {
+        // Dette totals
+        const cats = Array.isArray(pd.categories_dette) ? pd.categories_dette : (Array.isArray(pd.categories) ? pd.categories : []);
+        const sumAE = cats.reduce((s,c)=> s + (parseFloat(c.montant_ae)||0), 0);
+        const sumCP = cats.reduce((s,c)=> s + (parseFloat(c.montant_cp)||0), 0);
+        PREV.detteAE = (pd.montant_total_ae!==undefined) ? parseFloat(pd.montant_total_ae) : sumAE;
+        PREV.detteCP = (pd.montant_total_cp!==undefined) ? parseFloat(pd.montant_total_cp) : sumCP;
+      }
+    } catch(ePrev) {
+      console.warn('Prev year fetch failed:', ePrev);
+      PREV = { year: null, ministries: {}, institutions: {}, budgetEtat: 0, detteAE: 0, detteCP: 0 };
+    }
+    window.PREV = PREV; // expose
+
+    // Compute current Budget de l'État from ressources
+    const currBudgetEtat = computeBudgetEtatFromRessources(DATA.ressources);
+
+    // Update the year badge: amount first, then year, with YoY if prev exists
+    const yoyBadge = (PREV && PREV.year && (PREV.budgetEtat>0)) ? renderYoY(currBudgetEtat, PREV.budgetEtat) : '';
+    yearBadge.innerHTML = `<span class=\"year-amount\">${yoyBadge}${yoyBadge ? ' ' : ''}${formatCFA(currBudgetEtat)}</span> <span class=\"year\">• ${year}</span>`;
+
+    // Prepare panels
+    renderDepensesList();
+    prepareRessources();
+    prepareDette();
+    mainPanel.style.display = 'none';
+
+    showSuccess(`Année ${year} chargée.`);
+  } catch(e) {
+    console.error('Erreur de chargement:', e);
+    showError(`Erreur de chargement des données pour ${year}. ${e.message}`);
+    yearBadge.textContent = 'Erreur';
+  }
+}
+
+// Fonction utilitaire pour traiter les données des ministères
+function processMinisteresData(ministeresData) {
+  return ministeresData.map((ministere, i) => {
+    // Extraire le nom et le code du ministère
+    const ministereName = ministere.ministere || ministere.ministère || 'Ministère sans nom';
+    const codes = ministereName.match(/\d+/g);
+    const name = ministereName.replace(/\d+ /g, '').trim();
+    const code = codes ? codes[0] : null;
+
+    // Calculer le budget total
+    let totalAE = 0;
+    if (ministere.programmes) {
+      totalAE = ministere.programmes.reduce((sum, programme) => {
+        const natureSum = programme.natures ? programme.natures.reduce((s, nature) => {
+          const ligneSum = nature.lignes ? nature.lignes.reduce((l, ligne) => {
+            return l + (parseFloat(ligne.montant_ae) || 0);
+          }, 0) : 0;
+          return s + ligneSum;
+        }, 0) : 0;
+        return sum + natureSum;
+      }, 0);
+    }
+
+    return { 
+      name, 
+      code, 
+      totalAE, 
+      originalIndex: i,
+      type: 'ministere'
+    };
+  });
+}
+
+// Fonction utilitaire pour traiter les données des institutions
+function processInstitutionsData(institutionsData) {
+  return institutionsData.map((institution, i) => {
+    const name = institution.nom || 'Institution sans nom';
+    const code = institution.code || null;
+
+    let totalAE = 0;
+    if (institution.programmes) {
+      totalAE = institution.programmes.reduce((sum, p) => {
+        const natureSum = p.natures ? p.natures.reduce((s, n) => {
+          const ligneSum = n.lignes_budgetaires ? n.lignes_budgetaires.reduce((l, line) => {
+            return l + (parseFloat(line.montant_ae) || 0);
+          }, 0) : 0;
+          return s + ligneSum;
+        }, 0) : 0;
+        return sum + natureSum;
+      }, 0);
+    }
+
+    return { 
+      name, 
+      code, 
+      totalAE, 
+      originalIndex: i,
+      type: 'institution'
+    };
+  });
+}
+
+// Fonction pour afficher la liste des dépenses
+function renderDepensesList() {
+  const query = qDepense.value.toLowerCase().trim();
+  const activeType = document.querySelector('.tab[data-type].active').dataset.type;
+
+  // ✅ Guard: if we are on the "Collectivités" subtab, delegate and stop here
+  if (activeType === 'collectivites') {
+    try { if (typeof showCollectivitesList === 'function') showCollectivitesList(); } catch(e){ /* ignore */ }
+    return;
+  }
+
+  let sourceData;
+  let prevMap = {};
+
+  if (activeType === 'ministere') {
+    sourceData = ministries;
+    prevMap = window.PREV?.ministries || {};
+  } else if (activeType === 'institution') {
+    sourceData = institutions;
+    prevMap = window.PREV?.institutions || {};
+  } else if (activeType === 'coges') {
+    sourceData = coges;
+    // Pas de données précédentes pour COGES
+  }
+
+  filteredData = sourceData.filter(item => {
+    if (!item) return false;
+    const nameMatch = item.name && item.name.toLowerCase().includes(query);
+    const codeMatch = item.code && item.code.toString().includes(query);
+    return nameMatch || codeMatch || query === '';
+  });
+  filteredData.sort((a, b) => b.totalAE - a.totalAE);
+
+  depensesList.innerHTML = filteredData.length > 0 ? filteredData.map((item, i) => {
+    const key = item.code || item.name;
+    const prevVal = prevMap[key] || 0;
+    const showYoY = (window.PREV && window.PREV.year && prevVal > 0 && activeType !== 'coges');
+    const yoy = showYoY ? renderYoY(item.totalAE, prevVal) : '';
+    return `
+      <div class="item ${i === CURRENT_IDX ? 'active' : ''}" onclick="selectDepense(${i})">
+        <div>
+          <div class="name">${item.name}</div>
+          ${item.code ? `<div class="code">${item.code}</div>` : ''}
+          <div class="amt">${yoy}${yoy ? ' ' : ''}${formatCFA(item.totalAE)}</div>
+        </div>
+      </div>`;
+  }).join('') : `<div class="hint" style="text-align:center;padding:20px">Aucun résultat pour « ${escapeHtml(query)} »</div>`;
+}
+
+// Fonction pour vérifier si on est en mode mobile
+function isMobile() {
+  return window.innerWidth < 980;
+}
+
+// Fonction pour sélectionner une dépense
+function selectDepense(listIndex) {
+  if (listIndex < 0 || listIndex >= filteredData.length) {
+    mainPanel.style.display = 'none';
+    if (isMobile()) sidebar.style.display = 'flex';
+    return;
+  }
+
+  CURRENT_IDX = listIndex;
+  renderDepensesList();
+
+  const selectedItem = filteredData[listIndex];
+  if (!selectedItem) {
+    mainPanel.style.display = 'none';
+    if (isMobile()) sidebar.style.display = 'flex';
+    return;
+  }
+
+  // Masquer la sidebar seulement sur mobile
+  if (isMobile()) {
+    sidebar.style.display = 'none';
+  }
+
+  // Récupérer les données originales selon le type
+  const activeType = document.querySelector('.tab[data-type].active').dataset.type;
+  let originalData;
+
+  if (activeType === 'ministere') {
+    originalData = DATA.ministeres[selectedItem.originalIndex];
+  } else if (activeType === 'institution') {
+    originalData = DATA.institutions[selectedItem.originalIndex];
+  } else if (activeType === 'coges') {
+    originalData = selectedItem; // Pour COGES, on utilise directement l'item
+  }
+
+  if (!originalData) {
+    mainPanel.style.display = 'none';
+    if (isMobile()) sidebar.style.display = 'flex';
+    return;
+  }
+
+  // Stocker les données originales et le type pour le filtrage
+  CURRENT_ORIGINAL_DATA = originalData;
+  CURRENT_ACTIVE_TYPE = activeType;
+
+  depenseName.textContent = selectedItem.name || 'Sans nom';
+
+  // YoY for detail amount
+  const prevMap = (window.PREV && (activeType === 'ministere' ? window.PREV.ministries : window.PREV.institutions)) || {};
+  const key = selectedItem.code || selectedItem.name;
+  const prevVal = prevMap[key] || 0;
+  const showYoY = (window.PREV && window.PREV.year && prevVal > 0 && activeType !== 'coges');
+  depenseTotal.innerHTML = `${showYoY ? renderYoY(selectedItem.totalAE, prevVal) + ' ' : ''}${formatCFA(selectedItem.totalAE)}`;
+
+  // Compter les programmes
+  const progCount = originalData.programmes ? originalData.programmes.length : 0;
+  depenseProgCount.textContent = progCount;
+
+  // Compter les lignes de dépense
+  let linesCount = 0;
+  if (activeType === 'coges') {
+    linesCount = Array.isArray(originalData.coges) ? originalData.coges.length : 0;
+  } else if (originalData.programmes) {
+    if (activeType === 'ministere') {
+      linesCount = originalData.programmes.reduce((sum, programme) => {
+        return sum + (programme.natures ? programme.natures.reduce((s, nature) => {
+          return s + (nature.lignes ? nature.lignes.length : 0);
+        }, 0) : 0);
+      }, 0);
+    } else if (activeType === 'institution') {
+      linesCount = originalData.programmes.reduce((sum, p) => {
+        return sum + (p.natures ? p.natures.reduce((s, n) => {
+          return s + (n.lignes_budgetaires ? n.lignes_budgetaires.length : 0);
+        }, 0) : 0);
+      }, 0);
+    }
+  }
+  depenseLinesCount.textContent = linesCount;
+
+  // Remplir les sélecteurs de filtres
+  progSel.innerHTML = '<option value="">Tous les programmes</option>';
+  natureSel.innerHTML = '<option value="">Toutes les natures</option>';
+
+  if (activeType !== 'coges') {
+    const programmes = originalData.programmes || [];
+    programmes.forEach(p => {
+      const opt = document.createElement('option');
+      opt.value = p.nom || p.name || '';
+      opt.textContent = p.nom || p.name || 'Programme';
+      progSel.appendChild(opt);
+
+      (p.natures || []).forEach(n => {
+        const optN = document.createElement('option');
+        optN.value = `${p.nom || p.name || ''}::${n.nom || n.name || ''}`;
+        optN.textContent = `${p.nom || p.name || ''} → ${n.nom || n.name || ''}`;
+        natureSel.appendChild(optN);
+      });
+    });
+  }
+
+  // Afficher le panneau principal
+  mainPanel.style.display = 'block';
+
+  // Afficher les lignes immédiatement
+  if (activeType === 'coges') {
+    linesTable.innerHTML = renderCogesLines(selectedItem);
+  } else {
+    filterTable();
+  }
+}
+
+// Fonction pour afficher la liste (mode mobile et retour)
+function showList() {
+  if (isMobile()) {
+    sidebar.style.display = 'flex';
+  }
+  mainPanel.style.display = 'none';
+  // Réinitialiser la sélection
+  CURRENT_IDX = -1;
+  CURRENT_ORIGINAL_DATA = null;
+  CURRENT_ACTIVE_TYPE = null;
+  renderDepensesList();
+}
+
+// Gérer le redimensionnement de la fenêtre
+window.addEventListener('resize', function() {
+  // Si on passe en mode desktop, s'assurer que la sidebar est visible
+  if (!isMobile()) {
+    sidebar.style.display = 'flex';
+  }
+});
+
+// Fonction pour filtrer le tableau des lignes budgétaires
+function filterTable() {
+  // Si on est dans l'onglet COGES, ne pas filtrer car c'est déjà géré par renderCogesLines
+  if (CURRENT_ACTIVE_TYPE === 'coges') {
+    linesTable.innerHTML = renderCogesLines(CURRENT_ORIGINAL_DATA);
+    return;
+  }
+
+  if (!CURRENT_ORIGINAL_DATA || !CURRENT_ACTIVE_TYPE) return;
+
+  const progFilter = progSel.value;
+  const natureFilter = natureSel.value;
+  const mode = modeSel.value;
+  const query = qLine.value.toLowerCase().trim();
+
+  let allLines = [];
+
+  if (CURRENT_ORIGINAL_DATA.programmes) {
+    CURRENT_ORIGINAL_DATA.programmes.forEach(prog => {
+      if (progFilter && prog.nom !== progFilter && prog.name !== progFilter) return;
+
+      if (prog.natures) {
+        prog.natures.forEach(nature => {
+          if (natureFilter) {
+            const [progPart, naturePart] = natureFilter.split('::');
+            if ((prog.nom !== progPart && prog.name !== progPart) || 
+                (nature.nom !== naturePart && nature.name !== naturePart)) {
+              return;
+            }
+          }
+
+          if (CURRENT_ACTIVE_TYPE === 'ministere' && nature.lignes) {
+            nature.lignes.forEach(line => {
+              const libelle = line.libellé || line.description || line.libelle || 'Sans libellé';
+              allLines.push({
+                libelle: libelle,
+                montant: mode === 'ae' ? (parseFloat(line.montant_ae) || 0) : (parseFloat(line.montant_cp) || 0),
+                programme: prog.nom || prog.name || 'Sans programme',
+                nature: nature.nom || nature.name || 'Sans nature',
+                mode
+              });
+            });
+          } else if (CURRENT_ACTIVE_TYPE === 'institution' && nature.lignes_budgetaires) {
+            nature.lignes_budgetaires.forEach(line => {
+              const libelle = line.description || line.libellé || line.libelle || 'Sans libellé';
+              allLines.push({
+                libelle: libelle,
+                montant: mode === 'ae' ? (parseFloat(line.montant_ae) || 0) : (parseFloat(line.montant_cp) || 0),
+                programme: prog.nom || prog.name || 'Sans programme',
+                nature: nature.nom || nature.name || 'Sans nature',
+                mode
+              });
+            });
+          }
+        });
+      }
+    });
+  }
+
+  const filteredLines = allLines.filter(l => {
+    if (!l) return false;
+
+    const libelleMatch = l.libelle && l.libelle.toLowerCase().includes(query);
+    const programmeMatch = l.programme && l.programme.toLowerCase().includes(query);
+    const natureMatch = l.nature && l.nature.toLowerCase().includes(query);
+    const montantFormate = formatCFA(l.montant).toLowerCase();
+    const montantMatch = montantFormate.includes(query);
+
+    return libelleMatch || programmeMatch || natureMatch || montantMatch || query === '';
+  });
+
+  linesTable.innerHTML = filteredLines.length > 0 ? filteredLines.map(l => `
+    <tr>
+      <td>
+        <div class="line-libelle">${l.libelle}</div>
+        <div class="line-details">
+          <div><b>Programme:</b> ${l.programme}</div>
+          <div><b>Nature:</b> ${l.nature}</div>
+          <div><b>Montant:</b>
+  <span class="amount-box">
+    ${(window.PREV && PREV.year && PREV.ministries) ? renderYoY(l.montant, 0) : ''} 
+    ${formatCFA(l.montant)} ${l.mode.toUpperCase()}
+  </span>
+</div>
+        </div>
+      </td>
+    </tr>
+  `).join('') : `<tr><td><div class="hint" style="text-align:center;padding:20px">Aucune ligne ne correspond aux critères.</div></td></tr>`;
+}
+
+// Fonctions pour préparer l'affichage des ressources et de la dette
+function prepareRessources() {
+  const data = DATA.ressources || {};
+  const categories = Array.isArray(data.categories) ? data.categories : (Array.isArray(data.ressources) ? data.ressources : []);
+
+  // Total Budget de l'Etat (Budget Général + CST si présent)
+  const currBudgetEtat = computeBudgetEtatFromRessources(data);
+  const yoy = (window.PREV && window.PREV.year && window.PREV.budgetEtat>0) ? renderYoY(currBudgetEtat, window.PREV.budgetEtat) : '';
+  ressourcesTotal.innerHTML = `${yoy}${yoy ? ' ' : ''}${formatCFA(currBudgetEtat)}`;
+  ressourcesCategoriesCount.textContent = categories.length;
+
+  // Build HTML unchanged (amount below label)
+  let html = '';
+
+  categories.forEach(cat => {
+    const catMontant = parseFloat(cat.montant) || 0;
+    html += `
+      <div class="ressource-item level-1">
+        <div class="name"><span class="code-badge">${cat.code ?? ''}</span>${cat.nom ?? 'Catégorie'}</div>
+        <div class="amount">${formatCFA(catMontant)}</div>
+        <div class="meta"><span class="tag">Catégorie</span></div>
+      </div>
+    `;
+
+    if (Array.isArray(cat.sous_categories)) {
+      cat.sous_categories.forEach(sc => {
+        const scMontant = parseFloat(sc.montant) || 0;
+        html += `
+          <div class="ressource-item level-2">
+            <div class="name"><span class="code-badge">${sc.code ?? ''}</span>${sc.nom ?? 'Sous-catégorie'}</div>
+            <div class="amount">${formatCFA(scMontant)}</div>
+            <div class="meta"><span class="tag">Sous-catégorie</span></div>
+          </div>
+        `;
+
+        if (Array.isArray(sc.types)) {
+          sc.types.forEach(t => {
+            const tMontant = parseFloat(t.montant) || 0;
+            html += `
+              <div class="ressource-item level-3">
+                <div class="name">${t.nom ?? 'Type'}</div>
+                <div class="amount">${formatCFA(tMontant)}</div>
+                <div class="meta"><span class="tag">Type</span></div>
+              </div>
+            `;
+
+            if (Array.isArray(t.comptes)) {
+              t.comptes.forEach(c => {
+                const cMontant = parseFloat(c.montant) || 0;
+                html += `
+                  <div class="ressource-item level-4">
+                    <div class="name"><span class="code-badge">${c.code ?? ''}</span>${c.description ?? 'Compte'}</div>
+                    <div class="amount">${formatCFA(cMontant)}</div>
+                    <div class="meta"><span class="tag">Compte</span></div>
+                  </div>
+                `;
+              });
+            }
+          });
+        }
+      });
+    }
+
+    html += `<div class="divider"></div>`;
+  });
+
+  ressourcesList.innerHTML = html || '<div class="hint">Aucune ressource à afficher.</div>';
+}
+
+function prepareDette() {
+  const data = DATA.dette || {};
+  const categories = Array.isArray(data.categories_dette) ? data.categories_dette : (Array.isArray(data.categories) ? data.categories : []);
+
+  // Totaux
+  const totalAE = (data.montant_total_ae && !isNaN(parseFloat(data.montant_total_ae)))
+    ? parseFloat(data.montant_total_ae)
+    : categories.reduce((sum, c) => sum + (parseFloat(c.montant_ae) || 0), 0);
+
+  const totalCP = (data.montant_total_cp && !isNaN(parseFloat(data.montant_total_cp)))
+    ? parseFloat(data.montant_total_cp)
+    : categories.reduce((sum, c) => sum + (parseFloat(c.montant_cp) || 0), 0);
+
+  const prevAE = (window.PREV && window.PREV.detteAE) ? window.PREV.detteAE : 0;
+  const prevCP = (window.PREV && window.PREV.detteCP) ? window.PREV.detteCP : 0;
+
+  detteTotalAE.innerHTML = `${(window.PREV && window.PREV.year && prevAE>0) ? renderYoY(totalAE, prevAE) + ' ' : ''}${formatCFA(totalAE)}`;
+  detteTotalCP.innerHTML = `${(window.PREV && window.PREV.year && prevCP>0) ? renderYoY(totalCP, prevCP) + ' ' : ''}${formatCFA(totalCP)}`;
+
+  let content = '';
+
+  categories.forEach(cat => {
+    const catAE = parseFloat(cat.montant_ae) || 0;
+    const catCP = parseFloat(cat.montant_cp) || 0;
+    content += `
+      <div class="dette-item level-1">
+        <div class="name"><span class="code-badge">${cat.code ?? ''}</span>${cat.nom ?? 'Catégorie de dette'}</div>
+        <div class="ae">AE: ${formatCFA(catAE)}</div>
+        <div class="cp">CP: ${formatCFA(catCP)}</div>
+        <div class="meta"><span class="tag">Catégorie</span></div>
+      </div>
+    `;
+
+    if (Array.isArray(cat.types)) {
+      cat.types.forEach(t => {
+        const tAE = parseFloat(t.montant_ae) || 0;
+        const tCP = parseFloat(t.montant_cp) || 0;
+        content += `
+          <div class="dette-item level-2">
+            <div class="name">${t.nom ?? 'Type'}</div>
+            <div class="ae">AE: ${formatCFA(tAE)}</div>
+            <div class="cp">CP: ${formatCFA(tCP)}</div>
+            <div class="meta"><span class="tag">Type</span></div>
+          </div>
+        `;
+
+        if (Array.isArray(t.lignes_dette)) {
+          t.lignes_dette.forEach(l => {
+            const lAE = parseFloat(l.montant_ae) || 0;
+            const lCP = parseFloat(l.montant_cp) || 0;
+            content += `
+              <div class="dette-item level-3">
+                <div class="name"><span class="code-badge">${l.code ?? ''}</span>${l.description ?? 'Ligne de dette'}</div>
+                <div class="ae">AE: ${formatCFA(lAE)}</div>
+                <div class="cp">CP: ${formatCFA(lCP)}</div>
+                <div class="meta"><span class="tag">Ligne</span></div>
+              </div>
+            `;
+          });
+        }
+      });
+    }
+
+    content += `<div class="divider"></div>`;
+  });
+
+  detteContent.innerHTML = content || '<div class="hint">Aucune donnée de dette.</div>';
+}
+
+// Fonctions utilitaires
+
+// === Helpers: YoY & Budget État from Ressources ===
+function computeBudgetEtatFromRessources(ressData) {
+  // Expect shape similar to { ressources_total?, categories: [...] }
+  if (!ressData) return 0;
+  const cats = Array.isArray(ressData.categories) ? ressData.categories : [];
+  // Try dedicated categories
+  let total = 0; let found = false;
+  for (const c of cats) {
+    const nom = (c.nom || "").toLowerCase();
+    if (nom.includes("budget g") || (c.code && String(c.code) === "01")) {
+      total += (parseFloat(c.montant) || 0);
+      found = true;
+    }
+    if (nom.includes("comptes spéciaux du trésor") || nom.includes("comptes speciaux du tresor") || (c.code && String(c.code) === "02")) {
+      total += (parseFloat(c.montant) || 0);
+      found = true;
+    }
+  }
+  if (found) return total;
+  // fallback: use ressources_total if present
+  if (ressData.ressources_total !== undefined && !isNaN(parseFloat(ressData.ressources_total))) {
+    return parseFloat(ressData.ressources_total);
+  }
+  // last resort: sum all category montants
+  return cats.reduce((s, c) => s + (parseFloat(c.montant) || 0), 0);
+}
+
+function safePercent(curr, prev) {
+  if (!prev || isNaN(prev) || prev === 0) return 0;
+  const pct = ((curr - prev) / prev) * 100;
+  // Round to one decimal
+  return Math.round(pct * 10) / 10;
+}
+
+function renderYoY(curr, prev) {
+  const pct = safePercent(curr, prev);
+  const dir = (pct > 0) ? 'up' : (pct < 0 ? 'down' : 'flat');
+  const arrow = (dir === 'up') ? '▲' : (dir === 'down' ? '▼' : '■');
+  const absPct = Math.abs(pct).toLocaleString(undefined, {maximumFractionDigits:1}) + '%';
+  return `<span class="yoy ${dir}" title="Variation vs N-1">${arrow} ${absPct}</span>`;
+}
+
+
+// --- Helpers pour variations ligne par ligne ---
+
+function _norm(s){
+  if (s == null) return '';
+  return String(s)
+    .toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')  // accents
+    .replace(/[\u202f\u00a0]/g,' ')                   // espaces insécables
+    .replace(/\s+/g,' ')                              
+    .replace(/\b(fcfa|f\.?c\.?f\.?a\.?)\b/g,'')       // unité
+    .replace(/\s*[:\-–—]\s*/g,' - ')                  // séparateurs
+    .replace(/[()]/g,'')                               // parens parasites
+    .trim();
+}
+
+// Trouve l’entité N-1 correspondante (ministère/institution)
+function getPrevEntityFor(selectedItem, type, PREV){
+  if (!PREV) return null;
+  const arr = (type === 'ministere') ? (PREV.ministries || []) : (PREV.institutions || []);
+  const keyCode = (selectedItem.code || '').toString().trim();
+  const keyName = _norm(selectedItem.name || selectedItem.libelle || '');
+  let found = keyCode ? arr.find(e => String(e.code||'').trim() === keyCode) : null;
+  if (found) return found;
+  return arr.find(e => _norm(e.name || e.nom || '') === keyName) || null;
+}
+
+// Construit la map "programme|nature|libellé" -> montant N-1 (AE/CP)
+function buildPrevLinesMap(prevEntity, type, mode){
+  const map = {};
+  if (!prevEntity || !Array.isArray(prevEntity.programmes)) return map;
+
+  const num = v => (typeof v==='number') ? v
+                 : (typeof v==='string') ? (parseFloat(v.replace(/\s+/g,'').replace(/,/g,'.'))||0)
+                 : 0;
+
+  prevEntity.programmes.forEach(p=>{
+    const pName = p.nom || p.name || '';
+    (p.natures||[]).forEach(n=>{
+      const nName = n.nom || n.name || '';
+      const src = (type==='ministere') ? (n.lignes||[]) : (n.lignes_budgetaires||[]);
+      src.forEach(line=>{
+        const lib = line.libellé || line.libelle || line.description || 'Sans libellé';
+        const amount = (mode==='cp') ? num(line.montant_cp) : num(line.montant_ae);
+        const keyFull = _norm(`${pName}|${nName}|${lib}`);
+        const keyLib  = _norm(lib); // fallback si la structure N-1 diffère
+        map[keyFull] = Math.max(map[keyFull]||0, amount);
+        map[keyLib]  = Math.max(map[keyLib]||0, amount);
+      });
+    });
+  });
+  return map;
+}
+
+
+
+// === End helpers ===
+
+function formatCFA(amount) {
+  if (!amount) return '0 F\u00A0CFA';
+  return new Intl.NumberFormat('fr-FR').format(Math.round(amount)).replace(/\s/g, '\u00A0') + ' F\u00A0CFA';
+}
+
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+function showError(msg) {
+  errEl.textContent = msg;
+  errEl.style.display = 'block';
+}
+
+function hideError() {
+  errEl.style.display = 'none';
+}
+
+function showSuccess(msg) {
+  okEl.textContent = msg;
+  okEl.style.display = 'block';
+  setTimeout(hideSuccess, 3000);
+}
+
+function hideSuccess() {
+  okEl.style.display = 'none';
+}
+
+// Initialiser l'application
+init();
+  </script>
+  <script>
+/* === Collectivités (Districts, Régions, Communes) — add-on non intrusif === */
+(function(){
+  const yearSel = document.getElementById('yearSel');
+  const depensesList = document.getElementById('depensesList');
+  const sidebar = document.getElementById('sidebar');
+  const mainPanel = document.getElementById('mainPanel');
+
+  const depenseName = document.getElementById('depenseName');
+  const depenseTotal = document.getElementById('depenseTotal');
+  const depenseProgCount = document.getElementById('depenseProgCount');
+  const depenseLinesCount = document.getElementById('depenseLinesCount');
+
+  const progSel = document.getElementById('progSel');
+  const natureSel = document.getElementById('natureSel');
+  const modeSel = document.getElementById('modeSel'); // non pertinent pour collectivités
+  const qDepense = document.getElementById('qDepense');
+  const qLine = document.getElementById('qLine');
+  const linesTable = document.querySelector('#linesTable tbody');
+
+  const state = {
+    collectivites: {
+      cache: {},          // year -> data brut
+      indexByYear: {},    // year -> {districts:[], regions:[], communes:[]}
+      currentEntity: null // entité sélectionnée (district/région/commune)
+    }
+  };
+
+  function formatFCFA(n){
+    if (n==null || isNaN(n)) return '—';
+    try { return Number(n).toLocaleString('fr-FR') + ' F'; } catch(e){ return n; }
+  }
+
+  function candidatesForYear(y){
+    return [
+      `./data/${y}/budget${y}_collectivites.json`,
+      `./budget${y}_collectivites.json`,
+      `./budget${y}-collectivites.json`,
+      `./budget${y}_collectivites.min.json`
+    ];
+  }
+
+  async function ensureCollectivitesLoaded(year){
+    const y = String(year || (yearSel && yearSel.value) || '2025');
+    if (state.collectivites.cache[y]) return state.collectivites.cache[y];
+
+    let lastErr = null;
+    for (const url of candidatesForYear(y)){
+      try{
+        const res = await fetch(url, {cache:'no-cache'});
+        if (!res.ok) throw new Error(res.status+' '+res.statusText);
+        const data = await res.json();
+        state.collectivites.cache[y] = data;
+        state.collectivites.indexByYear[y] = buildIndex(data);
+        return data;
+      }catch(err){ lastErr = err; }
+    }
+    throw new Error('Collectivités — fichier introuvable pour '+y+' ('+(lastErr && lastErr.message)+')');
+  }
+
+  function buildIndex(data){
+    const by = { districts: [], regions: [], communes: [] };
+    if (!Array.isArray(data)) return by;
+
+    for (const section of data){
+      const label = (section.section_intitule || '').toLowerCase();
+      let bucket = null;
+      if (section.section_code === '3301' || label.includes('district')) bucket = 'districts';
+      else if (section.section_code === '3303' || label.includes('région') || label.includes('region')) bucket = 'regions';
+      else if (section.section_code === '3302' || label.includes('commune')) bucket = 'communes';
+      if (!bucket) continue;
+
+      for (const e of (section.entites||[])){
+        by[bucket].push({...e, __section: section.section_intitule, __bucket: bucket});
+      }
+    }
+    for (const k of Object.keys(by)){
+      by[k].sort((a,b)=> (a.intitule||'').localeCompare(b.intitule||'', 'fr', {sensitivity:'base'}));
+    }
+    return by;
+  }
+
+  async function showCollectivitesList(){
+    const y = String(yearSel && yearSel.value || '2025');
+    await ensureCollectivitesLoaded(y);
+    const idx = state.collectivites.indexByYear[y];
+
+    depensesList.innerHTML = '';
+    const groups = [
+      ['districts', 'Districts autonomes'],
+      ['regions', 'Régions'],
+      ['communes', 'Communes'],
+    ];
+
+    for (const [key, title] of groups){
+      const group = idx[key];
+      if (!group || !group.length) continue;
+
+      const header = document.createElement('div');
+      header.className = 'hint';
+      header.textContent = title.toUpperCase();
+      depensesList.appendChild(header);
+
+      for (const ent of group){
+        const item = document.createElement('div');
+        item.className = 'item';
+        item.tabIndex = 0;
+        item.innerHTML = `
+          <div class="name">${ent.intitule || ''}</div>
+          <div class="code">${ent.code_entite || ''} • ${ent.__section || ''}</div>
+          <div class="amt">${formatFCFA(ent.total_fcfa)}</div>
+        `;
+        item.addEventListener('click', ()=> openCollectivite(ent));
+        item.addEventListener('keypress', (e)=>{ if(e.key==='Enter'){ openCollectivite(ent);} });
+        depensesList.appendChild(item);
+      }
+    }
+
+    // Placeholders à droite
+    depenseName.textContent = 'Sélectionnez une collectivité';
+    depenseTotal.textContent = '—';
+    depenseProgCount.textContent = '—';
+    depenseLinesCount.textContent = '—';
+    linesTable.innerHTML = '';
+
+    // Filtres adaptés
+    if (modeSel) modeSel.disabled = true; // AE/CP non applicable ici
+    natureSel.innerHTML = `<option value="">Toutes les catégories</option>`;
+    progSel.innerHTML = `<option value="">Tous les programmes</option>`;
+
+    // Recherche (gauche) pour collectivités
+    if (qDepense){
+      qDepense.oninput = ()=>{
+        const q = (qDepense.value||'').toLowerCase();
+        depensesList.querySelectorAll('.item').forEach(it=>{
+          const name = (it.querySelector('.name')?.textContent||'').toLowerCase();
+          it.style.display = !q || name.includes(q) ? '' : 'none';
+        });
+      };
+    }
+  }
+
+  function flattenActions(ent){
+    const rows = [];
+    for (const cat of (ent.categories||[])){
+      for (const prog of (cat.programmes||[])){
+        for (const act of (prog.actions||[])){
+          rows.push({
+            categorie: cat.nom || '',
+            programme_code: prog.code || '',
+            programme_intitule: prog.intitule || '',
+            action_code: act.code || '',
+            action_intitule: act.intitule || '',
+            montant: act.montant_fcfa || 0
+          });
+        }
+      }
+    }
+    return rows;
+  }
+
+  function openCollectivite(ent){
+    state.collectivites.currentEntity = ent;
+
+    // Sélection visuelle dans la liste
+    [...depensesList.querySelectorAll('.item')].forEach(n=>n.classList.remove('active'));
+    const match = [...depensesList.querySelectorAll('.item .code')]
+      .find(n=> (n.textContent||'').includes(ent.code_entite||''));
+    if (match) match.closest('.item').classList.add('active');
+
+    // KPI
+    depenseName.textContent = `${ent.intitule} — ${ent.__section||''}`;
+    depenseTotal.innerHTML = `<span class="amt">${formatFCFA(ent.total_fcfa)}</span>`;
+    const actions = flattenActions(ent);
+    depenseLinesCount.textContent = String(actions.length);
+
+    // Remplir filtres
+    const cats = Array.from(new Set((ent.categories||[]).map(c=>c.nom).filter(Boolean)));
+    natureSel.innerHTML = `<option value="">Toutes les catégories</option>` + cats.map(c=>`<option value="${c}">${c}</option>`).join('');
+
+    const progs = Array.from(new Set(actions.map(r=> `${r.programme_code} — ${r.programme_intitule}` )));
+    progSel.innerHTML = `<option value="">Tous les programmes</option>` + progs.map(p=>`<option value="${p}">${p}</option>`).join('');
+    depenseProgCount.textContent = String(progs.length);
+
+    renderCollectiviteLines(actions);
+
+    // Mobile : afficher le panneau de droite
+    if (window.innerWidth < 980){
+      mainPanel.style.display = 'block';
+      sidebar.classList.add('hidden');
+    }
+  }
+
+  function renderCollectiviteLines(rows){
+    const q = (qLine?.value || '').toLowerCase();
+    const selCat = natureSel?.value || '';
+    const selProg = progSel?.value || '';
+
+    const filtered = rows.filter(r=>{
+      const okCat = !selCat || r.categorie === selCat;
+      const labelProg = `${r.programme_code} — ${r.programme_intitule}`;
+      const okProg = !selProg || labelProg === selProg;
+      const okQ = !q || (r.action_code && r.action_code.toLowerCase().includes(q)) ||
+                         (r.action_intitule && r.action_intitule.toLowerCase().includes(q)) ||
+                         (labelProg.toLowerCase().includes(q));
+      return okCat && okProg && okQ;
+    });
+
+    linesTable.innerHTML = filtered.map(r=>`
+      <tr class="line">
+        <td>
+          <div class="line-libelle">${r.action_intitule}</div>
+          <div class="line-details">
+            <div><b>Catégorie</b><div>${r.categorie}</div></div>
+            <div><b>Programme</b><div>${r.programme_code} — ${r.programme_intitule}</div></div>
+            <div><b>Action</b><div>${r.action_code || '—'}</div></div>
+            <div><b>Montant</b><div class="amt">${formatFCFA(r.montant)}</div></div>
+          </div>
+        </td>
+      </tr>
+    `).join('');
+
+    depenseLinesCount.textContent = String(filtered.length);
+  }
+
+  // Route le bouton "Filtrer" existant si l'onglet Collectivités est actif
+  const originalFilterTable = window.filterTable;
+  window.filterTable = function(){
+    const activeTab = document.querySelector('aside .tabs .tab.active');
+    const type = activeTab && activeTab.getAttribute('data-type');
+    if (type === 'collectivites'){
+      const ent = state.collectivites.currentEntity;
+      if (!ent) return;
+      renderCollectiviteLines(flattenActions(ent));
+      return;
+    }
+    if (typeof originalFilterTable === 'function') return originalFilterTable();
+  };
+
+  // Active le nouvel onglet
+  function setupCollectivitesTab(){
+    const tab = document.querySelector('aside .tabs .tab[data-type="collectivites"]');
+    if (!tab) return;
+    tab.addEventListener('click', async ()=>{
+      // bascule l'état "active" comme tes autres onglets
+      [...tab.parentElement.children].forEach(n=> n.classList.remove('active'));
+      tab.classList.add('active');
+      if (modeSel) modeSel.disabled = true;
+      await showCollectivitesList();
+    });
+  }
+
+  // Recharge la liste si l'année change et qu'on est sur "Collectivités"
+  if (yearSel){
+    yearSel.addEventListener('change', ()=>{
+      const tab = document.querySelector('aside .tabs .tab.active');
+      if (tab && tab.getAttribute('data-type')==='collectivites'){
+        showCollectivitesList();
+      }
+    });
+  }
+
+  // Conserve ton bouton "← Retour à la liste" (mobile)
+  window.showList = (function(orig){
+    return function(){
+      if (window.innerWidth < 980){
+        sidebar.classList.remove('hidden');
+        mainPanel.style.display = 'none';
+      }
+      if (typeof orig === 'function') return orig();
+    };
+  })(window.showList);
+
+  document.addEventListener('DOMContentLoaded', setupCollectivitesTab);
+})();
+</script>
+<script>
+/* Patch global : n'affiche JAMAIS de variation si N-1 n'est pas chargé */
+(function(){
+  const _renderYoY = window.renderYoY; // garde la version originale
+
+  window.renderYoY = function(currentValue, previousValue, options){
+    // Si PREV.year n'existe pas => pas de badge
+    const prevEnabled = !!(window.PREV && window.PREV.year);
+    if (!prevEnabled) return '';
+
+    // Si la valeur N-1 est vide/nulle/non-positive => pas de badge
+    const prev = Number(previousValue || 0);
+    if (!(prev > 0)) return '';
+
+    // sinon on laisse le rendu original (▲/▼/■, pourcent, etc.)
+    return _renderYoY
+      ? _renderYoY.call(this, currentValue, previousValue, options)
+      : ''; // fallback ultra-sûr si renderYoY n'existait pas
+  };
+})();
+</script>
+<style>
+/* Encadrement vert des montants (mobile friendly) */
+.amount-badge{
+  display:inline-flex; align-items:center; gap:.5rem;
+  padding:.35rem .6rem; border:2px solid #10b981; /* vert émeraude */
+  border-radius:12px; line-height:1.1; font-weight:600; white-space:nowrap;
+}
+.amount-badge .val{opacity:.95}
+@media (max-width:480px){
+  .amount-badge{padding:.28rem .5rem; border-width:2px; font-weight:600}
+}
+/* Petites retouches sur le badge de variation à l’intérieur du cadre */
+.amount-badge .yoy{margin-right:.1rem}
+</style>
+<script>
+/* Garde-fou global : pas de variation si N-1 non chargé */
+(function(){
+  const _renderYoY = window.renderYoY || function(cur, prev){
+    const c=+cur||0,p=+prev||0; if(!(p>0)) return '';
+    const d=c-p, pct=p? (d/p*100):0;
+    if (d>0) return `<span class="yoy up"><span class="arrow">▲</span><span class="pct">${pct.toFixed(1)}%</span></span>`;
+    if (d<0) return `<span class="yoy down"><span class="arrow">▼</span><span class="pct">${pct.toFixed(1)}%</span></span>`;
+    return `<span class="yoy flat"><span class="arrow">■</span><span class="pct">0.0%</span></span>`;
+  };
+  window.renderYoY = function(cur, prev, opts){
+    const prevEnabled = !!(window.PREV && window.PREV.year);
+    if (!prevEnabled) return '';
+    return _renderYoY(cur, prev, opts);
+  };
+})();
+
+/* Surcouche de filterTable : ajoute variation + encadrement vert sur CHAQUE ligne */
+(function(){
+  const _origFilterTable = window.filterTable;
+
+  // Utilitaires légers (les tiens existent peut-être déjà)
+  const _norm = t => String(t||'').toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\s+/g,' ').trim();
+
+  function iterAllLines(entity){
+    const out=[]; if(!entity) return out;
+    const push=(p,n,lib,ae,cp)=>out.push({
+      key:_norm(`${p||''}|${n||''}|${lib||''}`),
+      programme:p||'', nature:n||'', libelle:lib||'Sans libellé',
+      ae:+(ae||0), cp:+(cp||0)
+    });
+    if (entity.programmes){
+      for (const p of entity.programmes){
+        const pName=p.nom||p.name||'';
+        for (const n of (p.natures||[])){
+          const nName=n.nom||n.name||'';
+          const L=n.lignes||n.lignes_budgetaires||[];
+          for (const l of L){
+            push(pName,nName,l.libellé||l.libelle||l.description||l.nom||l.name,l.montant_ae,l.montant_cp);
+          }
+        }
+      }
+    }
+    if (Array.isArray(entity.details)){
+      for (const d of entity.details){
+        push(d.programme||'', d.nature||'', d.libellé||d.libelle||d.description||d.nom||d.name, d.montant_ae, d.montant_cp);
+      }
+    }
+    if (Array.isArray(entity.lignes)){
+      for (const l of entity.lignes){
+        push(l.programme||'', l.nature||'', l.libellé||l.libelle||l.description||l.nom||l.name, l.montant_ae, l.montant_cp);
+      }
+    }
+    return out;
+  }
+
+  function getPrevMaps(){
+    // construit deux maps N-1 (AE/CP) key -> montant
+    if (!(window.PREV && window.PREV.year)) return {enabled:false};
+    const item = (window.filteredData||[])[window.CURRENT_IDX];
+    if (!item) return {enabled:false};
+    const type = window.CURRENT_ACTIVE_TYPE;
+    const PREV = window.PREV;
+
+    // Matching entité N-1 (simplifié, garde le nom)
+    const nName = _norm(item.name||item.nom||'');
+    const pool = type==='institution' ? (PREV.rawInstitutions?.institutions||[])
+               : type==='collectivite'||type==='collectivites' ? (PREV.rawCollectivites?.collectivites||[])
+               : (PREV.rawMinisteres?.ministères||PREV.rawMinisteres?.ministeres||[]);
+    const prevEntity = (pool||[]).find(e => _norm(e.nom||e.name||e.ministère||e.ministere||'')===nName);
+    if (!prevEntity) return {enabled:false};
+
+    const mapAE=Object.create(null), mapCP=Object.create(null);
+    for (const l of iterAllLines(prevEntity)){
+      mapAE[l.key]=(mapAE[l.key]||0)+l.ae;
+      mapCP[l.key]=(mapCP[l.key]||0)+l.cp;
+    }
+    return {enabled:true,mapAE,mapCP};
+  }
+
+  window.filterTable = function(){
+    if (!window.CURRENT_ORIGINAL_DATA || !window.CURRENT_ACTIVE_TYPE){
+      if (typeof _origFilterTable==='function') return _origFilterTable();
+      return;
+    }
+
+    const mode = (window.modeSel?.value || 'ae'); // 'ae' | 'cp'
+    const q = (window.qLine?.value || '').toLowerCase().trim();
+    const progFilter = window.progSel?.value || '';
+    const natureFilter = window.natureSel?.value || '';
+    const tbody = document.querySelector('#linesTable tbody');
+
+    // Lignes N
+    let rows = iterAllLines(window.CURRENT_ORIGINAL_DATA);
+    if (progFilter) rows = rows.filter(r => r.programme===progFilter);
+    if (natureFilter){
+      const [pf,nf]=natureFilter.split('::'); rows = rows.filter(r => r.programme===pf && r.nature===nf);
+    }
+    if (q){
+      rows = rows.filter(r =>
+        r.libelle.toLowerCase().includes(q) ||
+        r.programme.toLowerCase().includes(q) ||
+        r.nature.toLowerCase().includes(q) ||
+        String(mode==='cp'?r.cp:r.ae).includes(q)
+      );
+    }
+
+    // Maps N-1
+    const prev = getPrevMaps();
+    const prevEnabled = !!prev.enabled;
+
+    // Rendu avec variation + cadre vert
+    const html = rows.map(r=>{
+      const curVal = mode==='cp'? r.cp : r.ae;
+      const prevVal = prevEnabled
+        ? (mode==='cp' ? (prev.mapCP?.[r.key]||0) : (prev.mapAE?.[r.key]||0))
+        : 0;
+      const yoy = window.renderYoY(curVal, prevVal); // vide si N-1 absent
+      return `
+        <tr>
+          <td>
+            <div class="line-libelle">${r.libelle}</div>
+            <div class="line-details">
+              <div><b>Programme:</b><div>${r.programme||'—'}</div></div>
+              <div><b>Nature:</b><div>${r.nature||'—'}</div></div>
+              <div><b>Montant:</b>
+                <div class="amount-badge">${yoy? (yoy+' ') : ''}<span class="val">${formatCFA(curVal)} ${mode.toUpperCase()}</span></div>
+              </div>
+            </div>
+          </td>
+        </tr>`;
+    }).join('');
+
+    if (tbody) tbody.innerHTML = html || `<tr><td><div class="hint" style="text-align:center;padding:20px">Aucune ligne ne correspond aux critères.</div></td></tr>`;
+    if (window.depenseLinesCount) window.depenseLinesCount.textContent = String(rows.length);
+  };
+})();
+</script>
+
+</body>
+</html>
