@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html data-theme="light" lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="#0ea5e9" id="meta-theme-color" name="theme-color"/>
+<title>Tous les textes — Droit du travail</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="icons/icon-192.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+    :root {
+      --primary: #0ea5e9;
+      --primary-dark: #0284c7;
+      --secondary: #6366f1;
+      --accent: #f97316;
+      --success: #10b981;
+      --info: #06b6d4;
+      --purple: #8b5cf6;
+      --warning: #f59e0b;
+      --background: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+      --shadow-hover: 0 10px 25px rgba(0, 0, 0, 0.1), 0 5px 10px rgba(0, 0, 0, 0.05);
+      --radius: 12px;
+      --transition: all 0.3s ease;
+    }
+    
+    [data-theme="dark"] {
+      --primary: #0ea5e9;
+      --primary-dark: #38bdf8;
+      --secondary: #818cf8;
+      --accent: #fb923c;
+      --success: #34d399;
+      --info: #22d3ee;
+      --purple: #a78bfa;
+      --warning: #fbbf24;
+      --background: #0f172a;
+      --card-bg: #1e293b;
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --border: #334155;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.3);
+      --shadow-hover: 0 15px 30px rgba(0, 0, 0, 0.3), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--background);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 0;
+      margin: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: var(--primary);
+      text-decoration: none;
+    }
+    
+    .logo i {
+      font-size: 1.5rem;
+    }
+    
+    .nav-buttons {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    
+    .btn {
+      padding: 8px 14px;
+      border-radius: var(--radius);
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+      font-size: 0.9rem;
+    }
+    
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background-color: var(--primary-dark);
+    }
+    
+    .btn-outline {
+      background-color: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    
+    .btn-outline:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+    
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+    
+    .compact-hero {
+      text-align: center;
+      margin-bottom: 30px;
+      padding: 20px 0;
+    }
+    
+    .compact-hero h1 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      color: var(--primary);
+      font-weight: 700;
+    }
+    
+    .compact-hero p {
+      font-size: 1rem;
+      color: var(--text-muted);
+      max-width: 700px;
+      margin: 0 auto 15px;
+    }
+    
+    .search-container {
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+    }
+    
+    .search-input {
+      width: 100%;
+      padding: 12px 45px 12px 15px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background-color: var(--card-bg);
+      color: var(--text);
+      font-size: 0.95rem;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+    
+    .search-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2);
+    }
+    
+    .search-icon {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+    
+    .search-results {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--card-bg);
+      border-radius: 0 0 var(--radius) var(--radius);
+      box-shadow: var(--shadow);
+      max-height: 300px;
+      overflow-y: auto;
+      z-index: 100;
+      display: none;
+      border: 1px solid var(--border);
+      border-top: none;
+    }
+    
+    .search-results.visible {
+      display: block;
+    }
+    
+    .search-result-item {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    
+    .search-result-item:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+    
+    .search-result-item h3 {
+      margin: 0 0 4px 0;
+      font-size: 1rem;
+      color: var(--primary);
+    }
+    
+    .search-result-item p {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+    
+    .search-result-item small {
+      color: var(--text-muted);
+      font-size: 0.75rem;
+    }
+    
+    .no-results {
+      padding: 16px;
+      text-align: center;
+      color: var(--text-muted);
+    }
+    
+    .categories-container {
+      margin-bottom: 40px;
+    }
+    
+    .categories-title {
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+      color: var(--text);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .categories-title i {
+      color: var(--primary);
+    }
+    
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 20px;
+    }
+    
+    .category-card {
+      background-color: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    
+    .category-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+    }
+    
+    .category-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 15px;
+    }
+    
+    .category-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    
+    .category-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    
+    .category-desc {
+      color: var(--text-muted);
+      margin-bottom: 15px;
+      font-size: 0.9rem;
+      flex-grow: 1;
+    }
+    
+    .documents-list {
+      list-style: none;
+      margin-top: 10px;
+    }
+    
+    .documents-list li {
+      margin-bottom: 10px;
+      padding-left: 0;
+      position: relative;
+      transition: var(--transition);
+    }
+    
+    .documents-list li:hover {
+      transform: translateX(5px);
+    }
+    
+    .document-link {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 10px 12px;
+      background-color: rgba(0, 0, 0, 0.03);
+      border-radius: 8px;
+      color: var(--text);
+      text-decoration: none;
+      transition: var(--transition);
+      border-left: 3px solid transparent;
+    }
+    
+    .document-link:hover {
+      background-color: rgba(14, 165, 233, 0.1);
+      border-left-color: var(--primary);
+    }
+    
+    .document-link i {
+      color: var(--primary);
+      font-size: 0.85rem;
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+    
+    .document-title {
+      font-size: 0.9rem;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+    
+    .document-meta {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    
+    footer {
+      text-align: center;
+      padding: 30px 0;
+      margin-top: 40px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+    
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 10px;
+    }
+    
+    .footer-link {
+      color: var(--primary);
+      text-decoration: none;
+      transition: var(--transition);
+      font-size: 0.85rem;
+    }
+    
+    .footer-link:hover {
+      text-decoration: underline;
+    }
+    
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      margin-left: 6px;
+    }
+    
+    .badge-new {
+      background-color: var(--success);
+      color: white;
+    }
+    
+    .badge-updated {
+      background-color: var(--info);
+      color: white;
+    }
+    
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background-color: var(--primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      opacity: 0;
+      visibility: hidden;
+      z-index: 999;
+    }
+    
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .back-to-top:hover {
+      transform: translateY(-3px);
+      background-color: var(--primary-dark);
+    }
+    
+    /* Barre de recherche compacte */
+    .compact-search {
+      position: relative;
+      width: 250px;
+      margin-right: 10px;
+    }
+    
+    .compact-search-input {
+      width: 100%;
+      padding: 10px 40px 10px 15px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background-color: var(--card-bg);
+      color: var(--text);
+      font-size: 0.9rem;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+    
+    .compact-search-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      width: 300px;
+    }
+    
+    .compact-search-icon {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+    
+    .compact-search-results {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--card-bg);
+      border-radius: 0 0 var(--radius) var(--radius);
+      box-shadow: var(--shadow);
+      max-height: 300px;
+      overflow-y: auto;
+      z-index: 100;
+      display: none;
+      border: 1px solid var(--border);
+      border-top: none;
+    }
+    
+    .compact-search-results.visible {
+      display: block;
+    }
+    
+    @media (max-width: 768px) {
+      .categories {
+        grid-template-columns: 1fr;
+      }
+      
+      .compact-hero h1 {
+        font-size: 1.5rem;
+      }
+      
+      header {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+      }
+      
+      .nav-buttons {
+        justify-content: center;
+      }
+      
+      .category-card {
+        padding: 15px;
+      }
+      
+      .footer-links {
+        flex-direction: column;
+        gap: 8px;
+      }
+      
+      .categories-title {
+        font-size: 1.2rem;
+      }
+      
+      .compact-search {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 10px;
+      }
+      
+      .compact-search-input:focus {
+        width: 100%;
+      }
+    }
+
+    .category-card {
+  background-color: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 15px; /* Réduit de 20px à 15px */
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  height: auto; /* Changé de height: 100% à auto */
+}
+
+.category-header {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Réduit de 12px à 10px */
+  margin-bottom: 10px; /* Réduit de 15px à 10px */
+}
+
+.category-icon {
+  width: 35px; /* Réduit de 40px à 35px */
+  height: 35px; /* Réduit de 40px à 35px */
+  border-radius: 8px; /* Réduit de 10px à 8px */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1rem; /* Réduit de 1.1rem à 1rem */
+  flex-shrink: 0;
+}
+
+.category-title {
+  font-size: 1.1rem; /* Réduit de 1.2rem à 1.1rem */
+  font-weight: 600;
+  color: var(--text);
+}
+
+.category-desc {
+  color: var(--text-muted);
+  margin-bottom: 10px; /* Réduit de 15px à 10px */
+  font-size: 0.85rem; /* Réduit de 0.9rem à 0.85rem */
+  flex-grow: 0; /* Changé de 1 à 0 pour éviter l'expansion */
+}
+
+.documents-list {
+  list-style: none;
+  margin-top: 5px; /* Réduit de 10px à 5px */
+}
+
+.documents-list li {
+  margin-bottom: 8px; /* Réduit de 10px à 8px */
+  padding-left: 0;
+  position: relative;
+  transition: var(--transition);
+}
+
+.document-link {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 10px; /* Réduit de 10px 12px à 8px 10px */
+  background-color: rgba(0, 0, 0, 0.03);
+  border-radius: 6px; /* Réduit de 8px à 6px */
+  color: var(--text);
+  text-decoration: none;
+  transition: var(--transition);
+  border-left: 2px solid transparent; /* Réduit de 3px à 2px */
+}
+
+.document-link i {
+  color: var(--primary);
+  font-size: 0.8rem; /* Réduit de 0.85rem à 0.8rem */
+  margin-top: 2px; /* Réduit de 3px à 2px */
+  flex-shrink: 0;
+}
+
+.document-title {
+  font-size: 0.85rem; /* Réduit de 0.9rem à 0.85rem */
+  font-weight: 500;
+  line-height: 1.3; /* Réduit de 1.4 à 1.3 */
+}
+
+.document-meta {
+  font-size: 0.7rem; /* Réduit de 0.75rem à 0.7rem */
+  color: var(--text-muted);
+  margin-top: 2px; /* Réduit de 4px à 2px */
+}
+  </style>
+</head>
+<body>
+<div class="container">
+<header>
+<a href="#" class="logo">
+<i class="fas fa-scale-balanced"></i>
+<span>Codes Essentiels</span>
+</a>
+<div class="nav-buttons">
+<div class="compact-search">
+<input class="compact-search-input" id="compactSearchInput" placeholder="Rechercher..." type="text"/>
+<div class="compact-search-icon">
+<i class="fas fa-search"></i>
+</div>
+<div class="compact-search-results" id="compactSearchResults"></div>
+</div>
+<button class="btn btn-outline" id="themeToggle">
+<i class="fas fa-moon"></i> Thème
+        </button>
+</div>
+</header>
+
+<section class="compact-hero">
+  <h1>Textes juridiques fondamentaux</h1>
+  <p>Codes et textes de loi essentiels accessibles à tous</p>
+</section>
+
+<section class="categories-container">
+  <h2 class="categories-title"><i class="fas fa-folder-open"></i> Textes relatifs au droit du travail</h2>
+  <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 0.95rem;">Parcourez l'ensemble des documents (Convention collective, Code, Décrets, Arrêtés).</p>
+  
+  <div class="categories">
+    <!-- Bloc combiné Convention collective + Code du travail -->
+    <div class="category-card">
+      <div class="category-header">
+        <div class="category-icon" style="background-color: var(--purple);">
+          <i class="fas fa-handshake"></i>
+        </div>
+        <h3 class="category-title">Convention collective & Code du travail</h3>
+      </div>
+      <p class="category-desc">Textes fondamentaux régissant les relations de travail en Côte d'Ivoire</p>
+      <ul class="documents-list">
+        <li>
+          <a class="document-link" href="#">
+            <i class="fas fa-file-contract"></i>
+            <div>
+              <div class="document-title">Convention collective interprofessionnelle</div>
+              <div class="document-meta">Version en vigueur</div>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a class="document-link" href="#">
+            <i class="fas fa-file-pdf"></i>
+            <div>
+              <div class="document-title">Code du Travail ivoirien</div>
+              <div class="document-meta">Version consolidée</div>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+    
+    <div class="category-card">
+      <div class="category-header">
+        <div class="category-icon" style="background-color: var(--accent);">
+          <i class="fas fa-gavel"></i>
+        </div>
+        <h3 class="category-title">Décrets d'application</h3>
+      </div>
+      <p class="category-desc">Textes réglementaires précisant l'application du Code du Travail</p>
+      <ul class="documents-list">
+        <li><a class="document-link" href="decrets_extraits_refined2/decret_01_N2015_451.html"><i class="fas fa-file-alt"></i><div><div class="document-title">Décret N° 2015-451 du 24 juin 2015</div><div class="document-meta">Agence Nationale pour l'Insertion et l'Emploi des Jeunes</div></div></a></li>
+        <li><a class="document-link" href="decrets_extraits_refined2/decret_02_N94_218.html"><i class="fas fa-file-alt"></i><div><div class="document-title">Décret N° 94-218 du 20 avril 1994</div><div class="document-meta">Fonds d'Insertion des Jeunes Diplômés</div></div></a></li>
+        <li><a class="document-link" href="decrets_extraits_refined2/decret_03_N95_542.html"><i class="fas fa-file-alt"></i><div><div class="document-title">Décret N° 95-542 du 14 juillet 1995</div><div class="document-meta">Commission Consultative du Travail</div></div></a></li>
+        <li><a class="document-link" href="decrets_extraits_refined2/decret_04_N96_192.html"><i class="fas fa-file-alt"></i><div><div class="document-title">Décret N° 96-192 du 07 mars 1996</div><div class="document-meta">Avantages acquis</div></div></a></li>
+        <li><a class="document-link" href="decrets_extraits_refined2/decret_05_N96_193.html"><i class="fas fa-file-alt"></i><div><div class="document-title">Décret N° 96-193 du 7 mars 1996</div><div class="document-meta">Bureaux de placement payant</div></div></a></li>
+        <li><a class="document-link" href="decrets_extraits_refined2/decret_06_N96_194.html"><i class="fas fa-file-alt"></i><div><div class="document-title">Décret N° 96-194 du 7 mars 1996</div><div class="document-meta">Travail temporaire</div></div></a></li>
+        <li><a class="document-link" href="decrets_extraits_refined2/decret_07_N96_195.html"><i class="fas fa-file-alt"></i><div><div class="document-title">Décret N° 96-195 du 7 mars 1996</div><div class="document-meta">Engagement à l'essai</div></div></a></li>
+        <li><a class="document-link" href="decrets_extraits_refined2/decret_08_N96_196.html"><i class="fas fa-file-alt"></i><div><div class="document-title">Décret N° 96-196 du 7 mars 1996</div><div class="document-meta">Garantie financière ou cautionnement</div></div></a></li>
+        <li><a class="document-link" href="decrets_extraits_refined2/decret_09_N96_197.html"><i class="fas fa-file-alt"></i><div><div class="document-title">Décret N° 96-197 du 7 mars 1996</div><div class="document-meta">Règlement intérieur</div></div></a></li>
+        <li><a class="document-link" href="decrets_extraits_refined2/decret_10_N96_198.html"><i class="fas fa-file-alt"></i><div><div class="document-title">Décret N° 96-198 du 7 mars 1996</div><div class="document-meta">Suspension du contrat pour maladie</div></div></a></li>
+        <li><a class="document-link" href="decrets_extraits_refined2/decret_11_N96_199.html"><i class="fas fa-file-alt"></i><div><div class="document-title">Décret N° 96-199 du 7 mars 1996</div><div class="document-meta">Travailleur mobilisé</div></div></a></li>
+        <li><a class="document-link" href="decrets_extraits_refined2/decret_12_N96_200.html"><i class="fas fa-file-alt"></i><div><div class="document-title">Décret N° 96-200 du 7 mars 1996</div><div class="document-meta">Préavis de rupture de contrat</div></div></a></li>
+        <li><a class="document-link" href="decrets_extraits_refined2/decret_13_N96_201.html"><i class="fas fa-file-alt"></i><div><div class="document-title">Décret N° 96-201 du 7 mars 1996</div><div class="document-meta">Indemnité de licenciement</div></div></a></li>
+        <li><a class="document-link" href="decrets_extraits_refined2/decret_14_N96_202.html"><i class="fas fa-file-alt"></i><div><div class="document-title">Décret N° 96-202 du 7 mars 1996</div><div class="document-meta">Travail à temps partiel</div></div></a></li>
+        <li><a class="document-link" href="decrets_extraits_refined2/decret_15_N96_203.html"><i class="fas fa-file-alt"></i><div><div class="document-title">Décret N° 96-203 du 7 mars 1996</div><div class="document-meta">Durée du travail et horaire collectif</div></div></a></li>
+        <li><a class="document-link" href="decrets_extraits_refined2/decret_16_N96_204.html"><i class="fas fa-file-alt"></i><div><div class="document-title">Décret N° 96-204 du 7 mars 1996</div><div class="document-meta">Travail de nuit</div></div></a></li>
+        <li><a class="document-link" href="decrets_extraits_refined2/decret_17_N96_205.html"><i class="fas fa-file-alt"></i><div><div class="document-title">Décret N° 96-205 du 7 mars 1996</div><div class="document-meta">Jours fériés et chômés payés</div></div></a></li>
+        <li><a class="document-link" href="decrets_extraits_refined2/decret_18_N96_206.html"><i class="fas fa-file-alt"></i><div><div class="document-title">Décret N° 96-206 du 7 mars 1996</div><div class="document-meta">Comité d'hygiène, de sécurité et des conditions de travail</div></div></a></li>
+        <li><a class="document-link" href="decrets_extraits_refined2/decret_19_N96_207.html"><i class="fas fa-file-alt"></i><div><div class="document-title">Décret N° 96-207 du 7 mars 1996</div><div class="document-meta">Délégués du personnel et délégués syndicaux</div></div></a></li>
+        <li><a class="document-link" href="decrets_extraits_refined2/decret_20_N96_208.html"><i class="fas fa-file-alt"></i><div><div class="document-title">Décret N° 96-208 du 7 mars 1996</div><div class="document-meta">Procédure de conciliation</div></div></a></li>
+        <li><a class="document-link" href="decrets_extraits_refined2/decret_21_N96_209.html"><i class="fas fa-file-alt"></i><div><div class="document-title">Décret N° 96-209 du 7 mars 1996</div><div class="document-meta">Obligations des employeurs</div></div></a></li>
+        <li><a class="document-link" href="decrets_extraits_refined2/decret_22_N96_285.html"><i class="fas fa-file-alt"></i><div><div class="document-title">Décret N° 96-285 du 3 avril 1996</div><div class="document-meta">Formation professionnelle</div></div></a></li>
+        <li><a class="document-link" href="decrets_extraits_refined2/decret_23_N96_286.html"><i class="fas fa-file-alt"></i><div><div class="document-title">Décret N° 96-286 du 3 avril 1996</div><div class="document-meta">Apprentissage</div></div></a></li>
+        <li><a class="document-link" href="decrets_extraits_refined2/decret_24_N96_287.html"><i class="fas fa-file-alt"></i><div><div class="document-title">Décret N° 96-287 du 3 avril 1996</div><div class="document-meta">Contrat de travail</div></div></a></li>
+        <li><a class="document-link" href="decrets_extraits_refined2/decret_25_N98_38.html"><i class="fas fa-file-alt"></i><div><div class="document-title">Décret N° 98-38 du 28 janvier 1998</div><div class="document-meta">Mesures générales d'hygiène</div></div></a></li>
+        <li><a class="document-link" href="decrets_extraits_refined2/decret_26_N98_39.html"><i class="fas fa-file-alt"></i><div><div class="document-title">Décret N° 98-39 du 28 janvier 1998</div><div class="document-meta">Congés payés</div></div></a></li>
+        <li><a class="document-link" href="decrets_extraits_refined2/decret_27_N98_40.html"><i class="fas fa-file-alt"></i><div><div class="document-title">Décret N° 98-40 du 28 janvier 1998</div><div class="document-meta">Comité technique consultatif</div></div></a></li>
+        <li><a class="document-link" href="decrets_extraits_refined2/decret_28_N98_41.html"><i class="fas fa-file-alt"></i><div><div class="document-title">Décret N° 98-41 du 28 janvier 1998</div><div class="document-meta">Conventions collectives de travail</div></div></a></li>
+        <li><a class="document-link" href="decrets_extraits_refined2/decret_29_N2013_554.html"><i class="fas fa-file-alt"></i><div><div class="document-title">Décret N° 2013-554 du 5 août 2013</div><div class="document-meta">Maladies professionnelles indemnisables</div></div></a></li>
+        <li><a class="document-link" href="decrets_extraits_refined2/decret_30_N2013_555.html"><i class="fas fa-file-alt"></i><div><div class="document-title">Décret N° 2013-555 du 5 août 2013</div><div class="document-meta">Observatoire national des accidents du travail</div></div></a></li>
+        <li><a class="document-link" href="decrets_extraits_refined2/decret_31_N2013_791.html"><i class="fas fa-file-alt"></i><div><div class="document-title">Décret N° 2013-791 du 20 novembre 2013</div><div class="document-meta">Revalorisation du SMIG</div></a></li>
+        <li><a class="document-link" href="decrets_extraits_refined2/decret_32_N2014_370.html"><i class="fas fa-file-alt"></i><div><div class="document-title">Décret N° 2014-370 du 18 juin 2014</div><div class="document-meta">Quotité cessible et saisissable</div></div></a></li>
+        <li><a class="document-link" href="decrets_extraits_refined2/decret_33_N2250.html"><i class="fas fa-file-alt"></i><div><div class="document-title">Décret N° 2250 du 14 mars 2005</div><div class="document-meta">Travaux dangereux interdits aux enfants</div></div></a></li>
+        <li><a class="document-link" href="decrets_extraits_refined2/decret_34_N2017_210.html"><i class="fas fa-file-alt"></i><div><div class="document-title">Décret N° 2017-210 du 30 mars 2017</div><div class="document-meta">Indemnité de licenciement et de départ à la retraite</div></div></a></li>
+        <li><a class="document-link" href="decrets_extraits_refined2/decret_35_N2015_451.html"><i class="fas fa-file-alt"></i><div><div class="document-title">Décret N° 2015-451 du 24 juin 2015</div><div class="document-meta">Agence Emploi Jeunes</div></div></a></li>
+        <li><a class="document-link" href="decrets_extraits_refined2_candidates/decret_candidate_01.html"><i class="fas fa-file-alt"></i><div><div class="document-title">Décret (candidat 01)</div><div class="document-meta">Texte en cours d'examen</div></div></a></li>
+        <li><a class="document-link" href="decrets_extraits_refined2_candidates/decret_candidate_02.html"><i class="fas fa-file-alt"></i><div><div class="document-title">Décret (candidat 02)</div><div class="document-meta">Texte en cours d'examen</div></div></a></li>
+      </ul>
+    </div>
+    
+    <div class="category-card">
+      <div class="category-header">
+        <div class="category-icon" style="background-color: var(--info);">
+          <i class="fas fa-file-signature"></i>
+        </div>
+        <h3 class="category-title">Arrêtés</h3>
+      </div>
+      <p class="category-desc">Textes d'application pris par les autorités administratives</p>
+      <ul class="documents-list">
+        <li>
+          <a class="document-link" href="#">
+            <i class="fas fa-file-pdf"></i>
+            <div>
+              <div class="document-title">Arrêté N° 2250 du 14 mars 2005</div>
+              <div class="document-meta">Travaux dangereux interdits aux enfants</div>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a class="document-link" href="#">
+            <i class="fas fa-file-pdf"></i>
+            <div>
+              <div class="document-title">Arrêté N° 009 MEMEASS/CAB du 19 janvier 2012</div>
+              <div class="document-meta">Révision de la liste des travaux dangereux</div>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a class="document-link" href="#">
+            <i class="fas fa-file-pdf"></i>
+            <div>
+              <div class="document-title">Arrêté N° 2015-855 du 30 décembre 2015</div>
+              <div class="document-meta">Barème des salaires minima conventionnels</div>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+<p>Hub des Codes essentiels © 2023 - Textes juridiques accessibles à tous</p>
+<div class="footer-links">
+  <a href="#" class="footer-link">À propos</a>
+  <a href="#" class="footer-link">Mentions légales</a>
+  <a href="#" class="footer-link">Contact</a>
+  <a href="#" class="footer-link">Accessibilité</a>
+</div>
+</footer>
+
+<div class="back-to-top" id="backToTop">
+  <i class="fas fa-arrow-up"></i>
+</div>
+</div>
+
+<script>
+    // Index de recherche complet avec tous les documents
+    const searchIndex = [
+      {
+        title: "Convention collective interprofessionnelle",
+        description: "Version en vigueur de la convention collective",
+        url: "#",
+        category: "Convention collective & Code du travail",
+        keywords: ["convention collective", "interprofessionnelle", "relations travail", "Côte d'Ivoire"]
+      },
+      {
+        title: "Code du Travail ivoirien",
+        description: "Version consolidée du code du travail",
+        url: "#",
+        category: "Convention collective & Code du travail",
+        keywords: ["code travail", "ivoirien", "consolidé", "droit travail"]
+      },
+      {
+        title: "Décret N° 2015-451 du 24 juin 2015",
+        description: "Agence Nationale pour l'Insertion et l'Emploi des Jeunes",
+        url: "decrets_extraits_refined2/decret_01_N2015_451.html",
+        category: "Décrets d'application",
+        keywords: ["agence emploi jeunes", "insertion", "jeunes diplômés", "emploi"]
+      },
+      // Ajouter tous les autres décrets ici...
+      {
+        title: "Arrêté N° 2250 du 14 mars 2005",
+        description: "Travaux dangereux interdits aux enfants",
+        url: "#",
+        category: "Arrêtés",
+        keywords: ["travaux dangereux", "enfants", "protection mineurs", "travail enfants"]
+      },
+      {
+        title: "Arrêté N° 009 MEMEASS/CAB du 19 janvier 2012",
+        description: "Révision de la liste des travaux dangereux",
+        url: "#",
+        category: "Arrêtés",
+        keywords: ["travaux dangereux", "liste", "révision", "protection"]
+      },
+      {
+        title: "Arrêté N° 2015-855 du 30 décembre 2015",
+        description: "Barème des salaires minima conventionnels",
+        url: "#",
+        category: "Arrêtés",
+        keywords: ["barème salaires", "minima conventionnels", "salaire minimum", "convention"]
+      }
+    ];
+
+    // Fonction de recherche améliorée
+    function performSearch(query) {
+      if (!query.trim()) {
+        return [];
+      }
+      
+      const searchTerms = query.toLowerCase().split(/\s+/).filter(term => term.length > 0);
+      
+      return searchIndex.filter(item => {
+        // Créer un texte de recherche plus complet
+        const searchableText = (
+          item.title.toLowerCase() + ' ' + 
+          item.description.toLowerCase() + ' ' + 
+          item.category.toLowerCase() + ' ' + 
+          item.keywords.join(' ') + ' ' +
+          item.url.toLowerCase()
+        );
+        
+        // Vérifier si tous les termes de recherche sont présents
+        return searchTerms.every(term => searchableText.includes(term));
+      });
+    }
+
+    // Afficher les résultats de recherche dans la barre compacte
+    function displayCompactSearchResults(results) {
+      const resultsContainer = document.getElementById('compactSearchResults');
+      resultsContainer.innerHTML = '';
+      
+      if (results.length === 0) {
+        resultsContainer.innerHTML = '<div class="no-results">Aucun résultat trouvé</div>';
+        resultsContainer.classList.add('visible');
+        return;
+      }
+      
+      results.forEach(result => {
+        const resultElement = document.createElement('div');
+        resultElement.className = 'search-result-item';
+        resultElement.innerHTML = `
+          <h3>${result.title}</h3>
+          <p>${result.description}</p>
+          <small>${result.category}</small>
+        `;
+        
+        resultElement.addEventListener('click', () => {
+          window.location.href = result.url;
+        });
+        
+        resultsContainer.appendChild(resultElement);
+      });
+      
+      resultsContainer.classList.add('visible');
+    }
+
+    // Cacher les résultats de recherche
+    function hideCompactSearchResults() {
+      document.getElementById('compactSearchResults').classList.remove('visible');
+    }
+
+    // Bouton retour en haut
+    const backToTopButton = document.getElementById('backToTop');
+    
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTopButton.classList.add('visible');
+      } else {
+        backToTopButton.classList.remove('visible');
+      }
+    });
+    
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Changer de thème
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = themeToggle.querySelector('i');
+    
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      
+      document.documentElement.setAttribute('data-theme', newTheme);
+      document.getElementById('meta-theme-color').setAttribute('content', newTheme === 'dark' ? '#0f172a' : '#0ea5e9');
+      
+      themeIcon.className = newTheme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+      themeToggle.innerHTML = `<i class="${themeIcon.className}"></i> ${newTheme === 'light' ? 'Mode sombre' : 'Mode clair'}`;
+      
+      localStorage.setItem('theme', newTheme);
+    });
+
+    // Charger le thème sauvegardé
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    document.getElementById('meta-theme-color').setAttribute('content', savedTheme === 'dark' ? '#0f172a' : '#0ea5e9');
+    
+    if (savedTheme === 'dark') {
+      themeIcon.className = 'fas fa-sun';
+      themeToggle.innerHTML = `<i class="${themeIcon.className}"></i> Mode clair`;
+    }
+
+    // Configuration de la recherche compacte
+    const compactSearchInput = document.getElementById('compactSearchInput');
+    
+    compactSearchInput.addEventListener('input', (e) => {
+      const results = performSearch(e.target.value);
+      displayCompactSearchResults(results);
+    });
+    
+    // Recherche au clic sur l'icône
+    document.querySelector('.compact-search-icon').addEventListener('click', () => {
+      const results = performSearch(compactSearchInput.value);
+      displayCompactSearchResults(results);
+    });
+    
+    // Recherche avec la touche Entrée
+    compactSearchInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        const results = performSearch(compactSearchInput.value);
+        displayCompactSearchResults(results);
+      }
+    });
+    
+    // Cacher les résultats quand on clique ailleurs
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.compact-search')) {
+        hideCompactSearchResults();
+      }
+    });
+    
+    // Touche Echap pour vider la recherche
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        compactSearchInput.value = '';
+        hideCompactSearchResults();
+        compactSearchInput.blur();
+      }
+    });
+  </script>
+</body>
+</html>
