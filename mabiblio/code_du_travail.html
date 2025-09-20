@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Code du Travail CI</title>
+<title>Loi Organique relative au Conseil Constitutionnel</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <style>
@@ -30,9 +30,12 @@ h1{margin:0;font-family:'Playfair Display',serif;font-size:20px;color:var(--prim
 .article-header h3{margin:0; color:var(--primary-700);}
 .article .open-fs{ order:2; margin-left:auto; width:34px; height:34px; border:1px solid #d5e8d4; background:#fff; border-radius:10px; cursor:pointer; }
 .article-content p{margin:.5rem 0}.article-content ul,.article-content ol{margin:.5rem 0 .8rem 1.25rem}
+.article-content ol>li, .article-content ul>li{ padding:8px 0; line-height:1.7; border-bottom:1px solid #eaf6ea; }
+.article-content ol>li:last-child, .article-content ul>li:last-child{ border-bottom:0; }
+.article-content li > ol > li, .article-content li > ul > li{ padding:6px 0; border-bottom:1px dashed #eaf6ea; }
+.article-content li > ol > li:last-child, .article-content li > ul > li:last-child{ border-bottom:0; }
 .reading{ outline:2px solid var(--accent); outline-offset:2px; border-left-color:var(--accent) !important; background:linear-gradient(180deg,#fff, var(--accent-2)) }
 mark{background:rgba(139,195,74,.45)}
-
 /* Floating TOC */
 #tocFloatBtn{position:fixed; right:14px; bottom:120px; width:46px; height:46px; border-radius:50%; border:none; background:var(--primary); color:#fff; display:grid; place-items:center; box-shadow:0 10px 24px rgba(0,0,0,.25); z-index:1500;}
 #tocPanel{position:fixed; top:0; right:0; height:100%; width:86%; max-width:420px; background:#fff; border-left:1px solid #e2eee2; box-shadow:-16px 0 35px rgba(0,0,0,.2); transform:translateX(100%); transition:transform .25s ease; z-index:1600; overflow:auto;}
@@ -42,12 +45,10 @@ mark{background:rgba(139,195,74,.45)}
 #tocPanel h3{margin:0; color:var(--primary-700)} #tocPanel .toc-list{padding:12px 14px}
 #tocPanel .toc-list a{display:block; padding:6px 0; color:#2e7d32; text-decoration:none}
 #tocPanel .toc-sub{margin-left:10px; border-left:2px solid #e8f5e8; padding-left:8px}
-
 /* Voice bar */
 #voiceBar{position:fixed; left:50%; transform:translateX(-50%); bottom:14px; background:var(--primary-700); color:#fff; z-index:1550; border-radius:22px; padding:8px 12px; display:flex; gap:10px; align-items:center; box-shadow:0 12px 28px rgba(0,0,0,.3)}
 #voiceBar button{width:34px; height:34px; border-radius:10px; border:1px solid #c8e6c9; background:transparent; color:#e8f5e9; display:grid; place-items:center; cursor:pointer}
 #voiceBar .now{font-size:12px; max-width:52vw; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:#f1f8e9}
-
 /* Fullscreen */
 #fsOverlay{ position:fixed; inset:0; background:#fff; z-index:1700; display:none; }
 #fsOverlay.show{ display:block } #fsHeader{ position:sticky; top:0; background:#fff; padding:10px 14px; border-bottom:1px solid #e2eee2; display:flex; align-items:center; gap:10px }
@@ -56,8 +57,16 @@ mark{background:rgba(139,195,74,.45)}
 #fsBody{ padding:14px; height:calc(100% - 58px); overflow:auto } #fsBody .article-content{ font-size:1.04rem }
 #fsNavPrev,#fsNavNext{ position:fixed; top:50%; transform:translateY(-50%); width:42px; height:42px; border-radius:50%; border:none; background:var(--primary); color:#fff; display:grid; place-items:center; z-index:1710; opacity:.9 }
 #fsNavPrev{ left:10px } #fsNavNext{ right:10px }
-
 footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c8c4f;font-size:12px}
+
+/* ===== Anti-sélection / anti-copie ===== */
+.no-select, .no-select *:not(input):not(textarea):not(.selectable){
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  -webkit-touch-callout: none !important;
+}
 </style>
 </head>
 <body>
@@ -464,5 +473,220 @@ function initSearchFeature() {
 // Initialisation de la fonctionnalité de recherche
 document.addEventListener('DOMContentLoaded', initSearchFeature);
 </script>
+
+<script>
+(() => {
+  const bar = document.getElementById("voiceBar");
+  if (!bar) { console.warn("[lecteur] #voiceBar introuvable"); return; }
+  if (bar.dataset.wired === "1") return; // éviter double-branchement
+  bar.dataset.wired = "1";
+
+  // Récup des contrôles présents DANS ta barre existante
+  const playBtn  = bar.querySelector("#playBtn, [data-action='play']");
+  const pauseBtn = bar.querySelector("#pauseBtn, [data-action='pause']");
+  const stopBtn  = bar.querySelector("#stopBtn, [data-action='stop']");
+  const nowSpan  = bar.querySelector(".now") || { textContent: "" };
+
+  let utterance = null;
+  let paused = false;
+
+  function pickCurrentArticle() {
+    // 1) priorité à .article.reading si tu l’utilises déjà
+    const reading = document.querySelector(".article.reading");
+    if (reading) return reading;
+
+    // 2) sinon l’article le plus visible à l’écran
+    const arts = [...document.querySelectorAll(".article")];
+    let best = null, bestVis = 0;
+    const vh = window.innerHeight;
+    for (const a of arts) {
+      const r = a.getBoundingClientRect();
+      const visible = Math.max(0, Math.min(r.bottom, vh) - Math.max(r.top, 0));
+      if (visible > bestVis) { bestVis = visible; best = a; }
+    }
+    return best || document.querySelector(".article");
+  }
+
+  function speak(text, title = "Lecture en cours") {
+    window.speechSynthesis.cancel();
+    utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "fr-FR";
+    utterance.rate = 1;
+    nowSpan.textContent = title;
+    window.speechSynthesis.speak(utterance);
+    paused = false;
+  }
+
+  playBtn?.addEventListener("click", () => {
+    if (paused) {
+      window.speechSynthesis.resume();
+      paused = false;
+      return;
+    }
+    // (Re)lancer depuis l’article courant
+    const art = pickCurrentArticle();
+    const title = art?.querySelector("h3")?.innerText?.trim() || "Lecture";
+    const text  = art?.innerText?.trim() || "Aucun texte trouvé";
+    speak(text, title);
+  });
+
+  pauseBtn?.addEventListener("click", () => {
+    if (window.speechSynthesis.speaking && !window.speechSynthesis.paused) {
+      window.speechSynthesis.pause();
+      paused = true;
+    }
+  });
+
+  stopBtn?.addEventListener("click", () => {
+    window.speechSynthesis.cancel();
+    paused = false;
+    nowSpan.textContent = "Lecture arrêtée";
+  });
+
+  // Nettoyage si tu changes de page/onglet
+  window.addEventListener("beforeunload", () => window.speechSynthesis.cancel());
+})();
+</script>
+<script>
+/* ===== LECTURE VOCALE — drop-in, sans effet de bord ===== */
+(() => {
+  // Configuration (adapte seulement si tes sélecteurs diffèrent)
+  const SELECTORS = {
+    bar:    '#voiceBar',
+    play:   '#playBtn, [data-action="play"]',
+    pause:  '#pauseBtn, [data-action="pause"]',
+    stop:   '#stopBtn, [data-action="stop"]',
+    now:    '.now',
+    article: '.article',
+    reading: '.article.reading',
+    openFS:  '.open-fs',
+    fsOverlay: '#fsOverlay'
+  };
+
+  // --- Utilitaires ---
+  const q  = (root, sel) => root?.querySelector(sel) || null;
+  const qa = (root, sel) => [...(root?.querySelectorAll(sel) || [])];
+
+  function visibleArticle() {
+    // 1) priorité à l’article marqué .reading
+    const pick = document.querySelector(SELECTORS.reading);
+    if (pick) return pick;
+    // 2) sinon, l’article le plus visible dans le viewport
+    const arts = qa(document, SELECTORS.article);
+    let best = null, bestVis = 0, vh = innerHeight;
+    for (const a of arts) {
+      const r = a.getBoundingClientRect();
+      const vis = Math.max(0, Math.min(r.bottom, vh) - Math.max(r.top, 0));
+      if (vis > bestVis) { bestVis = vis; best = a; }
+    }
+    return best || arts[0] || null;
+  }
+
+  // --- Déduplication douce : on garde le 1er #voiceBar uniquement ---
+  function ensureSingleBar() {
+    const bars = qa(document, SELECTORS.bar);
+    if (bars.length > 1) {
+      bars.slice(1).forEach(b => b.remove());
+    }
+    // ne jamais laisser un clone dans l’overlay plein écran
+    qa(document, `${SELECTORS.fsOverlay} ${SELECTORS.bar}`).forEach(el => el.remove());
+    return bars[0] || null;
+  }
+
+  // --- Module lecteur (SpeechSynthesis) ---
+  const Reader = (() => {
+    let utter = null;
+    let paused = false;
+    let nowEl = null;
+
+    function speak(text, title) {
+      window.speechSynthesis.cancel();
+      utter = new SpeechSynthesisUtterance(text);
+      utter.lang = 'fr-FR';
+      utter.rate = 1;
+      if (nowEl) nowEl.textContent = title || 'Lecture en cours';
+      window.speechSynthesis.speak(utter);
+      paused = false;
+    }
+
+    return {
+      wire(bar) {
+        if (!bar || bar.dataset.wired === '1') return;
+        bar.dataset.wired = '1';
+
+        const playBtn  = q(bar, SELECTORS.play);
+        const pauseBtn = q(bar, SELECTORS.pause);
+        const stopBtn  = q(bar, SELECTORS.stop);
+        nowEl          = q(bar, SELECTORS.now) || null;
+
+        playBtn?.addEventListener('click', () => {
+          if (window.speechSynthesis.paused) {
+            window.speechSynthesis.resume(); paused = false; return;
+          }
+          const art = visibleArticle();
+          const title = art?.querySelector('h3')?.innerText?.trim() || 'Lecture';
+          const text  = art?.innerText?.trim() || 'Aucun texte trouvé';
+          speak(text, title);
+        });
+
+        pauseBtn?.addEventListener('click', () => {
+          if (window.speechSynthesis.speaking && !window.speechSynthesis.paused) {
+            window.speechSynthesis.pause(); paused = true;
+          }
+        });
+
+        stopBtn?.addEventListener('click', () => {
+          window.speechSynthesis.cancel(); paused = false;
+          if (nowEl) nowEl.textContent = 'Lecture arrêtée';
+        });
+
+        addEventListener('beforeunload', () => window.speechSynthesis.cancel());
+      },
+      refresh() {
+        // appelé quand l’UI bouge (plein écran, etc.)
+        const bar = ensureSingleBar();
+        this.wire(bar);
+      }
+    };
+  })();
+
+  // --- Observateurs (sans toucher à tes autres fonctions) ---
+  // 1) Sur tout changement DOM, on évite les doublons et on garde le câblage
+  const domObs = new MutationObserver(() => Reader.refresh());
+  domObs.observe(document.body, { childList: true, subtree: true });
+
+  // 2) Hooks liés au bouton plein écran et à l’overlay (on ne modifie pas leur logique)
+  function hookFullscreen() {
+    qa(document, SELECTORS.openFS).forEach(btn => {
+      btn.addEventListener('click', () => setTimeout(() => Reader.refresh(), 0));
+    });
+    const fs = document.querySelector(SELECTORS.fsOverlay);
+    if (fs) {
+      const o = new MutationObserver(() => Reader.refresh());
+      o.observe(fs, { attributes: true, attributeFilter: ['class', 'style'] });
+    }
+  }
+
+  // --- Initialisation ---
+  function init() {
+    ensureSingleBar();
+    Reader.refresh();
+    hookFullscreen();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+  // Optionnel : exposer une petite API de secours sans polluer le global
+  window.__voiceReader__ = {
+    refresh: () => Reader.refresh()
+  };
+})();
+</script>
+
+
 </body>
 </html>
