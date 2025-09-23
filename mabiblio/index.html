@@ -425,7 +425,7 @@
 </div>
 <div class="nav-buttons">
 <div class="compact-search">
-<input class="compact-search-input" id="compactSearchInput" placeholder="Rechercher..." type="text"/>
+<input class="compact-search-input" id="compactSearchInput" placeholder="Rechercher dans tous les documents..." type="text"/>
 <div class="compact-search-icon">
 <i class="fas fa-search"></i>
 </div>
@@ -781,16 +781,57 @@
       }
     ];
 
-    // Fonction de recherche améliorée
-    function performSearch(query) {
+    // Cache pour stocker le contenu des documents déjà chargés
+    const documentContentCache = new Map();
+
+    // Fonction pour charger le contenu d'un document
+    async function loadDocumentContent(url) {
+      // Vérifier si le contenu est déjà en cache
+      if (documentContentCache.has(url)) {
+        return documentContentCache.get(url);
+      }
+      
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`Erreur de chargement: ${response.status}`);
+        }
+        
+        const html = await response.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        
+        // Extraire le texte du contenu principal (éviter les en-têtes, pieds de page, etc.)
+        const mainContent = doc.querySelector('main, .content, .container, body') || doc.body;
+        const textContent = mainContent.textContent || '';
+        
+        // Nettoyer le texte (supprimer les espaces multiples, etc.)
+        const cleanText = textContent
+          .replace(/\s+/g, ' ')
+          .replace(/[\n\t]/g, ' ')
+          .trim()
+          .toLowerCase();
+        
+        // Mettre en cache le contenu
+        documentContentCache.set(url, cleanText);
+        
+        return cleanText;
+      } catch (error) {
+        console.error(`Erreur lors du chargement de ${url}:`, error);
+        return ''; // Retourner une chaîne vide en cas d'erreur
+      }
+    }
+
+    // Fonction de recherche améliorée qui recherche dans le contenu des documents
+    async function performSearch(query) {
       if (!query.trim()) {
         return [];
       }
       
       const searchTerms = query.toLowerCase().split(/\s+/).filter(term => term.length > 0);
       
-      return searchIndex.filter(item => {
-        // Créer un texte de recherche plus complet
+      // Recherche initiale dans les métadonnées (rapide)
+      const metadataResults = searchIndex.filter(item => {
         const searchableText = (
           item.title.toLowerCase() + ' ' + 
           item.description.toLowerCase() + ' ' + 
@@ -799,9 +840,68 @@
           item.url.toLowerCase()
         );
         
-        // Vérifier si tous les termes de recherche sont présents
         return searchTerms.every(term => searchableText.includes(term));
       });
+      
+      // Si nous avons des résultats dans les métadonnées, les retourner immédiatement
+      if (metadataResults.length > 0) {
+        return metadataResults;
+      }
+      
+      // Sinon, rechercher dans le contenu des documents (plus lent)
+      const contentSearchResults = [];
+      
+      // Rechercher dans le contenu de chaque document
+      for (const item of searchIndex) {
+        if (item.url && item.url !== '#') {
+          try {
+            const content = await loadDocumentContent(item.url);
+            
+            // Vérifier si tous les termes de recherche sont présents dans le contenu
+            const allTermsFound = searchTerms.every(term => content.includes(term));
+            
+            if (allTermsFound) {
+              contentSearchResults.push({
+                ...item,
+                matchType: 'content',
+                preview: generatePreview(content, searchTerms)
+              });
+            }
+          } catch (error) {
+            console.error(`Erreur lors de la recherche dans ${item.url}:`, error);
+          }
+        }
+      }
+      
+      return contentSearchResults;
+    }
+
+    // Fonction pour générer un aperçu du contenu avec les termes en surbrillance
+    function generatePreview(content, searchTerms) {
+      // Trouver la première occurrence d'un terme de recherche
+      for (const term of searchTerms) {
+        const index = content.indexOf(term);
+        if (index !== -1) {
+          // Extraire un extrait autour du terme trouvé
+          const start = Math.max(0, index - 50);
+          const end = Math.min(content.length, index + term.length + 100);
+          let preview = content.substring(start, end);
+          
+          // Ajouter des ellipses si nécessaire
+          if (start > 0) preview = '...' + preview;
+          if (end < content.length) preview = preview + '...';
+          
+          // Mettre en évidence les termes de recherche
+          searchTerms.forEach(term => {
+            const regex = new RegExp(`(${term})`, 'gi');
+            preview = preview.replace(regex, '<mark>$1</mark>');
+          });
+          
+          return preview;
+        }
+      }
+      
+      return "Terme trouvé dans le document";
     }
 
     // Afficher les résultats de recherche dans la barre compacte
@@ -818,14 +918,24 @@
       results.forEach(result => {
         const resultElement = document.createElement('div');
         resultElement.className = 'search-result-item';
-        resultElement.innerHTML = `
+        
+        let html = `
           <h3>${result.title}</h3>
           <p>${result.description}</p>
           <small>Catégorie: ${result.category}</small>
         `;
         
+        // Ajouter l'aperçu si disponible (recherche dans le contenu)
+        if (result.preview) {
+          html += `<div style="margin-top: 8px; font-size: 0.8rem; color: var(--text-muted);">${result.preview}</div>`;
+        }
+        
+        resultElement.innerHTML = html;
+        
         resultElement.addEventListener('click', () => {
-          window.location.href = result.url;
+          if (result.url && result.url !== '#') {
+            window.location.href = result.url;
+          }
         });
         
         resultsContainer.appendChild(resultElement);
@@ -856,6 +966,19 @@
       }
     }
     
+    // Débounce pour éviter les recherches trop fréquentes
+    function debounce(func, wait) {
+      let timeout;
+      return function executedFunction(...args) {
+        const later = () => {
+          clearTimeout(timeout);
+          func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+      };
+    }
+
     // Initialisation
     document.addEventListener('DOMContentLoaded', () => {
       // Configuration du thème
@@ -873,48 +996,54 @@
         setTheme(currentTheme === 'dark' ? 'light' : 'dark');
       });
       
-      // Configuration de la recherche compacte
+      // Bouton salaires (accès restreint)
+      document.getElementById('btn-salaires').addEventListener('click', (e) => {
+        e.preventDefault();
+        alert('Accès restreint aux agents habilités. Veuillez vous authentifier.');
+      });
+      
+      // Recherche compacte
       const compactSearchInput = document.getElementById('compactSearchInput');
+      const compactSearchIcon = document.querySelector('.compact-search-icon');
+      
+      // Recherche lors de la frappe (avec debounce)
+      const debouncedSearch = debounce(async (query) => {
+        if (query.length < 2) {
+          hideCompactSearchResults();
+          return;
+        }
+        
+        const results = await performSearch(query);
+        displayCompactSearchResults(results);
+      }, 300);
       
       compactSearchInput.addEventListener('input', (e) => {
-        const results = performSearch(e.target.value);
-        displayCompactSearchResults(results);
+        debouncedSearch(e.target.value);
       });
       
       // Recherche au clic sur l'icône
-      document.querySelector('.compact-search-icon').addEventListener('click', () => {
-        const results = performSearch(compactSearchInput.value);
-        displayCompactSearchResults(results);
-      });
-      
-      // Recherche avec la touche Entrée
-      compactSearchInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-          const results = performSearch(compactSearchInput.value);
-          displayCompactSearchResults(results);
+      compactSearchIcon.addEventListener('click', () => {
+        const query = compactSearchInput.value;
+        if (query.length >= 2) {
+          debouncedSearch(query);
         }
       });
       
-      // Cacher les résultats quand on clique ailleurs
+      // Cacher les résultats en cliquant ailleurs
       document.addEventListener('click', (e) => {
         if (!e.target.closest('.compact-search')) {
           hideCompactSearchResults();
         }
       });
       
-      // Touche Echap pour vider la recherche
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-          compactSearchInput.value = '';
-          hideCompactSearchResults();
-          compactSearchInput.blur();
+      // Recherche avec la touche Entrée
+      compactSearchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          const query = compactSearchInput.value;
+          if (query.length >= 2) {
+            debouncedSearch(query);
+          }
         }
-      });
-      
-      // Accès restreint aux salaires
-      document.getElementById('btn-salaires').addEventListener('click', (e) => {
-        e.preventDefault();
-        alert('Accès restreint. Veuillez contacter l\'administrateur pour obtenir un code d\'accès.');
       });
     });
   </script>
