@@ -47,19 +47,16 @@
             background: var(--background);
             color: var(--text);
             min-height: 100vh;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            padding: 0;
+            margin: 0;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
         
         .container {
-            width: 100%;
-            max-width: 1400px;
-            padding: clamp(12px, 3vw, 20px);
-            padding-bottom: calc(90px + env(safe-area-inset-bottom));
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
         }
         
         header {
@@ -67,7 +64,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 0;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             border-bottom: 1px solid var(--border);
         }
         
@@ -87,6 +84,7 @@
         .nav-buttons {
             display: flex;
             gap: 10px;
+            align-items: center;
         }
         
         .btn {
@@ -122,19 +120,19 @@
             transform: translateY(-2px);
         }
         
-        .hero {
+        .page-title {
             text-align: center;
-            margin-bottom: 40px;
-            padding: 30px 0;
+            margin-bottom: 30px;
+            padding: 20px 0;
         }
         
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
+        .page-title h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
             color: var(--primary);
         }
         
-        .hero p {
+        .page-title p {
             font-size: 1.1rem;
             color: var(--text-muted);
             max-width: 700px;
@@ -171,38 +169,41 @@
             color: var(--primary);
         }
         
-        .search-container {
-            max-width: 600px;
-            margin: 30px auto;
+        /* Barre de recherche compacte */
+        .compact-search {
             position: relative;
-            width: 100%;
+            width: 250px;
+            margin-right: 10px;
         }
         
-        .search-input {
+        .compact-search-input {
             width: 100%;
-            padding: 15px 20px;
-            border-radius: var(--radius);
+            padding: 10px 40px 10px 15px;
+            border-radius: 20px;
             border: 1px solid var(--border);
             background-color: var(--card-bg);
             color: var(--text);
-            font-size: 1rem;
+            font-size: 0.9rem;
             box-shadow: var(--shadow);
+            transition: all 0.3s ease;
         }
         
-        .search-input:focus {
+        .compact-search-input:focus {
             outline: none;
             border-color: var(--primary);
+            width: 300px;
         }
         
-        .search-icon {
+        .compact-search-icon {
             position: absolute;
-            right: 15px;
+            right: 12px;
             top: 50%;
             transform: translateY(-50%);
             color: var(--text-muted);
+            cursor: pointer;
         }
         
-        .search-results {
+        .compact-search-results {
             position: absolute;
             top: 100%;
             left: 0;
@@ -218,7 +219,7 @@
             border-top: none;
         }
         
-        .search-results.visible {
+        .compact-search-results.visible {
             display: block;
         }
         
@@ -258,7 +259,7 @@
         
         .categories {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 20px;
             margin-bottom: 50px;
         }
@@ -272,6 +273,7 @@
             transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
+            height: 100%;
         }
         
         .category-card:hover {
@@ -343,9 +345,48 @@
             font-size: 0.9rem;
         }
         
+        mark {
+            background-color: #ffeb3b;
+            color: #000;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        
+        .search-preview {
+            margin-top: 8px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+        
         @media (max-width: 768px) {
             .categories {
                 grid-template-columns: 1fr;
+            }
+            
+            .page-title h1 {
+                font-size: 1.8rem;
+            }
+            
+            header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .nav-buttons {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .compact-search {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            
+            .compact-search-input:focus {
+                width: 100%;
             }
             
             .category-buttons {
@@ -365,16 +406,6 @@
             .breadcrumb i {
                 display: none;
             }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            header {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
-            }
         }
     </style>
 </head>
@@ -386,23 +417,22 @@
                 <span>Codes Essentiels</span>
             </div>
             <div class="nav-buttons">
+                <div class="compact-search">
+                    <input class="compact-search-input" id="compactSearchInput" placeholder="Rechercher dans tous les documents..." type="text"/>
+                    <div class="compact-search-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="compact-search-results" id="compactSearchResults"></div>
+                </div>
                 <button class="btn btn-primary" id="themeToggle">
                     <i class="fas fa-moon"></i> Thème
                 </button>
             </div>
         </header>
         
-        <section class="hero">
+        <section class="page-title">
             <h1>Statuts et Règlements des Professions</h1>
             <p>Porte-documents des textes réglementaires des différentes professions en Côte d'Ivoire</p>
-            
-            <div class="search-container">
-                <input type="text" class="search-input" id="searchInput" placeholder="Rechercher un statut, une profession..." aria-label="Recherche de statuts professionnels">
-                <div class="search-icon">
-                    <i class="fas fa-search"></i>
-                </div>
-                <div class="search-results" id="searchResults"></div>
-            </div>
         </section>
         
         <div class="breadcrumb">
@@ -691,29 +721,177 @@
             }
         ];
 
-        // Fonction de recherche
-        function performSearch(query) {
-            if (!query.trim()) {
-                return [];
+        // Cache pour stocker le contenu des documents déjà chargés
+        const documentContentCache = new Map();
+
+        // Fonction pour charger le contenu d'un document
+        async function loadDocumentContent(url) {
+            if (documentContentCache.has(url)) {
+                return documentContentCache.get(url);
             }
+            
+            try {
+                const response = await fetch(url);
+                if (!response.ok) throw new Error(`Erreur de chargement: ${response.status}`);
+                
+                const html = await response.text();
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                
+                // Extraire le contenu textuel principal
+                const mainContent = doc.querySelector('main, .content, .container, body') || doc.body;
+                const textContent = mainContent.textContent || '';
+                
+                // Nettoyer et structurer le contenu
+                const cleanText = textContent
+                .replace(/\s+/g, ' ')
+                .replace(/[\n\t]/g, ' ')
+                .trim()
+                .toLowerCase();
+                
+                // Identifier les sections/éléments structurés pour la navigation précise
+                const sections = [];
+                const headings = mainContent.querySelectorAll('h1, h2, h3, h4, h5, h6, .article, .section');
+                
+                headings.forEach((heading, index) => {
+                    const id = heading.id || `section-${index}`;
+                    const text = heading.textContent.trim();
+                    if (text) {
+                        sections.push({
+                            id: id,
+                            text: text.toLowerCase(),
+                            element: heading.tagName
+                        });
+                    }
+                });
+                
+                const documentData = {
+                    content: cleanText,
+                    sections: sections,
+                    rawHtml: html
+                };
+                
+                documentContentCache.set(url, documentData);
+                return documentData;
+            } catch (error) {
+                console.error(`Erreur lors du chargement de ${url}:`, error);
+                return { content: '', sections: [], rawHtml: '' };
+            }
+        }
+
+        // Fonction pour trouver la section la plus pertinente contenant les termes de recherche
+        function findRelevantSection(documentData, searchTerms) {
+            if (!documentData.sections || documentData.sections.length === 0) {
+                return null;
+            }
+            
+            // Calculer un score de pertinence pour chaque section
+            const scoredSections = documentData.sections.map(section => {
+                let score = 0;
+                searchTerms.forEach(term => {
+                    if (section.text.includes(term)) {
+                        score += term.length * 2; // Bonus pour les termes dans le titre
+                    }
+                });
+                return { ...section, score };
+            });
+            
+            // Trier par score décroissant et retourner la meilleure section
+            scoredSections.sort((a, b) => b.score - a.score);
+            return scoredSections[0].score > 0 ? scoredSections[0] : null;
+        }
+
+        // Fonction de recherche améliorée
+        async function performSearch(query) {
+            if (!query.trim()) return [];
             
             const searchTerms = query.toLowerCase().split(/\s+/).filter(term => term.length > 0);
             
-            return searchIndex.filter(item => {
+            // Recherche dans les métadonnées (rapide)
+            const metadataResults = searchIndex.map(item => {
                 const searchableText = (
                     item.title.toLowerCase() + ' ' + 
                     item.description.toLowerCase() + ' ' + 
                     item.category.toLowerCase() + ' ' + 
-                    item.keywords.join(' ')
+                    item.keywords.join(' ') + ' ' +
+                    item.url.toLowerCase()
                 );
                 
-                return searchTerms.every(term => searchableText.includes(term));
+                const matchCount = searchTerms.filter(term => searchableText.includes(term)).length;
+                return { ...item, matchCount, matchType: 'metadata' };
+            }).filter(item => item.matchCount > 0)
+                .sort((a, b) => b.matchCount - a.matchCount);
+            
+            if (metadataResults.length > 0) {
+                return metadataResults.slice(0, 10); // Limiter les résultats
+            }
+            
+            // Recherche dans le contenu des documents
+            const contentSearchResults = [];
+            const searchPromises = searchIndex.map(async (item) => {
+                if (!item.url || item.url === '#') return null;
+                
+                try {
+                    const documentData = await loadDocumentContent(item.url);
+                    if (!documentData.content) return null;
+                    
+                    // Vérifier si le document contient tous les termes de recherche
+                    const allTermsFound = searchTerms.every(term => documentData.content.includes(term));
+                    if (!allTermsFound) return null;
+                    
+                    // Trouver la section la plus pertinente
+                    const relevantSection = findRelevantSection(documentData, searchTerms);
+                    
+                    return {
+                        ...item,
+                        matchType: 'content',
+                        preview: generatePreview(documentData.content, searchTerms),
+                        anchor: relevantSection ? `#${relevantSection.id}` : '',
+                        sectionTitle: relevantSection ? relevantSection.text : ''
+                    };
+                } catch (error) {
+                    console.error(`Erreur lors de la recherche dans ${item.url}:`, error);
+                    return null;
+                }
             });
+            
+            const results = await Promise.all(searchPromises);
+            return results.filter(result => result !== null).slice(0, 10);
+        }
+
+        // Fonction pour générer un aperçu avec surbrillance
+        function generatePreview(content, searchTerms) {
+            // Trouver la première occurrence d'un terme
+            for (const term of searchTerms) {
+                const index = content.indexOf(term);
+                if (index !== -1) {
+                    const start = Math.max(0, index - 50);
+                    const end = Math.min(content.length, index + term.length + 100);
+                    let preview = content.substring(start, end);
+                    
+                    if (start > 0) preview = '...' + preview;
+                    if (end < content.length) preview = preview + '...';
+                    
+                    // Mettre en évidence tous les termes
+                    searchTerms.forEach(term => {
+                        const regex = new RegExp(`(${escapeRegExp(term)})`, 'gi');
+                        preview = preview.replace(regex, '<mark>$1</mark>');
+                    });
+                    
+                    return preview;
+                }
+            }
+            return "Terme trouvé dans le document";
+        }
+
+        // Échapper les caractères spéciaux pour les regex
+        function escapeRegExp(string) {
+            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         }
 
         // Afficher les résultats de recherche
-        function displaySearchResults(results) {
-            const resultsContainer = document.getElementById('searchResults');
+        function displayCompactSearchResults(results) {
+            const resultsContainer = document.getElementById('compactSearchResults');
             resultsContainer.innerHTML = '';
             
             if (results.length === 0) {
@@ -725,14 +903,29 @@
             results.forEach(result => {
                 const resultElement = document.createElement('div');
                 resultElement.className = 'search-result-item';
-                resultElement.innerHTML = `
+                
+                let html = `
                     <h3>${result.title}</h3>
                     <p>${result.description}</p>
                     <small>Catégorie: ${result.category}</small>
                 `;
                 
+                if (result.preview) {
+                    html += `<div class="search-preview">${result.preview}</div>`;
+                }
+                
+                if (result.sectionTitle) {
+                    html += `<div class="search-preview"><small>Section: ${result.sectionTitle}</small></div>`;
+                }
+                
+                resultElement.innerHTML = html;
+                
                 resultElement.addEventListener('click', () => {
-                    window.location.href = result.url;
+                    if (result.url && result.url !== '#') {
+                        // Construire l'URL avec l'ancre si disponible
+                        const targetUrl = result.url + (result.anchor || '');
+                        window.location.href = targetUrl;
+                    }
                 });
                 
                 resultsContainer.appendChild(resultElement);
@@ -741,87 +934,52 @@
             resultsContainer.classList.add('visible');
         }
 
-        // Cacher les résultats de recherche
-        function hideSearchResults() {
-            document.getElementById('searchResults').classList.remove('visible');
-        }
-
-        // Filtrer les documents visibles en fonction de la recherche
-        function filterDocuments(query) {
-            const documents = document.querySelectorAll('.category-card');
-            const results = performSearch(query);
+        // Gestionnaire d'événements pour la recherche compacte
+        document.getElementById('compactSearchInput').addEventListener('input', async function(e) {
+            const query = e.target.value.trim();
+            const resultsContainer = document.getElementById('compactSearchResults');
             
-            if (!query.trim()) {
-                // Afficher tous les documents si la recherche est vide
-                documents.forEach(doc => doc.style.display = 'flex');
-                hideSearchResults();
+            if (query.length < 2) {
+                resultsContainer.classList.remove('visible');
                 return;
             }
             
-            // Cacher tous les documents
-            documents.forEach(doc => doc.style.display = 'none');
-            
-            // Afficher les résultats de recherche
-            displaySearchResults(results);
-        }
-
-        // Gestion du thème
-        const themeToggle = document.getElementById('themeToggle');
-        const themeIcon = themeToggle.querySelector('i');
-        
-        function setTheme(theme) {
-            document.documentElement.setAttribute('data-theme', theme);
-            localStorage.setItem('theme', theme);
-            
-            if (theme === 'dark') {
-                themeIcon.className = 'fas fa-sun';
-                themeToggle.innerHTML = '<i class="fas fa-sun"></i> Thème';
-            } else {
-                themeIcon.className = 'fas fa-moon';
-                themeToggle.innerHTML = '<i class="fas fa-moon"></i> Thème';
-            }
-        }
-        
-        // Initialisation
-        document.addEventListener('DOMContentLoaded', () => {
-            // Configuration du thème
-            const savedTheme = localStorage.getItem('theme');
-            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            
-            if (savedTheme) {
-                setTheme(savedTheme);
-            } else if (systemPrefersDark) {
-                setTheme('dark');
-            }
-            
-            themeToggle.addEventListener('click', () => {
-                const currentTheme = document.documentElement.getAttribute('data-theme');
-                setTheme(currentTheme === 'dark' ? 'light' : 'dark');
-            });
-            
-            // Configuration de la recherche
-            const searchInput = document.getElementById('searchInput');
-            
-            searchInput.addEventListener('input', (e) => {
-                filterDocuments(e.target.value);
-            });
-            
-            // Cacher les résultats quand on clique ailleurs
-            document.addEventListener('click', (e) => {
-                if (!e.target.closest('.search-container')) {
-                    hideSearchResults();
-                }
-            });
-            
-            // Touche Echap pour vider la recherche
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    searchInput.value = '';
-                    filterDocuments('');
-                    searchInput.blur();
-                }
-            });
+            const results = await performSearch(query);
+            displayCompactSearchResults(results);
         });
+
+        // Fermer les résultats de recherche en cliquant à l'extérieur
+        document.addEventListener('click', function(e) {
+            const searchContainer = document.querySelector('.compact-search');
+            if (!searchContainer.contains(e.target)) {
+                document.getElementById('compactSearchResults').classList.remove('visible');
+            }
+        });
+
+        // Basculer le thème
+        document.getElementById('themeToggle').addEventListener('click', function() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            document.getElementById('meta-theme-color').setAttribute('content', newTheme === 'dark' ? '#0f172a' : '#0ea5e9');
+            
+            // Mettre à jour l'icône du bouton
+            const icon = this.querySelector('i');
+            icon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            
+            // Sauvegarder la préférence
+            localStorage.setItem('theme', newTheme);
+        });
+
+        // Appliquer le thème sauvegardé au chargement
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        document.getElementById('meta-theme-color').setAttribute('content', savedTheme === 'dark' ? '#0f172a' : '#0ea5e9');
+        
+        // Mettre à jour l'icône du bouton
+        const themeButtonIcon = document.querySelector('#themeToggle i');
+        themeButtonIcon.className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
     </script>
 </body>
 </html>
