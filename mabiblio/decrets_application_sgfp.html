@@ -1,307 +1,432 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html data-theme="light" lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Décrets d'Application du Statut Général</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="theme-color" content="#0ea5e9">
     <style>
+        :root {
+          --primary: #0ea5e9;
+          --secondary: #6366f1;
+          --accent: #f97316;
+          --success: #10b981;
+          --warning: #f59e0b;
+          --background: #f8fafc;
+          --card-bg: #ffffff;
+          --text: #1e293b;
+          --text-muted: #64748b;
+          --border: #e2e8f0;
+          --shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+          --radius: 12px;
+        }
+        
+        [data-theme="dark"] {
+          --primary: #0ea5e9;
+          --secondary: #818cf8;
+          --accent: #fb923c;
+          --success: #34d399;
+          --warning: #fbbf24;
+          --background: #0f172a;
+          --card-bg: #1e293b;
+          --text: #f1f5f9;
+          --text-muted: #94a3b8;
+          --border: #334155;
+          --shadow: 0 4px 6px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
         
         body {
-            background: linear-gradient(135deg, #f9f7ff 0%, #e0d1ff 100%);
-            min-height: 100vh;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+          background-color: var(--background);
+          color: var(--text);
+          min-height: 100vh;
+          padding: 20px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
         }
         
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-            width: 100%;
-            max-width: 1000px;
-            padding: 30px;
-            background: linear-gradient(120deg, #8A2BE2 0%, #5D3FD3 100%);
-            border-radius: 20px;
-            box-shadow: 0 15px 30px rgba(138, 43, 226, 0.4);
-            color: white;
-            position: relative;
-            overflow: hidden;
+        .container {
+          max-width: 1200px;
+          width: 100%;
         }
         
-        .header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 60%);
-            transform: rotate(30deg);
+        header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 20px 0;
+          margin-bottom: 20px;
+          border-bottom: 1px solid var(--border);
         }
         
-        .header h1 {
-            font-size: 2.8rem;
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-            position: relative;
+        .logo {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          font-weight: 700;
+          font-size: 1.5rem;
+          color: var(--primary);
         }
         
-        .header p {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            opacity: 0.95;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            position: relative;
+        .logo i {
+          font-size: 1.8rem;
+        }
+        
+        .nav-buttons {
+          display: flex;
+          gap: 10px;
+          align-items: center;
+        }
+        
+        .btn {
+          padding: 10px 16px;
+          border-radius: var(--radius);
+          border: none;
+          font-weight: 600;
+          cursor: pointer;
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          transition: all 0.2s ease;
+        }
+        
+        .btn-primary {
+          background-color: var(--primary);
+          color: white;
+        }
+        
+        .btn:hover {
+          opacity: 0.9;
+          transform: translateY(-2px);
+        }
+        
+        .compact-search {
+          position: relative;
+          width: 250px;
+          margin-right: 10px;
+        }
+        
+        .compact-search-input {
+          width: 100%;
+          padding: 10px 40px 10px 15px;
+          border-radius: 20px;
+          border: 1px solid var(--border);
+          background-color: var(--card-bg);
+          color: var(--text);
+          font-size: 0.9rem;
+          box-shadow: var(--shadow);
+          transition: all 0.3s ease;
+        }
+        
+        .compact-search-input:focus {
+          outline: none;
+          border-color: var(--primary);
+          width: 300px;
+        }
+        
+        .compact-search-icon {
+          position: absolute;
+          right: 12px;
+          top: 50%;
+          transform: translateY(-50%);
+          color: var(--text-muted);
+          cursor: pointer;
+        }
+        
+        .compact-search-results {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background: var(--card-bg);
+          border-radius: 0 0 var(--radius) var(--radius);
+          box-shadow: var(--shadow);
+          max-height: 300px;
+          overflow-y: auto;
+          z-index: 100;
+          display: none;
+          border: 1px solid var(--border);
+          border-top: none;
+        }
+        
+        .compact-search-results.visible {
+          display: block;
+        }
+        
+        .search-result-item {
+          padding: 12px 16px;
+          border-bottom: 1px solid var(--border);
+          cursor: pointer;
+          transition: background 0.2s ease;
+        }
+        
+        .search-result-item:hover {
+          background: rgba(0, 0, 0, 0.05);
+        }
+        
+        .search-result-item h3 {
+          margin: 0 0 4px 0;
+          font-size: 1rem;
+          color: var(--primary);
+        }
+        
+        .search-result-item p {
+          margin: 0;
+          color: var(--text-muted);
+          font-size: 0.85rem;
+        }
+        
+        .search-result-item small {
+          color: var(--text-muted);
+          font-size: 0.75rem;
+        }
+        
+        .no-results {
+          padding: 16px;
+          text-align: center;
+          color: var(--text-muted);
+        }
+        
+        mark {
+          background-color: #ffeb3b;
+          color: #000;
+          padding: 2px 4px;
+          border-radius: 3px;
+        }
+        
+        .search-preview {
+          margin-top: 8px;
+          font-size: 0.8rem;
+          color: var(--text-muted);
+          line-height: 1.4;
+        }
+        
+        .page-title {
+          text-align: center;
+          margin-bottom: 30px;
+          padding: 20px 0;
+        }
+        
+        .page-title h1 {
+          font-size: 2.2rem;
+          margin-bottom: 10px;
+          color: var(--primary);
+        }
+        
+        .page-title p {
+          font-size: 1.1rem;
+          color: var(--text-muted);
+          max-width: 700px;
+          margin: 0 auto;
         }
         
         .breadcrumb {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            width: 100%;
-            max-width: 1000px;
-            background: white;
-            padding: 15px 20px;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+          display: flex;
+          align-items: center;
+          margin-bottom: 20px;
+          width: 100%;
+          background: var(--card-bg);
+          padding: 15px 20px;
+          border-radius: var(--radius);
+          box-shadow: var(--shadow);
+          border: 1px solid var(--border);
         }
         
         .breadcrumb a {
-            color: #8A2BE2;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            font-weight: 600;
-            transition: all 0.3s ease;
+          color: var(--primary);
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          font-weight: 600;
+          transition: all 0.3s ease;
         }
         
         .breadcrumb a:hover {
-            color: #5D3FD3;
-            text-decoration: underline;
+          color: var(--secondary);
+          text-decoration: underline;
         }
         
         .breadcrumb i {
-            margin: 0 10px;
-            color: #8A2BE2;
+          margin: 0 10px;
+          color: var(--primary);
         }
         
         .portfolio {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            width: 100%;
-            max-width: 1200px;
-            margin-bottom: 40px;
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+          gap: 30px;
+          width: 100%;
+          margin-bottom: 40px;
         }
         
         .card {
-            background: white;
-            border-radius: 18px;
-            overflow: hidden;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-            transition: all 0.4s ease;
-            display: flex;
-            flex-direction: column;
-            border: 2px solid transparent;
-            position: relative;
-            top: 0;
+          background: var(--card-bg);
+          border-radius: var(--radius);
+          overflow: hidden;
+          box-shadow: var(--shadow);
+          transition: all 0.4s ease;
+          display: flex;
+          flex-direction: column;
+          border: 1px solid var(--border);
+          position: relative;
+          top: 0;
         }
         
         .card:hover {
-            transform: translateY(-12px) scale(1.02);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
-            border-color: #8A2BE2;
-            top: -5px;
+          transform: translateY(-12px);
+          box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+          border-color: var(--primary);
+          top: -5px;
         }
         
         .card-image {
-            height: 200px;
-            overflow: hidden;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .card-image::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 100%);
+          height: 200px;
+          overflow: hidden;
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
         
         .icon {
-            font-size: 4rem;
-            color: rgba(255, 255, 255, 0.95);
-            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            z-index: 2;
-            transition: all 0.5s ease;
+          font-size: 4rem;
+          color: rgba(255, 255, 255, 0.95);
+          text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+          z-index: 2;
+          transition: all 0.5s ease;
         }
         
         .card:hover .icon {
-            transform: scale(1.2);
+          transform: scale(1.2);
         }
         
         .card-content {
-            padding: 25px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
+          padding: 25px;
+          flex-grow: 1;
+          display: flex;
+          flex-direction: column;
         }
         
         .card h2 {
-            color: #2c3e50;
-            margin-bottom: 15px;
-            font-size: 1.6rem;
-            position: relative;
-            padding-bottom: 10px;
+          color: var(--text);
+          margin-bottom: 15px;
+          font-size: 1.6rem;
+          position: relative;
+          padding-bottom: 10px;
         }
         
         .card h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 4px;
-            border-radius: 2px;
-            background: linear-gradient(to right, #8A2BE2, #5D3FD3);
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 50px;
+          height: 4px;
+          border-radius: 2px;
+          background: linear-gradient(to right, var(--primary), var(--secondary));
         }
         
         .card p {
-            color: #5c6b7e;
-            margin-bottom: 25px;
-            flex-grow: 1;
-            line-height: 1.6;
-            font-size: 1.05rem;
+          color: var(--text-muted);
+          margin-bottom: 25px;
+          flex-grow: 1;
+          line-height: 1.6;
+          font-size: 1.05rem;
         }
         
         .card-buttons {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 12px;
         }
         
         .card-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            padding: 14px 20px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-            text-align: center;
-            font-size: 0.95rem;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          padding: 14px 20px;
+          border-radius: 12px;
+          text-decoration: none;
+          font-weight: 600;
+          transition: all 0.3s ease;
+          border: none;
+          cursor: pointer;
+          box-shadow: var(--shadow);
+          text-align: center;
+          font-size: 0.95rem;
         }
         
         .card-button i {
-            margin-right: 8px;
-            font-size: 1.1rem;
+          margin-right: 8px;
+          font-size: 1.1rem;
         }
         
         .card-button.primary {
-            background: linear-gradient(to right, #FF6B6B, #FF8E53);
+          background: linear-gradient(to right, #FF6B6B, #FF8E53);
         }
         
         .card-button.primary:hover {
-            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.5);
-            transform: translateY(-3px);
+          box-shadow: 0 8px 20px rgba(255, 107, 107, 0.5);
+          transform: translateY(-3px);
         }
         
         .card-button.secondary {
-            background: linear-gradient(to right, #4ECDC4, #556EE6);
+          background: linear-gradient(to right, #4ECDC4, #556EE6);
         }
         
         .card-button.secondary:hover {
-            box-shadow: 0 8px 20px rgba(78, 205, 196, 0.5);
-            transform: translateY(-3px);
+          box-shadow: 0 8px 20px rgba(78, 205, 196, 0.5);
+          transform: translateY(-3px);
         }
         
         .card-button.tertiary {
-            background: linear-gradient(to right, #9F7AEA, #667EEA);
+          background: linear-gradient(to right, #9F7AEA, #667EEA);
         }
         
         .card-button.tertiary:hover {
-            box-shadow: 0 8px 20px rgba(159, 122, 234, 0.5);
-            transform: translateY(-3px);
-        }
-        
-        .card-button.quaternary {
-            background: linear-gradient(to right, #F56565, #ED8936);
-        }
-        
-        .card-button.quaternary:hover {
-            box-shadow: 0 8px 20px rgba(245, 101, 101, 0.5);
-            transform: translateY(-3px);
-        }
-        
-        .card-button.downloaded {
-            background: linear-gradient(to right, #7f8c8d, #95a5a6);
-            cursor: default;
+          box-shadow: 0 8px 20px rgba(159, 122, 234, 0.5);
+          transform: translateY(-3px);
         }
         
         /* Styles spécifiques pour chaque type de carte */
-        .card-modalites-communes {
-            border-top: 6px solid #4ECDC4;
-        }
-        
         .card-modalites-communes .card-image {
-            background: linear-gradient(45deg, #4ECDC4, #556EE6);
-        }
-        
-        .card-modalites-particulieres {
-            border-top: 6px solid #FF6B6B;
+          background: linear-gradient(45deg, #4ECDC4, #556EE6);
         }
         
         .card-modalites-particulieres .card-image {
-            background: linear-gradient(45deg, #FF6B6B, #FF8E53);
-        }
-        
-        .card-classification {
-            border-top: 6px solid #9F7AEA;
+          background: linear-gradient(45deg, #FF6B6B, #FF8E53);
         }
         
         .card-classification .card-image {
-            background: linear-gradient(45deg, #9F7AEA, #667EEA);
-        }
-        
-        .card-indices {
-            border-top: 6px solid #F56565;
+          background: linear-gradient(45deg, #9F7AEA, #667EEA);
         }
         
         .card-indices .card-image {
-            background: linear-gradient(45deg, #F56565, #ED8936);
+          background: linear-gradient(45deg, #F56565, #ED8936);
         }
         
         .footer {
-            margin-top: 50px;
-            text-align: center;
-            color: white;
-            font-size: 1rem;
-            padding: 25px;
-            width: 100%;
-            max-width: 1000px;
-            background: linear-gradient(120deg, #8A2BE2 0%, #5D3FD3 100%);
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(138, 43, 226, 0.3);
+          margin-top: 50px;
+          text-align: center;
+          color: var(--text-muted);
+          font-size: 1rem;
+          padding: 25px;
+          width: 100%;
+          background: var(--card-bg);
+          border-radius: var(--radius);
+          box-shadow: var(--shadow);
+          border: 1px solid var(--border);
         }
         
         /* Responsive design */
@@ -316,12 +441,12 @@
                 grid-template-columns: 1fr;
             }
             
-            .header h1 {
-                font-size: 2.2rem;
+            .page-title h1 {
+                font-size: 1.8rem;
             }
             
-            .header p {
-                font-size: 1.1rem;
+            .page-title p {
+                font-size: 1rem;
             }
             
             .card-buttons {
@@ -331,17 +456,30 @@
             .card-button {
                 padding: 12px 18px;
             }
+            
+            header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .nav-buttons {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .compact-search {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            
+            .compact-search-input:focus {
+                width: 100%;
+            }
         }
         
         @media (max-width: 480px) {
-            .header {
-                padding: 20px 15px;
-            }
-            
-            .header h1 {
-                font-size: 1.8rem;
-            }
-            
             .breadcrumb {
                 flex-direction: column;
                 align-items: flex-start;
@@ -352,429 +490,383 @@
                 display: none;
             }
         }
-        
-        .notification {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            padding: 18px 25px;
-            background: linear-gradient(to right, #4ECDC4, #556EE6);
-            color: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
-            transform: translateY(150px);
-            opacity: 0;
-            transition: all 0.5s ease;
-            z-index: 1001;
-            display: flex;
-            align-items: center;
-            max-width: 350px;
-        }
-        
-        .notification i {
-            margin-right: 12px;
-            font-size: 1.4rem;
-        }
-        
-        .notification.show {
-            transform: translateY(0);
-            opacity: 1;
-        }
-        
-        .notification.warning {
-            background: linear-gradient(to right, #FF6B6B, #FF8E53);
-        }
     </style>
-  <link rel="manifest" href="manifest.webmanifest">
-  <meta name="theme-color" content="#22c55e">
-  <link rel="apple-touch-icon" href="icons/icon-192.png">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
-<!-- HIDE AUTH/VIEWS WIDGETS OUTSIDE HOME (safe) -->
-<style>
-  #auth-fab, .views-badge, #auth-modal, .card-views-badge { display: none !important; }
-</style>
-
 </head>
 <body>
-    <div class="header">
-        <h1>Décrets d'Application du Statut Général</h1>
-        <p>Textes réglementaires définissant les modalités d'application du statut général de la fonction publique</p>
-    </div>
-    
-    <div class="breadcrumb">
-        <a href="mescodes.html"><i class="fas fa-home"></i> Accueil</a>
-        <i class="fas fa-chevron-right"></i>
-        <a href="tous-statuts.html"><i class="fas fa-file-contract"></i> Statuts et Règlements</a>
-        <i class="fas fa-chevron-right"></i>
-        <span>Décrets d'Application</span>
-    </div>
-    
-    <div class="portfolio" id="portfolio">
-        <div class="card card-modalites-communes">
-            <div class="card-image">
-                <i class="fas fa-file-contract icon"></i>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-scale-balanced"></i>
+                <span>Codes Essentiels</span>
             </div>
-            <div class="card-content">
-                <h2>Modalités Communes d'Application</h2>
-                <p>Décret définissant les règles communes applicables à l'ensemble des fonctionnaires, quel que soit leur corps ou cadre d'emplois.</p>
-                <div class="card-buttons">
-                    <button class="card-button secondary" onclick="downloadDocument('modalites_communes')" id="btn-modalites_communes"><i class="fas fa-download"></i> Télécharger</button>
-                    <a href="decret_modalites_communes.html" class="card-button tertiary"><i class="fas fa-file-alt"></i> Voir le décret</a>
+            <div class="nav-buttons">
+                <div class="compact-search">
+                    <input class="compact-search-input" id="compactSearchInput" placeholder="Rechercher dans tous les documents..." type="text"/>
+                    <div class="compact-search-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="compact-search-results" id="compactSearchResults"></div>
                 </div>
+                <button class="btn btn-primary" id="themeToggle">
+                    <i class="fas fa-moon"></i> Thème
+                </button>
             </div>
-        </div>
-        
-        <div class="card card-modalites-particulieres">
-            <div class="card-image">
-                <i class="fas fa-file-alt icon"></i>
-            </div>
-            <div class="card-content">
-                <h2>Modalités Particulières d'Application</h2>
-                <p>Décret précisant les dispositions spécifiques à certaines catégories de fonctionnaires ou à certains corps particuliers.</p>
-                <div class="card-buttons">
-                    <button class="card-button secondary" onclick="downloadDocument('modalites_particulieres')" id="btn-modalites_particulieres"><i class="fas fa-download"></i> Télécharger</button>
-                    <a href="decret_modalites_particulieres.html" class="card-button tertiary"><i class="fas fa-file-alt"></i> Voir le décret</a>
-                </div>
-            </div>
-        </div>
-        
-        <div class="card card-classification">
-            <div class="card-image">
-                <i class="fas fa-list-ol icon"></i>
-            </div>
-            <div class="card-content">
-                <h2>Classification des Grades et Emplois</h2>
-                <p>Décret établissant la nomenclature et la hiérarchie des différents grades et emplois au sein de la fonction publique.</p>
-                <div class="card-buttons">
-                    <button class="card-button secondary" onclick="downloadDocument('classification')" id="btn-classification"><i class="fas fa-download"></i> Télécharger</button>
-                    <a href="decret_classification.html" class="card-button tertiary"><i class="fas fa-file-alt"></i> Voir le décret</a>
-                </div>
-            </div>
-        </div>
-        
-        <div class="card card-indices">
-            <div class="card-image">
-                <i class="fas fa-money-bill-wave icon"></i>
-            </div>
-            <div class="card-content">
-                <h2>Indices de Traitements par Emplois</h2>
-                <p>Document référençant les grilles indiciaires et les traitements correspondants à chaque emploi de la fonction publique.</p>
-                <div class="card-buttons">
-                    <button class="card-button secondary" onclick="downloadDocument('indices')" id="btn-indices"><i class="fas fa-download"></i> Télécharger</button>
-                    <a href="decret_indices.html" class="card-button tertiary"><i class="fas fa-file-alt"></i> Voir le décret</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="footer">
-        <p>© 2025 Porte-documents juridiques - Décrets d'Application du Statut Général</p>
-        <p>Cette application fonctionne hors ligne. Les documents téléchargés sont accessibles sans connexion Internet.</p>
-    </div>
+        </header>
 
-    <div class="notification" id="notification">
-        <i class="fas fa-check-circle"></i>
-        <span>Document téléchargé avec succès et disponible hors ligne !</span>
+        <div class="page-title">
+            <h1>Décrets d'Application du Statut Général</h1>
+            <p>Textes réglementaires définissant les modalités d'application du statut général de la fonction publique</p>
+        </div>
+        
+        <div class="breadcrumb">
+            <a href="mescodes.html"><i class="fas fa-home"></i> Accueil</a>
+            <i class="fas fa-chevron-right"></i>
+            <a href="tous-statuts.html"><i class="fas fa-file-contract"></i> Statuts et Règlements</a>
+            <i class="fas fa-chevron-right"></i>
+            <span>Décrets d'Application</span>
+        </div>
+        
+        <div class="portfolio" id="portfolio">
+            <div class="card card-modalites-communes">
+                <div class="card-image">
+                    <i class="fas fa-file-contract icon"></i>
+                </div>
+                <div class="card-content">
+                    <h2>Modalités Communes d'Application</h2>
+                    <p>Décret définissant les règles communes applicables à l'ensemble des fonctionnaires, quel que soit leur corps ou cadre d'emplois.</p>
+                    <div class="card-buttons">
+                        <a href="decret_modalites_communes.html" class="card-button tertiary"><i class="fas fa-file-alt"></i> Voir le décret</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card card-modalites-particulieres">
+                <div class="card-image">
+                    <i class="fas fa-file-alt icon"></i>
+                </div>
+                <div class="card-content">
+                    <h2>Modalités Particulières d'Application</h2>
+                    <p>Décret précisant les dispositions spécifiques à certaines catégories de fonctionnaires ou à certains corps particuliers.</p>
+                    <div class="card-buttons">
+                        <a href="decret_modalites_particulieres.html" class="card-button tertiary"><i class="fas fa-file-alt"></i> Voir le décret</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card card-classification">
+                <div class="card-image">
+                    <i class="fas fa-list-ol icon"></i>
+                </div>
+                <div class="card-content">
+                    <h2>Classification des Grades et Emplois</h2>
+                    <p>Décret établissant la nomenclature et la hiérarchie des différents grades et emplois au sein de la fonction publique.</p>
+                    <div class="card-buttons">
+                        <a href="decret_classification.html" class="card-button tertiary"><i class="fas fa-file-alt"></i> Voir le décret</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card card-indices">
+                <div class="card-image">
+                    <i class="fas fa-money-bill-wave icon"></i>
+                </div>
+                <div class="card-content">
+                    <h2>Indices de Traitements par Emplois</h2>
+                    <p>Document référençant les grilles indiciaires et les traitements correspondants à chaque emploi de la fonction publique.</p>
+                    <div class="card-buttons">
+                        <a href="decret_indices.html" class="card-button tertiary"><i class="fas fa-file-alt"></i> Voir le décret</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 Porte-documents juridiques - Décrets d'Application du Statut Général</p>
+            <p>Cette application fonctionne hors ligne. Les documents téléchargés sont accessibles sans connexion Internet.</p>
+        </div>
     </div>
 
     <script>
-        // Initialisation
-        window.addEventListener('load', () => {
-            updateDownloadButtons();
-            
-            if (!navigator.onLine) {
-                showNotification("Vous êtes en mode hors ligne. Les documents téléchargés sont disponibles.", true);
-            }
-        });
+        // Index de recherche complet avec tous les documents
+        const searchIndex = [
+          {
+            title: "Modalités Communes d'Application",
+            description: "Décret définissant les règles communes applicables à l'ensemble des fonctionnaires",
+            url: "decret_modalites_communes.html",
+            category: "Décrets d'Application",
+            keywords: ["modalités communes", "décret", "application", "statut général", "fonctionnaires", "règles communes"]
+          },
+          {
+            title: "Modalités Particulières d'Application",
+            description: "Décret précisant les dispositions spécifiques à certaines catégories de fonctionnaires",
+            url: "decret_modalites_particulieres.html",
+            category: "Décrets d'Application",
+            keywords: ["modalités particulières", "décret", "application", "statut général", "catégories spécifiques", "corps particuliers"]
+          },
+          {
+            title: "Classification des Grades et Emplois",
+            description: "Décret établissant la nomenclature et la hiérarchie des grades et emplois",
+            url: "decret_classification.html",
+            category: "Décrets d'Application",
+            keywords: ["classification", "grades", "emplois", "nomenclature", "hiérarchie", "fonction publique"]
+          },
+          {
+            title: "Indices de Traitements par Emplois",
+            description: "Document référençant les grilles indiciaires et les traitements",
+            url: "decret_indices.html",
+            category: "Décrets d'Application",
+            keywords: ["indices", "traitements", "grilles indiciaires", "rémunération", "emplois", "fonction publique"]
+          }
+        ];
 
-        // Fonction pour télécharger un document
-        function downloadDocument(type) {
-            // Enregistrer dans le localStorage que le document est téléchargé
-            const downloadedDocs = JSON.parse(localStorage.getItem('downloadedDocs') || '{}');
-            downloadedDocs[type] = true;
-            localStorage.setItem('downloadedDocs', JSON.stringify(downloadedDocs));
+        // Fonction pour charger le contenu d'un document
+        async function loadDocumentContent(url) {
+          try {
+            const response = await fetch(url);
+            if (!response.ok) throw new Error(`Erreur de chargement: ${response.status}`);
             
-            // Mettre à jour l'interface
-            updateDownloadButtons();
+            const html = await response.text();
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
             
-            // Afficher une notification
-            showNotification("Document téléchargé avec succès et disponible hors ligne !");
+            // Extraire le contenu textuel principal
+            const mainContent = doc.querySelector('main, .content, .container, body') || doc.body;
+            const textContent = mainContent.textContent || '';
+            
+            // Nettoyer et structurer le contenu
+            const cleanText = textContent
+              .replace(/\s+/g, ' ')
+              .replace(/[\n\t]/g, ' ')
+              .trim()
+              .toLowerCase();
+            
+            return {
+              content: cleanText,
+              rawHtml: html
+            };
+          } catch (error) {
+            console.error(`Erreur lors du chargement de ${url}:`, error);
+            return { content: '', rawHtml: '' };
+          }
         }
 
-        // Mettre à jour l'apparence des boutons de téléchargement
-        function updateDownloadButtons() {
-            const downloadedDocs = JSON.parse(localStorage.getItem('downloadedDocs') || '{}');
+        // Fonction de recherche améliorée
+        async function performSearch(query) {
+          if (!query.trim()) return [];
+          
+          const searchTerms = query.toLowerCase().split(/\s+/).filter(term => term.length > 0);
+          
+          // Recherche dans les métadonnées (rapide)
+          const metadataResults = searchIndex.map(item => {
+            const searchableText = (
+              item.title.toLowerCase() + ' ' + 
+              item.description.toLowerCase() + ' ' + 
+              item.category.toLowerCase() + ' ' + 
+              item.keywords.join(' ') + ' ' +
+              item.url.toLowerCase()
+            );
             
-            for (const type in downloadedDocs) {
-                const button = document.getElementById(`btn-${type}`);
-                if (button) {
-                    button.innerHTML = '<i class="fas fa-check"></i> Téléchargé';
-                    button.classList.remove('secondary');
-                    button.classList.add('downloaded');
-                    button.onclick = null;
-                }
+            const matchCount = searchTerms.filter(term => searchableText.includes(term)).length;
+            return { ...item, matchCount, matchType: 'metadata' };
+          }).filter(item => item.matchCount > 0)
+            .sort((a, b) => b.matchCount - a.matchCount);
+          
+          if (metadataResults.length > 0) {
+            return metadataResults.slice(0, 10); // Limiter les résultats
+          }
+          
+          // Recherche dans le contenu des documents
+          const contentSearchResults = [];
+          const searchPromises = searchIndex.map(async (item) => {
+            if (!item.url || item.url === '#') return null;
+            
+            try {
+              const documentData = await loadDocumentContent(item.url);
+              if (!documentData.content) return null;
+              
+              // Vérifier si le document contient tous les termes de recherche
+              const allTermsFound = searchTerms.every(term => documentData.content.includes(term));
+              if (!allTermsFound) return null;
+              
+              return {
+                ...item,
+                matchType: 'content',
+                preview: generatePreview(documentData.content, searchTerms)
+              };
+            } catch (error) {
+              console.error(`Erreur lors de la recherche dans ${item.url}:`, error);
+              return null;
             }
+          });
+          
+          const results = await Promise.all(searchPromises);
+          return results.filter(result => result !== null).slice(0, 10);
         }
 
-        // Afficher une notification
-        function showNotification(message, isWarning = false) {
-            const notification = document.getElementById('notification');
-            
-            if (isWarning) {
-                notification.className = 'notification warning show';
-                notification.innerHTML = '<i class="fas fa-exclamation-triangle"></i> <span>' + message + '</span>';
-            } else {
-                notification.className = 'notification show';
-                notification.innerHTML = '<i class="fas fa-check-circle"></i> <span>' + message + '</span>';
+        // Fonction pour générer un aperçu avec surbrillance
+        function generatePreview(content, searchTerms) {
+          // Trouver la première occurrence d'un terme
+          for (const term of searchTerms) {
+            const index = content.indexOf(term);
+            if (index !== -1) {
+              const start = Math.max(0, index - 50);
+              const end = Math.min(content.length, index + term.length + 100);
+              let preview = content.substring(start, end);
+              
+              if (start > 0) preview = '...' + preview;
+              if (end < content.length) preview = preview + '...';
+              
+              // Mettre en évidence tous les termes
+              searchTerms.forEach(term => {
+                const regex = new RegExp(`(${escapeRegExp(term)})`, 'gi');
+                preview = preview.replace(regex, '<mark>$1</mark>');
+              });
+              
+              return preview;
             }
-            
-            setTimeout(() => {
-                notification.className = 'notification';
-            }, 3000);
+          }
+          return "Terme trouvé dans le document";
         }
 
-        // Gérer le statut de connexion
-        window.addEventListener('online', () => {
-            showNotification("Connexion Internet rétablie.");
-        });
+        // Échapper les caractères spéciaux pour les regex
+        function escapeRegExp(string) {
+          return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+
+        // Afficher les résultats de recherche
+        function displayCompactSearchResults(results) {
+          const resultsContainer = document.getElementById('compactSearchResults');
+          resultsContainer.innerHTML = '';
+          
+          if (results.length === 0) {
+            resultsContainer.innerHTML = '<div class="no-results">Aucun résultat trouvé</div>';
+            resultsContainer.classList.add('visible');
+            return;
+          }
+          
+          results.forEach(result => {
+            const resultElement = document.createElement('div');
+            resultElement.className = 'search-result-item';
+            
+            let html = `
+              <h3>${result.title}</h3>
+              <p>${result.description}</p>
+              <small>Catégorie: ${result.category}</small>
+            `;
+            
+            if (result.preview) {
+              html += `<div class="search-preview">${result.preview}</div>`;
+            }
+            
+            resultElement.innerHTML = html;
+            
+            resultElement.addEventListener('click', () => {
+              if (result.url && result.url !== '#') {
+                window.location.href = result.url;
+              }
+            });
+            
+            resultsContainer.appendChild(resultElement);
+          });
+          
+          resultsContainer.classList.add('visible');
+        }
+
+        // Cacher les résultats
+        function hideCompactSearchResults() {
+          document.getElementById('compactSearchResults').classList.remove('visible');
+        }
+
+        // Gestion du thème
+        const themeToggle = document.getElementById('themeToggle');
         
-        window.addEventListener('offline', () => {
-            showNotification("Vous êtes maintenant hors ligne. Les documents téléchargés restent accessibles.", true);
+        function setTheme(theme) {
+          document.documentElement.setAttribute('data-theme', theme);
+          localStorage.setItem('theme', theme);
+          
+          const themeIcon = themeToggle.querySelector('i');
+          if (theme === 'dark') {
+            themeIcon.className = 'fas fa-sun';
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i> Thème';
+          } else {
+            themeIcon.className = 'fas fa-moon';
+            themeToggle.innerHTML = '<i class="fas fa-moon"></i> Thème';
+          }
+        }
+
+        // Débounce pour optimiser les recherches
+        function debounce(func, wait) {
+          let timeout;
+          return function executedFunction(...args) {
+            const later = () => {
+              clearTimeout(timeout);
+              func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+          };
+        }
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', () => {
+          // Thème
+          const savedTheme = localStorage.getItem('theme');
+          const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          setTheme(savedTheme || (systemPrefersDark ? 'dark' : 'light'));
+          
+          themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+          });
+          
+          // Recherche
+          const compactSearchInput = document.getElementById('compactSearchInput');
+          const compactSearchIcon = document.querySelector('.compact-search-icon');
+          
+          const debouncedSearch = debounce(async (query) => {
+            if (query.length < 2) {
+              hideCompactSearchResults();
+              return;
+            }
+            
+            try {
+              const results = await performSearch(query);
+              displayCompactSearchResults(results);
+            } catch (error) {
+              console.error('Erreur lors de la recherche:', error);
+            }
+          }, 300);
+          
+          compactSearchInput.addEventListener('input', (e) => {
+            debouncedSearch(e.target.value);
+          });
+          
+          compactSearchIcon.addEventListener('click', () => {
+            const query = compactSearchInput.value;
+            if (query.length >= 2) debouncedSearch(query);
+          });
+          
+          compactSearchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+              const query = compactSearchInput.value;
+              if (query.length >= 2) debouncedSearch(query);
+            }
+          });
+          
+          document.addEventListener('click', (e) => {
+            if (!e.target.closest('.compact-search')) {
+              hideCompactSearchResults();
+            }
+          });
+          
+          document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+              compactSearchInput.value = '';
+              hideCompactSearchResults();
+              compactSearchInput.blur();
+            }
+          });
         });
     </script>
-  <script>
-  if ("serviceWorker" in navigator) {
-    window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js"));
-  }
-</script>
-  <!-- PWA Install Button -->
-<button id="pwa-install-btn" aria-label="Installer l'application" hidden>Installer</button>
-<style>
-  #pwa-install-btn{
-    position:fixed; right:16px; bottom:16px; z-index:9999;
-    padding:10px 14px; border:none; border-radius:999px;
-    background:#22c55e; color:white; font:600 14px system-ui,Segoe UI,Roboto,Arial,sans-serif;
-    box-shadow:0 8px 20px rgba(34,197,94,.35);
-  }
-  #pwa-install-btn[hidden]{ display:none; }
-  @supports (padding-bottom: env(safe-area-inset-bottom)){
-    #pwa-install-btn{ bottom: calc(16px + env(safe-area-inset-bottom)); }
-  }
-</style>
-<script>
-  (function(){
-    let deferredPrompt;
-    const btnId = "pwa-install-btn";
-    function ensureBtn(){
-      let b = document.getElementById(btnId);
-      if(!b){
-        b = document.createElement("button");
-        b.id = btnId;
-        b.textContent = "Installer";
-        document.body.appendChild(b);
-      }
-      return b;
-    }
-    window.addEventListener("beforeinstallprompt", (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      const btn = ensureBtn();
-      btn.hidden = false;
-      btn.onclick = async () => {
-        btn.hidden = true;
-        deferredPrompt.prompt();
-        await deferredPrompt.userChoice;
-        deferredPrompt = null;
-      };
-    });
-    if (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) {
-      const btn = document.getElementById(btnId);
-      if(btn) btn.hidden = true;
-    }
-  })();
-</script>
-  <!-- Auth UI minimal -->
-<style>
-  .auth-box{position:fixed; top:12px; right:12px; z-index:9998; background:#ffffff; color:#111827; border-radius:12px; padding:10px 12px; box-shadow:0 10px 24px rgba(0,0,0,.12); font:500 14px system-ui,Segoe UI,Roboto,Arial}
-  .auth-box h4{margin:0 0 6px; font-size:14px}
-  .auth-box form{display:flex; gap:6px; flex-wrap:wrap; align-items:center}
-  .auth-box input{padding:6px 8px; border:1px solid #e5e7eb; border-radius:8px}
-  .auth-box button{background:#22c55e; color:#fff; border:none; padding:6px 10px; border-radius:8px; cursor:pointer}
-  .auth-box .row{display:flex; gap:6px; flex-wrap:wrap}
-  .views-badge{position:fixed; left:12px; bottom:12px; z-index:9998; background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px; font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)}
-</style><!-- Admin link (visible only when logged-in) -->
-<style>
-  .admin-link{
-    position:fixed; right:16px; bottom:88px; z-index:9998;
-    display:none; align-items:center; gap:8px;
-    padding:10px 14px; border-radius:999px; text-decoration:none;
-    background:#111827; color:#fff; font:600 14px system-ui,Segoe UI,Roboto,Arial;
-    box-shadow:0 8px 20px rgba(0,0,0,.3);
-    border:1px solid rgba(255,255,255,.1);
-  }
-  body.logged-in .admin-link{ display:inline-flex; }
-  .admin-link:hover{ filter:brightness(1.1); }
-  @supports (padding-bottom: env(safe-area-inset-bottom)){
-    .admin-link{ bottom: calc(88px + env(safe-area-inset-bottom)); }
-  }
-</style>
-<a href="admin.html" class="admin-link" title="Tableau de bord">Admin</a>
-  <script type="module" src="assets/firebase-app.js"></script>
-  <script>window.autoCountAndBind && window.autoCountAndBind();</script>
-  
-<!-- Floating Auth Button + Modal -->
-<style>
-  #auth-fab{
-    position:fixed; right:16px; bottom:68px; z-index:9998;
-    width:48px; height:48px; border-radius:999px; border:none; cursor:pointer;
-    background:#111827; color:#fff; display:grid; place-items:center;
-    box-shadow:0 8px 20px rgba(0,0,0,.35); border:1px solid rgba(255,255,255,.1);
-  }
-  body.logged-in #auth-fab::after{ content:"✓"; }
-  #auth-fab::after{ content:"👤"; font-size:20px; }
-  @supports (padding-bottom: env(safe-area-inset-bottom)){
-    #auth-fab{ bottom: calc(68px + env(safe-area-inset-bottom)); }
-  }
-  .views-badge{
-    position:fixed; left:12px; bottom:12px; z-index:9998; 
-    background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px;
-    font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)
-  }
-  dialog#auth-modal{
-    border:none; border-radius:16px; padding:0; width:min(90vw,420px);
-    box-shadow:0 24px 72px rgba(0,0,0,.35); overflow:hidden;
-  }
-  dialog::backdrop{ background:rgba(0,0,0,.4); }
-  .auth-modal-head{background:#0f172a; color:#fff; padding:12px 16px; display:flex; justify-content:space-between; align-items:center}
-  .auth-modal-body{padding:16px; background:#111827; color:#e5e7eb}
-  .auth-modal-body label{display:block; font-size:13px; margin-top:8px; opacity:.9}
-  .auth-modal-body input{width:100%; padding:10px 12px; border-radius:10px; border:1px solid #1f2937; background:#0b1021; color:#e5e7eb}
-  .auth-actions{display:flex; gap:8px; margin-top:14px}
-  .btn{border:none; border-radius:10px; padding:10px 12px; cursor:pointer; font-weight:600}
-  .btn-primary{background:#22c55e; color:white}
-  .btn-ghost{background:transparent; color:#e5e7eb; border:1px solid #374151}
-  .muted{opacity:.8}
-</style>
-
-<button id="auth-fab" title="Connexion / Compte"></button>
-<div class="views-badge">Vues : <span id="viewCounter">0</span></div>
-
-<dialog id="auth-modal">
-  <div class="auth-modal-head">
-    <strong>Connexion</strong>
-    <button class="btn btn-ghost" id="auth-close" aria-label="Fermer">✕</button>
-  </div>
-  <div class="auth-modal-body">
-    <p class="muted">Connecte-toi pour accéder à l’admin et une meilleure expérience.</p>
-    <label>Email</label>
-    <input type="email" id="auth-email" placeholder="email@exemple.com" required>
-    <label>Mot de passe</label>
-    <input type="password" id="auth-pass" placeholder="••••••••" required>
-    <div class="auth-actions">
-      <button class="btn btn-primary" id="btn-login">Connexion</button>
-      <button class="btn btn-ghost" id="btn-register">Créer un compte</button>
-      <button class="btn btn-ghost" id="btn-logout">Déconnexion</button>
-    </div>
-    <div id="auth-msg" class="muted" style="margin-top:8px;"></div>
-  </div>
-</dialog>
-
-<script type="module">
-  import { authRegister, authLogin, authLogout } from "./assets/firebase-app.js";
-
-  const fab = document.getElementById("auth-fab");
-  const modal = document.getElementById("auth-modal");
-  const closeBtn = document.getElementById("auth-close");
-  const email = document.getElementById("auth-email");
-  const pass = document.getElementById("auth-pass");
-  const msg  = document.getElementById("auth-msg");
-  const btnLogin = document.getElementById("btn-login");
-  const btnRegister = document.getElementById("btn-register");
-  const btnLogout = document.getElementById("btn-logout");
-
-  function openModal(){ try{ modal.showModal(); }catch{ modal.setAttribute("open",""); } }
-  function closeModal(){ modal.close?.(); modal.removeAttribute("open"); }
-
-  fab?.addEventListener("click", openModal);
-  closeBtn?.addEventListener("click", closeModal);
-
-  async function handle(run){
-    msg.textContent = "";
-    try{
-      await run(email.value.trim(), pass.value);
-      msg.textContent = "✅ Opération réussie.";
-      setTimeout(()=>{ closeModal(); }, 500);
-    }catch(e){
-      console.error(e);
-      msg.textContent = "❌ " + (e?.message || "Erreur");
-    }
-  }
-
-  btnLogin?.addEventListener("click", () => handle(authLogin));
-  btnRegister?.addEventListener("click", () => handle(authRegister));
-  btnLogout?.addEventListener("click", async () => {
-    msg.textContent = "";
-    try{ await authLogout(); msg.textContent = "✅ Déconnecté."; }catch(e){ msg.textContent = "❌ " + (e?.message||"Erreur"); }
-  });
-</script>
-
-
-<!-- Per-card view counters -->
-<style>
-  .card-views-badge{
-    position:absolute; top:8px; right:8px;
-    background:rgba(17,24,39,.9); color:#fff;
-    padding:4px 8px; border-radius:999px; font:600 12px system-ui,Segoe UI,Roboto,Arial;
-    box-shadow:0 6px 14px rgba(0,0,0,.25);
-    pointer-events:none;
-  }
-  .card-views-wrap{ position:relative; }
-</style>
-<script type="module">
-  import { getViewCount } from "./assets/firebase-app.js";
-  function basename(href){
-    try{ const u = new URL(href, location.href);
-         const file = u.pathname.split('/').pop() || 'index.html';
-         return file.replace(/\.html$/i,''); }
-    catch{ return (href.split('/').pop()||'index.html').replace(/\.html$/i,''); }
-  }
-  async function attachCounterTo(el, docId){
-    let container = el.closest('.card, .item, .panel, .box, .article, .doc, .tile');
-    if(!container){ container = el.parentElement; }
-    if(container && !container.classList.contains('card-views-wrap')){
-      container.classList.add('card-views-wrap');
-    }
-    const host = container || el;
-    if(host.querySelector('.card-views-badge[data-doc="'+docId+'"]')) return;
-    const badge = document.createElement('span');
-    badge.className = 'card-views-badge';
-    badge.dataset.doc = docId;
-    badge.textContent = 'Vues: …';
-    host.appendChild(badge);
-    try{ const n = await getViewCount(docId);
-         badge.textContent = 'Vues: ' + n; }
-    catch{ badge.textContent = 'Vues: —'; }
-  }
-  async function initCardCounters(){
-    const links = Array.from(document.querySelectorAll('[data-doc-id], a[href$=".html"]'))
-      .filter(a => {
-        const id = a.getAttribute('data-doc-id') || basename(a.getAttribute('href')||'');
-        return id && !['index','admin','offline'].includes(id.toLowerCase());
-      });
-    const handled = new Set();
-    for(const a of links){
-      const id = a.getAttribute('data-doc-id') || basename(a.getAttribute('href')||'');
-      if(!id || handled.has(id)) continue;
-      handled.add(id);
-      attachCounterTo(a, id);
-    }
-  }
-  initCardCounters();
-  const obs = new MutationObserver(()=>initCardCounters());
-  obs.observe(document.body, { childList:true, subtree:true });
-</script>
-
 </body>
 </html>
