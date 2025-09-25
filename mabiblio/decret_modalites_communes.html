@@ -1,89 +1,30 @@
 <!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Loi Organique relative au Conseil Constitutionnel</title>
+<html lang="fr"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Décret fixant les modalités communes d'application du Statut Général de la Fonction publique</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#f5f9f5; --paper:#ffffff; --ink:#0f2a1f;
-  --primary:#2e7d32; --primary-700:#1b5e20; --accent:#8bc34a; --accent-2:#f1f8e9;
-  --muted:#e8f5e8; --shadow:0 12px 28px rgba(0,0,0,.08); --radius:18px; --transition:.25s ease;
-}
-*{box-sizing:border-box}
-html,body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.6}
-header{position:sticky;top:0;z-index:60;background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(255,255,255,.88));backdrop-filter:saturate(1.1) blur(8px);border-bottom:1px solid #e6f2e6}
-.container{max-width:1120px;margin:0 auto;padding:14px 16px;display:flex;align-items:center;gap:12px}
-.logo{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:radial-gradient(circle at 30% 30%, var(--accent), #c5e1a5);color:var(--primary-700);box-shadow:var(--shadow);font-size:18px}
-h1{margin:0;font-family:'Playfair Display',serif;font-size:20px;color:var(--primary-700)}
-.sub{color:#4c8c4f;font-size:12px;margin-top:2px}
-.control-buttons{margin-left:auto;display:flex;gap:8px;align-items:center}
-.btn{min-width:38px;height:38px;border-radius:12px;border:1px solid #d5e8d4;background:#fff;color:var(--primary-700);display:grid;place-items:center;cursor:pointer;box-shadow:var(--shadow);transition:var(--transition)}
-.btn:hover{transform:translateY(-1px)}
-.wrapper{max-width:1120px;margin:16px auto;padding:0 12px}
-.group{background:var(--paper);border:1px solid #e2eee2;border-radius:var(--radius);box-shadow:var(--shadow);margin:14px 0;overflow:hidden}
-.group>h2{margin:0;padding:14px 16px;background:linear-gradient(180deg,#ffffff,#f1f8e9);border-bottom:1px solid #e2eee2;color:var(--primary-700);font-size:18px;font-family:'Playfair Display',serif}
-.article{margin:10px 10px 14px 10px;padding:12px 14px;border-left:6px solid var(--primary);background:#fff;border-radius:14px;box-shadow:0 1px 0 rgba(0,0,0,.03)}
-.article-header{display:flex; align-items:center; gap:8px; margin:0 0 6px 0;}
-.article-header h3{margin:0; color:var(--primary-700);}
-.article .open-fs{ order:2; margin-left:auto; width:34px; height:34px; border:1px solid #d5e8d4; background:#fff; border-radius:10px; cursor:pointer; }
-.article-content p{margin:.5rem 0}.article-content ul,.article-content ol{margin:.5rem 0 .8rem 1.25rem}
-.article-content ol>li, .article-content ul>li{ padding:8px 0; line-height:1.7; border-bottom:1px solid #eaf6ea; }
-.article-content ol>li:last-child, .article-content ul>li:last-child{ border-bottom:0; }
-.article-content li > ol > li, .article-content li > ul > li{ padding:6px 0; border-bottom:1px dashed #eaf6ea; }
-.article-content li > ol > li:last-child, .article-content li > ul > li:last-child{ border-bottom:0; }
-.reading{ outline:2px solid var(--accent); outline-offset:2px; border-left-color:var(--accent) !important; background:linear-gradient(180deg,#fff, var(--accent-2)) }
-mark{background:rgba(139,195,74,.45)}
-/* Floating TOC */
-#tocFloatBtn{position:fixed; right:14px; bottom:120px; width:46px; height:46px; border-radius:50%; border:none; background:var(--primary); color:#fff; display:grid; place-items:center; box-shadow:0 10px 24px rgba(0,0,0,.25); z-index:1500;}
-#tocPanel{position:fixed; top:0; right:0; height:100%; width:86%; max-width:420px; background:#fff; border-left:1px solid #e2eee2; box-shadow:-16px 0 35px rgba(0,0,0,.2); transform:translateX(100%); transition:transform .25s ease; z-index:1600; overflow:auto;}
-#tocOverlay{position:fixed; inset:0; background:rgba(0,0,0,.28); backdrop-filter:blur(2px); display:none; z-index:1590}
-#tocPanel.open{ transform:none } #tocOverlay.show{ display:block }
-#tocPanel header{position:sticky; top:0; background:#fff; padding:12px 14px; border-bottom:1px solid #e2eee2}
-#tocPanel h3{margin:0; color:var(--primary-700)} #tocPanel .toc-list{padding:12px 14px}
-#tocPanel .toc-list a{display:block; padding:6px 0; color:#2e7d32; text-decoration:none}
-#tocPanel .toc-sub{margin-left:10px; border-left:2px solid #e8f5e8; padding-left:8px}
-/* Voice bar */
-#voiceBar{position:fixed; left:50%; transform:translateX(-50%); bottom:14px; background:var(--primary-700); color:#fff; z-index:1550; border-radius:22px; padding:8px 12px; display:flex; gap:10px; align-items:center; box-shadow:0 12px 28px rgba(0,0,0,.3)}
-#voiceBar button{width:34px; height:34px; border-radius:10px; border:1px solid #c8e6c9; background:transparent; color:#e8f5e9; display:grid; place-items:center; cursor:pointer}
-#voiceBar .now{font-size:12px; max-width:52vw; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:#f1f8e9}
-/* Fullscreen */
-#fsOverlay{ position:fixed; inset:0; background:#fff; z-index:1700; display:none; }
-#fsOverlay.show{ display:block } #fsHeader{ position:sticky; top:0; background:#fff; padding:10px 14px; border-bottom:1px solid #e2eee2; display:flex; align-items:center; gap:10px }
-#fsHeader .ttl{ font-weight:700; color:var(--primary-700); flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
-#fsHeader button{ width:36px; height:36px; border-radius:10px; border:1px solid #d5e8d4; background:#fff; }
-#fsBody{ padding:14px; height:calc(100% - 58px); overflow:auto } #fsBody .article-content{ font-size:1.04rem }
-#fsNavPrev,#fsNavNext{ position:fixed; top:50%; transform:translateY(-50%); width:42px; height:42px; border-radius:50%; border:none; background:var(--primary); color:#fff; display:grid; place-items:center; z-index:1710; opacity:.9 }
-#fsNavPrev{ left:10px } #fsNavNext{ right:10px }
-footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c8c4f;font-size:12px}
-
-/* ===== Anti-sélection / anti-copie ===== */
-.no-select, .no-select *:not(input):not(textarea):not(.selectable){
-  -webkit-user-select: none !important;
-  -moz-user-select: none !important;
-  -ms-user-select: none !important;
-  user-select: none !important;
-  -webkit-touch-callout: none !important;
-}
+:root{--bg:#faf7f1;--paper:#ffffff;--ink:#1b1f28;--primary:#355e3b;--gold:#b89b4f;--shadow:0 10px 25px rgba(0,0,0,.08)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:'Raleway',system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#1c232b}
+header{position:sticky;top:0;background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(255,255,255,.85));backdrop-filter:blur(8px);border-bottom:1px solid #eee;z-index:50}
+.container{max-width:1080px;margin:0 auto;padding:12px 14px;display:flex;align-items:center;gap:10px}
+h1{margin:0;font-size:18px;color:#1f4027}
+.controls{margin-left:auto;display:flex;gap:8px}
+.control-btn{width:36px;height:36px;border-radius:10px;border:1px solid #e7e1d7;background:#fff;display:grid;place-items:center;cursor:pointer;box-shadow:var(--shadow)}
+.wrapper{max-width:1080px;margin:14px auto;padding:0 12px}
+.group{background:#fff;border:1px solid #eee;border-radius:16px;box-shadow:var(--shadow);margin:10px 0;overflow:hidden}
+.group>h2{margin:0;padding:12px 14px;border-bottom:1px solid #f0ebe3;background:#faf9f7;color:#294736;font-size:16px}
+.article{padding:10px 12px;border-left:5px solid #355e3b;margin:10px 10px;border-radius:12px;background:#fff}
+.article h3{margin:0 0 6px 0;color:#2c4d37}
+.article-content ul,.article-content ol{margin:.5rem 0 .8rem 1.25rem}
+mark{background:rgba(184,155,79,.35)}
 </style>
-</head>
 <body>
-<header>
-  <div class="container">
-    <div class="logo"><i class="fa-solid fa-scale-balanced"></i></div>
-    <div>
-  <h1>Décret d'application du Statut Général de la Fonction Publique</h1>
-  <div>Décret n°2025-120 du 26 fevrier 2025 fixant les modalités communes d'application de la loi n° 2023-892 du 23 novembre 2023</div>
-    </div>
-    <div class="control-buttons">
-      <button class="btn" id="tocHeaderBtn" title="Sommaire"><i class="fa-solid fa-book"></i></button>
-      <button class="btn" title="Haut de page" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fa-solid fa-angles-up"></i></button>
-    </div>
-  </div>
-</header>
-<section class="group"><h2>TITRE I: DISPOSITIONS GENERALES</h2><div class="article" id="article1">
+</head><body>
+<header><div class="container"><h1>Décret n°2025-120 du 26 février 2025 fixant les modalités communes d'application de la loi n° 2023-892 du 23 novembre 2023</h1>
+  <p></p><div class="controls"></div></div></header>
+<main class="wrapper"><section class="group"><h2>TITRE I: DISPOSITIONS GENERALES</h2><div class="article" id="article1">
   <div class="article-header">
     <h3>Article 1</h3>
     <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
@@ -145,7 +86,7 @@ footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c8c4f;font-
     <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
   </div>
   <div class="article-content">
-    Tout candidat à un concours administratif doit produire un dossier dont les pièces sont fixées par l'arrêté d'ouverture du concours.</p><p>Le dossier de candidature comprend obligatoirement les pièces suivantes :</p><p>1. une photocopie de la Carte Nationale d'Identité ou du Passeport;</p><p>2. une photocopie légalisée du diplôme exigé;</p><p>3. une photocopie de la carte de la Couverture Maladie;</p><p>4. un extrait de casier judiciaire daté de moins de trois mois.</p><p>Le dossier de candidature doit parvenir à l'autorité qui a ouvert le concours trente jours au moins avant la date fixée pour le début des épreuves.
+    Tout candidat à un concours administratif doit produire un dossier dont les pièces sont fixées par l'arrêté d'ouverture du concours.</p><p>Le dossier de candidature comprend obligatoirement les pièces suivantes :</p><ol><li>une photocopie de la Carte Nationale d'Identité ou du Passeport;</li></ol><ol start="2"><li>une photocopie légalisée du diplôme exigé;</li></ol><ol start="3"><li>une photocopie de la carte de la Couverture Maladie;</li></ol><ol start="4"><li>un extrait de casier judiciaire daté de moins de trois mois.</li></ol><p>Le dossier de candidature doit parvenir à l'autorité qui a ouvert le concours trente jours au moins avant la date fixée pour le début des épreuves.
   </div>
 </div><div class="article" id="article9">
   <div class="article-header">
@@ -177,7 +118,7 @@ footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c8c4f;font-
     <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
   </div>
   <div class="article-content">
-    Pour l'organisation des concours d'entrée à la Fonction Publique, il est créé les organes suivants :</p><p>- le collège de superviseurs;</p><p>- la commission d'examen des dossiers;</p><p>- la commission de choix des épreuves;</p><p>- la commission de surveillance;</p><p>- la commission des corrections;</p><p>- le jury de délibération.</p><p>Les attributions, la composition, l'organisation et le fonctionnement des organes prévus à l'alinéa précédent du présent article sont fixés par arrêté du Ministre chargé de la Fonction Publique.</p><p>Lorsque la nomination dans l'emploi est subordonnée à l'obtention d'un titre ou d'un diplôme délivré par un établissement de formation de fonctionnaires, les attributions, la composition, l'organisation et le fonctionnement des organes prévus à l'alinéa 1 du présent article sont fixés par arrêté du Ministre technique intéressé en collaboration avec le Ministre chargé de la Fonction Publique.</p><p>En cas de besoin, d'autres organes peuvent être créés dans les conditions prévues aux alinéas 2et3 du présent article.
+    <p>Pour l'organisation des concours d'entrée à la Fonction Publique, il est créé les organes suivants :</p><ul><li> le collège de superviseurs;</li><li> la commission d'examen des dossiers;</li><li> la commission de choix des épreuves;</li><li> la commission de surveillance;</li><li> la commission des corrections;</li><li> le jury de délibération.</li></ul><p>Les attributions, la composition, l'organisation et le fonctionnement des organes prévus à l'alinéa précédent du présent article sont fixés par arrêté du Ministre chargé de la Fonction Publique.</p><p>Lorsque la nomination dans l'emploi est subordonnée à l'obtention d'un titre ou d'un diplôme délivré par un établissement de formation de fonctionnaires, les attributions, la composition, l'organisation et le fonctionnement des organes prévus à l'alinéa 1du présent article sont fixés par arrêté du Ministre technique intéressé en collaboration avec le Ministre chargé de la Fonction Publique.</p><p>En cas de besoin, d'autres organes peuvent être créés dans les conditions prévues aux alinéas 2et3 du présent article.
   </div>
 </div><div class="article" id="article13">
   <div class="article-header">
@@ -193,7 +134,7 @@ footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c8c4f;font-
     <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
   </div>
   <div class="article-content">
-    L'admission à un concours d'entrée à la Fonction Publique est consacrée par un arrêté du Ministre chargé de la Fonction Publique.</p><p>Lorsque la nomination dans l'emploi est subordonnée à l'obtention d'un titre ou d'un diplôme délivré par un établissement de formation de fonctionnaires, l'admission à un concours d'entrée à la Fonction Publique est consacrée par arrêté du Ministre technique intéressé, en collaboration avec le Ministre chargé de la Fonction Publique. </p><p>Sous réserve de l'acte d'admission au concours d'entrée à la Fonction Publique, le candidat doit produire, outre les pièces exigées à l'article 8 ci-dessus, un dossier complémentaire comprenant:</p><p>1. une demande de candidature datée et signée du candidat et précisant l'emploi pour lequel il postule;</p><p>2. un extrait d'acte de naissance daté de moins de six mois;</p><p>3. un certificat de nationalité ivoirienne;</p><p>4. un certificat de visite et de contre-visite médicale délivré par des médecins désignés par l'Administration et indiquant que l'intéressé remplit les conditions d'aptitude physique et mentale exigées pour occuper l'emploi et qu'il est indemne d'affections graves ou contagieuses, dont la liste est fixée par décret pris en Conseil des Ministres.</p><p>Lorsque le recrutement du fonctionnaire s'opère dans les conditions prévues à l'article 5 alinéa 2 ci-dessus, les examens médicaux doivent être subis préalablement à l'admission dans l'établissement de formation.</p><p>Le dossier complémentaire doit parvenir à l'autorité qui a ouvert le concours dans un délai maximum de trente jours après la proclamation des résultats.</p><p>Passé ce délai, sauf cas de force majeure, l'admission du candidat ne peut être acquise.
+    L'admission à un concours d'entrée à la Fonction Publique est consacrée par un arrêté du Ministre chargé de la Fonction Publique.</p><p>Lorsque la nomination dans l'emploi est subordonnée à l'obtention d'un titre ou d'un diplôme délivré par un établissement de formation de fonctionnaires, l'admission à un concours d'entrée à la Fonction Publique est consacrée par arrêté du Ministre technique intéressé, en collaboration avec le Ministre chargé de la Fonction Publique. </p><p>Sous réserve de l'acte d'admission au concours d'entrée à la Fonction Publique, le candidat doit produire, outre les pièces exigées à l'article 8 ci-dessus, un dossier complémentaire comprenant:</p><ol><li>une demande de candidature datée et signée du candidat et précisant l'emploi pour lequel il postule;</li></ol><ol start="2"><li>un extrait d'acte de naissance daté de moins de six mois;</li></ol><ol start="3"><li>un certificat de nationalité ivoirienne;</li></ol><ol start="4"><li>un certificat de visite et de contre-visite médicale délivré par des médecins désignés par l'Administration et indiquant que l'intéressé remplit les conditions d'aptitude physique et mentale exigées pour occuper l'emploi et qu'il est indemne d'affections graves ou contagieuses, dont la liste est fixée par décret pris en Conseil des Ministres.</li></ol><p>Lorsque le recrutement du fonctionnaire s'opère dans les conditions prévues à l'article 5 alinéa 2 ci-dessus, les examens médicaux doivent être subis préalablement à l'admission dans l'établissement de formation.</p><p>Le dossier complémentaire doit parvenir à l'autorité qui a ouvert le concours dans un délai maximum de trente jours après la proclamation des résultats.</p><p>Passé ce délai, sauf cas de force majeure, l'admission du candidat ne peut être acquise.
   </div>
 </div><div class="article" id="article15">
   <div class="article-header">
@@ -225,7 +166,7 @@ footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c8c4f;font-
     <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
   </div>
   <div class="article-content">
-    Les niveaux de qualification exigés des candidats aux concours de recrutement sont fixés comme suit pour chacune des catégories:</p><p>- Catégorie A: diplômes de l'Enseignement supérieur général, technique et professionnel ou tout autre diplôme admis en équivalence par la Commission en charge des équivalences de diplômes.</p><p>- Catégorie B: diplômes de l'Enseignement supérieur général, technique et professionnel, diplômes de l'Enseignement secondaire du second cycle général, technique et professionnel ou tout autre diplôme admis en équivalence par la Commission en charge des équivalences de diplômes.</p><p>- Catégorie C: diplômes de l'Enseignement secondaire du premier cycle général, technique et professionnel ou tout autre diplôme admis en équivalence par la Commission en charge des équivalences de diplômes;</p><p>- Catégorie D: Certificat d'Etudes Primaires et Elémentaires.
+    Les niveaux de qualification exigés des candidats aux concours de recrutement sont fixés comme suit pour chacune des catégories:<ul><li> Catégorie A: diplômes de l'Enseignement supérieur général, technique et professionnel ou tout autre diplôme admis en équivalence par la Commission en charge des équivalences de diplômes.</li><li> Catégorie B: diplômes de l'Enseignement supérieur général, technique et professionnel, diplômes de l'Enseignement secondaire du second cycle général, technique et professionnel ou tout autre diplôme admis en équivalence par la Commission en charge des équivalences de diplômes.</li><li> Catégorie C: diplômes de l'Enseignement secondaire du premier cycle général, technique et professionnel ou tout autre diplôme admis en équivalence par la Commission en charge des équivalences de diplômes;</li><li> Catégorie D: Certificat d'Etudes Primaires et Elémentaires.
   </div>
 </div><h2 class="section">SECTION 2: NOMINATION</h2><div class="article" id="article19">
   <div class="article-header">
@@ -265,7 +206,7 @@ footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c8c4f;font-
     <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
   </div>
   <div class="article-content">
-    Tout fonctionnaire est placé dans l'une des positions suivantes:</p><p>- Activité;</p><p>- Détachement;</p><p>- Disponibilité;</p><p>- Sous les drapeaux.
+    Tout fonctionnaire est placé dans l'une des positions suivantes:<ul><li> Activité;</li><li> Détachement;</li><li> Disponibilité;</li><li> Sous les drapeaux.
   </div>
 </div><h2 class="section">SECTION 1: ACTIVITE</h2><div class="article" id="article24">
   <div class="article-header">
@@ -273,7 +214,7 @@ footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c8c4f;font-
     <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
   </div>
   <div class="article-content">
-    L'activité est la position du fonctionnaire qui, régulièrement titularisé dans un grade, exerce effectivement les fonctions d'un des emplois de ce grade.</p><p>Sont également considérés comme étant en activité, les fonctionnaires:</p><p>- en congé;</p><p>- en formation de promotion;</p><p>- en stage;</p><p>- en séminaire de renforcement de capacités;</p><p>- bénéficiant d'une permission spéciale d'absence ou d'une autorisation spéciale d'absence.
+    L'activité est la position du fonctionnaire qui, régulièrement titularisé dans un grade, exerce effectivement les fonctions d'un des emplois de ce grade.</p><p>Sont également considérés comme étant en activité, les fonctionnaires:<ul><li> en congé;</li><li> en formation de promotion;</li><li> en stage;</li><li> en séminaire de renforcement de capacités;</li><li> bénéficiant d'une permission spéciale d'absence ou d'une autorisation spéciale d'absence.
   </div>
 </div><div class="article" id="article25">
   <div class="article-header">
@@ -289,9 +230,9 @@ footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c8c4f;font-
     <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
   </div>
   <div class="article-content">
-    Le détachement est la position du fonctionnaire autorisé à interrompre temporairement ses fonctions pour exercer un emploi ou un mandat public national ou international, un mandat syndical, une fonction ministérielle ou un mandat social.</p><p>Le détachement du fonctionnaire ne peut se faire que dans l'un des cas suivants:</p><p>1. auprès d'un établissement public de l'Etat, dans un emploi ouvrant droit à pension au titre du régime général applicable aux fonctionnaires;</p><p>2. auprès d'une administration publique ou d'une collectivité territoriale;</p><p>3. auprès d'une administration ou entreprise publique, dans une fonction n'ouvrant pas droit à pension au titre du régime général applicable aux fonctionnaires;</p><p>4. auprès d'un Etat étranger;</p><p>5. pour exercer une mission d'enseignement ou pour remplir une mission publique à l'étranger ou dans des organismes internationaux;</p><p>6. pour exercer les fonctions de membre du Gouvernement, une fonction publique élective ou un mandat syndical lorsque la fonction ou le mandat comporte des obligations incompatibles avec l'exercice normal de l'emploi;</p><p>7. pour exercer un mandat social à la tête d'une société d'Etat;</p><p>8. auprès d'une entreprise privée.
+    Le détachement est la position du fonctionnaire autorisé à interrompre temporairement ses fonctions pour exercer un emploi ou un mandat public national ou international, un mandat syndical, une fonction ministérielle ou un mandat social.</p><p>Le détachement du fonctionnaire ne peut se faire que dans l'un des cas suivants:</p><ol><li>auprès d'un établissement public de l'Etat, dans un emploi ouvrant droit à pension au titre du régime général applicable aux fonctionnaires;</li></ol><ol start="2"><li>auprès d'une administration publique ou d'une collectivité territoriale;</li></ol><ol start="3"><li>auprès d'une administration ou entreprise publique, dans une fonction n'ouvrant pas droit à pension au titre du régime général applicable aux fonctionnaires;</li></ol><ol start="4"><li>auprès d'un Etat étranger;</li></ol><ol start="5"><li>pour exercer une mission d'enseignement ou pour remplir une mission publique à l'étranger ou dans des organismes internationaux;</li></ol><ol start="6"><li>pour exercer les fonctions de membre du Gouvernement, une fonction publique élective ou un mandat syndical lorsque la fonction ou le mandat comporte des obligations incompatibles avec l'exercice normal de l'emploi;</li></ol><ol start="7"><li>pour exercer un mandat social à la tête d'une société d'Etat;</li></ol><ol start="8"><li>auprès d'une entreprise privée.</li></ol>
   </div>
-</div><h4 class="subsection">SOUS-SECTION 1: CONDITIONS DE DETACHEMENT</h4><div class="article" id="article27">
+</div><h2 class="subsection">SOUS-SECTION 1: CONDITIONS DE DETACHEMENT</h2><div class="article" id="article27">
   <div class="article-header">
     <h3>Article 27</h3>
     <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
@@ -307,7 +248,7 @@ footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c8c4f;font-
   <div class="article-content">
     <p>Le détachement est également d'office dans les cas prévus au premier et au deuxième point de l'article 26 ci-dessus à condition que le nouvel emploi soit équivalent à l'ancien.</p>
   </div>
-</div><h4 class="subsection">SOUS-SECTION 2: DUREE ET CESSATION DU DETACHEMENT</h4><div class="article" id="article29">
+</div><h2 class="subsection">SOUS-SECTION 2: DUREE ET CESSATION DU DETACHEMENT</h2><div class="article" id="article29">
   <div class="article-header">
     <h3>Article 29</h3>
     <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
@@ -337,7 +278,7 @@ footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c8c4f;font-
     <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
   </div>
   <div class="article-content">
-    <p>La fin du détachement est prononcée par arrêté du Ministre chargé de la Fonction Publique.</p><p>Il peut être mis fin au détachement avant le terme fixé à la demande soit de l'organisme de détachement, soit de l'administration d'origine.</p><p>Lorsqu'il est mis fin au détachement, dans les conditions prévues aux alinéas 1et2 du présent article, à la demande de l'organisme de détachement, le fonctionnaire continue à être rémunéré par cette structure jusqu'à sa réintégration.</p><p>Lorsqu'à l'initiative de l'administration, il est mis fin au détachement du fonctionnaire avant le terme fixé, celle-ci est tenue de le réintégrer immédiatement. Il perçoit sa rémunération à compter de la date à laquelle il a été mis fin à son détachement.</p><p>Le fonctionnaire peut également demander qu'il soit mis fin à son détachement avant le terme fixé, sauf s'il s'agit d'un détachement d'office.</p><p>Il cesse d'être rémunéré s'il ne peut être réintégré immédiatement, et est maintenu en situation d'attente jusqu'à ce qu'intervienne sa réintégration.
+    La fin du détachement est prononcée par arrêté du Ministre chargé de la Fonction Publique.</p><p>Il peut être mis fin au détachement avant le terme fixé à la demande soit de l'organisme de détachement, soit de l'administration d'origine.</p><p>Lorsqu'il est mis fin au détachement, dans les conditions prévues aux alinéas 1et2 du présent article, à la demande de l'organisme de détachement, le fonctionnaire continue à être rémunéré par cette structure jusqu'à sa réintégration.</p><p>Lorsqu'à l'initiative de l'administration, il est mis fin au détachement du fonctionnaire avant le terme fixé, celle-ci est tenue de le réintégrer immédiatement. Il perçoit sa rémunération à compter de la date à laquelle il a été mis fin à son détachement.</p><p>Le fonctionnaire peut également demander qu'il soit mis fin à son détachement avant le terme fixé, sauf s'il s'agit d'un détachement d'office.</p><p>Il cesse d'être rémunéré s'il ne peut être réintégré immédiatement, et est maintenu en situation d'attente jusqu'à ce qu'intervienne sa réintégration.
   </div>
 </div><div class="article" id="article33">
   <div class="article-header">
@@ -371,7 +312,7 @@ footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c8c4f;font-
   <div class="article-content">
     <p>A l'expiration du détachement de longue durée, le fonctionnaire est obligatoirement réintégré dans une fonction correspondant au moins à son emploi et à son grade par le Ministre chargé de la Fonction Publique.</p>
   </div>
-</div><h4 class="subsection">SOUS-SECTION 3: REGLES PARTICULIERES APPLICABLES AU FONCTIONNAIRE DETACHE</h4><div class="article" id="article37">
+</div><h2 class="subsection">SOUS-SECTION 3: REGLES PARTICULIERES APPLICABLES AU FONCTIONNAIRE DETACHE</h2><div class="article" id="article37">
   <div class="article-header">
     <h3>Article 37</h3>
     <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
@@ -425,7 +366,7 @@ footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c8c4f;font-
     <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
   </div>
   <div class="article-content">
-    La disponibilité est la position du fonctionnaire dont l'activité est suspendue temporairement à sa demande, pour des raisons personnelles et dans les cas suivants :</p><p>- accident ou maladie grave du conjoint ou d'un enfant; la durée de la disponibilité ne peut dans ce cas excéder une année. Elle est renouvelable une fois après avis du Conseil de Santé et Sécurité au Travail de la Fonction Publique;</p><p>- pour suivre un conjoint fonctionnaire en service ou affecté à l'étranger en raison de sa profession; la disponibilité prononcée dans ce cas ne peut excéder une année. Elle peut être renouvelée à la demande motivée de l'intéressé;</p><p>- pour suivre un conjoint non fonctionnaire résident hors du lieu d'affectation du fonctionnaire; la durée de la disponibilité est d'une année renouvelable une fois. Cette mise en disponibilité ne peut être suivie d'une disponibilité pour convenances personnelles.</p><p>La disponibilité peut également être obtenue pour convenances personnelles. Dans ce cas, la durée est d'un an renouvelable une fois.
+    La disponibilité est la position du fonctionnaire dont l'activité est suspendue temporairement à sa demande, pour des raisons personnelles et dans les cas suivants :<ul><li> accident ou maladie grave du conjoint ou d'un enfant; la durée de la disponibilité ne peut dans ce cas excéder une année. Elle est renouvelable une fois après avis du Conseil de Santé et Sécurité au Travail de la Fonction Publique;</li><li> pour suivre un conjoint fonctionnaire en service ou affecté à l'étranger en raison de sa profession; la disponibilité prononcée dans ce cas ne peut excéder une année. Elle peut être renouvelée à la demande motivée de l'intéressé;</li><li> pour suivre un conjoint non fonctionnaire résident hors du lieu d'affectation du fonctionnaire; la durée de la disponibilité est d'une année renouvelable une fois. Cette mise en disponibilité ne peut être suivie d'une disponibilité pour convenances personnelles.</li></ul><p>La disponibilité peut également être obtenue pour convenances personnelles. Dans ce cas, la durée est d'un an renouvelable une fois.
   </div>
 </div><div class="article" id="article44">
   <div class="article-header">
@@ -521,7 +462,7 @@ footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c8c4f;font-
     <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
   </div>
   <div class="article-content">
-    Les échelles de traitement correspondant aux grades prévues à l'article 10 de la loi portant statut général de la Fonction Publique comprennent les classes énumérées ci-après dans l'ordre croissant:</p><p>- la deuxième classe;</p><p>- la première classe;</p><p>- la classe principale;</p><p>- la classe exceptionnelle.</p><p>Chaque classe comporte des échelons.
+    Les échelles de traitement correspondant aux grades prévues à l'article 10 de la loi portant statut général de la Fonction Publique comprennent les classes énumérées ci-après dans l'ordre croissant:<ul><li> la deuxième classe;</li><li> la première classe;</li><li> la classe principale;</li><li> la classe exceptionnelle</li></ul><p>Chaque classe comporte des échelons.
   </div>
 </div><div class="article" id="article56">
   <div class="article-header">
@@ -529,7 +470,7 @@ footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c8c4f;font-
     <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
   </div>
   <div class="article-content">
-    Dans chacune des classes prévues à l'article précédent, la répartition des effectifs est fixée comme suit:</p><p>- la deuxième classe: 40 %;</p><p>- la première classe: 30 %;</p><p>- la classe principale: 20 %;</p><p>- la classe exceptionnelle: 10 %.
+    Dans chacune des classes prévues à l'article précédent, la répartition des effectifs est fixée comme suit:<ul><li> la deuxième classe: 40 %;</li><li> la première classe: 30 %;</li><li> la classe principale: 20 %;</li><li> la classe exceptionnelle: 10 %.
   </div>
 </div><div class="article" id="article57">
   <div class="article-header">
@@ -537,7 +478,7 @@ footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c8c4f;font-
     <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
   </div>
   <div class="article-content">
-    La durée moyenne d'avancement d'un échelon à l'échelon immédiatement supérieur est fixée à deux ans. Toutefois, des réductions ou des majorations de cette durée moyenne peuvent être appliquées en fonction des résultats de l'évaluation, selon les modalités ci-après :</p><p>a) réduction de trois mois ou de six mois en faveur des fonctionnaires dont l'évaluation est jugée satisfaisante; ou ayant reçu une distinction honorifique dans l'ordre du mérite de la Fonction Publique, sur proposition du Ministre technique intéressé, après avis de la Commission Administrative de Recours.</p><p>Le nombre total de fonctionnaires pouvant bénéficier de cette réduction ne peut dépasser 20% de l'effectif des agents notés dans l'échelon considéré.</p><p>b) majoration de trois ou de six mois, ou perte du bénéfice de l'avancement pour les fonctionnaires dont l'évaluation n'est pas jugée satisfaisante.</p><p>L'avancement des fonctionnaires détachés pour exercer les fonctions de membre du gouvernement, une fonction publique élective ou un mandat syndical a lieu sur la base de l'ancienneté moyenne requise pour l'avancement dans le grade d'origine.
+    La durée moyenne d'avancement d'un échelon à l'échelon immédiatement supérieur est fixée à deux ans. Toutefois, des réductions ou des majorations de cette durée moyenne peuvent être appliquées en fonction des résultats de l'évaluation, selon les modalités ci-après :</p><ol type="a"><li>réduction de trois mois ou de six mois en faveur des fonctionnaires dont l'évaluation est jugée satisfaisante; ou ayant reçu une distinction honorifique dans l'ordre du mérite de la Fonction Publique, sur proposition du Ministre technique intéressé, après avis de la Commission Administrative de Recours.</li></ol><p>Le nombre total de fonctionnaires pouvant bénéficier de cette réduction ne peut dépasser 20% de l'effectif des agents notés dans l'échelon considéré.</p><ol type="a" start="2"><li>majoration de trois ou de six mois, ou perte du bénéfice de l'avancement pour les fonctionnaires dont l'évaluation n'est pas jugée satisfaisante.</li></ol><p>L'avancement des fonctionnaires détachés pour exercer les fonctions de membre du gouvernement, une fonction publique élective ou un mandat syndical a lieu sur la base de l'ancienneté moyenne requise pour l'avancement dans le grade d'origine.
   </div>
 </div><div class="article" id="article58">
   <div class="article-header">
@@ -633,7 +574,7 @@ footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c8c4f;font-
     <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
   </div>
   <div class="article-content">
-    Conformément aux besoins de l'Administration et à la disponibilité budgétaire, les diplômes, titres ou attestations de fin de formation obtenus par le fonctionnaire au cours de sa carrière peuvent donner droit à promotion dans les conditions cumulatives suivantes:</p><p>- n'avoir jamais fait l'objet d'une sanction disciplinaire de second degré;</p><p>- n'avoir jamais fait l'objet de condamnation pour des faits relevant du droit commun;</p><p>- justifier d'une évaluation jugée satisfaisante au cours de l'année précédant la demande de promotion;</p><p>- remplir la condition d'ancienneté dans l'emploi d'origine requise pour prétendre à la promotion.</p><p>Le diplôme, le titre ou l'attestation doit être en adéquation avec l'emploi sollicité pour la promotion.</p><p>Tout diplôme ayant servi de base pour une promotion ne peut à nouveau être présenté dans une nouvelle requête de promotion.
+    Conformément aux besoins de l'Administration et à la disponibilité budgétaire, les diplômes, titres ou attestations de fin de formation obtenus par le fonctionnaire au cours de sa carrière peuvent donner droit à promotion dans les conditions cumulatives suivantes:<ul><li> n'avoir jamais fait l'objet d'une sanction disciplinaire de second degré;</li><li> n'avoir jamais fait l'objet de condamnation pour des faits relevant du droit commun;</li><li> justifier d'une évaluation jugée satisfaisante au cours de l'année précédant la demande de promotion;</li><li> remplir la condition d'ancienneté dans l'emploi d'origine requise pour prétendre à la promotion.</li></ul><p>Le diplôme, le titre ou l'attestation doit être en adéquation avec l'emploi sollicité pour la promotion.</p><p>Tout diplôme ayant servi de base pour une promotion ne peut à nouveau être présenté dans une nouvelle requête de promotion.
   </div>
 </div><div class="article" id="article70">
   <div class="article-header">
@@ -673,7 +614,7 @@ footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c8c4f;font-
     <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
   </div>
   <div class="article-content">
-    Le fonctionnaire qui sollicite sa nomination dans un autre emploi doit satisfaire les conditions cumulatives ci-après:</p><p>- totaliser au moins cinq années de services effectifs dans son emploi d'origine, lorsque ledit emploi et l'emploi sollicité appartiennent à la même famille, ou au moins dix années de services effectifs lorsque l'emploi d'origine et l'emploi sollicité appartiennent à des familles d'emplois différentes</p><p>- avoir une évaluation jugée satisfaisante;</p><p>- être titulaire du diplôme, titre ou attestation requis pour l'emploi sollicité.</p><p>- justifier d'un diplôme, d'un certificat ou d'une qualification professionnelle obtenu dans une école agréée par l'Etat ou admis en équivalence, pour occuper l'emploi sollicité;</p><p>- occuper un emploi relevant du même grade que celui de l'emploi sollicité.
+    Le fonctionnaire qui sollicite sa nomination dans un autre emploi doit satisfaire les conditions cumulatives ci-après:<ul><li> totaliser au moins cinq années de services effectifs dans son emploi d'origine, lorsque ledit emploi et l'emploi sollicité appartiennent à la même famille, ou au moins dix années de services effectifs lorsque l'emploi d'origine et l'emploi sollicité appartiennent à des familles d'emplois différentes</li><li> avoir une évaluation jugée satisfaisante;</li><li> être titulaire du diplôme, titre ou attestation requis pour l'emploi sollicité.</li><li> justifier d'un diplôme, d'un certificat ou d'une qualification professionnelle obtenu dans une école agréée par l'Etat ou admis en équivalence, pour occuper l'emploi sollicité;</li><li> occuper un emploi relevant du même grade que celui de l'emploi sollicité.
   </div>
 </div><div class="article" id="article75">
   <div class="article-header">
@@ -705,7 +646,7 @@ footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c8c4f;font-
     <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
   </div>
   <div class="article-content">
-    Pour l'ouverture du droit au congé annuel, sont considérés comme services accomplis:</p><p>- les congés de maladie;</p><p>- le congé de maternité;</p><p>- le congé de paternité;</p><p>- le congé parental;</p><p>- les périodes de formation continue;</p><p>- les autorisations spéciales d'absence et les permissions spéciales d'absence.
+    Pour l'ouverture du droit au congé annuel, sont considérés comme services accomplis:<ul><li> les congés de maladie;</li><li> le congé de maternité;</li><li> le congé de paternité;</li><li> le congé parental;</li><li> les périodes de formation continue;</li><li> les autorisations spéciales d'absence et les permissions spéciales d'absence.
   </div>
 </div><div class="article" id="article79">
   <div class="article-header">
@@ -729,7 +670,7 @@ footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c8c4f;font-
     <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
   </div>
   <div class="article-content">
-    Des autorisations spéciales d'absence n'entrant pas en compte dans le calcul du congé annuel peuvent être accordées :</p><p>1. Avec traitement:</p><p>- au fonctionnaire membre du Comité Consultatif de la Fonction Publique ou de la Commission Administrative de Recours, pendant les sessions de ces organismes</p><p>- au fonctionnaire candidat à des concours ou examens professionnels;</p><p>- dans la limite des sessions des assemblées dont il fait partie, au fonctionnaire occupant des fonctions publiques électives ou consultatives lorsque lesdites fonctions n'étant pas incompatibles avec l'exercice normal de son emploi, il n'a pas été placé en position de service détaché.</p><p>La durée des autorisations d'absence prévues à l'alinéa précédent est limitée à la durée des sessions des organismes ou des épreuves des concours ou examens augmentée, le cas échéant, des délais de route normaux, aller et retour.</p><p>2. Sans traitement:</p><p>- au fonctionnaire qui sollicite une autorisation spéciale d'absence pour convenances personnelles;</p><p>- au fonctionnaire qui sollicite une autorisation spéciale d'absence pour suivre une formation non organisée par l'Administration;</p><p>- au fonctionnaire qui sollicite une autorisation spéciale d'absence pour créer ou diriger une entreprise privée.</p><p>La durée des autorisations d'absence sans traitement ne peut excéder un an, renouvelable une fois.
+    Des autorisations spéciales d'absence n'entrant pas en compte dans le calcul du congé annuel peuvent être accordées :</p><ol><li>Avec traitement:<ul><li> au fonctionnaire membre du Comité Consultatif de la Fonction Publique ou de la Commission Administrative de Recours, pendant les sessions de ces organismes</li><li> au fonctionnaire candidat à des concours ou examens professionnels;</li><li> dans la limite des sessions des assemblées dont il fait partie, au fonctionnaire occupant des fonctions publiques électives ou consultatives lorsque lesdites fonctions n'étant pas incompatibles avec l'exercice normal de son emploi, il n'a pas été placé en position de service détaché.</li></ul><p>La durée des autorisations d'absence prévues à l'alinéa précédent est limitée à la durée des sessions des organismes ou des épreuves des concours ou examens augmentée, le cas échéant, des délais de route normaux, aller et retour.</p><ol start="2"><li>Sans traitement:<ul><li> au fonctionnaire qui sollicite une autorisation spéciale d'absence pour convenances personnelles;</li><li> au fonctionnaire qui sollicite une autorisation spéciale d'absence pour suivre une formation non organisée par l'Administration;</li><li> au fonctionnaire qui sollicite une autorisation spéciale d'absence pour créer ou diriger une entreprise privée.</li></ul></ol><p>La durée des autorisations d'absence sans traitement ne peut excéder un an, renouvelable une fois.</p>
   </div>
 </div><div class="article" id="article82">
   <div class="article-header">
@@ -737,7 +678,7 @@ footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c8c4f;font-
     <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
   </div>
   <div class="article-content">
-    Le fonctionnaire peut bénéficier de permissions spéciales avec traitement pour évènements familiaux dans les conditions ci-après :</p><p>- décès d'un ascendant ou d'un descendant en ligne directe ou du conjoint: cinq jours ouvrables;</p><p>- décès du père ou de la mère du conjoint du fonctionnaire: trois jours ouvrables;</p><p>- décès du frère ou de la sœur du fonctionnaire: deux jours ouvrables;</p><p>- mariage du fonctionnaire: cinq jours ouvrables;</p><p>- mariage d'un ascendant ou d'un descendant en ligne directe du fonctionnaire: deux jours ouvrables;</p><p>- déménagement du fonctionnaire: deux jours ouvrables.</p><p>Les autorisations et les permissions spéciales d'absence sont accordées par le supérieur hiérarchique du fonctionnaire, à sa demande.
+    Le fonctionnaire peut bénéficier de permissions spéciales avec traitement pour évènements familiaux dans les conditions ci-après :<ul><li> décès d'un ascendant ou d'un descendant en ligne directe ou du conjoint: cinq jours ouvrables;</li><li> décès du père ou de la mère du conjoint du fonctionnaire: trois jours ouvrables;</li><li> décès du frère ou de la sœur du fonctionnaire: deux jours ouvrables;</li><li> mariage du fonctionnaire: cinq jours ouvrables;</li><li> mariage d'un ascendant ou d'un descendant en ligne directe du fonctionnaire: deux jours ouvrables;</li><li> déménagement du fonctionnaire: deux jours ouvrables.</li></ul><p>Les autorisations et les permissions spéciales d'absence sont accordées par le supérieur hiérarchique du fonctionnaire, à sa demande.
   </div>
 </div><h2 class="section">SECTION 3: CONGE PARENTAL</h2><div class="article" id="article83">
   <div class="article-header">
@@ -961,7 +902,7 @@ footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c8c4f;font-
     <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
   </div>
   <div class="article-content">
-    Les sanctions disciplinaires du premier degré sont:</p><p>- l'avertissement;</p><p>- le blâme;</p><p>- le déplacement d'office;</p><p>- la radiation du tableau d'avancement pour la période de référence;</p><p>- la réduction du traitement dans la proportion maximum de 25% et pour une durée ne pouvant excéder trente jours.</p><p>Les sanctions disciplinaires du premier degré sont prononcées par le Président de l'Institution, le Ministre technique, le Préfet ou le Directeur de l'Etablissement Public.
+    Les sanctions disciplinaires du premier degré sont:<ul><li> l'avertissement;</li><li> le blâme;</li><li> le déplacement d'office;</li><li> la radiation du tableau d'avancement pour la période de référence;</li><li> la réduction du traitement dans la proportion maximum de 25% et pour une durée ne pouvant excéder trente jours.</li></ul><p>Les sanctions disciplinaires du premier degré sont prononcées par le Président de l'Institution, le Ministre technique, le Préfet ou le Directeur de l'Etablissement Public.
   </div>
 </div><div class="article" id="article111">
   <div class="article-header">
@@ -969,7 +910,7 @@ footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c8c4f;font-
     <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
   </div>
   <div class="article-content">
-    Les sanctions disciplinaires du second degré sont :</p><p>- la réduction du traitement de 50% pour une période ne pouvant excéder trois mois;</p><p>- l'exclusion temporaire pour une durée ne pouvant excéder six mois;</p><p>- l'abaissement d'échelon;</p><p>- l'abaissement de classe;</p><p>- la rétrogradation;</p><p>- la révocation avec ou sans suspension des droits à pension.
+    Les sanctions disciplinaires du second degré sont :<ul><li> la réduction du traitement de 50% pour une période ne pouvant excéder trois mois;</li><li> l'exclusion temporaire pour une durée ne pouvant excéder six mois;</li><li> l'abaissement d'échelon;</li><li> l'abaissement de classe;</li><li> la rétrogradation;</li><li> la révocation avec ou sans suspension des droits à pension.</li></ul>
   </div>
 </div><div class="article" id="article112">
   <div class="article-header">
@@ -1097,7 +1038,7 @@ footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c8c4f;font-
     <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
   </div>
   <div class="article-content">
-    Les sanctions disciplinaires applicables au fonctionnaire stagiaire sont:</p><p>1° Sanctions du premier degré</p><p>- La mise à pied avec ou sans rémunération;</p><p>- le blâme;</p><p>- la réduction du traitement dans la limite maximum de 25% et pour une durée ne pouvant excéder trente jours.</p><p>2° Sanctions du second degré</p><p>- l'exclusion définitive de l'emploi.</p><p>Les sanctions du premier degré sont prononcées par le Président de l'Institution, le Ministre technique, le Préfet ou le Directeur de l'Etablissement Public dont relève le fonctionnaire stagiaire, après une demande d'explications écrites adressée à l'intéressé.</p><p>La sanction du second degré est prononcée by le Ministre chargé de la Fonction Publique, après avis du Conseil de Discipline.
+    Les sanctions disciplinaires applicables au fonctionnaire stagiaire sont:</p><p>1° Sanctions du premier degré</li><li> La mise à pied avec ou sans rémunération;</li><li> le blâme;</li><li> la réduction du traitement dans la limite maximum de 25% et pour une durée ne pouvant excéder trente jours.</p><p>2° Sanctions du second degré</li><li> l'exclusion définitive de l'emploi.</p><p>Les sanctions du premier degré sont prononcées par le Président de l'Institution, le Ministre technique, le Préfet ou le Directeur de l'Etablissement Public dont relève le fonctionnaire stagiaire, après une demande d'explications écrites adressée à l'intéressé.</p><p>La sanction du second degré est prononcée par le Ministre chargé de la Fonction Publique, après avis du Conseil de Discipline.
   </div>
 </div><div class="article" id="article128">
   <div class="article-header">
@@ -1153,7 +1094,7 @@ footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c8c4f;font-
     <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
   </div>
   <div class="article-content">
-    Il peut être mis fin au stage probatoire avant la date fixée pour son terme :</p><p>- par la démission du fonctionnaire stagiaire ;</p><p>- par l'exclusion définitive de l'emploi du fonctionnaire stagiaire;</p><p>- par le licenciement du fonctionnaire stagiaire;</p><p>- par le décès du fonctionnaire stagiaire.
+    Il peut être mis fin au stage probatoire avant la date fixée pour son terme :<ul><li> par la démission du fonctionnaire stagiaire ;</li><li> par l'exclusion définitive de l'emploi du fonctionnaire stagiaire;</li><li> par le licenciement du fonctionnaire stagiaire;</li><li> par le décès du fonctionnaire stagiaire.
   </div>
 </div><div class="article" id="article135">
   <div class="article-header">
@@ -1161,7 +1102,7 @@ footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c8c4f;font-
     <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
   </div>
   <div class="article-content">
-    Le fonctionnaire stagiaire peut être licencié :</p><p>- pour insuffisance professionnelle notoire;</p><p>- pour inaptitude physique ou mentale;</p><p>- pour perte de la nationalité;</p><p>- pour des faits antérieurs à l'admission au stage, dans la limite de cinq années, qui s'ils avaient été connus, auraient fait obstacle au recrutement.</p><p>Le licenciement pour insuffisance professionnelle notoire ne peut intervenir qu'après six mois de stage au moins.</p><p>Le fonctionnaire stagiaire qui, ayant bénéficié des droits au congé de maladie de courte durée, au congé de maladie de longue durée ou au congé exceptionnel de maladie, dans la limite prévue à l'article 131 ci-dessus, n'est pas reconnu apte à reprendre le service par le Conseil de Santé et Sécurité au Travail de la Fonction Publique, est licencié pour inaptitude physique ou mentale.
+    Le fonctionnaire stagiaire peut être licencié :<ul><li> pour insuffisance professionnelle notoire;</li><li> pour inaptitude physique ou mentale;</li><li> pour perte de la nationalité;</li><li> pour des faits antérieurs à l'admission au stage, dans la limite de cinq années, qui s'ils avaient été connus, auraient fait obstacle au recrutement.</li></ul><p>Le licenciement pour insuffisance professionnelle notoire ne peut intervenir qu'après six mois de stage au moins.</p><p>Le fonctionnaire stagiaire qui, ayant bénéficié des droits au congé de maladie de courte durée, au congé de maladie de longue durée ou au congé exceptionnel de maladie, dans la limite prévue à l'article 131 ci-dessus, n'est pas reconnu apte à reprendre le service par le Conseil de Santé et Sécurité au Travail de la Fonction Publique, est licencié pour inaptitude physique ou mentale.
   </div>
 </div><div class="article" id="article136">
   <div class="article-header">
@@ -1177,7 +1118,7 @@ footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c8c4f;font-
     <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
   </div>
   <div class="article-content">
-    A l'expiration de la période de stage probatoire, le fonctionnaire stagiaire est :</p><p>- soit titularisé;</p><p>- soit autorisé à effectuer une nouvelle période de stage d'un an, à l'issue de laquelle il est titularisé ou licencié;</p><p>- soit licencié.
+    A l'expiration de la période de stage probatoire, le fonctionnaire stagiaire est :<ul><li> soit titularisé;</li><li> soit autorisé à effectuer une nouvelle période de stage d'un an, à l'issue de laquelle il est titularisé ou licencié;</li><li> soit licencié.
   </div>
 </div><div class="article" id="article138">
   <div class="article-header">
@@ -1187,29 +1128,341 @@ footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c8c4f;font-
   <div class="article-content">
     Le temps de stage est pris en compte pour l'avancement du fonctionnaire stagiaire titularisé comme temps de services accomplis dans le premier échelon de l'échelle de traitement indiciaire qui lui est applicable.</p><p>Le temps de stage est également liquidable pour la constitution du droit à pension.</p><p>Pour l'application des dispositions des deux premiers alinéas du présent article, il n'est toutefois tenu compte que de la durée normale du stage et éventuellement des périodes de congé rémunéré.
   </div>
-</div></section><section class="group"><h2>TITRE III : DE LA REMUNERATION ET DES AVANTAGES MATERIELS DIVERS ALLOUES AUX FONCTIONNAIRES</h2><div class="article" id="chapitre-i-des-elements-de-la-remuneration">
+</div></section><section class="group"><h2>TITRE III : DE LA REMUNERATION ET DES AVANTAGES MATERIELS DIVERS ALLOUES AUX FONCTIONNAIRES</h2></section><section class="group"><h2>CHAPITRE I : DES ELEMENTS DE LA REMUNERATION</h2><div class="article" id="article139">
   <div class="article-header">
-    <h3>CHAPITRE I : DES ELEMENTS DE LA REMUNERATION</h3>
+    <h3>Article 139</h3>
     <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
   </div>
   <div class="article-content">
-    
+    <p>Pour l'application des dispositions de l'article 81 du Statut Général de la Fonction Publique, les modalités de la rémunération accordée aux fonctionnaires en service dans l'Administration centrale de l'Etat, les services extérieurs qui en dépendent et les établissements publics de l'Etat, ainsi que des avantages divers, sont fixés conformément aux dispositions ci-après.</p>
   </div>
-</div><div class="article" id="chapitre-ii-modalites-du-droit-a-la-remuneration">
+</div><div class="article" id="article140">
   <div class="article-header">
-    <h3>CHAPITRE II : MODALITES DU DROIT A LA REMUNERATION</h3>
+    <h3>Article 140</h3>
     <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
   </div>
   <div class="article-content">
-    
+    La rémunération du fonctionnaire se liquide par mois et est payable à terme échu.</p><p>Au sens du présent décret, chaque mois compte pour trente jours, quel que soit le nombre de jours dont il se compose.
   </div>
-</div><div class="article" id="chapitre-iii-avantages-materiels-et-sociaux">
+</div><div class="article" id="article141">
   <div class="article-header">
-    <h3>CHAPITRE III : AVANTAGES MATERIELS ET SOCIAUX</h3>
+    <h3>Article 141</h3>
     <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
   </div>
   <div class="article-content">
-    
+    La rémunération du fonctionnaire comprend :<ul><li> le traitement soumis à retenue pour pension ;</li><li> l'indemnité de résidence ;</li><li> l'indemnité contributive au logement pour les fonctionnaires ne bénéficiant ni de baux administratifs, ni de l'occupation de bâtiments administratifs ;</li><li> éventuellement les allocations familiales.</li></ul><p>La rémunération peut comporter des primes, indemnités et prestations diverses telles qu'institutées par un texte législatif ou réglementaire.
+  </div>
+</div><div class="article" id="article142">
+  <div class="article-header">
+    <h3>Article 142</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Le traitement soumis à retenue pour pension est l'élément principal de la rémunération. Il est déterminé par application de la valeur du point d'indice à chacun des indices de la grille des traitements.</p>
+  </div>
+</div><div class="article" id="article143">
+  <div class="article-header">
+    <h3>Article 143</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>L'échelonnement de la grille de traitement et la valeur du point d'indice sont fixés par décret pris en Conseil des Ministres.</p>
+  </div>
+</div><div class="article" id="article144">
+  <div class="article-header">
+    <h3>Article 144</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    L'indemnité de résidence est un élément accessoire de la rémunération, non soumis à retenue pour pension. Elle est proportionnelle au montant du traitement brut soumis à retenue pour pension.</p><p>Le taux de l'indemnité de résidence est fixé par décret pris en Conseil des Ministres.
+  </div>
+</div><div class="article" id="article145">
+  <div class="article-header">
+    <h3>Article 145</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    L'indemnité contributive au logement est un élément accessoire de la rémunération, non soumis à retenue pour pension.</p><p>Elle est accordée dans les conditions énoncées à l'article 85 du Statut Général de la Fonction Publique pour aider le fonctionnaire à se loger.</p><p>Le régime de l'indemnité contributive au logement est fixé par décret pris en Conseil des Ministres.
+  </div>
+</div><div class="article" id="article146">
+  <div class="article-header">
+    <h3>Article 146</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    Les allocations familiales constituent un élément accessoire du traitement dont le taux, non hiérarchisé, par enfant, est fixé par décret pris en Conseil des Ministres.</p><p>Le nombre d'enfants y donnant droit ne peut être supérieur à six.
+  </div>
+</div><div class="article" id="article147">
+  <div class="article-header">
+    <h3>Article 147</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    Ouvrent droit aux allocations familiales, dans la limite maximum fixée à l'article précédent, les enfants dont la filiation est légalement établie ainsi que les enfants adoptifs dont le nombre maximum à prendre en compte ne peut excéder deux.</p><p>Les allocations familiales sont dues jusqu'à l'âge de vingt et un ans.</p><p>Le droit aux allocations familiales cesse en cas de décès de l'enfant à compter du dernier jour du mois du décès.
+  </div>
+</div><div class="article" id="article148">
+  <div class="article-header">
+    <h3>Article 148</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Les allocations familiales sont payées mensuellement à terme échu, à compter du premier mois suivant l'enregistrement de la naissance de l'enfant à l'état civil ou la transcription à l'état civil de l'acte de reconnaissance ou d'adoption.</p>
+  </div>
+</div><div class="article" id="article149">
+  <div class="article-header">
+    <h3>Article 149</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Lorsque les conjoints sont tous fonctionnaires, les allocations familiales ne sont dues qu'à l'un ou l'autre.</p>
+  </div>
+</div><div class="article" id="article150">
+  <div class="article-header">
+    <h3>Article 150</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    En cas de divorce ou de séparation de corps de deux fonctionnaires, leur situation, en ce qui concerne les allocations familiales, fera l'objet d'une décision spéciale du Ministre chargé de la Fonction Publique, partageant les allocations acquises au titre du présent décret proportionnellement au nombre des enfants ouvrant droit aux allocations qui seraient laissés à leur charge respective par les décisions judiciaires de divorce ou de séparation de corps.</p><p>Si l'un des conjoints n'est pas fonctionnaire, les allocations acquises seront conservées au conjoint fonctionnaire, à charge pour lui de reverser à l'autre séparé de corps ou divorcé, sous peine de s'en voir retirer le bénéfice, une proportion de ces allocations déterminées à l'alinéa précédent.</p><p>En cas de décès de l'un des conjoints fonctionnaires, le conjoint survivant bénéficie de plein droit des allocations pour ses propres enfants et ceux que le défunt aurait reconnus ou adoptés dans les limites fixées par le Statut Général de la Fonction Publique.
+  </div>
+</div><div class="article" id="article151">
+  <div class="article-header">
+    <h3>Article 151</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Toute déclaration frauduleuse tendant à faire allouer à un fonctionnaire des allocations supérieures à celles auxquelles il pourrait prétendre au titre du présent décret, l'expose à une sanction disciplinaire, sans préjudice des mesures administratives qui pourraient être prononcées, ainsi que des poursuites pénales susceptibles d'être engagées à son encontre.</p>
+  </div>
+</div></section><section class="group"><h2>CHAPITRE II : MODALITES DU DROIT A LA REMUNERATION</h2><h2 class="section">SECTION 1 : MODALITES DU DROIT AU TRAITEMENT</h2><div class="article" id="article152">
+  <div class="article-header">
+    <h3>Article 152</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>À droit au traitement après service fait, le fonctionnaire qui se trouve en position d'activité ou dans l'une des situations assimilées à cette position.</p>
+  </div>
+</div><div class="article" id="article153">
+  <div class="article-header">
+    <h3>Article 153</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    Le droit au traitement commence pour le fonctionnaire à compter du jour où prend effet l'acte portant sa nomination, sauf indication contraire mentionnée dans l'acte de nomination. Un certificat de première prise de service doit être fourni dans tous les cas.</p><p>La date d'effet de la nomination ne peut être antérieure à la date de première prise de service.
+  </div>
+</div><div class="article" id="article154">
+  <div class="article-header">
+    <h3>Article 154</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    Le droit au traitement cesse :</p><p>1- pour le fonctionnaire frappé de la sanction disciplinaire de l'exclusion temporaire des fonctions ou de la révocation, à la date de prise d'effet de la décision de sanction. Dans le cas de l'exclusion temporaire des fonctions, le droit au traitement est ouvert au jour de la reprise effective des fonctions ;</p><p>2- pour le fonctionnaire suspendu de ses fonctions, à compter de la date d'effet de la décision de suspension. Sous réserve des dispositions de l'alinéa 2 de l'article 102 du Statut Général de la Fonction Publique, son traitement lui est à nouveau alloué à compter du jour de la reprise effective de fonction, suite à la décision disciplinaire, et au plus tard à l'expiration du délai de trois mois suivant la date de la décision de suspension ;</p><p>3- pour le fonctionnaire démissionnaire, le lendemain du jour où il reçoit notification de l'acceptation de sa démission ou le jour fixé pour la radiation par l'autorité qui a accepté sa démission ;</p><p>4- pour le fonctionnaire licencié pour inaptitude physique ou mentale, ou pour perte de la nationalité, le lendemain du jour où il reçoit notification de l'acte de licenciement ;</p><p>5- pour le fonctionnaire licencié pour insuffisance professionnelle notoire, le jour où il cesse effectivement ses fonctions. Si l'acte de licenciement n'a pas prévu une date ultérieure pour la cessation des fonctions, celle-ci doit avoir lieu le lendemain du jour où il reçoit notification de l'acte de licenciement ;</p><p>6- pour le fonctionnaire admis à faire valoir ses droits à la retraite, soit à la date à laquelle l'autorité a accédé à sa demande de retraite anticipée, soit à la date de sa radiation ;</p><p>7- pour le fonctionnaire absent irrégulièrement de son poste, à compter du lendemain du jour où son absence a été dûment constatée par le supérieur hiérarchique. Sous réserve de mesures administratives qui peuvent être prises à son encontre, il recouvre ses droits au traitement le jour où il reprend effectivement ses fonctions ;</p><p>8- pour le fonctionnaire détenu par décision de l'autorité judiciaire, le lendemain du jour de son incarcération. Sous réserve des mesures administratives susceptibles d'intervenir à son encontre, il recouvre ses droits au traitement à la date de la reprise effective de ses fonctions, fixée par le Ministre chargé de la Fonction Publique ;</p><p>9- pour le fonctionnaire suspendu et faisant l'objet de poursuites pénales, à compter de la date d'effet de la décision de suspension.</p><p>Quelle que soit la décision judiciaire définitive intervenue dans les cas prévus aux points 8 et 9, l'intéressé ne peut en aucun cas prétendre au rappel de son traitement ou indemnité pour la période où il a été écarté du service.</p><p>Pour l'application des dispositions du présent article, les notifications qu'il prévoit doivent être faites sans délai. Si, par la faute du fonctionnaire, la notification de l'acte le concernant n'a pu lui être faite dans les délais normaux, la cessation du traitement intervient à la date fixée par le Ministre chargé de la Fonction Publique.
+  </div>
+</div><div class="article" id="article155">
+  <div class="article-header">
+    <h3>Article 155</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Le fonctionnaire bénéficiaire d'un congé annuel ou cumulé sur deux années de services au maximum, d'un congé de maternité et périodes pour couche et allaitement, d'un congé de paternité, d'une autorisation ou permission spéciale d'absence, conserve ses droits au traitement pendant la durée dudit congé ou autorisation d'absence.</p>
+  </div>
+</div><div class="article" id="article156">
+  <div class="article-header">
+    <h3>Article 156</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    Le fonctionnaire bénéficiaire d'un congé parental conserve sa rémunération pendant un an. En cas de renouvellement, la rémunération est réduite de moitié.</p><p>Il conserve ses droits à l'avancement, à la promotion et à la retraite.
+  </div>
+</div><div class="article" id="article157">
+  <div class="article-header">
+    <h3>Article 157</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>En cas de congé de maladie de courte durée, pendant une période de douze mois consécutifs, le fonctionnaire a droit à l'intégralité de sa rémunération pendant les six mois.</p>
+  </div>
+</div><div class="article" id="article158">
+  <div class="article-header">
+    <h3>Article 158</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>En cas de congé de maladie de longue durée, le fonctionnaire conserve sa rémunération pendant les douze premiers mois. A l'issue de cette période la rémunération est réduite de moitié.</p>
+  </div>
+</div><div class="article" id="article159">
+  <div class="article-header">
+    <h3>Article 159</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Le fonctionnaire bénéficiaire d'un congé exceptionnel de maladie perçoit l'intégralité de sa rémunération jusqu'à sa reprise de service ou jusqu'à son admission à la retraite.</p>
+  </div>
+</div><div class="article" id="article160">
+  <div class="article-header">
+    <h3>Article 160</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Le fonctionnaire bénéficiaire d'une autorisation spéciale d'absence avec traitement ou d'une permission spéciale d'absence pour évènements familiaux prévus par le présent décret conserve ses droits au traitement.</p>
+  </div>
+</div><div class="article" id="article161">
+  <div class="article-header">
+    <h3>Article 161</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Le fonctionnaire soumis à une formation professionnelle perçoit la rémunération prévue par la réglementation applicable en la matière.</p>
+  </div>
+</div><div class="article" id="article162">
+  <div class="article-header">
+    <h3>Article 162</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    Le fonctionnaire placé en position de détachement, de disponibilité, ou sous les drapeaux, perd, pendant toute la période où il se trouve dans l'une de ces positions le droit au traitement auquel il peut prétendre en position d'activité.</p><p>Toutefois, le fonctionnaire détaché d'office auprès d'une administration ou d'un établissement public de l'Etat dans un emploi ouvrant droit à pension du régime général ou auprès d'une administration, d'une collectivité territoriale, continue à percevoir le traitement afférent à sa classe et à son échelon dans son grade d'origine si l'emploi qu'il occupe dans la position de détachement comporte une rémunération inférieure.
+  </div>
+</div><div class="article" id="article163">
+  <div class="article-header">
+    <h3>Article 163</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Quelles que soient les fonctions qu'il exerce, le fonctionnaire en activité perçoit dans les conditions fixées au présent décret, le traitement afférent à l'indice correspondant à la classe et à l'échelon de l'échelle de traitement de son grade.</p>
+  </div>
+</div><div class="article" id="article164">
+  <div class="article-header">
+    <h3>Article 164</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    Le traitement dû au fonctionnaire décédé est acquis à ses héritiers ou ayants droit jusqu'au dernier jour du mois du décès, sous déduction le cas échéant des retenues ou reprises dont ce traitement peut être passible en vertu des règlements.</p><p>Le paiement aux ayants droit du fonctionnaire décédé d'un capital décès est régi par arrêté conjoint du Ministre chargé de la Fonction Publique, du Ministre chargé des Finances et du Ministre chargé du Budget.
+  </div>
+</div><div class="article" id="article165">
+  <div class="article-header">
+    <h3>Article 165</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    En cas de promotion, le traitement afférent au nouveau grade est alloué au fonctionnaire à compter de la date fixée par l'acte de promotion.</p><p>Il est attribué au fonctionnaire l'indice égal ou immédiatement supérieur à l'indice dans la grille indiciaire du nouveau grade.</p><p>En ce qui concerne les avancements de classe ou d'échelon, le traitement afférent au nouvel échelon est alloué à compter du mois suivant la date à laquelle se trouve remplie la condition d'ancienneté nécessaire au franchissement de la classe ou de l'échelon.</p><p>Lorsqu'un fonctionnaire est frappé de la sanction disciplinaire de l'abaissement d'échelon, de l'abaissement de classe ou de la rétrogradation, le traitement afférent à son nouvel échelon ou à sa nouvelle classe lui est alloué à compter de la date d'effet de la décision de sanction.
+  </div>
+</div><h2 class="section">SECTION 2 : MODALITES DU DROIT A L'INDEMNITE DE RESIDENCE, A L'INDEMNITE CONTRIBUTIVE AU LOGEMENT ET AUX ALLOCATIONS FAMILIALES</h2><div class="article" id="article166">
+  <div class="article-header">
+    <h3>Article 166</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    L'indemnité de résidence, les allocations familiales et l'indemnité contributive au logement, éléments accessoires de la rémunération, suivent le sort du traitement. Ils sont supprimés ou réduits dans la proportion où le traitement soumis à retenue pour pension se trouve supprimé ou réduit pour quelque motif que ce soit.</p><p>Toutefois, le droit à l'intégralité des allocations familiales peut être maintenu :</p><p>1- au fonctionnaire suspendu de ses fonctions, ou exclu temporairement en application du régime disciplinaire, pendant toute la durée de la suspension ou de l'exclusion ;</p><p>2- au fonctionnaire détenu par décision de l'autorité judiciaire ;</p><p>3- au fonctionnaire bénéficiaire d'un congé de maladie de courte durée, ou d'un congé de maladie de longue durée, pendant toute la période où il perçoit son traitement intégral ou réduit de moitié ;</p><p>4- au fonctionnaire bénéficiaire d'un congé parental ;</p><p>5- au fonctionnaire bénéficiaire d'autorisations spéciales d'absence sans traitement dans les cas prévus par la réglementation en vigueur ;</p><p>6- au fonctionnaire placé en position de disponibilité à sa demande, en cas d'accident ou de maladie grave du conjoint ou d'un enfant pendant toute la durée de cette position ;</p><p>7- au fonctionnaire placé sous les drapeaux.
+  </div>
+</div><h2 class="section">SECTION 3 : REGLES RELATIVES A LA CONSTATATION DES DROITS ET AU PAIEMENT DE LA REMUNERATION</h2><div class="article" id="article167">
+  <div class="article-header">
+    <h3>Article 167</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    Aucun traitement ni accessoire de traitement ne peut être attribué en dehors de l'objet auquel il est réglementairement destiné.</p><p>Le traitement et ses accessoires sont ordonnancés et payés seulement après service fait.
+  </div>
+</div><div class="article" id="article168">
+  <div class="article-header">
+    <h3>Article 168</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Le traitement et ses accessoires se décomptent par mois à raison de la douzième partie de leur montant fixé annuellement, et par jour à raison de la trentième partie de leur montant fixé mensuellement.</p>
+  </div>
+</div><div class="article" id="article169">
+  <div class="article-header">
+    <h3>Article 169</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    Le fonctionnaire supporte sur son traitement la retenue pour pension prévue par la réglementation en vigueur.</p><p>Indépendamment des réductions de traitement applicables au fonctionnaire occupant certaines positions autres que celle de l'activité, des retenues peuvent être opérées sur le traitement dans les cas énumérés ci-après :</p><p>1- retenues pour absences non justifiées, ou absence de service fait. Est assimilé à l'absence de service fait, le service mal fait ;</p><p>2- retenues pour cause de grève. La retenue doit être proportionnelle au nombre de jours non travaillés ;</p><p>3- retenues pour dettes envers l'Etat ou des personnes morales de droit public ;</p><p>4- retenues pour dettes envers des personnes physiques ou des personnes morales de droit privé en vertu d'oppositions ou de saisie dans les conditions fixées par les textes en vigueur.</p><p>Un arrêté conjoint du Ministre chargé du Budget, du Ministre chargé des Finances et du Ministre chargé de la Fonction Publique détermine, en tant que de besoin, les modalités d'application des dispositions relatives aux précomptes opérés sur le traitement.
+  </div>
+</div></section><section class="group"><h2>CHAPITRE III : AVANTAGES MATERIELS ET SOCIAUX</h2><h2 class="section">SECTION 1 : PRINCIPE</h2><div class="article" id="article170">
+  <div class="article-header">
+    <h3>Article 170</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Il ne peut, en aucun cas, être accordé au fonctionnaire de l'administration et des établissements publics de l'Etat, d'autres avantages matériels que ceux expressément et limitativement prévus par les dispositions du présent décret ou des textes législatifs ou réglementaires en vigueur.</p>
+  </div>
+</div><h2 class="section">SECTION 2 : COUVERTURE SOCIALE</h2><div class="article" id="article171">
+  <div class="article-header">
+    <h3>Article 171</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Les fonctionnaires ne peuvent prétendre à être logés par les soins de l'Etat ou des collectivités territoriales. Toutefois, certaines catégories d'agents dont la liste est fixée par décret pris en Conseil des Ministres bénéficient du droit d'être logés dans les bâtiments de l'Etat dans des conditions déterminées par ce décret.</p>
+  </div>
+</div><div class="article" id="article172">
+  <div class="article-header">
+    <h3>Article 172</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Les fonctionnaires en activité ou à la retraite ainsi que leurs conjoints et leurs enfants mineurs à charge, bénéficient dans les formations sanitaires de l'Etat d'un régime particulier dont les modalités sont définies par arrêté conjoint du Ministre chargé de la Santé, du Ministre chargé de la Protection Sociale, du Ministre chargé du Budget, du Ministre chargé des Finances et du Ministre chargé de la Fonction Publique.</p>
+  </div>
+</div><div class="article" id="article173">
+  <div class="article-header">
+    <h3>Article 173</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>L'Etat favorise la constitution et le fonctionnement de sociétés mutuelles de secours et d'entraide de fonctionnaires.</p>
+  </div>
+</div><h2 class="section">SECTION 3 : VISITES MEDICALES ET SANTE AU TRAVAIL</h2><div class="article" id="article174">
+  <div class="article-header">
+    <h3>Article 174</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    Après sa titularisation, le fonctionnaire est soumis à une visite médicale d'aptitude, effectuée par un médecin spécialiste du travail désigné par l'Administration, aux frais de l'Etat. Cette visite est destinée à vérifier la compatibilité de l'état de santé de l'agent avec les conditions de travail liées au poste auquel il est affecté.</p><p>En outre, le fonctionnaire a droit, une fois par an, à une visite médicale, aux frais de l'Etat, dans les conditions fixées par arrêté conjoint du Ministre chargé de la Fonction Publique, du Ministre chargé de la Santé, du Ministre chargé des Finances et du Ministre chargé du Budget.
+  </div>
+</div><div class="article" id="article175">
+  <div class="article-header">
+    <h3>Article 175</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    Une surveillance médicale particulière est mise en place à l'égard :<ul><li> du fonctionnaire en situation de handicap ;</li><li> de la femme fonctionnaire enceinte ;</li><li> du fonctionnaire rappelé à l'activité après un congé pour raison de santé ;</li><li> du fonctionnaire exposé à des risques particuliers mettant en danger sa santé et sa sécurité, en raison de la nature de son activité professionnelle ;</li><li> du fonctionnaire souffrant de pathologies particulières, dont la liste est déterminée par arrêté conjoint du Ministre chargé de la Santé et du Ministre chargé de la Fonction Publique.</li></ul><p>Le médecin spécialiste du travail définit la fréquence et la nature des visites médicales que comporte cette surveillance particulière. Celle-ci est effectuée au moins une fois par an. Le fonctionnaire concerné par la surveillance particulière est tenu de se soumettre à ces visites médicales.
+  </div>
+</div><div class="article" id="article176">
+  <div class="article-header">
+    <h3>Article 176</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Des aménagements de poste de travail ou de conditions d'exercice des fonctions peuvent être effectués par le Responsable des Ressources Humaines de l'Institution ou du Ministère dont dépend le fonctionnaire, sur proposition du Médecin spécialiste du travail et après avis du Conseil de Santé et Sécurité au Travail de la Fonction Publique.</p>
+  </div>
+</div><div class="article" id="article177">
+  <div class="article-header">
+    <h3>Article 177</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Pour préserver leur santé physique et mentale, les fonctionnaires ont droit, dans l'exercice de leurs fonctions, à des conditions de travail adéquates.</p>
+  </div>
+</div><div class="article" id="article178">
+  <div class="article-header">
+    <h3>Article 178</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>L'Administration a l'obligation d'assurer, au profit des fonctionnaires, une formation pratique adaptée à leurs activités professionnelles, en matière d'hygiène et de sécurité.</p>
+  </div>
+</div><div class="article" id="article179">
+  <div class="article-header">
+    <h3>Article 179</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    A la demande du médecin spécialiste du travail, une formation à l'hygiène et à la sécurité peut également être organisée au profit des fonctionnaires qui reprennent leur activité après un arrêt de travail consécutif à un accident de travail ou à une maladie professionnelle.</p><p>Cette formation a pour objet d'instruire le fonctionnaire sur les précautions à prendre pour assurer sa propre sécurité, celle de ses collègues de travail et, s'il y a lieu, celle des usagers.
+  </div>
+</div><h2 class="section">SECTION 4 : HABILLEMENT - UNIFORME</h2><div class="article" id="article180">
+  <div class="article-header">
+    <h3>Article 180</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    Les dispositions particulières à certains emplois peuvent à raison des fonctions dévolues aux fonctionnaires qui les exercent, spécifier soit la tenue réglementaire dont le port est obligatoire pendant le service, soit l'uniforme que les intéressés sont appelés à revêtir à l'occasion des cérémonies officielles ou, plus généralement, sur instructions de l'autorité hiérarchique.</p><p>Des dispositions réglementaires précisent, dans le premier cas, les modalités de l'allocation gratuite d'effets d'habillement et d'équipement, dans le second cas, les modalités de paiement d'une indemnité de première mise et de transformation d'uniforme.
   </div>
 </div></section><section class="group"><h2>TITRE IV : ECHELLES DE TRAITEMENT DES GRADES DES FONCTIONNAIRES DE L'ADMINISTRATION ET DES ETABLISSEMENTS PUBLICS DE L'ETAT</h2><div class="article" id="article181">
   <div class="article-header">
@@ -1235,30 +1488,148 @@ footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c8c4f;font-
   <div class="article-content">
     <p>Le Ministre d'Etat, Ministre de la Fonction Publique et de la Modernisation de l'Administration, le Ministre des Finances et du Budget et les Ministres intéressés sont chargés, chacun en ce qui le concerne, de l'exécution du présent décret qui sera publié au Journal Officiel de la République de Côte d'Ivoire.</p>
   </div>
-</div></section>
-</main>
+</div></section></main>
 
-<div id="tocOverlay"></div>
-<aside id="tocPanel"><header><h3><i class="fa-solid fa-landmark"></i> Sommaire</h3></header><div class="toc-list" id="tocList"></div></aside>
-<div id="voiceBar" role="region" aria-label="Lecteur vocal">
-  <button id="vPrev" title="Article précédent"><i class="fas fa-backward"></i></button>
-  <button id="vPlay" title="Lire / Reprendre"><i class="fas fa-play"></i></button>
-  <button id="vPause" title="Pause"><i class="fas fa-pause"></i></button>
-  <button id="vStop" title="Arrêter"><i class="fas fa-stop"></i></button>
-  <button id="vNext" title="Article suivant"><i class="fas fa-forward"></i></button>
-  <span class="now" id="vNow">—</span>
-</div>
-<div id="fsOverlay"><div id="fsHeader"><button id="fsClose" title="Fermer"><i class="fas fa-xmark"></i></button><div class="ttl" id="fsTitle"></div><button id="fsPlay" title="Lecture"><i class="fas fa-play"></i></button></div><div id="fsBody"><article class="article"><div class="article-content" id="fsContent"></div></article></div><button id="fsNavPrev" title="Précédent"><i class="fas fa-chevron-left"></i></button><button id="fsNavNext" title="Suivant"><i class="fas fa-chevron-right"></i></button></div>
+<script>
+function initSearchFeature() {
+  const bar = document.querySelector('.controls');
+  const btn = document.createElement('button'); btn.className='control-btn'; btn.title='Rechercher'; btn.innerHTML='<i class="fas fa-search"></i>'; bar.appendChild(btn);
+  const ui = document.createElement('div');
+  ui.id='searchInterface';
+  ui.style.cssText='position:fixed;top:10px;left:50%;transform:translateX(-50%);width:calc(100% - 32px);max-width:560px;background:#fff;padding:8px;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,.15);z-index:1000;display:none;align-items:center;gap:6px';
+  ui.innerHTML = '<input id="searchInput" placeholder="Rechercher..." style="flex:1;padding:8px;border:1px solid #e6e2da;border-radius:8px;">'+
+                 '<button id="searchPrevBtn" class="control-btn" style="width:34px;height:34px"><i class="fas fa-chevron-up"></i></button>'+
+                 '<button id="searchNextBtn" class="control-btn" style="width:34px;height:34px"><i class="fas fa-chevron-down"></i></button>'+
+                 '<span id="searchResultsCount" style="min-width:44px;text-align:center"></span>'+
+                 '<button id="closeSearchBtn" class="control-btn" style="width:34px;height:34px"><i class="fas fa-times"></i></button>';
+  document.body.appendChild(ui);
+  let results=[], idx=-1, original=new Map();
+  function perform(){
+    const term = document.getElementById('searchInput').value.trim();
+    if (!original.size){ document.querySelectorAll('.article-content,h2').forEach(el=>original.set(el, el.innerHTML)); }
+    original.forEach((v,el)=>el.innerHTML=v);
+    results=[]; idx=-1; if(!term){ update(); return; }
+    const rx = new RegExp(term.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi');
+    original.forEach((v,el)=>{ el.innerHTML = v.replace(rx, m=>`<mark>${m}</mark>`); });
+    results = Array.from(document.querySelectorAll('mark')); if(results.length>0) nav(true,false); update(); window.dispatchEvent(new Event('reflowArticles'));
+  }
+  function nav(next, wrap=true){
+    if(!results.length) return;
+    results.forEach(m=>m.style.backgroundColor='');
+    idx = wrap ? (next ? (idx+1)%results.length : (idx-1+results.length)%results.length) : 0;
+    const cur = results[idx]; cur.style.backgroundColor='rgba(184,155,79,.6)'; cur.scrollIntoView({behavior:'smooth',block:'center'}); update();
+  }
+  function update(){ document.getElementById('searchResultsCount').textContent = results.length? `${idx+1}/${results.length}` : '0/0'; }
+  function reset(){ original.forEach((v,el)=>el.innerHTML=v); original.clear(); document.getElementById('searchInput').value=''; results=[]; idx=-1; update(); }
+  btn.addEventListener('click',()=>{ const vis = ui.style.display==='flex'; ui.style.display = vis?'none':'flex'; if(vis) reset(); else document.getElementById('searchInput').focus();});
+  document.getElementById('searchInput').addEventListener('input', perform);
+  document.getElementById('searchNextBtn').addEventListener('click', ()=>nav(true));
+  document.getElementById('searchPrevBtn').addEventListener('click', ()=>nav(false));
+  document.getElementById('closeSearchBtn').addEventListener('click', ()=>{ ui.style.display='none'; reset(); });
+}
+</script>
 
-<button id="tocFloatBtn" title="Sommaire" class="btn"><i class="fa-solid fa-book"></i></button>
+
+<script>
+(function(){
+  function extractEnumeration(s){
+    const re = /(\d{1,2})(?:\s*°)?(?:\))?(?:\.)?\s+/g;
+    const matches = []; let m;
+    while((m=re.exec(s))){ const idx=m.index; const prev=idx>0?s.charAt(idx-1):" "; if(/\d/.test(prev)) continue; matches.push({num:parseInt(m[1],10),start:idx,end:re.lastIndex}); }
+    if(matches.length<2) return null;
+    for(let i=1;i<matches.length;i++){ if(matches[i].num !== matches[i-1].num+1) return null; }
+    const intro = s.slice(0,matches[0].start).trim().replace(/[:;,\-]\s*$/, "");
+    const items=[]; for(let i=0;i<matches.length;i++){ const st=matches[i].end; const en=(i+1<matches.length)?matches[i+1].start:s.length; let seg=s.slice(st,en).trim().replace(/^[;,:-]\s*/,"").replace(/[;,\s]+$/,""); items.push(seg); }
+    return {intro, start:matches[0].num, items};
+  }
+  function run(){
+    document.querySelectorAll('.article-content').forEach(node=>{
+      if(node.querySelector('ol')) return;
+      const txt=node.textContent.replace(/\s+/g,' ').trim();
+      const res=extractEnumeration(txt); if(!res) return;
+      const frag=document.createElement('div'); if(res.intro){ const p=document.createElement('p'); p.textContent=res.intro; frag.appendChild(p); }
+      const ol=document.createElement('ol'); if(res.start!==1) ol.setAttribute('start', String(res.start));
+      res.items.forEach(it=>{ const li=document.createElement('li'); li.textContent=it; ol.appendChild(li); });
+      frag.appendChild(ol); node.innerHTML=frag.innerHTML;
+    });
+  }
+  window.addEventListener('DOMContentLoaded', ()=>setTimeout(run,60));
+  window.addEventListener('reflowArticles', run);
+})();
+</script>
+
+<script>initSearchFeature();</script>
+
+<style>
+/* Floating TOC */
+#tocFloatBtn{
+  position:fixed; right:14px; bottom:90px; width:46px; height:46px;
+  border-radius:50%; border:none; background:#355e3b; color:#fff;
+  display:grid; place-items:center; box-shadow:0 10px 24px rgba(0,0,0,.25); z-index:1100;
+}
+#tocPanel{
+  position:fixed; top:0; right:0; height:100%; width:86%; max-width:420px;
+  background:#fff; border-left:1px solid #eee; box-shadow:-16px 0 35px rgba(0,0,0,.2);
+  transform:translateX(100%); transition:transform .25s ease; z-index:1200; overflow:auto;
+}
+#tocOverlay{position:fixed; inset:0; background:rgba(0,0,0,.28); backdrop-filter:blur(2px); display:none; z-index:1190}
+#tocPanel.open{ transform:none }
+#tocOverlay.show{ display:block }
+#tocPanel header{position:sticky; top:0; background:#fff; padding:12px 14px; border-bottom:1px solid #eee}
+#tocPanel h3{margin:0; color:#355e3b}
+#tocPanel .toc-list{padding:12px 14px}
+#tocPanel .toc-list a{display:block; padding:6px 0; color:#2c4d37; text-decoration:none}
+#tocPanel .toc-sub{margin-left:10px; border-left:2px solid #f0f0f0; padding-left:8px}
+
+/* Voice bar */
+#voiceBar{
+  position:fixed; left:50%; transform:translateX(-50%);
+  bottom:14px; background:#2c4d37; color:#fff; z-index:1150;
+  border-radius:22px; padding:8px 12px; display:flex; gap:10px; align-items:center;
+  box-shadow:0 12px 28px rgba(0,0,0,.3)
+}
+#voiceBar button{
+  width:34px; height:34px; border-radius:10px; border:none; background:#fff; color:#2c4d37;
+  display:grid; place-items:center; cursor:pointer
+}
+#voiceBar .now{font-size:12px; max-width:52vw; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:#e9e7e3}
+.reading{ outline:2px solid #b89b4f; outline-offset:2px; border-left-color:#b89b4f !important }
+
+/* Fullscreen overlay */
+#fsOverlay{ position:fixed; inset:0; background:#fff; z-index:1300; display:none; }
+#fsOverlay.show{ display:block }
+#fsHeader{ position:sticky; top:0; background:#fff; padding:10px 14px; border-bottom:1px solid #eee; display:flex; align-items:center; gap:10px }
+#fsHeader .ttl{ font-weight:700; color:#294736; flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
+#fsHeader button{ width:36px; height:36px; border-radius:10px; border:1px solid #e7e1d7; background:#fff; }
+#fsBody{ padding:14px; height:calc(100% - 58px); overflow:auto }
+#fsBody .article-content{ font-size:1.02rem }
+#fsNavPrev,#fsNavNext{
+  position:fixed; top:50%; transform:translateY(-50%);
+  width:42px; height:42px; border-radius:50%; border:none; background:#355e3b; color:#fff;
+  display:grid; place-items:center; z-index:1310; opacity:.85
+}
+#fsNavPrev{ left:10px } #fsNavNext{ right:10px }
+
+/* Fullscreen open button on each article */
+.article .open-fs{
+  float:right; margin-top:-6px; margin-right:-4px;
+  width:34px; height:34px; border:1px solid #e7e1d7; background:#fff; border-radius:10px; cursor:pointer;
+}
+@media (max-width:640px){
+  #tocFloatBtn{ bottom:76px }
+  #voiceBar{ bottom:10px; transform:translateX(-50%) scale(.98) }
+}
+</style>
+
+<!-- Floating TOC button + panel -->
+<button id="tocFloatBtn" title="Sommaire"><i class="fas fa-list"></i></button>
 <div id="tocOverlay"></div>
 <aside id="tocPanel">
-  <header>
-    <h3><i class="fa-solid fa-scale-balanced"></i> Sommaire</h3>
-  </header>
+  <header><h3>Sommaire</h3></header>
   <div class="toc-list" id="tocList"></div>
 </aside>
 
+<!-- Voice control bar -->
 <div id="voiceBar" role="region" aria-label="Lecteur vocal">
   <button id="vPrev" title="Article précédent"><i class="fas fa-backward"></i></button>
   <button id="vPlay" title="Lire / Reprendre"><i class="fas fa-play"></i></button>
@@ -1268,211 +1639,149 @@ footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c8c4f;font-
   <span class="now" id="vNow">—</span>
 </div>
 
+<!-- Fullscreen overlay -->
 <div id="fsOverlay">
   <div id="fsHeader">
     <button id="fsClose" title="Fermer"><i class="fas fa-xmark"></i></button>
     <div class="ttl" id="fsTitle"></div>
     <button id="fsPlay" title="Lecture"><i class="fas fa-play"></i></button>
   </div>
-  <div id="fsBody">
-    <article class="article">
-      <div class="article-content" id="fsContent"></div>
-    </article>
-  </div>
-  <button id="fsNavPrev" title="Précédent"><i class="fas a-chevron-left"></i></button>
+  <div id="fsBody"><article class="article"><div class="article-content" id="fsContent"></div></article></div>
+  <button id="fsNavPrev" title="Précédent"><i class="fas fa-chevron-left"></i></button>
   <button id="fsNavNext" title="Suivant"><i class="fas fa-chevron-right"></i></button>
 </div>
 
 <script>
-// Fonction pour initialiser la fonctionnalité de recherche
-function initSearchFeature() {
-    const searchBtn = document.createElement('button');
-    searchBtn.className = 'btn';
-    searchBtn.id = 'searchBtn';
-    searchBtn.title = 'Rechercher';
-    searchBtn.innerHTML = '<i class="fas fa-search"></i>';
-    document.querySelector('.control-buttons').appendChild(searchBtn);
-    
-    const searchInterface = document.createElement('div');
-    searchInterface.id = 'searchInterface';
-    searchInterface.style.cssText = `
-        position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
-        width: calc(100% - 40px); max-width: 550px; background: #fff;
-        padding: 10px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        z-index: 1800; display: none; align-items: center; gap: 5px; transition: .25s ease;
-    `;
-    searchInterface.innerHTML = `
-        <input type="text" id="searchInput" placeholder="Rechercher..." style="flex-grow: 1; padding: 8px; border: 1px solid #d6e6d6; border-radius: 5px;">
-        <button id="searchPrevBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-up"></i></button>
-        <button id="searchNextBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-down"></i></button>
-        <span id="searchResultsCount" style="flex-shrink: 0; padding: 0 5px; min-width: 40px; text-align: center;"></span>
-        <button id="closeSearchBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-times"></i></button>
-    `;
-    document.body.appendChild(searchInterface);
-
-    let searchResults = [];
-    let currentSearchIndex = -1;
-    let originalContents = new Map();
-
-    function performSearch() {
-        const searchTerm = document.getElementById('searchInput').value.trim();
-        if (!originalContents.size) {
-            document.querySelectorAll('.article-content, h2, h3').forEach(el => originalContents.set(el, el.innerHTML));
-        }
-        originalContents.forEach((content, el) => el.innerHTML = content);
-        searchResults = [];
-        currentSearchIndex = -1;
-        if (!searchTerm) { updateSearchUI(); return; }
-
-        const regex = new RegExp(searchTerm.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&'), 'gi');
-        originalContents.forEach((content, element) => {
-            element.innerHTML = content.replace(regex, match => `<mark>${match}</mark>`);
-        });
-        searchResults = Array.from(document.querySelectorAll('mark'));
-        if (searchResults.length > 0) navigateResults(true, false);
-        updateSearchUI();
-        window.dispatchEvent(new Event('reflowArticles'));
-    }
-
-    function navigateResults(isNext, shouldWrap = true) {
-        if (!searchResults.length) return;
-        searchResults.forEach(mark => mark.style.backgroundColor = '');
-        if (shouldWrap) {
-            currentSearchIndex = isNext ? (currentSearchIndex + 1) % searchResults.length : (currentSearchIndex - 1 + searchResults.length) % searchResults.length;
-        } else {
-            currentSearchIndex = 0;
-        }
-        const currentMark = searchResults[currentSearchIndex];
-        currentMark.style.backgroundColor = 'var(--accent)';
-        currentMark.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        updateSearchUI();
-    }
-
-    function updateSearchUI() {
-        document.getElementById('searchResultsCount').textContent = searchResults.length > 0 ? `${currentSearchIndex + 1}/${searchResults.length}` : '0/0';
-    }
-    
-    function resetSearch() {
-        originalContents.forEach((content, el) => el.innerHTML = content);
-        originalContents.clear();
-        document.getElementById('searchInput').value = '';
-        searchResults = []; currentSearchIndex = -1;
-        updateSearchUI();
-    }
-
-    searchBtn.addEventListener('click', () => {
-        const isVisible = searchInterface.style.display === 'flex';
-        searchInterface.style.display = isVisible ? 'none' : 'flex';
-        if (isVisible) resetSearch(); else document.getElementById('searchInput').focus();
-    });
-    document.getElementById('searchInput').addEventListener('input', performSearch);
-    document.getElementById('searchNextBtn').addEventListener('click', () => navigateResults(true));
-    document.getElementById('searchPrevBtn').addEventListener('click', () => navigateResults(false));
-    document.getElementById('closeSearchBtn').addEventListener('click', () => {
-        searchInterface.style.display = 'none';
-        resetSearch();
-    });
-}
-
-// Fonction pour transformer les énumérations en listes ordonnées
-(function(){
-  function extractEnumeration(s){
-    const re = /(\d{1,2})(?:\s*°)?(?:\))?(?:\.)?\s+/g; const matches = []; let m;
-    while ((m = re.exec(s))){ const idx=m.index; const prev = idx>0 ? s.charAt(idx-1) : " "; if (/\d/.test(prev)) continue; matches.push({num:parseInt(m[1],10), start:idx, end:re.lastIndex}); }
-    if (matches.length < 2) return null;
-    for (let i=1;i<matches.length;i++){ if (matches[i].num !== matches[i-1].num + 1) return null; }
-    const intro = s.slice(0, matches[0].start).trim().replace(/[:;,\-]\s*$/, ""); const items = [];
-    for (let i=0;i<matches.length;i++){ const st=matches[i].end; const en=(i+1<matches.length)?matches[i+1].start:s.length; let seg = s.slice(st,en).trim().replace(/^[;,:-]\s*/,"").replace(/[;,\s]+$/,""); items.push(seg); }
-    return {intro, start: matches[0].num, items};
-  }
-  function transformNode(node){
-    if (node.querySelector('ol')) return;
-    const plain = node.textContent.replace(/\s+/g,' ').trim(); const res = extractEnumeration(plain); if (!res) return;
-    const frag = document.createElement('div'); if (res.intro){ const p=document.createElement('p'); p.textContent=res.intro; frag.appendChild(p); }
-    const ol=document.createElement('ol'); if (res.start!==1) ol.setAttribute('start', String(res.start));
-    res.items.forEach(it=>{ const li=document.createElement('li'); li.textContent=it; ol.appendChild(li); });
-    frag.appendChild(ol); node.innerHTML=frag.innerHTML;
-  }
-  function run(){ document.querySelectorAll('.article-content').forEach(transformNode); }
-  window.addEventListener('DOMContentLoaded', ()=>setTimeout(run, 60));
-  window.addEventListener('reflowArticles', run);
-})();
-
-// Fonction pour construire la table des matières
 (function(){
   const $ = s=>document.querySelector(s);
   const $$ = s=>Array.from(document.querySelectorAll(s));
+  // ---------- Build TOC ----------
   function buildTOC(){
-    const toc = document.getElementById('tocList'); if(!toc) return; toc.innerHTML='';
+    const toc = $('#tocList'); toc.innerHTML = '';
     $$('.group').forEach((grp, gi)=>{
       const gh = grp.querySelector('h2')?.textContent.trim() || `Groupe ${gi+1}`;
-      const gl = document.createElement('a'); gl.textContent=gh; gl.href='#'; gl.style.fontWeight='700';
-      gl.addEventListener('click', e=>{ e.preventDefault(); grp.scrollIntoView({behavior:'smooth', block:'start'}); hideTOC(); });
-      toc.appendChild(gl);
+      const gLink = document.createElement('a'); gLink.textContent = gh; gLink.href = '#'; gLink.style.fontWeight='700';
+      gLink.addEventListener('click', e=>{ e.preventDefault(); grp.scrollIntoView({behavior:'smooth', block:'start'}); hideTOC(); });
+      toc.appendChild(gLink);
       const sub = document.createElement('div'); sub.className='toc-sub';
       grp.querySelectorAll('.article').forEach((art, ai)=>{
-        const at = art.querySelector('.article-header h3')?.textContent.trim() || `Article ${ai+1}`;
-        const a = document.createElement('a'); a.textContent=at; a.href='#';
+        const at = art.querySelector('h3')?.textContent.trim() || `Article ${ai+1}`;
+        const a = document.createElement('a'); a.textContent = at; a.href = '#';
         a.addEventListener('click', e=>{ e.preventDefault(); art.scrollIntoView({behavior:'smooth', block:'start'}); hideTOC(); });
         sub.appendChild(a);
+        // ensure fullscreen button on each article
         if (!art.querySelector('.open-fs')){
-          const btn = document.createElement('button'); btn.className='open-fs'; btn.innerHTML='<i class="fas fa-maximize"></i>';
-          btn.title='Plein écran'; btn.addEventListener('click', ()=>openFS(artIndex(art))); art.querySelector('.article-header')?.appendChild(btn);
+          const btn = document.createElement('button'); btn.className='open-fs'; btn.innerHTML='<i class="fas fa-expand"></i>';
+          btn.title='Plein écran'; btn.addEventListener('click', ()=>openFS(artIndex(art)));
+          art.prepend(btn);
         }
       });
       toc.appendChild(sub);
     });
   }
-  function showTOC(){ document.getElementById('tocOverlay').classList.add('show'); document.getElementById('tocPanel').classList.add('open'); }
-  function hideTOC(){ document.getElementById('tocOverlay').classList.remove('show'); document.getElementById('tocPanel').classList.remove('open'); }
-  document.addEventListener('DOMContentLoaded', ()=>{
-    const floatBtn = document.getElementById('tocFloatBtn');
-    if (floatBtn) floatBtn.addEventListener('click', showTOC);
-    const overlay = document.getElementById('tocOverlay');
-    if (overlay) overlay.addEventListener('click', hideTOC);
-    const headerBtn = document.getElementById('tocHeaderBtn');
-    if (headerBtn) headerBtn.addEventListener('click', showTOC);
-  });
+  function showTOC(){ $('#tocOverlay').classList.add('show'); $('#tocPanel').classList.add('open'); }
+  function hideTOC(){ $('#tocOverlay').classList.remove('show'); $('#tocPanel').classList.remove('open'); }
+  $('#tocFloatBtn').addEventListener('click', showTOC);
+  $('#tocOverlay').addEventListener('click', hideTOC);
+  buildTOC();
+
+  // ---------- Articles helpers ----------
   const articles = $$('.article');
   function artIndex(el){ return articles.indexOf(el); }
   function getArticle(i){ return articles[Math.max(0, Math.min(articles.length-1, i))]; }
-  function artTitle(i){ const el=getArticle(i); return el? (el.querySelector('.article-header h3')?.textContent.trim()||'') : ''; }
+  function artTitle(i){ const el=getArticle(i); return el? (el.querySelector('h3')?.textContent.trim()||'') : ''; }
   function artText(i){ const el=getArticle(i); return el? (el.querySelector('.article-content')?.innerText.trim()||'') : ''; }
+
+  // ---------- Voice Reader (continuous) ----------
   const synth = window.speechSynthesis;
   let current = 0, utter = null, playing = false, paused = false, inFS=false;
-  function speakIndex(i){ stopSpeak(); current=i; const text=artText(i); if(!text){ nextArticle(); return; }
-    utter = new SpeechSynthesisUtterance(text); utter.lang='fr-FR'; utter.rate=1; utter.pitch=1;
-    utter.onend = ()=>{ if(playing && !paused){ nextArticle(); } };
-    try{ synth.speak(utter);}catch(e){ console.warn(e); }
-    playing=true; paused=false; updateUI(); highlightCurrent(); }
-  function highlightCurrent(){ articles.forEach(a=>a.classList.remove('reading')); const el=getArticle(current); if(el){ el.classList.add('reading'); if(!inFS) el.scrollIntoView({behavior:'smooth', block:'center'}); } document.getElementById('vNow').textContent = artTitle(current) || '—'; }
-  function pauseSpeak(){ if(synth && synth.speaking){ synth.pause(); paused=true; playing=true; } }
-  function resumeSpeak(){ if(synth && paused){ synth.resume(); paused=false; } else { speakIndex(current); } updateUI(); }
-  function stopSpeak(){ if(synth){ try{synth.cancel();}catch(e){} } playing=false; paused=false; updateUI(); }
-  function prevArticle(){ current=Math.max(0,current-1); if(playing){ speakIndex(current);} else {highlightCurrent();} if(inFS) openFS(current); }
-  function nextArticle(){ current=Math.min(articles.length-1,current+1); if(playing){ speakIndex(current);} else {highlightCurrent();} if(inFS) openFS(current); }
-  document.addEventListener('DOMContentLoaded', ()=>{
-    document.getElementById('vPlay').addEventListener('click', ()=>{ if(!playing || paused){ resumeSpeak(); } else { pauseSpeak(); } });
-    document.getElementById('vPause').addEventListener('click', ()=>pauseSpeak());
-    document.getElementById('vStop').addEventListener('click', ()=>{ stopSpeak(); });
-    document.getElementById('vPrev').addEventListener('click', prevArticle);
-    document.getElementById('vNext').addEventListener('click', nextArticle);
-  });
-  function updateUI(){ document.getElementById('vPlay').innerHTML = paused || !playing ? '<i class="fas fa-play"></i>' : '<i class="fas fa-pause"></i>'; }
-  function openFS(i){ inFS=true; current=i; document.getElementById('fsTitle').textContent=artTitle(i); document.getElementById('fsContent').textContent=artText(i); document.getElementById('fsOverlay').classList.add('show'); document.body.style.overflow='hidden'; speakIndex(i); }
-  function closeFS(){ inFS=false; document.getElementById('fsOverlay').classList.remove('show'); document.body.style.overflow=''; }
-  document.addEventListener('DOMContentLoaded', ()=>{
-    document.getElementById('fsClose').addEventListener('click', ()=>{ closeFS(); });
-    document.getElementById('fsPlay').addEventListener('click', ()=>{ if(!playing || paused){ resumeSpeak(); } else { pauseSpeak(); } });
-    document.getElementById('fsNavPrev').addEventListener('click', ()=>{ prevArticle(); });
-    document.getElementById('fsNavNext').addEventListener('click', ()=>{ nextArticle(); });
-    document.querySelectorAll('.article .open-fs').forEach((btn, idx)=> btn.addEventListener('click', ()=>openFS(idx)));
-  });
-  window.addEventListener('DOMContentLoaded', buildTOC);
-})();
 
-// Initialisation de la fonctionnalité de recherche
-document.addEventListener('DOMContentLoaded', initSearchFeature);
+  function speakIndex(i){
+    stopSpeak();
+    current = i;
+    const text = artText(i);
+    if(!text){ nextArticle(); return; }
+    utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'fr-FR';
+    utter.rate = 1; utter.pitch = 1;
+    utter.onend = (e)=>{
+      // Auto-advance when not manually stopped/paused
+      if (playing && !paused) {
+        nextArticle();
+      }
+    };
+    try { synth.speak(utter); } catch(e){ console.warn(e); }
+    playing = true; paused = false;
+    updateUI();
+    highlightCurrent();
+  }
+  function highlightCurrent(){
+    articles.forEach(a=>a.classList.remove('reading'));
+    const el = getArticle(current);
+    if (el){ el.classList.add('reading'); if(!inFS) el.scrollIntoView({behavior:'smooth', block:'center'}); }
+    $('#vNow').textContent = artTitle(current) || '—';
+  }
+  function pauseSpeak(){ if(synth && synth.speaking){ synth.pause(); paused = true; playing = true; } }
+  function resumeSpeak(){ if(synth && paused){ synth.resume(); paused = false; } else { speakIndex(current); } updateUI(); }
+  function stopSpeak(){ if(synth){ try{ synth.cancel(); }catch(e){} } playing=false; paused=false; updateUI(); }
+  function prevArticle(){ current = Math.max(0, current-1); if(playing){ speakIndex(current); } else { highlightCurrent(); } if(inFS) openFS(current); }
+  function nextArticle(){ current = Math.min(articles.length-1, current+1); if(playing){ speakIndex(current); } else { highlightCurrent(); } if(inFS) openFS(current); }
+
+  $('#vPlay').addEventListener('click', ()=>{ if(!playing || paused){ resumeSpeak(); } else { pauseSpeak(); } });
+  $('#vPause').addEventListener('click', ()=>pauseSpeak());
+  $('#vStop').addEventListener('click', ()=>{ stopSpeak(); });
+  $('#vPrev').addEventListener('click', prevArticle);
+  $('#vNext').addEventListener('click', nextArticle);
+
+  function updateUI(){
+    $('#vPlay').innerHTML = paused || !playing ? '<i class="fas fa-play"></i>' : '<i class="fas fa-pause"></i>';
+  }
+
+  // ---------- Fullscreen mode ----------
+  let fsIndex = 0, touchStartX = null;
+  function openFS(i){
+    inFS = true; fsIndex = i;
+    $('#fsTitle').textContent = artTitle(i);
+    $('#fsContent').textContent = artText(i);
+    $('#fsOverlay').classList.add('show');
+    document.body.style.overflow='hidden';
+    // Auto start reading in FS
+    speakIndex(i);
+  }
+  function closeFS(){
+    inFS=false; $('#fsOverlay').classList.remove('show'); document.body.style.overflow='';
+  }
+  $('#fsClose').addEventListener('click', ()=>{ closeFS(); });
+  $('#fsPlay').addEventListener('click', ()=>{ if(!playing || paused){ resumeSpeak(); } else { pauseSpeak(); } });
+  $('#fsNavPrev').addEventListener('click', ()=>{ prevArticle(); });
+  $('#fsNavNext').addEventListener('click', ()=>{ nextArticle(); });
+
+  // Swipe gestures on overlay
+  $('#fsOverlay').addEventListener('touchstart', (e)=>{ touchStartX = e.changedTouches[0].clientX; }, {passive:true});
+  $('#fsOverlay').addEventListener('touchend', (e)=>{
+    if(touchStartX==null) return;
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const TH = 50;
+    if (dx < -TH){ nextArticle(); }
+    else if (dx > TH){ prevArticle(); }
+    touchStartX = null;
+  }, {passive:true});
+
+  // Add fullscreen open buttons to existing articles if missing
+  $$('.article').forEach((art, idx)=>{
+    if(!art.querySelector('.open-fs')){
+      const btn = document.createElement('button'); btn.className='open-fs'; btn.title='Plein écran'; btn.innerHTML='<i class="fas fa-expand"></i>';
+      btn.addEventListener('click', ()=>openFS(idx)); art.prepend(btn);
+    }
+    art.addEventListener('dblclick', ()=>openFS(idx));
+  });
+
+  // Start by highlighting the first article
+  highlightCurrent();
+
+  // Rebuild TOC after dynamic changes (e.g., search)
+  window.addEventListener('reflowArticles', ()=>{ buildTOC(); });
+})();
 </script>
-</body>
-</html>
+
+</body></html>
