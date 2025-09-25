@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html data-theme="light" lang="fr">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0S7XLZ1LS6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-0S7XLZ1LS6');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#0ea5e9">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Classification des Emplois - Fonction Publique CI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+          --primary: #0ea5e9;
+          --secondary: #6366f1;
+          --accent: #f97316;
+          --success: #10b981;
+          --warning: #f59e0b;
+          --background: #f8fafc;
+          --card-bg: #ffffff;
+          --text: #1e293b;
+          --text-muted: #64748b;
+          --border: #e2e8f0;
+          --shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+          --radius: 12px;
+        }
+        
+        [data-theme="dark"] {
+          --primary: #0ea5e9;
+          --secondary: #818cf8;
+          --accent: #fb923c;
+          --success: #34d399;
+          --warning: #fbbf24;
+          --background: #0f172a;
+          --card-bg: #1e293b;
+          --text: #f1f5f9;
+          --text-muted: #94a3b8;
+          --border: #334155;
+          --shadow: 0 4px 6px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        * {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+        }
+        
+        body {
+          font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+          background-color: var(--background);
+          color: var(--text);
+          line-height: 1.6;
+          padding: 0;
+          margin: 0;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .container {
+          max-width: 1400px;
+          margin: 0 auto;
+          padding: 20px;
+        }
+        
+        header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 20px 0;
+          margin-bottom: 20px;
+          border-bottom: 1px solid var(--border);
+        }
+        
+        .logo {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          font-weight: 700;
+          font-size: 1.5rem;
+          color: var(--primary);
+        }
+        
+        .logo i {
+          font-size: 1.8rem;
+        }
+        
+        .nav-buttons {
+          display: flex;
+          gap: 10px;
+          align-items: center;
+        }
+        
+        .btn {
+          padding: 10px 16px;
+          border-radius: var(--radius);
+          border: none;
+          font-weight: 600;
+          cursor: pointer;
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          transition: all 0.2s ease;
+        }
+        
+        .btn-primary {
+          background-color: var(--primary);
+          color: white;
+        }
+        
+        .btn-secondary {
+          background-color: var(--secondary);
+          color: white;
+        }
+        
+        .btn:hover {
+          opacity: 0.9;
+          transform: translateY(-2px);
+        }
+        
+        .compact-search {
+          position: relative;
+          width: 250px;
+          margin-right: 10px;
+        }
+        
+        .compact-search-input {
+          width: 100%;
+          padding: 10px 40px 10px 15px;
+          border-radius: 20px;
+          border: 1px solid var(--border);
+          background-color: var(--card-bg);
+          color: var(--text);
+          font-size: 0.9rem;
+          box-shadow: var(--shadow);
+          transition: all 0.3s ease;
+        }
+        
+        .compact-search-input:focus {
+          outline: none;
+          border-color: var(--primary);
+          width: 300px;
+        }
+        
+        .compact-search-icon {
+          position: absolute;
+          right: 12px;
+          top: 50%;
+          transform: translateY(-50%);
+          color: var(--text-muted);
+          cursor: pointer;
+        }
+        
+        .compact-search-results {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background: var(--card-bg);
+          border-radius: 0 0 var(--radius) var(--radius);
+          box-shadow: var(--shadow);
+          max-height: 300px;
+          overflow-y: auto;
+          z-index: 100;
+          display: none;
+          border: 1px solid var(--border);
+          border-top: none;
+        }
+        
+        .compact-search-results.visible {
+          display: block;
+        }
+        
+        .search-result-item {
+          padding: 12px 16px;
+          border-bottom: 1px solid var(--border);
+          cursor: pointer;
+          transition: background 0.2s ease;
+        }
+        
+        .search-result-item:hover {
+          background: rgba(0, 0, 0, 0.05);
+        }
+        
+        .search-result-item h3 {
+          margin: 0 0 4px 0;
+          font-size: 1rem;
+          color: var(--primary);
+        }
+        
+        .search-result-item p {
+          margin: 0;
+          color: var(--text-muted);
+          font-size: 0.85rem;
+        }
+        
+        .search-result-item small {
+          color: var(--text-muted);
+          font-size: 0.75rem;
+        }
+        
+        .no-results {
+          padding: 16px;
+          text-align: center;
+          color: var(--text-muted);
+        }
+        
+        mark {
+          background-color: #ffeb3b;
+          color: #000;
+          padding: 2px 4px;
+          border-radius: 3px;
+        }
+        
+        .search-preview {
+          margin-top: 8px;
+          font-size: 0.8rem;
+          color: var(--text-muted);
+          line-height: 1.4;
+        }
+        
+        .page-title {
+          text-align: center;
+          margin-bottom: 30px;
+          padding: 20px 0;
+        }
+        
+        .page-title h1 {
+          font-size: 2.2rem;
+          margin-bottom: 10px;
+          color: var(--primary);
+        }
+        
+        .page-title p {
+          font-size: 1.1rem;
+          color: var(--text-muted);
+          max-width: 700px;
+          margin: 0 auto;
+        }
+        
+        /* Styles pour la table de classification */
+        .classification-container {
+          background: var(--card-bg);
+          border-radius: var(--radius);
+          padding: 20px;
+          box-shadow: var(--shadow);
+          border: 1px solid var(--border);
+          margin-bottom: 30px;
+        }
+        
+        .filters {
+          display: flex;
+          gap: 15px;
+          margin-bottom: 20px;
+          flex-wrap: wrap;
+        }
+        
+        .filter-select {
+          padding: 10px 15px;
+          border-radius: var(--radius);
+          border: 1px solid var(--border);
+          background-color: var(--card-bg);
+          color: var(--text);
+          font-size: 0.9rem;
+          min-width: 200px;
+        }
+        
+        .table-container {
+          overflow-x: auto;
+          margin-top: 20px;
+        }
+        
+        .styled-table {
+          width: 100%;
+          border-collapse: collapse;
+          margin: 25px 0;
+          font-size: 0.9rem;
+          box-shadow: var(--shadow);
+          border-radius: var(--radius);
+          overflow: hidden;
+        }
+        
+        .styled-table thead tr {
+          background-color: var(--primary);
+          color: white;
+          text-align: left;
+        }
+        
+        .styled-table th,
+        .styled-table td {
+          padding: 12px 15px;
+          border-bottom: 1px solid var(--border);
+        }
+        
+        .styled-table tbody tr {
+          transition: background 0.2s ease;
+        }
+        
+        .styled-table tbody tr:hover {
+          background-color: rgba(0, 0, 0, 0.03);
+        }
+        
+        .styled-table tbody tr:nth-of-type(even) {
+          background-color: rgba(0, 0, 0, 0.02);
+        }
+        
+        .styled-table tbody tr:nth-of-type(even):hover {
+          background-color: rgba(0, 0, 0, 0.05);
+        }
+        
+        .specialties-list {
+          margin: 0;
+          padding-left: 20px;
+        }
+        
+        .specialties-list li {
+          margin-bottom: 5px;
+          font-size: 0.85rem;
+          color: var(--text-muted);
+        }
+        
+        .family-badge {
+          display: inline-block;
+          padding: 4px 8px;
+          border-radius: 4px;
+          font-size: 0.8rem;
+          font-weight: 600;
+          margin-bottom: 5px;
+        }
+        
+        .grade-badge {
+          display: inline-block;
+          padding: 4px 8px;
+          border-radius: 4px;
+          font-size: 0.8rem;
+          font-weight: 600;
+          color: white;
+        }
+        
+        .grade-A7 { background-color: #8b5cf6; }
+        .grade-A6 { background-color: #6366f1; }
+        .grade-A5 { background-color: #3b82f6; }
+        .grade-A4 { background-color: #0ea5e9; }
+        .grade-A3 { background-color: #06b6d4; }
+        .grade-B3 { background-color: #10b981; }
+        .grade-B1 { background-color: #84cc16; }
+        .grade-C3 { background-color: #f59e0b; }
+        .grade-C2 { background-color: #f97316; }
+        .grade-C1 { background-color: #ef4444; }
+        .grade-D1 { background-color: #dc2626; }
+        
+        footer {
+          text-align: center;
+          padding: 30px 0;
+          margin-top: 50px;
+          border-top: 1px solid var(--border);
+          color: var(--text-muted);
+          font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+          .container {
+            padding: 15px;
+          }
+          
+          .page-title h1 {
+            font-size: 1.8rem;
+          }
+          
+          header {
+            flex-direction: column;
+            gap: 15px;
+            text-align: center;
+          }
+          
+          .nav-buttons {
+            width: 100%;
+            justify-content: center;
+          }
+          
+          .compact-search {
+            width: 100%;
+            margin-right: 0;
+            margin-bottom: 10px;
+          }
+          
+          .compact-search-input:focus {
+            width: 100%;
+          }
+          
+          .filters {
+            flex-direction: column;
+          }
+          
+          .filter-select {
+            min-width: 100%;
+          }
+          
+          .styled-table {
+            font-size: 0.8rem;
+          }
+          
+          .styled-table th,
+          .styled-table td {
+            padding: 8px 10px;
+          }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-scale-balanced"></i>
+                <span>Codes Essentiels</span>
+            </div>
+            <div class="nav-buttons">
+                <div class="compact-search">
+                    <input class="compact-search-input" id="compactSearchInput" placeholder="Rechercher un emploi, spécialité..." type="text"/>
+                    <div class="compact-search-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="compact-search-results" id="compactSearchResults"></div>
+                </div>
+                <button class="btn btn-primary" id="themeToggle">
+                    <i class="fas fa-moon"></i> Thème
+                </button>
+            </div>
+        </header>
+
+        <div class="page-title">
+            <h1>Classification des Emplois et Profils de Carrière</h1>
+            <p>Annexe à la loi N° 2023-892 du 23 Novembre 2023</p>
+        </div>
+        
+        <div class="classification-container">
+            <div class="filters">
+                <select class="filter-select" id="familyFilter">
+                    <option value="all">Toutes les familles d'emplois</option>
+                </select>
+                
+                <select class="filter-select" id="gradeFilter">
+                    <option value="all">Tous les grades</option>
+                </select>
+                
+                <button class="btn btn-secondary" id="resetFilters">
+                    <i class="fas fa-refresh"></i> Réinitialiser
+                </button>
+            </div>
+            
+            <div class="table-container">
+                <table class="styled-table">
+                    <thead>
+                        <tr>
+                            <th>Emploi / Spécialités</th>
+                            <th>Famille d'Emplois</th>
+                            <th>Grade</th>
+                            <th>Recrutement</th>
+                            <th>Promotion</th>
+                        </tr>
+                    </thead>
+                    <tbody id="classification-data">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2025 Porte-documents juridiques - Classification des Emplois de la Fonction Publique</p>
+        </footer>
+    </div>
+
+    <script>
+        // Données des emplois
+       const jobs = [
+        { famille: "ÉDUCATION ET FORMATION", grade: "A7", emploi: "Professeur d'Université", recrutement:"Néant", promotion: "A6+ travaux + inscription sur une liste d'Aptitude du C.A.M.E.S" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A7", emploi: "Professeur de l'Enseignement Supérieur, Technique et Professionnel", recrutement: "Néant", promotion: "A6+ travaux + inscription sur une liste d'Aptitude du C.A.M.E.S" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A7", emploi: "Inspecteur Général", specialites: ["Éducation et Formation", "Enseignement Artistique et Culturel", "Enseignement Technique et Formation Professionnelle", "Jeunesse et sport"], recrutement: "Néant", promotion: "A6 + 6 ans + concours + Formation continue" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A6", emploi: "Maître de Conférences", recrutement: "Néant", promotion: "A5+ travaux + inscription sur une liste d'Aptitude du C.A.M.E.S" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A6", emploi: "Maître de Conférences de l'Enseignement Supérieur, Technique et Professionnel", recrutement: "Néant", promotion: "A5 + travaux + inscription sur une liste d'Aptitude du C.A.M.E.S" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A6", emploi: "Inspecteur en Chef", specialites: ["Éducation et formation", "Enseignement Artistique et culturel", "Enseignement Technique et Formation Professionnelle", "Jeunesse et Sport"], recrutement: "Néant", promotion: "A5+6 ans + Formation continue" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A5", emploi: "Maître Assistant", recrutement: "Néant", promotion: "A4 + travaux + inscription sur une liste d'Aptitude du C.A.M.E.S" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A5", emploi: "Maître Assistant de l'Enseignement supérieur Technique et Professionnel", recrutement: "Néant", promotion: "A4 + travaux + inscription sur une liste d'Aptitude du C.A.M.E.S" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A5", emploi: "Inspecteur Principal", specialites: ["Éducation, Enseignement Préscolaire et Primaire", "Enseignement Artistique et Culturel", "Enseignement Technique et Formation Professionnelle", "Jeunesse et Sport"], recrutement: "Néant", promotion: "A4 +7 ans + concours + formation continue" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A5", emploi: "Professeur Agrégé", specialites: ["Éducation Permanente", "Éducation Physique et Sportive", "Éducation Préscolaire", "Enseignement Général", "Enseignement Technique et Formation Professionnelle", "Sport"], recrutement: "Néant", promotion: "A4 +7 ans + concours + formation continue" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Assistant de l'Enseignement Supérieur", recrutement: "Doctorat + CNRES", promotion: "B3, A3, A4 + Doctorat + CNRES" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Inspecteur Pédagogique", specialites: ["Secondaire","Enseignement Technique et Formation Professionnelle", "CAFOP"], recrutement: "Néant", promotion: "A3 + 3 ans + concours + formation de 2 ans à l'ENS" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Inspecteur d'Education Préscolaire et Primaire", recrutement: "Néant", promotion: "A3 + 3 ans + concours + formation de 2 ans à l'INSFS" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Inspecteur de l'Enseignement Préscolaire et Primaire", recrutement: "Néant", promotion: "A3 + 3 ans + concours + formation de 2 ans à l'ENS" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Professeur de Lycée", specialites: ["Éducation Permanente", "Éducation Physique et Sportive", "Enseignement Général", "Enseignement Technique et Formation Professionnelle", "Sport", "Enseignement Artistique et Culturel"], recrutement: "Maîtrise ou diplôme équivalent + concours + formation de 2 ans", promotion: "A3 + 3 ans + concours + formation de 2 ans" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Professeur de Lycée option Mathématiques", recrutement: "Maîtrise/Master en Mathématiques + concours + formation de 2 ans à l'ENS", promotion: "Professeur de collège option Mathématiques, Professeur de Collège Bivalent option Mathétiques/TICE + 3 ans + concours + formation de 2 ans à l'ENS" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Professeur de Lycée option SVT", recrutement: "Maîtrise/Master en SVT ou Diplôme Equivalent + concours + formation de 2 ans à l'ENS", promotion: "Professeur de collège option SVT + 3 ans + concours + formation de 2 ans à l'ENS" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Professeur de Lycée option Espagnol", recrutement: "Maîtrise/Master en Espagnol + concours + formation de 2 ans à l'ENS", promotion: "Professeur de collège option Espagnol + 3 ans + concours + formation de 2 ans à l'ENS" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Professeur de Lycée option Physique-Chimie", recrutement: "Maîtrise/Master en Physique ou en Chimie + concours + formation de 2 ans", promotion: "Professeur de Collège option Physique-Chimie + 3 ans + concours + formation de 2 ans" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Professeur de Lycée option Histoire-Géographie", recrutement: "Maîtrise/Master en Histoire-Géographie + concours + formation de 2 ans à l'ENS", promotion: "Professeur de collège option Histoire-Géographie + 3 ans + concours + formation de 2 ans à l'ENS" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Professeur de Lycée Philosophie", recrutement: "Maîtrise/Master en Philosophie + concours + formation de 2 ans", promotion: "Professeur de Collège option Philosophie + 3 ans + concours + formation de 2 ans" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Professeur de Lycée option Allemand", recrutement: "Maîtrise/Master en Allemand ou + concours + formation de 2 ans à l'ENS", promotion: "Professeur de collège option Allemand + 3 ans + concours + formation de 2 ans à l'ENS" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Professeur de Lycée option Anglais", recrutement: "Maîtrise/Master en Anglais + concours + formation de 2 ans à l'ENS", promotion: "Professeur de collège option Anglais + 3 ans + concours + formation de 2 ans à l'ENS" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Professeur de Lycée option Francais", recrutement: "Maîtrise/Master en Lettres Modernes + concours + formation de 2 ans", promotion: "Professeur de Collège option Français + 3 ans + concours + formation de 2 ans" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Professeur de Lycée option Espagnol", recrutement: "Maîtrise/Master en Espagnol + concours + formation de 2 ans à l'ENS", promotion: "Professeur de collège option Espagnol + 3 ans + concours + formation de 2 ans à l'ENS" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Professeur de Lycée option EPS", recrutement: "BAC + concours + formation de 5 ans à l'INJS", promotion: "Professeur de Collège option EPS + 3 ans + concours + formation de 2 ans" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Professeur de Lycée option Sport", recrutement: "BAC + concours + formation de 5 ans à l'INJS", promotion: "Professeur de Collège option EPS + 3 ans + concours + formation de 2 ans" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Professeur de Lycée d'Education Permanente", specialites: ["Andragogie","Entrepreneuriat","Gérontologie","Loisir"], recrutement: "BAC + concours + formation de 5 ans à l'INJS", promotion: "Professeur de Collège d'Education Permanente, Conseiller d'Education Permanente + 3 ans + concours + formation de 2 ans à l'INJS" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Professeur de Collège option Mathématiques", recrutement: "Licence/DEUG en Mathématiques + concours + formation de 2 ans à l'ENS", promotion: "B3 du Secteur Education/Formation + LICENCE en Mathématiques + 3 ans + concours + formation de 2 ans à l'ENS" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Professeur de Collège Bivalent option Mathématiques/TICE", recrutement: "Licence/DEUG en Mathématiques + concours + formation de 2 ans à l'ENS", promotion: "B3 du Secteur Education/Formation + LICENCE en Mathématiques + 3 ans + concours + formation de 2 ans à l'ENS" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Professeur de Collège option SVT", recrutement: "licence en SVT ou Diplôme Equivalent + concours + formation de 2 ans à l'ENS", promotion: "B3 du Secteur Education/Formation + LICENCE en SVT + 3 ans + concours + formation de 2 ans à l'ENS" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Professeur de Collège Bivalent option SVT/Physique-Chimie", recrutement: "licence en SVT ou Diplôme Equivalent + concours + formation de 2 ans à l'ENS", promotion: "B3 du Secteur Education/Formation + LICENCE en SVT + 3 ans + concours + formation de 2 ans à l'ENS" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Professeur de Collège option Espagnol", recrutement: "licence en Espagnol + concours + formation de 2 ans à l'ENS", promotion: "B3 du Secteur Education/Formation + LICENCE en Espagnol + 3 ans + concours + formation de 2 ans à l'ENS" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Professeur de Collège option Physique-Chimie", recrutement: "licence en Physique ou en Chimie + concours + formation de 2 ans", promotion: "B3 du Secteur Education/Formation + LICENCE en Physique-Chimie + 3 ans + concours + formation de 2 ans à l'ENS" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Professeur de Collège option Histoire-Géographie", recrutement: "Licence en Histoire-Géographie + concours + formation de 2 ans à l'ENS", promotion: "B3 du Secteur Education/Formation + LICENCE en Histoire ou Géographie + 3 ans + concours + formation de 2 ans à l'ENS" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Professeur de Collège Bivalent option Histoire-Géographie/Français", recrutement: "Maîtrise/Master en Histoire-Géographie + concours + formation de 2 ans à l'ENS", promotion: "B3 du Secteur Education/Formation + LICENCE en Histoire ou Géographie + 3 ans + concours + formation de 2 ans à l'ENS" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Professeur de Collège option Allemand", recrutement: "licence en Allemand ou + concours + formation de 2 ans à l'ENS", promotion: "B3 du Secteur Education/Formation + LICENCE en Allemand + 3 ans + concours + formation de 2 ans à l'ENS" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Professeur de Collège option Anglais", recrutement: "licence en Anglais + concours + formation de 2 ans à l'ENS", promotion: "B3 du Secteur Education/Formation + LICENCE en Anglais + 3 ans + concours + formation de 2 ans à l'ENS" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Professeur de Collège option Francais", recrutement: "licence en Lettres Modernes + concours + formation de 2 ans", promotion: "B3 du Secteur Education/Formation + LICENCE en Lettres Modernes + 3 ans + concours + formation de 2 ans à l'ENS" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Professeur de Collège Bivalent option Francais/EDHC", recrutement: "licence en Lettres Modernes + concours + formation de 2 ans", promotion: "B3 du Secteur Education/Formation + LICENCE en Lettres Modernes + 3 ans + concours + formation de 2 ans à l'ENS" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Professeur de Collège option Espagnol", recrutement: "licence en Espagnol + concours + formation de 2 ans à l'ENS", promotion: "B3 du Secteur Education/Formation + LICENCE en Espagnol + 3 ans + concours + formation de 2 ans à l'ENS" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Professeur de Collège option EPS", recrutement: "BAC + concours + formation de 3 ans à l'INJS", promotion: "Professeur de Collège option EPS + 3 ans + concours + formation de 2 ans à l'INJS" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Professeur de Collège option Sport", recrutement: "BAC + concours + formation de 3 ans à l'INJS", promotion: "Maître d'EPS + 3 ans + concours + formation de 2 ans à l'INJS" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Professeur de Collège d'Education Permanente", specialites: ["Andragogie","Entrepreneuriat","Gérontologie","Loisir"], recrutement: "BAC + concours + formation de 3 ans à l'INJS", promotion: "Professeur de Collège d'Education Permanente + 3 ans + concours + formation de 2 ans à l'INJS" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Educateur", recrutement: "licence/BTS/DEUG/DUT + concours + formation de 2 ans", promotion: "B3 du Secteur Education/Formation + 3 ans + concours + formation de 2 ans à l'ENS" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Professeur de Lycée spécialité Agriculture", recrutement: "Master/Ingénieur Agronome + BT/Bac série C/D + 2 ans d'expérience + concours + Formation CAP/PL à l'IPNETP", promotion: "Professeur de Collège spécialité Agriculture + 3 ans d'ancienneté + concours + Formation CAP/PL (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Professeur de Lycée spécialité Construction Mécanique", recrutement: "Ingénieur/Master en Mécanique + BT/Bac série F1/E/C + 2 ans d'expérience + concours + Formation CAP/PL à l'IPNETP", promotion: "Professeur de Collège spécialité Construction Mécanique + 3 ans d'ancienneté + concours + Formation CAP/PL (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Professeur de Lycée spécialité Droit", recrutement: "Master/Maîtrise en Droit + Bac + concours + Formation CAP/PL à l'IPNETP", promotion: "Professeur de Collège spécialité Droit + 3 ans d'ancienneté + concours + Formation CAP/PL (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Professeur de Lycée spécialité Electronique", recrutement: "Ingénieur/Master en Electronique + Bac série F2/F3/E/C + 2 ans d'expérience + concours + Formation CAP/PL à l'IPNETP", promotion: "Professeur de Collège spécialité Electronique + 3 ans d'ancienneté + concours + Formation CAP/PL (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Professeur de Lycée spécialité Electrotechnique", recrutement: "Ingénieur/Master en Electrotechnique + Bac série F3/E/C/D ou BT + 2 ans d'expérience + concours + Formation CAP/PL à l'IPNETP", promotion: "Professeur de Collège spécialité Electrotechnique + 3 ans d'ancienneté + concours + Formation CAP/PL (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Professeur de Lycée spécialité Élevage", recrutement: "Master/Ingénieur Zootechnicien + BT/Bac série C/D + 2 ans d'expérience + concours + Formation CAP/PL à l'IPNETP", promotion: "Professeur de Collège spécialité Élevage + 3 ans d'ancienneté + concours + Formation CAP/PL (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Professeur de Lycée spécialité Fabrication Mécanique", recrutement: "Ingénieur en Génie Mécanique + Bac série F1/F3/E/C/D + 2 ans d'expérience + concours + Formation CAP/PL à l'IPNETP", promotion: "Professeur de Collège spécialité Fabrication Mécanique + 3 ans d'ancienneté + concours + Formation CAP/PL (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Professeur de Lycée spécialité Génie Alimentaire", recrutement: "Ingénieur/Master en Agroalimentaire + BT/Bac série F7/C/D + 2 ans d'expérience + concours + Formation CAP/PL à l'IPNETP", promotion: "Professeur de Collège spécialité Génie Alimentaire + 3 ans d'ancienneté + concours + Formation CAP/PL (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Professeur de Lycée spécialité Génie Civil option Bâtiment", recrutement: "Ingénieur en BTP + BT/Bac série F4/C/D + 2 ans d'expérience + concours + Formation CAP/PL à l'IPNETP", promotion: "Professeur de Collège spécialité Génie Civil option Bâtiment + 3 ans d'ancienneté + concours + Formation CAP/PL (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Professeur de Lycée spécialité Génie Civil option Topographie", recrutement: "Ingénieur Géomètre-Topographe + BT/Bac série F4/C/E + 2 ans d'expérience + concours + Formation CAP/PL à l'IPNETP", promotion: "Professeur de Collège spécialité Génie Civil option Topographie + 3 ans d'ancienneté + concours + Formation CAP/PL (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Professeur de Lycée spécialité Génie Industriel option Froid", recrutement: "Ingénieur/Master en Génie Industriel + BT/Bac série C/D/E/F + 2 ans d'expérience + concours + Formation CAP/PL à l'IPNETP", promotion: "Professeur de Collège spécialité Génie Industriel option Froid + 3 ans d'ancienneté + concours + Formation CAP/PL (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Professeur de Lycée spécialité Informatique de Gestion", recrutement: "Ingénieur/Master en Informatique + Bac série C/D/E/F + 2 ans d'expérience + concours + Formation CAP/PL à l'IPNETP", promotion: "Professeur de Collège spécialité Informatique de Gestion + 3 ans d'ancienneté + concours + Formation CAP/PL (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Professeur de Lycée spécialité Mathématiques Appliquées à la Gestion Financière", recrutement: "Master en Sciences Économiques/MIAGE + Bac série A1/B/C/D/E/G2 + concours + Formation CAP/PL à l'IPNETP", promotion: "Professeur de Collège spécialité Mathématiques Appliquées aux Sciences et Techniques Comptables et Financières + 3 ans d'ancienneté + concours + Formation CAP/PL (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Professeur de Lycée spécialité Mathématiques Appliquées aux Sciences et Techniques Industrielles", recrutement: "Master/Ingénieur en Mathématiques Industrielles + Bac série C/D/E/F + concours + Formation CAP/PL à l'IPNETP", promotion: "Professeur de Collège spécialité Mathématiques Appliquées aux Sciences et Techniques Industrielles + 3 ans d'ancienneté + concours + Formation CAP/PL (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A4", emploi: "Professeur de Lycée spécialité Physiques Appliquées", recrutement: "Master/Ingénieur en Electrotechnique/Électronique + Bac série C/D/E/F + concours + Formation CAP/PL à l'IPNETP", promotion: "Professeur de Collège spécialité Physiques Appliquées + 3 ans d'ancienneté + concours + Formation CAP/PL (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A3", emploi: "Professeur de CAFOP", specialites: ["Mathématiques", "Formation scientifique", "Français", "Initiation Audiovisuel", "Psychopédagogie", "Histoire-Géographie", "Activité d'Expression et de Création"], recrutement: "Licence/DEUG ou diplôme équivalent + concours + 2 ans de formation", promotion: "B3 + 3 ans d'ancienneté + concours + formation de 2 ans" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A3", emploi: "Professeur de CAFOP", specialites: ["Mathématiques", "Formation scientifique", "Français", "Initiation Audiovisuel", "Psychopédagogie", "Histoire-Géographie", "Activité d'Expression et de Création"], recrutement: "Licence/DEUG ou diplôme équivalent + concours + 2 ans de formation", promotion: "B3 + 3 ans d'ancienneté + concours + formation de 2 ans" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A3", emploi: "Professeur de CAFOP", specialites: ["Mathématiques", "Formation scientifique", "Français", "Initiation Audiovisuel", "Psychopédagogie", "Histoire-Géographie", "Activité d'Expression et de Création"], recrutement: "Licence/DEUG ou diplôme équivalent + concours + 2 ans de formation", promotion: "B3 + 3 ans d'ancienneté + concours + formation de 2 ans" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A3", emploi: "Professeur de Collège", specialites: ["Éducation physique et sportive", "Éducation Permanente", "Enseignement Artistique et Culturel", "Enseignement Général", "Enseignement Technique et Formation Professionnelle"], recrutement: "Licence/DEUG ou diplôme équivalent + concours + 2 ans de formation", promotion: "B3 + 3 ans d'ancienneté + concours + formation de 2 ans" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A3", emploi: "Conseiller", specialites: ["Animation Sportive", "Éducation Permanente", "Éducation Préscolaire et Primaire", "Éducation physique et Sportive", "Extra-scolaire", "Pédagogique du Préscolaire et du Primaire"], recrutement: "Licence/DEUG ou diplôme équivalent + concours + 2 ans de formation", promotion: "B3 + 3 ans d'ancienneté + concours + formation de 2 ans" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A3", emploi: "Professeur de Collège spécialité Construction Mécanique", recrutement: "Diplôme d'ingénieur/Licence pro en Mécanique + BT/Bac série C/E/F1 + 2 ans d'expérience + concours + Formation CAP/PC", promotion: "Instructeur IFPB spécialité Construction Métallique + 3 ans d'ancienneté + concours + Formation CAP/PC (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A3", emploi: "Professeur de Collège spécialité Electricité Bâtiment", recrutement: "BTS/DUT/Ingénieur en Electrotechnique + BT/Bac série F3/E/F1 + 2 ans d'expérience + concours + Formation CAP/PC", promotion: "Instructeur IFPB spécialité Electricité Bâtiment/Équipement + 3 ans d'ancienneté + concours + Formation CAP/PC (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A3", emploi: "Professeur de Collège spécialité Electronique", recrutement: "BTS/DUT/Ingénieur en Electronique + BT/Bac série F2/F3/E + 2 ans d'expérience + concours + Formation CAP/PC", promotion: "Instructeur IFPB spécialité Électricité d'Équipement (si applicable) + 3 ans d'ancienneté + concours + Formation CAP/PC (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A3", emploi: "Professeur de Collège spécialité Electrotechnique", recrutement: "BTS/DUT/Ingénieur en Electrotechnique + BT/Bac série F3/E + 2 ans d'expérience + concours + Formation CAP/PC", promotion: "Instructeur IFPB spécialité Electricité Bâtiment/Équipement + 3 ans d'ancienneté + concours + Formation CAP/PC (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A3", emploi: "Professeur de Collège spécialité Elevage", recrutement: "Licence pro/BTS en Elevage + BT/Bac Production Animale + 2 ans d'expérience + concours + Formation CAP/PC", promotion: "Instructeur IFPB spécialité Machiniste Agricole (si applicable) + 3 ans d'ancienneté + concours + Formation CAP/PC (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A3", emploi: "Professeur de Collège spécialité Entrepreneuriat/EDHC", recrutement: "Master/Licence en Gestion + Bac série A1/C/D/E/G2 + 1 an d'expérience + concours + Formation CAP/PC", promotion: "Instructeur IFPB spécialité Vie Familiale et Sociale (si applicable) + 3 ans d'ancienneté + concours + Formation CAP/PC (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A3", emploi: "Professeur de Collège spécialité Fabrication Mécanique", recrutement: "BTS/DUT/Ingénieur en Mécanique + BT/Bac série F1/F3/E + 2 ans d'expérience + concours + Formation CAP/PC", promotion: "Instructeur IFPB spécialité Mécanique Auto-Moto/Automobile + 3 ans d'ancienneté + concours + Formation CAP/PC (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A3", emploi: "Professeur de Collège spécialité Génie Alimentaire", recrutement: "BTS/DUT/Master en Génie Alimentaire + BT/Bac série C/D/F7 + 2 ans d'expérience + concours + Formation CAP/PC", promotion: "Instructeur IFPB spécialité Boulangerie-Pâtisserie (si applicable) + 3 ans d'ancienneté + concours + Formation CAP/PC (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A3", emploi: "Professeur de Collège spécialité Génie Civil option Bâtiment", recrutement: "BTS/DUT en Génie Civil + BT/Bac série C/D/F4 + 2 ans d'expérience + concours + Formation CAP/PC", promotion: "Instructeur IFPB spécialité Maçonnerie + 3 ans d'ancienneté + concours + Formation CAP/PC (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A3", emploi: "Professeur de Collège spécialité Génie Civil option Topographie", recrutement: "BTS/DUT en Topographie + BT/Bac série C/D/E/F4 + 2 ans d'expérience + concours + Formation CAP/PC", promotion: "Instructeur IFPB spécialité Construction Métallique (si applicable) + 3 ans d'ancienneté + concours + Formation CAP/PC (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A3", emploi: "Professeur de Collège spécialité Génie Industriel option Froid", recrutement: "BTS/DUT en Génie Industriel + BT/Bac série C/E/F1/F3 + 2 ans d'expérience + concours + Formation CAP/PC", promotion: "Instructeur IFPB spécialité Conducteur d'Engins (si applicable) + 3 ans d'ancienneté + concours + Formation CAP/PC (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A3", emploi: "Professeur de Collège spécialité Imprimerie", recrutement: "BTS/DUT en Imprimerie + BT/Bac série E/F1/F2/F3 + 2 ans d'expérience + concours + Formation CAP/PC", promotion: "Instructeur IFPB spécialité Peinture Bâtiment (si applicable) + 3 ans d'ancienneté + concours + Formation CAP/PC (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A3", emploi: "Professeur de Collège spécialité Informatique de Gestion", recrutement: "BTS/DUT/Licence en Informatique + Bac série C/D/E/F + 2 ans d'expérience + concours + Formation CAP/PC", promotion: "Instructeur IFPB spécialité Techniques Administratives (si applicable) + 3 ans d'ancienneté + concours + Formation CAP/PC (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A3", emploi: "Professeur de Collège spécialité Maintenance Machines Agricoles", recrutement: "BTS/DUT en Matériels Agricoles + BT/Bac série E/F1 + 2 ans d'expérience + concours + Formation CAP/PC", promotion: "Instructeur IFPB spécialité Machiniste Agricole + 3 ans d'ancienneté + concours + Formation CAP/PC (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A3", emploi: "Professeur de Collège spécialité Maintenance Véhicules et Engins", recrutement: "BTS/DUT en Maintenance + BT/Bac série C/E/F1 + 2 ans d'expérience + concours + Formation CAP/PC", promotion: "Instructeur IFPB spécialité Mécanique Auto-Moto/Automobile + 3 ans d'ancienneté + concours + Formation CAP/PC (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A3", emploi: "Professeur de Collège spécialité Mathématiques Appliquées aux Sciences et Techniques Financières", recrutement: "Licence/Master en Finance ou MIAGE + Bac série A1/B/C/D/E/G2 + concours + Formation CAP/PC", promotion: "Instructeur IFPB spécialité Entrepreneuriat (si applicable) + 3 ans d'ancienneté + concours + Formation CAP/PC (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A3", emploi: "Professeur de Collège spécialité Navigation", recrutement: "Licence/Brevet Maritime + BT/Bac série C/D/E/F + 2 ans d'expérience + concours + Formation CAP/PC", promotion: "Instructeur IFPB spécialité Conducteur d'Engins (si applicable) + 3 ans d'ancienneté + concours + Formation CAP/PC (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A3", emploi: "Professeur de Collège spécialité Physiques Appliquées", recrutement: "Licence/BTS en Electrotechnique + Bac série F1/F3/E + 2 ans d'expérience + concours + Formation CAP/PC", promotion: "Instructeur IFPB spécialité Électricité Bâtiment/Équipement + 3 ans d'ancienneté + concours + Formation CAP/PC (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A3", emploi: "Professeur de Collège spécialité Techniques Administratives et Bureautiques", recrutement: "BTS/DUT en Secrétariat + BT/Bac série A/G1 + 2 ans d'expérience + concours + Formation CAP/PC", promotion: "Instructeur IFPB spécialité Vie Familiale et Sociale + 3 ans d'ancienneté + concours + Formation CAP/PC (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A3", emploi: "Professeur de Collège spécialité Techniques de Pêche", recrutement: "BTS/DUT en Pêche-Aquaculture + BT/Bac + 2 ans d'expérience + concours + Formation CAP/PC", promotion: "Instructeur IFPB spécialité Conducteur d'Engins (si applicable) + 3 ans d'ancienneté + concours + Formation CAP/PC (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "A3", emploi: "Professeur de Collège spécialité Transport Logistique Transit", recrutement: "BTS/DUT en Transport Logistique + BT/Bac + 2 ans d'expérience + concours + Formation CAP/PC", promotion: "Instructeur IFPB spécialité Conducteur d'Engins + 3 ans d'ancienneté + concours + Formation CAP/PC (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "B3", emploi: "Instituteur", recrutement: "BAC + concours + 3 ans de Formation au CAFOP", promotion: "Instituteur-Adjoint + 3 ans + concours + cycle de formation spécifique" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "B3", emploi: "Instructeur de Formation Professionnelle de Base spécialité Boulangerie-Pâtisserie", recrutement: "BT option Boulangerie-Pâtisserie + BEPC/CAP + 2 ans d'expérience + concours + Formation CAP/IFPB à l'IPNETP", promotion: "Instructeur Adjoint IAFPB spécialité Boulangerie-Pâtisserie + 3 ans d'ancienneté + concours + Formation CAP/IFPB (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "B3", emploi: "Instructeur de Formation Professionnelle de Base spécialité Conducteur d'Engins de Travaux Publics", recrutement: "BT option Maintenance Véhicules/Mécanique Auto + Permis toutes catégories + BEPC + 2 ans d'expérience + concours + Formation CAP/IFPB à l'IPNETP", promotion: "Instructeur Adjoint IAFPB spécialité Conducteur d'Engins + 3 ans d'ancienneté + concours + Formation CAP/IFPB (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "B3", emploi: "Instructeur de Formation Professionnelle de Base spécialité Construction Métallique", recrutement: "BT option Construction Métallique/Chaudronnerie + BEPC/CAP + 2 ans d'expérience + concours + Formation CAP/IFPB à l'IPNETP", promotion: "Instructeur Adjoint IAFPB spécialité Construction Métallique + 3 ans d'ancienneté + concours + Formation CAP/IFPB (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "B3", emploi: "Instructeur de Formation Professionnelle de Base spécialité Electricité Bâtiment", recrutement: "BT option Electricité Bâtiment/Électrotechnique + BEPC + 2 ans d'expérience + concours + Formation CAP/IFPB à l'IPNETP", promotion: "Instructeur Adjoint IAFPB spécialité Electricité Bâtiment + 3 ans d'ancienneté + concours + Formation CAP/IFPB (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "B3", emploi: "Instructeur de Formation Professionnelle de Base spécialité Electricité d'Équipement", recrutement: "BT option Électrotechnique + BEPC + 2 ans d'expérience + concours + Formation CAP/IFPB à l'IPNETP", promotion: "Instructeur Adjoint IAFPB spécialité Electricité d'Équipement + 3 ans d'ancienneté + concours + Formation CAP/IFPB (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "B3", emploi: "Instructeur de Formation Professionnelle de Base spécialité Installation Sanitaire", recrutement: "BT option Installation Sanitaire + BEPC/CAP + 2 ans d'expérience + concours + Formation CAP/IFPB à l'IPNETP", promotion: "Instructeur Adjoint IAFPB spécialité Installation Sanitaire + 3 ans d'ancienneté + concours + Formation CAP/IFPB (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "B3", emploi: "Instructeur de Formation Professionnelle de Base spécialité Maçonnerie", recrutement: "BT option Génie Civil/Maçonnerie + BEPC + 2 ans d'expérience + concours + Formation CAP/IFPB à l'IPNETP", promotion: "Instructeur Adjoint IAFPB spécialité Maçonnerie + 3 ans d'ancienneté + concours + Formation CAP/IFPB (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "B3", emploi: "Instructeur de Formation Professionnelle de Base spécialité Mécanique Auto-Moto", recrutement: "BT option Mécanique Auto-Moto + BEPC + 2 ans d'expérience + concours + Formation CAP/IFPB à l'IPNETP", promotion: "Instructeur Adjoint IAFPB spécialité Mécanique Auto-Moto + 3 ans d'ancienneté + concours + Formation CAP/IFPB (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "B3", emploi: "Instructeur de Formation Professionnelle de Base spécialité Mécanique Automobile", recrutement: "BT option Mécanique Auto + Permis toutes catégories + BEPC/CAP + 2 ans d'expérience + concours + Formation CAP/IFPB à l'IPNETP", promotion: "Instructeur Adjoint IAFPB spécialité Mécanique Automobile + 3 ans d'ancienneté + concours + Formation CAP/IFPB (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "B3", emploi: "Instructeur de Formation Professionnelle de Base spécialité Menuiserie Aluminium", recrutement: "BT option Menuiserie Aluminium + BEPC/CAP + 2 ans d'expérience + concours + Formation CAP/IFPB à l'IPNETP", promotion: "Instructeur Adjoint IAFPB spécialité Menuiserie Aluminium + 3 ans d'ancienneté + concours + Formation CAP/IFPB (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "B3", emploi: "Instructeur de Formation Professionnelle de Base spécialité Peinture Bâtiment Staff", recrutement: "BT option Peinture Bâtiment + BEPC/CAP + 2 ans d'expérience + concours + Formation CAP/IFPB à l'IPNETP", promotion: "Instructeur Adjoint IAFPB spécialité Peinture Bâtiment + 3 ans d'ancienneté + concours + Formation CAP/IFPB (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "B3", emploi: "Instructeur de Formation Professionnelle de Base spécialité Vie Familiale et Sociale", recrutement: "BT option Science Médico-Sociale + BEPC/CAP + 2 ans d'expérience + concours + Formation CAP/IFPB à l'IPNETP", promotion: "Instructeur Adjoint IAFPB spécialité Vie Familiale et Sociale + 3 ans d'ancienneté + concours + Formation CAP/IFPB (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "B3", emploi: "Instructeur de Formation Professionnelle de Base spécialité Agroalimentaire", recrutement: "BT option Agroalimentaire + BEPC/CAP + 2 ans d'expérience + concours + Formation CAP/IFPB à l'IPNETP", promotion: "Instructeur Adjoint IAFPB spécialité Agroalimentaire + 3 ans d'ancienneté + concours + Formation CAP/IFPB (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "B3", emploi: "Instructeur de Formation Professionnelle de Base spécialité Chaudronnerie-Soudure", recrutement: "BT option Chaudronnerie-Soudure + BEPC/CAP + 2 ans d'expérience + concours + Formation CAP/IFPB à l'IPNETP", promotion: "Instructeur Adjoint IAFPB spécialité Chaudronnerie-Soudure + 3 ans d'ancienneté + concours + Formation CAP/IFPB (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "B3", emploi: "Instructeur de Formation Professionnelle de Base spécialité Maintenance Industrielle", recrutement: "BT option Maintenance Industrielle + BEPC/CAP + 2 ans d'expérience + concours + Formation CAP/IFPB à l'IPNETP", promotion: "Instructeur Adjoint IAFPB spécialité Maintenance Industrielle + 3 ans d'ancienneté + concours + Formation CAP/IFPB (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "B3", emploi: "Instructeur de Formation Professionnelle de Base spécialité Plomberie Sanitaire", recrutement: "BT option Plomberie Sanitaire + BEPC/CAP + 2 ans d'expérience + concours + Formation CAP/IFPB à l'IPNETP", promotion: "Instructeur Adjoint IAFPB spécialité Plomberie Sanitaire + 3 ans d'ancienneté + concours + Formation CAP/IFPB (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "B3", emploi: "Instructeur de Formation Professionnelle de Base spécialité Réfrigération-Climatisation", recrutement: "BT option Froid-Climatisation + BEPC/CAP + 2 ans d'expérience + concours + Formation CAP/IFPB à l'IPNETP", promotion: "Instructeur Adjoint IAFPB spécialité Réfrigération-Climatisation + 3 ans d'ancienneté + concours + Formation CAP/IFPB (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "B3", emploi: "Instructeur de Formation Professionnelle de Base spécialité Techniques de Soudage", recrutement: "BT option Soudage + BEPC/CAP + 2 ans d'expérience + concours + Formation CAP/IFPB à l'IPNETP", promotion: "Instructeur Adjoint IAFPB spécialité Techniques de Soudage + 3 ans d'ancienneté + concours + Formation CAP/IFPB (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "B3", emploi: "Instructeur de Formation Professionnelle de Base spécialité Textile-Habillement", recrutement: "BT option Textile-Habillement + BEPC/CAP + 2 ans d'expérience + concours + Formation CAP/IFPB à l'IPNETP", promotion: "Instructeur Adjoint IAFPB spécialité Textile-Habillement + 3 ans d'ancienneté + concours + Formation CAP/IFPB (2 ans) à l'IPNETP" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "C3", emploi: "Instructeur Adjoint de Formation Professionnelle de Base spécialité Boulangerie-Pâtisserie", recrutement: "CAP/BT Boulangerie-Pâtisserie + BEPC + 3 ans d'expérience + concours + Formation CAP/IAFPB à l'IPNETP", promotion: "néant" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "C3", emploi: "Instructeur Adjoint de Formation Professionnelle de Base spécialité Coiffure", recrutement: "CAP Coiffure + BEPC + 3 ans d'expérience + concours + Formation CAP/IAFPB à l'IPNETP", promotion: "néant" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "C3", emploi: "Instructeur Adjoint de Formation Professionnelle de Base spécialité Construction Métallique", recrutement: "CAP Construction Métallique + BEPC + 3 ans d'expérience + concours + Formation CAP/IAFPB à l'IPNETP", promotion: "néant" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "C3", emploi: "Instructeur Adjoint de Formation Professionnelle de Base spécialité Coupe-Couture", recrutement: "CAP Coupe-Couture + BEPC + 3 ans d'expérience + concours + Formation CAP/IAFPB à l'IPNETP", promotion: "néant" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "C3", emploi: "Instructeur Adjoint de Formation Professionnelle de Base spécialité Esthétique", recrutement: "CAP Esthétique + BEPC + 3 ans d'expérience + concours + Formation CAP/IAFPB à l'IPNETP", promotion: "néant" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "C3", emploi: "Instructeur Adjoint de Formation Professionnelle de Base spécialité Fabrication Mécanique", recrutement: "CAP Mécanique/BT Fabrication Mécanique + BEPC + 3 ans d'expérience + concours + Formation CAP/IAFPB à l'IPNETP", promotion: "néant" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "C3", emploi: "Instructeur Adjoint de Formation Professionnelle de Base spécialité Installation Sanitaire", recrutement: "CAP Plomberie/BT Installation Sanitaire + BEPC + 3 ans d'expérience + concours + Formation CAP/IAFPB à l'IPNETP", promotion: "néant" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "C3", emploi: "Instructeur Adjoint de Formation Professionnelle de Base spécialité Machiniste Agricole", recrutement: "CAP Machines Agricoles/BT Maintenance Agricole + BEPC + 3 ans d'expérience + concours + Formation CAP/IAFPB à l'IPNETP", promotion: "néant" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "C3", emploi: "Instituteur-Adjoint", recrutement: "BEPC ou diplôme équivalent + concours + 3 ans de formation au CAFOP", promotion: "Néant" },
+        { famille: "ÉDUCATION ET FORMATION", grade: "C3", emploi: "Maître-Adjoint d'EPS", recrutement: "BEPC ou diplôme équivalent + concours + 3 ans de Formation à l'INJS", promotion: "Néant" },
+ 
+        // SCIENTIFIQUES ET TECHNIQUES
+        { famille: "SCIENTIFIQUES ET TECHNIQUES", grade: "A7", emploi: "Directeur de Recherches", recrutement: "Néant", promotion: "A6+ Travaux + inscription sur une liste d'Aptitude du C.A.M.E.S" },
+        { famille: "SCIENTIFIQUES ET TECHNIQUES", grade: "A7", emploi: "Ingénieur Général", recrutement: "Néant", promotion: "A6 + 6 ans + concours + Formation continue" },
+        { famille: "SCIENTIFIQUES ET TECHNIQUES", grade: "A7", emploi: "Architecte d'État", recrutement: "Néant", promotion: "A6 + 6 ans + concours + Formation continue" },
+        { famille: "SCIENTIFIQUES ET TECHNIQUES", grade: "A7", emploi: "Médecin Général", recrutement: "Néant", promotion: "A6 + 6 ans + concours + Formation continue" },
+        { famille: "SCIENTIFIQUES ET TECHNIQUES", grade: "A7", emploi: "Pharmacien Général", recrutement: "Néant", promotion: "A6 + 6 ans + concours + Formation continue" },
+        { famille: "SCIENTIFIQUES ET TECHNIQUES", grade: "A7", emploi: "Pharmacien Général Spécialiste", recrutement: "Néant", promotion: "A6+6 ans + DES ou équivalent + concours + Formation continue" },
+        { famille: "SCIENTIFIQUES ET TECHNIQUES", grade: "A7", emploi: "Médecin Général Spécialiste", recrutement: "Néant", promotion: "A6+6 ans + DES ou équivalent + concours + Formation continue" },
+        { famille: "SCIENTIFIQUES ET TECHNIQUES", grade: "A7", emploi: "Ingénieur Général des Services de Santé", recrutement: "Néant", promotion: "A6 + 6 ans + concours + Formation continue" },
+        { famille: "SCIENTIFIQUES ET TECHNIQUES", grade: "A6", emploi: "Maître de Recherches", recrutement: "Néant", promotion: "A5 + travaux + inscription sur une liste d'Aptitude du C.A.M.E.S" },
+        { famille: "SCIENTIFIQUES ET TECHNIQUES", grade: "A6", emploi: "Ingénieur en chef", recrutement: "Néant", promotion: "A5 + 6 ans + concours + formation continue" },
+        { famille: "SCIENTIFIQUES ET TECHNIQUES", grade: "A6", emploi: "Médecin en Chef", recrutement: "Néant", promotion: "A5+6 ans + concours + formation continue" },
+        { famille: "SCIENTIFIQUES ET TECHNIQUES", grade: "A6", emploi: "Médecin en Chef Spécialiste", recrutement: "Néant", promotion: "A5 + 6 ans + DES ou équivalent + concours + formation continue" },
+        { famille: "SCIENTIFIQUES ET TECHNIQUES", grade: "A5", emploi: "Chargé de Recherche", recrutement: "Néant", promotion: "A4 + travaux + inscription sur une liste d'Aptitude du C.A.M.E.S" },
+        { famille: "SCIENTIFIQUES ET TECHNIQUES", grade: "A5", emploi: "Ingénieur Principal", recrutement: "Néant", promotion: "A4 +7 ans + concours + formation continue" },
+        { famille: "SCIENTIFIQUES ET TECHNIQUES", grade: "A5", emploi: "Médecin Principal", recrutement: "Néant", promotion: "A4+7 ans + concours + formation continue" },
+        { famille: "SCIENTIFIQUES ET TECHNIQUES", grade: "A5", emploi: "Médecin Principal Spécialiste", recrutement: "Néant", promotion: "A4 + DES ou équivalent + 7 ans + concours" },
+        { famille: "SCIENTIFIQUES ET TECHNIQUES", grade: "A5", emploi: "Ingénieur Principal", specialites: ["Agronomie", "Recherches Scientifiques", "Construction", "Eaux et Forêts", "Génie Rural", "Géologie", "Environnement", "Imprimerie", "Halleutique", "Zootechnique", "Energétique", "Informatique", "Médias", "Mines", "Services de Santé", "Chimie", "Statistique-Economie", "Travaux Publics", "Transport-Logistique", "Electronique", "Contrôle qualité", "Electrotechnique", "Aviation Civile"], recrutement: "Néant", promotion: "A4 +7 ans + concours + formation continue" },
+        { famille: "SCIENTIFIQUES ET TECHNIQUES", grade: "A4", emploi: "Attaché de Recherche", recrutement: "Diplôme + Commission", promotion: "Néant" },
+        { famille: "SCIENTIFIQUES ET TECHNIQUES", grade: "A4", emploi: "Ingénieur", specialites: ["Agriculture", "Agronomie", "Recherches Scientifiques", "Construction", "Eaux et Forêts", "Génie rural", "Géologie", "Environnement", "Imprimerie (Industrie Graphique)", "Halleutique", "Zootechnique", "Energétique", "Informatique", "Médias", "Mines", "Services de Santé", "Chimie", "Statistique-Economie", "Travaux Publics", "Transport-Logistique", "Electronique", "Contrôle qualité", "Electrotechnique", "Aviation Civile"], recrutement: "Diplôme d'ingénieur de conception agréé par l'Etat + concours", promotion: "Technicien Supérieur de la spécialité + 3 ans d'ancienneté + concours + formation spécifique" },
+        { famille: "SCIENTIFIQUES ET TECHNIQUES", grade: "A4", emploi: "Architecte", recrutement: "Diplôme d'architecte, urbaniste + concours", promotion: "A3 + 3 ans + concours + formation spécifique" },
+        { famille: "SCIENTIFIQUES ET TECHNIQUES", grade: "A4", emploi: "Médecin Spécialiste", recrutement: "Doctorat d'Etat + DES ou Equivalent + concours", promotion: "Néant" },
+		{ famille: "SCIENTIFIQUES ET TECHNIQUES", grade: "A4", emploi: "Médecin Généraliste", recrutement: "Doctorat d'Etat + concours", promotion: "Néant" },
+        { famille: "SCIENTIFIQUES ET TECHNIQUES", grade: "A4", emploi: "Chirurgien-dentiste Généraliste", recrutement: "Doctorat d'Etat + concours", promotion: "Néant" },
+        { famille: "SCIENTIFIQUES ET TECHNIQUES", grade: "A4", emploi: "Pharmacien Généraliste", recrutement: "Doctorat d'Etat + concours", promotion: "Néant" },
+        { famille: "SCIENTIFIQUES ET TECHNIQUES", grade: "A4", emploi: "Ingénieur des Services de Santé", recrutement: "Diplôme d'Ingénieur de Conception agrée par l'Etat + concours", promotion: "A3 + 3 ans + concours + formation de 2 ans" },
+        { famille: "SCIENTIFIQUES ET TECHNIQUES", grade: "A3", emploi: "Ingénieur des Techniques", recrutement: "Diplôme d'ingénieur des Techniques des grandes écoles reconnues par l'Etat + concours", promotion: "B3 + 3 ans d'ancienneté + concours + cycle de formation spécifique" },
+        { famille: "SCIENTIFIQUES ET TECHNIQUES", grade: "A3", emploi: "Infirmier(ère) Spécialiste", specialites: ["Anesthésie-réanimation", "Ophtalmologie", "ORL", "Dermato-léprologie", "Instrumentaliste", "Psychiatrie", "Cardiologie"], recrutement: "Néant", promotion: "B3 + 3 ans + concours + cycle de formation spécifique" },
+        { famille: "SCIENTIFIQUES ET TECHNIQUES", grade: "B3", emploi: "Technicien supérieur de l'Aviation Civile", recrutement: "BAC + concours + cycle de formation spécifique", promotion: "C3 + 3 ans + concours + formation spécifique" },
+        { famille: "SCIENTIFIQUES ET TECHNIQUES", grade: "B3", emploi: "Technicien supérieur des Travaux Publics", specialites: ["Recherche Scientifique", "Santé", "Chimie", "Transport Logistique", "Electronique"], recrutement: "Diplôme + concours", promotion: "C3 + 3 ans + concours + formation spécifique" },		
+		{ famille: "SCIENTIFIQUES ET TECHNIQUES", grade: "B3", emploi: "Technicien Supérieur", specialites: ["Travaux Publics", "Informatique"], recrutement: "DUT, BTS ou équivalent + Concours", promotion: "B1 + 3 ans + concours + cycle de formation spécifique" },
+        { famille: "SCIENTIFIQUES ET TECHNIQUES", grade: "B3", emploi: "Technicien Supérieur d'Imprimerie", recrutement: "DUT, BTS ou équivalent + Concours", promotion: "C3 + 3 ans + concours" },
+        { famille: "SCIENTIFIQUES ET TECHNIQUES", grade: "B3", emploi: "AdjointTechnique de la Statistique", recrutement: "DUT, BTS ou équivalent + Concours", promotion: "C2 + 3 ans + concours + formation spécifique" },
+        { famille: "SCIENTIFIQUES ET TECHNIQUES", grade: "B3", emploi: "Assistant des Productions Végétales et Animales", recrutement: "Diplôme + Concours", promotion: "C2 + 3 ans + concours + formation spécifique" },
+        { famille: "SCIENTIFIQUES ET TECHNIQUES", grade: "B3", emploi: "Contrôleur des Techniques des Médias", recrutement: "Diplôme + Concours", promotion: "C3 + 3 ans + concours + cycle de formation spécifique" },
+        { famille: "SCIENTIFIQUES ET TECHNIQUES", grade: "B3", emploi: "Technicien Supérieur de l'Environnement", recrutement: "BTS ou Equivalent + Concours", promotion: "Néant" },
+        { famille: "SCIENTIFIQUES ET TECHNIQUES", grade: "B3", emploi: "Technicien Supérieur Contrôle Qualité", recrutement: "BTS ou Equivalent + Concours", promotion: "Néant" },
+        { famille: "SCIENTIFIQUES ET TECHNIQUES", grade: "B3", emploi: "Technicien Supérieurd'Electrotechnique", recrutement: "BTS ou Equivalent + Concours", promotion: "Néant" },
+        { famille: "SCIENTIFIQUES ET TECHNIQUES", grade: "B3", emploi: "Technicien Supérieur de la Santé", specialites: ["Préparation et Gestion en Pharmacie", "Biologie Médicale Hygiène", "Hygiène etAssainissement", "Imagerie Médicale", "Biomédicale", "Kinésithérapie", "Prothèse Dentaire"], recrutement: "Diplôme de fin de formation + Concours", promotion: "B1 + 3 ans + concours + cycle de formation spécifique" },
+        { famille: "SCIENTIFIQUES ET TECHNIQUES", grade: "B3", emploi: "Diététicien", recrutement: "Diplôme de fin de formation + concours", promotion: "Néant" },
+		{ famille: "SCIENTIFIQUES ET TECHNIQUES", grade: "B3", emploi: "Assistant Dentaire", recrutement: "Diplôme de fin de formation + concours", promotion: "C3 + 3 ans + Concours + Cycle de formation spécifique" },
+		{ famille: "SCIENTIFIQUES ET TECHNIQUES", grade: "B3", emploi: "Sage-femme/Maïeuticien diplômé(é) d'Etat", recrutement: "Diplôme de fin de formation + concours", promotion: "C3 + 3 ans + Concours + Cycle de formation spécifique" },
+		{ famille: "SCIENTIFIQUES ET TECHNIQUES", grade: "B3", emploi: "Infirmier(ère) diplômé (e) d'Etat", recrutement: "Diplôme de fin de formation + concours", promotion: "C3 + 3 ans + Concours + Cycle de formation spécifique" },
+        { famille: "SCIENTIFIQUES ET TECHNIQUES", grade: "B1", emploi: "Technicien des Travaux Publics", recrutement: "BAC ou BT Informatique ou diplôme équivalent + concours", promotion: "C2 + 3 ans + concours + formation spécifique" },
+		{ famille: "SCIENTIFIQUES ET TECHNIQUES", grade: "C3", emploi: "Auxiliaire des", specialites: ["Soins Infirmiers", "Soins obstétricaux", "Techniques sanitaires option hygiène et assainissement", "Techniques sanitaires option imagerie médicale", "Techniques sanitaires option laboratoire", "Techniques sanitaires option pharmacie"], recrutement: "Diplôme d'Etat d'Auxiliaire de santé + concours", promotion: "C1 + 3 ans + concours + formation spécifique" },
+        { famille: "SCIENTIFIQUES ET TECHNIQUES", grade: "C1", emploi: "Aide-soignant", recrutement: "BEPC + attestation de formation + concours", promotion: "D1 + 3 ans + concours" },
+
+        // ADMINISTRATIF ET JURIDIQUE
+        { famille: "ADMINISTRATIF ET JURIDIQUE", grade: "A7", emploi: "Administrateur Général", specialites: ["Civil", "Travail et Lois Sociales", "Affaires Maritimes et Portuaires", "Ressources Humaines", "Communication", "Services Pénitentiaires"], recrutement: "Néant", promotion: "A6 + 6 ans + concours + formation continue" },
+        { famille: "ADMINISTRATIF ET JURIDIQUE", grade: "A6", emploi: "Administrateur en Chef", specialites: ["Civil", "Travail et Lois Sociales", "Affaires Maritimes et Portuaires", "Ressources Humaines", "Communication", "Services Pénitentiaires"], recrutement: "Néant", promotion: "A5 + 6 ans + concours + formation continue" },
+        { famille: "ADMINISTRATIF ET JURIDIQUE", grade: "A5", emploi: "Administrateur Principal", specialites: ["Civil", "Travail et Lois Sociales", "Affaires Maritimes et Portuaires", "Ressources Humaines", "Communication", "Services Pénitentiaires"], recrutement: "Néant", promotion: "A4 + 7 ans + concours + formation continue" },
+        { famille: "ADMINISTRATIF ET JURIDIQUE", grade: "A4", emploi: "Administrateur", specialites: ["Civil", "Travail et Lois Sociales", "Affaires Maritimes et Portuaires", "Ressources Humaines"], recrutement: "Master/Maitrîse + concours + cycle supérieur de l'ENA", promotion: "A3 + 3 ans + concours + Cycle supérieur de l'ENA" },
+        { famille: "ADMINISTRATIF ET JURIDIQUE", grade: "A4", emploi: "Administrateur de la Communication", recrutement: " Diplôme d'Ingénieur ou Master en Communication et Ressources Humaines, Communication Marketing/Publicité + concours + cycle de formation spécifique", promotion: "Technicien Supérieur de la Communication + 3 ans + concours + cycle de formation" },
+        { famille: "ADMINISTRATIF ET JURIDIQUE", grade: "A4", emploi: "Administrateur des Services Pénitentiaires", recrutement: " Master/Maitrîse + concours + cycle supérieur de l'INFJ", promotion: "A3 + 3 ans + concours + cycle de formation" },
+        { famille: "ADMINISTRATIF ET JURIDIQUE", grade: "A3", emploi: "Attaché", specialites: ["Administratif", "Travail et des Affaires Sociales", "Affaires Maritimes et Portuaires", "Ressources Humaines"], recrutement: "Licence/DEUG ou diplôme équivalent + concours + Cycle moyen supérieur de l'E.N.A", promotion: "B3 + 3 ans + concours + Cycle moyen supérieur de l'E.N.A" },
+        { famille: "ADMINISTRATIF ET JURIDIQUE", grade: "A3", emploi: "Attaché de Direction", recrutement: "Néant", promotion: " B3 + 3 ans + concours + cycle de formation" },
+        { famille: "ADMINISTRATIF ET JURIDIQUE", grade: "A3", emploi: "Attaché de la Communication", recrutement: "DESCOM option Journalisme ou Production Audiovisuel ou Diplôme d'Ingénieur/Master en Communication, RHCOM, Communication Marketing/Publicité, Journalisme, Communication option Communication pour le Devéloppement, Science de l'Homme et de la Societé Spécialité Communication et Devéloppement pour le Changement de Comportement, Journalisme Specialité Presse Ecrite ou Master Professionnel parcours Journalisme-Production-Multimédia ou DESS en Journalisme + Concours", promotion: " B3 + 3 ans + concours + cycle de formation" },
+        { famille: "ADMINISTRATIF ET JURIDIQUE", grade: "B3", emploi: "Contrôleur", specialites: ["Affaires Maritimes et Portuaires", "Travail et affaires sociales"], recrutement: "BAC + concours + Cycle moyen de l'ENA", promotion: "B1 ou C1 + 3 ans + concours + Cycle moyen de l'ENA" },
+        { famille: "ADMINISTRATIF ET JURIDIQUE", grade: "B3", emploi: "Secrétaire Administratif", recrutement: "BAC + concours + Cycle moyen de l'ENA", promotion: "Secrétaire Assistant de Direction, Secrétaire Assistant comptable (B1), Secrétaire Comptable (C2), Adjoint Administratif (C1), Secrétaire assistant administratif (B1) + 3 ans + concours + Cycle moyen de l'ENA" },
+        { famille: "ADMINISTRATIF ET JURIDIQUE", grade: "B3", emploi: "Secrétaire de Direction", recrutement: "DUT ou BTS secrétariat + Concours", promotion: "Secrétaire Assistant de Direction + 3 ans + concours" },
+        { famille: "ADMINISTRATIF ET JURIDIQUE", grade: "B3", emploi: "Secrétaire de Direction Bilingue Anglais-Français", recrutement: "BTS secrétariat de Direction Bilingue + Concours", promotion: "B1 ou C2 + 3 ans + concours" },
+        { famille: "ADMINISTRATIF ET JURIDIQUE", grade: "B3", emploi: "Secrétaire Médical", recrutement: "BTS secrétariat Médical + Concours", promotion: "B1 ou C2 + 3 ans + concours" },
+        { famille: "ADMINISTRATIF ET JURIDIQUE", grade: "B3", emploi: "Technicien Supérieur de la Communication", recrutement: "BTS + Concours", promotion: "B1 ou C2 + 3 ans + concours" },
+        { famille: "ADMINISTRATIF ET JURIDIQUE", grade: "B3", emploi: "Contrôleur des Etablissements Pénitentiaires", recrutement: "BAC + concours + Cycle moyen de l'INFJ", promotion: "C3 + 3 ans + concours + Cycle moyen de l'INFJ" },
+        { famille: "ADMINISTRATIF ET JURIDIQUE", grade: "B1", emploi: "Secrétaire Assistant Administratif", recrutement: "BAC A, C ou D + concours", promotion: "Secrétaire Comptable (C2) + 3 ans d'ancienneté + concours" },
+        { famille: "ADMINISTRATIF ET JURIDIQUE", grade: "B1", emploi: "Secrétaire Assistant de Direction", recrutement: "BT Secrétariat,BP Secrétariat ou BAC G1  + concours", promotion: "C1 + 3 ans d'ancienneté + concours" },
+        { famille: "ADMINISTRATIF ET JURIDIQUE", grade: "B1", emploi: "Secrétaire Assistant Comptable", recrutement: "BT en Comptabilité + concours", promotion: "C2 + 3 ans d'ancienneté + concours" },
+        { famille: "ADMINISTRATIF ET JURIDIQUE", grade: "C3", emploi: " Agent d'encadrement des Etablissements Pénitentiaires", recrutement: " BEPC + concours + cycle de l'INFJ", promotion: "Néant" },
+        { famille: "ADMINISTRATIF ET JURIDIQUE", grade: "C3", emploi: "Agent de Police de Navigation, des Pêches et Ports", recrutement: " BEPC + concours + cycle de formation spéficifique", promotion: "Néant" },
+        { famille: "ADMINISTRATIF ET JURIDIQUE", grade: "C2", emploi: "Secrétaire Comptable", recrutement: "BEP en Comptabilité + concours", promotion: "Adjoint Administratif (C2) + 3 ans d'ancienneté + concours" },
+        { famille: "ADMINISTRATIF ET JURIDIQUE", grade: "C1", emploi: "Adjoint Administratif", recrutement: "BEPC + concours + stage", promotion: "Agent de Bureau, Garde de Sous-Préfecture (D1) + 3 ans + concours" },
+        { famille: "ADMINISTRATIF ET JURIDIQUE", grade: "D1", emploi: "Agent de Bureau", recrutement: "CEPE + concours", promotion: "Néant" },
+        { famille: "ADMINISTRATIF ET JURIDIQUE", grade: "D1", emploi: "Garde de Sous-Préfecture", recrutement: "CEPE + concours", promotion: "Néant" },
+
+        // GESTION ECONOMIQUE ET FINANCIERE
+        { famille: "GESTION ÉCONOMIQUE ET FINANCIÈRE", grade: "A7", emploi: "Administrateur Général des Services financiers", specialites: ["Douanes", "Finances Générales", "Impôts", "Trésor", "Commerce", "Assurances", "Banques"], recrutement: "Néant", promotion: "Administrateur en Chef des Services Financiers + 6 ans + concours + Formation continue" },
+        { famille: "GESTION ÉCONOMIQUE ET FINANCIÈRE", grade: "A6", emploi: "Administrateur en Chef des Services financiers", specialites: ["Douanes", "Finances Générales", "Impôts", "Trésor", "Commerce", "Assurances", "Banques"], recrutement: "Néant", promotion: "Administrateur Principal des Services Financier + 6 ans + concours + Formation continue" },
+        { famille: "GESTION ÉCONOMIQUE ET FINANCIÈRE", grade: "A5", emploi: "Administrateur Principal des Services financiers", specialites: ["Douanes", "Finances Générales", "Impôts", "Trésor", "Commerce", "Assurances", "Banques"], recrutement: "Néant", promotion: "Administrateur des Services Financiers + 7 ans + concours + formation continue" },
+        { famille: "GESTION ÉCONOMIQUE ET FINANCIÈRE", grade: "A4", emploi: "Administrateur des Services Financiers", specialites: ["Douanes", "Finances Générales", "Impôts", "Santé", "Trésor", "Commerce", "Assurances", "Banques"], recrutement: "Master/Maitrise + concours + cycle supérieur de l'ENA", promotion: "Attaché des Finances, Inspecteur (Douanes, Trésor, Commerce, Assurances, Banques) + 3 ans + concours + Cycle supérieur de l'ENA" },
+        { famille: "GESTION ÉCONOMIQUE ET FINANCIÈRE", grade: "A3", emploi: "Attaché des Finances", recrutement: "Licence/DEUG/BTS ou diplôme équivalent + concours + Cycle moyen supérieur de l'E.N.A", promotion: "Assistant Sanitaire, Assistant Comptable, Technicien Supérieur du Commerce, Secrétaire des finances, Controleur des Impôts (Douanes, Trésor, Assurance, Banque) + 3 ans + concours + Cycle moyen supérieur de l'ENA" },
+        { famille: "GESTION ÉCONOMIQUE ET FINANCIÈRE", grade: "A3", emploi: "Attaché Sanitaire", recrutement: "Licence/DEUG/BTS ou diplôme équivalent + concours + Cycle moyen supérieur de l'E.N.A", promotion: "Assistant Sanitaire, Assistant Comptable, Secrétaire des finances, Controleur des Impôts (Douanes, Trésor, Assurances, Banques) + 3 ans + concours + Cycle moyen supérieur de l'ENA" },
+        { famille: "GESTION ÉCONOMIQUE ET FINANCIÈRE", grade: "A3", emploi: "Inspecteur", specialites: ["Douanes", "Impôts", "Trésor", "Commerce", "Assurances", "Banques"], recrutement: "BAC + concours + cycle moyen de l'ENA", promotion: "Contrôleur (Douanes, Impôt, Trésor, Assurances, Banques, Commerce), Technicien Supérieur du Commerce, Assistant Comptable + 3 ans + concours + Cycle moyen de l'ENA" },
+        { famille: "GESTION ÉCONOMIQUE ET FINANCIÈRE", grade: "B3", emploi: "Contrôleur", specialites: ["Douanes", "Impôts", "Trésor", "Commerce", "Assurances", "Banques"], recrutement: "BAC + concours + cycle moyen de l'ENA", promotion: "Commis des Finances, Commis du Trésor, Agent de Constation des Impôts, Agent d'Encadrement des Douanes + 3 ans + cycle moyen de l'ENA" },
+        { famille: "GESTION ÉCONOMIQUE ET FINANCIÈRE", grade: "B3", emploi: "Assistant Sanitaire", recrutement: "BAC + concours + cycle moyen de l'ENA", promotion: "Commis des Finances, Commis du Trésor, Agent de Constation des Impôts, Agent d'Encadrement des Douanes + 3 ans + cycle moyen de l'ENA" },
+        { famille: "GESTION ÉCONOMIQUE ET FINANCIÈRE", grade: "B3", emploi: "Technicien Supérieur du Commerce", recrutement: "BTS option Gestion Commerciale, Commerce/Marketing + concours", promotion: "Secrétaire Assistant Comptable (B1) + 3 ans d'ancienneté + concours" },
+        { famille: "GESTION ÉCONOMIQUE ET FINANCIÈRE", grade: "B3", emploi: "Assistant Comptable", recrutement: "BTS option Fincances Comptabilité et Gestion d'Entreprises, Banque ou DUT en Comptabilité ou Licence des Sciences Economiques + concours", promotion: "Secrétaire Assistant Comptable (B1) + 3 ans d'ancienneté + concours" },
+        { famille: "GESTION ÉCONOMIQUE ET FINANCIÈRE", grade: "B1", emploi: "Secrétaire Assistant des Finances", recrutement: "BT ou diplôme équivalent + concours", promotion: "C1 + 3 ans + concours" },
+        { famille: "GESTION ÉCONOMIQUE ET FINANCIÈRE", grade: "C1", emploi: "Commis des Finances", recrutement: "BEPC + concours + stage", promotion: "D1 + 3 ans + concours" },
+        { famille: "GESTION ÉCONOMIQUE ET FINANCIÈRE", grade: "C1", emploi: " Agent d'Encadrement des Douanes", recrutement: "BEPC + concours + stage", promotion: "D1 + 3 ans + concours" },
+        { famille: "GESTION ÉCONOMIQUE ET FINANCIÈRE", grade: "C1", emploi: "Agent de Constation des Impôts", recrutement: "BEPC + concours + stage", promotion: "D1 + 3 ans + concours" },
+        { famille: "GESTION ÉCONOMIQUE ET FINANCIÈRE", grade: "C1", emploi: "Commis du Trésor", recrutement: "BEPC + concours + stage", promotion: "D1 + 3 ans + concours" },
+                        
+        // AFFAIRES SOCIALES
+        { famille: "AFFAIRES SOCIALES", grade: "A7", emploi: "Administrateur Général", promotion: "A6 + 6 ans + concours + Formation continue" },
+        { famille: "AFFAIRES SOCIALES", grade: "A7", emploi: "Inspecteur Général", specialites: ["Orientation", "Education Spécialisée", "Surveillée"], recrutement: "Néant", promotion: "A6 + 6 ans + concours + Formation continue" },
+        { famille: "AFFAIRES SOCIALES", grade: "A6", emploi: "Administrateur en Chef", recrutement: "Néant", promotion: "A5 + 6 ans + concours + Formation continue" },
+        { famille: "AFFAIRES SOCIALES", grade: "A6", emploi: "Inspecteur en Chef", specialites: ["Orientation", "Education Spécialisée", "Surveillée"], recrutement: "Néant", promotion: "A5 + 6 ans + concours + Formation continue" },
+        { famille: "AFFAIRES SOCIALES", grade: "A5", emploi: "Administrateur Principal Social", recrutement: "Néant", promotion: "A4 + 7 ans + concours + formation continue" },
+        { famille: "AFFAIRES SOCIALES", grade: "A5", emploi: "Inspecteur Principal", specialites: ["Orientation", "Education Spécialisée", "Surveillée"], recrutement: "Néant", promotion: "A4 + 7 ans + concours + formation continue" },
+        { famille: "AFFAIRES SOCIALES", grade: "A4", emploi: "Inspecteur d'Orientation", recrutement: "Néant", promotion: "A3 + 3 ans + concours + Cycle de formation spécifique" },
+        { famille: "AFFAIRES SOCIALES", grade: "A4", emploi: "Inspecteur d'Education Surveillée", recrutement: "Maitrise/Master + Concours + cycle supérieur de l'INSFS", promotion: "Educateur spécialisé + 3 ans + concours + 2 ans de formation à l'INSFS" },
+        { famille: "AFFAIRES SOCIALES", grade: "A4", emploi: "Inspecteur d'Education Spécialisée", recrutement: "Master/Maîtrise ou diplôme équivalent + concours + 2 ans de formation à l'INSFS", promotion: "A3 + 3 ans + concours + Cycle de formation spécifique" },
+        { famille: "AFFAIRES SOCIALES", grade: "A4", emploi: "Inspecteur de la Jeunesse et des Sports", recrutement: "Master/Maîtrise ou diplôme équivalent + concours + 2 ans de formation à l'INSFS", promotion: "A3 + 3 ans + concours + Cycle de formation spécifique" },
+        { famille: "AFFAIRES SOCIALES", grade: "A4", emploi: "Administrateur Social", recrutement: "Master/Maîtrise ou diplôme équivalent + concours + 2 ans de formation à l'INSFS", promotion: "A3 + 3 ans + concours + Cycle de formation spécifique" },
+        { famille: "AFFAIRES SOCIALES", grade: "A3", emploi: "Attaché Social", recrutement: "LICENCE/DEUG ou Diplôme Equivalent + concours + cycle de formation à l'INSFS", promotion: "Assistant Social + concours + cycle de formation spécifique" },
+        { famille: "AFFAIRES SOCIALES", grade: "A3", emploi: "Conseiller d'Education Surveillée", recrutement: "LICENCE/DEUG ou Diplôme Equivalent + concours + cycle de formation à l'INFJ", promotion: "B3 + concours + cycle de formation spécifique" },
+        { famille: "AFFAIRES SOCIALES", grade: "A3", emploi: "Conseiller d'Orientation", recrutement: "LICENCE/DEUG ou Diplôme Equivalent + concours + 2 ans de formation", promotion: "B3 + concours + cycle de formation spécifique" },
+        { famille: "AFFAIRES SOCIALES", grade: "A3", emploi: "Educateur Spécialisé", recrutement: "DEUG 2/DUEL 2/DUES 2/DUT/LICENCE 2/BTS + concours + 3 ans de formation à l'INSFS", promotion: "B3 + concours + cycle de formation spécifique" },
+        { famille: "AFFAIRES SOCIALES", grade: "B3", emploi: "Educateur Préscolaire", recrutement: "BAC/BT en Sciences Médico-Sociales + concours + cycle de formation spécifique à l'INSFS", promotion: "C3 + 3 ans + concours + cycle de formation spécifique à l'INSFS" },
+        { famille: "AFFAIRES SOCIALES", grade: "B3", emploi: "Maître d'Education Spécialisée", recrutement: "BAC/BT en Sciences Médico-Sociales + concours + cycle de formation spécifique à l'INSFS", promotion: "C3 + 3 ans + concours + cycle de formation spécifique à l'INSFS" },
+        { famille: "AFFAIRES SOCIALES", grade: "B3", emploi: "Maître d'Education Surveillée", recrutement: "BAC ou Equivalent + concours + cycle de formation cycle moyen de l'INFJ", promotion: "C3 + 3 ans + concours + cycle de formation spécifique" },
+        { famille: "AFFAIRES SOCIALES", grade: "C3", emploi: "Educateur Préscolaire Adjoint", recrutement: "BEPC/CAP Sanitaire + concours + 3 ans de formation à l'INSFS", promotion: "D1 + 3 ans + concours" },
+        { famille: "AFFAIRES SOCIALES", grade: "C3", emploi: "Assistant Social Adjoint", recrutement: "BEPC + concours + 2 ans de formation à l'INSFS", promotion: "Auxiliaire Social + 3 ans + concours" },
+        { famille: "AFFAIRES SOCIALES", grade: "D1", emploi: "Auxiliaire Social", recrutement: "CEPE + concours", promotion: "Néant" },
+
+        // PRODUCTION LITTÉRAIRE ET ARTISTIQUE
+        { famille: "PRODUCTION LITTÉRAIRE ET ARTISTIQUE", grade: "A7", emploi: "Journaliste d'Etat", promotion: "A6 + 6 ans + concours + Formation continue" },
+        { famille: "PRODUCTION LITTÉRAIRE ET ARTISTIQUE", grade: "A7", emploi: "Producteur d'Etat", promotion: "A6 + 6 ans + concours + Formation continue" },
+        { famille: "PRODUCTION LITTÉRAIRE ET ARTISTIQUE", grade: "A7", emploi: "Conservateur d'Etat (Archives, Bibliothèque, Musée)", promotion: "A6 + 6 ans + concours + Formation continue" },
+        { famille: "PRODUCTION LITTÉRAIRE ET ARTISTIQUE", grade: "A7", emploi: "Conseiller d'Action culturelle d'Etat", promotion: "A6 + 6 ans + concours + Formation continue" },
+        { famille: "PRODUCTION LITTÉRAIRE ET ARTISTIQUE", grade: "A7", emploi: "Documentaliste d'Etat", promotion: "A6 + 6 ans + concours + Formation continue" },
+        { famille: "PRODUCTION LITTÉRAIRE ET ARTISTIQUE", grade: "A7", emploi: "Conseiller d'Etat du Tourisme", promotion: "A6 + 6 ans + concours + Formation continue" },
+        { famille: "PRODUCTION LITTÉRAIRE ET ARTISTIQUE", grade: "A6", emploi: "Journaliste en Chef", promotion: "A5 + 6 ans + concours + formation continue" },
+        { famille: "PRODUCTION LITTÉRAIRE ET ARTISTIQUE", grade: "A6", emploi: "Producteur en Chef", promotion: "A5 + 6 ans + concours + formation continue" },
+        { famille: "PRODUCTION LITTÉRAIRE ET ARTISTIQUE", grade: "A6", emploi: "Conservateur en Chef (Archives, Bibliothèque, Musée)", promotion: "A5 + 6 ans + concours + formation continue" },
+        { famille: "PRODUCTION LITTÉRAIRE ET ARTISTIQUE", grade: "A6", emploi: "Conseiller d'Action culturelle en Chef", promotion: "A5 + 6 ans + concours + formation continue" },
+        { famille: "PRODUCTION LITTÉRAIRE ET ARTISTIQUE", grade: "A6", emploi: "Documentaliste en Chef", promotion: "A5 + 6 ans + concours + formation continue" },
+        { famille: "PRODUCTION LITTÉRAIRE ET ARTISTIQUE", grade: "A6", emploi: "Conseiller en Chef du Tourisme", promotion: "A5 + 6 ans + concours + formation continue" },
+        { famille: "PRODUCTION LITTÉRAIRE ET ARTISTIQUE", grade: "A5", emploi: "Journaliste principal", promotion: "A4 + 7 ans + concours + formation continue" },
+        { famille: "PRODUCTION LITTÉRAIRE ET ARTISTIQUE", grade: "A5", emploi: "Producteur principal", promotion: "A4 + 7 ans + concours + formation continue" },
+        { famille: "PRODUCTION LITTÉRAIRE ET ARTISTIQUE", grade: "A5", emploi: "Conservateur Principal (Archives, Bibliothèque, Musée)", promotion: "A4 + 7 ans + concours + formation continue" },
+        { famille: "PRODUCTION LITTÉRAIRE ET ARTISTIQUE", grade: "A5", emploi: "Conseiller d'Action Culturelle Principal", promotion: "A4 + 7 ans + concours + formation continue" },
+        { famille: "PRODUCTION LITTÉRAIRE ET ARTISTIQUE", grade: "A5", emploi: "Documentaliste Principal", promotion: "A4 + 7 ans + concours + formation continue" },
+        { famille: "PRODUCTION LITTÉRAIRE ET ARTISTIQUE", grade: "A5", emploi: "Conseiller Principal du Tourisme", promotion: "A4 + 7 ans + concours + formation continue" },
+        { famille: "PRODUCTION LITTÉRAIRE ET ARTISTIQUE", grade: "A4", emploi: "Journaliste", promotion: "A3 + 3 ans + concours + Cycle de formation spécifique" },
+        { famille: "PRODUCTION LITTÉRAIRE ET ARTISTIQUE", grade: "A4", emploi: "Producteur", promotion: "A3 + 3 ans + concours + Cycle de formation spécifique" },
+        { famille: "PRODUCTION LITTÉRAIRE ET ARTISTIQUE", grade: "A4", emploi: "Conservateur de Musée", promotion: "A3 + 3 ans + concours + Cycle de formation spécifique" },
+        { famille: "PRODUCTION LITTÉRAIRE ET ARTISTIQUE", grade: "A4", emploi: "Conservateur d'Archive", promotion: "A3 + 3 ans + concours + Cycle de formation spécifique" },
+        { famille: "PRODUCTION LITTÉRAIRE ET ARTISTIQUE", grade: "A4", emploi: "Conservateur de Bibliothèque", promotion: "A3 + 3 ans + concours + Cycle de formation spécifique" },
+        { famille: "PRODUCTION LITTÉRAIRE ET ARTISTIQUE", grade: "A4", emploi: "Documentaliste", recrutement: "DESSAC en Documentation ou Master Professionnel en Documentation", promotion: "A3 + 3 ans + concours + Cycle de formation spécifique" },
+        { famille: "PRODUCTION LITTÉRAIRE ET ARTISTIQUE", grade: "A4", emploi: "Conseiller d'Action Culturelle", promotion: "A3 + 3 ans + concours + Cycle de formation spécifique" },
+        { famille: "PRODUCTION LITTÉRAIRE ET ARTISTIQUE", grade: "A4", emploi: "Conseiller du Tourisme", promotion: "A3 + 3 ans + concours + Cycle de formation spécifique" },
+        { famille: "PRODUCTION LITTÉRAIRE ET ARTISTIQUE", grade: "A3", emploi: "Chargé de Rédaction",  promotion: " + 3 ans d'ancienneté + concours + cycle de formation spécifique" },
+        { famille: "PRODUCTION LITTÉRAIRE ET ARTISTIQUE", grade: "A3", emploi: "Chargé de Production", recrutement: "DESCOM option Chargé de Production", promotion: "Animateur Culturel (B3) + 3 ans d'ancienneté + concours + cycle de formation spécifique" },
+        { famille: "PRODUCTION LITTÉRAIRE ET ARTISTIQUE", grade: "A3", emploi: "Assistant Conservateur Musée", recrutement: "DSAC en Muséologie ou Master Professionnel en Gestion du Patrimoine", promotion: "B3 + 3 ans d'ancienneté + concours + cycle de formation spécifique" },
+        { famille: "PRODUCTION LITTÉRAIRE ET ARTISTIQUE", grade: "A3", emploi: "Conseiller Adjoint d'Action Culturelle", recrutement: " + concours", promotion: "B3 + 3 ans d'ancienneté + concours + cycle de formation spécifique" },
+        { famille: "PRODUCTION LITTÉRAIRE ET ARTISTIQUE", grade: "A3", emploi: "Conseiller Adjoint du Tourisme", recrutement: "Diplôme + concours", promotion: "B3 + 3 ans d'ancienneté + concours + cycle de formation spécifique" },
+        { famille: "PRODUCTION LITTÉRAIRE ET ARTISTIQUE", grade: "B3", emploi: "Archiviste", recrutement: "DAAC option Archivistique, BTS option Science de l'Information ou Documentation ou Archivistique ou Licence Professionnelle en Archivistique + concours", promotion: "C3 + 3 ans + concours + cycle de formation spécifique" },
+        { famille: "PRODUCTION LITTÉRAIRE ET ARTISTIQUE", grade: "B3", emploi: "Bibliothécaire", recrutement: "DAAC en Bibliothéconomie, BTS option Science de l'Information, Documentation ou Licence Professionnelle en Bibliothéconomie + concours", promotion: "C3 + 3 ans + concours + cycle de formation spécifique" },
+        { famille: "PRODUCTION LITTÉRAIRE ET ARTISTIQUE", grade: "B3", emploi: "Assistant-documentaliste", recrutement: "Diplôme + concours", promotion: "B1 + 3 ans + Concours + cycle de formation spécifique" },
+        { famille: "PRODUCTION LITTÉRAIRE ET ARTISTIQUE", grade: "B3", emploi: "Technicien de Musée", recrutement: "Diplôme + concours", promotion: "B1 + 3 ans + Concours + cycle de formation spécifique" },
+        { famille: "PRODUCTION LITTÉRAIRE ET ARTISTIQUE", grade: "B3", emploi: "Technicien Supérieur du Tourisme", recrutement: "BTS option Tourisme et Hotellerie, Tourisme et Loisir, Gestion Hotellerie ou Gestion Touristique et Hotellerie + concours", promotion: "Technicien du Tourisme (B1) + 3 ans + concours" },
+        { famille: "PRODUCTION LITTÉRAIRE ET ARTISTIQUE", grade: "B1", emploi: "Technicien du Tourisme", recrutement: "BT ou diplôme équivalent + concours", promotion: "Adjoint Technique du Tourisme (C2) + 3 ans + concours" },
+        { famille: "PRODUCTION LITTÉRAIRE ET ARTISTIQUE", grade: "C3", emploi: "Aide Assistant de Production",  recrutement: "BEPC + concours + formation spécifique", promotion: "Néant" },
+        { famille: "PRODUCTION LITTÉRAIRE ET ARTISTIQUE", grade: "C2", emploi: "Adjoint Technique du Tourisme", recrutement: "BEP option Tourisme + concours", promotion: "Néant" }
+ ];
+
+        // Index de recherche
+        const searchIndex = [
+            {
+                title: "Classification des Emplois",
+                description: "Tableau complet des emplois de la fonction publique par famille et grade",
+                url: "classification_emplois.html",
+                category: "Classification",
+                keywords: ["emploi", "classification", "grade", "famille", "recrutement", "promotion", "carrière", "fonction publique"]
+            }
+        ];
+
+        // Variables globales
+        let currentFamilyFilter = 'all';
+        let currentGradeFilter = 'all';
+        let filteredJobs = [...jobs];
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', () => {
+            // Gestion du thème
+            initializeTheme();
+            
+            // Initialisation des filtres
+            initializeFilters();
+            
+            // Affichage initial des données
+            displayClassificationData();
+            
+            // Configuration de la recherche
+            initializeSearch();
+        });
+
+        // Gestion du thème
+        function initializeTheme() {
+            const themeToggle = document.getElementById('themeToggle');
+            
+            function setTheme(theme) {
+                document.documentElement.setAttribute('data-theme', theme);
+                localStorage.setItem('theme', theme);
+                
+                const themeIcon = themeToggle.querySelector('i');
+                if (theme === 'dark') {
+                    themeIcon.className = 'fas fa-sun';
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i> Thème';
+                } else {
+                    themeIcon.className = 'fas fa-moon';
+                    themeToggle.innerHTML = '<i class="fas fa-moon"></i> Thème';
+                }
+            }
+
+            const savedTheme = localStorage.getItem('theme');
+            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            setTheme(savedTheme || (systemPrefersDark ? 'dark' : 'light'));
+            
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+            });
+        }
+
+        // Initialisation des filtres
+        function initializeFilters() {
+            const familyFilter = document.getElementById('familyFilter');
+            const gradeFilter = document.getElementById('gradeFilter');
+            const resetButton = document.getElementById('resetFilters');
+
+            // Remplir les filtres
+            const families = [...new Set(jobs.map(job => job.famille))].sort();
+            const grades = [...new Set(jobs.map(job => job.grade))].sort((a, b) => {
+                const gradeOrder = ['A7', 'A6', 'A5', 'A4', 'A3', 'B3', 'B1', 'C3', 'C2', 'C1', 'D1'];
+                return gradeOrder.indexOf(a) - gradeOrder.indexOf(b);
+            });
+
+            families.forEach(family => {
+                const option = document.createElement('option');
+                option.value = family;
+                option.textContent = family;
+                familyFilter.appendChild(option);
+            });
+
+            grades.forEach(grade => {
+                const option = document.createElement('option');
+                option.value = grade;
+                option.textContent = `Grade ${grade}`;
+                gradeFilter.appendChild(option);
+            });
+
+            // Événements des filtres
+            familyFilter.addEventListener('change', (e) => {
+                currentFamilyFilter = e.target.value;
+                filterAndDisplayJobs();
+            });
+
+            gradeFilter.addEventListener('change', (e) => {
+                currentGradeFilter = e.target.value;
+                filterAndDisplayJobs();
+            });
+
+            resetButton.addEventListener('click', () => {
+                familyFilter.value = 'all';
+                gradeFilter.value = 'all';
+                currentFamilyFilter = 'all';
+                currentGradeFilter = 'all';
+                filterAndDisplayJobs();
+            });
+        }
+
+        // Filtrage et affichage des emplois
+        function filterAndDisplayJobs() {
+            filteredJobs = jobs.filter(job => {
+                const familyMatch = currentFamilyFilter === 'all' || job.famille === currentFamilyFilter;
+                const gradeMatch = currentGradeFilter === 'all' || job.grade === currentGradeFilter;
+                return familyMatch && gradeMatch;
+            });
+            displayClassificationData();
+        }
+
+        // Affichage des données dans le tableau
+        function displayClassificationData() {
+            const tableBody = document.getElementById('classification-data');
+            tableBody.innerHTML = '';
+
+            if (filteredJobs.length === 0) {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="5" style="text-align: center; padding: 40px; color: var(--text-muted);">
+                            <i class="fas fa-search" style="font-size: 2rem; margin-bottom: 10px; display: block;"></i>
+                            Aucun emploi ne correspond aux critères sélectionnés
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            filteredJobs.forEach(job => {
+                const row = document.createElement('tr');
+                
+                let emploiCell = `<strong>${job.emploi}</strong>`;
+                if (job.specialites && job.specialites.length > 0) {
+                    emploiCell += `<ul class="specialties-list">${job.specialites.map(s => `<li>${s}</li>`).join('')}</ul>`;
+                }
+                
+                row.innerHTML = `
+                    <td>${emploiCell}</td>
+                    <td><span class="family-badge">${job.famille}</span></td>
+                    <td><span class="grade-badge grade-${job.grade}">${job.grade}</span></td>
+                    <td>${job.recrutement || 'Néant'}</td>
+                    <td>${job.promotion || 'Néant'}</td>
+                `;
+                
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Initialisation de la recherche
+        function initializeSearch() {
+            const compactSearchInput = document.getElementById('compactSearchInput');
+            const compactSearchIcon = document.querySelector('.compact-search-icon');
+            
+            function debounce(func, wait) {
+                let timeout;
+                return function executedFunction(...args) {
+                    const later = () => {
+                        clearTimeout(timeout);
+                        func(...args);
+                    };
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                };
+            }
+            
+            const performSearch = (query) => {
+                if (!query.trim() || query.length < 2) {
+                    return [];
+                }
+                
+                const searchTerms = query.toLowerCase().split(/\s+/).filter(term => term.length > 0);
+                const normalizedQuery = query.toLowerCase();
+                
+                return jobs.filter(job => {
+                    const searchableText = (
+                        job.emploi.toLowerCase() + ' ' + 
+                        job.famille.toLowerCase() + ' ' + 
+                        job.grade.toLowerCase() + ' ' + 
+                        (job.recrutement || '').toLowerCase() + ' ' +
+                        (job.promotion || '').toLowerCase() + ' ' +
+                        (job.specialites ? job.specialites.join(' ').toLowerCase() : '')
+                    );
+                    
+                    return searchTerms.some(term => searchableText.includes(term));
+                });
+            };
+            
+            const displaySearchResults = (results, query) => {
+                const resultsContainer = document.getElementById('compactSearchResults');
+                resultsContainer.innerHTML = '';
+                
+                if (results.length === 0) {
+                    resultsContainer.innerHTML = '<div class="no-results">Aucun résultat trouvé</div>';
+                    resultsContainer.classList.add('visible');
+                    return;
+                }
+                
+                results.slice(0, 10).forEach(result => {
+                    const resultElement = document.createElement('div');
+                    resultElement.className = 'search-result-item';
+                    
+                    let specialtiesText = '';
+                    if (result.specialites && result.specialites.length > 0) {
+                        specialtiesText = `<small>Spécialités: ${result.specialites.slice(0, 2).join(', ')}${result.specialites.length > 2 ? '...' : ''}</small>`;
+                    }
+                    
+                    resultElement.innerHTML = `
+                        <h3>${result.emploi}</h3>
+                        <p>${result.famille} • Grade ${result.grade}</p>
+                        ${specialtiesText}
+                    `;
+                    
+                    resultElement.addEventListener('click', () => {
+                        // Filtrer pour cet emploi spécifique
+                        document.getElementById('familyFilter').value = result.famille;
+                        document.getElementById('gradeFilter').value = result.grade;
+                        currentFamilyFilter = result.famille;
+                        currentGradeFilter = result.grade;
+                        filterAndDisplayJobs();
+                        
+                        // Fermer les résultats de recherche
+                        resultsContainer.classList.remove('visible');
+                        compactSearchInput.value = '';
+                        
+                        // Scroller vers le tableau
+                        document.querySelector('.classification-container').scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'start' 
+                        });
+                    });
+                    
+                    resultsContainer.appendChild(resultElement);
+                });
+                
+                resultsContainer.classList.add('visible');
+            };
+            
+            const hideSearchResults = () => {
+                document.getElementById('compactSearchResults').classList.remove('visible');
+            };
+            
+            const debouncedSearch = debounce((query) => {
+                if (query.length < 2) {
+                    hideSearchResults();
+                    return;
+                }
+                
+                const results = performSearch(query);
+                displaySearchResults(results, query);
+            }, 300);
+            
+            compactSearchInput.addEventListener('input', (e) => {
+                debouncedSearch(e.target.value);
+            });
+            
+            compactSearchIcon.addEventListener('click', () => {
+                const query = compactSearchInput.value;
+                if (query.length >= 2) debouncedSearch(query);
+            });
+            
+            compactSearchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    const query = compactSearchInput.value;
+                    if (query.length >= 2) debouncedSearch(query);
+                }
+            });
+            
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.compact-search')) {
+                    hideSearchResults();
+                }
+            });
+            
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    compactSearchInput.value = '';
+                    hideSearchResults();
+                    compactSearchInput.blur();
+                }
+            });
+        }
+    </script>
+</body>
+</html>
