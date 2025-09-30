@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Décret d'application portant statut de la Magistrature — Lecteur</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f9f6f3; --paper:#ffffff; --ink:#1c1e21;
+  --primary:#7a1f29; --primary-700:#5e1820; --accent:#c9a227;
+  --muted:#ece4db; --shadow:0 12px 28px rgba(0,0,0,.08); --radius:18px; --transition:.25s ease;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:'Raleway',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.6}
+header{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(255,255,255,.85));backdrop-filter:saturate(1.1) blur(8px);border-bottom:1px solid #eee}
+.container{max-width:1080px;margin:0 auto;padding:14px 16px;display:flex;align-items:center;gap:12px}
+.logo{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:radial-gradient(circle at 30% 30%, var(--accent), #e6ce84);color:#4a1b21;box-shadow:var(--shadow);font-size:18px}
+h1{margin:0;font-family:'Playfair Display',serif;font-size:20px;color:var(--primary-700)}
+.sub{color:#5f6b77;font-size:12px;margin-top:2px}
+.control-buttons{margin-left:auto;display:flex;gap:8px;align-items:center}
+.btn{width:38px;height:38px;border-radius:12px;border:1px solid #e5dfd6;background:#fff;color:var(--primary-700);display:grid;place-items:center;cursor:pointer;box-shadow:var(--shadow);transition:var(--transition)}
+.wrapper{max-width:1100px;margin:16px auto;padding:0 12px}
+.group{background:var(--paper);border:1px solid #eee;border-radius:var(--radius);box-shadow:var(--shadow);margin:14px 0;overflow:hidden}
+.group>h2{margin:0;padding:14px 16px;background:linear-gradient(180deg,#ffffff,#fbfaf8);border-bottom:1px solid #f1ebe3;color:var(--primary);font-size:18px;font-family:'Playfair Display',serif}
+.article{margin:10px 10px 14px 10px;padding:12px 14px;border-left:6px solid var(--primary);background:#fff;border-radius:14px;box-shadow:0 1px 0 rgba(0,0,0,.03)}
+.article h3{margin:0 0 6px 0;color:var(--primary-700)}
+.article-content p{margin:.4rem 0}.article-content ul,.article-content ol{margin:.5rem 0 .8rem 1.25rem}
+.article-content ol>li, .article-content ul>li{ padding:8px 0; line-height:1.7; border-bottom:1px solid #efe7d6; }
+.article-content ol>li:last-child, .article-content ul>li:last-child{ border-bottom:0; }
+.article-content li > ol > li, .article-content li > ul > li{ padding:6px 0; border-bottom:1px dashed #efe7d6; }
+.article-content li > ol > li:last-child, .article-content li > ul > li:last-child{ border-bottom:0; }
+.reading{ outline:2px solid var(--accent); outline-offset:2px; border-left-color:var(--accent) !important }
+mark{background:rgba(201,162,39,.35)}
+#tocFloatBtn{position:fixed; right:14px; bottom:92px; width:46px; height:46px; border-radius:50%; border:none; background:var(--primary); color:#fff; display:grid; place-items:center; box-shadow:0 10px 24px rgba(0,0,0,.25); z-index:1100;}
+#tocPanel{position:fixed; top:0; right:0; height:100%; width:86%; max-width:420px; background:#fff; border-left:1px solid #eee; box-shadow:-16px 0 35px rgba(0,0,0,.2); transform:translateX(100%); transition:transform .25s ease; z-index:1200; overflow:auto;}
+#tocOverlay{position:fixed; inset:0; background:rgba(0,0,0,.28); backdrop-filter:blur(2px); display:none; z-index:1190}
+#tocPanel.open{ transform:none } #tocOverlay.show{ display:block }
+#tocPanel header{position:sticky; top:0; background:#fff; padding:12px 14px; border-bottom:1px solid #eee}
+#tocPanel h3{margin:0; color:#5e1820} #tocPanel .toc-list{padding:12px 14px}
+#tocPanel .toc-list a{display:block; padding:6px 0; color:#4a1b21; text-decoration:none}
+#tocPanel .toc-sub{margin-left:10px; border-left:2px solid #f0f0f0; padding-left:8px}
+#voiceBar{position:fixed; left:50%; transform:translateX(-50%); bottom:14px; background:var(--primary-700); color:#fff; z-index:1150; border-radius:22px; padding:8px 12px; display:flex; gap:10px; align-items:center; box-shadow:0 12px 28px rgba(0,0,0,.3)}
+#voiceBar button{width:34px; height:34px; border-radius:10px; border:1px solid #d9d2ca; background:#fff; color:#fff; background:transparent; border-color:#f3e9d6; color:#f3e9d6; display:grid; place-items:center; cursor:pointer}
+#voiceBar .now{font-size:12px; max-width:52vw; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:#f1efe9}
+#fsOverlay{ position:fixed; inset:0; background:#fff; z-index:1300; display:none; }
+#fsOverlay.show{ display:block } #fsHeader{ position:sticky; top:0; background:#fff; padding:10px 14px; border-bottom:1px solid #eee; display:flex; align-items:center; gap:10px }
+#fsHeader .ttl{ font-weight:700; color:#5e1820; flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
+#fsHeader button{ width:36px; height:36px; border-radius:10px; border:1px solid #e7e1d7; background:#fff; }
+#fsBody{ padding:14px; height:calc(100% - 58px); overflow:auto } #fsBody .article-content{ font-size:1.04rem }
+#fsNavPrev,#fsNavNext{ position:fixed; top:50%; transform:translateY(-50%); width:42px; height:42px; border-radius:50%; border:none; background:var(--primary); color:#fff; display:grid; place-items:center; z-index:1310; opacity:.9 }
+#fsNavPrev{ left:10px } #fsNavNext{ right:10px }
+.article .open-fs{ float:right; margin-top:-6px; margin-right:-4px; width:34px; height:34px; border:1px solid #e7e1d7; background:#fff; border-radius:10px; cursor:pointer; }
+footer{max-width:1100px;margin:16px auto 26px;padding:0 12px;color:#6b6f75;font-size:12px}
+
+/* Header TOC button */
+#tocHeaderBtn{min-width:38px}
+
+/* ===== Anti-sélection / anti-copie ===== */
+.no-select, .no-select *:not(input):not(textarea):not(.selectable){
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  -webkit-touch-callout: none !important;
+}
+</style>
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#22c55e">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<!-- HIDE AUTH/VIEWS WIDGETS OUTSIDE HOME (safe) -->
+<style>
+  #auth-fab, .views-badge, #auth-modal, .card-views-badge { display: none !important; }
+</style>
+
+</head>
+<body>
+<header>
+  <div class="container">
+    <div class="logo"><i class="fa-solid fa-gavel"></i></div>
+    <div>
+      <h1>Décret portant application du Statut de la Magistrature</h1>
+      <div class="sub">Décret n°2022-852— Lecteur optimisé (bordeaux & or) • Mobile</div>
+    </div>
+    <div class="control-buttons"><button class="btn" id="tocHeaderBtn" title="Sommaire"><i class="fa-solid fa-list"></i></button>
+      <button class="btn" id="tocFloatBtn" title="Sommaire"><i class="fa-solid fa-scale-balanced"></i></button>
+      <a class="btn" id="btnAnnexe" href="annexe_magistrature_RESP.html" title="Annexes"><i class="fa-solid fa-table"></i></a>
+      <button class="btn" title="Haut de page" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fa-solid fa-angles-up"></i></button>
+    </div>
+  </div>
+</header>
+<main class="wrapper">
+<!-- Extraction HTML — Décret n°2022-852 du 9 novembre 2022 portant application de la loi n°2022-194 du 11 mars 2022 (Statut de la Magistrature) -->
+<section class="group">
+  <h2>CHAPITRE 1 — Classement des emplois</h2>
+</section>
+
+<div class="article" id="Article_1">
+  <div class="article-header">
+    <h3>Article 1</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Les magistrats sont appelés à exercer les fonctions classées dans les grades et groupes ci-après :</p>
+    <ol>
+      <li><strong>Hors hiérarchie</strong>
+        <ul>
+          <li><em>Groupe A</em>
+            <ul>
+              <li>procureur général près la Cour de cassation et le Conseil d’État et procureur général près la Cour des comptes ;</li>
+              <li>président de Chambre à la Cour de cassation, président de section au Conseil d’État, président de Chambre au Conseil d’État, président de Formation au Conseil d’État, président de Chambre à la Cour des comptes ;</li>
+              <li>inspecteur général des Services judiciaires et pénitentiaires ;</li>
+              <li>inspecteur général adjoint des Services judiciaires et pénitentiaires ;</li>
+              <li>premier avocat général près la Cour de cassation et le Conseil d’État et premier avocat général près la Cour des comptes.</li>
+            </ul>
+          </li>
+          <li><em>Groupe B</em>
+            <ul>
+              <li>conseiller à la Cour de cassation, conseiller d’État, conseiller-maître à la Cour des comptes ;</li>
+              <li>inspecteur des Services judiciaires et pénitentiaires ;</li>
+              <li>avocat général près la Cour de cassation et le Conseil d’État et avocat général près la Cour des comptes ;</li>
+              <li>procureur général à l’Administration centrale.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><strong>Premier grade</strong>
+        <ul>
+          <li><em>Premier groupe</em>
+            <ul>
+              <li>substitut à l’Administration centrale ;</li>
+              <li>juge, juge d’instruction, juge de l’application des peines, juge des enfants et juge des tutelles ;</li>
+              <li>substitut du Procureur de la République ;</li>
+              <li>auditeur à la Cour de cassation, auditeur au Conseil d’État et auditeur à la Cour des comptes ;</li>
+              <li>juge à la Chambre régionale des comptes et substitut du procureur de la République près ladite juridiction.</li>
+            </ul>
+          </li>
+          <li><em>Deuxième groupe</em>
+            <ul>
+              <li>juge, juge d’instruction, juge de l’application des peines, juge des enfants et juge des tutelles ;</li>
+              <li>auditeur à la Cour de cassation, auditeur au Conseil d’État et auditeur à la Cour des comptes ;</li>
+              <li>juge à la Chambre régionale des comptes et substitut du procureur de la République près ladite juridiction.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><strong>Deuxième grade</strong>
+        <ul>
+          <li><em>Premier groupe</em>
+            <ul>
+              <li>substitut à l’Administration centrale ;</li>
+              <li>juge, juge d’instruction, juge de l’application des peines, juge des enfants et juge des tutelles ;</li>
+              <li>substitut du Procureur de la République.</li>
+            </ul>
+          </li>
+          <li><em>Deuxième groupe</em>
+            <ul>
+              <li>juge, juge d’instruction, juge de l’application des peines, juge des enfants et juge des tutelles ;</li>
+              <li>substitut du Procureur de la République.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><strong>Auditeur de Justice</strong></li>
+    </ol>
+  </div>
+</div>
+
+<div class="article" id="Article_2">
+  <div class="article-header">
+    <h3>Article 2</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>La fonction de premier président de Cour d’appel, de Cour d’appel de commerce ou de Cour administrative d’appel est exercée par un conseiller à la Cour de cassation, un conseiller d’État, un avocat général près la Cour de cassation et le Conseil d’État ou un avocat général près la Cour des comptes, nommé par décret.</p>
+    <p>S’il n’occupe pas déjà cet emploi lors de sa désignation en qualité de premier président, conformément à l’alinéa précédent, ce magistrat est nommé concomitamment conseiller à la Cour de cassation, conseiller d’État, avocat général près la Cour de cassation et le Conseil d’État ou avocat général près la Cour des comptes.</p>
+    <p>S’il est déchargé de ses fonctions de premier président de Cour d’appel ou de Cour administrative d’appel et qu’il n’a pas reçu autre affectation, le premier président exerce, au sein de la Cour de cassation, du Conseil d’État, du Parquet général près la Cour de cassation et le Conseil d’État ou du parquet général près la Cour des comptes, les fonctions auxquelles il a été initialement nommé.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_3">
+  <div class="article-header">
+    <h3>Article 3</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>La fonction de procureur général près une Cour d’appel ou une Cour administrative d’appel est exercée par un avocat général près la Cour de cassation, un conseiller d’État, un avocat général près la Cour de cassation et le Conseil d’État ou un avocat général près la Cour des comptes, nommé par décret.</p>
+    <p>S’il n’occupe pas déjà cet emploi lors de sa désignation en qualité de procureur général, conformément à l’alinéa précédent, ce magistrat est nommé concomitamment conseiller à la Cour de cassation, conseiller d’État, avocat général près la Cour de cassation et le Conseil d’État ou avocat général près la Cour des comptes.</p>
+    <p>S’il est déchargé de ses fonctions de procureur général près une Cour d’appel ou une Cour administrative d’appel et qu’il n’a pas reçu d’autre affectation, le procureur général exerce, au sein de la Cour de cassation, du Conseil d’État, du parquet général près la Cour de cassation et le Conseil d’État ou du parquet général près la Cour des comptes, les fonctions auxquelles il a été initialement nommé.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_4">
+  <div class="article-header">
+    <h3>Article 4</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>La fonction de procureur général à l’Administration centrale du ministère de la Justice ou de directeur à l’Administration centrale du ministère de la Justice est, en ce qui concerne les magistrats, exercée par un conseiller à la Cour de cassation, un conseiller d’État, un avocat général près la Cour de cassation et le Conseil d’État ou un avocat général près la Cour des comptes, nommé par décret.</p>
+    <p>S’il n’occupe pas déjà l’un de ces emplois lors de sa désignation en qualité de procureur général à l’Administration centrale du ministère de la Justice ou de directeur à l’Administration centrale du ministère de la Justice conformément à l’alinéa précédent, ce magistrat est nommé concomitamment conseiller à la Cour de cassation, conseiller d’État, avocat général près la Cour de cassation et le Conseil d’État ou avocat général près la Cour des comptes.</p>
+    <p>S’il est déchargé de ses fonctions à l’Administration centrale du ministère de la Justice et qu’il n’a pas reçu une autre affectation, le procureur général à l’Administration centrale du ministère de la Justice ou le magistrat directeur à l’Administration centrale du ministère de la Justice exerce, au sein de la Cour de cassation, du Conseil d’État, du parquet général près la Cour de cassation et le Conseil d’État ou du parquet général près la Cour des comptes, les fonctions auxquelles il a été initialement nommé.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_5">
+  <div class="article-header">
+    <h3>Article 5</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Par dérogation aux dispositions de l’article 1 du présent décret, la fonction de président du tribunal de première instance d’Abidjan, de président d’une juridiction spéciale de premier degré ainsi que de procureur de la République près l’une de ces juridictions est exercée respectivement par un conseiller à la Cour de cassation, un conseiller d’État, un avocat général près la Cour de cassation et le Conseil d’État ou un avocat général près la Cour des comptes, nommé par décret.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_6">
+  <div class="article-header">
+    <h3>Article 6</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Par dérogation aux dispositions de l’article 1, tout magistrat de l’un des groupes des deux grades de la hiérarchie judiciaire ou élevé hors hiérarchie en application de l’article 34 alinéa 4 du Statut de la Magistrature peut être nommé pour exercer une fonction classée dans un grade ou un groupe inférieur.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_7">
+  <div class="article-header">
+    <h3>Article 7</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Sont prévus dans les groupes d’emplois énumérés à l’article 1 du présent décret, les échelons ci-après :</p>
+    <ol>
+      <li>groupe A, hors hiérarchie, échelon unique ;</li>
+      <li>groupe B, hors hiérarchie, deux échelons ;</li>
+      <li>premier groupe du premier grade, trois échelons ;</li>
+      <li>deuxième groupe du premier grade, trois échelons ;</li>
+      <li>premier groupe du second grade, trois échelons ;</li>
+      <li>deuxième groupe du second grade, quatre échelons ;</li>
+      <li>auditeurs de Justice, échelon unique.</li>
+    </ol>
+  </div>
+</div>
+
+<section class="group">
+  <h2>CHAPITRE 2 — Recrutement</h2>
+</section>
+
+<section class="group">
+  <h2>Section 1 — Concours d’admission au stage de formation professionnelle de magistrat</h2>
+</section>
+
+<div class="article" id="Article_8">
+  <div class="article-header">
+    <h3>Article 8</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Le concours d’admission au stage de formation professionnelle de magistrat est ouvert par arrêté du ministre de la Justice.</p>
+    <p>L’arrêté précise les conditions à remplir par les candidats, telles que prévues à l’article 18 du Statut de la Magistrature.</p>
+    <p>La maîtrise en droit prévue au 1° de l’article 18 du Statut de la Magistrature est celle obtenue avant l’année 2016.</p>
+    <p>Seuls les candidats remplissant les conditions susmentionnées sont autorisés, par arrêté du ministre de la Justice, sur proposition de l’Institut national de Formation judiciaire, à prendre part aux épreuves du concours d’admission au stage de formation professionnelle de magistrat.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_9">
+  <div class="article-header">
+    <h3>Article 9</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Le concours comprend des épreuves écrites d’admissibilité et des épreuves orales d’admission. Les épreuves écrites d’admissibilité sont précédées d’une épreuve de présélection.</p>
+    <p>Le programme des épreuves, les modalités d’organisation et la discipline du concours ainsi que les conditions d’inscription sont fixés par arrêté du ministre de la Justice, sur proposition de l’Institut national de Formation judiciaire.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_10">
+  <div class="article-header">
+    <h3>Article 10</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Pour l’évaluation des candidats au concours de la magistrature, il est institué un jury distinct pour chaque type d’épreuve.</p>
+    <p>Les membres des jurys des épreuves écrites d’admissibilité et des épreuves d’admission sont nommés par arrêté du ministre de la Justice.</p>
+    <p>Le jury de l’épreuve de présélection est constitué par l’Institut national de Formation judiciaire.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_11">
+  <div class="article-header">
+    <h3>Article 11</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Le jury du concours de la magistrature est composé ainsi qu’il suit :</p>
+    <ul>
+      <li>un président de chambre de la Cour de cassation, <em>président</em> ;</li>
+      <li>un conseiller d’État, <em>vice-président</em> ;</li>
+      <li>un avocat général près la Cour de cassation et le Conseil d’État ;</li>
+      <li>un directeur de l’Administration centrale du ministère de la Justice ;</li>
+      <li>un président de Chambre ou un conseiller de la cour d’appel ou de la Cour d’appel de commerce ;</li>
+      <li>un président de Chambre de la Cour administrative d’appel ;</li>
+      <li>un avocat général près la Cour d’appel ;</li>
+      <li>un professeur agrégé de Droit ;</li>
+      <li>un professeur de Lettres.</li>
+    </ul>
+    <p>S’agissant du jury des épreuves orales d’admission, il comprend, en outre, un psychologue.</p>
+    <p>Les dispositions du présent article ne s’appliquent pas à l’épreuve de présélection.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_12">
+  <div class="article-header">
+    <h3>Article 12</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Le jury des épreuves orales d’admission établit, par ordre de mérite et dans la limite des places mises au concours, la liste définitive des candidats admis.</p>
+    <p>Le jury peut ne pas pourvoir à tous les postes offerts, si les candidats n’ont pas obtenu la moyenne minimale requise ou si leur nombre est inférieur.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_13">
+  <div class="article-header">
+    <h3>Article 13</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Le président du jury des épreuves orales d’admission établit, pour le concours, un rapport qu’il adresse au ministère de la Justice par le canal de l’Institut national de Formation judiciaire.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_14">
+  <div class="article-header">
+    <h3>Article 14</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Les candidats définitivement admis sont immédiatement soumis à une enquête de moralité. Le directeur de l’Institut national de Formation judiciaire y fait procéder par toutes voies de droit.</p>
+    <p>Seuls les candidats admis à l’égard desquels le résultat de l’enquête de moralité est favorable, sont nommés auditeurs de Justice par le ministre de la Justice.</p>
+    <p>À compter de leur nomination par le ministre de la Justice, les auditeurs de Justice sont immatriculés en qualité d’agent de l’État et perçoivent le traitement d’auditeur de Justice, imputable au budget général de l’État.</p>
+  </div>
+</div>
+
+<section class="group">
+  <h2>Section 2 — Nomination d’auditeurs de Justice sur titre</h2>
+</section>
+
+<div class="article" id="Article_15">
+  <div class="article-header">
+    <h3>Article 15</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Suivant les besoins du service, il est lancé, par arrêté du ministre de la Justice fixant le nombre de places offertes, un appel à candidature pour la nomination d’auditeurs de Justice sur titre.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_16">
+  <div class="article-header">
+    <h3>Article 16</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Les candidats au recrutement doivent déposer au ministère de la Justice les documents justifiant qu’ils remplissent les conditions prévues par la loi.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_17">
+  <div class="article-header">
+    <h3>Article 17</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Il est procédé à l’évaluation des candidats à la suite d’un entretien avec le jury d’admission prévu à l’article 11. Le jury procède comme indiqué aux articles 12 et 13. Les dispositions de l’article 14 sont applicables.</p>
+  </div>
+</div>
+
+<section class="group">
+  <h2>CHAPITRE 3 — Formation professionnelle</h2>
+</section>
+
+<section class="group">
+  <h2>Section 1 — Formation initiale</h2>
+</section>
+
+<div class="article" id="Article_18">
+  <div class="article-header">
+    <h3>Article 18</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Les auditeurs de Justice sont soumis à un stage de formation professionnelle d’une durée de deux années.</p>
+    <p>Le programme et les modalités du stage de formation professionnelle ainsi que les critères d’évaluation des auditeurs de Justice sont fixés par arrêté du ministre de la Justice, sur proposition de l’Institut national de Formation judiciaire.</p>
+  </div>
+</div>
+
+<section class="group">
+  <h2>Section 2 — Formation continue</h2>
+</section>
+
+<div class="article" id="Article_19">
+  <div class="article-header">
+    <h3>Article 19</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>À la fin de chaque année judiciaire, l’Institut national de Formation judiciaire établit, pour l’année suivante, un programme de formation continue pour l’ensemble des magistrats en activité.</p>
+    <p>Le programme de formation continue doit concerner toutes les fonctions juridictionnelles et administratives dévolues aux magistrats.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_20">
+  <div class="article-header">
+    <h3>Article 20</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Le programme de formation continue est établi par l’Institut national de Formation judiciaire en tenant compte aussi bien de la nécessaire continuité du service public de la Justice que du droit à la formation continue reconnu aux magistrats.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_21">
+  <div class="article-header">
+    <h3>Article 21</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Chaque magistrat est tenu de participer, au cours de l’année, à un module de formation au moins.</p>
+  </div>
+</div>
+
+<section class="group">
+  <h2>CHAPITRE 4 — Nomination de magistrats à titre intérimaire</h2>
+</section>
+
+<div class="article" id="Article_22">
+  <div class="article-header">
+    <h3>Article 22</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Le ministre de la Justice procède, par arrêté, à la nomination des magistrats chargés de remplir, à titre intérimaire, des fonctions d’un grade ou groupe égales ou supérieures aux fonctions du grade ou du groupe dont ils sont titulaires.</p>
+    <p>L’arrêté précise le motif et la durée de la nomination. Cette durée ne peut excéder deux années judiciaires.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_23">
+  <div class="article-header">
+    <h3>Article 23</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Après deux années d’exercice, le magistrat est déchargé d’office des fonctions qu’il exerce à titre intérimaire.</p>
+    <p>Il réintègre sa fonction initiale ou est nommé dans une autre fonction qu’il est habilité à exercer.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_24">
+  <div class="article-header">
+    <h3>Article 24</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Ne peuvent exercer, à titre intérimaire, les fonctions du deuxième groupe du premier grade que des magistrats totalisant au moins deux années de services effectifs dans le premier groupe du deuxième grade.</p>
+    <p>Ne peuvent exercer, à titre intérimaire, les fonctions du premier groupe du deuxième grade que les magistrats ayant atteint au moins le deuxième échelon dans le deuxième groupe du même grade.</p>
+  </div>
+</div>
+
+<section class="group">
+  <h2>CHAPITRE 5 — Évaluation de l’activité professionnelle du magistrat</h2>
+</section>
+
+<div class="article" id="Article_25">
+  <div class="article-header">
+    <h3>Article 25</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Chaque année, avant le 31 juillet, les premiers présidents des Cours d’appel, des Cours d’appel de commerce et des Cours administratives d’appel et les procureurs généraux près lesdites Cours adressent au ministère de la Justice, pour chaque magistrat de leur ressort, une fiche de notation qu’ils établissent après avoir recueilli, pour les magistrats d’instance, l’avis circonstancié des chefs de la juridiction à laquelle ces magistrats appartiennent.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_26">
+  <div class="article-header">
+    <h3>Article 26</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Le Président de la Cour de cassation, le Président du Conseil d’État, le Procureur général près la Cour de cassation et le Conseil d’État adressent au ministère de la Justice, dans les délais prévus à l’article précédent, une fiche de notation, pour chaque magistrat directement placé sous leur autorité, n’ayant pas encore atteint le premier groupe du premier grade.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_27">
+  <div class="article-header">
+    <h3>Article 27</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>La fiche de notation doit contenir des renseignements détaillés sur les titres et la valeur du magistrat ainsi qu’un rapport spécifique concernant la fonction exercée. Cette fiche de notation est établie suivant le modèle prévu par arrêté du ministre de la Justice.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_28">
+  <div class="article-header">
+    <h3>Article 28</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Toute note chiffrée inférieure à 12 sur 20 ou supérieure à 16 sur 20 doit être justifiée par un rapport détaillé de l’autorité chargée de la notation.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_29">
+  <div class="article-header">
+    <h3>Article 29</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Les juges d’instruction et les juges des enfants font l’objet d’un rapport comportant :</p>
+    <ul>
+      <li>le nombre et le pourcentage des dossiers définitivement instruits, sur la totalité des dossiers pendants ;</li>
+      <li>les justifications des retards accusés dans le règlement des procédures ;</li>
+      <li>des indications relatives au respect de la législation en matière de détention préventive.</li>
+    </ul>
+    <p>Est également annexé à la fiche de notation, un rapport du président de la Chambre d’instruction qui a connu des instructions effectuées par le magistrat présenté, portant sur le fonctionnement de son cabinet.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_30">
+  <div class="article-header">
+    <h3>Article 30</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Les juges font l’objet d’un rapport indiquant :</p>
+    <ol>
+      <li><strong>pour les juges siégeant comme juge unique :</strong>
+        <ul>
+          <li>le respect des exigences imposées par les procédures d’urgence ;</li>
+          <li>le nombre et le pourcentage de décisions rendues sur la totalité des procédures pendantes devant sa chambre ;</li>
+          <li>le nombre et le pourcentage de décisions rédigées par rapport au nombre de décisions rendues ;</li>
+          <li>le nombre et le pourcentage de décisions signées par rapport au nombre de décisions rédigées.</li>
+        </ul>
+      </li>
+      <li><strong>pour les juges siégeant en formation collégiale :</strong>
+        <ul>
+          <li>le nombre et le pourcentage de décisions rédigées par rapport au nombre de dossiers attribués ;</li>
+          <li>les diligences effectuées pour l’exécution des mises en état ordonnées ;</li>
+          <li>les diligences effectuées pour l’exécution des mesures d’instruction ou commissions rogatoires ordonnées.</li>
+        </ul>
+      </li>
+    </ol>
+  </div>
+</div>
+
+<div class="article" id="Article_31">
+  <div class="article-header">
+    <h3>Article 31</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Les magistrats du parquet font l’objet d’un rapport démontrant l’effectivité du respect des instructions écrites données par le supérieur hiérarchique, le respect des délais de procédure et précisant le nombre et le pourcentage de dossiers réglés sur la totalité des procédures reçues.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_32">
+  <div class="article-header">
+    <h3>Article 32</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>La notation des magistrats exerçant à l’Administration centrale du ministère de la Justice est assurée par les directeurs de l’Administration centrale sous l’autorité desquels ils sont directement placés.</p>
+    <p>L’appréciation des magistrats exerçant leurs fonctions à l’Administration centrale du ministère de la Justice porte sur l’effectivité et la bonne exécution des missions qui leur sont confiées.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_33">
+  <div class="article-header">
+    <h3>Article 33</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>La notation des magistrats placés en position de détachement ou en fonction dans les structures sous tutelle du ministère de la Justice est assurée par l’autorité auprès de laquelle ils sont détachés ou placés. L’appréciation porte sur l’effectivité et la bonne exécution des missions confiées au magistrat ainsi que sur le respect des règles déontologiques.</p>
+    <p>Pendant la période de détachement, la notation du magistrat est constituée, chaque année, de la moyenne résultant de l’addition de sa dernière note obtenue en juridiction ou à l’administration centrale du ministère de la Justice et de celle attribuée par l’autorité auprès de laquelle il est détaché.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_34">
+  <div class="article-header">
+    <h3>Article 34</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Les chefs de juridiction et de parquet font, en outre, l’objet d’un rapport établi par l’inspection générale des Services judiciaires et pénitentiaires à l’effet d’apprécier :</p>
+    <ul>
+      <li>la gestion administrative et judiciaire des juridictions ;</li>
+      <li>la qualité des relations entretenues avec les autres chefs de juridiction et de parquet, les autres magistrats, le personnel judiciaire, les auxiliaires de justice et les justiciables ;</li>
+      <li>la qualité des relations entretenues avec les autres autorités administratives de leur ressort.</li>
+    </ul>
+    <p>La disposition de l’alinéa précédent s’applique également aux chefs de juridiction qui ne sont plus soumis à notation chiffrée.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_35">
+  <div class="article-header">
+    <h3>Article 35</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Le chef de juridiction compétent notifiant l’évaluation du magistrat, avec ses rapports spécifiques, en assure la transmission à la Commission d’avancement, après observations éventuelles de l’intéressé.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_36">
+  <div class="article-header">
+    <h3>Article 36</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>La fiche de notation comportant l’évaluation du magistrat accompagnée des rapports spécifiques ainsi que les observations et réclamations éventuelles du magistrat constituent les pièces du dossier servant à l’appréciation du magistrat par la Commission d’avancement.</p>
+  </div>
+</div>
+
+<section class="group">
+  <h2>CHAPITRE 6 — Commission d’avancement</h2>
+</section>
+
+<section class="group">
+  <h2>Section 1 — Composition de la Commission d’avancement</h2>
+</section>
+
+<div class="article" id="Article_37">
+  <div class="article-header">
+    <h3>Article 37</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>La Commission d’avancement comprend des membres de droit et des membres élus.</p>
+    <p>Les membres de droit de la Commission d’avancement sont :</p>
+    <ol>
+      <li>un président de Chambre de la Cour de cassation, désigné par le président de ladite juridiction, <em>président</em> ;</li>
+      <li>un inspecteur général adjoint des Services judiciaires et pénitentiaires, désigné par l’inspecteur général des Services judiciaires et pénitentiaires, <em>vice-président</em> ;</li>
+      <li>un conseiller d’État, désigné par le président du Conseil d’État, <em>membre</em> ;</li>
+      <li>un avocat général près la Cour de cassation et le Conseil d’État, désigné par le procureur général près ladite juridiction, <em>membre</em> ;</li>
+      <li>le directeur de l’Administration centrale chargé des affaires civiles et pénales, <em>membre</em> ;</li>
+      <li>les premiers présidents des juridictions d’appel et procureurs généraux près lesdites juridictions, <em>membres</em>.</li>
+    </ol>
+    <p>Les membres élus de la Commission d’avancement sont :</p>
+    <ol>
+      <li>deux magistrats du siège, dont un titulaire et un suppléant de chacun des deux grades de la hiérarchie judiciaire, élus par leurs pairs, <em>membres</em> ;</li>
+      <li>deux magistrats du parquet, dont un titulaire et un suppléant de chacun des deux grades de la hiérarchie judiciaire, élus par leurs pairs, <em>membres</em>.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="article" id="Article_38">
+  <div class="article-header">
+    <h3>Article 38</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>La durée du mandat des membres élus à la Commission d’avancement est de deux ans non renouvelable.</p>
+    <p>Les magistrats élus ne peuvent siéger lorsqu’ils sont concernés par les délibérations de la Commission d’avancement.</p>
+  </div>
+</div>
+
+<section class="group">
+  <h2>Section 2 — Modalités d’élection des membres de la Commission d’avancement</h2>
+</section>
+
+<div class="article" id="Article_39">
+  <div class="article-header">
+    <h3>Article 39</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>L’organisation des élections des magistrats appelés à siéger à la Commission d’avancement relève de la compétence du ministère de la Justice.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_40">
+  <div class="article-header">
+    <h3>Article 40</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>L’élection des magistrats appelés à siéger à la Commission d’avancement est effectuée au scrutin majoritaire uninominal à un tour et au bulletin secret.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_41">
+  <div class="article-header">
+    <h3>Article 41</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Au siège de chaque juridiction de second degré et de premier degré, les magistrats sont inscrits sur deux listes, l’une concernant les magistrats du siège, l’autre les magistrats du parquet. Les magistrats du siège votent pour la désignation des candidats du siège et ceux du parquet pour la désignation des candidats du parquet.</p>
+    <p>Les magistrats en fonction à la Cour de cassation et au Conseil d’État sont inscrits sur une liste particulière tenue à la Cour de cassation et au Conseil d’État. Ils votent pour la désignation des candidats du siège.</p>
+    <p>Les magistrats en service au parquet général près la Cour de cassation et le Conseil d’État, à l’Administration centrale du ministère de la Justice et les magistrats placés en position de détachement ainsi que ceux en service dans les structures sous tutelle du ministère de la Justice sont inscrits sur une liste particulière tenue au ministère de la Justice. Ils votent pour la désignation des candidats du parquet.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_42">
+  <div class="article-header">
+    <h3>Article 42</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Les magistrats en position de disponibilité, en congé spécial, en congé de longue durée ainsi que les magistrats provisoirement suspendus de leurs fonctions ne peuvent être inscrits sur les listes prévues pour les élections, pendant le temps où ils se trouvent dans l’une de ces situations.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_43">
+  <div class="article-header">
+    <h3>Article 43</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Deux mois avant la date de cessation des fonctions de magistrat d’un membre de la Commission d’avancement, pour quelque motif que ce soit, il est procédé à l’ouverture des candidatures par arrêté du ministre de la Justice.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_44">
+  <div class="article-header">
+    <h3>Article 44</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Au cours de la quinzaine suivant la date de publication de l’arrêté prévu à l’article précédent, les dossiers de candidature sont déposés au ministère de la Justice, qui est chargé de dresser la liste complète des candidats du siège et du parquet, en spécifiant les grades et groupes auxquels ils appartiennent.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_45">
+  <div class="article-header">
+    <h3>Article 45</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Il est institué au siège de la Cour de cassation, du Conseil d’État et de chaque juridiction de second et de premier degré ainsi qu’au ministère de la Justice, au moins un bureau de vote. Chaque bureau de vote dispose d’urnes et d’isoloirs fournis par le ministère de la Justice.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_46">
+  <div class="article-header">
+    <h3>Article 46</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Chaque bureau de vote comprend un président, un secrétaire, et s’il y a lieu, un représentant de chaque candidat. Le président et le secrétaire sont respectivement désignés par le chef de la juridiction et le chef du parquet près ladite juridiction. S’agissant des bureaux de vote du ministère de la Justice, la désignation est effectuée par le directeur chargé des Services judiciaires. Quant aux bureaux de vote de la Cour de cassation et du Conseil d’État, le président et le secrétaire sont désignés par le président de la juridiction.</p>
+    <p>Les membres du bureau de vote, s’ils sont électeurs, doivent être inscrits sur la liste électorale de la circonscription.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_47">
+  <div class="article-header">
+    <h3>Article 47</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Le vote a lieu au moyen d’un bulletin unique, fourni par le ministère de la Justice, pour chacun des deux grades de la hiérarchie judiciaire du siège et du parquet.</p>
+    <p>Le vote par procuration est interdit.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_48">
+  <div class="article-header">
+    <h3>Article 48</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>À la fin des opérations de vote, le président du bureau de vote procède, séance tenante, au dépouillement des bulletins, en présence des représentants des candidats et des électeurs. Il proclame les résultats provisoires et rédige les procès-verbaux de dépouillement qui sont signés par les représentants des candidats inscrits sur la liste.</p>
+    <p>Les résultats provisoires sont acheminés au ministère de la Justice où les résultats définitifs sont proclamés par l’inspecteur général des Services judiciaires et pénitentiaires ou son représentant, en présence des candidats ou de leurs représentants, dûment invités.</p>
+    <p>Un compte rendu des élections est adressé au ministre de la Justice.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_49">
+  <div class="article-header">
+    <h3>Article 49</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>L’élection est acquise pour le titulaire du poste, à la majorité simple des suffrages exprimés.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_50">
+  <div class="article-header">
+    <h3>Article 50</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Sauf en cas de remplacement d’un membre élu qui a changé de grade ou qui ne peut plus exercer sa fonction de membre élu de la Commission d’avancement, pour quelque motif que ce soit, les résultats définitifs des élections doivent être disponibles avant la cessation des fonctions des membres en exercice de la Commission d’avancement.</p>
+  </div>
+</div>
+
+<section class="group">
+  <h2>Section 3 — Fonctionnement de la Commission d’avancement</h2>
+</section>
+
+<div class="article" id="Article_51">
+  <div class="article-header">
+    <h3>Article 51</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>La liste des membres de la Commission d’avancement est établie, chaque année, par arrêté du ministre de la Justice, avant le 1<sup>er</sup> novembre. Cet arrêté peut être modifié à tout moment, en cas de remplacement d’un membre de la Commission d’avancement, pour quelque motif que ce soit.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_52">
+  <div class="article-header">
+    <h3>Article 52</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Le secrétariat de la Commission d’avancement est assuré par le directeur de l’Administration centrale chargé des Services judiciaires. Il est chargé de la gestion administrative de la Commission d’avancement.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_53">
+  <div class="article-header">
+    <h3>Article 53</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>La Commission d’avancement se réunit sur convocation de son président, au siège de la Cour de cassation, dans la première quinzaine du mois de décembre. En cas d’empêchement du président, le vice-président procède à cette convocation.</p>
+    <p>La Commission d’avancement délibère valablement lorsque deux tiers de ses membres sont réunis. Les décisions sont prises à la majorité des membres présents. En cas de partage égal des voix au sein de la Commission, la voix du président est prépondérante.</p>
+    <p>Les séances de la Commission d’avancement ne sont pas publiques.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_54">
+  <div class="article-header">
+    <h3>Article 54</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Il est alloué aux membres de la Commission d’avancement, une indemnité de session dont le montant est fixé par arrêté conjoint des ministres chargés de la Justice, du Budget et de l’Économie et des Finances.</p>
+    <p>La Commission d’avancement dispose, pour son fonctionnement, d’une dotation budgétaire fournie par le ministère de la Justice.</p>
+  </div>
+</div>
+
+<section class="group">
+  <h2>CHAPITRE 7 — Tableau d’avancement et liste d’aptitude</h2>
+</section>
+
+<section class="group">
+  <h2>Section 1 — Avancement de grade et de groupe</h2>
+</section>
+
+<div class="article" id="Article_55">
+  <div class="article-header">
+    <h3>Article 55</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Chaque année, avant le 1<sup>er</sup> novembre, le ministre de la Justice adresse à la Commission d’avancement les présentations en vue de l’inscription au tableau d’avancement et sur les listes d’aptitude. Ces présentations indiquent, par ordre de mérite, les magistrats jugés aptes à un avancement de grade ou de groupe.</p>
+    <p>Chaque présentation est accompagnée de la fiche de notation prévue à l’article 27, ainsi que des rapports spécifiques. Il y est joint une fiche de <em>desiderata</em> dans laquelle le magistrat indique les postes auxquels il souhaiterait être nommé en cas d’inscription au tableau d’avancement ou sur la liste d’aptitude.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_56">
+  <div class="article-header">
+    <h3>Article 56</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Nul ne peut figurer :</p>
+    <ol>
+      <li>au tableau d’avancement, s’il ne totalise, au 1<sup>er</sup> janvier de l’année pour laquelle il est établi, au moins quatre années de services effectifs dans le premier groupe du second grade ;</li>
+      <li>sur la liste d’aptitude à un emploi du premier groupe du second grade, si, au 1<sup>er</sup> janvier de l’année pour laquelle elle est établie, il n’a atteint le troisième échelon dans le deuxième groupe du même grade et s’il ne totalise, dans ce groupe, au moins six années de services effectifs ;</li>
+      <li>sur la liste d’aptitude à un emploi du premier groupe du premier grade, s’il ne totalise, au 1<sup>er</sup> janvier de l’année pour laquelle elle est établie, au moins quatre années de services effectifs dans le second groupe de ce grade.</li>
+    </ol>
+    <p>Les services effectifs s’entendent des services accomplis en position d’activité ou de détachement.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_57">
+  <div class="article-header">
+    <h3>Article 57</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>La Commission d’avancement, lorsqu’elle arrête le tableau d’avancement et la liste d’aptitude communs à l’ensemble des magistrats, dresse par ordre de mérite, une liste séparée des magistrats jugés aptes à remplir les fonctions de magistrats à l’Administration centrale.</p>
+    <p>Les noms des magistrats présentés sont portés, par ordre alphabétique, sur des listes qui sont tenues du 1<sup>er</sup> au 15 octobre, à la disposition des magistrats, au ministère de la Justice, au siège de la Cour de cassation, du Conseil d’État, du Parquet général près la Cour de cassation et le Conseil d’État, et de chaque Cour d’appel et de chaque juridiction de premier degré.</p>
+    <p>Avant le 15 novembre, sous peine de forclusion, les magistrats non compris dans les présentations peuvent, par l’intermédiaire des autorités chargées de la notation, adresser au ministère de la Justice des demandes tendant à obtenir leur inscription au tableau d’avancement ou sur les listes d’aptitude, accompagnées des fiches de notation et de toutes pièces justificatives. Les autorités chargées de la notation transmettent au ministère de la Justice ces demandes, et, s’il y a lieu, les mémoires annexés en exprimant leur avis motivé. Lorsque les demandes d’inscription sont jugées valables, le ministre de la Justice établit des tableaux d’avancement ou des listes d’aptitude ad hoc.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_58">
+  <div class="article-header">
+    <h3>Article 58</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Toutes les pièces concernant les présentations et demandes adressées au ministère de la Justice sont transmises, par ses soins, au secrétariat de la Commission d’avancement chargée de préparer les tableaux d’avancement et les listes d’aptitude.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_59">
+  <div class="article-header">
+    <h3>Article 59</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Le tableau d’avancement et les listes d’aptitude sont arrêtés par la Commission d’avancement avant le 1<sup>er</sup> janvier de l’année au cours de laquelle ils doivent être appliqués.</p>
+    <p>Le tableau d’avancement et les listes d’aptitude sont publiés au Journal officiel de la République de Côte d’Ivoire. Ils sont affichés au siège de la Cour de cassation, du Conseil d’État, du Parquet général près la Cour de cassation et le Conseil d’État, de chaque Cour d’appel et de chaque juridiction de premier degré.</p>
+    <p>La Commission d’avancement notifie à chaque magistrat dont l’inscription a été refusée sur la liste d’aptitude ou au tableau d’avancement le résultat motivé de ses délibérations en ce qui le concerne.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_60">
+  <div class="article-header">
+    <h3>Article 60</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Les magistrats jugés aptes à obtenir un avancement de grade ou de groupe sont inscrits par ordre alphabétique.</p>
+    <p>Les magistrats de l’Administration centrale appartenant au 1<sup>er</sup> groupe du 2<sup>e</sup> grade ont seuls accès par voie de promotion aux postes de magistrat du 1<sup>er</sup> grade de l’Administration centrale.</p>
+    <p>Dans la limite des vacances constatées, des magistrats des cours et tribunaux peuvent être nommés sur leur demande à des postes réservés aux magistrats de l’Administration centrale.</p>
+    <p>Les magistrats de l’Administration centrale appartenant aux deux grades de la hiérarchie judiciaire peuvent être nommés sur leur demande à un poste de leur grade dans les cours et tribunaux.</p>
+    <p>Nul ne peut être nommé à un emploi de 1<sup>er</sup> groupe de l’Administration centrale s’il n’a accompli au moins quatre années de services effectifs dans les juridictions et s’il n’a atteint au moins le premier groupe du deuxième grade.</p>
+  </div>
+</div>
+
+<section class="group">
+  <h2>Section 2 — Avancement d’échelon</h2>
+</section>
+
+<div class="article" id="Article_61">
+  <div class="article-header">
+    <h3>Article 61</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Le temps à passer dans les différents échelons de chacun des groupes des deux grades de la hiérarchie judiciaire pour accéder à l’échelon immédiatement supérieur est de deux ans.</p>
+    <p>Le temps à passer dans le premier échelon du groupe B hors hiérarchie pour accéder à l’échelon supérieur est de trois ans.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_62">
+  <div class="article-header">
+    <h3>Article 62</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Les magistrats qui accèdent au groupe B hors hiérarchie, au deuxième groupe du premier grade ou aux fonctions du groupe supérieur de chaque grade bénéficient de l’échelon de ces groupes.</p>
+    <p>Les auditeurs de Justice nommés magistrats du second grade accèdent au premier échelon du deuxième groupe de ce grade.</p>
+  </div>
+</div>
+
+<section class="group">
+  <h2>CHAPITRE 8 — Dispositions particulières, transitoires et finales</h2>
+</section>
+
+<div class="article" id="Article_63">
+  <div class="article-header">
+    <h3>Article 63</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Le montant de l’indemnité forfaitaire compensatrice à allouer aux ayants droit du magistrat décédé dans l’exercice de ses fonctions, à la suite soit de voies de fait soit d’actes terroristes ou de circonstances liées à des conflits armés, tel que prévu à l’article 11 alinéa 2 du Statut de la Magistrature, correspond à cinq fois son traitement net annuel.</p>
+    <p>Le montant de l’indemnité forfaitaire compensatrice à allouer au magistrat dont un membre de la famille est décédé dans les circonstances prévues à l’alinéa précédent, en raison de la fonction de magistrat, correspond à deux fois son traitement net annuel.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_64">
+  <div class="article-header">
+    <h3>Article 64</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Le paiement de l’indemnité prévue à l’article précédent est effectué sous forme de capital au bénéficiaire de ladite indemnité.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_65">
+  <div class="article-header">
+    <h3>Article 65</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Le magistrat en position de disponibilité qui en souhaite le renouvellement doit, deux mois au moins avant l’expiration du délai initial de la disponibilité, adresser une demande motivée au ministre de la Justice.</p>
+    <p>En cas d’avis favorable, le ministre de la Justice notifie son accord à l’intéressé avant l’expiration de la date initiale de mise en disponibilité. En cas d’avis défavorable, le ministre de la Justice adresse à l’intéressé une lettre de refus et procède aux formalités en vue de sa réintégration, conformément aux dispositions de la loi.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_66">
+  <div class="article-header">
+    <h3>Article 66</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Les magistrats et les auditeurs de Justice sont munis d’une carte professionnelle dont le modèle et les conditions de délivrance, d’usage et de retrait sont définis par arrêté du ministre de la Justice.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_67">
+  <div class="article-header">
+    <h3>Article 67</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Les premières opérations de vote en application des dispositions prévues à la section 2 du chapitre 6 devront se dérouler dans la première quinzaine du mois d’octobre 2023.</p>
+    <p>Jusqu’à la désignation de ces premiers membres élus, la Commission d’avancement est composée ainsi qu’il suit :</p>
+    <ol>
+      <li>un président de Chambre de la Cour de cassation, désigné par le président de ladite juridiction, <em>président</em> ;</li>
+      <li>un inspecteur général adjoint des Services judiciaires et pénitentiaires, désigné par l’inspecteur général des Services judiciaires et pénitentiaires, <em>vice-président</em> ;</li>
+      <li>un conseiller d’État, désigné par le Président du Conseil d’État, <em>membre</em> ;</li>
+      <li>un avocat général près la Cour de cassation et le Conseil d’État, désigné par le Procureur général près ladite juridiction, <em>membre</em> ;</li>
+      <li>le directeur de l’Administration centrale chargé des affaires civiles et pénales, <em>membre</em> ;</li>
+      <li>les premiers présidents des juridictions d’appel et procureurs généraux près lesdites juridictions, <em>membres</em>.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="article" id="Article_68">
+  <div class="article-header">
+    <h3>Article 68</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Au moment de la mise en place des juridictions administratives, le président de Chambre de la Cour administrative d’appel désigné comme membre du jury du concours de la magistrature prévu à l’article 11, est remplacé par un président de Chambre ou un conseiller de la Cour d’appel en charge du contentieux administratif.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_69">
+  <div class="article-header">
+    <h3>Article 69</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>À compter de l’entrée en vigueur du présent décret, les magistrats exerçant les fonctions prévues aux articles 2, 3, 4 et 5, mais qui n’ont pas encore été nommés dans les emplois correspondants, font l’objet d’une nouvelle nomination conformément aux dispositions desdits articles.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_70">
+  <div class="article-header">
+    <h3>Article 70</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Le décret n°78-697 du 24 août 1978 pris pour l’application du Statut de la Magistrature tel que modifié et complété par les décrets n°80-1196 du 28 octobre 1980, 85-1092 du 16 octobre 1985, 94-525 du 21 septembre 1994, 94-665 du 21 décembre 1994 et 97-580 du 8 octobre 1997, est abrogé.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_71">
+  <div class="article-header">
+    <h3>Article 71</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Le Garde des Sceaux, ministre de la Justice et des Droits de l’Homme, le ministre du Budget et du Portefeuille de l’État et le ministre de l’Économie et des Finances sont chargés, chacun en ce qui le concerne, de l’exécution du présent décret qui sera publié au Journal officiel de la République de Côte d’Ivoire.</p>
+  </div>
+</div>
+
+<div class="article" id="Article_72">
+  <div class="article-header">
+    <h3>Article 72</h3>
+    <button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button>
+  </div>
+  <div class="article-content">
+    <p>Fait à Abidjan, le 9 novembre 2022.</p>
+    <p>Alassane OUATTARA.</p>
+  </div>
+</div>
+</section></main>
+<div id="tocOverlay"></div>
+<aside id="tocPanel"><header><h3><i class="fa-solid fa-landmark"></i> Sommaire</h3></header><div class="toc-list" id="tocList"></div></aside>
+<div id="voiceBar" role="region" aria-label="Lecteur vocal">
+  <button id="vPrev" title="Article précédent"><i class="fas fa-backward"></i></button>
+  <button id="vPlay" title="Lire / Reprendre"><i class="fas fa-play"></i></button>
+  <button id="vPause" title="Pause"><i class="fas fa-pause"></i></button>
+  <button id="vStop" title="Arrêter"><i class="fas fa-stop"></i></button>
+  <button id="vNext" title="Article suivant"><i class="fas fa-forward"></i></button>
+  <span class="now" id="vNow">—</span>
+</div>
+<div id="fsOverlay"><div id="fsHeader"><button id="fsClose" title="Fermer"><i class="fas fa-xmark"></i></button><div class="ttl" id="fsTitle"></div><button id="fsPlay" title="Lecture"><i class="fas fa-play"></i></button></div><div id="fsBody"><article class="article"><div class="article-content" id="fsContent"></div></article></div><button id="fsNavPrev" title="Précédent"><i class="fas fa-chevron-left"></i></button><button id="fsNavNext" title="Suivant"><i class="fas fa-chevron-right"></i></button></div>
+
+<script>
+function initSearchFeature() {
+    const bar = document.querySelector('.control-buttons');
+    const searchBtn = document.createElement('button');
+    searchBtn.className = 'btn'; searchBtn.id = 'searchBtn'; searchBtn.title = 'Rechercher';
+    searchBtn.innerHTML = '<i class="fas fa-search"></i>'; bar.appendChild(searchBtn);
+    const searchInterface = document.createElement('div');
+    searchInterface.id = 'searchInterface';
+    searchInterface.style.cssText = `position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+        width: calc(100% - 40px); max-width: 550px; background: #fff;
+        padding: 10px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        z-index: 1000; display: none; align-items: center; gap: 5px; transition: .25s ease;`;
+    searchInterface.innerHTML = `
+        <input type="text" id="searchInput" placeholder="Rechercher..." style="flex-grow: 1; padding: 8px; border: 1px solid #e6e2da; border-radius: 5px;">
+        <button id="searchPrevBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-up"></i></button>
+        <button id="searchNextBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-down"></i></button>
+        <span id="searchResultsCount" style="flex-shrink: 0; padding: 0 5px; min-width: 40px; text-align: center;"></span>
+        <button id="closeSearchBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-times"></i></button>`;
+    document.body.appendChild(searchInterface);
+    let searchResults = []; let currentSearchIndex = -1; let originalContents = new Map();
+    function performSearch() {
+        const searchTerm = document.getElementById('searchInput').value.trim();
+        if (!originalContents.size) { document.querySelectorAll('.article-content, h2, h3').forEach(el => originalContents.set(el, el.innerHTML)); }
+        originalContents.forEach((content, el) => el.innerHTML = content);
+        searchResults = []; currentSearchIndex = -1;
+        if (!searchTerm) { updateSearchUI(); return; }
+        const regex = new RegExp(searchTerm.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&'), 'gi');
+        originalContents.forEach((content, element) => { element.innerHTML = content.replace(regex, match => `<mark>${match}</mark>`); });
+        searchResults = Array.from(document.querySelectorAll('mark'));
+        if (searchResults.length > 0) navigateResults(true, false);
+        updateSearchUI(); window.dispatchEvent(new Event('reflowArticles'));
+    }
+    function navigateResults(isNext, shouldWrap = true) {
+        if (!searchResults.length) return;
+        searchResults.forEach(mark => mark.style.backgroundColor = '');
+        currentSearchIndex = shouldWrap ? (isNext ? (currentSearchIndex + 1) % searchResults.length : (currentSearchIndex - 1 + searchResults.length) % searchResults.length) : 0;
+        const currentMark = searchResults[currentSearchIndex];
+        currentMark.style.backgroundColor = 'var(--accent)';
+        currentMark.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        updateSearchUI();
+    }
+    function updateSearchUI() { document.getElementById('searchResultsCount').textContent = searchResults.length > 0 ? `${currentSearchIndex + 1}/${searchResults.length}` : '0/0'; }
+    function resetSearch() { originalContents.forEach((content, el) => el.innerHTML = content); originalContents.clear(); document.getElementById('searchInput').value = ''; searchResults = []; currentSearchIndex = -1; updateSearchUI(); }
+    searchBtn.addEventListener('click', () => { const isVisible = searchInterface.style.display === 'flex'; searchInterface.style.display = isVisible ? 'none' : 'flex'; if (isVisible) resetSearch(); else document.getElementById('searchInput').focus(); });
+    document.getElementById('searchInput').addEventListener('input', performSearch);
+    document.getElementById('searchNextBtn').addEventListener('click', () => navigateResults(true));
+    document.getElementById('searchPrevBtn').addEventListener('click', () => navigateResults(false));
+    document.getElementById('closeSearchBtn').addEventListener('click', () => { searchInterface.style.display = 'none'; resetSearch(); });
+}
+</script>
+
+<script>
+/* === Auto-énumération robuste pour .article-content === */
+(function(){
+  function extractEnumeration(s){
+    // Cherche : début de texte ou ponctuation, puis 1–3 chiffres, option ) ou ., puis espace(s)
+    const re = /(?:^|[.:;])\s*(\d{1,3})(?:\)|\.)?\s+/g;
+    const matches = [];
+    let m;
+
+    while ((m = re.exec(s))){
+      const idx = m.index;
+
+      // 1) Ne pas couper à l'intérieur d'un nombre (ex: "162")
+      const prevChar = idx > 0 ? s.charAt(idx - 1) : " ";
+      if (/\d/.test(prevChar)) continue;
+
+      // 2) Ne pas transformer quand le nombre est précédé de "article"
+      //    On regarde quelques caractères avant l'index
+      const ctx = s.slice(Math.max(0, idx - 12), idx).toLowerCase();
+      if (/\barticle\s*$/.test(ctx)) continue;
+
+      matches.push({ num: parseInt(m[1], 10), start: idx, end: re.lastIndex });
+    }
+
+    if (matches.length < 2) return null;
+
+    // Exige une vraie suite croissante (n, n+1, ...)
+    for (let i = 1; i < matches.length; i++){
+      if (matches[i].num !== matches[i-1].num + 1) return null;
+    }
+
+    // Intro = tout ce qui précède le premier numéro, on retire : ; -
+    const intro = s.slice(0, matches[0].start).trim().replace(/[:;\-]\s*$/, "");
+    const items = [];
+    for (let i = 0; i < matches.length; i++){
+      const st = matches[i].end;
+      const en = (i + 1 < matches.length) ? matches[i + 1].start : s.length;
+      let seg = s.slice(st, en).trim().replace(/^[;:-]\s*/, "").replace(/[;\s]+$/, "");
+      items.push(seg);
+    }
+    return { intro, start: matches[0].num, items };
+  }
+
+  function transformNode(node){
+    // IMPORTANT : si l’éditeur a déjà mis une liste, on ne touche pas !
+    if (node.querySelector('ol, ul')) return;
+
+    const plain = node.textContent.replace(/\s+/g, ' ').trim();
+    const res = extractEnumeration(plain);
+    if (!res) return;
+
+    const frag = document.createElement('div');
+    if (res.intro){
+      const p = document.createElement('p');
+      p.textContent = res.intro;
+      frag.appendChild(p);
+    }
+    const ol = document.createElement('ol');
+    if (res.start !== 1) ol.setAttribute('start', String(res.start));
+    res.items.forEach(it => {
+      const li = document.createElement('li');
+      li.textContent = it;
+      ol.appendChild(li);
+    });
+    frag.appendChild(ol);
+    node.innerHTML = frag.innerHTML;
+  }
+
+  function run(){
+    document.querySelectorAll('.article-content').forEach(transformNode);
+  }
+
+  window.addEventListener('DOMContentLoaded', () => setTimeout(run, 60));
+  window.addEventListener('reflowArticles', run);
+})();
+</script>
+
+<script>
+(function(){
+  const $ = s=>document.querySelector(s);
+  const $$ = s=>Array.from(document.querySelectorAll(s));
+  function buildTOC(){
+    const toc = document.getElementById('tocList'); toc.innerHTML='';
+    $$('.group').forEach((grp, gi)=>{
+      const gh = grp.querySelector('h2')?.textContent.trim() || `Groupe ${gi+1}`;
+      const gl = document.createElement('a'); gl.textContent=gh; gl.href='#'; gl.style.fontWeight='700';
+      gl.addEventListener('click', e=>{ e.preventDefault(); grp.scrollIntoView({behavior:'smooth', block:'start'}); hideTOC(); });
+      toc.appendChild(gl);
+      const sub = document.createElement('div'); sub.className='toc-sub';
+      grp.querySelectorAll('.article').forEach((art, ai)=>{
+        const at = art.querySelector('h3')?.textContent.trim() || `Article ${ai+1}`;
+        const a = document.createElement('a'); a.textContent=at; a.href='#';
+        a.addEventListener('click', e=>{ e.preventDefault(); art.scrollIntoView({behavior:'smooth', block:'start'}); hideTOC(); });
+        sub.appendChild(a);
+        if (!art.querySelector('.open-fs')){
+          const btn = document.createElement('button'); btn.className='open-fs'; btn.innerHTML='<i class="fas fa-expand"></i>';
+          btn.title='Plein écran'; btn.addEventListener('click', ()=>openFS(artIndex(art))); art.prepend(btn);
+        }
+      });
+      toc.appendChild(sub);
+    });
+  }
+  function showTOC(){ document.getElementById('tocOverlay').classList.add('show'); document.getElementById('tocPanel').classList.add('open'); }
+  function hideTOC(){ document.getElementById('tocOverlay').classList.remove('show'); document.getElementById('tocPanel').classList.remove('open'); }
+  document.getElementById('tocFloatBtn').addEventListener('click', showTOC);
+  document.getElementById('tocOverlay').addEventListener('click', hideTOC);
+  buildTOC();
+  const articles = $$('.article');
+  function artIndex(el){ return articles.indexOf(el); }
+  function getArticle(i){ return articles[Math.max(0, Math.min(articles.length-1, i))]; }
+  function artTitle(i){ const el=getArticle(i); return el? (el.querySelector('h3')?.textContent.trim()||'') : ''; }
+  function artText(i){ const el=getArticle(i); return el? (el.querySelector('.article-content')?.innerText.trim()||'') : ''; }
+  const synth = window.speechSynthesis;
+  let current = 0, utter = null, playing = false, paused = false, inFS=false;
+  function speakIndex(i){ stopSpeak(); current=i; const text=artText(i); if(!text){ nextArticle(); return; }
+    utter = new SpeechSynthesisUtterance(text); utter.lang='fr-FR'; utter.rate=1; utter.pitch=1;
+    utter.onend = ()=>{ if(playing && !paused){ nextArticle(); } };
+    try{ synth.speak(utter);}catch(e){ console.warn(e); }
+    playing=true; paused=false; updateUI(); highlightCurrent(); }
+  function highlightCurrent(){ articles.forEach(a=>a.classList.remove('reading')); const el=getArticle(current); if(el){ el.classList.add('reading'); if(!inFS) el.scrollIntoView({behavior:'smooth', block:'center'}); } document.getElementById('vNow').textContent = artTitle(current) || '—'; }
+  function pauseSpeak(){ if(synth && synth.speaking){ synth.pause(); paused=true; playing=true; } }
+  function resumeSpeak(){ if(synth && paused){ synth.resume(); paused=false; } else { speakIndex(current); } updateUI(); }
+  function stopSpeak(){ if(synth){ try{synth.cancel();}catch(e){} } playing=false; paused=false; updateUI(); }
+  function prevArticle(){ current=Math.max(0,current-1); if(playing){ speakIndex(current);} else {highlightCurrent();} if(inFS) openFS(current); }
+  function nextArticle(){ current=Math.min(articles.length-1,current+1); if(playing){ speakIndex(current);} else {highlightCurrent();} if(inFS) openFS(current); }
+  document.getElementById('vPlay').addEventListener('click', ()=>{ if(!playing || paused){ resumeSpeak(); } else { pauseSpeak(); } });
+  document.getElementById('vPause').addEventListener('click', ()=>pauseSpeak());
+  document.getElementById('vStop').addEventListener('click', ()=>{ stopSpeak(); });
+  document.getElementById('vPrev').addEventListener('click', prevArticle);
+  document.getElementById('vNext').addEventListener('click', nextArticle);
+  function updateUI(){ document.getElementById('vPlay').innerHTML = paused || !playing ? '<i class="fas fa-play"></i>' : '<i class="fas fa-pause"></i>'; }
+  let touchStartX=null;
+  function openFS(i){ inFS=true; current=i; document.getElementById('fsTitle').textContent=artTitle(i); document.getElementById('fsContent').textContent=artText(i); document.getElementById('fsOverlay').classList.add('show'); document.body.style.overflow='hidden'; speakIndex(i); }
+  function closeFS(){ inFS=false; document.getElementById('fsOverlay').classList.remove('show'); document.body.style.overflow=''; }
+  document.getElementById('fsClose').addEventListener('click', ()=>{ closeFS(); });
+  document.getElementById('fsPlay').addEventListener('click', ()=>{ if(!playing || paused){ resumeSpeak(); } else { pauseSpeak(); } });
+  document.getElementById('fsNavPrev').addEventListener('click', ()=>{ prevArticle(); });
+  document.getElementById('fsNavNext').addEventListener('click', ()=>{ nextArticle(); });
+  $$('.article .open-fs').forEach((btn, idx)=> btn.addEventListener('click', ()=>openFS(idx)));
+  $$('.article').forEach((art, idx)=> art.addEventListener('dblclick', ()=>openFS(idx)));
+  document.getElementById('fsOverlay').addEventListener('touchstart', (e)=>{ touchStartX = e.changedTouches[0].clientX; }, {passive:true});
+  document.getElementById('fsOverlay').addEventListener('touchend', (e)=>{ if(touchStartX==null) return; const dx=e.changedTouches[0].clientX - touchStartX; const TH=50; if(dx<-TH){ nextArticle(); } else if(dx>TH){ prevArticle(); } touchStartX=null; }, {passive:true});
+  window.addEventListener('reflowArticles', ()=>{ buildTOC(); });
+  buildTOC();
+})();
+</script>
+
+<script>initSearchFeature(); window.dispatchEvent(new Event('reflowArticles'));</script>
+<footer>Voir aussi : <a href="annexe_magistrature_RESP.html">Annexes — Statut de la Magistrature</a></footer>
+
+<script>
+(function(){
+  function bindTOCButtons(){
+    var panel = document.getElementById('tocPanel');
+    var overlay = document.getElementById('tocOverlay');
+    function show(){ overlay && overlay.classList.add('show'); panel && panel.classList.add('open'); }
+    function hide(){ overlay && overlay.classList.remove('show'); panel && panel.classList.remove('open'); }
+    var b1 = document.getElementById('tocFloatBtn');
+    var b2 = document.getElementById('tocHeaderBtn');
+    if (b1) b1.addEventListener('click', show);
+    if (b2) b2.addEventListener('click', show);
+    if (overlay) overlay.addEventListener('click', hide);
+  }
+  document.addEventListener('DOMContentLoaded', bindTOCButtons);
+})();
+</script>
+
+
+<script>
+(function(){
+  // Activer le mode no-select
+  document.addEventListener('DOMContentLoaded', function(){
+    document.body.classList.add('no-select');
+  });
+
+  function isInteractive(el){
+    if (!el) return false;
+    if (el.tagName) {
+      const tag = el.tagName.toLowerCase();
+      if (tag === 'input' || tag === 'textarea') return true;
+    }
+    if (el.isContentEditable) return true;
+    if (el.closest && el.closest('#searchInterface')) return true; // autoriser la saisie dans la recherche
+    return false;
+  }
+
+  // Bloquer le menu contextuel hors champs
+  document.addEventListener('contextmenu', function(e){
+    if (!isInteractive(e.target)) e.preventDefault();
+  }, {capture:true});
+
+  // Bloquer sélection
+  document.addEventListener('selectstart', function(e){
+    if (!isInteractive(e.target)) e.preventDefault();
+  }, {capture:true});
+
+  // Bloquer copier/coller/couper hors champs
+  ['copy','cut','paste','dragstart'].forEach(function(type){
+    document.addEventListener(type, function(e){
+      if (!isInteractive(document.activeElement)) e.preventDefault();
+    }, {capture:true});
+  });
+
+  // Bloquer Ctrl/Cmd + C/X/A/S/P... hors champs
+  document.addEventListener('keydown', function(e){
+    const k = (e.key || '').toLowerCase();
+    const combo = (e.ctrlKey || e.metaKey) && ['c','x','a','s','p','insert'].includes(k);
+    if (combo && !isInteractive(document.activeElement)) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  }, {capture:true});
+})();
+</script>
+
+  <script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js"));
+  }
+</script>
+  <!-- PWA Install Button -->
+<button id="pwa-install-btn" aria-label="Installer l'application" hidden>Installer</button>
+<style>
+  #pwa-install-btn{
+    position:fixed; right:16px; bottom:16px; z-index:9999;
+    padding:10px 14px; border:none; border-radius:999px;
+    background:#22c55e; color:white; font:600 14px system-ui,Segoe UI,Roboto,Arial,sans-serif;
+    box-shadow:0 8px 20px rgba(34,197,94,.35);
+  }
+  #pwa-install-btn[hidden]{ display:none; }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    #pwa-install-btn{ bottom: calc(16px + env(safe-area-inset-bottom)); }
+  }
+</style>
+<script>
+  (function(){
+    let deferredPrompt;
+    const btnId = "pwa-install-btn";
+    function ensureBtn(){
+      let b = document.getElementById(btnId);
+      if(!b){
+        b = document.createElement("button");
+        b.id = btnId;
+        b.textContent = "Installer";
+        document.body.appendChild(b);
+      }
+      return b;
+    }
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      const btn = ensureBtn();
+      btn.hidden = false;
+      btn.onclick = async () => {
+        btn.hidden = true;
+        deferredPrompt.prompt();
+        await deferredPrompt.userChoice;
+        deferredPrompt = null;
+      };
+    });
+    if (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) {
+      const btn = document.getElementById(btnId);
+      if(btn) btn.hidden = true;
+    }
+  })();
+</script>
+  <!-- Auth UI minimal -->
+<style>
+  .auth-box{position:fixed; top:12px; right:12px; z-index:9998; background:#ffffff; color:#111827; border-radius:12px; padding:10px 12px; box-shadow:0 10px 24px rgba(0,0,0,.12); font:500 14px system-ui,Segoe UI,Roboto,Arial}
+  .auth-box h4{margin:0 0 6px; font-size:14px}
+  .auth-box form{display:flex; gap:6px; flex-wrap:wrap; align-items:center}
+  .auth-box input{padding:6px 8px; border:1px solid #e5e7eb; border-radius:8px}
+  .auth-box button{background:#22c55e; color:#fff; border:none; padding:6px 10px; border-radius:8px; cursor:pointer}
+  .auth-box .row{display:flex; gap:6px; flex-wrap:wrap}
+  .views-badge{position:fixed; left:12px; bottom:12px; z-index:9998; background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px; font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)}
+</style><!-- Admin link (visible only when logged-in) -->
+<style>
+  .admin-link{
+    position:fixed; right:16px; bottom:88px; z-index:9998;
+    display:none; align-items:center; gap:8px;
+    padding:10px 14px; border-radius:999px; text-decoration:none;
+    background:#111827; color:#fff; font:600 14px system-ui,Segoe UI,Roboto,Arial;
+    box-shadow:0 8px 20px rgba(0,0,0,.3);
+    border:1px solid rgba(255,255,255,.1);
+  }
+  body.logged-in .admin-link{ display:inline-flex; }
+  .admin-link:hover{ filter:brightness(1.1); }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    .admin-link{ bottom: calc(88px + env(safe-area-inset-bottom)); }
+  }
+</style>
+<a href="admin.html" class="admin-link" title="Tableau de bord">Admin</a>
+  <script type="module" src="assets/firebase-app.js"></script>
+  <script>window.autoCountAndBind && window.autoCountAndBind();</script>
+  
+<!-- Floating Auth Button + Modal -->
+<style>
+  #auth-fab{
+    position:fixed; right:16px; bottom:68px; z-index:9998;
+    width:48px; height:48px; border-radius:999px; border:none; cursor:pointer;
+    background:#111827; color:#fff; display:grid; place-items:center;
+    box-shadow:0 8px 20px rgba(0,0,0,.35); border:1px solid rgba(255,255,255,.1);
+  }
+  body.logged-in #auth-fab::after{ content:"✓"; }
+  #auth-fab::after{ content:"👤"; font-size:20px; }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    #auth-fab{ bottom: calc(68px + env(safe-area-inset-bottom)); }
+  }
+  .views-badge{
+    position:fixed; left:12px; bottom:12px; z-index:9998; 
+    background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px;
+    font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)
+  }
+  dialog#auth-modal{
+    border:none; border-radius:16px; padding:0; width:min(90vw,420px);
+    box-shadow:0 24px 72px rgba(0,0,0,.35); overflow:hidden;
+  }
+  dialog::backdrop{ background:rgba(0,0,0,.4); }
+  .auth-modal-head{background:#0f172a; color:#fff; padding:12px 16px; display:flex; justify-content:space-between; align-items:center}
+  .auth-modal-body{padding:16px; background:#111827; color:#e5e7eb}
+  .auth-modal-body label{display:block; font-size:13px; margin-top:8px; opacity:.9}
+  .auth-modal-body input{width:100%; padding:10px 12px; border-radius:10px; border:1px solid #1f2937; background:#0b1021; color:#e5e7eb}
+  .auth-actions{display:flex; gap:8px; margin-top:14px}
+  .btn{border:none; border-radius:10px; padding:10px 12px; cursor:pointer; font-weight:600}
+  .btn-primary{background:#22c55e; color:white}
+  .btn-ghost{background:transparent; color:#e5e7eb; border:1px solid #374151}
+  .muted{opacity:.8}
+</style>
+
+<button id="auth-fab" title="Connexion / Compte"></button>
+<div class="views-badge">Vues : <span id="viewCounter">0</span></div>
+
+<dialog id="auth-modal">
+  <div class="auth-modal-head">
+    <strong>Connexion</strong>
+    <button class="btn btn-ghost" id="auth-close" aria-label="Fermer">✕</button>
+  </div>
+  <div class="auth-modal-body">
+    <p class="muted">Connecte-toi pour accéder à l’admin et une meilleure expérience.</p>
+    <label>Email</label>
+    <input type="email" id="auth-email" placeholder="email@exemple.com" required>
+    <label>Mot de passe</label>
+    <input type="password" id="auth-pass" placeholder="••••••••" required>
+    <div class="auth-actions">
+      <button class="btn btn-primary" id="btn-login">Connexion</button>
+      <button class="btn btn-ghost" id="btn-register">Créer un compte</button>
+      <button class="btn btn-ghost" id="btn-logout">Déconnexion</button>
+    </div>
+    <div id="auth-msg" class="muted" style="margin-top:8px;"></div>
+  </div>
+</dialog>
+
+<script type="module">
+  import { authRegister, authLogin, authLogout } from "./assets/firebase-app.js";
+
+  const fab = document.getElementById("auth-fab");
+  const modal = document.getElementById("auth-modal");
+  const closeBtn = document.getElementById("auth-close");
+  const email = document.getElementById("auth-email");
+  const pass = document.getElementById("auth-pass");
+  const msg  = document.getElementById("auth-msg");
+  const btnLogin = document.getElementById("btn-login");
+  const btnRegister = document.getElementById("btn-register");
+  const btnLogout = document.getElementById("btn-logout");
+
+  function openModal(){ try{ modal.showModal(); }catch{ modal.setAttribute("open",""); } }
+  function closeModal(){ modal.close?.(); modal.removeAttribute("open"); }
+
+  fab?.addEventListener("click", openModal);
+  closeBtn?.addEventListener("click", closeModal);
+
+  async function handle(run){
+    msg.textContent = "";
+    try{
+      await run(email.value.trim(), pass.value);
+      msg.textContent = "✅ Opération réussie.";
+      setTimeout(()=>{ closeModal(); }, 500);
+    }catch(e){
+      console.error(e);
+      msg.textContent = "❌ " + (e?.message || "Erreur");
+    }
+  }
+
+  btnLogin?.addEventListener("click", () => handle(authLogin));
+  btnRegister?.addEventListener("click", () => handle(authRegister));
+  btnLogout?.addEventListener("click", async () => {
+    msg.textContent = "";
+    try{ await authLogout(); msg.textContent = "✅ Déconnecté."; }catch(e){ msg.textContent = "❌ " + (e?.message||"Erreur"); }
+  });
+</script>
+
+
+<!-- Per-card view counters -->
+<style>
+  .card-views-badge{
+    position:absolute; top:8px; right:8px;
+    background:rgba(17,24,39,.9); color:#fff;
+    padding:4px 8px; border-radius:999px; font:600 12px system-ui,Segoe UI,Roboto,Arial;
+    box-shadow:0 6px 14px rgba(0,0,0,.25);
+    pointer-events:none;
+  }
+  .card-views-wrap{ position:relative; }
+</style>
+<script type="module">
+  import { getViewCount } from "./assets/firebase-app.js";
+  function basename(href){
+    try{ const u = new URL(href, location.href);
+         const file = u.pathname.split('/').pop() || 'index.html';
+         return file.replace(/\.html$/i,''); }
+    catch{ return (href.split('/').pop()||'index.html').replace(/\.html$/i,''); }
+  }
+  async function attachCounterTo(el, docId){
+    let container = el.closest('.card, .item, .panel, .box, .article, .doc, .tile');
+    if(!container){ container = el.parentElement; }
+    if(container && !container.classList.contains('card-views-wrap')){
+      container.classList.add('card-views-wrap');
+    }
+    const host = container || el;
+    if(host.querySelector('.card-views-badge[data-doc="'+docId+'"]')) return;
+    const badge = document.createElement('span');
+    badge.className = 'card-views-badge';
+    badge.dataset.doc = docId;
+    badge.textContent = 'Vues: …';
+    host.appendChild(badge);
+    try{ const n = await getViewCount(docId);
+         badge.textContent = 'Vues: ' + n; }
+    catch{ badge.textContent = 'Vues: —'; }
+  }
+  async function initCardCounters(){
+    const links = Array.from(document.querySelectorAll('[data-doc-id], a[href$=".html"]'))
+      .filter(a => {
+        const id = a.getAttribute('data-doc-id') || basename(a.getAttribute('href')||'');
+        return id && !['index','admin','offline'].includes(id.toLowerCase());
+      });
+    const handled = new Set();
+    for(const a of links){
+      const id = a.getAttribute('data-doc-id') || basename(a.getAttribute('href')||'');
+      if(!id || handled.has(id)) continue;
+      handled.add(id);
+      attachCounterTo(a, id);
+    }
+  }
+  initCardCounters();
+  const obs = new MutationObserver(()=>initCardCounters());
+  obs.observe(document.body, { childList:true, subtree:true });
+</script>
+
+</body></html>
