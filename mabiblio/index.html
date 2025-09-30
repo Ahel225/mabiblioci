@@ -1124,5 +1124,165 @@
       });
     });
   </script>
+
+<!-- === Début : modal & logique d'accès pour la carte Salaires === -->
+<style>
+  /* Styles minimaux pour la modal */
+  .modal-backdrop {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.5); display:flex;
+    align-items:center; justify-content:center; z-index:2000;
+  }
+  .modal-card {
+    background:#fff; color:#111; padding:18px; border-radius:12px;
+    width:320px; box-shadow:0 12px 28px rgba(0,0,0,.08); border:1px solid rgba(0,0,0,.08);
+  }
+  @media (prefers-color-scheme: dark) {
+    .modal-card { background:#1f1f1f; color:#eaeaea; border-color:#333; }
+  }
+  .modal-card h4{margin-bottom:8px}
+  .modal-row{display:flex; gap:8px; margin-top:10px}
+  .modal-input{flex:1; padding:10px; border-radius:8px; border:1px solid #ccc; background:transparent}
+  .modal-btn{padding:8px 12px; border-radius:8px; border:none; cursor:pointer}
+  .btn-outline{background:transparent; border:1px solid #888}
+  .btn-primary{background:#2563eb; color:#fff}
+  .modal-actions{display:flex; gap:8px; justify-content:flex-end; margin-top:12px}
+</style>
+
+<!-- Modal HTML (invisible par défaut) -->
+<div id="salModal" style="display:none;" aria-hidden="true">
+  <div class="modal-backdrop" id="salBackdrop">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="salModalTitle">
+      <h4 id="salModalTitle">Accès - Salaires</h4>
+      <p style="opacity:.8; font-size:0.9rem">Entrez le code pour accéder aux grilles salariales.</p>
+      <div class="modal-row">
+        <input id="salCodeInput" class="modal-input" type="password" placeholder="Code d'accès" />
+      </div>
+      <div class="modal-actions">
+        <button id="salCancel" class="modal-btn btn-outline">Annuler</button>
+        <button id="salSubmit" class="modal-btn btn-primary">Valider</button>
+      </div>
+      <div id="salMessage" style="margin-top:8px; font-size:0.85rem; color:crimson; display:none;"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const ACCESS_CODE = 'salaire_1987@';
+  const STORAGE_KEY = 'salaires_unlocked_v1';
+  const TARGET_URL = 'salaires.html'; // <-- adapte si besoin
+
+  function markAsUnlocked(btn) {
+    // si un bouton/lien est passé, on le remplace par un lien direct
+    const link = document.createElement('a');
+    link.href = TARGET_URL;
+    link.className = btn?.className || 'category-link';
+    // conserver l'HTML visuel du bouton (icône + texte) si possible
+    link.innerHTML = btn?.innerHTML || '<i class="fas fa-money-bill-wave"></i> Grilles salariales';
+    if (btn && btn.parentNode) {
+      btn.parentNode.replaceChild(link, btn);
+    }
+  }
+
+  function showModal() {
+    const m = document.getElementById('salModal');
+    if (!m) return;
+    m.style.display = 'block';
+    m.setAttribute('aria-hidden','false');
+    const input = document.getElementById('salCodeInput');
+    const msg = document.getElementById('salMessage');
+    if (input) input.value = '';
+    if (msg) msg.style.display = 'none';
+    setTimeout(()=>input && input.focus(), 50);
+  }
+
+  function hideModal() {
+    const m = document.getElementById('salModal');
+    if (!m) return;
+    m.style.display = 'none';
+    m.setAttribute('aria-hidden','true');
+  }
+
+  function findSalaryButton(){
+    // 1) priorité à #btn-salaires
+    let el = document.getElementById('btn-salaires');
+    if (el) return el;
+    // 2) data attribute éventuel
+    el = document.querySelector('[data-salaires]');
+    if (el) return el;
+    // 3) heuristique : premier bouton/lien dont le texte contient 'Salaire'
+    const candidates = Array.from(document.querySelectorAll('a,button,.category-link,.btn'));
+    for (const c of candidates){
+      const t = (c.textContent || '').toLowerCase();
+      if (t.includes('salaire')) return c;
+    }
+    return null;
+  }
+
+  function initAccessControl() {
+    const unlocked = localStorage.getItem(STORAGE_KEY) === 'true';
+    const btn = findSalaryButton();
+
+    if (unlocked) {
+      if (btn) markAsUnlocked(btn);
+      return;
+    }
+
+    if (btn) {
+      // on neutralise d'éventuels handlers existants en clonant l'élément
+      const clone = btn.cloneNode(true);
+      clone.id = btn.id || 'btn-salaires';
+      clone.addEventListener('click', function(e){
+        e.preventDefault();
+        showModal();
+      });
+      btn.parentNode.replaceChild(clone, btn);
+    }
+
+    const submit = document.getElementById('salSubmit');
+    const cancel = document.getElementById('salCancel');
+    const input = document.getElementById('salCodeInput');
+    const msg = document.getElementById('salMessage');
+    const backdrop = document.getElementById('salBackdrop');
+
+    if (cancel) cancel.addEventListener('click', (e)=>{ e.preventDefault(); hideModal(); });
+    if (backdrop) backdrop.addEventListener('click', (e)=>{ if (e.target === backdrop) hideModal(); });
+
+    function validate(){
+      const val = (input && input.value || '').trim();
+      if (val === ACCESS_CODE){
+        localStorage.setItem(STORAGE_KEY, 'true');
+        hideModal();
+        const b = findSalaryButton();
+        if (b) markAsUnlocked(b);
+        // puis ouvrir la page
+        window.location.href = TARGET_URL;
+      } else {
+        if (msg){ msg.textContent = 'Code incorrect — réessayez.'; msg.style.display = 'block'; }
+        if (input) input.focus();
+      }
+    }
+
+    if (submit) submit.addEventListener('click', (e)=>{ e.preventDefault(); validate(); });
+    if (input) input.addEventListener('keydown', (ev)=>{
+      if (ev.key === 'Enter'){ ev.preventDefault(); validate(); }
+      else if (ev.key === 'Escape'){ hideModal(); }
+    });
+  }
+
+  window.__salairesAdmin = {
+    revoke: ()=>{ localStorage.removeItem(STORAGE_KEY); location.reload(); },
+    isUnlocked: ()=> localStorage.getItem(STORAGE_KEY) === 'true'
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAccessControl);
+  } else {
+    initAccessControl();
+  }
+})();
+</script>
+<!-- === Fin : modal & logique d'accès pour la carte Salaires === -->
+
 </body>
 </html>
