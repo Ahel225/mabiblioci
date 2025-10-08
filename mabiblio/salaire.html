@@ -610,6 +610,12 @@ function higherEdAnnualPrime(jobTitle, gradeCode){
 function santePrimes(grade, jobTitle){
   const t = (jobTitle||'').toLowerCase();
   const isHealth = isHealthCadreSup(t) || isAgentSante(t, grade);
+  
+  // Pour l'agent d'hygiène, retourner uniquement des primes à 0
+  if (/(agent d'hygiène|agent d’hygiène|agent d'hygiene)/.test(t)) {
+    return { diff:0, risque:0, para:0, special:0 };
+  }
+  
   if (!isHealth) return { diff:0, risque:0, para:0, special:0 };
   const base = { diff:100000, risque:50000, para:50000 };
   let special = 0;
