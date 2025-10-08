@@ -539,6 +539,9 @@ function getPoliceBail(corps, gradeName) {
   return POLICE_BAIL[corps]?.[gradeName] || 0;
 }
 function housingFor(grade, jobTitle, famName){
+  if ((famName || '').toLowerCase().includes('police nationale')) {
+    return 0;
+  }
   const title = (jobTitle||''); const fam = (famName||'');
   if (isHealthCadreSup(title) || isHigherEdOrResearch(title)) return 90000;
 
@@ -816,6 +819,7 @@ function buildGreffierCard(card, fam, grade, jobTitle){
     const residence = base * 0.15;
     const transport = getTransport();
     
+    
     // Indemnités spécifiques aux greffiers
     const indemnites = greffierIndemnites(jobTitle);
     const logement = indemnites.logement;
@@ -839,7 +843,9 @@ function buildGreffierCard(card, fam, grade, jobTitle){
     }
     
     addLine('Prime de transport', transport);
+    if (logement>0){
     addLine('Indemnité de logement', logement);
+    }
     addLine('Indemnité de judicature', judicature);
     addLine('Indemnité de sujétion', sujet);
     
@@ -1116,8 +1122,9 @@ function recalc(){
   }
   
   addLine('Prime de transport', transport);
+  if (logement>0){
   addLine('Indemnité de logement', logement);
-
+}
   if (sante.diff || sante.risque || sante.para || sante.special){
     addLine('Différentiel santé', sante.diff);
     addLine('Risque sanitaire', sante.risque);
@@ -1364,7 +1371,9 @@ function buildPoliceCard(card, fam, grade, corpsGrades){
     }
     
     addLine('Prime de transport', transport);
+    if(logement>0){
     addLine('Indemnité de logement', logement);
+    }
     addLine('Indemnité de sujétion', sujettionPolice);
     addLine('Indemnité de risques', risquesPolice);
 
