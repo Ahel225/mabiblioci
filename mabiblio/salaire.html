@@ -491,10 +491,25 @@ function isHealthCadreSup(title=''){
   return /(médecin spécialiste|medecin specialiste|chirurgien-dentiste|chirurgien dentiste|vétérinaire|veterinaire|pharmacien|médecin|medecin)/.test(t);
 }
 function isAgentSante(title='', grade=''){
-  const t = title.toLowerCase(); const g=(grade||'').toLowerCase();
-  return ((/(agent d'hygiène|agent d’hygiène|agent d'hygiene)/.test(t) && /(d1|c1)/.test(g))
-       || (/(aide soignant)/.test(t) && /c1/.test(g))
-       || (/(auxiliaire des soins|auxiliaire des techniques sanitaires)/.test(t) && /c3/.test(g)));
+  const t = title.toLowerCase(); 
+  const g = (grade||'').toLowerCase();
+  
+  // Grade C1
+  if ((/aide.soignant|Agent d'hygiène specialisé|agent d'hygiene specialise/.test(t)) && g === 'c1') return true;
+  
+  // Grade C3
+  if ((/auxiliaire de soins infirmiers|auxiliaire de soins obstétricaux|auxiliaire des techniques sanitaires/.test(t)) && g === 'c3') return true;
+  
+  // Grade B3
+  if ((/infirmier.ère. diplômé|infirmier.ere. diplome|sage.femme|maïeuticien|maieuticien|technicien supérieur de la santé|diététicien|dieteticien|assistant dentaire/.test(t)) && g === 'b3') return true;
+  
+  // Grade A3
+  if ((/surveillant d'unité des soins|infirmier.ère. spécialiste|infirmier.ere. specialiste|sage.femme spécialiste|sage.femme specialiste|ingénieur des techniques sanitaires/.test(t)) && g === 'a3') return true;
+  
+  // Grades A4-A7sanitaires
+  if ((/inspecteur des soins infirmiers|ingénieur des services de santé|inspecteur principal des soins infirmiers|ingénieur principal des services de santé|inspecteur en chef des soins infirmiers|ingénieur en chef des services de santé|inspecteur général des soins infimiers|ingénieur général des services de santé/.test(t)) && ['a4','a5','a6','a7'].includes(g)) return true;
+  
+  return false;
 }
 function isMaritimeBlock(title='', family=''){
   const t=title.toLowerCase(); const f=(family||'').toLowerCase();
@@ -609,23 +624,36 @@ function higherEdAnnualPrime(jobTitle, gradeCode){
 
 function santePrimes(grade, jobTitle){
   const t = (jobTitle||'').toLowerCase();
-  const isHealth = isHealthCadreSup(t) || isAgentSante(t, grade);
+  const isHealth = isHealthCadreSup(t);
   
-  // Pour l'agent d'hygiène, retourner uniquement des primes à 0
-  if (/(agent d'hygiène|agent d’hygiène|agent d'hygiene)/.test(t)) {
-    return { diff:0, risque:0, para:0, special:0 };
+  // Agents de santé non cadres supérieurs
+  if (isAgentSante(t, grade)) {
+    if (grade === 'C1' || grade === 'C3') {
+      return { risque: 50000, para: 20000, diff: 0, special: 0 };
+    }
+    if (grade === 'B3') {
+      return { risque: 50000, para: 30000, diff: 0, special: 0 };
+    }
+    if (['A3','A4','A5','A6','A7'].includes(grade)) {
+      return { risque: 50000, para: 40000, diff: 0, special: 0 };
+    }
   }
   
-  if (!isHealth) return { diff:0, risque:0, para:0, special:0 };
-  const base = { diff:100000, risque:50000, para:50000 };
-  let special = 0;
-  if (/médecin spécialiste|medecin specialiste/.test(t)){
-    if (grade === 'A4') special = 150000;
-    else if (grade === 'A5') special = 200000;
-    else if (grade === 'A6') special = 250000;
-    else if (grade === 'A7') special = 300000;
+  // Cadres supérieurs de santé (médecins, pharmaciens, etc.)
+  if (isHealth) {
+    const base = { diff: 100000, risque: 50000, para: 50000 };
+    let special = 0;
+    if (/médecin spécialiste|medecin specialiste/.test(t)){
+      if (grade === 'A4') special = 150000;
+      else if (grade === 'A5') special = 200000;
+      else if (grade === 'A6') special = 250000;
+      else if (grade === 'A7') special = 300000;
+    }
+    return Object.assign({}, base, { special });
   }
-  return Object.assign({}, base, { special });
+  
+  // Par défaut, aucune prime santé
+  return { diff: 0, risque: 0, para: 0, special: 0 };
 }
 
 const familiesDiv = document.getElementById('families');
