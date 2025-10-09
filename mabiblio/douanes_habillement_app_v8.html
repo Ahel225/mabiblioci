@@ -273,8 +273,8 @@
     ico.textContent = isDark ? '☀️' : '🌙';
   }
   document.getElementById('themeToggle').addEventListener('click', toggle);
-  document.getElementById('homeBtn').addEventListener('click', function(){ window.open('familles_app_avec_douaniers_grade_militaire_v8link.html','_blank'); });
-  document.getElementById('homeBtn').addEventListener('click', function(){ window.open('familles_app_avec_douaniers_grade_militaire_v8link.html','_blank'); });
+  document.getElementById('homeBtn').addEventListener('click', function(){ window.open('salaire.html','_blank'); });
+  document.getElementById('homeBtn').addEventListener('click', function(){ window.open('salaire.html','_blank'); });
   window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ()=>{
     const saved = localStorage.getItem('DGS_THEME');
     if(!saved){ updateIcon(); }
