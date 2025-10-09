@@ -1,0 +1,376 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Douanes — Emplois & Grades</title>
+<style>
+  :root{
+    /* Light theme (default) */
+    --bg:#f6f8fc; --card:#ffffff; --border:#e3e9f6; --muted:#5a6378; --text:#0e1726;
+    --accent:#1f5eff; --accent-2:#0e39b0;
+    --tile:#f1f5ff; --tile-border:#cfdaf6;
+    --amount:#0a2a83;
+    --rad:18px;
+    --pad:clamp(12px, 1.6vw, 16px);
+  }
+  .theme-dark{
+    --bg:#0b1220; --card:#121a2b; --border:#213056; --muted:#8ea0c6; --text:#e7ecff;
+    --accent:#3b82f6; --accent-2:#295fd1;
+    --tile:#0e1b34; --tile-border:#2a3d6d;
+    --amount:#dbe7ff;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0b1220; --card:#121a2b; --border:#213056; --muted:#8ea0c6; --text:#e7ecff;
+      --accent:#3b82f6; --accent-2:#295fd1;
+      --tile:#0e1b34; --tile-border:#2a3d6d;
+      --amount:#dbe7ff;
+    }
+    .theme-light{
+      --bg:#f6f8fc; --card:#ffffff; --border:#e3e9f6; --muted:#5a6378; --text:#0e1726;
+      --accent:#1f5eff; --accent-2:#0e39b0;
+      --tile:#f1f5ff; --tile-border:#cfdaf6;
+      --amount:#0a2a83;
+    }
+  }
+
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,'Noto Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.35}
+  header{position:sticky;top:0;z-index:5;background:linear-gradient(180deg,rgba(255,255,255,.85),rgba(255,255,255,.65));backdrop-filter:blur(6px);padding:12px var(--pad);border-bottom:1px solid var(--border)}  .header-bar{display:flex;align-items:center;gap:10px}  .header-bar .spacer{flex:1}  .icon-btn{display:inline-grid;place-items:center;width:36px;height:36px;border-radius:999px;border:none;cursor:pointer;background:rgba(0,0,0,.06)}  .icon-btn:hover{background:rgba(0,0,0,.1)}  .theme-dark .icon-btn{background:rgba(255,255,255,.08)}  .theme-dark .icon-btn:hover{background:rgba(255,255,255,.14)}  .icon-btn span{font-size:18px;line-height:1}
+  .theme-dark header{background:linear-gradient(180deg,rgba(11,18,32,.95),rgba(11,18,32,.7))}
+  header h1{margin:0;font-size:clamp(18px,2.6vw,22px);word-break:break-word;hyphens:auto}
+  header small{display:block;color:var(--muted);font-size:clamp(11px,1.8vw,13px)}
+  main{padding:var(--pad);max-width:min(1200px, 96vw);margin:0 auto}
+  /* Grid: mobile-first single column */
+  .grid{display:grid;gap:clamp(12px,2.2vw,16px);grid-template-columns:1fr}
+  @media (min-width: 1000px){ .grid{grid-template-columns:1.1fr 1fr} }
+  .card{background:var(--card);border:1px solid var(--border);border-radius:var(--rad);padding:var(--pad);box-shadow:0 8px 26px rgba(0,0,0,.06)}
+  .theme-dark .card{box-shadow:0 8px 26px rgba(0,0,0,.25)}
+  .card h2{margin:0 0 8px;font-size:clamp(16px,2.2vw,18px);word-break:break-word;hyphens:auto}
+
+  /* Rows: responsive controls */
+  .row{display:grid;gap:clamp(10px,2vw,12px);grid-template-columns:1fr}
+  @media (min-width:720px){ .row{grid-template-columns:repeat(3,minmax(0,1fr))} }
+  .row > *{min-width:0}
+  label{font-size:clamp(11px,1.8vw,12px);color:var(--muted);display:block;margin:0 0 6px}
+  select,input{
+    width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--border);
+    background:#fff;color:var(--text);font-size:clamp(14px,2.2vw,16px);
+  }
+  .theme-dark select,.theme-dark input{background:#0c1529;color:#e7ecff}
+
+  /* Info & KPI */
+  .result{display:flex;align-items:center;gap:12px;margin-top:10px;flex-wrap:wrap}
+  .badge{display:inline-block;padding:10px 12px;border-radius:999px;background:var(--tile);border:1px solid var(--tile-border);color:var(--text);font-weight:600;white-space:normal;word-break:break-word;hyphens:auto;line-height:1.25}
+  .kpi{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:10px}
+  @media (min-width:720px){ .kpi{grid-template-columns:repeat(4,minmax(0,1fr))} }
+  .kpi .tile{background:var(--tile);border:1px solid var(--tile-border);border-radius:14px;padding:12px 14px;min-width:0}
+  .tile .lbl{font-size:clamp(11px,1.8vw,12px);color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .tile .val{font-size:clamp(16px,2.4vw,18px);font-weight:700;word-break:break-word;hyphens:auto}
+
+  .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:var(--tile);border:1px solid var(--tile-border);margin-left:8px;word-break:break-word;hyphens:auto}
+
+  /* Meta chips */
+  .meta{display:grid;grid-template-columns:1fr;gap:8px;margin-top:8px}
+  @media (min-width:520px){ .meta{grid-template-columns:repeat(3,minmax(0,1fr))} }
+  .meta .chip{background:var(--tile);border:1px solid var(--tile-border);border-radius:12px;padding:10px 12px;font-size:clamp(12px,2vw,13px);white-space:normal;word-break:break-word;hyphens:auto;line-height:1.25;min-width:0}
+
+  /* Vertical amount list */
+  .vtable{display:grid;gap:16px;margin-top:12px}
+  .vrow{display:grid;grid-template-columns:1fr auto;gap:16px;background:var(--tile);border:1px solid var(--tile-border);border-radius:12px;padding:clamp(12px,2vw,14px) clamp(12px,2vw,16px);align-items:center;min-width:0}
+  .vrow .lbl{color:var(--text);white-space:normal;word-break:break-word;hyphens:auto;font-size:clamp(14px,2.4vw,16px)}
+  .vrow .val{justify-self:end;font-weight:800;color:var(--amount);font-size:clamp(18px,3vw,22px);white-space:nowrap}
+  .vrow.total{background:#eaf2ff;border-color:#c7d7ff}
+  .theme-dark .vrow.total{background:#0f213f;border-color:#2a3d6d}
+  .vrow.brut{background:#e3ebff;border-color:#baccff}
+  .theme-dark .vrow.brut{background:#132a54;border-color:#3a57a0}
+  .unit{color:var(--muted);font-weight:600;margin-left:6px}
+
+  /* Floating theme toggle (safe-area aware) */
+  .home-toggle{
+    position:fixed;right:calc(12px + env(safe-area-inset-right) + 56px);bottom:calc(12px + env(safe-area-inset-bottom));z-index:50;
+    width:48px;height:48px;border-radius:999px;border:1px solid var(--tile-border);
+    background:var(--card); box-shadow:0 6px 18px rgba(0,0,0,.12);
+    display:grid;place-items:center;cursor:pointer;user-select:none;transition:transform .15s ease, background .2s ease;
+  }
+  .home-toggle:hover{transform:scale(1.05)}
+  .home-toggle .ico{font-size:20px}
+  .theme-dark .home-toggle{box-shadow:0 6px 18px rgba(0,0,0,.35)}
+  .theme-toggle{
+    position:fixed;right:calc(12px + env(safe-area-inset-right));bottom:calc(12px + env(safe-area-inset-bottom));z-index:50;
+    width:48px;height:48px;border-radius:999px;border:1px solid var(--tile-border);
+    background:var(--card); box-shadow:0 6px 18px rgba(0,0,0,.12);
+    display:grid;place-items:center;cursor:pointer;user-select:none;transition:transform .15s ease, background .2s ease;
+  }
+  .theme-toggle:hover{transform:scale(1.05)}
+  .theme-toggle .ico{font-size:20px}
+  .theme-dark .home-toggle{
+    position:fixed;right:calc(12px + env(safe-area-inset-right) + 56px);bottom:calc(12px + env(safe-area-inset-bottom));z-index:50;
+    width:48px;height:48px;border-radius:999px;border:1px solid var(--tile-border);
+    background:var(--card); box-shadow:0 6px 18px rgba(0,0,0,.12);
+    display:grid;place-items:center;cursor:pointer;user-select:none;transition:transform .15s ease, background .2s ease;
+  }
+  .home-toggle:hover{transform:scale(1.05)}
+  .home-toggle .ico{font-size:20px}
+  .theme-dark .home-toggle{box-shadow:0 6px 18px rgba(0,0,0,.35)}
+  .theme-toggle{box-shadow:0 6px 18px rgba(0,0,0,.35)}
+
+  /* Motion accessibility */
+  @media (prefers-reduced-motion: reduce){
+    *{scroll-behavior:auto !important;animation:none !important;transition:none !important}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="header-bar"><h1>Douanes — Emplois &amp; Grades</h1><div class="spacer"></div><button id="homeBtn" class="icon-btn" title="Accueil"><span>🏠</span></button><button id="themeToggle" class="icon-btn" title="Basculer clair/sombre"><span id="themeIcon">🌙</span></button></div>
+  <small>Home + Thème intégrés (en‑tête minimaliste)</small>
+</header>
+<main>
+  <div class="grid">
+    <section class="card">
+      <h2>Correspondance grade FP → grade militaire</h2>
+      <p class="muted" style="font-size:clamp(12px,2vw,13px)">Sélectionne le <b>code FP</b>, la <b>classe</b> et l’<b>échelon</b>.</p>
+      <div class="row">
+        <div>
+          <label>Code FP (emploi Douanes)</label>
+          <select id="fpCode">
+            <option value="B3">B3</option>
+            <option value="A3">A3</option>
+            <option value="A4">A4</option>
+          </select>
+        </div>
+        <div>
+          <label>Classe</label>
+          <select id="fpClasse">
+            <option>2ème classe</option>
+            <option>1ère classe</option>
+            <option>Classe principale</option>
+            <option>Classe exceptionnelle</option>
+            <option>Hors classe</option>
+          </select>
+        </div>
+        <div>
+          <label>Échelon</label>
+          <select id="fpEchelon">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+        </div>
+      </div>
+      <div class="result">
+        <span class="badge">Grade militaire :</span>
+        <span id="milGrade" class="val">—</span>
+      </div>
+      <div class="kpi">
+        <div class="tile"><div class="lbl">Famille</div><div class="val">DOUANES</div></div>
+        <div class="tile"><div class="lbl">Code FP</div><div id="kpiCode" class="val">B3</div></div>
+        <div class="tile"><div class="lbl">Classe</div><div id="kpiClasse" class="val">2ème classe</div></div>
+        <div class="tile"><div class="lbl">Échelon</div><div id="kpiEchelon" class="val">1</div></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Fiche de rémunération — <span id="titleGrade">—</span></h2>
+      <p class="muted" style="font-size:clamp(12px,2vw,13px)">B3/A3 : choisis aussi la <b>classe</b>. Total <b>brut</b> = TI + Logement + Risque + Sujétion.</p>
+      <div class="row">
+        <div>
+          <label>Grade</label>
+          <select id="habGrade">
+            <option>Sous-lieutenant (B3)</option>
+            <option>Lieutenant (B3)</option>
+            <option>Capitaine (A3)</option>
+            <option>Commandant</option>
+            <option>Lieutenant-colonel</option>
+            <option>Colonel</option>
+            <option>Colonel-major</option>
+            <option>Contrôleur général</option>
+            <option>Inspecteur général</option>
+            <option>Administrateur général</option>
+          </select>
+        </div>
+        <div id="habClasseWrap">
+          <label>Classe (B3/A3)</label>
+          <select id="habClasse">
+            <option>2ème classe</option>
+            <option>1ère classe</option>
+            <option>Classe principale</option>
+            <option>Classe exceptionnelle</option>
+          </select>
+        </div>
+        <div>
+          <label>Échelon</label>
+          <select id="habEchelon">
+            <option value="1">1er échelon</option>
+            <option value="2">2ème échelon</option>
+            <option value="3">3ème échelon</option>
+            <option value="4">4ème échelon</option>
+            <option value="5">5ème échelon</option>
+            <option value="6">6ème échelon</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label>Valeur du point (FCFA)</label>
+          <input id="pointVal" type="number" step="0.001" value="233.457">
+        </div>
+      </div>
+
+      <div class="meta">
+        <div class="chip">Grade : <span id="mGrade">—</span></div>
+        <div class="chip">Classe : <span id="mClasse">—</span></div>
+        <div class="chip">Échelon : <span id="mEch">—</span></div>
+      </div>
+
+      <div class="vtable">
+        <div class="vrow"><div class="lbl">Indice</div><div id="vIndice" class="val">—</div></div>
+        <div class="vrow"><div class="lbl">Traitement indiciaire</div><div id="vTI" class="val">— <span class="unit">FCFA</span></div></div>
+        <div class="vrow"><div class="lbl">Indemnité de logement</div><div id="vLogt" class="val">— <span class="unit">FCFA</span></div></div>
+        <div class="vrow"><div class="lbl">Indemnité de risque</div><div id="vRisque" class="val">— <span class="unit">FCFA</span></div></div>
+        <div class="vrow"><div class="lbl">Indemnité de sujétion</div><div id="vSuj" class="val">— <span class="unit">FCFA</span></div></div>
+        <div class="vrow total"><div class="lbl">Total indemnités</div><div id="vTotIndem" class="val">— <span class="unit">FCFA</span></div></div>
+        <div class="vrow brut"><div class="lbl">Total brut</div><div id="vBrut" class="val">— <span class="unit">FCFA</span></div></div>
+      </div>
+    </section>
+  </div>
+</main>
+
+
+</div>
+
+<script>
+// Theme handling
+(function themeInit(){
+  const root = document.documentElement;
+  const saved = localStorage.getItem('DGS_THEME');
+  if(saved === 'dark'){ root.classList.add('theme-dark'); }
+  if(saved === 'light'){ root.classList.add('theme-light'); }
+  updateIcon();
+
+  function toggle(){
+    const r = document.documentElement;
+    if(r.classList.contains('theme-dark')){
+      r.classList.remove('theme-dark'); r.classList.add('theme-light'); localStorage.setItem('DGS_THEME','light');
+    }else if(r.classList.contains('theme-light')){
+      r.classList.remove('theme-light'); r.classList.add('theme-dark'); localStorage.setItem('DGS_THEME','dark');
+    }else{
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if(prefersDark){ r.classList.add('theme-light'); localStorage.setItem('DGS_THEME','light'); }
+      else { r.classList.add('theme-dark'); localStorage.setItem('DGS_THEME','dark'); }
+    }
+    updateIcon();
+  }
+  function updateIcon(){
+    const r = document.documentElement;
+    const ico = document.getElementById('themeIcon');
+    const isDark = r.classList.contains('theme-dark') || (!r.classList.contains('theme-light') && (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches));
+    ico.textContent = isDark ? '☀️' : '🌙';
+  }
+  document.getElementById('themeToggle').addEventListener('click', toggle);
+  document.getElementById('homeBtn').addEventListener('click', function(){ window.open('familles_app_avec_douaniers_grade_militaire_v8link.html','_blank'); });
+  document.getElementById('homeBtn').addEventListener('click', function(){ window.open('familles_app_avec_douaniers_grade_militaire_v8link.html','_blank'); });
+  window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ()=>{
+    const saved = localStorage.getItem('DGS_THEME');
+    if(!saved){ updateIcon(); }
+  });
+})();
+
+// Data tables (same as previous versions)
+const DOUANES_MIL_MAP = {
+  "A4": {
+    "2ème classe": { "1": "Capitaine", "2": "Capitaine", "3": "Commandant", "4": "Commandant" },
+    "1ère classe": { "1": "Commandant", "2": "Commandant", "3": "Commandant" },
+    "Classe principale": { "1": "Lieutenant-colonel", "2": "Lieutenant-colonel", "3": "Lieutenant-colonel" },
+    "Classe exceptionnelle": { "1": "Colonel", "2": "Colonel", "3": "Colonel" },
+    "Hors classe": { "1": "Colonel-major / Contrôleur général / Inspecteur général / Administrateur général" }
+  },
+  "A3": {
+    "2ème classe": { "1": "Capitaine", "2": "Capitaine", "3": "Capitaine", "4": "Capitaine" },
+    "1ère classe": { "1": "Capitaine", "2": "Capitaine", "3": "Capitaine" },
+    "Classe principale": { "1": "Capitaine", "2": "Capitaine", "3": "Capitaine" },
+    "Classe exceptionnelle": { "1": "Capitaine", "2": "Capitaine", "3": "Capitaine" },
+    "Hors classe": {}
+  },
+  "B3": {
+    "2ème classe": { "1": "Sous-lieutenant", "2": "Sous-lieutenant", "3": "Sous-lieutenant", "4": "Sous-lieutenant" },
+    "1ère classe": { "1": "Lieutenant", "2": "Lieutenant", "3": "Lieutenant" },
+    "Classe principale": { "1": "Lieutenant", "2": "Lieutenant", "3": "Lieutenant" },
+    "Classe exceptionnelle": { "1": "Lieutenant", "2": "Lieutenant", "3": "Lieutenant" },
+    "Hors classe": {}
+  }
+};
+const INDICES_HORS_CLASSE = {
+  "Colonel-major":{"1":2500,"2":2600,"3":2700},
+  "Contrôleur général":{"1":3100,"2":3200,"3":3400},
+  "Inspecteur général":{"1":3500,"2":3600,"3":3650},
+  "Administrateur général":{"1":3700,"2":3750}
+};
+const INDICES_FP = {
+  "Sous-lieutenant (B3)":{"2ème classe":{"1":680,"2":730,"3":785,"4":840},"1ère classe":{"1":890,"2":950,"3":1000},"Classe principale":{"1":815,"2":835,"3":860},"Classe exceptionnelle":{"1":880,"2":900,"3":925}},
+  "Lieutenant (B3)":{"2ème classe":{"1":680,"2":730,"3":785,"4":840},"1ère classe":{"1":890,"2":950,"3":1000},"Classe principale":{"1":815,"2":835,"3":860},"Classe exceptionnelle":{"1":880,"2":900,"3":925}},
+  "Capitaine (A3)":{"2ème classe":{"1":830,"2":870,"3":915,"4":990},"1ère classe":{"1":1100,"2":1190,"3":1255},"Classe principale":{"1":1095,"2":1135,"3":1185},"Classe exceptionnelle":{"1":1270,"2":1300,"3":1325}}
+};
+const INDEMNITE_LOGT = {
+  "Sous-lieutenant (B3)":80000,"Lieutenant (B3)":80000,"Capitaine (A3)":90000,
+  "Commandant":110000,"Lieutenant-colonel":110000,"Colonel":110000,
+  "Colonel-major":220000,"Contrôleur général":320000,"Inspecteur général":320000,"Administrateur général":320000
+};
+function getRisque(g){ if(/Sous-lieutenant|Lieutenant \(B3\)/i.test(g)) return 90000; if(/Capitaine \(A3\)/i.test(g)) return 100000; return 125000; }
+function getSujetion(g){ if(/Sous-lieutenant|Lieutenant \(B3\)/i.test(g)) return 50000; if(/Capitaine \(A3\)/i.test(g)) return 60000; return 75000; }
+const fmt = new Intl.NumberFormat('fr-FR');
+function pickMilGrade(code, classe, echelon){ const t = DOUANES_MIL_MAP[code]; if(!t) return null; if(/Hors classe/i.test(classe)) return t["Hors classe"]?.["1"] || null; return t[classe]?.[String(echelon)] ?? null; }
+function getIndice(g, c, e){ if(INDICES_FP[g]) return INDICES_FP[g][c]?.[String(e)] ?? null; return INDICES_HORS_CLASSE[g]?.[String(e)] ?? null; }
+function getLogement(g){ return INDEMNITE_LOGT[g] ?? 0; }
+
+// UI bindings
+const fpCode = document.getElementById('fpCode'), fpClasse = document.getElementById('fpClasse'), fpEchelon = document.getElementById('fpEchelon');
+const milGrade = document.getElementById('milGrade');
+const kpiCode = document.getElementById('kpiCode'), kpiClasse = document.getElementById('kpiClasse'), kpiEchelon = document.getElementById('kpiEchelon');
+function refreshMil(){ const code = fpCode.value, classe = fpClasse.value, ech = fpEchelon.value; milGrade.textContent = pickMilGrade(code, classe, ech) || '—'; kpiCode.textContent = code; kpiClasse.textContent = classe; kpiEchelon.textContent = ech; }
+[fpCode, fpClasse, fpEchelon].forEach(el=>el.addEventListener('change', refreshMil)); refreshMil();
+
+const habGrade = document.getElementById('habGrade'), habClasseWrap = document.getElementById('habClasseWrap'), habClasse = document.getElementById('habClasse'), habEchelon = document.getElementById('habEchelon'), pointVal = document.getElementById('pointVal');
+const titleGrade = document.getElementById('titleGrade'), mGrade = document.getElementById('mGrade'), mClasse = document.getElementById('mClasse'), mEch = document.getElementById('mEch');
+const vIndice = document.getElementById('vIndice'), vTI = document.getElementById('vTI'), vLogt = document.getElementById('vLogt'), vRisque = document.getElementById('vRisque'), vSuj = document.getElementById('vSuj'), vTotIndem = document.getElementById('vTotIndem'), vBrut = document.getElementById('vBrut');
+
+function calcVertical(){
+  const g = habGrade.value;
+  const isFP = !!INDICES_FP[g];
+  // show/hide class select responsively without layout jump
+  habClasseWrap.style.visibility = isFP ? 'visible' : 'hidden';
+  habClasseWrap.style.height = isFP ? '' : '0px';
+  habClasseWrap.style.marginTop = isFP ? '' : '0px';
+
+  const ech = String(habEchelon.value).replace(/\D/g,'');
+  const classe = isFP ? habClasse.value : "—";
+
+  titleGrade.textContent = g; mGrade.textContent = g; mClasse.textContent = classe; mEch.textContent = ech + 'ᵉ';
+
+  const indice = getIndice(g, classe, ech);
+  const point = parseFloat(pointVal.value || '0');
+  const ti = indice ? indice * point : 0;
+
+  const logt = getLogement(g), risque = getRisque(g), suj = getSujetion(g);
+  const totIndem = logt + risque + suj, brut = ti + totIndem;
+
+  vIndice.textContent = indice ? fmt.format(indice) : '—';
+  vTI.innerHTML = (ti? fmt.format(Math.round(ti)) : '—') + ' <span class="unit">FCFA</span>';
+  vLogt.innerHTML = fmt.format(logt) + ' <span class="unit">FCFA</span>';
+  vRisque.innerHTML = fmt.format(risque) + ' <span class="unit">FCFA</span>';
+  vSuj.innerHTML = fmt.format(suj) + ' <span class="unit">FCFA</span>';
+  vTotIndem.innerHTML = fmt.format(totIndem) + ' <span class="unit">FCFA</span>';
+  vBrut.innerHTML = fmt.format(Math.round(brut)) + ' <span class="unit">FCFA</span>';
+}
+
+[habGrade, habClasse, habEchelon].forEach(el=>el.addEventListener('change', calcVertical));
+pointVal.addEventListener('input', calcVertical);
+calcVertical();
+</script>
+</body>
+</html>
