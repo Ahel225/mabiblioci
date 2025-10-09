@@ -176,68 +176,35 @@
     </section>
 
     <section class="card">
-      <h2>Fiche de rémunération — <span id="titleGrade">—</span></h2>
-      <p class="muted" style="font-size:clamp(12px,2vw,13px)">B3/A3 : choisis aussi la <b>classe</b>. Total <b>brut</b> = TI + Logement + Risque + Sujétion.</p>
-      <div class="row">
-        <div>
-          <label>Grade</label>
-          <select id="habGrade">
-            <option>Sous-lieutenant (B3)</option>
-            <option>Lieutenant (B3)</option>
-            <option>Capitaine (A3)</option>
-            <option>Commandant</option>
-            <option>Lieutenant-colonel</option>
-            <option>Colonel</option>
-            <option>Colonel-major</option>
-            <option>Contrôleur général</option>
-            <option>Inspecteur général</option>
-            <option>Administrateur général</option>
-          </select>
-        </div>
-        <div id="habClasseWrap">
-          <label>Classe (B3/A3)</label>
-          <select id="habClasse">
-            <option>2ème classe</option>
-            <option>1ère classe</option>
-            <option>Classe principale</option>
-            <option>Classe exceptionnelle</option>
-          </select>
-        </div>
-        <div>
-          <label>Échelon</label>
-          <select id="habEchelon">
-            <option value="1">1er échelon</option>
-            <option value="2">2ème échelon</option>
-            <option value="3">3ème échelon</option>
-            <option value="4">4ème échelon</option>
-            <option value="5">5ème échelon</option>
-            <option value="6">6ème échelon</option>
-          </select>
-        </div>
-      </div>
-      <div class="row">
-        <div>
-          <label>Valeur du point (FCFA)</label>
-          <input id="pointVal" type="number" step="0.001" value="233.457">
-        </div>
-      </div>
+  <h2>Fiche de rémunération — <span id="titleGrade">—</span></h2>
+  <p class="muted" style="font-size:clamp(12px,2vw,13px)">
+    Pilotée par le tableau ci-contre (Code FP, Classe, Échelon).<br>
+    Total <b>brut</b> = TI + Logement + Risque + Sujétion.
+  </p>
 
-      <div class="meta">
-        <div class="chip">Grade : <span id="mGrade">—</span></div>
-        <div class="chip">Classe : <span id="mClasse">—</span></div>
-        <div class="chip">Échelon : <span id="mEch">—</span></div>
-      </div>
+  <div class="row">
+    <div>
+      <label>Valeur du point (FCFA)</label>
+      <input id="pointVal" type="number" step="0.001" value="233.457">
+    </div>
+  </div>
 
-      <div class="vtable">
-        <div class="vrow"><div class="lbl">Indice</div><div id="vIndice" class="val">—</div></div>
-        <div class="vrow"><div class="lbl">Traitement indiciaire</div><div id="vTI" class="val">— <span class="unit">FCFA</span></div></div>
-        <div class="vrow"><div class="lbl">Indemnité de logement</div><div id="vLogt" class="val">— <span class="unit">FCFA</span></div></div>
-        <div class="vrow"><div class="lbl">Indemnité de risque</div><div id="vRisque" class="val">— <span class="unit">FCFA</span></div></div>
-        <div class="vrow"><div class="lbl">Indemnité de sujétion</div><div id="vSuj" class="val">— <span class="unit">FCFA</span></div></div>
-        <div class="vrow total"><div class="lbl">Total indemnités</div><div id="vTotIndem" class="val">— <span class="unit">FCFA</span></div></div>
-        <div class="vrow brut"><div class="lbl">Total brut</div><div id="vBrut" class="val">— <span class="unit">FCFA</span></div></div>
-      </div>
-    </section>
+  <div class="meta">
+    <div class="chip">Grade militaire : <span id="mGrade">—</span></div>
+    <div class="chip">Classe FP : <span id="mClasse">—</span></div>
+    <div class="chip">Échelon FP : <span id="mEch">—</span></div>
+  </div>
+
+  <div class="vtable">
+    <div class="vrow"><div class="lbl">Indice</div><div id="vIndice" class="val">—</div></div>
+    <div class="vrow"><div class="lbl">Traitement indiciaire</div><div id="vTI" class="val">— <span class="unit">FCFA</span></div></div>
+    <div class="vrow"><div class="lbl">Indemnité de logement</div><div id="vLogt" class="val">— <span class="unit">FCFA</span></div></div>
+    <div class="vrow"><div class="lbl">Indemnité de risque</div><div id="vRisque" class="val">— <span class="unit">FCFA</span></div></div>
+    <div class="vrow"><div class="lbl">Indemnité de sujétion</div><div id="vSuj" class="val">— <span class="unit">FCFA</span></div></div>
+    <div class="vrow total"><div class="lbl">Total indemnités</div><div id="vTotIndem" class="val">— <span class="unit">FCFA</span></div></div>
+    <div class="vrow brut"><div class="lbl">Total brut</div><div id="vBrut" class="val">— <span class="unit">FCFA</span></div></div>
+  </div>
+</section>
   </div>
 </main>
 
@@ -328,16 +295,79 @@ function pickMilGrade(code, classe, echelon){ const t = DOUANES_MIL_MAP[code]; i
 function getIndice(g, c, e){ if(INDICES_FP[g]) return INDICES_FP[g][c]?.[String(e)] ?? null; return INDICES_HORS_CLASSE[g]?.[String(e)] ?? null; }
 function getLogement(g){ return INDEMNITE_LOGT[g] ?? 0; }
 
-// UI bindings
-const fpCode = document.getElementById('fpCode'), fpClasse = document.getElementById('fpClasse'), fpEchelon = document.getElementById('fpEchelon');
+// UI bindings (pilotage par le 1er tableau)
+const fpCode = document.getElementById('fpCode');
+const fpClasse = document.getElementById('fpClasse');
+const fpEchelon = document.getElementById('fpEchelon');
 const milGrade = document.getElementById('milGrade');
-const kpiCode = document.getElementById('kpiCode'), kpiClasse = document.getElementById('kpiClasse'), kpiEchelon = document.getElementById('kpiEchelon');
-function refreshMil(){ const code = fpCode.value, classe = fpClasse.value, ech = fpEchelon.value; milGrade.textContent = pickMilGrade(code, classe, ech) || '—'; kpiCode.textContent = code; kpiClasse.textContent = classe; kpiEchelon.textContent = ech; }
-[fpCode, fpClasse, fpEchelon].forEach(el=>el.addEventListener('change', refreshMil)); refreshMil();
+const kpiCode = document.getElementById('kpiCode');
+const kpiClasse = document.getElementById('kpiClasse');
+const kpiEchelon = document.getElementById('kpiEchelon');
 
-const habGrade = document.getElementById('habGrade'), habClasseWrap = document.getElementById('habClasseWrap'), habClasse = document.getElementById('habClasse'), habEchelon = document.getElementById('habEchelon'), pointVal = document.getElementById('pointVal');
-const titleGrade = document.getElementById('titleGrade'), mGrade = document.getElementById('mGrade'), mClasse = document.getElementById('mClasse'), mEch = document.getElementById('mEch');
-const vIndice = document.getElementById('vIndice'), vTI = document.getElementById('vTI'), vLogt = document.getElementById('vLogt'), vRisque = document.getElementById('vRisque'), vSuj = document.getElementById('vSuj'), vTotIndem = document.getElementById('vTotIndem'), vBrut = document.getElementById('vBrut');
+const titleGrade = document.getElementById('titleGrade');
+const mGrade = document.getElementById('mGrade');
+const mClasse = document.getElementById('mClasse');
+const mEch = document.getElementById('mEch');
+const pointVal = document.getElementById('pointVal');
+
+const vIndice = document.getElementById('vIndice');
+const vTI = document.getElementById('vTI');
+const vLogt = document.getElementById('vLogt');
+const vRisque = document.getElementById('vRisque');
+const vSuj = document.getElementById('vSuj');
+const vTotIndem = document.getElementById('vTotIndem');
+const vBrut = document.getElementById('vBrut');
+
+function refreshMil(){
+  const code = fpCode.value;
+  const classe = fpClasse.value;
+  const ech = String(fpEchelon.value);
+
+  // 1) Grade militaire selon le mapping
+  const mil = pickMilGrade(code, classe, ech) || '—';
+  milGrade.textContent = mil;
+
+  // 2) Clef "grade" utilisée par les tables d’indices/indemnités
+  let gKey = mil;
+  if (code === 'B3' && /Sous-lieutenant|Lieutenant/.test(mil)) gKey = `${mil} (B3)`;
+  if (code === 'A3' && /Capitaine/.test(mil)) gKey = `Capitaine (A3)`;
+  // (A4 et grades supérieurs utilisent INDICES_HORS_CLASSE s’ils existent, sinon TI=0)
+
+  // 3) Méta
+  kpiCode.textContent = code;
+  kpiClasse.textContent = classe;
+  kpiEchelon.textContent = ech;
+  titleGrade.textContent = gKey;
+  mGrade.textContent = gKey;
+  mClasse.textContent = classe;
+  mEch.textContent = ech + 'ᵉ';
+
+  // 4) Calculs
+  const indice = getIndice(gKey, classe, ech);
+  const point = parseFloat(pointVal.value || '0');
+  const ti = indice ? indice * point : 0;
+
+  const logt = getLogement(gKey);
+  const risque = getRisque(gKey);
+  const suj = getSujetion(gKey);
+  const totIndem = logt + risque + suj;
+  const brut = ti + totIndem;
+
+  vIndice.textContent = indice ? fmt.format(indice) : '—';
+  vTI.innerHTML = (ti ? fmt.format(Math.round(ti)) : '—') + ' <span class="unit">FCFA</span>';
+  vLogt.innerHTML = fmt.format(logt) + ' <span class="unit">FCFA</span>';
+  vRisque.innerHTML = fmt.format(risque) + ' <span class="unit">FCFA</span>';
+  vSuj.innerHTML = fmt.format(suj) + ' <span class="unit">FCFA</span>';
+  vTotIndem.innerHTML = fmt.format(totIndem) + ' <span class="unit">FCFA</span>';
+  vBrut.innerHTML = fmt.format(Math.round(brut)) + ' <span class="unit">FCFA</span>';
+}
+
+// Écoutes : tout vient du 1er tableau (+ valeur du point)
+[fpCode, fpClasse, fpEchelon].forEach(el => el.addEventListener('change', refreshMil));
+pointVal.addEventListener('input', refreshMil);
+
+// Init
+refreshMil();
 
 function calcVertical(){
   const g = habGrade.value;
