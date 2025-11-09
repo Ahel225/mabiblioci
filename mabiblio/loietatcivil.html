@@ -1,1036 +1,943 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0S7XLZ1LS6"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-0S7XLZ1LS6');
-</script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#2c3e50">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Loi n° 2018-862 relative à l'état civil - Côte d'Ivoire</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Raleway:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-color: #2c3e50; /* Bleu foncé, évoquant le formel */
-            --secondary-color: #ecf0f1; /* Gris clair */
-            --accent-color: #3498db; /* Bleu vif pour les accents */
-            --dark-color: #1c2a38; /* Bleu très foncé */
-            --light-color: #f5f7fa; /* Blanc cassé */
-            --gold-color: #bdc3c7; /* Argent pour les accents */
-            --transition: all 0.3s ease;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Raleway', sans-serif;
-            background-color: var(--light-color);
-            color: #333;
-            line-height: 1.6;
-            padding: 20px;
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 0L100 50L50 100L0 50L50 0Z' fill='%233498db22' /%3E%3C/svg%3E");
-        }
-        
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(44, 62, 80, 0.1);
-            overflow: hidden;
-            border: 1px solid var(--secondary-color);
-        }
-        
-        header {
-            background: linear-gradient(135deg, var(--primary-color), #203140);
-            color: white;
-            padding: 30px;
-            text-align: center;
-            border-bottom: 5px solid var(--accent-color);
-            position: relative;
-        }
-        
-        header::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
-        }
-        
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
-        }
-        
-        .title-sub {
-            font-family: 'Raleway', sans-serif;
-            font-weight: 300;
-            font-size: 1.2rem;
-            color: var(--secondary-color);
-        }
-        
-        .content {
-            padding: 30px;
-        }
-        
-        .section {
-            margin-bottom: 30px;
-            scroll-margin-top: 20px;
-        }
-        
-        h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            color: var(--dark-color);
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--secondary-color);
-            position: relative;
-        }
-        
-        h2::after {
-            content: "⚖️";
-            position: absolute;
-            right: 0;
-            bottom: 10px;
-        }
-        
-        .articleX {
-            background: var(--light-color);
-            border-left: 4px solid var(--primary-color);
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 0 8px 8px 0;
-            box-shadow: 0 3px 10px rgba(44, 62, 80, 0.08);
-            scroll-margin-top: 20px;
-            position: relative;
-        }
-        
-        .articleX::before {
-            content: "📜";
-            position: absolute;
-            left: -15px;
-            top: 15px;
-            background: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid var(--primary-color);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        .article-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            color: var(--dark-color);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .article-title::before {
-            content: "🏛️";
-            margin-right: 10px;
-            color: var(--accent-color);
-        }
-        
-        .article-content {
-            color: #333;
-            line-height: 1.7;
-        }
-
-        /* Boutons de défilement */
-        #scrollTopBtn, #scrollBottomBtn {
-            position: fixed;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            border: none;
-            border-radius: 50%;
-            background-color: rgba(52, 152, 219, 0.8);
-            color: white;
-            cursor: pointer;
-            font-size: 18px;
-            z-index: 99;
-            display: none;
-            transition: opacity 0.3s;
-            box-shadow: 0 2px 8px rgba(44, 62, 80, 0.3);
-        }
-        
-        #scrollTopBtn {
-            bottom: 80px;
-        }
-        
-        #scrollBottomBtn {
-            bottom: 20px;
-        }
-        
-        #scrollTopBtn:hover, #scrollBottomBtn:hover {
-            background-color: rgba(44, 62, 80, 1);
-            transform: scale(1.05);
-        }
-        
-        .show-buttons {
-            display: block !important;
-            opacity: 1;
-        }
-        
-        .hide-buttons {
-            opacity: 0;
-            display: none !important;
-        }
-        
-        /* Bouton sommaire mobile */
-        .mobile-sommaire-btn {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 24px;
-            box-shadow: 0 4px 15px rgba(44, 62, 80, 0.3);
-            z-index: 1001;
-            cursor: pointer;
-            transition: var(--transition);
-            border: 2px solid white;
-        }
-        
-        .mobile-sommaire-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(44, 62, 80, 0.4);
-        }
-        
-        /* Sommaire plein écran pour mobile */
-        .mobile-sommaire {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(44, 62, 80, 0.95);
-            z-index: 1002;
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .mobile-sommaire.active {
-            opacity: 1;
-        }
-        
-        .mobile-sommaire-content {
-            background: white;
-            width: 90%;
-            max-width: 500px;
-            max-height: 80vh;
-            overflow-y: auto;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(44, 62, 80, 0.3);
-            transform: translateY(20px);
-            transition: transform 0.4s ease;
-            border: 2px solid var(--secondary-color);
-        }
-        
-        .mobile-sommaire.active .mobile-sommaire-content {
-            transform: translateY(0);
-        }
-        
-        .mobile-sommaire-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid var(--secondary-color);
-        }
-        
-        .mobile-sommaire-title {
-            font-family: 'Raleway', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--dark-color);
-        }
-        
-        .mobile-sommaire-close {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--dark-color);
-            transition: var(--transition);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .mobile-sommaire-close:hover {
-            color: var(--primary-color);
-            background-color: var(--secondary-color);
-        }
-        
-        .sommaire-list {
-            list-style: none;
-        }
-        
-        .sommaire-item {
-            margin-bottom: 12px;
-            padding: 15px;
-            border-radius: 8px;
-            transition: var(--transition);
-            background-color: var(--light-color);
-            border-left: 3px solid var(--accent-color);
-        }
-        
-        .sommaire-item:hover {
-            background-color: var(--secondary-color);
-            transform: translateX(5px);
-        }
-        
-        .sommaire-item a {
-            text-decoration: none;
-            color: var(--dark-color);
-            font-weight: 500;
-            display: block;
-            transition: var(--transition);
-        }
-        
-        .sommaire-item:hover a {
-            color: var(--primary-color);
-        }
-        
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: var(--dark-color);
-            font-size: 0.9rem;
-            background: var(--secondary-color);
-            border-top: 1px solid rgba(44, 62, 80, 0.1);
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .mobile-sommaire-btn {
-                display: flex;
-            }
-            
-            header {
-                padding: 20px;
-            }
-            
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .section, .articleX {
-                scroll-margin-top: 80px;
-            }
-        }
-    </style>
-  <link rel="manifest" href="manifest.webmanifest">
-  <meta name="theme-color" content="#22c55e">
-  <link rel="apple-touch-icon" href="icons/icon-192.png">
-
-<!-- HIDE AUTH/VIEWS WIDGETS OUTSIDE HOME (safe) -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Loi n° 2018-862 relative à l'état civil — Lecteur</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#22c55e">
 <style>
-  #auth-fab, .views-badge, #auth-modal, .card-views-badge { display: none !important; }
+:root{ --bg:#f5f8ff; --paper:#ffffff; --ink:#0f2742; --primary:#1e4e8c; --primary-700:#113761; --accent:#f2c94c; --accent-2:#fff6cc; --muted:#e7eef9; --shadow:0 12px 28px rgba(0,0,0,.08); --radius:18px; --transition:.25s ease; }
+*{box-sizing:border-box} html,body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.6}
+header{position:sticky;top:0;z-index:60;background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(255,255,255,.88));backdrop-filter:saturate(1.1) blur(8px);border-bottom:1px solid #e6eef6}
+.container{max-width:1120px;margin:0 auto;padding:14px 16px;display:flex;align-items:center;gap:12px}
+.logo{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:radial-gradient(circle at 30% 30%, var(--accent), #ffe89c);color:#113761;box-shadow:var(--shadow);font-size:18px}
+h1{margin:0;font-family:'Playfair Display',serif;font-size:20px;color:var(--primary-700)}
+.sub{color:#496b8d;font-size:12px;margin-top:2px}
+.control-buttons{margin-left:auto;display:flex;gap:8px;align-items:center}
+.btn{min-width:38px;height:38px;border-radius:12px;border:1px solid #d5e6f6;background:#fff;color:var(--primary-700);display:grid;place-items:center;cursor:pointer;box-shadow:var(--shadow);transition:var(--transition)}
+.btn:hover{transform:translateY(-1px)}
+.wrapper{max-width:1120px;margin:16px auto;padding:0 12px}
+.group{background:var(--paper);border:1px solid #e2eef7;border-radius:var(--radius);box-shadow:var(--shadow);margin:14px 0;overflow:hidden}
+.group>h2{margin:0;padding:14px 16px;background:linear-gradient(180deg,#ffffff,#f2f8ff);border-bottom:1px solid #e2eef7;color:#1a4177;font-size:18px;font-family:'Playfair Display',serif}
+.article{margin:10px 10px 14px 10px;padding:12px 14px;border-left:6px solid var(--primary);background:#fff;border-radius:14px;box-shadow:0 1px 0 rgba(0,0,0,.03)}
+.article-header{display:flex; align-items:center; gap:8px; margin:0 0 6px 0;}
+.article-header h3{margin:0; color:#113761;}
+.article .open-fs{ order:2; margin-left:auto; width:34px; height:34px; border:1px solid #d5e6f6; background:#fff; border-radius:10px; cursor:pointer; }
+.article-content p{margin:.5rem 0}.article-content ul,.article-content ol{margin:.5rem 0 .8rem 1.25rem}
+.article-content ol>li, .article-content ul>li{ padding:8px 0; line-height:1.7; border-bottom:1px solid #eaf3fb; }
+.article-content ol>li:last-child, .article-content ul>li:last-child{ border-bottom:0; }
+.article-content li > ol > li, .article-content li > ul > li{ padding:6px 0; border-bottom:1px dashed #eaf3fb; }
+.article-content li > ol > li:last-child, .article-content li > ul > li:last-child{ border-bottom:0; }
+.reading{ outline:2px solid var(--accent); outline-offset:2px; border-left-color:var(--accent) !important; background:linear-gradient(180deg,#fff, var(--accent-2)) }
+#tocFloatBtn{position:fixed; right:14px; bottom:120px; width:46px; height:46px; border-radius:50%; border:none; background:var(--primary); color:#fff; display:grid; place-items:center; box-shadow:0 10px 24px rgba(0,0,0,.25); z-index:1500;}
+#tocPanel{position:fixed; top:0; right:0; height:100%; width:86%; max-width:420px; background:#fff; border-left:1px solid #e2eef7; box-shadow:-16px 0 35px rgba(0,0,0,.2); transform:translateX(100%); transition:transform .25s ease; z-index:1600; overflow:auto;}
+#tocOverlay{position:fixed; inset:0; background:rgba(0,0,0,.28); backdrop-filter:blur(2px); display:none; z-index:1590}
+#tocPanel.open{ transform:none } #tocOverlay.show{ display:block }
+#tocPanel header{position:sticky; top:0; background:#fff; padding:12px 14px; border-bottom:1px solid #e2eef7}
+#tocPanel h3{margin:0; color:#1a4177} #tocPanel .toc-list{padding:12px 14px}
+#tocPanel .toc-list a{display:block; padding:6px 0; color:#183a69; text-decoration:none}
+#tocPanel .toc-sub{margin-left:10px; border-left:2px solid #eef6fd; padding-left:8px}
+#voiceBar{position:fixed; left:50%; transform:translateX(-50%); bottom:14px; background:#113761; color:#fff; z-index:1550; border-radius:22px; padding:8px 12px; display:flex; gap:10px; align-items:center; box-shadow:0 12px 28px rgba(0,0,0,.3)}
+#voiceBar button{width:34px; height:34px; border-radius:10px; border:1px solid #cfe3f5; background:transparent; color:#eaf0f6; display:grid; place-items:center; cursor:pointer}
+#voiceBar .now{font-size:12px; max-width:52vw; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:#f1f5f9}
+#fsOverlay{ position:fixed; inset:0; background:#fff; z-index:1700; display:none; }
+#fsOverlay.show{ display:block } #fsHeader{ position:sticky; top:0; background:#fff; padding:10px 14px; border-bottom:1px solid #e2eef7; display:flex; align-items:center; gap:10px }
+#fsHeader .ttl{ font-weight:700; color:#173f64; flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
+#fsHeader button{ width:36px; height:36px; border-radius:10px; border:1px solid #d5e6f6; background:#fff; }
+#fsBody{ padding:14px; height:calc(100% - 58px); overflow:auto } #fsBody .article-content{ font-size:1.04rem }
+#fsNavPrev,#fsNavNext{ position:fixed; top:50%; transform:translateY(-50%); width:42px; height:42px; border-radius:50%; border:none; background:var(--primary); color:#fff; display:grid; place-items:center; z-index:1710; opacity:.9 }
+#fsNavPrev{ left:10px } #fsNavNext{ right:10px }
+footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c6785;font-size:12px}
+.no-select, .no-select *:not(input):not(textarea):not(.selectable){ -webkit-user-select:none !important; user-select:none !important; -webkit-touch-callout:none !important;}
 </style>
-
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>République de Côte d'Ivoire</h1>
-            <p class="title-sub">Union - Discipline - Travail</p>
-            <p class="title-sub">Loi n° 2018-862 relative à l'état civil</p>
-        </header>
-        
-        <div class="content">
-            <button id="scrollTopBtn" title="Aller en haut">↑</button>
-            <button id="scrollBottomBtn" title="Aller en bas">↓</button>
-            
-            <div class="section">
-                <h2 class="article-title" id="chapitre1">Chapitre 1 - Des circonscriptions, bureaux d'État civil et points de collecte</h2>
-                
-                <div id="article1" class="articleX">
-                    <h3>Article 1</h3>
-                    <p>L'état civil des citoyens est établi et prouvé par les actes de l'état civil et, exceptionnellement, par des décisions de justice ou des actes de notoriété. Les actes de l'état civil sont les écrits par lesquels l'officier ou l'agent de l'état civil constate d'une manière authentique les principaux évènements dont dépend l'état d'une personne.</p>
-                </div>
-                
-                <div id="article2" class="articleX">
-                    <h3>Article 2</h3>
-                    <p>Dans le territoire de chaque sous-préfecture, les circonscriptions d'état civil autres que les communes sont déterminées par décret. Chaque circonscription d'état civil peut comporter des bureaux d'état civil. De même, chaque centre de santé peut comporter des bureaux d'état civil. Des points de collecte sont également créés dans les villages, dans les centres de santé et dans tout autre lieu déterminé par décret. Les modalités de création, d'organisation et de fonctionnement des bureaux d'état civil et des points de collecte sont fixées par décret.</p>
-                </div>
-            </div>
-            
-            <div class="section">
-                <h2 class="article-title" id="chapitre2">Chapitre 2 - Des officiers, agents de l'État civil et des agents de collecte</h2>
-                
-                <div id="article3" class="articleX">
-                    <h3>Article 3</h3>
-                    <p>Chaque circonscription d'état civil comporte un officier de l'état civil, chaque bureau d'état civil, un agent de l'état civil. Il peut être adjoint, à l'un et à l'autre un ou plusieurs suppléants qui sont nommés et exercent dans les mêmes conditions que les officiers et les agents titulaires. De même, chaque point de collecte comporte un agent de collecte. Il peut lui être adjoint un ou plusieurs suppléants.</p>
-                </div>
-                
-                <div id="article4" class="articleX">
-                    <h3>Article 4</h3>
-                    <p>Les agents de l'État civil et leurs suppléants exercent leurs attributions sous l'autorité des officiers de l'état civil.</p>
-                </div>
-                
-                <div id="article5" class="articleX">
-                    <h3>Article 5</h3>
-                    <p>Les agents de collecte et leurs suppléants exercent leurs attributions sous l'autorité des agents de l'état civil.</p>
-                </div>
-                
-                <div id="article6" class="articleX">
-                    <h3>Article 6</h3>
-                    <p>Les officiers de l'état civil autres que ceux qui le sont en vertu de la loi, et les agents de l'état civil sont nommés dans les conditions définies par décret. Ils prêtent serment avant leur prise de fonction devant le tribunal du ressort de la circonscription d'état civil dans laquelle ils sont nommés.</p>
-                </div>
-                
-                <div id="article7" class="articleX">
-                    <h3>Article 7</h3>
-                    <p>Les officiers et les agents de l'état civil sont seuls compétents pour recevoir les déclarations et dresser les actes de l'état civil auxquels ils confèrent l'authenticité. Les agents de collecte sont chargés de recueillir les faits d'état civil qui surviennent dans leurs points de collecte de compétence. Ils peuvent procéder à la déclaration des naissances et décès pour le compte des personnes habilitées à le faire dans les conditions définies par décret.</p>
-                </div>
-                
-                <div id="article8" class="articleX">
-                    <h3>Article 8</h3>
-                    <p>Sous réserve des dispositions de l'article 37, les agents de l'état civil n'ont compétence que pour recevoir les déclarations de naissance et de décès, dresser les actes correspondants et effectuer sur les registres de l'année en cours, les transcriptions et mentions s'y rapportant.</p>
-                </div>
-                
-                <div id="article9" class="articleX">
-                    <h3>Article 9</h3>
-                    <p>Les officiers de l'état civil sont compétents en ce qui concerne tous les actes de l'état civil.</p>
-                </div>
-                
-                <div id="article10" class="articleX">
-                    <h3>Article 10</h3>
-                    <p>Les actes autres que ceux visés à l'article précédent sont dressés et les mariages célébrés au chef-lieu de la circonscription d'état civil, exceptionnellement au bureau d'état civil lorsque l'officier de l'état civil s'y transporte.</p>
-                </div>
-                
-                <div id="article11" class="articleX">
-                    <h3>Article 11</h3>
-                    <p>Les officiers et agents de l'état civil ne peuvent intervenir dans un même acte en cette qualité et à un autre titre.</p>
-                </div>
-                
-                <div id="article12" class="articleX">
-                    <h3>Article 12</h3>
-                    <p>Les officiers, les agents de l'état civil et les agents de collecte exercent leurs fonctions sous le contrôle des autorités judiciaires et sont responsables civilement, disciplinairement et pénalement des fautes et négligences qu'ils commettent dans l'exercice ou à l'occasion de leurs fonctions.</p>
-                </div>
-                
-                <div id="article13" class="articleX">
-                    <h3>Article 13</h3>
-                    <p>Lorsque l'officier de l'état civil refuse de recevoir une déclaration comme contraire à la loi, il en avise dans les quarante-huit heures le magistrat chargé de surveiller le fonctionnement de l'état civil dans sa circonscription.</p>
-                </div>
-                
-                <div id="article14" class="articleX">
-                    <h3>Article 14</h3>
-                    <p>Si le refus émane d'un agent de l'état civil, celui-ci en rend compte immédiatement à l'officier de l'état civil sous l'autorité duquel il se trouve placé.</p>
-                </div>
-                
-                <div id="article15" class="articleX">
-                    <h3>Article 15</h3>
-                    <p>Dans chaque circonscription et dans chaque bureau d'état civil, il est tenu, en double exemplaire, des registres distincts pour les naissances, les décès, les déclarations autres que celles qui précèdent et les mariages.</p>
-                </div>
-            </div>
-            
-            <div class="section">
-                <h2 class="article-title" id="chapitre3">Chapitre 3 - Des registres de l'État civil</h2>
-                
-                <div id="article16" class="articleX">
-                    <h3>Article 16</h3>
-                    <p>Les registres sont ouverts au 1er janvier et clos au 31 décembre de chaque année. Ils sont conformes aux modèles établis par décret. Les deux exemplaires sont cotés et paraphés, sur chaque feuille, par le président du Tribunal ou tout magistrat délégué par lui.</p>
-                </div>
-                
-                <div id="article17" class="articleX">
-                    <h3>Article 17</h3>
-                    <p>Les actes sont inscrits sur les registres, de suite, sans aucun blanc ni aucune surcharge. Les ratures et les renvois sont approuvés et signés de la même manière que le corps de l'acte.</p>
-                </div>
-                
-                <div id="article18" class="articleX">
-                    <h3>Article 18</h3>
-                    <p>Les procurations et autres pièces, qui doivent demeurer annexées aux actes de l'état civil, sont déposées, après qu'elles ont été paraphées par la personne qui les a produites et par l'officier ou l'agent de l'état civil, au greffe du Tribunal, avec le double des registres.</p>
-                </div>
-                
-                <div id="article19" class="articleX">
-                    <h3>Article 19</h3>
-                    <p>Il est établi périodiquement, dans les conditions définies par décret, un relevé des tables annuelles.</p>
-                </div>
-                
-                <div id="article20" class="articleX">
-                    <h3>Article 20</h3>
-                    <p>Les registres de l'état civil ne peuvent être communiqués au public. Seuls peuvent en avoir communication, les magistrats chargés de surveiller la tenue de l'état civil et les agents des administrations publiques qui y sont expressément autorisés.</p>
-                </div>
-                
-                <div id="article21" class="articleX">
-                    <h3>Article 21</h3>
-                    <p>Les procureurs de la République sont spécialement chargés du contrôle et de la surveillance du service de l'état civil. Une fois par an, obligatoirement, et chaque fois qu'ils l'estiment nécessaire, ils procèdent à la vérification de la tenue et de la conservation des registres.</p>
-                </div>
-                
-                <div id="article22" class="articleX">
-                    <h3>Article 22</h3>
-                    <p>Tout dépositaire des registres de l'état civil est civilement responsable des altérations qui y surviennent, sauf à rapporter la preuve que ces altérations sont imputables à un tiers.</p>
-                </div>
-                
-                <div id="article23" class="articleX">
-                    <h3>Article 23</h3>
-                    <p>Toute altération, tout faux dans les actes de l'état civil, toute inscription de ces actes faite sur une feuille volante ou autrement que sur les registres à ce destinés, donnent lieu à des dommages-intérêts aux parties, sans préjudice des sanctions pénales encourues.</p>
-                </div>
-            </div>
-            
-            <div class="section">
-                <h2 class="article-title" id="chapitre4">Chapitre 4 - Des règles communes à tous les actes de l'État civil</h2>
-                
-                <div id="article24" class="articleX">
-                    <h3>Article 24</h3>
-                    <p>La déclaration, l'enregistrement des faits d'état civil sont obligatoires et gratuits. Les actes de l'état civil sont rédigés dans la langue officielle. Ils énoncent l'année, le mois, le jour et l'heure où ils sont reçus, ainsi que les informations d'identification des personnes concernées.</p>
-                </div>
-                
-                <div id="article25" class="articleX">
-                    <h3>Article 25</h3>
-                    <p>Dans les cas où les parties intéressées ne peuvent comparaître en personne, elles se font représenter par un fondé de pouvoir muni d'une procuration spéciale et authentique.</p>
-                </div>
-                
-                <div id="article26" class="articleX">
-                    <h3>Article 26</h3>
-                    <p>Les témoins, choisis par les parties, certifient l'identité de celles-ci et la conformité de l'acte avec leurs déclarations. Ils doivent être majeurs, parents ou non des déclarants.</p>
-                </div>
-                
-                <div id="article27" class="articleX">
-                    <h3>Article 27</h3>
-                    <p>Si les parties comparantes ou les témoins ne parlent pas la langue officielle, leurs déclarations sont traduites par un interprète.</p>
-                </div>
-                
-                <div id="article28" class="articleX">
-                    <h3>Article 28</h3>
-                    <p>Avant de dresser l'acte, l'officier de l'état civil avise les parties des peines prévues par la loi pour sanctionner les fausses déclarations. Il leur en donne lecture et les invite à en prendre connaissance avant de le signer.</p>
-                </div>
-                
-                <div id="article29" class="articleX">
-                    <h3>Article 29</h3>
-                    <p>Les actes sont signés par l'officier, les comparants, les témoins et l'interprète s'il y a lieu.</p>
-                </div>
-                
-                <div id="article30" class="articleX">
-                    <h3>Article 30</h3>
-                    <p>Les déclarations de naissance et de décès sont reçues por l'officier de l'état civil du lieu de naissance ou de décès. Les mariages sont célébrés par l'officier du lieu de la célébration.</p>
-                </div>
-                
-                <div id="article31" class="articleX">
-                    <h3>Article 31</h3>
-                    <p>Toute personne peut se faire délivrer des copies des actes qui y sont inscrits.</p>
-                </div>
-                
-                <div id="article32" class="articleX">
-                    <h3>Article 32</h3>
-                    <p>Tout acte de l'état civil des Ivoiriens et des étrangers dressé en pays étranger, fait foi s'il a été rédigé dans les formes usitées dans ledit pays.</p>
-                </div>
-                
-                <div id="article33" class="articleX">
-                    <h3>Article 33</h3>
-                    <p>Tout acte de l'état civil concernant les Ivoiriens, reçu en pays étranger, est valable s'il l'a été conformément aux lois ivoiriennes, par les agents diplomatiques ou les consuls.</p>
-                </div>
-                
-                <div id="article34" class="articleX">
-                    <h3>Article 34</h3>
-                    <p>Dans tous les cas où la mention d'un acte relatif à l'état civil doit avoir lieu en marge d'un acte déjà inscrit, elle est faite d'office. L'officier qui a dressé ou transcrit l'acte effectue cette mention dans les huit jours.</p>
-                </div>
-                
-                <div id="article35" class="articleX">
-                    <h3>Article 35</h3>
-                    <p>Lorsqu'en vertu de conventions diplomatiques, les actes de l'état civil concernant les étrangers, dressés en Côte d'Ivoire, doivent être adressés aux autorités étrangères, l'officier ou l'agent qui a dressé l'acte doit, dans les huit jours, en transmettre une expédition au ministère des Affaires étrangères.</p>
-                </div>
-                
-                <div id="article36" class="articleX">
-                    <h3>Article 36</h3>
-                    <p>Lorsque l'acte donnant lieu à mention a été dressé ou transcrit par un agent de l'état civil, celui-ci en donne avis à l'officier de l'état civil dont il dépend.</p>
-                </div>
-                
-                <div id="article37" class="articleX">
-                    <h3>Article 37</h3>
-                    <p>Par exception aux dispositions contenues à l'article 8, les agents de l'état civil sont compétents pour procéder aux transcriptions et mentions à effectuer sur les registres de l'année en cours tenus au bureau d'état civil, pour les mariages et les actes autres que de naissance ou de décès.</p>
-                </div>
-                
-                <div id="article38" class="articleX">
-                    <h3>Article 38</h3>
-                    <p>Si l'officier ou l'agent de l'état civil décède sans avoir signé certains actes ou certaines mentions marginales, le procureur de la République présente requête au président du Tribunal pour faire ordonner que les actes rédigés feront foi malgré l'absence de signature.</p>
-                </div>
-                
-                <div id="article39" class="articleX">
-                    <h3>Article 39</h3>
-                    <p>Les dispositions prévues à l'article précédent sont également applicables dans le cas où la signature de l'une des parties à l'acte a été omise.</p>
-                </div>
-                
-                <div id="article40" class="articleX">
-                    <h3>Article 40</h3>
-                    <p>Outre le procureur de la République, toute personne y ayant intérêt peut, dans les cas prévus aux articles 38 et 39, saisir, par requête, le président du Tribunal compétent.</p>
-                </div>
-            </div>
-            
-            <div class="section">
-                <h2 class="article-title" id="chapitre5">Chapitre 5 - Des règles propres à chaque catégorie d'actes de l'État civil</h2>
-                <h3>Section 1 - Des actes de naissance</h3>
-                
-                <div id="article41" class="articleX">
-                    <h3>Article 41</h3>
-                    <p>Les naissances doivent être déclarées dans les trois mois de l'accouchement. Lorsqu'une naissance n'a pas été déclarée dans le délai légal, l'officier de l'état civil ne peut la relater sur ses registres qu'en vertu d'un jugement rendu par le Tribunal du lieu de naissance.</p>
-                </div>
-                
-                <div id="article42" class="articleX">
-                    <h3>Article 42</h3>
-                    <p>L'acte de naissance énonce l'année, le mois, le jour, l'heure et le lieu de la naissance, le sexe de l'enfant, les prénoms et nom qui lui sont donnés.</p>
-                </div>
-                
-                <div id="article43" class="articleX">
-                    <h3>Article 43</h3>
-                    <p>Les déclarations de naissance doivent émaner du père ou de la mère, de l'un des ascendants ou des plus proches parents, ou de toute personne ayant assisté à la naissance. Le déclarant doit produire le certificat médical de naissance, le carnet d'accouchement ou l'attestation délivrée par l'agent de collecte.</p>
-                </div>
-                
-                <div id="article44" class="articleX">
-                    <h3>Article 44</h3>
-                    <p>L'acte de naissance, rédigé immédiatement, is signé du déclarant, de l'officier ou de l'agent de l'état civil et, le cas échéant, de l'interprète.</p>
-                </div>
-                
-                <div id="article45" class="articleX">
-                    <h3>Article 45</h3>
-                    <p>Il est tenu dans les hôpitaux, maternités ou formations de santé publics ou privés, ainsi que dans les villages, un registre spécial sur lequel sont immédiatement inscrits les naissances qui y surviennent.</p>
-                </div>
-                
-                <div id="article46" class="articleX">
-                    <h3>Article 46</h3>
-                    <p>Toute personne qui trouve un enfant nouveau-né est tenue d'en faire la déclaration à l'officier ou à l'agent de l'état civil du lieu de la découverte.</p>
-                </div>
-            </div>
-            
-            <div class="section">
-                <h2 class="article-title" id="chapitre6">Chapitre 6 - Des rectifications et reconstitutions des actes de l'État civil</h2>
-                
-                <div id="article79" class="articleX">
-                    <h3>Article 79</h3>
-                    <p>La rectification des actes de l'état civil est ordonnée par le Tribunal de première instance du lieu où l'acte a été dressé.</p>
-                </div>
-                
-                <div id="article80" class="articleX">
-                    <h3>Article 80</h3>
-                    <p>Toute personne peut, dans les conditions prévues au présent chapitre, solliciter la rectification de son acte de l'état civil.</p>
-                </div>
-                
-                <div id="article86" class="articleX">
-                    <h3>Article 86</h3>
-                    <p>Il est procédé à la reconstitution des registres de l'état civil lorsque l'original et/ou le double de ceux-ci sont détruits, détériorés ou ont disparu.</p>
-                </div>
-                
-                <div id="article87" class="articleX">
-                    <h3>Article 87</h3>
-                    <p>Lorsqu'il subsiste un exemplaire des registres ou une base de données informatiques des faits d'état civil, le procureur de la République prescrit de faire une copie d'après le double ou la base de données existants.</p>
-                </div>
-                
-                <div id="article88" class="articleX">
-                    <h3>Article 88</h3>
-                    <p>Dans le cas où les deux exemplaires du registre ont disparu soit entièrement, soit partiellement, le procureur de la République prescrit de faire une copie d'après la base de données numériques existante.</p>
-                </div>
-                
-                <div id="article89" class="articleX">
-                    <h3>Article 89</h3>
-                    <p>Dans l'hypothèse prévue à l'article précédent, lorsque l'exemplaire transmis au Tribunal n'a pas été numérisé ou que les données numérisées ne sont pas fiables, le procureur de la République invite l'officier ou l'agent de l'état civil à dresser un état.</p>
-                </div>
-                
-                <div id="article90" class="articleX">
-                    <h3>Article 90</h3>
-                    <p>Le Tribunal, après examen de l'état dressé par l'officier de l'état civil, ordonne le rétablissement des actes dont l'existence a été constatée.</p>
-                </div>
-            </div>
-            
-            <a id="downloadBtn" href="#" onclick="downloadDocument();">Télécharger le document</a>
-        </div>
-        
-        <footer>
-            <p>Ce document est une reproduction de la Loi n° 2018-862 du 19 novembre 2018 relative à l'état civil, publié au Journal Officiel de la République de Côte d'Ivoire.</p>
-        </footer>
+<header>
+  <div class="container">
+    <div class="logo"><i class="fa-solid fa-id-card"></i></div>
+    <div>
+      <h1>Loi n° 2018-862 relative à l'état civil</h1>
+      <div class="sub">Loi du 19 novembre 2018</div>
     </div>
-
-    <!-- Bouton pour afficher le sommaire sur mobile -->
-    <div class="mobile-sommaire-btn" id="mobile-sommaire-btn">
-        <i class="fas fa-bars"></i>
+    <div class="control-buttons">
+      <button class="btn" id="tocHeaderBtn" title="Sommaire"><i class="fa-solid fa-list"></i></button>
+      <button class="btn" title="Haut de page" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fa-solid fa-angles-up"></i></button>
     </div>
-    
-    <!-- Sommaire pour mobile -->
-    <div class="mobile-sommaire" id="mobile-sommaire">
-        <div class="mobile-sommaire-content">
-            <div class="mobile-sommaire-header">
-                <h3 class="mobile-sommaire-title">Sommaire</h3>
-                <button class="mobile-sommaire-close" id="mobile-sommaire-close">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <ul class="sommaire-list">
-                <li class="sommaire-item"><a href="#chapitre1">Chapitre 1 - Des circonscriptions, bureaux d'État civil et points de collecte</a></li>
-                <li class="sommaire-item"><a href="#chapitre2">Chapitre 2 - Des officiers, agents de l'État civil et des agents de collecte</a></li>
-                <li class="sommaire-item"><a href="#chapitre3">Chapitre 3 - Des registres de l'État civil</a></li>
-                <li class="sommaire-item"><a href="#chapitre4">Chapitre 4 - Des règles communes à tous les actes de l'État civil</a></li>
-                <li class="sommaire-item"><a href="#chapitre5">Chapitre 5 - Des règles propres à chaque catégorie d'actes de l'État civil</a></li>
-                <li class="sommaire-item"><a href="#chapitre6">Chapitre 6 - Des rectifications et reconstitutions des actes de l'État civil</a></li>
-            </ul>
-        </div>
-    </div>
-
-    <script>
-        // Fonctionnalités de défilement
-        const scrollTopBtn = document.getElementById("scrollTopBtn");
-        const scrollBottomBtn = document.getElementById("scrollBottomBtn");
-        
-        // Afficher/masquer les boutons de défilement
-        window.onscroll = function() {
-            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-                scrollTopBtn.classList.add("show-buttons");
-                scrollTopBtn.classList.remove("hide-buttons");
-            } else {
-                scrollTopBtn.classList.remove("show-buttons");
-                scrollTopBtn.classList.add("hide-buttons");
-            }
-            
-            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
-                scrollBottomBtn.classList.remove("show-buttons");
-                scrollBottomBtn.classList.add("hide-buttons");
-            } else {
-                scrollBottomBtn.classList.add("show-buttons");
-                scrollBottomBtn.classList.remove("hide-buttons");
-            }
-        };
-        
-        // Aller en haut
-        scrollTopBtn.addEventListener("click", function() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-        
-        // Aller en bas
-        scrollBottomBtn.addEventListener("click", function() {
-            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-        });
-        
-        // Gestion du sommaire mobile
-        const mobileSommaireBtn = document.getElementById("mobile-sommaire-btn");
-        const mobileSommaire = document.getElementById("mobile-sommaire");
-        const mobileSommaireClose = document.getElementById("mobile-sommaire-close");
-        
-        mobileSommaireBtn.addEventListener("click", function() {
-            mobileSommaire.style.display = "flex";
-            setTimeout(function() {
-                mobileSommaire.classList.add("active");
-            }, 10);
-        });
-        
-        mobileSommaireClose.addEventListener("click", function() {
-            mobileSommaire.classList.remove("active");
-            setTimeout(function() {
-                mobileSommaire.style.display = "none";
-            }, 300);
-        });
-        
-        // Fermer le sommaire en cliquant sur un lien
-        const sommaireLinks = document.querySelectorAll(".sommaire-item a");
-        sommaireLinks.forEach(link => {
-            link.addEventListener("click", function() {
-                mobileSommaire.classList.remove("active");
-                setTimeout(function() {
-                    mobileSommaire.style.display = "none";
-                }, 300);
-            });
-        });
-        
-        // Fonction pour télécharger le document
-        function downloadDocument() {
-            alert("Téléchargement du document en cours...");
-            // En production, cette fonction pourrait générer un PDF ou télécharger un fichier
-        }
-        
-        // Animation des articles au défilement
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = 1;
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-        
-        // Observer les articles
-        document.querySelectorAll('.articleX').forEach(article => {
-            article.style.opacity = 0;
-            article.style.transform = 'translateY(20px)';
-            article.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            observer.observe(article);
-        });
-    </script>
-  <script>
-  if ("serviceWorker" in navigator) {
-    window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js"));
-  }
-</script>
-  <!-- PWA Install Button -->
-<button id="pwa-install-btn" aria-label="Installer l'application" hidden>Installer</button>
-<style>
-  #pwa-install-btn{
-    position:fixed; right:16px; bottom:16px; z-index:9999;
-    padding:10px 14px; border:none; border-radius:999px;
-    background:#22c55e; color:white; font:600 14px system-ui,Segoe UI,Roboto,Arial,sans-serif;
-    box-shadow:0 8px 20px rgba(34,197,94,.35);
-  }
-  #pwa-install-btn[hidden]{ display:none; }
-  @supports (padding-bottom: env(safe-area-inset-bottom)){
-    #pwa-install-btn{ bottom: calc(16px + env(safe-area-inset-bottom)); }
-  }
-</style>
+  </div>
+</header>
+<main class="wrapper" id="mainWrapper"></main>
+<button id="tocFloatBtn" title="Sommaire" class="btn"><i class="fa-solid fa-book"></i></button>
+<div id="tocOverlay"></div>
+<aside id="tocPanel">
+  <header><h3><i class="fa-solid fa-scale-balanced"></i> Sommaire</h3></header>
+  <div class="toc-list" id="tocList"></div>
+</aside>
+<div id="voiceBar" role="region" aria-label="Contrôles de lecture">
+  <button id="vPlay" title="Lire"><i class="fa-solid fa-play"></i></button>
+  <button id="vPause" title="Pause"><i class="fa-solid fa-pause"></i></button>
+  <button id="vStop" title="Arrêter"><i class="fa-solid fa-stop"></i></button>
+  <span class="now" id="nowReading">Prêt</span>
+</div>
+<div id="fsOverlay" aria-hidden="true">
+  <div id="fsHeader">
+    <strong class="ttl" id="fsTitle">—</strong>
+    <button id="fsClose" title="Fermer"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div id="fsBody"></div>
+  <button id="fsNavPrev" title="Précédent"><i class="fa-solid fa-chevron-left"></i></button>
+  <button id="fsNavNext" title="Suivant"><i class="fa-solid fa-chevron-right"></i></button>
+</div>
+<footer><div class="wrapper">© République de Côte d’Ivoire — Lecteur optimisé</div></footer>
 <script>
-  (function(){
-    let deferredPrompt;
-    const btnId = "pwa-install-btn";
-    function ensureBtn(){
-      let b = document.getElementById(btnId);
-      if(!b){
-        b = document.createElement("button");
-        b.id = btnId;
-        b.textContent = "Installer";
-        document.body.appendChild(b);
-      }
-      return b;
+const lawData = {
+  title: "LOI n° 2018-862 du 19 novembre 2018 relative à l'état civil.",
+  subtitle: "Loi relative à l'état civil",
+  chapters: [
+    {
+      title: "Dispositions Générales",
+      articles: [
+        {
+          id: "article1",
+          title: "Article 1",
+          content: "<p>L'état civil des citoyens est établi et prouvé par les actes de l'état civil et, exceptionnellement, par des décisions de justice ou des actes de notoriété.</p><p>Les actes de l'état civil sont les écrits par lesquels l'officier ou l'agent de l'état civil constate d'une manière authentique les principaux évènements dont dépend l'état d'une personne.</p>"
+        }
+      ]
+    },
+    {
+      title: "CHAPITRE 1: Des circonscriptions, bureaux d'Etat civil et points de collecte",
+      articles: [
+        {
+          id: "article2",
+          title: "Article 2",
+          content: "<p>Dans le territoire de chaque sous-préfecture, les circonscriptions d'état civil autres que les communes sont déterminées par décret.</p>"
+        },
+        {
+          id: "article3",
+          title: "Article 3",
+          content: "<p>Chaque circonscription d'état civil peut comporter des bureaux d'état civil.</p><p>De même, chaque centre de santé peut comporter des bureaux d'état civil.</p><p>Des points de collecte sont également créés dans les villages, dans les centres de santé et dans tout autre lieu déterminé par décret.</p><p>Les modalités de création, d'organisation et de fonctionnement des bureaux d'état civil et des points de collecte sont fixées par décret.</p>"
+        }
+      ]
+    },
+    {
+      title: "CHAPITRE 2: Des officiers, agents de l'état civil et des agents de collecte",
+      articles: [
+        {
+          id: "article4",
+          title: "Article 4",
+          content: "<p>Chaque circonscription d'état civil comporte un officier de l'état civil, chaque bureau d'état civil, un agent de l'état civil.</p><p>Il peut être adjoint, à l'un et à l'autre un ou plusieurs suppléants qui sont nommés et exercent dans les mêmes conditions que les officiers et les agents titulaires.</p><p>De même, chaque point de collecte comporte un agent de collecte. Il peut lui être adjoint un ou plusieurs suppléants.</p>"
+        },
+        {
+          id: "article5",
+          title: "Article 5",
+          content: "<p>Les agents de l'Etat civil et leurs suppléants exercent leurs attributions sous l'autorité des officiers de l'état civil.</p><p>Les agents de collecte et leurs suppléants exercent leurs attributions sous autorité des agents de l'état civil.</p>"
+        },
+        {
+          id: "article6",
+          title: "Article 6",
+          content: "<p>Les officiers de l'état civil autres que ceux qui le sont en vertu de la loi, et les agents de l'état civil sont nommés dans les conditions définies par décret.</p><p>Ils prêtent serment avant leur prise de fonction devant le tribunal du ressort de la circonscription d'état civil dans laquelle ils sont nommés, dans les termes suivants :</p><p>«Je jure de bien et fidèlement accomplir ma mission, de m'abstenir de divulguer les informations et données dont je suis dépositaire ou dont j'ai eu connaissance à l'occasion de l'exercice de mes fonctions, et d'observer scrupuleusement, en la matière, les lois et règlements en vigueur ».</p><p>Les agents de collecte sont également désignés dans les conditions définies par décret.</p>"
+        },
+        {
+          id: "article7",
+          title: "Article 7",
+          content: "<p>Les officiers et les agents de l'état civil sont seuls compétents pour recevoir les déclarations et dresser les actes de l'état civil auxquels ils confèrent l'authenticité.</p><p>Les agents de collecte sont chargés de recueillir les faits d'état civil qui surviennent dans leurs points de collecte de compétence.</p><p>Ils peuvent procéder à la déclaration des naissances et décès pour le compte des personnes habilitées à le faire dans les conditions définies par décret.</p>"
+        },
+        {
+          id: "article8",
+          title: "Article 8",
+          content: "<p>Sous réserve des dispositions de l'article 37, les agents de l'état civil n'ont compétence que pour recevoir les déclarations de naissance et de décès, dresser les actes correspondants et effectuer sur les registres de l'année en cours, les transcriptions et mentions s'y rapportant.</p>"
+        },
+        {
+          id: "article9",
+          title: "Article 9",
+          content: "<p>Les officiers de l'état civil sont compétents en ce qui concerne tous les actes de l'état civil.</p>"
+        },
+        {
+          id: "article10",
+          title: "Article 10",
+          content: "<p>Les actes autres que ceux visés à l'article 8 sont dressés et les mariages célébrés au chef-lieu de la circonscription d'état civil, exceptionnellement au bureau d'état civil lorsque l'officier de l'état civil s'y transporte.</p>"
+        },
+        {
+          id: "article11",
+          title: "Article 11",
+          content: "<p>Les officiers et agents de l'état civil ne peuvent intervenir dans un même acte en cette qualité et à un autre titre.</p>"
+        },
+        {
+          id: "article12",
+          title: "Article 12",
+          content: "<p>Les officiers, les agents de l'état civil et les agents de collecte exercent leurs fonctions sous le contrôle des autorités judiciaires et sont responsables civilement, disciplinairement et pénalement des fautes et négligences qu'ils commettent dans l'exercice ou à l'occasion de leurs fonctions.</p>"
+        },
+        {
+          id: "article13",
+          title: "Article 13",
+          content: "<p>Lorsque l'officier de l'état civil refuse de recevoir une déclaration comme contraire à la loi, il en avise dans les quarante-huit heures le magistrat chargé de contrôler le fonctionnement de l'état civil dans sa circonscription, lequel, jusqu'à l'expiration de la quinzaine qui suit la date de son refus, peut le requérir de dresser l'acte.</p><p>L'officier de l'état civil est tenu de déférer à ces réquisitions, transcrit celles-ci sur le registre et dresse l'acte à la suite.</p><p>Si l'acte n'a pas été dressé dans le délai de quinzaine prévu à l'alinéa premier, les parties intéressées, dans les quinze jours qui suivent son expiration, peuvent présenter requête au tribunal territorialement compétent, aux fins de voir ordonner à l'officier de l'état civil de recevoir la déclaration.</p><p>Le jugement rendu est susceptible d'appel de la part du ministère public et des parties intéressées.</p><p>Lorsque le Tribunal ou la Cour ordonne de recevoir la déclaration, l'acte est dressé, et le dispositif du jugement ou de l'arrêt, devenu définitif, transcrit à la suite.</p><p>Mention de la décision est également portée en marge de l'acte.</p>"
+        },
+        {
+          id: "article14",
+          title: "Article 14",
+          content: "<p>Si le refus émane d'un agent de l'état civil, celui-ci en rend compte immédiatement à l'officier de l'état civil sous l'autorité duquel il se trouve placé.</p><p>Ledit officier de l'état civil apprécie, sous sa responsabilité, s'il y a lieu de passer outre ou de procéder comme il est dit à l'alinéa premier de l'article précédent.</p>"
+        }
+      ]
+    },
+    {
+      title: "CHAPITRE 3: Des registres de l'état civil",
+      articles: [
+        {
+          id: "article15",
+          title: "Article 15",
+          content: "<p>Dans chaque circonscription et dans chaque bureau d'état civil, il est tenu, en double exemplaire, des registres distincts:</p><ul><li>1º pour les naissances;</li><li>2º pour les décès;</li><li>3º pour les déclarations autres que celles qui précèdent;</li><li>4º pour les mariages.</li></ul>"
+        },
+        {
+          id: "article16",
+          title: "Article 16",
+          content: "<p>Les registres sont ouverts au 1er janvier et clos au 31 décembre de chaque année.</p><p>Ils sont conformes aux modèles établis par décret. Les deux exemplaires sont côtés et paraphés, sur chaque feuille, par le président du Tribunal ou tout magistrat délégué par lui.</p><p>L'année écoulée, ils sont clos et arrêtés par l'officier ou l'agent de l'état civil sur les registres, immédiatement après le dernier acte.</p><p>A la suite de la mention de clôture, il est dressé par l'officier ou l'agent de l'état civil, une table alphabétique des actes qui y sont contenus.</p><p>Un exemplaire de chacun des registres, y compris de ceux tenus dans les bureaux d'état civil, est conservé au chef-lieu de la circonscription d'état civil.</p><p>Dans le mois qui suit la clôture, l'autre exemplaire est transmis par l'officier de l'état civil au Tribunal dans le ressort duquel est située la circonscription d'état civil pour être conservé au greffe.</p>"
+        },
+        {
+          id: "article17",
+          title: "Article 17",
+          content: "<p>Les actes sont inscrits sur les registres, de suite, sans aucun blanc ni aucune surcharge.</p><p>Les raturess et les renvois sont approuvés et signés de la même manière que le corps de l'acte.</p><p>Il n'y est rien écrit par abréviation et aucune date n'y est mise en chiffre.</p><p>Les blancs qui n'ont pas été remplis lors de l'établissement de l'acte sont bâtonnés.</p>"
+        },
+        {
+          id: "article18",
+          title: "Article 18",
+          content: "<p>Les procurations et autres pièces, qui doivent demeurer annexées aux actes de l'état civil, sont déposées, après qu'elles ont été paraphées par la personne qui les a produites et par l'officier ou l'agent de l'état civil, au greffe du Tribunal, avec le double des registres.</p>"
+        },
+        {
+          id: "article19",
+          title: "Article 19",
+          content: "<p>Il est établi périodiquement, dans les conditions définies par décret, un relevé des tables annuelles.</p>"
+        },
+        {
+          id: "article20",
+          title: "Article 20",
+          content: "<p>Les registres de l'état civil ne peuvent être communiqués au public.</p><p>Seuls peuvent en avoir communication, les magistrats chargés de surveiller la tenue de l'état civil et les agents des administrations publiques qui y sont expressément autorisés par une disposition légale ou réglementaire.</p><p>La communication se fait sans déplacement, sauf quand elle est requise par les magistrats visés à l'alinéa précédent ou ordonnée par le tribunal.</p><p>Hors les cas prévus par la présente loi, les registres ne doivent être déplacés.</p>"
+        },
+        {
+          id: "article21",
+          title: "Article 21",
+          content: "<p>Les procureurs de la République sont spécialement chargés du contrôle et de la surveillance du service de l'état civil dans le ressort de leurs juridictions respectives.</p><p>Une fois par an, obligatoirement, et chaque fois qu'ils l'estiment nécessaire, les procureurs de la République procèdent à la vérification de la tenue et de la conservation des registres de l'état civil en se transportant dans les centres d'état civil de leurs ressorts.</p><p>Ils relèvent les irrégularités et les infractions qui ont pu être commises et en poursuivent la répression.</p><p>Mention de l'inspection et de sa date est également faite sur les deux registres de l'année en cours de chaque catégorie.</p><p>Un procès-verbal de chaque inspection et un rapport annuel de la tenue des registres et du contrôle sont adressés en double exemplaire au ministre de la Justice.</p><p>Les magistrats ci-dessus visés correspondent directement avec les officiers de l'état civil.</p><p>La vérification électronique des données d'état civil peut être demandée par les administrations et organismes autorisés par la loi.</p><p>Le contrôle et la surveillance de l'état civil consulaire sont du ressort de la direction centrale du ministère de la Justice en charge du contrôle de l'état civil.</p>"
+        },
+        {
+          id: "article22",
+          title: "Article 22",
+          content: "<p>Tout dépositaire des registres de l'état civil est civilement responsable des altérations qui y surviennent, sauf à rapporter la preuve que ces altérations sont imputables à un tiers.</p>"
+        },
+        {
+          id: "article23",
+          title: "Article 23",
+          content: "<p>Toute altération, tout faux dans les actes de l'état civil, toute inscription de ces actes faite sur une feuille volante ou autrement que sur les registres à ce destinés, donnent lieu à des dommages-intérêts aux parties, sans préjudice des sanctions pénales encourues.</p>"
+        }
+      ]
+    },
+    {
+      title: "CHAPITRE 4: Des règles communes à tous les actes de l'état civil",
+      articles: [
+        {
+          id: "article24",
+          title: "Article 24",
+          content: "<p>La déclaration, l'enregistrement des faits d'état civil sont obligatoires et gratuits.</p><p>Les actes de l'état civil sont rédigés dans la langue officielle.</p><p>Ils énoncent:</p><ul><li>l'année, le mois, le jour et l'heure où ils sont reçus:</li><li>les prénoms, noms, professions, domiciles et, si possible, les dates de naissance de tous ceux qui y sont dénommés:</li><li>le numéro de référence de l'acte;</li><li>le numéro national d'identification du bénéficiaire de l'acte, généré par le registre national de personnes physiques.</li></ul><p>Toutefois, en ce qui concerne les témoins, leur qualité de majeur est seule indiquée.</p>"
+        },
+        {
+          id: "article25",
+          title: "Article 25",
+          content: "<p>Dans les cas où les parties intéressées ne peuvent comparaître en personne, elles se font représenter par un fondé de pouvoir muni d'une procuration spéciale et authentique.</p>"
+        },
+        {
+          id: "article26",
+          title: "Article 26",
+          content: "<p>Les témoins, choisis par les parties, certifient l'identité de celles-ci et la conformité de l'acte avec leurs déclarations.</p><p>Ils doivent être majeurs, parents ou non des déclarants.</p>"
+        },
+        {
+          id: "article27",
+          title: "Article 27",
+          content: "<p>Si les parties comparantes, leur fondé de pouvoir ou les témoins ne parlent pas la langue officielle, leurs déclarations sont traduites par un interprète ayant préalablement prêté devant l'officier ou l'agent de l'état civil, le serment ci-après:</p><p>« Je jure de bien et fidèlement traduire les déclarations des parties et des témoins ainsi que l'acte qui les constate ».</p><p>Mention en est faite dans l'acte.</p><p>Cette mention comporte l'indication de la langue dans laquelle la déclaration a été faite, des prénoms et nom de l'interprète, ainsi que de la prestation de serment de celui-ci.</p>"
+        },
+        {
+          id: "article28",
+          title: "Article 28",
+          content: "<p>Avant de dresser l'acte, l'officier ou l'agent de l'état civil avise les parties comparantes ou leur fondé de pouvoir et les témoins, des peines prévues par la loi pour sanctionner les fausses déclarations.</p><p>L'acte établi, il leur en donne lecture et les invite, s'ils lisent la langue officielle, à en prendre connaissance avant de le signer.</p><p>Dans le cas prévu au premier alinéa de l'article précédent, la traduction de l'acte est faite par l'interprète.</p><p>Il est fait mention dans les actes, de l'accomplissement de ces formalités.</p>"
+        },
+        {
+          id: "article29",
+          title: "Article 29",
+          content: "<p>Les actes sont signés par l'officier ou l'agent de l'état civil, les comparants, les témoins et l'interprète s'il y a lieu, ou mention est faite de la cause qui a empêché les comparants et les témoins de signer.</p>"
+        },
+        {
+          id: "article30",
+          title: "Article 30",
+          content: "<p>Les déclarations de naissance et de décès sont reçues et les actes qui les constatent dressés par l'officier ou l'agent de l'état civil du lieu de naissance ou du décès.</p><p>Les mariages sont célébrés et les actes qui les constatent dressés par l'officier de l'état civil du lieu de la célébration.</p><p>Pour les déclarations autres que celles visées à l'alinéa premier, la compétence est déterminée par le texte particulier qui les prévoit.</p>"
+        },
+        {
+          id: "article31",
+          title: "Article 31",
+          content: "<p>Toute personne peut, sauf l'exception prévue à l'article 52, se faire délivrer par les dépositaires des registres de l'état civil, des copies des actes qui y sont inscrits.</p><p>Ces copies, délivrées conformes aux registres, portent en toutes lettres la date de leur délivrance et sont revêtues de la signature et du sceau de l'autorité qui les a délivrées.</p><p>Elles doivent, en outre, être légalisées, sauf conventions internationales contraires, lorsqu'il y a lieu de les produire devant les autorités étrangères.</p><p>Il peut aussi être délivré de simples extraits qui contiennent outre le nom de la circonscription d'état civil et/ou du bureau d'état civil dans lequel l'acte a été dressé, la copie littérale de cet acte et des mentions et transcriptions mises en marge, à l'exception de tout ce qui est relatif aux pièces produites et à la comparution des témoins.</p>"
+        },
+        {
+          id: "article32",
+          title: "Article 32",
+          content: "<p>Tout acte de l'état civil des Ivoiriens et des étrangers dressés en pays étranger, fait foi s'il a été rédigé dans les formes usitées dans ledit pays, sauf si d'autres actes ou pièces détenus, des données extérieures ou des éléments de l'acte lui-même établissent, le cas échéant, après vérification, que cet acte est irrégulier, falsifié ou que les faits qui y sont déclarés ne correspondent pas à la réalité.</p><p>Ceux de ces actes qui concernent les Ivoiriens, sont transcrits, soit d'office, soit à la demande des intéressés, sur les registres de l'état civil de l'année courante tenus par les agents diplomatiques ou les consuls territorialement compétents; une mention sommaire de cette transcription est faite en marge des registres à la date de l'acte.</p><p>Lorsque par suite de la rupture des relations diplomatiques, de la fermeture ou de l'absence de postes diplomatiques ou consulaires territorialement compétents, la transcription ne peut être faite dans les conditions prévues à l'alinéa précédent, l'acte est déposé au ministère des Affaires étrangères, qui le fait transcrire sur les registres tenus à Abidjan.</p><p>Les actes de mariage reçus en Côte d'Ivoire par les agents diplomatiques ou les consuls d'une nation étrangère et concernant des étrangers dont l'un au moins est devenu ivoirien postérieurement au mariage, sont transcrits, soit d'office, soit à la demande des intéressés, sur les registres de l'état civil du lieu où le mariage a été célébré.</p><p>Mention de la transcription est portée en marge de l'acte de naissance, qui, le cas échéant, est préalablement transcrit dans les conditions prévues aux deuxième et troisième alinéas du présent article.</p>"
+        },
+        {
+          id: "article33",
+          title: "Article 33",
+          content: "<p>Tout acte de l'état civil concernant les Ivoiriens, reçu en pays étranger, est valable s'il l'a été, conformément aux lois ivoiriennes, par les agents diplomatiques ou les consuls.</p><p>Les déclarations des faits d'état civil des citoyens ivoiriens résidant à l'étranger peuvent être faites auprès des circonscriptions consulaires de leur pays d'accueil dans la mesure où les conventions et les lois locales le permettent.</p><p>Aucun extrait ou copie d'acte d'état civil concernant un Ivoirien né à l'étranger ne peut être délivré en Côte d'Ivoire avant la transcription dudit acte dans les registres tenus par les agents diplomatiques ou les consuls.</p><p>Toutefois, lorsqu'une procédure de transcription est en cours, il peut être délivré une fiche individuelle d'état civil au regard des pièces produites par le requérant.</p><p>La fiche est établie une seule fois à la date du dépôt du dossier au service central de l'état civil du ministère des Affaires étrangères.</p><p>Elle est valable pour un an et ne peut être renouvelée.</p><p>Un registre spécial dont le modèle est défini par décret est tenu à cet effet.</p><p>Les doubles des registres de l'état civil tenus par les agents diplomatiques ou les consuls sont adressés, à la fin de chaque année, au ministère des Affaires étrangères, qui, après les avoir soumis, pour vérification, au procureur de la République près le Tribunal d'Abidjan, en assure la garde et peut en délivrer des copies ou des extraits.</p>"
+        },
+        {
+          id: "article34",
+          title: "Article 34",
+          content: "<p>Dans tous les cas où la mention d'un acte relatif à l'état civil doit avoir lieu en marge d'un acte déjà inscrit, elle est faite d'office.</p><p>L'officier de l'état civil qui a dressé ou transcrit l'acte donnant lieu à mention, effectue cette mention dans les huit jours, sur les registres qu'il détient, et, si le double du registre où la mention doit être effectuée se trouve au greffe, il adresse un avis au procureur de la République compétent.</p><p>Si l'acte en marge duquel doit être effectuée la mention a été dressé ou transcrit dans une autre circonscription, l'avis est adressé dans le délai de huit jours à l'officier de l'état civil de cette circonscription, lequel effectue ou fait effectuer la mention par l'agent de l'état civil intéressé et en avise, aussitôt, si le double du registre est au greffe, le procureur de la République compétent.</p><p>Si l'acte en marge duquel une mention doit être effectuée a été dressé ou transcrit à l'étranger, l'officier de l'état civil qui a dressé ou transcrit l'acte donnant lieu à mention, en avise, dans les huit jours, le ministère des Affaires étrangères.</p>"
+        },
+        {
+          id: "article35",
+          title: "Article 35",
+          content: "<p>Lorsqu'en vertu de conventions diplomatiques, les actes de l'état civil concernant les étrangers, dressés en Côte d'Ivoire, doivent être adressés aux autorités étrangères, l'officier ou l'agent de l'état civil qui a dressé l'acte doit, dans les huit jours, en transmettre une expédition au ministère des Affaires étrangères.</p>"
+        },
+        {
+          id: "article36",
+          title: "Article 36",
+          content: "<p>Lorsque l'acte donnant lieu à mention a été dressé ou transcrit par un agent de l'état civil, celui-ci en donne avis à l'officier de l'état civil dont il dépend, si les mentions à effectuer doivent l'être sur des registres autres que ceux de l'année en cours, dans une autre circonscription, ou en marge d'actes dressés ou transcrits à l'étranger.</p><p>L'officier de l'état civil procède alors comme il est dit à l'article précédent.</p>"
+        },
+        {
+          id: "article37",
+          title: "Article 37",
+          content: "<p>Par exception aux dispositions contenues à l'article 8, les agents de l'état civil sont compétents pour procéder aux transcriptions et mentions à effectuer sur les registres de l'année en cours tenus au bureau d'état civil, pour les mariages et les actes autres que de naissance ou de décès.</p>"
+        },
+        {
+          id: "article38",
+          title: "Article 38",
+          content: "<p>Si l'officier ou l'agent de l'état civil décède sans avoir signé certains actes ou certaines mentions marginales, le procureur de la République présente requête au président du Tribunal aux fins de faire ordonner que les actes rédigés par l'officier ou l'agent de l'état civil décédé et non signés, feront foi malgré l'absence de signature.</p><p>Mention du dispositif de l'ordonnance ainsi rendue est portée, à la diligence du ministère public, en marge des actes concernés.</p><p>Le président du Tribunal ou le magistrat par lui délégué peut toujours, avant de statuer, ordonner une enquête en vue de faire constater l'exactitude des actes intéressés ou de faire connaître les rectifications qui devraient y être faites.</p><p>Il peut être procédé à l'enquête par un juge commis.</p>"
+        },
+        {
+          id: "article39",
+          title: "Article 39",
+          content: "<p>Les dispositions prévues à l'article précédent sont également applicables dans le cas où a été omise la signature de l'une quelconque des parties à l'acte, lorsque l'omission ne peut être réparée en raison du décès, de la disparition ou de l'absence de la partie intéressée.</p>"
+        },
+        {
+          id: "article40",
+          title: "Article 40",
+          content: "<p>Outre le procureur de la République, toute personne y ayant intérêt peut, dans les cas prévus aux articles 38 et 39, saisir, par requête, le président du Tribunal compétent.</p>"
+        }
+      ]
+    },
+    {
+      title: "CHAPITRE 5: Des règles propres à chaque catégorie d'actes de l'état civil",
+      articles: []
+    },
+    {
+      title: "Section 1: Des actes de naissance",
+      articles: [
+        {
+          id: "article41",
+          title: "Article 41",
+          content: "<p>Les naissances doivent être déclarées dans les trois mois de l'accouchement.</p><p>Lorsqu'une naissance n'a pas été déclarée dans le délai légal, l'officier de l'état civil ne peut la relater sur ses registres qu'en vertu d'un jugement rendu par le Tribunal du lieu de naissance.</p>"
+        },
+        {
+          id: "article42",
+          title: "Article 42",
+          content: "<p>L'acte de naissance énonce:</p><ul><li>l'année, le mois, le jour, l'heure et le lieu de la naissance, le sexe de l'enfant, les prénoms et nom qui lui sont donnés;</li><li>le numéro de référence de l'acte;</li><li>les prénoms, nom, dates et lieu de naissance, nationalités, professions et domiciles des père et mère et, s'il y a lieu, ceux du déclarant.</li></ul><p>Si les père et mère de l'enfant ne sont pas désignés à l'officier ou à l'agent de l'état civil, il n'est fait sur le registre aucune mention à ce sujet.</p>"
+        },
+        {
+          id: "article43",
+          title: "Article 43",
+          content: "<p>Les déclarations de naissance doivent émaner du père ou de la mère, de l'un des ascendants ou des plus proches parents, ou de toute personne ayant assisté à la naissance ou encore, lorsque la mère est accouchée hors de son domicile, de la personne chez qui elle est accouchée.</p><p>Le déclarant doit produire le certificat médical de naissance, le carnet d'accouchement ou l'attestation délivrée par l'agent de collecte.</p><p>Lorsque les déclarants se présentent sans documents justificatifs de la naissance, l'officier de l'état civil ou l'agent d'état civil s'en réfère au procureur de la République, qui procède comme il est dit à l'article 13 de la présente loi.</p>"
+        },
+        {
+          id: "article44",
+          title: "Article 44",
+          content: "<p>L'acte de naissance, rédigé immédiatement, est signé du déclarant, de l'officier ou de l'agent de l'état civil et, le cas échéant, de l'interprète.</p>"
+        },
+        {
+          id: "article45",
+          title: "Article 45",
+          content: "<p>Il est tenu dans les hôpitaux, maternités ou formations de santé publics ou privés, ainsi que dans les villages, un registre spécial sur lequel sont immédiatement inscrits, par ordre de date, les naissances qui y surviennent. La présentation dudit registre, tenu par l'agent de collecte, peut être exigée à tout moment par l'officier ou l'agent de l'état civil du lieu où est situé l'établissement sanitaire ou le village, ainsi que par les autorités administratives et judiciaires.</p>"
+        },
+        {
+          id: "article46",
+          title: "Article 46",
+          content: "<p>Toute personne qui trouve un enfant nouveau-né est tenue d'en faire la déclaration à l'officier ou à l'agent de l'état civil du lieu de la découverte.</p><p>Il est dressé un procès-verbal détaillé qui, outre les indications prévues à l'article 24, énonce la date, l'heure, le lieu et les circonstances de la découverte, l'âge apparent et le sexe de l'enfant, toute particularité pouvant contribuer à son identification, ainsi que l'autorité ou la personne à laquelle il a été confié.</p><p>Ce procès-verbal dont copie est immédiatement transmise au procureur de la République, est inscrit à sa date sur le registre des naissances.</p><p>A la suite et séparément de ce procès-verbal, l'officier ou l'agent de l'état civil établit un acte tenant lieu d'acte de naissance.</p><p>En plus des énonciations contenues à l'article 24, cet acte mentionne le sexe de l'enfant ainsi que les prénoms et nom qui lui sont donnés, fixe une date de naissance pouvant correspondre à son âge apparent et désigne comme lieu de naissance celui où l'enfant a été découvert.</p><p>L'officier de l'état civil peut toujours faire déterminer par un médecin requis à cet effet, l'âge physiologique de l'enfant.</p><p>Si l'acte de naissance de l'enfant vient à être retrouvé ou si sa naissance est judiciairement déclarée, le procès-verbal de découverte et l'acte de naissance sont annulés à la requête du procureur de la République ou de toute partie intéressée.</p>"
+        },
+        {
+          id: "article47",
+          title: "Article 47",
+          content: "<p>Dans un acte de naissance, lorsque les parents ne sont pas légalement mariés, la déclaration indiquant le nom du père, ne vaut comme reconnaissance, que si elle émane du père lui-même ou de son fondé de pouvoir muni d'une procuration authentique et spéciale.</p>"
+        },
+        {
+          id: "article48",
+          title: "Article 48",
+          content: "<p>Lorsqu'il est déclaré un enfant sans vie, la déclaration est inscrite à sa date sur le registre des décès et non sur celui des naissances.</p><p>Elle mentionne seulement qu'il a été déclaré un enfant sans vie, sans qu'il en résulte aucun préjugé sur la question de savoir si l'enfant a eu vie ou non.</p><p>En outre sont énoncés le sexe de l'enfant, les prénoms, nom, dates et lieux de naissance, professions et domiciles des père et mère, et, s'il y a lieu, du déclarant, ainsi que les an, mois, jour et heure de l'accouchement.</p>"
+        },
+        {
+          id: "article49",
+          title: "Article 49",
+          content: "<p>En cas de naissance survenue pendant un voyage aérien ou maritime sur un bâtiment ou un aéronef de nationalité ivoirienne, il en est dressé acte dans les 48 heures de l'accouchement sur la déclaration de la mère ou du père, s'il est à bord.</p><p>Si la mère, se trouvant seule à bord, est dans l'impossibilité de déclarer la naissance, l'acte est établi d'office.</p><p>Les mentions concernant les prénoms, nom, dates et lieux de naissance, professions et domiciles des père et mère sont indiquées dans la mesure où les documents du bord le permettent.</p><p>Le cas échéant, il est donné des prénoms et nom à l'enfant ainsi qu'il est prévu lorsqu'il s'agit d'un enfant trouvé.</p><p>Si la naissance a lieu pendant un arrêt dans un port ou un aéroport, l'acte est dressé dans les mêmes conditions s'il y a impossibilité de débarquer, ou s'il n'existe pas, dans le port ou l'aéroport, si l'on est à l'étranger, d'agent diplomatique ou consulaire ivoirien.</p><p>L'acte est rédigé par le commandant ou celui qui en remplit les fonctions.</p><p>Il y est fait mention de celles des circonstances ci-dessus prévues dans lesquelles l'acte a été dressé.</p><p>L'acte est inscrit à la suite du rôle d'équipage.</p>"
+        },
+        {
+          id: "article50",
+          title: "Article 50",
+          content: "<p>Au premier port dans lequel le bâtiment aborde ou au premier aéroport où l'aéronef se pose, pour toute autre cause que celle de son désarmement, l'officier instrumentaire est tenu de déposer deux expéditions de chacun des actes de naissance dressés à bord.</p><p>Ce dépôt est fait:</p><ul><li>si le port ou l'aéroport est ivoirien, au bureau des armements pour les bâtiments ou aéronefs de l'Etat, au bureau de l'Inscription maritime ou aéroportuaire pour les autres bâtiments ou aéronefs;</li><li>si le port ou l'aéroport est étranger, entre les mains du consul de Côte d'Ivoire.</li></ul><p>Au cas où il ne se trouverait pas dans ce port ou aéroport, de bureau des armements, de bureau de l'Inscription maritime, aéroportuaire, ou de consul, le dépôt serait ajourné au prochain port ou aéroport d'escale ou de relâche.</p><p>L'une des expéditions déposées est adressée au ministre compétent qui la transmet à l'officier de l'état civil du dernier domicile du père de l'enfant ou de la mère si le père est inconnu, afin qu'elle soit transcrite sur les registres.</p><p>Si le dernier domicile ne peut être trouvé, ou s'il est hors de Côte d'Ivoire, transcription est faite à la mairie du Plateau.</p><p>L'autre expédition reste déposée aux archives du consulat ou du bureau de l'inscription maritime ou aéroportuaire.</p><p>Mention des envois et dépôts effectués conformément aux prescriptions du présent article est portée en marge des actes originaux par les commissaires d'inscription maritime, aéroportuaire ou par les consuls.</p>"
+        },
+        {
+          id: "article51",
+          title: "Article 51",
+          content: "<p>A l'arrivée du bâtiment ou de l'aéronef dans le port ou l'aéroport de désarmement, l'officier instrumentaire est tenu de déposer en même temps que le rôle d'équipage, une expédition de chacun des actes de naissance dressés à bord, dont copie n'aurait point été déjà déposée conformément aux prescriptions de l'article précédent.</p><p>Ce dépôt est fait pour les aéronefs ou bâtiments de l'Etat, au bureau des armements et pour les autres bâtiments, au bureau de l'Inscription maritime ou aéroportuaire, conformément aux prescriptions de l'article précédent.</p>"
+        },
+        {
+          id: "article52",
+          title: "Article 52",
+          content: "<p>Nul, à l'exception du procureur de la République, de l'enfant, de ses ascendants et descendants en ligne directe, de son conjoint, de son tuteur ou de son représentant légal, s'il est mineur ou en état d'incapacité, ne peut obtenir une copie conforme d'un acte de naissance autre que le sien si ce n'est en vertu d'une autorisation délivrée, sans frais, à la demande écrite de l'intéressé, par le président du Tribunal dans le ressort duquel est comprise la circonscription d'état civil où l'acte a été reçu.</p><p>En cas de refus, appel peut être fait. La Cour d'appel statue en Chambre du conseil.</p><p>Les dépositaires des registres sont tenus de délivrer à tout requérant des extraits indiquant, sans autres renseignements, l'année, le jour, l'heure et le lieu de naissance, le sexe, les prénoms et nom de l'enfant, tels qu'ils résultent des énonciations de l'acte de naissance ou des mentions contenues en marge de cet acte et reproduisant la mention prévue au dernier alinéa de l'article 71.</p><p>Les extraits précisant en outre les prénoms et nom, professions et domiciles des père et mère ne peuvent être délivrés que dans les conditions prévues à l'alinéa premier, à moins que la délivrance n'en soit demandée par les héritiers de l'enfant ou par une administration publique.</p><p>Lorsque l'enfant a fait l'objet d'une adoption et que les parents d'origine sont tous deux légalement inconnus, lesdits extraits doivent, sans aucune référence au jugement, indiquer comme père et mère le ou les adoptants.</p>"
+        }
+      ]
+    },
+    {
+      title: "Section 2: Des actes de décès",
+      articles: [
+        {
+          id: "article53",
+          title: "Article 53",
+          content: "<p>Les décès doivent être déclarés dans les quinze jours qui suivent la date à laquelle ils se sont produits.</p><p>Lorsqu'un décès n'a pas été déclaré dans le délai légal, l'officier de l'état civil ne peut le relater sur ses registres qu'en vertu d'un jugement rendu par le Tribunal du lieu du décès.</p>"
+        },
+        {
+          id: "article54",
+          title: "Article 54",
+          content: "<p>L'acte de décès énonce:</p><ul><li>l'année, le mois, le jour, l'heure et le lieu du décès;</li><li>le numéro de référence de l'acte;</li><li>les prénoms, nom, professions et domiciles des père et mère de la personne décédée;</li><li>la situation matrimoniale du défunt et, le cas échéant, les prénoms et nom de l'autre époux si la personne décédée était mariée;</li><li>les prénoms, nom, date et lieu de naissance, profession et domicile du déclarant et, s'il y a lieu, son degré de parenté avec la personne décédée.</li></ul><p>Le tout autant qu'on peut le justifier.</p><p>Il est fait mention du décès en marge de l'acte de naissance de la personne décédée.</p>"
+        },
+        {
+          id: "article55",
+          title: "Article 55",
+          content: "<p>L'acte de décès est dressé sur la déclaration d'un des parents du défunt ou de toute personne possédant sur son état civil les renseignements nécessaires à la déclaration.</p><p>Le déclarant doit produire soit le certificat médical de décès, soit tout document administratif attestant du décès.</p>"
+        },
+        {
+          id: "article56",
+          title: "Article 56",
+          content: "<p>Il est tenu dans les hôpitaux, maternités ou formations de santé publics ou privés, ainsi que dans les villages, un registre spécial sur lequel sont immédiatement inscrits, par ordre de date, les décès qui y surviennent.</p><p>La présentation dudit registre, tenu par l'agent de collecte, peut être exigée à tout moment par l'officier ou l'agent de l'état civil du lieu où est situé l'établissement sanitaire ou le village, ainsi que par les autorités administratives et judiciaires.</p>"
+        },
+        {
+          id: "article57",
+          title: "Article 57",
+          content: "<p>Lorsqu'il y a des signes ou indices de mort violente, ou d'autres circonstances qui donnent lieu de le soupçonner, on ne peut faire l'enlèvement ou l'inhumation qu'après qu'un officier de Police judiciaire, assisté d'un médecin ou d'un chirurgien, a dressé procès-verbal de l'état du cadavre et des circonstances y relatives, ainsi que des renseignements qu'il a pu recueillir sur les prénoms, nom, âge, profession, lieu de naissance et domicile de la personne décédée.</p>"
+        },
+        {
+          id: "article58",
+          title: "Article 58",
+          content: "<p>L'officier de Police judiciaire est tenu de transmettre immédiatement à l'officier de l'état civil du lieu où la personne est décédée, tous les renseignements énoncés dans son procès-verbal, d'après lesquels l'acte de décès est rédigé.</p>"
+        },
+        {
+          id: "article59",
+          title: "Article 59",
+          content: "<p>Une fois l'acte de décès dressé, l'officier ou l'agent de l'état civil procède comme indiqué à l'article 34.</p>"
+        },
+        {
+          id: "article60",
+          title: "Article 60",
+          content: "<p>En cas de décès dans un établissement pénitentiaire, le régisseur de cet établissement doit, dans les 48 heures, transmettre à l'officier de l'état civil compétent, outre le certificat de décès établi par le médecin de l'établissement, les renseignements énoncés à l'article 54, d'après lesquels l'acte de décès est rédigé.</p>"
+        },
+        {
+          id: "article61",
+          title: "Article 61",
+          content: "<p>Dans tous les cas de mort violente ou de mort survenue dans un établissement pénitentiaire, il n'est fait dans les registres, aucune mention de ces circonstances.</p><p>L'acte de décès est simplement rédigé dans les formes prescrites à l'article 54.</p>"
+        },
+        {
+          id: "article62",
+          title: "Article 62",
+          content: "<p>En cas de décès pendant un voyage maritime ou aérien, il en est, dans les 48 heures, dressé l'acte par les officiers instrumentaires désignés à l'article 49, dans les conditions prévues audit article.</p><p>Les dépôts et transmissions des originaux et des expéditions sont effectués conformément aux dispositions prévues par les articles 50 et 51.</p><p>La transcription des actes de décès ainsi établis est faite sur les registres de l'état civil du dernier domicile du défunt ou, si ce domicile est inconnu, sur ceux tenus à la mairie du Plateau.</p>"
+        },
+        {
+          id: "article63",
+          title: "Article 63",
+          content: "<p>Lorsque le corps d'une personne décédée est retrouvé et est identifié, un acte de décès doit être dressé par l'officier de l'état civil du lieu présumé du décès, quel que soit le temps écoulé entre le décès et la découverte du corps.</p><p>Si le défunt ne peut être identifié, l'acte de décès doit comporter son signalement le plus complet; en cas d'identification ultérieure, l'acte est rectifié dans les conditions prévues à l'article 79.</p>"
+        },
+        {
+          id: "article64",
+          title: "Article 64",
+          content: "<p>Peut être judiciairement déclaré, à la requête du procureur de la République ou des parties intéressées, le décès de tout Ivoirien disparu en Côte d'Ivoire ou hors de Côte d'Ivoire, s'il a cessé de paraître dans des circonstances mettant sa vie en danger et que son corps n'a pu être retrouvé dans un délai d'un an.</p><p>Peut être déclaré dans les mêmes conditions, le décès de tout étranger ou apatride disparu soit sur le territoire de la Côte d'Ivoire, soit à bord d'un bâtiment ou d'un aéronef ivoiriens, soit même à l'étranger, s'il avait son domicile ou sa résidence habituelle en Côte d'Ivoire.</p><p>La procédure de déclaration de décès est également applicable lorsque le décès est certain mais que le corps n'a pu être retrouvé dans le délai spécifié à l'alinéa premier du présent article.</p>"
+        },
+        {
+          id: "article65",
+          title: "Article 65",
+          content: "<p>La requête est présentée au Tribunal du lieu du décès ou de la disparition si celle-ci s'est produite sur le territoire de la Côte d'Ivoire, si non au tribunal du domicile ou de la dernière résidence du défunt ou du disparu ou, à défaut, au Tribunal du lieu du port d'attache de l'aéronef ou du bâtiment qui le transportait.</p><p>A défaut de tout autre, le Tribunal d'Abidjan est compétent.</p>"
+        },
+        {
+          id: "article66",
+          title: "Article 66",
+          content: "<p>Si plusieurs personnes ont disparu au cours du même événement, une requête collective peut être présentée au Tribunal du lieu de la disparition, ou du port d'attache du bâtiment ou de l'aéronef ou, à défaut, au Tribunal d'Abidjan.</p>"
+        },
+        {
+          id: "article67",
+          title: "Article 67",
+          content: "<p>Lorsqu'elle n'émane pas du procureur de la République, la requête doit lui être communiquée.</p><p>L'affaire est instruite et jugée en Chambre du conseil. Tous les actes de la procédure ainsi que les expéditions et extraits desdits actes sont dispensés de timbre et enregistrés gratis.</p><p>Si le Tribunal estime que le décès n'est pas suffisamment établi, il peut ordonner toute mesure d'information complémentaire et requérir notamment une enquête administrative sur les circonstances de la disparition.</p><p>Si le décès est déclaré, sa date doit être fixée en tenant compte des présomptions tirées des circonstances de la cause et, à défaut, au jour de la disparition. Cette date ne doit jamais être indéterminée.</p>"
+        },
+        {
+          id: "article68",
+          title: "Article 68",
+          content: "<p>Le dispositif du jugement déclaratif de décès est transcrit sur les registres de l'état civil du lieu réel ou présumé du décès et, le cas échéant, sur ceux du lieu du dernier domicile du défunt.</p><p>Mention de la transcription est faite en marge des registres à la date du décès.</p><p>En cas de jugement collectif, des extraits individuels du dispositif sont transmis aux officiers de l'état civil du dernier domicile de chacun des disparus, en vue de la transcription.</p><p>Les jugements déclaratifs de décès tiennent lieu d'actes de décès et sont opposables aux tiers, qui peuvent en obtenir la rectification conformément à l'article 79.</p>"
+        },
+        {
+          id: "article69",
+          title: "Article 69",
+          content: "<p>Si celui dont le décès a été judiciairement déclaré reparaît postérieurement au jugement déclaratif, le procureur de la République ou tout intéressé peut poursuivre, dans les formes prévues aux articles 79 et suivants, l'annulation du jugement.</p><p>Le mariage qui a pris fin avec le jugement déclaratif demeure dissous, et s'il a été procédé à une liquidation des droits des époux, devenue définitive, les biens dévolus en partage à chacun d'eux leur restent propres.</p><p>Mention de l'annulation du jugement déclaratif est faite en marge de sa transcription.</p>"
+        },
+        {
+          id: "article70",
+          title: "Article 70",
+          content: "<p>Peut être judiciairement déclaré décédé, à la requête du procureur de la République ou de toute partie intéressée, tout Ivoirien qui a cessé de paraître au lieu de son domicile ou de sa résidence, sans que l'on ait de ses nouvelles depuis dix ans.</p><p>Peut être également judiciairement déclaré le décès de tout étranger ou apatride ayant son domicile ou sa résidence habituelle en Côte d'Ivoire, qui a cessé d'y paraître, sans que l'on ait de ses nouvelles depuis dix ans.</p><p>Lorsqu'elle n'émane pas du procureur de la République, la requête doit lui être communiquée. Il peut, en cas de besoin, procéder à une enquête.</p><p>La requête aux fins de jugement déclaratif de décès est présentée dix ans après la date des dernières nouvelles, au terme de la procédure prévue par la loi sur l'état des personnes.</p><p>Le dispositif du jugement déclaratif de décès rendu est transcrit sur les registres de l'état civil du dernier domicile de l'absent, en marge de son acte de naissance et de son acte de mariage le cas échéant.</p><p>Il tient lieu d'acte de décès à l'absent.</p><p>Le décès est supposé survenu au jour du prononcé de la décision.</p><p>Le mariage de l'absent se dissout à compter du jour où le jugement déclarant l'absence est devenu définitif.</p><p>Si celui dont le décès a été judiciairement déclaré réapparait postérieurement au jugement déclaratif, le procureur de la République ou tout intéressé peut poursuivre, dans les formes prévues aux articles 79 et suivants, l'annulation du jugement.</p><p>Le mariage qui a pris fin avec le jugement déclaratif demeure dissous, et s'il a été procédé à une liquidation des droits des époux, devenue définitive, les biens dévolus en partage à chacun d'eux leur restent propres.</p><p>Mention de l'annulation du jugement déclaratif est faite en marge de sa transcription.</p>"
+        }
+      ]
+    },
+    {
+      title: "Section 3: Des actes de mariage",
+      articles: [
+        {
+          id: "article71",
+          title: "Article 71",
+          content: "<p>L'acte de mariage énonce:</p><ul><li>le numéro de référence de l'acte;</li><li>les prénoms, noms, professions, âges, dates et lieux de naissance, domiciles ou résidences des époux;</li><li>les prénoms, noms, professions et domiciles des pères et mères:</li><li>les consentements ou autorisations donnés en cas de minorité de l'un ou des deux époux:</li><li>la déclaration de se prendre pour époux et le prononcé de leur union par l'officier de l'état civil;</li><li>les prénoms, noms, professions, domiciles des témoins et leur qualité de majeurs.</li><li>l'option éventuellement faite par les époux en faveur du régime de la séparation de biens sur l'interpellation de l'officier de l'état civil, conformément à la loi relative au mariage.</li></ul><p>Il est fait mention de la célébration du mariage et du nom du conjoint en marge de l'acte de naissance de chacun des époux.</p>"
+        },
+        {
+          id: "article72",
+          title: "Article 72",
+          content: "<p>Avant de procéder à la célébration du mariage, l'officier de l'état civil s'assure que les conditions de fond et de forme exigées par la loi sont remplies.</p><p>S'il constate qu'elles ne le sont pas, il refuse de célébrer le mariage et en avise dans les quarante-huit heures le procureur de la République compétent, lequel, jusqu'à l'expiration de la quinzaine qui suit la date de son refus, peut le requérir de célébrer le mariage.</p><p>L'officier de l'état civil est tenu de déférer à ces réquisitions.</p><p>Il transcrit celles-ci sur le registre de mariage et dresse l'acte à la suite.</p><p>Si le mariage n'a pu être célébré en raison du silence du procureur de la République, les parties intéressées peuvent présenter requête au président du Tribunal territorialement compétent.</p><p>L'ordonnance rendue est susceptible d'appel de la part du ministère public et des parties intéressées.</p>"
+        },
+        {
+          id: "article73",
+          title: "Article 73",
+          content: "<p>En cas d'opposition au mariage, l'officier de l'état civil procède comme il est dit dans la loi sur le mariage.</p>"
+        },
+        {
+          id: "article74",
+          title: "Article 74",
+          content: "<p>Il ne peut en aucun cas être suppléé par jugement à l'absence d'acte de mariage, hormis le cas prévu à l'article 89 de la présente loi.</p>"
+        }
+      ]
+    },
+    {
+      title: "Section 4: Des actes autres que de naissance, de décès et de mariage",
+      articles: [
+        {
+          id: "article75",
+          title: "Article 75",
+          content: "<p>Les actes autres que de naissance, de décès et de mariage sont établis dans les conditions et dans les formes spécifiées par les lois et règlements qui les prévoient.</p>"
+        }
+      ]
+    },
+    {
+      title: "CHAPITRE 6: Des actes de l'état civil concernant les militaires et marins dans certains cas spéciaux",
+      articles: [
+        {
+          id: "article76",
+          title: "Article 76",
+          content: "<p>Les actes de l'état civil concernant les militaires et les marins de l'Etat sont établis comme il est dit aux chapitres précédents.</p><p>Toutefois, en cas de stationnement de troupes ivoiriennes hors du territoire national en vertu d'accords internationaux ou à tout autre titre, ces actes, tant en ce qui concerne les membres des forces affiliées, les civils participant à leur action en service commandé que les personnes employées à la suite des armées, peuvent être également établis sur un registre spécial par les officiers de l'état civil militaires.</p><p>Les modalités de désignation de ces officiers et les règles concernant la tenue, le contrôle et la conservation du registre spécial sont déterminées par décret.</p>"
+        },
+        {
+          id: "article77",
+          title: "Article 77",
+          content: "<p>Dans le cas prévu à l'article précédent, l'officier qui reçoit un acte en transmet, dès que possible, une expédition au ministre chargé des Armées, lequel en fait assurer la transcription.</p><p>Celle-ci a lieu sur les registres de l'état civil du lieu de naissance, pour les actes de reconnaissance, et sur les registres de l'état civil du dernier domicile du père ou, si le père est inconnu, de la mère, pour les actes de naissance, du conjoint pour les actes de mariage, du défunt pour les actes de décès.</p><p>Si le lieu de naissance ou du dernier domicile est inconnu ou situé à l'étranger, la transcription est faite sur les registres tenus à la mairie d'Abidjan-Plateau.</p>"
+        },
+        {
+          id: "article78",
+          title: "Article 78",
+          content: "<p>Les actes de décès reçus par l'autorité militaire, dans le cas prévu à l'article 76, peuvent être l'objet d'une rectification administrative dans les conditions fixées par décret.</p>"
+        }
+      ]
+    },
+    {
+      title: "CHAPITRE 7: De la rectification des actes de l'état civil, des jugements supplétifs d'actes de l'état civil, de la reconstitution des registres",
+      articles: []
+    },
+    {
+      title: "Section 1: De la rectification des actes de l'état civil",
+      articles: [
+        {
+          id: "article79",
+          title: "Article 79",
+          content: "<p>La rectification des actes de l'état civil est ordonnée par le président du Tribunal dans le ressort duquel l'acte a été dressé ou transcrit.</p><p>La rectification des actes dressés ou transcrits par les agents diplomatiques et les consuls est ordonnée par le président du Tribunal de première Instance d'Abidjan.</p><p>La rectification des jugements déclaratifs ou supplétifs d'actes de naissance ou de décès est ordonnée par le Tribunal qui a rendu le jugement.</p><p>Le président ou le Tribunal territorialement compétent pour ordonner la rectification d'un acte ou d'un jugement est également compétent pour prescrire la rectification de tous les actes même dressés ou transcrits hors de son ressort, qui reproduisent l'erreur ou comportent l'omission originaire.</p><p>La requête en rectification peut être présentée par le procureur de la République ou par toute personne intéressée: le procureur de la République est tenu d'agir d'office quand l'erreur ou l'omission porte sur une indication essentielle de l'acte ou de la décision qui en tient lieu.</p><p>Lorsque la requête n'émane pas de lui, elle doit lui être communiquée.</p><p>Le procureur de la République territorialement compétent peut faire procéder à la rectification administrative des erreurs et omissions purement matérielles des actes de l'état civil; à cet effet, il donne directement les instructions utiles aux dépositaires des registres.</p>"
+        },
+        {
+          id: "article80",
+          title: "Article 80",
+          content: "<p>La rectification judiciaire ou administrative d'un acte ou jugement relatif à l'état civil est opposable à tous à compter de sa publicité au registre de l'état civil.</p>"
+        },
+        {
+          id: "article81",
+          title: "Article 81",
+          content: "<p>L'ordonnance du président du Tribunal ou le jugement statuant sur une requête en rectification est susceptible d'appel dans le délai d'un mois à compter de son prononcé, par le ministère public ou par toute personne intéressée.</p><p>Lorsque la requête est rejetée, l'appel est interjeté dans les formes et délais prévus par la loi.</p>"
+        },
+        {
+          id: "article82",
+          title: "Article 82",
+          content: "<p>Le dispositif de l'ordonnance, du jugement ou de l'arrêt est transmis par le ministère public à l'officier de l'état civil ou au dépositaire des registres du lieu où se trouve inscrit l'acte réformé; mention de ce dispositif est aussitôt portée en marge dudit acte.</p><p>Expédition ne peut plus en être délivrée qu'avec les rectifications ordonnées.</p>"
+        }
+      ]
+    },
+    {
+      title: "Section 2: Des jugements supplétifs d'actes de l'état civil",
+      articles: [
+        {
+          id: "article83",
+          title: "Article 83",
+          content: "<p>Le défaut d'acte de l'état civil peut être suppléé par jugement rendu sur requête présentée au Tribunal du lieu où l'acte aurait dû être dressé.</p><p>L'initiative de l'action peut être prise par le procureur de la République ou par toute personne intéressée.</p><p>Lorsqu'elle n'émane pas de lui, la requête doit lui être communiquée.</p><p>Le Tribunal ordonne d'office les mesures d'instruction qu'il juge nécessaires.</p><p>Il peut de même ordonner la mise en cause de toute personne y ayant intérêt. Celle-ci peut également intervenir volontairement.</p>"
+        },
+        {
+          id: "article84",
+          title: "Article 84",
+          content: "<p>Le jugement est susceptible d'appel par le procureur de la République ou la partie que l'acte concerne et par toute partie intéressée.</p><p>Toutefois, la voie de la tierce opposition reste ouverte à tout intéressé dans les conditions du droit commun.</p>"
+        },
+        {
+          id: "article85",
+          title: "Article 85",
+          content: "<p>Le dispositif du jugement ou de l'arrêt contient toutes les informations sur l'identité de l'intéressé ainsi que celle de ses père et mère conformément aux dispositions des articles 24, 42, 54 de la présente loi. Il est transmis par le procureur de la République à l'officier ou à l'agent de l'état civil du lieu où s'est produit le fait qu'il constate. La transcription en est effectuée sur les registres de l'année en cours à la suite de l'acte dressé. Mention de la décision est portée en marge des registres à la date du fait. </p>"
+        }
+      ]
+    },
+    {
+      title: "Section 3: De la reconstitution des registres de l'état civil",
+      articles: [
+        {
+          id: "article86",
+          title: "Article 86",
+          content: "<p>Il est procédé à la reconstitution des registres de l'état civil lorsque l'original et/ou le double de ceux-ci sont détruits. détériorés ou ont disparu. </p>"
+        },
+        {
+          id: "article87",
+          title: "Article 87",
+          content: "<p>Lorsqu'il subsiste un exemplaire des registres ou une base de données informatiques des faits d'état civil relative au registre concerné. le procureur de la République, d'office. prescrit au greffier en chef du Tribunal compétent de faire une copie. d'après le double ou la base de données existants, sur un nouveau registre préalablement côté et paraphé comme il est dit à l'article 16: après avoir verifié la fidélité de la copie ainsi faite, il saisit, par requête, le Tribunal aux fins de faire ordonner que ladite copie servira pour remplacer le double manquant. Le dispositif du jugement rendu comme il est dit à l'article précédent est transcrit à la suite de la table alphabétique, tant sur l'original que sur la copie. </p>"
+        },
+        {
+          id: "article88",
+          title: "Article 88",
+          content: "<p>Dans le cas où les deux exemplaires du registre ont disparu soit entièrement, soit partiellement, le procureur de la République, d'office, prescrit au greffier en chef du tribunal compétent de faire une copie, d'après la base de données numériques existante, sur deux nouveaux registres préalablement côtés et paraphés comme il est dit à l'article 16. Après avoir vérifié la fidélité de la copie ainsi faite, il saisit, par requête. le Tribunal aux fins de faire ordonner que lesdites copies serviront pour remplacer les registres manquants. </p>"
+        },
+        {
+          id: "article89",
+          title: "Article 89",
+          content: "<p>Dans l'hypothèse prévue à l'article précédent. lorsque l'exemplaire transmis au Tribunal n'a pas été numérisé ou que les données numérisées ne sont pas fiables, le procureur de la République invite l'officier ou l'agent de l'état civil de la circonscription ou du bureau d'état civil intéressé à dresser un état. année par année, des personnes qui, d'après la notoriété publique. sont nées, se sont mariées ou sont décédées pendant ce temps. Le procureur de la République, après avoir examiné cet état. requiert le Tribunal compétent d'ordonner toute mesure d'instruction et de publicité jugée opportune. La preuve de l'inscription dans le registre de l'état civil est reçue par tout moyen. Un double du rapport de mise en état est déposé pendant un mois au greffe du tribunal et au chef-lieu de la circonscription ou du bureau d'état civil, où toute personne intéressée peut en prendre connaissance. Le Tribunal, s'il le juge nécessaire, peut ordonner une instruction complémentaire. Quand l'instruction est terminée, le Tribunal, sur les conclusions écrites du procureur de la République, ordonne le rétablissement des actes dont l'existence a été constatée. Un seul jugement contient, autant que possible, les actes d'une année pour chaque circonscription ou bureau d'état civil intéressé. Il est transcrit sur deux registres côtés et paraphés comme il est dit à l'article 16, déposés, l'un au chef-lieu de la circonscription d'état civil, l'autre au greffe. </p>"
+        },
+        {
+          id: "article90",
+          title: "Article 90",
+          content: "<p>Les dispositions contenues aux articles 86 à 89 ne font pas obstacle au droit des parties de demander conformément aux dispositions de l'article 84, le rétablissement de l'acte les intéressant, qui figurait sur les registres détruits, détériorés ou disparus. </p>"
+        }
+      ]
+    },
+    {
+      title: "CHAPITRE 8: Du livret de famille",
+      articles: [
+        {
+          id: "article91",
+          title: "Article 91",
+          content: "<p>Lors de la célébration du mariage, il est remis gratuitement aux époux un livret de famille comportant, sur la première page, leur identité, le numéro de référence de l'acte, la date à laquelle l'acte a été dressé et le lieu où il l'a été. Les énonciations qui précèdent sont signées de l'officier de l'état civil et des conjoints, ou mention est faite de la cause qui a empêché ces derniers ou l'un d'eux de signer. </p>"
+        },
+        {
+          id: "article92",
+          title: "Article 92",
+          content: "<p>Sur les pages suivantes du livret de famille seront inscrits les naissances et décès des enfants communs des époux avec les références de leurs actes de naissance et de décés, ou le divorce des époux et tout fait constaté par un acte de l'état civil dont la loi particulière qui le conceme aura prévu qu'il y sera inscrit. Si un acte de l'état civil. inscrit dans le livret, est rectifié, il devra être fait mention, dans celui-ci, de la rectification intervenue. Les inscriptions et mentions portées dans le livret sont signées ou approuvées par l'officier de l'état civil et revêtues de son visa. </p>"
+        },
+        {
+          id: "article93",
+          title: "Article 93",
+          content: "<p>Le livret de famille, dûment côté et paraphé par l'officier de l'état civil et ne présentant aucune trace d'altération, fait foi de sa conformité avec les registres de l'etat civil. </p>"
+        },
+        {
+          id: "article94",
+          title: "Article 94",
+          content: "<p>En cas de divorce, l'un des conjoints peut obtenir, sur présentation du livret conservé par l'autre, qu'il lui soit remis une copic conforme. En cas de refus, le détenteur du livret peut être contraint par voie de justice à procéder à la remise. </p>"
+        },
+        {
+          id: "article95",
+          title: "Article 95",
+          content: "<p>En cas de perte du livret, l'un ou l'autre des époux peut demander à l'officier de l'état civil la délivrance d'un nouveau livret qui porte la mention << duplicata >>. </p>"
+        },
+        {
+          id: "article96",
+          title: "Article 96",
+          content: "<p>L'officier de l'état civil doit se faire présenter le livret chaque fois que se produit un fait d'état civil devant y être mentionné. </p>"
+        }
+      ]
+    },
+    {
+      title: "CHAPITRE 9: Des actes de notoriété",
+      articles: [
+        {
+          id: "article97",
+          title: "Article 97",
+          content: "<p>Exceptionnellement, en vue du mariage et dans tous les cas prévus par la loi et les réglements, lorsqu'une personne est dans l'impossibilité de se procurer son acte de naissance, elle peut le suppléer par un acte de notoriété établi par le président du Tribunal du lieu de sa naissance ou de son domicile. </p>"
+        },
+        {
+          id: "article98",
+          title: "Article 98",
+          content: "<p>L'acte de notoriété ne peut servir qu'aux seules fins pour lesquelles il est délivré. Il doit énoncer celles-ci. Il contient la déclaration faite par deux témoins majeurs, parents ou non du requérant, des prénoms, noms, professions et domiciles de celui-ci et de ceux de ses père et mère s'ils sont connus, du lieu et de la date présumée de sa naissance ainsi que des causes qui empêchent de présenter l'acte. Sont applicables, par ailleurs, les dispositions contenues aux articles 24, 26, 27, 28 et 29. </p>"
+        },
+        {
+          id: "article99",
+          title: "Article 99",
+          content: "<p>Le procureur de la République ou toute personne y ayant intérêt peut demander, par requête, au président du Tribunal du lieu où il a été établi, l'annulation ou la rectification d'un acte de notoriété. </p>"
+        }
+      ]
+    },
+    {
+      title: "CHAPITRE 10: Des actes de l'état civil concernant les étrangers",
+      articles: [
+        {
+          id: "article100",
+          title: "Article 100",
+          content: "<p>Tout étranger ayant son domicile en Côte d'Ivoire, peut faire recevoir les actes de l'état civil le concernant, par les agents diplomatiques dont il relève, dans les formes prévues par sa loi nationale. Les naissances et les décès doivent toutefois être également déclarés à l'officier de l'état civil ivoirien dans les formes et conditions prévues par la loi. L'étranger ayant obtenu le statut d'apatride ou celui ayant obtenu le statut de réfugié peut solliciter du service en charge de leur protection, l'établissement de document d'état civil dans les conditions définies par les textes régissant leur statut. </p>"
+        },
+        {
+          id: "article101",
+          title: "Article 101",
+          content: "<p>Si l'un des futurs époux est de nationalité étrangère et l'autre de nationalité ivoirienne, l'officier de l'état civil ivoirien est seul compétent pour procéder à la célébration du mariage. Il doit, dans les huit jours de celui-ci, adresser au ministère des Affaires étrangères une expédition de l'acte de mariage destinée à l'agent diplomatique du conjoint étranger. </p>"
+        },
+        {
+          id: "article102",
+          title: "Article 102",
+          content: "<p>Toute pièce produite par un étranger en vue de l'établissement d'un acte de l'état civil, doit obligatoirement être accompagnée de sa traduction dans la langue officielle, certifiée conforme à l'original par le consulat de l'intéressé. </p>"
+        }
+      ]
+    },
+    {
+      title: "CHAPITRE 11: De l'état civil des personnes nées à l'étranger qui acquièrent ou recouvrent la nationalité ivoirienne",
+      articles: [
+        {
+          id: "article103",
+          title: "Article 103",
+          content: "<p>Un acte tenant lieu d'acte de naissance est dressé à la demande du ministre de la Justice pour toute personne née à l'étranger qui acquiert ou recouvre la nationalité ivoirienne. L'acte de naissance est établi par l'officier de l'état civil du service central d'état civil du ministère des Affaires étrangères, qui en assure la conservation, la mise à jour, la délivrance et l'exploitation. Mention de la décision ou de l'événement en vertu duquel ces personnes sont devenues ivoiriennes est portée en marge de l'acte. </p>"
+        },
+        {
+          id: "article104",
+          title: "Article 104",
+          content: "<p>Cet acte contient les prénoms, nom et sexe de l'intéressé. Il indique également le lieu et la date de sa naissance, sa filiation, sa résidence à la date d'acquisition de la nationalité ivoirienne. L'acte comporte, en outre, indication: </p><ul><li>de son numéro de référence; </li><li>de la date à laquelle il a été dressé; </li><li>du nom et de la signature de l'officier de l'état civil qui l'a établi; </li><li>des mentions portées en marge de l'acte originel; </li><li>des actes et décisions relatifs à la nationalité de la personne. </li></ul>"
+        },
+        {
+          id: "article105",
+          title: "Article 105",
+          content: "<p>Les personnes pour lesquelles l'acte de naissance a été dressé en application des présentes dispositions, perdent la faculté de requérir la transcription de leur acte de naissance reçu par une autorité étrangère. En cas de désaccord entre les énonciations de l'acte de l'état civil étranger ou de l'acte de l'état civil consulaire ivoirien et celles de l'acte dressé selon les dispositions des articles susvisés. ces dernières font foi jusqu'à décision de rectification. </p>"
+        }
+      ]
+    },
+    {
+      title: "CHAPITRE 12: De l'annulation des actes de l'état civil",
+      articles: [
+        {
+          id: "article106",
+          title: "Article 106",
+          content: "<p>L'annulation des actes de l'état civil est ordonnée par le tribunal dans le ressort duquel l'acte a été dressé ou transcrit lorsque l'acte a été irrégulièrement dressé ou que ses énonciations sont fausses ou sans objet, ou encore pour vice grave touchant à la substance de l'acte. </p>"
+        },
+        {
+          id: "article107",
+          title: "Article 107",
+          content: "<p>La requête en annulation peut être présentée par toute personne intéressée ou par le procureur de la République. Le procureur de la République est tenu d'agir d'office quand l'acte dressé est manifestement contraire à la loi. Toute annulation d'un acte d'état civil est opposable à tous à compter de sa publicité sur les registres de l'état civil. La décision d'annulation supplée le cas échéant, au défaut d'acte de l'état civil, sauf si l'acte annulé est un acte de mariage. </p>"
+        }
+      ]
+    },
+    {
+      title: "CHAPITRE 13: De l'utilisation de procédés électroniques",
+      articles: [
+        {
+          id: "article108",
+          title: "Article 108",
+          content: "<p>La déclaration des faits d'état civil ainsi que l'enregistrement, la conservation, la mise à jour, la délivrance et la transmission dématérialisée des copies et extraits d'actes de l'état civil peuvent être faits selon des procédés électroniques, dans le respect des dispositions relatives à la protection des données à caractère personnel. </p>"
+        },
+        {
+          id: "article109",
+          title: "Article 109",
+          content: "<p>Les conditions de sécurité et d'intégrité ainsi que les autres modalités d'application du présent chapitre sont déterminées par décret. </p>"
+        }
+      ]
+    },
+    {
+      title: "CHAPITRE 14: Des statistiques en matière d'état civil",
+      articles: [
+        {
+          id: "article110",
+          title: "Article 110",
+          content: "<p>Les officiers de l'état civil sont tenus d'établir et de transmettre un état périodique de données statistiques issues de l'état civil de leurs circonscriptions dans les conditions et modalités déterminées par décret. </p>"
+        }
+      ]
+    },
+    {
+      title: "CHAPITRE 15: Dispositions finales",
+      articles: [
+        {
+          id: "article111",
+          title: "Article 111",
+          content: "<p>Des décrets compléteront en tant que de besoin, les dispositions de la présente loi. </p>"
+        },
+        {
+          id: "article112",
+          title: "Article 112",
+          content: "<p>La présente loi abroge en toutes ses dispositions la loi 64-374 du 7 octobre 1964 relative à l'état civil, telle que modifiée par les lois $n^{\\circ_{S}}$ 83-799 du 2 août 1983 et 99-691 du 14 décembre 1999. </p>"
+        },
+        {
+          id: "article113",
+          title: "Article 113",
+          content: "<p>La présente loi sera publiée au Journal officiel de la République de Côte d'Ivoire et exécutée comme loi de l'Etat. </p>"
+        }
+      ]
     }
-    window.addEventListener("beforeinstallprompt", (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      const btn = ensureBtn();
-      btn.hidden = false;
-      btn.onclick = async () => {
-        btn.hidden = true;
-        deferredPrompt.prompt();
-        await deferredPrompt.userChoice;
-        deferredPrompt = null;
-      };
-    });
-    if (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) {
-      const btn = document.getElementById(btnId);
-      if(btn) btn.hidden = true;
-    }
-  })();
-</script>
-  <!-- Auth UI minimal -->
-<style>
-  .auth-box{position:fixed; top:12px; right:12px; z-index:9998; background:#ffffff; color:#111827; border-radius:12px; padding:10px 12px; box-shadow:0 10px 24px rgba(0,0,0,.12); font:500 14px system-ui,Segoe UI,Roboto,Arial}
-  .auth-box h4{margin:0 0 6px; font-size:14px}
-  .auth-box form{display:flex; gap:6px; flex-wrap:wrap; align-items:center}
-  .auth-box input{padding:6px 8px; border:1px solid #e5e7eb; border-radius:8px}
-  .auth-box button{background:#22c55e; color:#fff; border:none; padding:6px 10px; border-radius:8px; cursor:pointer}
-  .auth-box .row{display:flex; gap:6px; flex-wrap:wrap}
-  .views-badge{position:fixed; left:12px; bottom:12px; z-index:9998; background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px; font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)}
-</style><!-- Admin link (visible only when logged-in) -->
-<style>
-  .admin-link{
-    position:fixed; right:16px; bottom:88px; z-index:9998;
-    display:none; align-items:center; gap:8px;
-    padding:10px 14px; border-radius:999px; text-decoration:none;
-    background:#111827; color:#fff; font:600 14px system-ui,Segoe UI,Roboto,Arial;
-    box-shadow:0 8px 20px rgba(0,0,0,.3);
-    border:1px solid rgba(255,255,255,.1);
-  }
-  body.logged-in .admin-link{ display:inline-flex; }
-  .admin-link:hover{ filter:brightness(1.1); }
-  @supports (padding-bottom: env(safe-area-inset-bottom)){
-    .admin-link{ bottom: calc(88px + env(safe-area-inset-bottom)); }
-  }
-</style>
-<a href="admin.html" class="admin-link" title="Tableau de bord">Admin</a>
-  <script type="module" src="assets/firebase-app.js"></script>
-  <script>window.autoCountAndBind && window.autoCountAndBind();</script>
-  
-<!-- Floating Auth Button + Modal -->
-<style>
-  #auth-fab{
-    position:fixed; right:16px; bottom:68px; z-index:9998;
-    width:48px; height:48px; border-radius:999px; border:none; cursor:pointer;
-    background:#111827; color:#fff; display:grid; place-items:center;
-    box-shadow:0 8px 20px rgba(0,0,0,.35); border:1px solid rgba(255,255,255,.1);
-  }
-  body.logged-in #auth-fab::after{ content:"✓"; }
-  #auth-fab::after{ content:"👤"; font-size:20px; }
-  @supports (padding-bottom: env(safe-area-inset-bottom)){
-    #auth-fab{ bottom: calc(68px + env(safe-area-inset-bottom)); }
-  }
-  .views-badge{
-    position:fixed; left:12px; bottom:12px; z-index:9998; 
-    background:rgba(17,24,39,.9); color:#fff; padding:6px 10px; border-radius:999px;
-    font:600 13px system-ui,Segoe UI,Roboto,Arial; box-shadow:0 8px 20px rgba(0,0,0,.25)
-  }
-  dialog#auth-modal{
-    border:none; border-radius:16px; padding:0; width:min(90vw,420px);
-    box-shadow:0 24px 72px rgba(0,0,0,.35); overflow:hidden;
-  }
-  dialog::backdrop{ background:rgba(0,0,0,.4); }
-  .auth-modal-head{background:#0f172a; color:#fff; padding:12px 16px; display:flex; justify-content:space-between; align-items:center}
-  .auth-modal-body{padding:16px; background:#111827; color:#e5e7eb}
-  .auth-modal-body label{display:block; font-size:13px; margin-top:8px; opacity:.9}
-  .auth-modal-body input{width:100%; padding:10px 12px; border-radius:10px; border:1px solid #1f2937; background:#0b1021; color:#e5e7eb}
-  .auth-actions{display:flex; gap:8px; margin-top:14px}
-  .btn{border:none; border-radius:10px; padding:10px 12px; cursor:pointer; font-weight:600}
-  .btn-primary{background:#22c55e; color:white}
-  .btn-ghost{background:transparent; color:#e5e7eb; border:1px solid #374151}
-  .muted{opacity:.8}
-</style>
-
-<button id="auth-fab" title="Connexion / Compte"></button>
-<div class="views-badge">Vues : <span id="viewCounter">0</span></div>
-
-<dialog id="auth-modal">
-  <div class="auth-modal-head">
-    <strong>Connexion</strong>
-    <button class="btn btn-ghost" id="auth-close" aria-label="Fermer">✕</button>
-  </div>
-  <div class="auth-modal-body">
-    <p class="muted">Connecte-toi pour accéder à l’admin et une meilleure expérience.</p>
-    <label>Email</label>
-    <input type="email" id="auth-email" placeholder="email@exemple.com" required>
-    <label>Mot de passe</label>
-    <input type="password" id="auth-pass" placeholder="••••••••" required>
-    <div class="auth-actions">
-      <button class="btn btn-primary" id="btn-login">Connexion</button>
-      <button class="btn btn-ghost" id="btn-register">Créer un compte</button>
-      <button class="btn btn-ghost" id="btn-logout">Déconnexion</button>
-    </div>
-    <div id="auth-msg" class="muted" style="margin-top:8px;"></div>
-  </div>
-</dialog>
-
-<script type="module">
-  import { authRegister, authLogin, authLogout } from "./assets/firebase-app.js";
-
-  const fab = document.getElementById("auth-fab");
-  const modal = document.getElementById("auth-modal");
-  const closeBtn = document.getElementById("auth-close");
-  const email = document.getElementById("auth-email");
-  const pass = document.getElementById("auth-pass");
-  const msg  = document.getElementById("auth-msg");
-  const btnLogin = document.getElementById("btn-login");
-  const btnRegister = document.getElementById("btn-register");
-  const btnLogout = document.getElementById("btn-logout");
-
-  function openModal(){ try{ modal.showModal(); }catch{ modal.setAttribute("open",""); } }
-  function closeModal(){ modal.close?.(); modal.removeAttribute("open"); }
-
-  fab?.addEventListener("click", openModal);
-  closeBtn?.addEventListener("click", closeModal);
-
-  async function handle(run){
-    msg.textContent = "";
-    try{
-      await run(email.value.trim(), pass.value);
-      msg.textContent = "✅ Opération réussie.";
-      setTimeout(()=>{ closeModal(); }, 500);
-    }catch(e){
-      console.error(e);
-      msg.textContent = "❌ " + (e?.message || "Erreur");
-    }
-  }
-
-  btnLogin?.addEventListener("click", () => handle(authLogin));
-  btnRegister?.addEventListener("click", () => handle(authRegister));
-  btnLogout?.addEventListener("click", async () => {
-    msg.textContent = "";
-    try{ await authLogout(); msg.textContent = "✅ Déconnecté."; }catch(e){ msg.textContent = "❌ " + (e?.message||"Erreur"); }
-  });
-</script>
+  ]
+};
 
 
-<!-- Per-card view counters -->
-<style>
-  .card-views-badge{
-    position:absolute; top:8px; right:8px;
-    background:rgba(17,24,39,.9); color:#fff;
-    padding:4px 8px; border-radius:999px; font:600 12px system-ui,Segoe UI,Roboto,Arial;
-    box-shadow:0 6px 14px rgba(0,0,0,.25);
-    pointer-events:none;
-  }
-  .card-views-wrap{ position:relative; }
-</style>
-<script type="module">
-  import { getViewCount } from "./assets/firebase-app.js";
-  function basename(href){
-    try{ const u = new URL(href, location.href);
-         const file = u.pathname.split('/').pop() || 'index.html';
-         return file.replace(/\.html$/i,''); }
-    catch{ return (href.split('/').pop()||'index.html').replace(/\.html$/i,''); }
-  }
-  async function attachCounterTo(el, docId){
-    let container = el.closest('.card, .item, .panel, .box, .article, .doc, .tile');
-    if(!container){ container = el.parentElement; }
-    if(container && !container.classList.contains('card-views-wrap')){
-      container.classList.add('card-views-wrap');
-    }
-    const host = container || el;
-    if(host.querySelector('.card-views-badge[data-doc="'+docId+'"]')) return;
-    const badge = document.createElement('span');
-    badge.className = 'card-views-badge';
-    badge.dataset.doc = docId;
-    badge.textContent = 'Vues: …';
-    host.appendChild(badge);
-    try{ const n = await getViewCount(docId);
-         badge.textContent = 'Vues: ' + n; }
-    catch{ badge.textContent = 'Vues: —'; }
-  }
-  async function initCardCounters(){
-    const links = Array.from(document.querySelectorAll('[data-doc-id], a[href$=".html"]'))
-      .filter(a => {
-        const id = a.getAttribute('data-doc-id') || basename(a.getAttribute('href')||'');
-        return id && !['index','admin','offline'].includes(id.toLowerCase());
+function renderLaw(data){
+  const wrapper = document.getElementById('mainWrapper');
+  wrapper.innerHTML = '';
+  const toc = document.getElementById('tocList');
+  toc.innerHTML = '';
+  const articleEls = [];
+
+  if (Array.isArray(data.chapters)) {
+    data.chapters.forEach((ch, ci) => {
+      const sec = document.createElement('section');
+      sec.className = 'group';
+      const h2 = document.createElement('h2');
+      h2.textContent = ch.title || `Chapitre ${ci+1}`;
+      sec.appendChild(h2);
+
+      (ch.articles || []).forEach((a, ai) => {
+        const art = document.createElement('div');
+        art.className = 'article';
+        art.id = a.id || `art_${ci}_${ai}`;
+
+        const header = document.createElement('div');
+        header.className = 'article-header';
+        const h3 = document.createElement('h3');
+        h3.textContent = a.title || `Article ${ai+1}`;
+        const fsBtn = document.createElement('button');
+        fsBtn.className = 'open-fs';
+        fsBtn.title = 'Plein écran';
+        fsBtn.innerHTML = '<i class="fas fa-maximize"></i>';
+        fsBtn.addEventListener('click', () => openFullscreenById(art.id));
+        header.appendChild(h3);
+        header.appendChild(fsBtn);
+
+        const content = document.createElement('div');
+        content.className = 'article-content';
+        content.innerHTML = a.content || '';
+
+        art.appendChild(header);
+        art.appendChild(content);
+        sec.appendChild(art);
+        articleEls.push(art);
       });
-    const handled = new Set();
-    for(const a of links){
-      const id = a.getAttribute('data-doc-id') || basename(a.getAttribute('href')||'');
-      if(!id || handled.has(id)) continue;
-      handled.add(id);
-      attachCounterTo(a, id);
-    }
-  }
-  initCardCounters();
-  const obs = new MutationObserver(()=>initCardCounters());
-  obs.observe(document.body, { childList:true, subtree:true });
-</script>
 
+      wrapper.appendChild(sec);
+
+      const chapTitle = document.createElement('div');
+      chapTitle.textContent = ch.title || `Chapitre ${ci+1}`;
+      chapTitle.style.margin = '8px 0 4px';
+      chapTitle.style.color = '#1a4177';
+      chapTitle.style.fontWeight = '700';
+      toc.appendChild(chapTitle);
+      const sub = document.createElement('div');
+      sub.className = 'toc-sub';
+      (ch.articles||[]).forEach((a, ai) => {
+        const link = document.createElement('a');
+        const id = a.id || `art_${ci}_${ai}`;
+        link.href = `#${id}`;
+        link.textContent = a.title || `Article ${ai+1}`;
+        link.addEventListener('click', closeToc);
+        sub.appendChild(link);
+      });
+      toc.appendChild(sub);
+    });
+  } else {
+    const sec = document.createElement('section');
+    sec.className = 'group';
+    const h2 = document.createElement('h2');
+    h2.textContent = data.title || 'Texte intégral';
+    sec.appendChild(h2);
+    (data.articles || []).forEach((a, ai) => {
+      const art = document.createElement('div');
+      art.className = 'article';
+      art.id = a.id || `article_${ai}`;
+      const header = document.createElement('div');
+      header.className = 'article-header';
+      const h3 = document.createElement('h3');
+      h3.textContent = a.title || `Article ${ai+1}`;
+      const fsBtn = document.createElement('button');
+      fsBtn.className = 'open-fs';
+      fsBtn.title = 'Plein écran';
+      fsBtn.innerHTML = '<i class="fas fa-maximize"></i>';
+      fsBtn.addEventListener('click', () => openFullscreenById(art.id));
+      header.appendChild(h3);
+      header.appendChild(fsBtn);
+      const content = document.createElement('div');
+      content.className = 'article-content';
+      content.innerHTML = a.content || '';
+      art.appendChild(header);
+      art.appendChild(content);
+      sec.appendChild(art);
+      articleEls.push(art);
+
+      const link = document.createElement('a');
+      link.href = `#${art.id}`;
+      link.textContent = a.title || `Article ${ai+1}`;
+      link.addEventListener('click', closeToc);
+      document.getElementById('tocList').appendChild(link);
+    });
+    wrapper.appendChild(sec);
+  }
+  window.__articlesOrder = articleEls.map(el => el.id);
+}
+
+// TOC controls
+const tocBtn = document.getElementById('tocFloatBtn');
+const tocHeaderBtn = document.getElementById('tocHeaderBtn');
+const tocPanel = document.getElementById('tocPanel');
+const tocOverlay = document.getElementById('tocOverlay');
+function openToc(){ tocPanel.classList.add('open'); tocOverlay.classList.add('show'); }
+function closeToc(){ tocPanel.classList.remove('open'); tocOverlay.classList.remove('show'); }
+tocBtn.addEventListener('click', openToc);
+tocHeaderBtn.addEventListener('click', openToc);
+tocOverlay.addEventListener('click', closeToc);
+
+// Voice reading
+const synth = window.speechSynthesis;
+let speakingId = null;
+const now = document.getElementById('nowReading');
+function textFrom(el){ return el.querySelector('.article-content')?.innerText?.trim() || ''; }
+function highlight(id, on){ const el = document.getElementById(id); if(!el) return; el.classList.toggle('reading', !!on); }
+function speakById(id){
+  const el = document.getElementById(id); if(!el) return;
+  const text = textFrom(el); if(!text) return;
+  stopSpeaking();
+  const ut = new SpeechSynthesisUtterance(text); ut.lang='fr-FR'; ut.rate=1;
+  ut.onend = () => { highlight(id,false); speakingId=null; now.textContent='Prêt'; };
+  synth.speak(ut); speakingId=id; highlight(id,true);
+  now.textContent = 'Lecture : ' + (el.querySelector('.article-header h3')?.textContent || '');
+}
+function pauseSpeaking(){ if(synth.speaking && !synth.paused) synth.pause(); }
+function resumeSpeaking(){ if(synth.paused) synth.resume(); }
+function stopSpeaking(){ if(synth.speaking){ synth.cancel(); } if(speakingId){ highlight(speakingId,false); speakingId=null; } }
+document.getElementById('vPlay').addEventListener('click', () => { const visible = findMostVisibleArticleId() || window.__articlesOrder?.[0]; if(visible) speakById(visible); });
+document.getElementById('vPause').addEventListener('click', () => { if(synth.paused) resumeSpeaking(); else pauseSpeaking(); });
+document.getElementById('vStop').addEventListener('click', stopSpeaking);
+function findMostVisibleArticleId(){ const arts = Array.from(document.querySelectorAll('.article')); let best=null, bestArea=0; const vh = window.innerHeight; arts.forEach(a=>{ const r=a.getBoundingClientRect(); const ov=Math.max(0, Math.min(vh,r.bottom)-Math.max(0,r.top)); if(ov>bestArea){ bestArea=ov; best=a; } }); return best?.id || null; }
+
+// Fullscreen
+const fsOverlay = document.getElementById('fsOverlay');
+const fsTitle = document.getElementById('fsTitle');
+const fsBody = document.getElementById('fsBody');
+const fsPrev = document.getElementById('fsNavPrev');
+const fsNext = document.getElementById('fsNavNext');
+const fsClose = document.getElementById('fsClose');
+let fsCurrentIndex = -1;
+function openFullscreenById(id){
+  const order = window.__articlesOrder || []; const idx = order.indexOf(id); if(idx === -1) return;
+  fsCurrentIndex = idx;
+  const el = document.getElementById(id);
+  fsTitle.textContent = el.querySelector('.article-header h3')?.textContent || 'Article';
+  fsBody.innerHTML = el.querySelector('.article-content')?.innerHTML || '';
+  fsOverlay.classList.add('show'); fsOverlay.setAttribute('aria-hidden','false');
+  updateFsNav();
+}
+function closeFullscreen(){ fsOverlay.classList.remove('show'); fsOverlay.setAttribute('aria-hidden','true'); }
+function updateFsNav(){ const order = window.__articlesOrder || []; fsPrev.style.display = fsCurrentIndex > 0 ? 'grid' : 'none'; fsNext.style.display = fsCurrentIndex < order.length - 1 ? 'grid' : 'none'; }
+fsClose.addEventListener('click', closeFullscreen);
+fsPrev.addEventListener('click', () => { const order = window.__articlesOrder || []; if(fsCurrentIndex > 0) openFullscreenById(order[fsCurrentIndex - 1]); });
+fsNext.addEventListener('click', () => { const order = window.__articlesOrder || []; if(fsCurrentIndex < order.length - 1) openFullscreenById(order[fsCurrentIndex + 1]); });
+
+// Init
+renderLaw(lawData);
+</script>
 </body>
 </html>
