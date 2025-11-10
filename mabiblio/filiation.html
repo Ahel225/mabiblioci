@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Loi n° 2019-571 (Filiation) — Lecteur</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#1e4e8c">
+<style>
+:root{ --bg:#f5f8ff; --paper:#ffffff; --ink:#0f2742; --primary:#1e4e8c; --primary-700:#113761; --accent:#f2c94c; --accent-2:#fff6cc; --muted:#e7eef9; --shadow:0 12px 28px rgba(0,0,0,.08); --radius:18px; --transition:.25s ease; }
+*{box-sizing:border-box} html,body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.6}
+header{position:sticky;top:0;z-index:60;background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(255,255,255,.88));backdrop-filter:saturate(1.1) blur(8px);border-bottom:1px solid #e6eef6}
+.container{max-width:1120px;margin:0 auto;padding:14px 16px;display:flex;align-items:center;gap:12px}
+.logo{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:radial-gradient(circle at 30% 30%, var(--accent), #ffe89c);color:#113761;box-shadow:var(--shadow);font-size:18px}
+h1{margin:0;font-family:'Playfair Display',serif;font-size:20px;color:var(--primary-700)}
+.sub{color:#496b8d;font-size:12px;margin-top:2px}
+.control-buttons{margin-left:auto;display:flex;gap:8px;align-items:center}
+.btn{min-width:38px;height:38px;border-radius:12px;border:1px solid #d5e6f6;background:#fff;color:var(--primary-700);display:grid;place-items:center;cursor:pointer;box-shadow:var(--shadow);transition:var(--transition)}
+.btn:hover{transform:translateY(-1px)}
+.wrapper{max-width:1120px;margin:16px auto;padding:0 12px}
+.group{background:var(--paper);border:1px solid #e2eef7;border-radius:var(--radius);box-shadow:var(--shadow);margin:14px 0;overflow:hidden}
+.group>h2{margin:0;padding:14px 16px;background:linear-gradient(180deg,#ffffff,#f2f8ff);border-bottom:1px solid #e2eef7;color:#1a4177;font-size:18px;font-family:'Playfair Display',serif}
+.article{margin:10px 10px 14px 10px;padding:12px 14px;border-left:6px solid var(--primary);background:#fff;border-radius:14px;box-shadow:0 1px 0 rgba(0,0,0,.03)}
+.article-header{display:flex; align-items:center; gap:8px; margin:0 0 6px 0;}
+.article-header h3{margin:0; color:#113761;}
+.article .open-fs{ order:2; margin-left:auto; width:34px; height:34px; border:1px solid #d5e6f6; background:#fff; border-radius:10px; cursor:pointer; }
+.article-content p{margin:.5rem 0}.article-content ul,.article-content ol{margin:.5rem 0 .8rem 1.25rem}
+.article-content ol>li, .article-content ul>li{ padding:8px 0; line-height:1.7; border-bottom:1px solid #eaf3fb; }
+.article-content ol>li:last-child, .article-content ul>li:last-child{ border-bottom:0; }
+.article-content li > ol > li, .article-content li > ul > li{ padding:6px 0; border-bottom:1px dashed #eaf3fb; }
+.article-content li > ol > li:last-child, .article-content li > ul > li:last-child{ border-bottom:0; }
+.article-content .signature-block { margin-top:30px; text-align:right; font-weight:bold; }
+.reading{ outline:2px solid var(--accent); outline-offset:2px; border-left-color:var(--accent) !important; background:linear-gradient(180deg,#fff, var(--accent-2)) }
+#tocFloatBtn{position:fixed; right:14px; bottom:120px; width:46px; height:46px; border-radius:50%; border:none; background:var(--primary); color:#fff; display:grid; place-items:center; box-shadow:0 10px 24px rgba(0,0,0,.25); z-index:1500;}
+#tocPanel{position:fixed; top:0; right:0; height:100%; width:86%; max-width:420px; background:#fff; border-left:1px solid #e2eef7; box-shadow:-16px 0 35px rgba(0,0,0,.2); transform:translateX(100%); transition:transform .25s ease; z-index:1600; overflow:auto;}
+#tocOverlay{position:fixed; inset:0; background:rgba(0,0,0,.28); backdrop-filter:blur(2px); display:none; z-index:1590}
+#tocPanel.open{ transform:none } #tocOverlay.show{ display:block }
+#tocPanel header{position:sticky; top:0; background:#fff; padding:12px 14px; border-bottom:1px solid #e2eef7}
+#tocPanel h3{margin:0; color:#1a4177} #tocPanel .toc-list{padding:12px 14px}
+#tocPanel .toc-list a{display:block; padding:6px 0; color:#183a69; text-decoration:none}
+#tocPanel .toc-sub{margin-left:10px; border-left:2px solid #eef6fd; padding-left:8px}
+#voiceBar{position:fixed; left:50%; transform:translateX(-50%); bottom:14px; background:#113761; color:#fff; z-index:1550; border-radius:22px; padding:8px 12px; display:flex; gap:10px; align-items:center; box-shadow:0 12px 28px rgba(0,0,0,.3)}
+#voiceBar button{width:34px; height:34px; border-radius:10px; border:1px solid #cfe3f5; background:transparent; color:#eaf0f6; display:grid; place-items:center; cursor:pointer}
+#voiceBar .now{font-size:12px; max-width:52vw; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:#f1f5f9}
+#fsOverlay{ position:fixed; inset:0; background:#fff; z-index:1700; display:none; }
+#fsOverlay.show{ display:block } #fsHeader{ position:sticky; top:0; background:#fff; padding:10px 14px; border-bottom:1px solid #e2eef7; display:flex; align-items:center; gap:10px }
+#fsHeader .ttl{ font-weight:700; color:#173f64; flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
+#fsHeader button{ width:36px; height:36px; border-radius:10px; border:1px solid #d5e6f6; background:#fff; }
+#fsBody{ padding:14px; height:calc(100% - 58px); overflow:auto } #fsBody .article-content{ font-size:1.04rem }
+#fsNavPrev,#fsNavNext{ position:fixed; top:50%; transform:translateY(-50%); width:42px; height:42px; border-radius:50%; border:none; background:var(--primary); color:#fff; display:grid; place-items:center; z-index:1710; opacity:.9 }
+#fsNavPrev{ left:10px } #fsNavNext{ right:10px }
+footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c6785;font-size:12px}
+.no-select, .no-select *:not(input):not(textarea):not(.selectable){ -webkit-user-select:none !important; user-select:none !important; -webkit-touch-callout:none !important;}
+</style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <div class="logo"><i class="fa-solid fa-users"></i></div>
+    <div>
+      <h1>LOI N° 2019-571 (Filiation)</h1>
+      <div class="sub">LOI N° 2019-571 DU 26 JUIN 2019</div>
+    </div>
+    <div class="control-buttons">
+      <button class="btn" id="tocHeaderBtn" title="Sommaire"><i class="fa-solid fa-list"></i></button>
+      <button class="btn" title="Haut de page" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fa-solid fa-angles-up"></i></button>
+    </div>
+  </div>
+</header>
+<main class="wrapper" id="mainWrapper"></main>
+<button id="tocFloatBtn" title="Sommaire" class="btn"><i class="fa-solid fa-book"></i></button>
+<div id="tocOverlay"></div>
+<aside id="tocPanel">
+  <header><h3><i class="fa-solid fa-scale-balanced"></i> Sommaire</h3></header>
+  <div class="toc-list" id="tocList"></div>
+</aside>
+<div id="voiceBar" role="region" aria-label="Contrôles de lecture">
+  <button id="vPlay" title="Lire"><i class="fa-solid fa-play"></i></button>
+  <button id="vPause" title="Pause"><i class="fa-solid fa-pause"></i></button>
+  <button id="vStop" title="Arrêter"><i class="fa-solid fa-stop"></i></button>
+  <span class="now" id="nowReading">Prêt</span>
+</div>
+<div id="fsOverlay" aria-hidden="true">
+  <div id="fsHeader">
+    <strong class="ttl" id="fsTitle">—</strong>
+    <button id="fsClose" title="Fermer"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div id="fsBody"></div>
+  <button id="fsNavPrev" title="Précédent"><i class="fa-solid fa-chevron-left"></i></button>
+  <button id="fsNavNext" title="Suivant"><i class="fa-solid fa-chevron-right"></i></button>
+</div>
+<footer><div class="wrapper">© République de Côte d’Ivoire — Lecteur optimisé</div></footer>
+<script>
+// --- DEBUT DU CONTENU DE LA LOI ---
+const lawData = {
+  title: "LOI nº 2019-571 du 26 juin 2019 relative à la filiation",
+  subtitle: "LOI nº 2019-571 DU 26 JUIN 2019",
+  chapters: [
+    {
+      title: "PREAMBULE",
+      articles: [
+        {
+          id: "preambule",
+          title: "Promulgation",
+          content: "<p>L'ASSEMBLEE NATIONALE A ADOPTE, </p>" +
+                   "<p>LE PRESIDENT DE LA REPUBLIQUE PROMULGUE LA LOI DONT LA TENEUR SUIT: </p>"
+        },
+        {
+          id: "article1",
+          title: "Article 1",
+          content: "<p>Tout enfant a droit à l'établissement de sa filiation à l'égard de ses auteurs. </p>"
+        }
+      ]
+    },
+    {
+      title: "CHAPITRE 1: De la filiation des enfants dans le mariage",
+      articles: [
+        {
+          id: "article2",
+          title: "Article 2",
+          content: "<p>L'enfant conçu pendant le mariage ou né moins de trois cents jours après la dissolution du mariage, a pour père le mari de sa mère. </p>"
+        },
+        {
+          id: "article3",
+          title: "Article 3",
+          content: "<p>La présomption de paternité établie à l'article précédent ne s'applique pas en cas de demande, soit de divorce, soit de séparation de corps, à l'enfant né trois cents jours après l'ordonnance ayant autorisé la résidence séparée et moins de cent quatre-vingt jours après le rejet définitif de la demande, ou depuis la réconciliation, sauf s'il y a eu réunion de fait entre les époux. </p>"
+        },
+        {
+          id: "article4",
+          title: "Article 4",
+          content: "<p>Le mari peut désavouer l'enfant conçu pendant le mariage </p>" +
+                   "<ol>" +
+                   "<li>s'il prouve que pendant le temps qui a couru depuis les trois centièmes jours jusqu'au cent quatre-vingtième jour avant la naissance de cet enfant, il était dans l'impossibilité physique de cohabiter avec sa femme; </li>" +
+                   "<li>si, selon les données acquises de la science médicale, il est établi qu'il ne peut en être le père. </li>" +
+                   "</ol>"
+        },
+        {
+          id: "article5",
+          title: "Article 5",
+          content: "<p>L'enfant né avant le cent quatre-vingtième jour du mariage, ne peut être désavoué par le mari dans les cas suivants : </p>" +
+                   "<ol>" +
+                   "<li>s'il a eu connaissance de la grossesse avant le mariage; </li>" +
+                   "<li>si l'acte de naissance a été établi en sa présence et si cet acte est signé de lui ou contient sa déclaration qu'il ne sait pas signer; </li>" +
+                   "<li>si l'enfant n'est pas né vivant. </li>" +
+                   "</ol>"
+        },
+        {
+          id: "article6",
+          title: "Article 6",
+          content: "<p>Dans les cas où le mari est autorisé à agir en désaveu, il doit le faire dans les deux mois: </p>" +
+                   "<ol>" +
+                   "<li>de la naissance, s'il se trouve sur les lieux à l'époque de celle-ci; </li>" +
+                   "<li>après son retour, si à la même époque il n'était pas présent; </li>" +
+                   "<li>à compter du jour de la découverte de l'existence de l'enfant, si sa naissance lui a été cachée. </li>" +
+                   "</ol>"
+        },
+        {
+          id: "article7",
+          title: "Article 7",
+          content: "<p>Si le mari meurt après avoir initié son action en désaveu, les héritiers ont six mois pour la reprendre. </p>"
+        },
+        {
+          id: "article8",
+          title: "Article 8",
+          content: "<p>L'action en désaveu est dirigée contre la mère de l'enfant mineur ou, si elle est décédée, incapable ou présumée absente, contre un tuteur ad hoc désigné par ordonnance du président du tribunal de la résidence ou du lieu de naissance de l'enfant, à la requête du mari ou de ses héritiers. </p>" +
+                   "<p>La requête en désignation du tuteur ad hoc doit être présentée dans le délai prévu à l'article précédent et l'action doit être intentée dans le mois suivant cette désignation, le tout à peine de forclusion. </p>" +
+                   "<p>La cause est instruite en forme d'urgence et en chambre du conseil. </p>" +
+                   "<p>L'ordonnance est rendue en audience publique après conclusions écrites du ministère public. </p>"
+        },
+        {
+          id: "article9",
+          title: "Article 9",
+          content: "<p>La filiation des enfants nés dans le mariage se prouve par les actes de naissance inscrits sur les registres de l'état civil. </p>" +
+                   "<p>A défaut de ce titre, la possession d'état d'enfant né dans le mariage suffit. </p>"
+        },
+        {
+          id: "article10",
+          title: "Article 10",
+          content: "<p>La possession d'état s'établit par une réunion suffisante de faits qui indiquent le rapport de filiation et de parenté entre un individu et la famille à laquelle il prétend appartenir. </p>" +
+                   "<p>Les principaux de ces faits sont : </p>" +
+                   "<ol>" +
+                   "<li>que l'individu a toujours porté le nom du père dont il prétend être l'enfant;</li>" +
+                   "<li>que le père l'a traité comme son enfant, et a pourvu, en cette qualité, à son éducation, à son entretien et à son établissement: </li>" +
+                   "<li>qu'il a été reconnu constamment pour tel dans la société; </li>" +
+                   "<li>qu'il a été reconnu pour tel par la famille. </li>" +
+                   "</ol>"
+        },
+        {
+          id: "article11",
+          title: "Article 11",
+          content: "<p>Nul ne peut réclamer un état contraire à celui que lui donnent son titre de naissance et la possession conforme à ce titre. </p>" +
+                   "<p>Et réciproquement, nul ne peut contester l'état de celui qui a une possession conforme à son titre de naissance. </p>"
+        },
+        {
+          id: "article12",
+          title: "Article 12",
+          content: "<p>A défaut de titre et de possession constante, ou si l'enfant a été inscrit, soit sous de faux noms, soit né de père et de mère inconnus, la preuve de la filiation peut se faire par témoins. </p>" +
+                   "<p>Néanmoins, cette preuve ne peut être admise que lorsqu'il y a commencement de preuve par écrit, ou lorsque les présomptions ou indices résultant de faits dès lors constants sont assez graves pour déterminer l'admission. </p>"
+        },
+        {
+          id: "article13",
+          title: "Article 13",
+          content: "<p>Le commencement de preuve par écrit résulte des titres de famille, des registres et papiers domestiques du père ou de la mère, des actes publics et même privés émanés d'une partie engagée dans la contestation, ou qui y aurait intérêt si elle était vivante. </p>"
+        },
+        {
+          id: "article14",
+          title: "Article 14",
+          content: "<p>La preuve contraire peut se faire par tous moyens propres à établir que le réclamant n'est pas l'enfant de la mère qu'il prétend avoir, ou la maternité prouvée, qu'il n'est pas l'enfant du mari de la mère. </p>"
+        },
+        {
+          id: "article15",
+          title: "Article 15",
+          content: "<p>Les tribunaux civils sont seuls compétents pour statuer sur les réclamations d'état.</p>"
+        },
+        {
+          id: "article16",
+          title: "Article 16",
+          content: "<p>L'action en réclamation d'état est imprescriptible à l'égard de l'enfant.</p>"
+        },
+        {
+          id: "article17",
+          title: "Article 17",
+          content: "<p>L'action ne peut être intentée par les héritiers de l'enfant qui n'a pas réclamé, qu'autant qu'il est décédé mineur, ou dans les cinq années après sa majorité. </p>"
+        },
+        {
+          id: "article18",
+          title: "Article 18",
+          content: "<p>Les héritiers peuvent suivre cette action lorsqu'elle a été commencée par l'enfant, à moins qu'il ne s'en fût désisté, formellement, ou qu'il n'eût laissé passer trois années sans poursuites, à compter du dernier acte de procédure. </p>"
+        }
+      ]
+    },
+    {
+      title: "CHAPITRE 2: De la filiation des enfants nés hors mariage",
+      articles: [
+        {
+          id: "article19",
+          title: "Article 19",
+          content: "<p>La filiation des enfants nés hors mariage résulte à l'égard de la mère, du seul fait de la naissance. </p>" +
+                   "<p>Toutefois, dans le cas où l'acte de naissance ne porte pas l'indication du nom de la mère, elle est établie par une reconnaissance ou un jugement. </p>" +
+                   "<p>A l'égard du père, la preuve de la filiation ne peut résulter que d'une reconnaissance ou d'un jugement. </p>"
+        },
+        {
+          id: "article20",
+          title: "Article 20",
+          content: "<p>La reconnaissance est faite dans l'acte de naissance.</p>" +
+                   "<p>Toutefois l'acte de naissance portant l'indication du père vaut reconnaissance lorsqu'il est corroboré par la possession d'état. </p>" +
+                   "<p>La reconnaissance peut être faite par acte authentique. Dans ce cas, l'acte de reconnaissance est remis à l'officier de l'état civil au moment de l'établissement de l'acte de naissance. </p>"
+        },
+        {
+          id: "article21",
+          title: "Article 21",
+          content: "<p>Lorsque la reconnaissance est faite après l'établissement de l'acte de naissance, elle est reçue par l'officier de l'état civil qui saisit préalablement le procureur de la République aux fins d'y être autorisé. </p>" +
+                   "<p>La reconnaissance par le père ou la mère d'un enfant de plus de 18 ans n'est valable que du consentement de ce dernier. </p>" +
+                   "<p>Ce consentement peut être donné soit oralement, lors de la déclaration de reconnaissance faite par le père ou la mère, soit reçu séparément par un officier de l'état civil ou un notaire, lesquels en dressent acte. </p>" +
+                   "<p>L'acte de reconnaissance doit, à peine de nullité, contenir la mention du consentement de l'enfant et des circonstances dans lesquelles il a été donné. </p>"
+        },
+        {
+          id: "article22",
+          title: "Article 22",
+          content: "<p>La reconnaissance par le père de l'enfant né de sa relation hors mariage doit être précédée de l'information donnée à l'épouse du projet de reconnaissance. </p>" +
+                   "<p>L'acte de reconnaissance, doit, à peine de nullité, contenir la mention de l'information donnée à l'épouse par acte de commissaire de Justice. </p>" +
+                   "<p>Lorsque s'applique la présomption de paternité établie par l'article 2, l'enfant né de la relation hors mariage de la mère ne peut être reconnu qu'autant qu'il a été antérieurement désavoué. </p>"
+        },
+        {
+          id: "article23",
+          title: "Article 23",
+          content: "<p>Toute reconnaissance, de même que toute réclamation de la part de l'enfant, peut être contestée par tous ceux qui y ont intérêt. </p>"
+        },
+        {
+          id: "article24",
+          title: "Article 24",
+          content: "<p>La paternité hors mariage peut être judiciairement déclarée dans le cas: </p>" +
+                   "<ol>" +
+                   "<li>d'enlèvement ou de viol, lorsque la période de l'enlèvement ou du viol se rapporte à celle de la conception; </li>" +
+                   "<li>de séduction, abus d'autorité, promesse de mariage ou fiançailles suivies de relations sexuelles dans la période légale de conception; </li>" +
+                   "<li>où il existe des lettres ou quelque autre écrit émanant du père prétendu, propre à établir la paternité d'une manière non équivoque; </li>" +
+                   "<li>où le père prétendu et la mère ont vécu en état de concubinage notoire pendant la période légale de conception; </li>" +
+                   "<li>où le père prétendu a pourvu ou participé à l'entretien, à l'éducation et à l'établissement de l'enfant en qualité de père. </li>" +
+                   "</ol>"
+        },
+        {
+          id: "article25",
+          title: "Article 25",
+          content: "<p>L'action en recherche de paternité n'est pas fondée si: </p>" +
+                   "<ol>" +
+                   "<li>le père prétendu était, pendant la période légale de conception dans l'impossibilité physique d'être l'auteur de l'enfant; </li>" +
+                   "<li>les données acquises de la science établissent qu'il ne peut être le père de l'enfant. </li>" +
+                   "</ol>"
+        },
+        {
+          id: "article26",
+          title: "Article 26",
+          content: "<p>L'action est dirigée contre le père prétendu ou ses héritiers. L'action n'appartient qu'à l'enfant. </p>" +
+                   "<p>Pendant la minorité de l'enfant, la mère même mineure, a seule qualité pour l'intenter. </p>" +
+                   "<p>Si la mère est décédée, incapable ou présumée absente, l'action est exercée par la personne qui a la garde de l'enfant. </p>"
+        },
+        {
+          id: "article27",
+          title: "Article 27",
+          content: "<p>Dans le cas prévu à l'article 19 alinéa 2, l'action en recherche de maternité est dirigée contre la mère prétendue ou ses héritiers. </p>" +
+                   "<p>L'action n'appartient qu'à l'enfant. Pendant la minorité de l'enfant, le père a seul qualité pour l'intenter. </p>" +
+                   "<p>Si le père est décédé, incapable ou présumé absent, l'action est exercée par la personne qui a la garde de l'enfant. </p>" +
+                   "<p>L'enfant qui réclame sa mère est tenu de prouver qu'il est identiquement le même que l'enfant dont elle est accouchée. </p>" +
+                   "<p>Il est admis à faire cette preuve en établissant sa filiation, soit par sa possession constante d'état d'enfant né hors du mariage à l'égard de la mère prétendue, soit par témoins ou par tous moyens. </p>"
+        },
+        {
+          id: "article28",
+          title: "Article 28",
+          content: "<p>Lorsqu'une filiation est établie par un acte ou par un jugement, nulle filiation contraire ne pourra être postérieurement reconnue sans qu'un jugement établisse, préalablement, l'inexactitude de la première. </p>"
+        }
+      ]
+    },
+    {
+      title: "CHAPITRE 3: Des dispositions finales",
+      articles: [
+        {
+          id: "article29",
+          title: "Article 29",
+          content: "<p>La présente loi abroge la loi n° 64-377 du 7 octobre 1964 relative à la paternité et à la filiation, telle que modifiée par la loi n° 83-799 du 2 août 1983 et la loi n° 64-381 du 7 octobre 1964, relative aux dispositions diverses applicables aux matières régies par la loi sur la paternité et la filiation. </p>"
+        },
+        {
+          id: "article30",
+          title: "Article 30",
+          content: "<p>La présente loi sera publiée au Journal officiel de la République de Côte d'Ivoire et exécutée comme loi de l'Etat. </p>"
+        }
+      ]
+    }
+
+  ]
+};
+
+// --- FIN DU CONTENU DE LA LOI ---
+
+
+function renderLaw(data){
+  const wrapper = document.getElementById('mainWrapper');
+  wrapper.innerHTML = '';
+  const toc = document.getElementById('tocList');
+  toc.innerHTML = '';
+  const articleEls = [];
+
+  if (Array.isArray(data.chapters)) {
+    data.chapters.forEach((ch, ci) => {
+      const sec = document.createElement('section');
+      sec.className = 'group';
+      const h2 = document.createElement('h2');
+      h2.textContent = ch.title || `Chapitre ${ci+1}`;
+      sec.appendChild(h2);
+
+      (ch.articles || []).forEach((a, ai) => {
+        const art = document.createElement('div');
+        art.className = 'article';
+        art.id = a.id || `art_${ci}_${ai}`;
+
+        const header = document.createElement('div');
+        header.className = 'article-header';
+        const h3 = document.createElement('h3');
+        h3.textContent = a.title || `Article ${ai+1}`;
+        const fsBtn = document.createElement('button');
+        fsBtn.className = 'open-fs';
+        fsBtn.title = 'Plein écran';
+        fsBtn.innerHTML = '<i class="fas fa-maximize"></i>';
+        fsBtn.addEventListener('click', () => openFullscreenById(art.id));
+        header.appendChild(h3);
+        header.appendChild(fsBtn);
+
+        const content = document.createElement('div');
+        content.className = 'article-content';
+        content.innerHTML = a.content || '';
+
+        art.appendChild(header);
+        art.appendChild(content);
+        sec.appendChild(art);
+        articleEls.push(art);
+      });
+
+      wrapper.appendChild(sec);
+
+      const chapTitle = document.createElement('div');
+      chapTitle.textContent = ch.title || `Chapitre ${ci+1}`;
+      chapTitle.style.margin = '8px 0 4px';
+      chapTitle.style.color = '#1a4177';
+      chapTitle.style.fontWeight = '700';
+      toc.appendChild(chapTitle);
+      const sub = document.createElement('div');
+      sub.className = 'toc-sub';
+      (ch.articles||[]).forEach((a, ai) => {
+        const link = document.createElement('a');
+        const id = a.id || `art_${ci}_${ai}`;
+        link.href = `#${id}`;
+        link.textContent = a.title || `Article ${ai+1}`;
+        link.addEventListener('click', closeToc);
+        sub.appendChild(link);
+      });
+      toc.appendChild(sub);
+    });
+  } else {
+    // Fallback for flat structure
+    const sec = document.createElement('section');
+    sec.className = 'group';
+    const h2 = document.createElement('h2');
+    h2.textContent = data.title || 'Texte intégral';
+    sec.appendChild(h2);
+    (data.articles || []).forEach((a, ai) => {
+      const art = document.createElement('div');
+      art.className = 'article';
+      art.id = a.id || `article_${ai}`;
+      const header = document.createElement('div');
+      header.className = 'article-header';
+      const h3 = document.createElement('h3');
+      h3.textContent = a.title || `Article ${ai+1}`;
+      const fsBtn = document.createElement('button');
+      fsBtn.className = 'open-fs';
+      fsBtn.title = 'Plein écran';
+      fsBtn.innerHTML = '<i class="fas fa-maximize"></i>';
+      fsBtn.addEventListener('click', () => openFullscreenById(art.id));
+      header.appendChild(h3);
+      header.appendChild(fsBtn);
+      const content = document.createElement('div');
+      content.className = 'article-content';
+      content.innerHTML = a.content || '';
+      art.appendChild(header);
+      art.appendChild(content);
+      sec.appendChild(art);
+      articleEls.push(art);
+
+      const link = document.createElement('a');
+      link.href = `#${art.id}`;
+      link.textContent = a.title || `Article ${ai+1}`;
+      link.addEventListener('click', closeToc);
+      document.getElementById('tocList').appendChild(link);
+    });
+    wrapper.appendChild(sec);
+  }
+  window.__articlesOrder = articleEls.map(el => el.id);
+}
+
+// TOC controls
+const tocBtn = document.getElementById('tocFloatBtn');
+const tocHeaderBtn = document.getElementById('tocHeaderBtn');
+const tocPanel = document.getElementById('tocPanel');
+const tocOverlay = document.getElementById('tocOverlay');
+function openToc(){ tocPanel.classList.add('open'); tocOverlay.classList.add('show'); }
+function closeToc(){ tocPanel.classList.remove('open'); tocOverlay.classList.remove('show'); }
+tocBtn.addEventListener('click', openToc);
+tocHeaderBtn.addEventListener('click', openToc);
+tocOverlay.addEventListener('click', closeToc);
+
+// Voice reading
+const synth = window.speechSynthesis;
+let speakingId = null;
+const now = document.getElementById('nowReading');
+function textFrom(el){ return el.querySelector('.article-content')?.innerText?.trim() || ''; }
+function highlight(id, on){ const el = document.getElementById(id); if(!el) return; el.classList.toggle('reading', !!on); }
+function speakById(id){
+  const el = document.getElementById(id); if(!el) return;
+  const text = textFrom(el); if(!text) return;
+  stopSpeaking();
+  const ut = new SpeechSynthesisUtterance(text); ut.lang='fr-FR'; ut.rate=1;
+  ut.onend = () => { highlight(id,false); speakingId=null; now.textContent='Prêt'; };
+  synth.speak(ut); speakingId=id; highlight(id,true);
+  now.textContent = 'Lecture : ' + (el.querySelector('.article-header h3')?.textContent || '');
+}
+function pauseSpeaking(){ if(synth.speaking && !synth.paused) synth.pause(); }
+function resumeSpeaking(){ if(synth.paused) synth.resume(); }
+function stopSpeaking(){ if(synth.speaking){ synth.cancel(); } if(speakingId){ highlight(speakingId,false); speakingId=null; } }
+document.getElementById('vPlay').addEventListener('click', () => { const visible = findMostVisibleArticleId() || window.__articlesOrder?.[0]; if(visible) speakById(visible); });
+document.getElementById('vPause').addEventListener('click', () => { if(synth.paused) resumeSpeaking(); else pauseSpeaking(); });
+document.getElementById('vStop').addEventListener('click', stopSpeaking);
+function findMostVisibleArticleId(){ const arts = Array.from(document.querySelectorAll('.article')); let best=null, bestArea=0; const vh = window.innerHeight; arts.forEach(a=>{ const r=a.getBoundingClientRect(); const ov=Math.max(0, Math.min(vh,r.bottom)-Math.max(0,r.top)); if(ov>bestArea){ bestArea=ov; best=a; } }); return best?.id || null; }
+
+// Fullscreen
+const fsOverlay = document.getElementById('fsOverlay');
+const fsTitle = document.getElementById('fsTitle');
+const fsBody = document.getElementById('fsBody');
+const fsPrev = document.getElementById('fsNavPrev');
+const fsNext = document.getElementById('fsNavNext');
+const fsClose = document.getElementById('fsClose');
+let fsCurrentIndex = -1;
+function openFullscreenById(id){
+  const order = window.__articlesOrder || []; const idx = order.indexOf(id); if(idx === -1) return;
+  fsCurrentIndex = idx;
+  const el = document.getElementById(id);
+  fsTitle.textContent = el.querySelector('.article-header h3')?.textContent || 'Article';
+  fsBody.innerHTML = el.querySelector('.article-content')?.innerHTML || '';
+  fsOverlay.classList.add('show'); fsOverlay.setAttribute('aria-hidden','false');
+  updateFsNav();
+}
+function closeFullscreen(){ fsOverlay.classList.remove('show'); fsOverlay.setAttribute('aria-hidden','true'); }
+function updateFsNav(){ const order = window.__articlesOrder || []; fsPrev.style.display = fsCurrentIndex > 0 ? 'grid' : 'none'; fsNext.style.display = fsCurrentIndex < order.length - 1 ? 'grid' : 'none'; }
+fsClose.addEventListener('click', closeFullscreen);
+fsPrev.addEventListener('click', () => { const order = window.__articlesOrder || []; if(fsCurrentIndex > 0) openFullscreenById(order[fsCurrentIndex - 1]); });
+fsNext.addEventListener('click', () => { const order = window.__articlesOrder || []; if(fsCurrentIndex < order.length - 1) openFullscreenById(order[fsCurrentIndex + 1]); });
+
+// Init
+renderLaw(lawData);
+</script>
+</body>
+</html>
