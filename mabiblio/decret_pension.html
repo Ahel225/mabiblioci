@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Décret n° 2012-365 (Pensions CGRAE) — Lecteur</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#1e4e8c">
+<style>
+:root{ --bg:#f5f8ff; --paper:#ffffff; --ink:#0f2742; --primary:#1e4e8c; --primary-700:#113761; --accent:#f2c94c; --accent-2:#fff6cc; --muted:#e7eef9; --shadow:0 12px 28px rgba(0,0,0,.08); --radius:18px; --transition:.25s ease; }
+*{box-sizing:border-box} html,body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.6}
+header{position:sticky;top:0;z-index:60;background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(255,255,255,.88));backdrop-filter:saturate(1.1) blur(8px);border-bottom:1px solid #e6eef6}
+.container{max-width:1120px;margin:0 auto;padding:14px 16px;display:flex;align-items:center;gap:12px}
+.logo{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:radial-gradient(circle at 30% 30%, var(--primary), #89b3e0);color:#ffffff;box-shadow:var(--shadow);font-size:18px}
+h1{margin:0;font-family:'Playfair Display',serif;font-size:20px;color:var(--primary-700)}
+.sub{color:#496b8d;font-size:12px;margin-top:2px}
+.control-buttons{margin-left:auto;display:flex;gap:8px;align-items:center}
+.btn{min-width:38px;height:38px;border-radius:12px;border:1px solid #d5e6f6;background:#fff;color:var(--primary-700);display:grid;place-items:center;cursor:pointer;box-shadow:var(--shadow);transition:var(--transition)}
+.btn:hover{transform:translateY(-1px)}
+.wrapper{max-width:1120px;margin:16px auto;padding:0 12px}
+.group{background:var(--paper);border:1px solid #e2eef7;border-radius:var(--radius);box-shadow:var(--shadow);margin:14px 0;overflow:hidden}
+.group>h2{margin:0;padding:14px 16px;background:linear-gradient(180deg,#ffffff,#f2f8ff);border-bottom:1px solid #e2eef7;color:#1a4177;font-size:18px;font-family:'Playfair Display',serif}
+.article{margin:10px 10px 14px 10px;padding:12px 14px;border-left:6px solid var(--primary);background:#fff;border-radius:14px;box-shadow:0 1px 0 rgba(0,0,0,.03)}
+.article-header{display:flex; align-items:center; gap:8px; margin:0 0 6px 0;}
+.article-header h3{margin:0; color:#113761;}
+.article .open-fs{ order:2; margin-left:auto; width:34px; height:34px; border:1px solid #d5e6f6; background:#fff; border-radius:10px; cursor:pointer; }
+.article-content p{margin:.5rem 0}.article-content ul,.article-content ol{margin:.5rem 0 .8rem 1.25rem}
+.article-content ol>li, .article-content ul>li{ padding:8px 0; line-height:1.7; border-bottom:1px solid #eaf3fb; }
+.article-content ol>li:last-child, .article-content ul>li:last-child{ border-bottom:0; }
+.article-content li > ol > li, .article-content li > ul > li{ padding:6px 0; border-bottom:1px dashed #eaf3fb; }
+.article-content li > ol > li:last-child, .article-content li > ul > li:last-child{ border-bottom:0; }
+.article-content .decrete-text { text-align:center; font-weight:bold; font-size:1.2rem; text-transform:uppercase; margin:20px 0; }
+.article-content .preamble-item { font-style:italic; color:#496b8d; margin:4px 0; }
+.article-content .signature-block { margin-top:30px; text-align:right; font-weight:bold; }
+.article-content .certification-block { margin-top:30px; padding-top:20px; border-top:1px dashed #adb5bd; text-align:center; font-style:italic; color:#495057; }
+.reading{ outline:2px solid var(--accent); outline-offset:2px; border-left-color:var(--accent) !important; background:linear-gradient(180deg,#fff, var(--accent-2)) }
+#tocFloatBtn{position:fixed; right:14px; bottom:120px; width:46px; height:46px; border-radius:50%; border:none; background:var(--primary); color:#fff; display:grid; place-items:center; box-shadow:0 10px 24px rgba(0,0,0,.25); z-index:1500;}
+#tocPanel{position:fixed; top:0; right:0; height:100%; width:86%; max-width:420px; background:#fff; border-left:1px solid #e2eef7; box-shadow:-16px 0 35px rgba(0,0,0,.2); transform:translateX(100%); transition:transform .25s ease; z-index:1600; overflow:auto;}
+#tocOverlay{position:fixed; inset:0; background:rgba(0,0,0,.28); backdrop-filter:blur(2px); display:none; z-index:1590}
+#tocPanel.open{ transform:none } #tocOverlay.show{ display:block }
+#tocPanel header{position:sticky; top:0; background:#fff; padding:12px 14px; border-bottom:1px solid #e2eef7}
+#tocPanel h3{margin:0; color:#1a4177} #tocPanel .toc-list{padding:12px 14px}
+#tocPanel .toc-list a{display:block; padding:6px 0; color:#183a69; text-decoration:none}
+#tocPanel .toc-sub{margin-left:10px; border-left:2px solid #eef6fd; padding-left:8px}
+#voiceBar{position:fixed; left:50%; transform:translateX(-50%); bottom:14px; background:#113761; color:#fff; z-index:1550; border-radius:22px; padding:8px 12px; display:flex; gap:10px; align-items:center; box-shadow:0 12px 28px rgba(0,0,0,.3)}
+#voiceBar button{width:34px; height:34px; border-radius:10px; border:1px solid #cfe3f5; background:transparent; color:#eaf0f6; display:grid; place-items:center; cursor:pointer}
+#voiceBar .now{font-size:12px; max-width:52vw; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:#f1f5f9}
+#fsOverlay{ position:fixed; inset:0; background:#fff; z-index:1700; display:none; }
+#fsOverlay.show{ display:block } #fsHeader{ position:sticky; top:0; background:#fff; padding:10px 14px; border-bottom:1px solid #e2eef7; display:flex; align-items:center; gap:10px }
+#fsHeader .ttl{ font-weight:700; color:#173f64; flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
+#fsHeader button{ width:36px; height:36px; border-radius:10px; border:1px solid #d5e6f6; background:#fff; }
+#fsBody{ padding:14px; height:calc(100% - 58px); overflow:auto } #fsBody .article-content{ font-size:1.04rem }
+#fsNavPrev,#fsNavNext{ position:fixed; top:50%; transform:translateY(-50%); width:42px; height:42px; border-radius:50%; border:none; background:var(--primary); color:#fff; display:grid; place-items:center; z-index:1710; opacity:.9 }
+#fsNavPrev{ left:10px } #fsNavNext{ right:10px }
+footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c6785;font-size:12px}
+.no-select, .no-select *:not(input):not(textarea):not(.selectable){ -webkit-user-select:none !important; user-select:none !important; -webkit-touch-callout:none !important;}
+</style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <div class="logo"><i class="fa-solid fa-landmark"></i></div>
+    <div>
+      <h1>Décret n° 2012-365 (Pensions CGRAE)</h1>
+      <div class="sub">Décret n° 2012-365 du 18 avril 2012</div>
+    </div>
+    <div class="control-buttons">
+      <button class="btn" id="tocHeaderBtn" title="Sommaire"><i class="fa-solid fa-list"></i></button>
+      <button class="btn" title="Haut de page" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fa-solid fa-angles-up"></i></button>
+    </div>
+  </div>
+</header>
+<main class="wrapper" id="mainWrapper"></main>
+<button id="tocFloatBtn" title="Sommaire" class="btn"><i class="fa-solid fa-book"></i></button>
+<div id="tocOverlay"></div>
+<aside id="tocPanel">
+  <header><h3><i class="fa-solid fa-scale-balanced"></i> Sommaire</h3></header>
+  <div class="toc-list" id="tocList"></div>
+</aside>
+<div id="voiceBar" role="region" aria-label="Contrôles de lecture">
+  <button id="vPlay" title="Lire"><i class="fa-solid fa-play"></i></button>
+  <button id="vPause" title="Pause"><i class="fa-solid fa-pause"></i></button>
+  <button id="vStop" title="Arrêter"><i class="fa-solid fa-stop"></i></button>
+  <span class="now" id="nowReading">Prêt</span>
+</div>
+<div id="fsOverlay" aria-hidden="true">
+  <div id="fsHeader">
+    <strong class="ttl" id="fsTitle">—</strong>
+    <button id="fsClose" title="Fermer"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div id="fsBody"></div>
+  <button id="fsNavPrev" title="Précédent"><i class="fa-solid fa-chevron-left"></i></button>
+  <button id="fsNavNext" title="Suivant"><i class="fa-solid fa-chevron-right"></i></button>
+</div>
+<footer><div class="wrapper">© République de Côte d’Ivoire — Lecteur optimisé</div></footer>
+
+<script>
+// --- DEBUT DU CONTENU DU DECRET ---
+const lawData = {
+  title: "Décret n° 2012-365 du 18 avril 2012 (Pensions CGRAE)",
+  subtitle: "fixant les modalités d'application de l'ordonnance n° 2012-303 du 04 avril 2012",
+  chapters: [
+    {
+      title: "PREAMBULE ET OBJET",
+      articles: [
+        {
+          id: "preambule",
+          title: "Préambule",
+          content: "<p><strong>LE PRESIDENT DE LA REPUBLIQUE</strong></p>" +
+                   "<p class='preamble-item'>Sur rapport conjoint du Ministre d'Etat, Ministre de l'Emploi, des Affaires Sociales et de la Solidarité, du Ministre de l'Economie et des Finances, du Ministre de la Fonction, Publique et de la Réforme Administrative et du Ministre auprès du Président de la République, chargé de la Défense</p>" +
+                   "<p class='preamble-item'>Vu la Constitution;</p>" +
+                   "<p class='preamble-item'>Vu la loi n° 99-476 du 2 août 1999 portant définition et organisation des Institutions de Prévoyance sociale;</p>" +
+                   "<p class='preamble-item'>Vu l'ordonnance n° 2012-303 du 04 avril 2012 portant organisation des régimes de pensions gérés par la Caisse Générale de Retraite des Agents de l'Etat, en abrégé CGRAE;</p>" +
+                   "<p class='preamble-item'>Vu le décret n° 2011-118 du 22 juin 2011 portant attributions des Membres du Gouvernement;</p>" +
+                   "<p class='preamble-item'>Vu le décret n° 2012-241 du 13 mars 2012 portant nomination du Premier Ministre;</p>" +
+                   "<p class='preamble-item'>Vu le décret n° 2012-242 du 13 mars 2012 portant nomination des Membres du Gouvernement,</p>" +
+                   "<p class='preamble-item'>Le Conseil des Ministres entendu</p>" +
+                   "<p class='decrete-text'>DECRETE</p>"
+        },
+        {
+          id: "article1",
+          title: "Article 1",
+          content: "<p>Le présent décret fixe les principaux paramètres applicables aux régimes de pensions gérés par la Caisse Générale de Retraite des Agents de l'Etat, - codifiés par l'ordonnance 2012-303 du 04 avril 2012 susvisée.</p>"
+        }
+      ]
+    },
+    {
+      title: "SECTION 1: REGIME GENERAL DES PENSIONS CIVILES",
+      articles: [
+        {
+          id: "article2",
+          title: "Article 2",
+          content: "<p>Le nombre minimum d'années de services, prévu au quatrième point de l'article 5 de l'ordonnance, ouvrant droit à pension de retraite sans condition d'âge, est fixé à quinze (15).</p>"
+        },
+        {
+          id: "article3",
+          title: "Article 3",
+          content: "<p>Les réductions d'âge prévues à l'article 6 de l'ordonnance, pour les fonctionnaires anciens combattants et les femmes fonctionnaires, sont fixées comme suit:</p><ul><li>pour le fonctionnaire ancien combattant, la réduction de la limite d'âge est égale à la moitié des périodes ouvrant droit au bénéfice des campagnes doubles;</li><li>pour les femmes fonctionnaires, la réduction de la limite d'âge est d'un (1) an par enfant né d'elles, dans la limite de trois (3) enfants nés après l'acquisition de la qualité de fonctionnaire.</li></ul>"
+        },
+        {
+          id: "article4",
+          title: "Article 4",
+          content: "<p>L'âge minimum auquel il est fait référence aux points 1°, 2°, 3°, 4° et 5° de l'article 7 de l'ordonnance, est fixé à dix-huit (18) ans.</p><p>Pour le décompte final des annuités liquidables, tel que prévu à l'article 10 de l'ordonnance, la fraction de semestre égale ou supérieure à trois mois est comptée pour six (6) mois.</p><p>La fraction de semestre inférieure à trois (3) mois est négligée.</p><p>Le maximum des annuités liquidables de la pension de retraite est fixé à quarante (40).</p>"
+        },
+        {
+          id: "article5",
+          title: "Article 5",
+          content: "<p>Le temps servant à la détermination de la moyenne des émoluments afférents aux emplois, grades ou échelons, tel que prévu à l'article 11 de l'ordonnance, correspond aux cinq (5) dernières années.</p><p>Le pourcentage auquel il est fait référence au premier alinéa de l'article 12 de l'ordonnance, pour la détermination de la pension de retraite, est fixé à 1,75% des émoluments de base par annuité liquidable.</p>"
+        },
+        {
+          id: "article6",
+          title: "Article 6",
+          content: "<p>Le pourcentage du salaire minimum interprofessionnel garanti, auquel le montant minimum de la pension ne peut être inférieur, comme il est dit à l'article 12 alinéa 3 de l'ordonnance, est fixé à 50%.</p><p>Le nombre d'années d'anticipation par rapport à la limite d'âge statutaire auquel il est fait référence pour la jouissance de la pension à l'article 13 de l'ordonnance, est fixé à cinq (5).</p><p>Le pourcentage d'abattement par année d'anticipation que doit supporter le fonctionnaire comme il est dit à l'article 13 de l'ordonnance, est de 5%.</p>"
+        },
+        {
+          id: "article7",
+          title: "Article 7",
+          content: "<p>Les pourcentages auxquels il est fait référence à l'alinéa 5 de l'article 15 de l'ordonnance, sont fixés comme suit:</p><p>Le montant cumulé de la rente et de la pension ne peut être inférieur à:</p><ul><li>50% de la dernière solde indiciaire, en cas d'invalidité imputable au service;</li><li>80% de la dernière solde indiciaire, en cas d'invalidité imputable à un acte de dévouement dans un intérêt public.</li></ul><p>Le nombre d'annuités liquidables auquel il est fait référence au dernier alinéa de l'article 15 de l'ordonnance, est fixé à 37, 5.</p>"
+        },
+        {
+          id: "article8",
+          title: "Article 8",
+          content: "<p>Le pourcentage auquel il est fait référence au dernier alinéa de l'article 16 de l'ordonnance, est fixé à 25% de la moyenne des cinq (5) dernières soldes indiciaires.</p>"
+        },
+        {
+          id: "article9",
+          title: "Article 9",
+          content: "<p>Le pourcentage du traitement brut de base du fonctionnaire, que ne doit pas excéder l'allocation d'invalidité, comme il est dit à l'article 19 de l'ordonnance, est fixé à 50%.</p>"
+        },
+        {
+          id: "article10",
+          title: "Article 10",
+          content: "<p>Le pourcentage du taux d'invalidité consécutive à un accident, en deçà duquel l'allocation d'invalidité est suspendue conformément à l'article 23 de l'ordonnance, est fixé à 10%.</p>"
+        },
+        {
+          id: "article11",
+          title: "Article 11",
+          content: "<p>Le pourcentage du taux d'incapacité retenu pour le calcul de la rente viagère visée à l'article 24 de l'ordonnance est de 100%.</p>"
+        },
+        {
+          id: "article12",
+          title: "Article 12",
+          content: "<p>Le pourcentage, prévu à l'article 30 de l'ordonnance, de la pension de retraite obtenue par le fonctionnaire ou qu'il aurait obtenue le jour de son décès, auquel ont droit les conjoints survivants des fonctionnaires monogames, est fixé à 50%.</p><p>Le droit à pension du conjoint survivant est acquis à la condition que le mariage ait été contracté au moins deux (2) ans avant le décès du fonctionnaire.</p><p>Toutefois, dans le cas où il existe au moins un (1) enfant entre les deux conjoints, la condition d'antériorité du mariage par rapport au décès est ramenée à un (1) an.</p>"
+        },
+        {
+          id: "article13",
+          title: "Article 13",
+          content: "<p>Concernant l'article 33 de l'ordonnance:</p><p>Le nombre d'années de jouissance anticipée de la pension de réversion dont peut profiter le conjoint survivant du fonctionnaire décédé, est fixé à cinq (5).</p><p>Le pourcentage d'abattement par année d'anticipation de jouissance de la pension de réversion que doit supporter le conjoint survivant du fonctionnaire décédé, est fixé à 5%.</p>"
+        },
+        {
+          id: "article14",
+          title: "Article 14",
+          content: "<p>L'âge limite auquel il est fait référence à l'article 34 de l'ordonnance, est fixé à vingt et un (21) ans révolus.</p><p>Le pourcentage, prévu à l'article 34 de l'ordonnance, de la pension de retraite obtenue par le fonctionnaire ou qu'il aurait obtenue le jour de son décès, auquel a droit a priori chaque orphelin, est fixé à 10%.</p>"
+        },
+        {
+          id: "article15",
+          title: "Article 15",
+          content: "<p>La limite à laquelle il est fait référence à l'article 35 de l'ordonnance, après le transfert du bénéfice de la pension de conjoint survivant à l'orphelin mineur le plus âgé, est fixée à 40% de la pension obtenue ou qu'aurait pu obtenir le fonctionnaire pour la totalité des orphelins restant.</p>"
+        },
+        {
+          id: "article16",
+          title: "Article 16",
+          content: "<p>Le pourcentage auquel il est fait référence au premier alinéa de l'article 34 de l'ordonnance est fixé à 50%.</p><p>Le nombre d'années de services auquel il est fait référence au deuxième alinéa de l'article 46 de l'ordonnance est fixé à trente (30).</p>"
+        },
+        {
+          id: "article17",
+          title: "Article 17",
+          content: "<p>Le délai mentionné au deuxième alinéa de l'article 49 de l'ordonnance est fixé à cinq (5) ans.</p><p>Le nombre d'années d'arrérages ne pouvant être excédées tel que prévu au deuxième alinéa de l'article 49 de l'ordonnance est fixé à deux (2) années.</p>"
+        },
+        {
+          id: "article18",
+          title: "Article 18",
+          content: "<p>Concernant l'article 55 de l'ordonnance :</p><ul><li>Le pourcentage de retenue prévu au premier alinéa est fixé à 8,33%.</li><li>Le pourcentage de contribution employeur prévu au dernier alinéa est fixé à 16,67%.</li></ul>"
+        },
+        {
+          id: "article19",
+          title: "Article 19",
+          content: "<p>Le montant annuel du traitement soumis à retenue pour pension afférent à l'indice 100, tel que prévu à l'article 58 de l'ordonnance, est fixé à deux cent quatre-vingt mille cent quarante huit (280 148) francs CFA.</p>"
+        },
+        {
+          id: "article20",
+          title: "Article 20",
+          content: "<p>Concernant les Magistrats, l'assiette de calcul de l'allocation viagère, de la pension de réversion de son conjoint et celle de ses ayants droit survivants, telles que prévues à l'article 48 de l'ordonnance, est représentée par la somme du salaire de base, de l'indemnité de résidence et de la prime d'investigation, conformément aux dispositions du décret n°2006-415 du 21 décembre 2006 pris pour l'application de la loi n°94-440 du 16 août 1994, déterminant la composition, l'organisation, les attributions et le fonctionnement de la Cour Suprême, modifiée et complétée par la loi n° 97-243 du 25 avril 1997 relatif aux traitements, indemnités et avantages de toute nature alloués aux Magistrats de la Cour Suprême, et celles du décret n° 2008-15 du 11 février 2008 déterminant les traitements, indemnités et avantages de toutes natures reconnues aux Magistrats en fonction et à la retraite.</p><p>Le traitement soumis à retenues pour pension, les niveaux des indices et la valeur du point d'indice servant au calcul des différentes composantes du traitement, tels que prévus à l'article 59 de l'ordonnance, sont définis conformément aux dispositions des décrets mentionnés au précédent alinéa.</p>"
+        }
+      ]
+    },
+    {
+      title: "SECTION 2: REGIME DES PENSIONS MILITAIRES",
+      articles: [
+        {
+          id: "article21",
+          title: "Article 21",
+          content: "<p>Le nombre minimum d'années de services liquidables dûment validés, tel que prévu aux articles 76 (1°), 76 (2°) et 77 (1°) de l'ordonnance, est fixé à quinze (15).</p>"
+        },
+        {
+          id: "article22",
+          title: "Article 22",
+          content: "<p>Le nombre d'années minimum de services liquidables dûment validés, prévu à l'article 78 de l'ordonnance, permettant au militaire rendu à la vie civile et n'ayant pas acquis droit à pension de retraite, de bénéficier d'une solde de réforme, est fixé à cinq (5).</p>"
+        },
+        {
+          id: "article23",
+          title: "Article 23",
+          content: "<p>L'âge auquel il est fait référence à l'article 79 de l'ordonnance est fixé à dix-huit (18) ans révolus.</p>"
+        },
+        {
+          id: "article24",
+          title: "Article 24",
+          content: "<p>Concernant l'article 82 de l'ordonnance:</p><ul><li>Le nombre minimum d'années de services liquidables dûment validés, entrainant attribution de la bonification quinquennale, est fixé à quinze (15).</li><li>Le nombre d'annuité(s) de bonifications obtenue(s) par période de cinq ans est fixé à un (1).</li><li>Le maximum d'années de bonifications pouvant être accordées est fixé à cinq (5).</li></ul>"
+        },
+        {
+          id: "article25",
+          title: "Article 25",
+          content: "<p>Concernant l'article 88 de l'ordonnance:</p><p>La bonification, prévue au titre du cinquième point de l'article 83 de l'ordonnance, est de deux (2) années.</p>"
+        },
+        {
+          id: "article26",
+          title: "Article 26",
+          content: "<p>Concernant l'article 89 de l'ordonnance:</p><p>La bonification prévue au sixième point de l'article 83 de l'ordonnance au titre du bénéfice pour études préliminaires, est de deux (2) années.</p>"
+        },
+        {
+          id: "article27",
+          title: "Article 27",
+          content: "<p>Le maximum des annuités liquidables, tel que prévu à l'article 90 alinéa 2 de l'ordonnance, est fixé à quarante (40).</p>"
+        },
+        {
+          id: "article28",
+          title: "Article 28",
+          content: "<p>Pour le décompte final des annuités liquidables, la valeur de la fraction de semestre telle qu'indiquée à l'article 90 alinéa 3 de l'ordonnance, est fixée comme suit:</p><ul><li>lorsqu'elle est égale ou supérieure à trois (3) mois, elle est comptée pour six (6);</li><li>lorsqu'elle est inférieure à trois (3) mois, elle est négligée.</li></ul>"
+        },
+        {
+          id: "article29",
+          title: "Article 29",
+          content: "<p>Le nombre d'années de services servant au calcul de la moyenne de la solde budgétaire à prendre en compte pour le calcul de la pension de retraite ou de la solde de réforme, tel que stipulé au premier alinéa de l'article 91 de l'ordonnance, est fixée à cinq (5).</p>"
+        },
+        {
+          id: "article30",
+          title: "Article 30",
+          content: "<p>Concernant l'article 92 de l'ordonnance:</p><ul><li>Le pourcentage prévu au premier alinéa est fixé à 1,75%.</li><li>Le pourcentage du salaire minimum interprofessionnel garanti, auquel le montant minimum de la pension ne peut être inférieur, comme il est dit à l'article 92 alinéa 3 de l'ordonnance, est fixé à 50%.</li></ul>"
+        },
+        {
+          id: "article31",
+          title: "Article 31",
+          content: "<p>Le montant de la solde de réforme, tel que prévu à l'article 93 de l'ordonnance, est fixé au tiers de la solde de base.</p><p>Toutefois, lorsque le départ à la vie civile du militaire résulte d'une révocation, ce montant est ramené au quart de la solde de base.</p>"
+        },
+        {
+          id: "article32",
+          title: "Article 32",
+          content: "<p>Le nombre d'années d'anticipation par rapport à la limite d'âge statutaire auquel il est fait référence pour la jouissance de la pension à l'article 94 alinéa 2 de l'ordonnance, est fixé à cinq (5).</p><p>Le pourcentage d'abattement par année d'anticipation que doit supporter le militaire, comme il est dit à l'article 94 alinéa 2 de l'ordonnance, est de 5%.</p>"
+        },
+        {
+          id: "article33",
+          title: "Article 33",
+          content: "<p>Concernant l'article 102 de l'ordonnance:</p><p>Ne sont prises en considération que les infirmités entraînant un degré d'invalidité au moins égal à:</p><ul><li>15% en cas d'infirmité simple;</li><li>30% en cas d'infirmités multiples.</li></ul>"
+        },
+        {
+          id: "article34",
+          title: "Article 34",
+          content: "<p>Le délai de transformation de la pension temporaire d'invalidité en rente viagère définitive, tel que mentionné à l'article 103 de l'ordonnance, est fixé comme suit:</p><ul><li>deux (2) ans, dans le cas où la ou les infirmités résultent uniquement de blessures;</li><li>cinq (5) ans, dans le cas où la ou les infirmités résultent de maladie.</li></ul>"
+        },
+        {
+          id: "article35",
+          title: "Article 35",
+          content: "<p>Le taux d'aggravation minimum de l'infirmité, nécessaire pour entraîner une révision de la pension d'invalidité, tel que prévu aux alinéas 2 et 3 de l'article 105 de l'ordonnance, est fixé à 10%.</p>"
+        },
+        {
+          id: "article36",
+          title: "Article 36",
+          content: "<p>Concernant les trois pourcentages prévus à l'article 118 de l'ordonnance, le montant de la pension d'invalidité est majoré :</p><ul><li>de 30% pour le grand mutilé de guerre;</li><li>de 20% pour le grand mutilé;</li><li>de 10% pour le grand invalide.</li></ul>"
+        },
+        {
+          id: "article37",
+          title: "Article 37",
+          content: "<p>Concernant l'article 119 de l'ordonnance:</p><ul><li>Le pourcentage prévu au dernier alinéa est fixé à 100%.</li><li>Les modalités de répartition du montant de la rente viagère, prévues au dernier alinéa, sont fixées comme suit: 50% pour le conjoint survivant et 50% pour les orphelins sans que le taux revenant à chaque orphelin puisse excéder 10%.</li></ul>"
+        },
+        {
+          id: "article38",
+          title: "Article 38",
+          content: "<p>La retenue prévue à l'article 120 de l'ordonnance est fixée à 8,33% de la solde de base soumise à retenue pour pension afférente au grade et à l'échelon occupés par le militaire.</p><p>Le pourcentage de contribution employeur prévu au deuxième alinéa est fixé à 16,67%.</p>"
+        },
+        {
+          id: "article39",
+          title: "Article 39",
+          content: "<p>Le délai mentionné au deuxième alinéa de l'article 124 de l'ordonnance, est fixé à cinq (5) ans.</p><p>Le nombre d'années d'arrérages ne pouvant être excédées, tel que prévu au deuxième alinéa de l'article 124 de l'ordonnance est fixé à deux (2) années.</p>"
+        },
+        {
+          id: "article40",
+          title: "Article 40",
+          content: "<p>Le pourcentage prévu à l'article 134 de l'ordonnance est fixé à 50%.</p>"
+        },
+        {
+          id: "article41",
+          title: "Article 41",
+          content: "<p>Le pourcentage prévu à l'article 142 de l'ordonnance est fixé à 50%.</p>"
+        },
+        {
+          id: "article42",
+          title: "Article 42",
+          content: "<p>Le pourcentage de la pension de retraite ou de la solde de réforme et de la pension d'invalidité auquel a droit, au titre de la réversion, le conjoint survivant d'un militaire décédé, tel que prévu à l'article 146 de l'ordonnance, est fixé à 50%.</p><p>Le droit à pension du conjoint survivant est acquis à la condition que le mariage ait été contracté au moins deux (2) ans avant le décès du militaire.</p><p>Toutefois, dans le cas où il existe au moins un (1) enfant entre les deux conjoints, la condition d'antériorité du mariage par rapport au décès est ramenée à un (1) an.</p>"
+        },
+        {
+          id: "article43",
+          title: "Article 43",
+          content: "<p>Concernant l'article 149 de l'ordonnance:</p><ul><li>Le nombre d'années de jouissance anticipée de la pension de réversion dont peut profiter le conjoint survivant du militaire décédé est fixé à cinq (5).</li><li>Le pourcentage d'abattement par année d'anticipation de jouissance de la pension de réversion que doit supporter le conjoint survivant du militaire décédé, est fixé à 5%.</li></ul>"
+        },
+        {
+          id: "article44",
+          title: "Article 44",
+          content: "<p>Concernant l'article 151 de l'ordonnance, le pourcentage de la pension de retraite, de la solde de réforme, de la pension d'invalidité ou de la rente viagère auquel a droit chaque orphelin mineur du militaire décédé, dont la filiation est légalement établie, est fixé à 10%, dans la limite de 50% pour tous les orphelins mineurs.</p>"
+        }
+      ]
+    },
+    {
+      title: "SECTION 3: REGIME DES EX-AGENTS TEMPORAIRES...",
+      articles: [
+        {
+          id: "article45",
+          title: "Article 45",
+          content: "<p>Concernant l'article 159 de l'ordonnance:</p><ul><li>Le pourcentage de retenue prévu au premier alinéa est de 8,33%.</li><li>Le pourcentage de contribution employeur prévu au deuxième alinéa est de 16,67%.</li></ul>"
+        },
+        {
+          id: "article46",
+          title: "Article 46",
+          content: "<p>L'âge minimum et le nombre minimum d'années de services effectifs, prévus à l'article 161 de l'ordonnance, sont respectivement fixés à soixante (60) ans et quinze (15) ans.</p>"
+        },
+        {
+          id: "article47",
+          title: "Article 47",
+          content: "<p>L'âge auquel il est fait référence à l'article 162 de l'ordonnance, est fixé à dix-huit (18) ans révolus.</p>"
+        },
+        {
+          id: "article48",
+          title: "Article 48",
+          content: "<p>Concernant le premier alinéa de l'article 163 de l'ordonnance, le nombre d'années de services servant au calcul du salaire moyen est fixé à cinq (5) et le taux d'annuité par année de services à 1,75%.</p><p>Le seuil du nombre d'années de services, prévu à l'alinéa 2, est de quinze (15) ans, et le maximum des annuités liquidables, prévu au dernier alinéa, est fixé à trente (30).</p>"
+        },
+        {
+          id: "article49",
+          title: "Article 49",
+          content: "<p>Pour le décompte final des annuités liquidables, la valeur de la fraction de semestre, telle qu'indiquée à l'article 164 de l'ordonnance, est fixée comme suit:</p><ul><li>lorsqu'elle est égale ou supérieure à trois (3) mois, elle est comptée pour six (6);</li><li>lorsqu'elle est inférieure à trois (3) mois, elle est négligée.</li></ul>"
+        },
+        {
+          id: "article50",
+          title: "Article 50",
+          content: "<p>Le nombre d'années d'anticipation par rapport à la limite d'âge statutaire, auquel il est fait référence pour la jouissance de l'allocation viagère à l'article 166 de l'ordonnance, est fixé à cinq (5).</p><p>Le pourcentage d'abattement par année d'anticipation que doit supporter l'ex-agent temporaire, comme il est dit à l'article 166 de l'ordonnance, est de 5%.</p>"
+        }
+      ]
+    },
+    {
+      title: "SECTION 4: REGIME DES ANCIENS MEMBRES DU CONSEIL ECONOMIQUE ET SOCIAL",
+      articles: [
+        {
+          id: "article51",
+          title: "Article 51",
+          content: "<p>Concernant l'article 177 de l'ordonnance:</p><ul><li>Le pourcentage de retenue prévu au premier alinéa est de 8,33%.</li><li>Le pourcentage de contribution employeur prévu au troisième alinéa est de 16,67%.</li></ul>"
+        },
+        {
+          id: "article52",
+          title: "Article 52",
+          content: "<p>Concernant l'article 179 de l'ordonnance:</p><ul><li>L'âge prévu au premier point est fixé à soixante (60) ans révolus.</li><li>Le nombre minimum d'années prévu au deuxième point est fixé à dix (10) ans.</li></ul>"
+        },
+        {
+          id: "article53",
+          title: "Article 53",
+          content: "<p>Concernant l'article 180 de l'ordonnance:</p><ul><li>Le pourcentage prévu au premier alinéa est fixé à 2%.</li><li>Le pourcentage prévu au deuxième alinéa est fixé à 75%.</li></ul>"
+        },
+        {
+          id: "article54",
+          title: "Article 54",
+          content: "<p>Concernant l'article 181 de l'ordonnance:</p><ul><li>L'âge prévu au premier point est fixé à cinquante cinq (55) ans révolus.</li><li>Le nombre minimum d'années prévu au deuxième point est fixé à dix (10) ans.</li></ul>"
+        },
+        {
+          id: "article55",
+          title: "Article 55",
+          content: "<p>Concernant l'article 182 de l'ordonnance:</p><ul><li>Le pourcentage prévu au premier alinéa est fixé à 1,50%.</li><li>Le pourcentage, prévu au deuxième alinéa, est fixé à 50%.</li></ul>"
+        },
+        {
+          id: "article56",
+          title: "Article 56",
+          content: "<p>Le pourcentage prévu au premier alinéa de l'article 183 de l'ordonnance est fixé à 50%.</p><p>Le droit à pension du conjoint survivant est acquis à la condition que le mariage ait été contracté au moins deux (2) ans avant le décès du membre ou de l'ancien membre du Conseil Economique et Social.</p><p>Toutefois, dans le cas où il existe au moins un (1) enfant entre les deux conjoints, la condition d'antériorité du mariage par rapport au décès est ramenée à un (1) an.</p>"
+        },
+        {
+          id: "article57",
+          title: "Article 57",
+          content: "<p>Concernant l'article 187 de l'ordonnance:</p><ul><li>Le pourcentage prévu au premier alinéa, pour le montant de la pension d'orphelin, est fixé à 10%:</li><li>Le pourcentage prévu au troisième alinéa est fixé à 50%.</li></ul>"
+        },
+        {
+          id: "article58",
+          title: "Article 58",
+          content: "<p>Le pourcentage prévu au premier alinéa de l'article 189 de l'ordonnance, concernant le montant minimum de la pension d'invalidité, est fixé à 22,5%.</p><p>Le pourcentage prévu au deuxième alinéa de l'article 177 de l'ordonnance est fixé à 75%.</p>"
+        },
+        {
+          id: "article59",
+          title: "Article 59",
+          content: "<p>Le pourcentage prévu à l'article 190 de l'ordonnance est fixé à 75%.</p>"
+        }
+      ]
+    },
+    {
+      title: "SECTION 5: REGIME DES AMBASSADEURS",
+      articles: [
+        {
+          id: "article60",
+          title: "Article 60",
+          content: "<p>Concernant l'article 202 de l'ordonnance:</p><ul><li>Le nombre minimum d'années prévu au premier alinéa est de dix (10) années.</li><li>L'âge prévu au même alinéa, à partir duquel il est possible de jouir de l'allocation viagère, est fixé à soixante (65) ans.</li></ul>"
+        },
+        {
+          id: "article61",
+          title: "Article 61",
+          content: "<p>Le taux de l'allocation viagère prévu à l'article 203 de l'ordonnance est fixé à 5,25% par annuité du salaire de base, sans toutefois excéder 80% de celui-ci.</p>"
+        },
+        {
+          id: "article62",
+          title: "Article 62",
+          content: "<p>Concernant l'article 204 de l'ordonnance:</p><ul><li>Le pourcentage de retenue prévu au premier alinéa est de 8,33%.</li><li>Le pourcentage de contribution employeur prévu au deuxième alinéa est de 16,67%.</li></ul>"
+        },
+        {
+          id: "article63",
+          title: "Article 63",
+          content: "<p>Concernant l'article 205 de l'ordonnance:</p><ul><li>Le pourcentage prévu au premier point est de 50%.</li><li>Le pourcentage prévu au deuxième point est de 10%, sans que le total des pensions d'orphelins puisse excéder 50%.</li></ul>"
+        },
+        {
+          id: "article64",
+          title: "Article 64",
+          content: "<p>Le pourcentage prévu au deuxième alinéa de l'article 206 de l'ordonnance est fixé à 50%.</p>"
+        }
+      ]
+    },
+    {
+      title: "SECTION 6: DISPOSITIONS FINALES",
+      articles: [
+        {
+          id: "article65",
+          title: "Article 65",
+          content: "<p>Pour les personnels faisant valoir leurs droits à pension de retraite, pension ou allocation d'invalidité, solde de réforme ou allocation viagère, à compter du 1er janvier 2012, le taux à prendre en compte pour le calcul est celui déterminé par les dispositions du présent décret, indépendamment de la période de cotisation.</p>"
+        },
+        {
+          id: "article66",
+          title: "Article 66",
+          content: "<p>Le Ministre d'Etat, Ministre de l'Emploi, des Affaires Sociales et de la Solidarité, le Ministre de l'Economie et des Finances, le Ministre de la Fonction Publique et de la Réforme Administrative et le Ministre auprès du Président de la République, chargé de la Défense sont responsables, chacun en qui le concerne, de l'exécution du présent décret qui sera publié au Journal Officiel de la République de Côte d'Ivoire.</p>"
+        }
+      ]
+    },
+    {
+      title: "SIGNATURES",
+      articles: [
+        {
+          id: "signature",
+          title: "Fait à Abidjan",
+          content: "<div class='signature-block'>" +
+                   "<p>Fait à Abidjan, le 18 avril 2012</p>" +
+                   "<p><strong>Alassane OUATTARA</strong></p>" +
+                   "</div>"
+        },
+        {
+          id: "certification",
+          title: "Copie certifiée conforme",
+          content: "<div class='certification-block'>" +
+                   "<p>Copie certifiée conforme à l'original</p>" +
+                   "<p>Le Secrétaire Général du Gouvernement</p>" +
+                   "<p><strong>Sansar KAMBILE</strong></p>" +
+                   "<p>Magistrat</p>" +
+                   "</div>"
+        }
+      ]
+    }
+  ]
+};
+// --- FIN DU CONTENU DU DECRET ---
+
+
+function renderLaw(data){
+  const wrapper = document.getElementById('mainWrapper');
+  wrapper.innerHTML = '';
+  const toc = document.getElementById('tocList');
+  toc.innerHTML = '';
+  const articleEls = [];
+
+  if (Array.isArray(data.chapters)) {
+    data.chapters.forEach((ch, ci) => {
+      const sec = document.createElement('section');
+      sec.className = 'group';
+      const h2 = document.createElement('h2');
+      h2.textContent = ch.title || `Chapitre ${ci+1}`;
+      sec.appendChild(h2);
+
+      (ch.articles || []).forEach((a, ai) => {
+        const art = document.createElement('div');
+        art.className = 'article';
+        art.id = a.id || `art_${ci}_${ai}`;
+
+        const header = document.createElement('div');
+        header.className = 'article-header';
+        const h3 = document.createElement('h3');
+        h3.textContent = a.title || `Article ${ai+1}`;
+        const fsBtn = document.createElement('button');
+        fsBtn.className = 'open-fs';
+        fsBtn.title = 'Plein écran';
+        fsBtn.innerHTML = '<i class="fas fa-maximize"></i>';
+        fsBtn.addEventListener('click', () => openFullscreenById(art.id));
+        header.appendChild(h3);
+        header.appendChild(fsBtn);
+
+        const content = document.createElement('div');
+        content.className = 'article-content';
+        content.innerHTML = a.content || '';
+
+        art.appendChild(header);
+        art.appendChild(content);
+        sec.appendChild(art);
+        articleEls.push(art);
+      });
+
+      wrapper.appendChild(sec);
+
+      const chapTitle = document.createElement('div');
+      chapTitle.textContent = ch.title || `Chapitre ${ci+1}`;
+      chapTitle.style.margin = '8px 0 4px';
+      chapTitle.style.color = '#1a4177';
+      chapTitle.style.fontWeight = '700';
+      toc.appendChild(chapTitle);
+      const sub = document.createElement('div');
+      sub.className = 'toc-sub';
+      (ch.articles||[]).forEach((a, ai) => {
+        const link = document.createElement('a');
+        const id = a.id || `art_${ci}_${ai}`;
+        link.href = `#${id}`;
+        link.textContent = a.title || `Article ${ai+1}`;
+        link.addEventListener('click', closeToc);
+        sub.appendChild(link);
+      });
+      toc.appendChild(sub);
+    });
+  } else {
+    // Fallback for flat structure (not used here but good to keep)
+    const sec = document.createElement('section');
+    sec.className = 'group';
+    const h2 = document.createElement('h2');
+    h2.textContent = data.title || 'Texte intégral';
+    sec.appendChild(h2);
+    (data.articles || []).forEach((a, ai) => {
+      const art = document.createElement('div');
+      art.className = 'article';
+      art.id = a.id || `article_${ai}`;
+      const header = document.createElement('div');
+      header.className = 'article-header';
+      const h3 = document.createElement('h3');
+      h3.textContent = a.title || `Article ${ai+1}`;
+      const fsBtn = document.createElement('button');
+      fsBtn.className = 'open-fs';
+      fsBtn.title = 'Plein écran';
+      fsBtn.innerHTML = '<i class="fas fa-maximize"></i>';
+      fsBtn.addEventListener('click', () => openFullscreenById(art.id));
+      header.appendChild(h3);
+      header.appendChild(fsBtn);
+      const content = document.createElement('div');
+      content.className = 'article-content';
+      content.innerHTML = a.content || '';
+      art.appendChild(header);
+      art.appendChild(content);
+      sec.appendChild(art);
+      articleEls.push(art);
+
+      const link = document.createElement('a');
+      link.href = `#${art.id}`;
+      link.textContent = a.title || `Article ${ai+1}`;
+      link.addEventListener('click', closeToc);
+      document.getElementById('tocList').appendChild(link);
+    });
+    wrapper.appendChild(sec);
+  }
+  window.__articlesOrder = articleEls.map(el => el.id);
+}
+
+// TOC controls
+const tocBtn = document.getElementById('tocFloatBtn');
+const tocHeaderBtn = document.getElementById('tocHeaderBtn');
+const tocPanel = document.getElementById('tocPanel');
+const tocOverlay = document.getElementById('tocOverlay');
+function openToc(){ tocPanel.classList.add('open'); tocOverlay.classList.add('show'); }
+function closeToc(){ tocPanel.classList.remove('open'); tocOverlay.classList.remove('show'); }
+tocBtn.addEventListener('click', openToc);
+tocHeaderBtn.addEventListener('click', openToc);
+tocOverlay.addEventListener('click', closeToc);
+
+// Voice reading
+const synth = window.speechSynthesis;
+let speakingId = null;
+const now = document.getElementById('nowReading');
+function textFrom(el){ return el.querySelector('.article-content')?.innerText?.trim() || ''; }
+function highlight(id, on){ const el = document.getElementById(id); if(!el) return; el.classList.toggle('reading', !!on); }
+function speakById(id){
+  const el = document.getElementById(id); if(!el) return;
+  const text = textFrom(el); if(!text) return;
+  stopSpeaking();
+  const ut = new SpeechSynthesisUtterance(text); ut.lang='fr-FR'; ut.rate=1;
+  ut.onend = () => { highlight(id,false); speakingId=null; now.textContent='Prêt'; };
+  synth.speak(ut); speakingId=id; highlight(id,true);
+  now.textContent = 'Lecture : ' + (el.querySelector('.article-header h3')?.textContent || '');
+}
+function pauseSpeaking(){ if(synth.speaking && !synth.paused) synth.pause(); }
+function resumeSpeaking(){ if(synth.paused) synth.resume(); }
+function stopSpeaking(){ if(synth.speaking){ synth.cancel(); } if(speakingId){ highlight(speakingId,false); speakingId=null; } }
+document.getElementById('vPlay').addEventListener('click', () => { const visible = findMostVisibleArticleId() || window.__articlesOrder?.[0]; if(visible) speakById(visible); });
+document.getElementById('vPause').addEventListener('click', () => { if(synth.paused) resumeSpeaking(); else pauseSpeaking(); });
+document.getElementById('vStop').addEventListener('click', stopSpeaking);
+function findMostVisibleArticleId(){ const arts = Array.from(document.querySelectorAll('.article')); let best=null, bestArea=0; const vh = window.innerHeight; arts.forEach(a=>{ const r=a.getBoundingClientRect(); const ov=Math.max(0, Math.min(vh,r.bottom)-Math.max(0,r.top)); if(ov>bestArea){ bestArea=ov; best=a; } }); return best?.id || null; }
+
+// Fullscreen
+const fsOverlay = document.getElementById('fsOverlay');
+const fsTitle = document.getElementById('fsTitle');
+const fsBody = document.getElementById('fsBody');
+const fsPrev = document.getElementById('fsNavPrev');
+const fsNext = document.getElementById('fsNavNext');
+const fsClose = document.getElementById('fsClose');
+let fsCurrentIndex = -1;
+function openFullscreenById(id){
+  const order = window.__articlesOrder || []; const idx = order.indexOf(id); if(idx === -1) return;
+  fsCurrentIndex = idx;
+  const el = document.getElementById(id);
+  fsTitle.textContent = el.querySelector('.article-header h3')?.textContent || 'Article';
+  fsBody.innerHTML = el.querySelector('.article-content')?.innerHTML || '';
+  fsOverlay.classList.add('show'); fsOverlay.setAttribute('aria-hidden','false');
+  updateFsNav();
+}
+function closeFullscreen(){ fsOverlay.classList.remove('show'); fsOverlay.setAttribute('aria-hidden','true'); }
+function updateFsNav(){ const order = window.__articlesOrder || []; fsPrev.style.display = fsCurrentIndex > 0 ? 'grid' : 'none'; fsNext.style.display = fsCurrentIndex < order.length - 1 ? 'grid' : 'none'; }
+fsClose.addEventListener('click', closeFullscreen);
+fsPrev.addEventListener('click', () => { const order = window.__articlesOrder || []; if(fsCurrentIndex > 0) openFullscreenById(order[fsCurrentIndex - 1]); });
+fsNext.addEventListener('click', () => { const order = window.__articlesOrder || []; if(fsCurrentIndex < order.length - 1) openFullscreenById(order[fsCurrentIndex + 1]); });
+
+// Init
+renderLaw(lawData);
+</script>
+</body>
+</html>
