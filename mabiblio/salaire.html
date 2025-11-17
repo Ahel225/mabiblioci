@@ -482,7 +482,7 @@ function isAgentSante(title='', grade=''){
   const g = (grade||'').toLowerCase();
   
   // Grade C1
-  if ((/aide.soignant|agent d'hygiène spécialisé|agent d'hygiene specialise/.test(t)) && g === 'c1') return true;
+  if ((/aide.soignant|agent d'hygiène specialisé|agent d'hygiene specialise/.test(t)) && g === 'c1') return true;
   
   // Grade C3
   if ((/auxiliaire de soins infirmiers|auxiliaire de soins obstétricaux|auxiliaire des techniques sanitaires/.test(t)) && g === 'c3') return true;
@@ -1096,7 +1096,21 @@ function recalc(){
   }
 
   // 2) Calculs de base
-  const indice = getIndice(map, gradeCode, selCls.value, selEch.value);
+  // Récupérer l'indice de base
+let indice = getIndice(map, gradeCode, selCls.value, selEch.value);
+
+// --- DEBUT MODIFICATION : Ajout de 50 points ---
+// Récupérer le titre de l'emploi pour la vérification
+const jobTitle_raw = card.getAttribute('data-emploi') || '';
+const jobTitle_norm = jobTitle_raw.toLowerCase();
+
+// Appliquer le bonus de 50 points pour "Agent d'hygiène" et "Agent d'hygiène specialisé"
+if (indice != null && (
+      jobTitle_norm === "agent d'hygiène" 
+   )) {
+  indice += 50;
+}
+// --- FIN MODIFICATION ---
   const vp = getVP();
   const base = (indice!=null && vp>0) ? indice*vp : 0;
 
