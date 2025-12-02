@@ -1812,10 +1812,12 @@ if (situation === 'marie' && enfants == 2) parts = 3;
 if (situation === 'marie' && enfants == 3) parts = 3.5;
 if (situation === 'marie' && enfants >= 4) parts = 4;
 if (situation !== 'marie'){
-if (enfants == 1) parts = 1.5;
-if (enfants == 2) parts = 2;
-if (enfants == 3) parts = 2.5;
-if (enfants >= 4) parts = 3.5;
+if (enfants == 1) parts = 2;
+if (enfants == 2) parts = 2.5;
+if (enfants == 3) parts = 3;
+if (enfants == 4) parts = 3.5;
+if (enfants == 5) parts = 4;
+if (enfants == 6) parts = 4.5;
 }
 
 const ricf = reductionRICF(parts);
