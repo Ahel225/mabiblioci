@@ -2579,108 +2579,255 @@ btn.textContent = retenues.classList.contains('open') ? 'Masquer retenues' : 'Vo
 });
 
 try { onModeChange(); } catch(e){}
-
-function recalc(){
-const selectedHierarchie = selHierarchie.value;
-const selectedEchelon = selEch.value;
-const indice = GREFFIER[jobTitle][selectedHierarchie][selectedEchelon];
-const vp = getVP();
-const base = (indice != null && vp > 0) ? indice * vp : 0;
-
-const residence = base * 0.15;
-const transport = getTransport();
-
-
-// Indemnités spécifiques aux greffiers
-const indemnites = greffierIndemnites(jobTitle);
-const logement = indemnites.logement;
-const judicature = indemnites.judicature;
-const sujet = indemnites.sujet;
-const chef = greffierChefIndemnite(jobTitle);
-
-// Ajouter l'allocation familiale
-const allocFamiliale = getAllocationFamiliale();
-
-const totalBrut = base + residence + transport + logement + judicature + sujet + chef + allocFamiliale;
-
-// Réafficher les lignes
-rows.innerHTML = "";
-addLine('Indice', indice, true);
-addLine('Salaire de base', base, false, 'salaire-base');
-addLine('Indemnité de résidence', residence);
-
-if (allocFamiliale > 0) {
-addLine('Allocation familiale', allocFamiliale);
 }
 
-addLine('Prime de transport', transport);
-if (logement>0){
-addLine('Indemnité de logement', logement);
-}
-addLine('Indemnité de judicature', judicature);
-addLine('Indemnité de sujétion', sujet);
+function buildPoliceCard(card, fam, grade, corpsGrades) {
+    const famName = fam.nom;
+    const gradeCode = grade.code; // Ex: "SOUS OFFICIERS"
 
-if (chef > 0) {
-addLine('Indemnité de chef de juridiction', chef);
-}
+    // 1. Liste déroulante des grades
+    const selGrade = document.createElement('select');
+    selGrade.className = 'select-sm';
 
-// Totaux
-totalBox.innerHTML = "";
-const tot = document.createElement('div'); tot.className='line';
-const l = document.createElement('div'); l.className='label'; l.textContent = 'TOTAL BRUT ESTIMÉ';
-const a = document.createElement('div'); a.className='amount'; a.textContent = fmtMoney(totalBrut);
-tot.appendChild(l); tot.appendChild(a);
-totalBox.appendChild(tot);
+    // Ajouter tous les grades disponibles pour ce corps
+    const grades = Object.keys(corpsGrades);
+    grades.forEach(g => {
+        const o = document.createElement('option');
+        o.value = g;
+        o.textContent = g;
+        selGrade.appendChild(o);
+    });
 
-// Mode NET
-if (typeof isNetMode==='function' && isNetMode()){
-btn.classList.remove('hidden');
+    // 2. Liste déroulante des échelons (dépendante du grade)
+    const selEch = document.createElement('select');
+    selEch.className = 'select-sm';
 
-const itsObj = calcITSMonthly
-? calcITSMonthly(indice, vp, (statutSel&&statutSel.value)||'celibataire', (enfantsSel&&enfantsSel.value)||0, false)
-: {impot_net:0};
+    // Fonction pour remplir les échelons
+    function updateEchelons() {
+        selEch.innerHTML = '';
+        const currentGrade = selGrade.value;
+        const echelons = corpsGrades[currentGrade] || {};
 
-const mugefci = (Number(indice||0) < 1000) ? (base*0.03) : 7004;
-const pension = base * 0.0833;
-const pensionCompl = base * 0.05;
-const totalRetenues = (itsObj.impot_net||0) + mugefci + pension + pensionCompl;
-const net = totalBrut - totalRetenues;
+        // Trier les échelons par ordre numérique
+        const sortedEchelons = Object.keys(echelons).sort((a, b) => parseInt(a) - parseInt(b));
 
-retenues.innerHTML = '';
-const make = (lab, val)=>{
-const d=document.createElement('div'); d.className='line';
-const ll=document.createElement('div'); ll.className='label'; ll.textContent=lab;
-const aa=document.createElement('div'); aa.className='amount'; aa.textContent=fmtMoney(val);
-d.appendChild(ll); d.appendChild(aa); retenues.appendChild(d);
-};
+        sortedEchelons.forEach(e => {
+            const o = document.createElement('option');
+            o.value = e;
+            o.textContent = "Échelon " + e;
+            selEch.appendChild(o);
+        });
+    }
 
-make('ITS (mensuel)', itsObj.impot_net||0);
-make('MUGEFCI', mugefci);
-make('Retenue pension', pension);
-make('Pension complémentaire', pensionCompl);
-make('Total retenues', totalRetenues);
+    // Initialiser les échelons au chargement
+    updateEchelons();
 
-totalBox.querySelectorAll('.line').forEach(n=>{
-const lab = n.querySelector && n.querySelector('.label');
-if(lab && lab.textContent.trim().toUpperCase() === 'SALAIRE NET'){ n.remove(); }
-});
+    // Construction de l'interface (HTML)
+    const ctrls = document.createElement('div');
+    ctrls.className = 'controls';
+    
+    const w1 = document.createElement('div');
+    w1.innerHTML = "<label>Grade</label>";
+    w1.appendChild(selGrade);
 
-const netLine = document.createElement('div'); netLine.className='line';
-const nlab = document.createElement('div'); nlab.className='label'; nlab.textContent='SALAIRE NET';
-const namt = document.createElement('div');  namt.className='amount'; namt.textContent=fmtMoney(net);
-netLine.appendChild(nlab); netLine.appendChild(namt);
-totalBox.appendChild(netLine);
+    const w2 = document.createElement('div');
+    w2.innerHTML = "<label>Échelon</label>";
+    w2.appendChild(selEch);
 
-} else {
-btn.classList.add('hidden');
-retenues.classList.remove('open');
-retenues.innerHTML='';
-totalBox.querySelectorAll('.line').forEach(n=>{
-const lab = n.querySelector && n.querySelector('.label');
-if(lab && lab.textContent.trim().toUpperCase() === 'SALAIRE NET'){ n.remove(); }
-});
-}
-}
+    ctrls.appendChild(w1);
+    ctrls.appendChild(w2);
+
+    const rows = document.createElement('div');
+    rows.className = 'rows';
+
+    // Fonction utilitaire pour ajouter une ligne
+    function addLine(label, amount, raw = false, key = null) {
+        const line = document.createElement('div');
+        line.className = 'line';
+        const l = document.createElement('div'); l.className = 'label'; l.textContent = label;
+        const a = document.createElement('div'); a.className = 'amount'; a.textContent = raw ? fmtRaw(amount) : fmtMoney(amount);
+        if (key) line.setAttribute('data-key', key);
+        line.appendChild(l); line.appendChild(a);
+        rows.appendChild(line);
+    }
+
+    const totalBox = document.createElement('div');
+    totalBox.className = 'rows total';
+
+    // Bouton pour afficher/masquer les retenues (Mode Net)
+    const btn = document.createElement('button');
+    btn.textContent = 'Voir retenues';
+    btn.className = 'badge button toggle hidden';
+    btn.style.marginTop = '8px';
+
+    const retenues = document.createElement('div');
+    retenues.className = 'retenues';
+
+    // Assemblage de la carte
+    card.appendChild(ctrls);
+    card.appendChild(rows);
+    card.appendChild(totalBox);
+    card.appendChild(btn);
+    card.appendChild(retenues);
+
+    // Event listener pour le bouton retenues
+    btn.addEventListener('click', () => {
+        retenues.classList.toggle('open');
+        btn.textContent = retenues.classList.contains('open') ? 'Masquer retenues' : 'Voir retenues';
+    });
+
+    // --- FONCTION DE CALCUL (INTERNE) ---
+    function recalc() {
+        const selectedGrade = selGrade.value;
+        const selectedEchelon = selEch.value;
+        const indice = corpsGrades[selectedGrade][selectedEchelon];
+        const vp = getVP(); // Récupère la valeur du point globale
+        
+        // Calcul du Salaire de Base
+        const base = (indice != null && vp > 0) ? indice * vp : 0;
+
+        // Indemnités standards
+        const residence = base * 0.15;
+        const transport = getTransport();
+        const logement = housingFor(gradeCode, selectedGrade, famName);
+
+        // --- INDEMNITÉS SPÉCIFIQUES POLICE ---
+        const sujettionPolice = base * 0.10;  // 10%
+        const risquesPolice = base * 0.175;    // 17.5%
+        const chargeMilitaire = base * 0.15;  // 15% (Ajout demandé)
+
+        // Bail (non inclus dans le brut, affiché à part)
+        const tauxBail = getPoliceBail(gradeCode, selectedGrade);
+
+        // Allocation familiale
+        const allocFamiliale = getAllocationFamiliale();
+
+        // Total Brut (incluant la nouvelle charge militaire)
+        const totalBrut = base + residence + transport + logement + 
+                          sujettionPolice + risquesPolice + chargeMilitaire + 
+                          allocFamiliale;
+
+        // --- AFFICHAGE LIGNES (Brut) ---
+        rows.innerHTML = "";
+        addLine('Indice', indice, true);
+        addLine('Salaire de base', base, false, 'salaire-base');
+        addLine('Indemnité de résidence (15%)', residence);
+
+        if (allocFamiliale > 0) {
+            addLine('Allocation familiale', allocFamiliale);
+        }
+
+        addLine('Prime de transport', transport);
+        if (logement > 0) {
+            addLine('Indemnité de logement', logement);
+        }
+
+        // Affichage des primes police
+        addLine('Indemnité de sujétion (10%)', sujettionPolice);
+        addLine('Indemnité de risques (17.5%)', risquesPolice);
+        addLine('Charge Militaire (15%)', chargeMilitaire); // Nouvelle ligne
+
+        // Total Brut
+        totalBox.innerHTML = "";
+        const tot = document.createElement('div'); tot.className = 'line';
+        const l = document.createElement('div'); l.className = 'label'; l.textContent = 'TOTAL BRUT ESTIMÉ';
+        const a = document.createElement('div'); a.className = 'amount'; a.textContent = fmtMoney(totalBrut);
+        tot.appendChild(l); tot.appendChild(a);
+        totalBox.appendChild(tot);
+
+        // Affichage Bail (Informatif)
+        if (tauxBail > 0) {
+            const bailLine = document.createElement('div');
+            bailLine.className = 'line';
+            const bailLabel = document.createElement('div');
+            bailLabel.className = 'label';
+            bailLabel.textContent = 'Taux de bail (non inclus)';
+            const bailAmount = document.createElement('div');
+            bailAmount.className = 'amount';
+            bailAmount.textContent = fmtMoney(tauxBail);
+            bailLine.appendChild(bailLabel);
+            bailLine.appendChild(bailAmount);
+            totalBox.appendChild(bailLine);
+        }
+
+        // --- CALCUL NET & RETENUES ---
+        if (typeof isNetMode === 'function' && isNetMode()) {
+            btn.classList.remove('hidden');
+
+            // Calcul de l'impôt (ITS)
+            // Note: On passe 'false' pour le bonus cadre santé
+            const situation = (document.getElementById('statut_matri')?.value) || 'celibataire';
+            const nbEnfants = (document.getElementById('nb_enfants')?.value) || 0;
+            
+            const itsObj = calcITSMonthly
+                ? calcITSMonthly(indice, vp, situation, nbEnfants, false)
+                : { impot_net: 0 };
+
+            // Calcul des autres retenues
+            const mugefci = (Number(indice || 0) < 1000) ? (base * 0.03) : 7004;
+            const pension = base * 0.0833;
+            const pensionCompl = base * 0.05;
+
+            const totalRetenues = (itsObj.impot_net || 0) + mugefci + pension + pensionCompl;
+            const net = totalBrut - totalRetenues;
+
+            // Remplissage du panneau retenues
+            retenues.innerHTML = '';
+            const makeRetenue = (lab, val) => {
+                const d = document.createElement('div'); d.className = 'line';
+                const ll = document.createElement('div'); ll.className = 'label'; ll.textContent = lab;
+                const aa = document.createElement('div'); aa.className = 'amount'; aa.textContent = fmtMoney(val);
+                d.appendChild(ll); d.appendChild(aa); retenues.appendChild(d);
+            };
+
+            makeRetenue('ITS (mensuel)', itsObj.impot_net || 0);
+            makeRetenue('MUGEFCI', mugefci);
+            makeRetenue('Retenue pension', pension);
+            makeRetenue('Pension complémentaire', pensionCompl);
+            makeRetenue('Total retenues', totalRetenues);
+
+            // Ajout de la ligne SALAIRE NET dans le totalBox (en évitant les doublons)
+            totalBox.querySelectorAll('.line').forEach(n => {
+                const lab = n.querySelector && n.querySelector('.label');
+                if (lab && lab.textContent.trim().toUpperCase() === 'SALAIRE NET') { n.remove(); }
+            });
+
+            const netLine = document.createElement('div');
+            netLine.className = 'line';
+            netLine.style.borderTop = "1px dashed var(--border)";
+            netLine.style.marginTop = "8px";
+            netLine.style.paddingTop = "8px";
+            
+            const nlab = document.createElement('div'); nlab.className = 'label'; nlab.textContent = 'SALAIRE NET';
+            const namt = document.createElement('div'); namt.className = 'amount'; namt.textContent = fmtMoney(net);
+            namt.style.color = "var(--indice-bg)";
+            namt.style.fontSize = "1.1em";
+            
+            netLine.appendChild(nlab);
+            netLine.appendChild(namt);
+            totalBox.appendChild(netLine);
+
+        } else {
+            // Mode Brut : cacher les éléments Net
+            btn.classList.add('hidden');
+            retenues.classList.remove('open');
+            retenues.innerHTML = '';
+            totalBox.querySelectorAll('.line').forEach(n => {
+                const lab = n.querySelector && n.querySelector('.label');
+                if (lab && lab.textContent.trim().toUpperCase() === 'SALAIRE NET') { n.remove(); }
+            });
+        }
+    }
+
+    // --- EVENTS LISTENERS ---
+    selGrade.addEventListener('change', function() {
+        updateEchelons();
+        recalc();
+    });
+
+    selEch.addEventListener('change', recalc);
+    
+    // Écouteurs globaux (si disponibles) pour mise
 
 selHierarchie.addEventListener('change', function() {
 updateEchelons();
@@ -2874,7 +3021,11 @@ let tauxBail = 0;
 
 if ((famName || '').toLowerCase().includes('police nationale')) {
 sujettionPolice = base * 0.10;  // 10% du solde de base
-risquesPolice = base * 0.15;    // 15% du solde de base
+risquesPolice = base * 0.175;    // 17.5% du solde de base
+
+        // NOUVELLE INDEMNITÉ : Charge Militaire (15% du salaire de base)
+        const chargeMilitaire = base * 0.15; 
+
 
 // Obtenir le taux de bail selon le corps et le grade
 const corps = gradeCode; // SOUS OFFICIERS, OFFICIERS ou COMMISSAIRES
@@ -2887,7 +3038,7 @@ const totalBrut = base + residence + transport + logement
 + infoSpec + infoQual
 + sup.acad + sup.encad
 + dir + allocFamiliale
-+ sujettionPolice + risquesPolice; // Ajouter les indemnités police
++ sujettionPolice + risquesPolice + chargeMilitaire; // Ajouter les indemnités police
 
 const annual = higherEdAnnualPrime(jobTitle, gradeCode);
 
@@ -2935,6 +3086,9 @@ addLine('Indemnité de sujétion', sujettionPolice);
 }
 if (risquesPolice > 0) {
 addLine('Indemnité de risques', risquesPolice);
+}
+if (chargeMilitaire>0) {
+addLine('Charge Militaire Police');
 }
 
 // 4) Totaux (toujours régénérés)
@@ -3123,117 +3277,122 @@ btn.textContent = retenues.classList.contains('open') ? 'Masquer retenues' : 'Vo
 try { onModeChange(); } catch(e){}
 
 function recalc(){
-const selectedGrade = selGrade.value;
-const selectedEchelon = selEch.value;
-const indice = corpsGrades[selectedGrade][selectedEchelon];
-const vp = getVP();
-const base = (indice != null && vp > 0) ? indice * vp : 0;
+        const selectedGrade = selGrade.value;
+        const selectedEchelon = selEch.value;
+        const indice = corpsGrades[selectedGrade][selectedEchelon];
+        const vp = getVP();
+        const base = (indice != null && vp > 0) ? indice * vp : 0;
 
-const residence = base * 0.15;
-const transport = getTransport();
-const logement = housingFor(gradeCode, selectedGrade, famName);
+        const residence = base * 0.15;
+        const transport = getTransport();
+        const logement = housingFor(gradeCode, selectedGrade, famName);
 
-// Indemnités spécifiques à la police
-const sujettionPolice = base * 0.10;  // 10% du solde de base
-const risquesPolice = base * 0.15;    // 15% du solde de base
+        // Indemnités spécifiques à la police
+        const sujettionPolice = base * 0.10;  // 10%
+        const risquesPolice = base * 0.175;    // 17.5%
+        
+        // --- CORRECTION ICI : ON DÉFINIT LA VARIABLE MANQUANTE ---
+        const chargeMilitaire = base * 0.15;  // 15% Charge militaire (Ajout)
 
-// Obtenir le taux de bail selon le corps et le grade
-const tauxBail = getPoliceBail(gradeCode, selectedGrade);
+        // Obtenir le taux de bail selon le corps et le grade
+        const tauxBail = getPoliceBail(gradeCode, selectedGrade);
 
-// Ajouter l'allocation familiale
-const allocFamiliale = getAllocationFamiliale();
+        // Ajouter l'allocation familiale
+        const allocFamiliale = getAllocationFamiliale();
 
-const totalBrut = base + residence + transport + logement + sujettionPolice + risquesPolice + allocFamiliale;
+        // Maintenant la variable chargeMilitaire existe pour le calcul
+        const totalBrut = base + residence + transport + logement + 
+                          sujettionPolice + risquesPolice + allocFamiliale + 
+                          chargeMilitaire;
 
-// Réafficher les lignes
-rows.innerHTML = "";
-addLine('Indice', indice, true);
-addLine('Salaire de base', base, false, 'salaire-base');
-addLine('Indemnité de résidence', residence);
+        // Réafficher les lignes
+        rows.innerHTML = "";
+        addLine('Indice', indice, true);
+        addLine('Salaire de base', base, false, 'salaire-base');
+        addLine('Indemnité de résidence', residence);
 
-if (allocFamiliale > 0) {
-addLine('Allocation familiale', allocFamiliale);
-}
+        if (allocFamiliale > 0) {
+            addLine('Allocation familiale', allocFamiliale);
+        }
 
-addLine('Prime de transport', transport);
-if(logement>0){
-addLine('Indemnité de logement', logement);
-}
-addLine('Indemnité de sujétion', sujettionPolice);
-addLine('Indemnité de risques', risquesPolice);
+        addLine('Prime de transport', transport);
+        if(logement>0){
+            addLine('Indemnité de logement', logement);
+        }
+        addLine('Indemnité de sujétion', sujettionPolice);
+        addLine('Indemnité de risques', risquesPolice);
+        
+        // Affichage de la nouvelle ligne
+        addLine('Charge Militaire Police', chargeMilitaire);
 
-// Totaux
-totalBox.innerHTML = "";
-const tot = document.createElement('div'); tot.className='line';
-const l = document.createElement('div'); l.className='label'; l.textContent = 'TOTAL BRUT ESTIMÉ';
-const a = document.createElement('div'); a.className='amount'; a.textContent = fmtMoney(totalBrut);
-tot.appendChild(l); tot.appendChild(a);
-totalBox.appendChild(tot);
+        // ... (Le reste de la fonction reste identique pour les totaux et le net) ...
+        
+        // Totaux
+        totalBox.innerHTML = "";
+        const tot = document.createElement('div'); tot.className='line';
+        const l = document.createElement('div'); l.className='label'; l.textContent = 'TOTAL BRUT ESTIMÉ';
+        const a = document.createElement('div'); a.className='amount'; a.textContent = fmtMoney(totalBrut);
+        tot.appendChild(l); tot.appendChild(a);
+        totalBox.appendChild(tot);
 
-// Afficher le taux de bail pour la police (non inclus dans le total)
-if (tauxBail > 0) {
-const bailLine = document.createElement('div');
-bailLine.className = 'line';
-const bailLabel = document.createElement('div');
-bailLabel.className = 'label';
-bailLabel.textContent = 'Taux de bail (non inclus)';
-const bailAmount = document.createElement('div');
-bailAmount.className = 'amount';
-bailAmount.textContent = fmtMoney(tauxBail);
-bailLine.appendChild(bailLabel);
-bailLine.appendChild(bailAmount);
-totalBox.appendChild(bailLine);
-}
+        // Afficher le taux de bail (non inclus)
+        if (tauxBail > 0) {
+            const bailLine = document.createElement('div'); bailLine.className = 'line';
+            const bailLabel = document.createElement('div'); bailLabel.className = 'label'; bailLabel.textContent = 'Taux de bail (non inclus)';
+            const bailAmount = document.createElement('div'); bailAmount.className = 'amount'; bailAmount.textContent = fmtMoney(tauxBail);
+            bailLine.appendChild(bailLabel); bailLine.appendChild(bailAmount);
+            totalBox.appendChild(bailLine);
+        }
 
-// Mode NET
-if (typeof isNetMode==='function' && isNetMode()){
-btn.classList.remove('hidden');
+        // Mode NET
+        if (typeof isNetMode==='function' && isNetMode()){
+            btn.classList.remove('hidden');
 
-const itsObj = calcITSMonthly
-? calcITSMonthly(indice, vp, (statutSel&&statutSel.value)||'celibataire', (enfantsSel&&enfantsSel.value)||0, false)
-: {impot_net:0};
+            const itsObj = calcITSMonthly
+                ? calcITSMonthly(indice, vp, (statutSel&&statutSel.value)||'celibataire', (enfantsSel&&enfantsSel.value)||0, false)
+                : {impot_net:0};
 
-const mugefci = (Number(indice||0) < 1000) ? (base*0.03) : 7004;
-const pension = base * 0.0833;
-const pensionCompl = base * 0.05;
-const totalRetenues = (itsObj.impot_net||0) + mugefci + pension + pensionCompl;
-const net = totalBrut - totalRetenues;
+            const mugefci = (Number(indice||0) < 1000) ? (base*0.03) : 7004;
+            const pension = base * 0.0833;
+            const pensionCompl = base * 0.05;
+            const totalRetenues = (itsObj.impot_net||0) + mugefci + pension + pensionCompl;
+            const net = totalBrut - totalRetenues;
 
-retenues.innerHTML = '';
-const make = (lab, val)=>{
-const d=document.createElement('div'); d.className='line';
-const ll=document.createElement('div'); ll.className='label'; ll.textContent=lab;
-const aa=document.createElement('div'); aa.className='amount'; aa.textContent=fmtMoney(val);
-d.appendChild(ll); d.appendChild(aa); retenues.appendChild(d);
-};
+            retenues.innerHTML = '';
+            const make = (lab, val)=>{
+                const d=document.createElement('div'); d.className='line';
+                const ll=document.createElement('div'); ll.className='label'; ll.textContent=lab;
+                const aa=document.createElement('div'); aa.className='amount'; aa.textContent=fmtMoney(val);
+                d.appendChild(ll); d.appendChild(aa); retenues.appendChild(d);
+            };
 
-make('ITS (mensuel)', itsObj.impot_net||0);
-make('MUGEFCI', mugefci);
-make('Retenue pension', pension);
-make('Pension complémentaire', pensionCompl);
-make('Total retenues', totalRetenues);
+            make('ITS (mensuel)', itsObj.impot_net||0);
+            make('MUGEFCI', mugefci);
+            make('Retenue pension', pension);
+            make('Pension complémentaire', pensionCompl);
+            make('Total retenues', totalRetenues);
 
-totalBox.querySelectorAll('.line').forEach(n=>{
-const lab = n.querySelector && n.querySelector('.label');
-if(lab && lab.textContent.trim().toUpperCase() === 'SALAIRE NET'){ n.remove(); }
-});
+            totalBox.querySelectorAll('.line').forEach(n=>{
+                const lab = n.querySelector && n.querySelector('.label');
+                if(lab && lab.textContent.trim().toUpperCase() === 'SALAIRE NET'){ n.remove(); }
+            });
 
-const netLine = document.createElement('div'); netLine.className='line';
-const nlab = document.createElement('div'); nlab.className='label'; nlab.textContent='SALAIRE NET';
-const namt = document.createElement('div');  namt.className='amount'; namt.textContent=fmtMoney(net);
-netLine.appendChild(nlab); netLine.appendChild(namt);
-totalBox.appendChild(netLine);
+            const netLine = document.createElement('div'); netLine.className='line';
+            const nlab = document.createElement('div'); nlab.className='label'; nlab.textContent='SALAIRE NET';
+            const namt = document.createElement('div');  namt.className='amount'; namt.textContent=fmtMoney(net);
+            netLine.appendChild(nlab); netLine.appendChild(namt);
+            totalBox.appendChild(netLine);
 
-} else {
-btn.classList.add('hidden');
-retenues.classList.remove('open');
-retenues.innerHTML='';
-totalBox.querySelectorAll('.line').forEach(n=>{
-const lab = n.querySelector && n.querySelector('.label');
-if(lab && lab.textContent.trim().toUpperCase() === 'SALAIRE NET'){ n.remove(); }
-});
-}
-}
+        } else {
+            btn.classList.add('hidden');
+            retenues.classList.remove('open');
+            retenues.innerHTML='';
+            totalBox.querySelectorAll('.line').forEach(n=>{
+                const lab = n.querySelector && n.querySelector('.label');
+                if(lab && lab.textContent.trim().toUpperCase() === 'SALAIRE NET'){ n.remove(); }
+            });
+        }
+    }
 
 selGrade.addEventListener('change', function() {
 updateEchelons();
