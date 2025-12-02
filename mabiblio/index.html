@@ -537,6 +537,20 @@
     </a>
   </div>
 </div>
+<div class="category-card">
+  <div class="category-header">
+    <div class="category-icon" style="background-color: #475569;">
+      <i class="fas fa-user-tie"></i>
+    </div>
+    <h3 class="category-title">Profils de Carrière</h3>
+  </div>
+  <p class="category-desc">Guides détaillés sur l'évolution de carrière, les conditions d'accès, la mobilité et la rémunération.</p>
+  <div class="category-buttons">
+    <a class="category-link" href="profil_adjoint.html">
+      <i class="fas fa-file-invoice"></i> Adjoint Administratif
+    </a>
+  </div>
+</div>
 
 <div class="category-card">
 <div class="category-header">
@@ -1184,43 +1198,88 @@
 <div id="salModal" style="display:none;" aria-hidden="true">
   <div class="modal-backdrop" id="salBackdrop">
     <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="salModalTitle">
-      <h4 id="salModalTitle">Accès - Salaires</h4>
-      <p style="opacity:.8; font-size:0.9rem">Entrez le code pour accéder aux grilles salariales.</p>
+      <div style="text-align:center; margin-bottom:15px;">
+        <div style="background:#e0f2fe; width:50px; height:50px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; color:#0284c7; font-size:1.5rem;">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+      </div>
+      <h4 id="salModalTitle" style="text-align:center;">Activation Requise</h4>
+      
+      <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:15px; text-align:center;">
+        Pour accéder aux grilles salariales, veuillez transmettre votre <strong>ID Appareil</strong> à l'administrateur pour obtenir votre clé d'activation.
+      </p>
+
+      <div style="background:#f1f5f9; padding:10px; border-radius:8px; margin-bottom:15px; border:1px dashed #cbd5e1;">
+        <label style="font-size:0.75rem; text-transform:uppercase; color:#64748b; font-weight:bold; display:block; margin-bottom:5px;">Votre ID Appareil :</label>
+        <div style="display:flex; gap:8px;">
+          <input id="deviceUniqueId" type="text" readonly 
+                 style="width:100%; font-family:monospace; font-weight:bold; letter-spacing:1px; border:none; background:transparent; color:#334155;" />
+          <button id="btnCopyId" class="btn-outline" style="padding:4px 8px; font-size:0.8rem;" title="Copier">
+            <i class="fas fa-copy"></i>
+          </button>
+        </div>
+      </div>
+
       <div class="modal-row">
-        <input id="salCodeInput" class="modal-input" type="password" placeholder="Code d'accès" />
+        <input id="salCodeInput" class="modal-input" type="text" placeholder="Entrez la clé d'activation reçue" style="text-align:center; letter-spacing:2px; font-weight:bold;" />
       </div>
-      <div class="modal-actions">
-        <button id="salCancel" class="modal-btn btn-outline">Annuler</button>
-        <button id="salSubmit" class="modal-btn btn-primary">Valider</button>
+      
+      <div class="modal-actions" style="justify-content:center; margin-top:20px;">
+        <button id="salCancel" class="modal-btn btn-outline">Fermer</button>
+        <button id="salSubmit" class="modal-btn btn-primary" style="min-width:120px;">Activer</button>
       </div>
-      <div id="salMessage" style="margin-top:8px; font-size:0.85rem; color:crimson; display:none;"></div>
+      <div id="salMessage" style="margin-top:10px; font-size:0.85rem; color:#ef4444; text-align:center; display:none;"></div>
     </div>
   </div>
 </div>
 
 <script>
 (function(){
-  const ACCESS_CODE = 'salaire_1987@';
-  const STORAGE_KEY = 'salaires_unlocked_v1';
-  const TARGET_URL = 'salaire.html'; // <-- adapte si besoin
+  // --- CONFIGURATION SECRÈTE ---
+  // Changez cette phrase pour rendre vos codes uniques à votre site
+  const SECRET_SALT = "RH_IVORY_COAST_2025_SECURE_KEY"; 
+  const STORAGE_KEY = 'salaires_license_key';
+  const TARGET_URL = 'salaire.html'; // La page protégée
 
-  function markAsUnlocked(btn) {
-    // si un bouton/lien est passé, on le remplace par un lien direct
-    const link = document.createElement('a');
-    link.href = TARGET_URL;
-    link.className = btn?.className || 'category-link';
-    // conserver l'HTML visuel du bouton (icône + texte) si possible
-    link.innerHTML = btn?.innerHTML || '<i class="fas fa-money-bill-wave"></i> Grilles salariales';
-    if (btn && btn.parentNode) {
-      btn.parentNode.replaceChild(link, btn);
+  // --- FONCTIONS UTILITAIRES ---
+  
+  // 1. Génère ou récupère un ID unique pour cet appareil
+  function getDeviceId() {
+    let id = localStorage.getItem('device_fingerprint');
+    if (!id) {
+      // Création d'un ID aléatoire de 8 caractères hexadécimaux
+      const array = new Uint32Array(1);
+      window.crypto.getRandomValues(array);
+      id = array[0].toString(16).toUpperCase().padStart(8, '0');
+      localStorage.setItem('device_fingerprint', id);
     }
+    return id;
   }
+
+  // 2. Fonction de Hashage (SHA-256) pour vérifier la clé
+  async function generateValidKey(deviceId) {
+    const msgBuffer = new TextEncoder().encode(deviceId + SECRET_SALT);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    // On prend les 8 premiers caractères du Hash comme "Clé valide"
+    return hashHex.substring(0, 8).toUpperCase();
+  }
+
+  // --- LOGIQUE D'INTERFACE ---
 
   function showModal() {
     const m = document.getElementById('salModal');
+    const devIdInput = document.getElementById('deviceUniqueId');
     if (!m) return;
+    
+    // Afficher l'ID appareil
+    if(devIdInput) devIdInput.value = getDeviceId();
+    
     m.style.display = 'block';
     m.setAttribute('aria-hidden','false');
+    
+    // Reset champs
     const input = document.getElementById('salCodeInput');
     const msg = document.getElementById('salMessage');
     if (input) input.value = '';
@@ -1230,89 +1289,126 @@
 
   function hideModal() {
     const m = document.getElementById('salModal');
-    if (!m) return;
-    m.style.display = 'none';
-    m.setAttribute('aria-hidden','true');
+    if (m) {
+      m.style.display = 'none';
+      m.setAttribute('aria-hidden','true');
+    }
   }
 
-  function findSalaryButton(){
-    // 1) priorité à #btn-salaires
-    let el = document.getElementById('btn-salaires');
-    if (el) return el;
-    // 2) data attribute éventuel
-    el = document.querySelector('[data-salaires]');
-    if (el) return el;
-    // 3) heuristique : premier bouton/lien dont le texte contient 'Salaire'
-    const candidates = Array.from(document.querySelectorAll('a,button,.category-link,.btn'));
-    for (const c of candidates){
-      const t = (c.textContent || '').toLowerCase();
-      if (t.includes('salaire')) return c;
+  async function validate() {
+    const input = document.getElementById('salCodeInput');
+    const msg = document.getElementById('salMessage');
+    const userKey = (input.value || '').trim().toUpperCase();
+    const deviceId = getDeviceId();
+    
+    // Calculer la clé attendue pour cet appareil
+    const expectedKey = await generateValidKey(deviceId);
+
+    if (userKey === expectedKey) {
+      // Succès ! On sauvegarde la licence
+      localStorage.setItem(STORAGE_KEY, userKey);
+      
+      if(msg) {
+        msg.style.color = '#10b981';
+        msg.textContent = 'Activation réussie ! Redirection...';
+        msg.style.display = 'block';
+      }
+      
+      setTimeout(() => {
+        hideModal();
+        window.location.href = TARGET_URL;
+      }, 1000);
+    } else {
+      if (msg) { 
+        msg.style.color = '#ef4444';
+        msg.textContent = 'Clé invalide pour cet appareil.'; 
+        msg.style.display = 'block'; 
+      }
+      input.classList.add('shake'); // Animation d'erreur visuelle
+      setTimeout(()=>input.classList.remove('shake'), 500);
     }
-    return null;
   }
+
+  // --- INITIALISATION ---
 
   function initAccessControl() {
-    const unlocked = localStorage.getItem(STORAGE_KEY) === 'true';
-    const btn = findSalaryButton();
+    // Vérifier si déjà activé
+    const storedKey = localStorage.getItem(STORAGE_KEY);
+    const deviceId = getDeviceId();
 
-    if (unlocked) {
-      if (btn) markAsUnlocked(btn);
-      return;
+    // Si une clé existe, on vérifie silencieusement si elle est valide pour cet appareil
+    if (storedKey) {
+      generateValidKey(deviceId).then(validKey => {
+        if (storedKey === validKey) {
+          // Déjà autorisé, on transforme le bouton en lien direct
+          const btn = document.getElementById('btn-salaires');
+          if (btn) {
+            const link = document.createElement('a');
+            link.href = TARGET_URL;
+            link.className = btn.className;
+            link.innerHTML = '<i class="fas fa-check-circle"></i> Grilles salariales (Actif)';
+            link.style.backgroundColor = '#10b981'; // Vert
+            link.style.borderColor = '#10b981';
+            btn.parentNode.replaceChild(link, btn);
+          }
+        } else {
+          // Clé stockée mais invalide (changement d'appareil ou piratage), on relance la protection
+          setupProtection();
+        }
+      });
+    } else {
+      setupProtection();
     }
+  }
 
+  function setupProtection() {
+    const btn = document.getElementById('btn-salaires');
     if (btn) {
-      // on neutralise d'éventuels handlers existants en clonant l'élément
       const clone = btn.cloneNode(true);
-      clone.id = btn.id || 'btn-salaires';
-      clone.addEventListener('click', function(e){
+      clone.id = 'btn-salaires';
+      clone.addEventListener('click', (e) => {
         e.preventDefault();
         showModal();
       });
       btn.parentNode.replaceChild(clone, btn);
     }
+  }
 
+  // Event Listeners globaux pour la modal
+  document.addEventListener('DOMContentLoaded', () => {
+    initAccessControl();
+    
     const submit = document.getElementById('salSubmit');
     const cancel = document.getElementById('salCancel');
+    const copyBtn = document.getElementById('btnCopyId');
     const input = document.getElementById('salCodeInput');
-    const msg = document.getElementById('salMessage');
     const backdrop = document.getElementById('salBackdrop');
 
-    if (cancel) cancel.addEventListener('click', (e)=>{ e.preventDefault(); hideModal(); });
-    if (backdrop) backdrop.addEventListener('click', (e)=>{ if (e.target === backdrop) hideModal(); });
-
-    function validate(){
-      const val = (input && input.value || '').trim();
-      if (val === ACCESS_CODE){
-        localStorage.setItem(STORAGE_KEY, 'true');
-        hideModal();
-        const b = findSalaryButton();
-        if (b) markAsUnlocked(b);
-        // puis ouvrir la page
-        window.location.href = TARGET_URL;
-      } else {
-        if (msg){ msg.textContent = 'Code incorrect — réessayez.'; msg.style.display = 'block'; }
-        if (input) input.focus();
-      }
+    if(submit) submit.addEventListener('click', (e) => { e.preventDefault(); validate(); });
+    if(cancel) cancel.addEventListener('click', (e) => { e.preventDefault(); hideModal(); });
+    
+    if(copyBtn) {
+      copyBtn.addEventListener('click', () => {
+        const idField = document.getElementById('deviceUniqueId');
+        idField.select();
+        document.execCommand('copy');
+        copyBtn.innerHTML = '<i class="fas fa-check"></i>';
+        setTimeout(() => copyBtn.innerHTML = '<i class="fas fa-copy"></i>', 2000);
+      });
     }
 
-    if (submit) submit.addEventListener('click', (e)=>{ e.preventDefault(); validate(); });
-    if (input) input.addEventListener('keydown', (ev)=>{
-      if (ev.key === 'Enter'){ ev.preventDefault(); validate(); }
-      else if (ev.key === 'Escape'){ hideModal(); }
+    if(input) input.addEventListener('keydown', (ev) => {
+      if (ev.key === 'Enter') { ev.preventDefault(); validate(); }
+      else if (ev.key === 'Escape') hideModal();
     });
-  }
 
-  window.__salairesAdmin = {
-    revoke: ()=>{ localStorage.removeItem(STORAGE_KEY); location.reload(); },
-    isUnlocked: ()=> localStorage.getItem(STORAGE_KEY) === 'true'
-  };
+    if(backdrop) backdrop.addEventListener('click', (e) => {
+      if(e.target === backdrop) hideModal();
+    });
+  });
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initAccessControl);
-  } else {
-    initAccessControl();
-  }
 })();
 </script>
+
 </body>
 </html>
