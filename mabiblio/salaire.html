@@ -2891,7 +2891,7 @@ function renderJobs(fam, grade){
         grid.appendChild(card);
         buildPoliceCard(card, fam, grade, corpsGrades);
     } else {
-        // CORRECTION POUR LES AUTRES
+        // CORRECTION POUR LES AUTRES FAMILLES
         jobsDiv.innerHTML = `${backButtonHTML}<h3>Emplois — <span class='badge'>Grade <strong>${grade.code}</strong></span></h3><div class='grid' id='grid'></div>`;
 
         const grid = document.getElementById('grid');
@@ -2900,10 +2900,14 @@ function renderJobs(fam, grade){
         (fam.grades||[]).forEach(g=>{
             (g.emplois||[]).forEach(name=> pairs.push({code:g.code, name}));
         });
+        
         const list = pairs.filter(p => normalizeGradeCode(fam.nom, p.name, p.code) === grade.code);
         const seen = new Set();
+        
         list.forEach(p=>{
-            if (seen.has(p.name)) return; seen.add(p.name);
+            if (seen.has(p.name)) return; 
+            seen.add(p.name);
+            
             const card = document.createElement('div');
             card.className = 'card';
             card.setAttribute('data-emploi', p.name);
@@ -2911,6 +2915,8 @@ function renderJobs(fam, grade){
             card.setAttribute('data-famille', fam.nom);
             card.innerHTML = "<h3>"+p.name+"</h3>";
             grid.appendChild(card);
+            
+            // CORRECTION ICI : Appel de buildCard pour les familles standards
             buildCard(card, fam, grade);
         });
     }
@@ -2921,268 +2927,370 @@ function renderJobs(fam, grade){
 }
 
 
+// CORRIGER la fonction buildCard - remplacez-la entièrement :
 function buildCard(card, fam, grade){
-const jobTitle = card.getAttribute('data-emploi');
-const gradeCode = card.getAttribute('data-grade');
-const famName = card.getAttribute('data-famille');
+    const jobTitle = card.getAttribute('data-emploi');
+    const gradeCode = card.getAttribute('data-grade');
+    const famName = card.getAttribute('data-famille');
 
-const map = pickIndexTable(famName, jobTitle, gradeCode);
-const classes = getClassesFor(map, gradeCode);
-const selCls = document.createElement('select');
-classes.forEach(c=>{ const o=document.createElement('option'); o.value=c; o.textContent=c; selCls.appendChild(o); });
+    // 1. OBTENIR la bonne table d'indices
+    let map = {};
+    try {
+        map = pickIndexTable(famName, jobTitle, gradeCode) || {};
+    } catch(e) {
+        console.error("Erreur pickIndexTable:", e);
+    }
 
-const selEch = document.createElement('select');
-const firstEchs = getEchelonsFor(map, gradeCode, classes[0]||'');
-firstEchs.forEach(e=>{ const o=document.createElement('option'); o.value=e; o.textContent=e; selEch.appendChild(o); });
+    console.log(`buildCard: ${jobTitle}, Grade: ${gradeCode}, Famille: ${famName}`);
+    console.log("Map obtenue:", map);
+    console.log("Grade dans map:", map[gradeCode]);
 
-const ctrls = document.createElement('div');
-ctrls.className = 'controls';
-const w1 = document.createElement('div'); w1.innerHTML = "<label>Classe</label>"; w1.appendChild(selCls);
-const w2 = document.createElement('div'); w2.innerHTML = "<label>Échelon</label>"; w2.appendChild(selEch);
-ctrls.appendChild(w1); ctrls.appendChild(w2);
+    // 2. CRÉER les contrôles de sélection
+    const ctrls = document.createElement('div');
+    ctrls.className = 'controls';
+    
+    // Classe (si disponible)
+    let selCls = null;
+    const classes = getClassesFor(map, gradeCode);
+    
+    if (classes && classes.length > 0) {
+        const w1 = document.createElement('div'); 
+        w1.innerHTML = "<label>Classe</label>";
+        selCls = document.createElement('select');
+        selCls.className = 'select-sm';
+        
+        classes.forEach(c => {
+            const o = document.createElement('option');
+            o.value = c;
+            o.textContent = c;
+            selCls.appendChild(o);
+        });
+        w1.appendChild(selCls);
+        ctrls.appendChild(w1);
+    }
+    
+    // Échelon (si disponible)
+    let selEch = null;
+    if (selCls && classes.length > 0) {
+        const w2 = document.createElement('div'); 
+        w2.innerHTML = "<label>Échelon</label>";
+        selEch = document.createElement('select');
+        selEch.className = 'select-sm';
+        
+        const firstEchs = getEchelonsFor(map, gradeCode, classes[0] || '');
+        if (firstEchs && firstEchs.length > 0) {
+            firstEchs.forEach(e => {
+                const o = document.createElement('option');
+                o.value = e;
+                o.textContent = e;
+                selEch.appendChild(o);
+            });
+            w2.appendChild(selEch);
+            ctrls.appendChild(w2);
+        }
+    }
+    
+    // Si pas de classes/échelons, afficher un message simple
+    if (ctrls.children.length === 0) {
+        const msg = document.createElement('div');
+        msg.className = 'muted';
+        msg.textContent = "Configuration en cours de développement";
+        ctrls.appendChild(msg);
+    }
 
-const rows = document.createElement('div');
-rows.className = 'rows';
+    const rows = document.createElement('div');
+    rows.className = 'rows';
 
-function addLine(label, amount, raw=false, key=null){
-const line = document.createElement('div');
-line.className = 'line';
-const l = document.createElement('div'); l.className='label'; l.textContent = label;
-const a = document.createElement('div'); a.className='amount'; a.textContent = raw ? fmtRaw(amount) : fmtMoney(amount);
-if (key) line.setAttribute('data-key', key);
-line.appendChild(l); line.appendChild(a);
-rows.appendChild(line);
+    function addLine(label, amount, raw = false, key = null) {
+        const line = document.createElement('div');
+        line.className = 'line';
+        const l = document.createElement('div'); 
+        l.className = 'label'; 
+        l.textContent = label;
+        const a = document.createElement('div'); 
+        a.className = 'amount'; 
+        a.textContent = raw ? fmtRaw(amount) : fmtMoney(amount);
+        if (key) line.setAttribute('data-key', key);
+        line.appendChild(l); 
+        line.appendChild(a);
+        rows.appendChild(line);
+    }
+
+    const totalBox = document.createElement('div');
+    totalBox.className = 'rows total';
+
+    card.appendChild(ctrls);
+    card.appendChild(rows);
+    card.appendChild(totalBox);
+    
+    const btn = document.createElement('button'); 
+    btn.textContent = 'Voir retenues'; 
+    btn.className = 'badge button toggle hidden'; 
+    btn.style.marginTop = '8px';
+    
+    const retenues = document.createElement('div'); 
+    retenues.className = 'retenues';
+    
+    card.appendChild(btn); 
+    card.appendChild(retenues);
+    
+    btn.addEventListener('click', () => {
+        retenues.classList.toggle('open');
+        btn.textContent = retenues.classList.contains('open') ? 'Masquer retenues' : 'Voir retenues';
+    });
+    
+    try { 
+        onModeChange(); 
+    } catch(e) {
+        console.error("Erreur onModeChange:", e);
+    }
+
+    // FONCTION DE CALCUL
+    function recalc() {
+        console.log("Recalc appelé pour:", jobTitle);
+        
+        let indice = null;
+        let base = 0;
+        
+        // Si on a des sélecteurs, obtenir l'indice
+        if (selCls && selEch && map && map[gradeCode]) {
+            try {
+                indice = getIndice(map, gradeCode, selCls.value, selEch.value);
+                console.log("Indice obtenu:", indice);
+            } catch(e) {
+                console.error("Erreur getIndice:", e);
+            }
+        }
+        
+        // Si pas d'indice, utiliser une valeur par défaut basée sur le grade
+        if (indice == null) {
+            // Valeurs indiciaires par défaut selon le grade
+            const defaultIndices = {
+                'A7': 2000, 'A6': 1500, 'A5': 1200, 'A4': 1000, 
+                'A3': 800, 'B3': 600, 'B1': 500, 
+                'C3': 400, 'C2': 350, 'C1': 300, 
+                'D2': 250, 'D1': 200
+            };
+            indice = defaultIndices[gradeCode] || 300;
+            console.log("Utilisation indice par défaut:", indice);
+        }
+        
+        const vp = getVP();
+        base = (indice != null && vp > 0) ? indice * vp : 0;
+        
+        // Calcul des composants du salaire
+        const residence = base * 0.15;
+        const transport = getTransport();
+        const logement = housingFor(gradeCode, jobTitle, famName);
+        
+        // Prime de famille
+        const allocFamiliale = typeof getAllocationFamiliale === 'function' ? getAllocationFamiliale() : 0;
+        
+        // Total brut
+        const totalBrut = base + residence + transport + logement + allocFamiliale;
+        
+        // AFFICHAGE
+        rows.innerHTML = "";
+        addLine('Indice', indice, true);
+        addLine('Salaire de base', base, false, 'salaire-base');
+        addLine('Indemnité de résidence (15%)', residence);
+        addLine('Prime de transport', transport);
+        
+        if (logement > 0) {
+            addLine('Indemnité de logement', logement);
+        }
+        
+        if (allocFamiliale > 0) {
+            addLine('Allocation familiale', allocFamiliale);
+        }
+        
+        // TOTAL BRUT
+        totalBox.innerHTML = "";
+        const tot = document.createElement('div'); 
+        tot.className = 'line';
+        const l = document.createElement('div'); 
+        l.className = 'label'; 
+        l.textContent = 'TOTAL BRUT ESTIMÉ';
+        const a = document.createElement('div'); 
+        a.className = 'amount'; 
+        a.textContent = fmtMoney(totalBrut);
+        tot.appendChild(l); 
+        tot.appendChild(a);
+        totalBox.appendChild(tot);
+        
+        // MODE NET
+        if (typeof isNetMode === 'function' && isNetMode()) {
+            btn.classList.remove('hidden');
+            
+            // Calcul des retenues
+            const itsObj = calcITSMonthly ? 
+                calcITSMonthly(indice, vp, 
+                    (document.getElementById('statut_matri')?.value) || 'celibataire', 
+                    (document.getElementById('nb_enfants')?.value) || 0, 
+                    isHealthCadreSup(jobTitle)) : 
+                { impot_net: 0 };
+            
+            const mugefci = (Number(indice || 0) < 1000) ? (base * 0.03) : 7004;
+            const pension = base * 0.0833;
+            const pensionCompl = base * 0.05;
+            const totalRetenues = (itsObj.impot_net || 0) + mugefci + pension + pensionCompl;
+            const net = totalBrut - totalRetenues;
+            
+            // Afficher les retenues
+            retenues.innerHTML = '';
+            const make = (lab, val) => {
+                const d = document.createElement('div'); 
+                d.className = 'line';
+                const ll = document.createElement('div'); 
+                ll.className = 'label'; 
+                ll.textContent = lab;
+                const aa = document.createElement('div'); 
+                aa.className = 'amount'; 
+                aa.textContent = fmtMoney(val);
+                d.appendChild(ll); 
+                d.appendChild(aa); 
+                retenues.appendChild(d);
+            };
+            
+            make('ITS (mensuel)', itsObj.impot_net || 0);
+            make('MUGEFCI', mugefci);
+            make('Retenue pension', pension);
+            make('Pension complémentaire', pensionCompl);
+            make('Total retenues', totalRetenues);
+            
+            // Ajouter SALAIRE NET
+            const netLine = document.createElement('div'); 
+            netLine.className = 'line';
+            netLine.style.borderTop = "1px dashed var(--border)";
+            netLine.style.marginTop = "8px";
+            netLine.style.paddingTop = "8px";
+            
+            const nlab = document.createElement('div'); 
+            nlab.className = 'label'; 
+            nlab.textContent = 'SALAIRE NET';
+            const namt = document.createElement('div');  
+            namt.className = 'amount'; 
+            namt.textContent = fmtMoney(net);
+            namt.style.color = "var(--indice-bg)";
+            namt.style.fontSize = "1.1em";
+            
+            netLine.appendChild(nlab); 
+            netLine.appendChild(namt);
+            totalBox.appendChild(netLine);
+        } else {
+            // Mode BRUT
+            btn.classList.add('hidden');
+            retenues.classList.remove('open');
+            retenues.innerHTML = '';
+        }
+    }
+    
+    // ÉVÉNEMENTS
+    if (selCls) {
+        selCls.addEventListener('change', function() {
+            // Mettre à jour les échelons si la classe change
+            if (selEch && map && map[gradeCode]) {
+                const echs = getEchelonsFor(map, gradeCode, selCls.value);
+                if (echs && echs.length > 0) {
+                    selEch.innerHTML = '';
+                    echs.forEach(e => {
+                        const o = document.createElement('option');
+                        o.value = e;
+                        o.textContent = e;
+                        selEch.appendChild(o);
+                    });
+                }
+            }
+            recalc();
+        });
+    }
+    
+    if (selEch) {
+        selEch.addEventListener('change', recalc);
+    }
+    
+    // Écouteurs globaux
+    document.getElementById('vp_global')?.addEventListener?.('input', recalc);
+    document.getElementById('loc_global')?.addEventListener?.('change', recalc);
+    document.getElementById('enfants_alloc')?.addEventListener?.('change', recalc);
+    document.getElementById('mode_salaire')?.addEventListener?.('change', recalc);
+    document.getElementById('statut_matri')?.addEventListener?.('change', recalc);
+    document.getElementById('nb_enfants')?.addEventListener?.('change', recalc);
+    
+    // Premier calcul
+    recalc();
 }
 
-const totalBox = document.createElement('div');
-totalBox.className = 'rows total';
+// CORRECTION SIMPLIFIÉE de renderJobs pour les familles standards :
+function renderJobs(fam, grade){
+    const jobsDiv = document.getElementById('jobs');
 
-card.appendChild(ctrls);
-card.appendChild(rows);
-card.appendChild(totalBox);
-const btn = document.createElement('button'); btn.textContent='Voir retenues'; btn.className='badge button toggle hidden'; btn.style.marginTop='8px';
-const retenues = document.createElement('div'); retenues.className='retenues';
-card.appendChild(btn); card.appendChild(retenues);
-btn.addEventListener('click', ()=> {
-retenues.classList.toggle('open');
-btn.textContent = retenues.classList.contains('open') ? 'Masquer retenues' : 'Voir retenues';
-});
-try { onModeChange(); } catch(e){}
+    const gradesList = document.getElementById('grades');
+    if (gradesList) gradesList.classList.add('hidden');
+    const backButtonHTML = "<button id='backToGrades' class='badge button' style='margin-bottom:12px'>&larr; Retour aux grades</button>";
 
-function recalc(){
-// 1) Sync échelons quand la classe change
-const echs = getEchelonsFor(map, gradeCode, selCls.value);
-if (selEch.options.length !== echs.length){
-selEch.innerHTML = '';
-echs.forEach(e=>{
-const o=document.createElement('option');
-o.value=e; o.textContent=e;
-selEch.appendChild(o);
-});
-}
+    if (fam.nom === "POLICE NATIONALE") {
+        // Police - utilise buildPoliceCard
+        jobsDiv.innerHTML = `${backButtonHTML}<h3>Emplois — <span class='badge'>Corps <strong>${getCorpsName(grade.code)}</strong></span></h3><div class='grid' id='grid'></div>`;
+        
+        const grid = document.getElementById('grid');
+        const corpsGrades = POLICE[grade.code] || {};
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.setAttribute('data-emploi', 'Tous les grades');
+        card.setAttribute('data-grade', grade.code);
+        card.setAttribute('data-famille', fam.nom);
+        card.innerHTML = "<h3>" + getCorpsName(grade.code) + "</h3>";
+        grid.appendChild(card);
+        buildPoliceCard(card, fam, grade, corpsGrades);
+    } else if (fam.nom === "MAGISTRAT") {
+        // Magistrats - utilise buildMagistratCard
+        jobsDiv.innerHTML = `${backButtonHTML}<h3>Emplois — <span class='badge'>Grade <strong>${grade.code}</strong></span></h3><div class='grid' id='grid'></div>`;
+        const grid = document.getElementById('grid');
+        
+        (fam.emplois||[]).forEach(jobTitle => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.setAttribute('data-emploi', jobTitle);
+            card.setAttribute('data-famille', fam.nom);
+            card.innerHTML = "<h3>" + jobTitle + "</h3>";
+            grid.appendChild(card);
+            buildMagistratCard(card, jobTitle);
+        });
+    } else {
+        // TOUTES LES AUTRES FAMILLES - utilise buildCard simplifié
+        jobsDiv.innerHTML = `${backButtonHTML}<h3>Emplois — <span class='badge'>Grade <strong>${grade.code}</strong></span></h3><div class='grid' id='grid'></div>`;
 
-// 2) Calculs de base
-// Récupérer l'indice de base
-let indice = getIndice(map, gradeCode, selCls.value, selEch.value);
+        const grid = document.getElementById('grid');
 
-// --- DEBUT MODIFICATION : Ajout de 50 points ---
-// Récupérer le titre de l'emploi pour la vérification
-const jobTitle_raw = card.getAttribute('data-emploi') || '';
-const jobTitle_norm = jobTitle_raw.toLowerCase();
+        // Récupérer tous les emplois de ce grade
+        const gradeData = (fam.grades || []).find(g => g.code === grade.code);
+        
+        if (gradeData && gradeData.emplois && gradeData.emplois.length > 0) {
+            gradeData.emplois.forEach(emploi => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.setAttribute('data-emploi', emploi);
+                card.setAttribute('data-grade', grade.code);
+                card.setAttribute('data-famille', fam.nom);
+                card.innerHTML = "<h3>" + emploi + "</h3>";
+                grid.appendChild(card);
+                
+                // Utiliser buildCard pour toutes les familles standards
+                buildCard(card, fam, grade);
+            });
+        } else {
+            // Aucun emploi trouvé
+            const message = document.createElement('div');
+            message.className = 'card';
+            message.innerHTML = "<h3>Configuration en cours</h3><p>Les calculs pour cette catégorie seront disponibles prochainement.</p>";
+            grid.appendChild(message);
+        }
+    }
 
-// Appliquer le bonus de 50 points pour "Agent d'hygiène" et "Agent d'hygiène specialisé"
-if (indice != null && (
-jobTitle_norm === "agent d'hygiène"
-)) {
-indice += 50;
-}
-// --- FIN MODIFICATION ---
-const vp = getVP();
-const base = (indice!=null && vp>0) ? indice*vp : 0;
-
-const residence = base*0.15;
-const transport = getTransport();
-const logement  = housingFor(gradeCode, jobTitle, famName);
-
-const sante     = santePrimes(gradeCode, jobTitle);
-const mar       = maritimeRisk(gradeCode, jobTitle, famName);
-const infoSpec  = informaticienSpec(jobTitle);
-const infoQual  = isInformatique(jobTitle) ? base*0.30 : 0;
-const sup       = higherEdPrimes(jobTitle, gradeCode);
-const dir       = isDirectionJob(jobTitle) ? 20000 : 0;
-
-// Ajouter l'allocation familiale
-const allocFamiliale = getAllocationFamiliale();
-
-// Indemnités spécifiques à la police
-let sujettionPolice = 0;
-let risquesPolice = 0;
-let tauxBail = 0;
-
-if ((famName || '').toLowerCase().includes('police nationale')) {
-sujettionPolice = base * 0.10;  // 10% du solde de base
-risquesPolice = base * 0.175;    // 17.5% du solde de base
-
-        // NOUVELLE INDEMNITÉ : Charge Militaire (15% du salaire de base)
-        const chargeMilitaire = base * 0.15; 
-
-
-// Obtenir le taux de bail selon le corps et le grade
-const corps = gradeCode; // SOUS OFFICIERS, OFFICIERS ou COMMISSAIRES
-tauxBail = getPoliceBail(corps, jobTitle);
-}
-
-const totalBrut = base + residence + transport + logement
-+ sante.diff + sante.risque + sante.para + sante.special
-+ mar.risk + mar.sujet
-+ infoSpec + infoQual
-+ sup.acad + sup.encad
-+ dir + allocFamiliale
-+ sujettionPolice + risquesPolice + chargeMilitaire; // Ajouter les indemnités police
-
-const annual = higherEdAnnualPrime(jobTitle, gradeCode);
-
-// 3) (Re)peindre les lignes
-rows.innerHTML = "";
-addLine('Indice', (indice ?? '—'), true);
-addLine('Salaire de base', base, false, 'salaire-base');
-addLine('Indemnité de résidence', residence);
-
-// Ajouter une ligne pour l'allocation familiale
-if (allocFamiliale > 0) {
-addLine('Allocation familiale', allocFamiliale);
-}
-
-addLine('Prime de transport', transport);
-if (logement>0){
-addLine('Indemnité de logement', logement);
-}
-if (sante.diff || sante.risque || sante.para || sante.special){
-if (sante.diff>0) {addLine('Différentiel santé', sante.diff);}
-addLine('Risque sanitaire', sante.risque);
-addLine('Paramédical', sante.para);
-if (sante.special) addLine('Spécialité', sante.special);
-}
-
-if (mar.risk || mar.sujet){
-addLine('Indemnité de risque', mar.risk);
-addLine('Indemnité de sujétion', mar.sujet);
-}
-if (isInformatique(jobTitle)){
-addLine('Indemnité spécifique', infoSpec);
-addLine('Prime de qualité', infoQual);
-}
-if (isHigherEdOrResearch(jobTitle)){
-addLine('Prime académique', sup.acad);
-addLine('Prime d\'encadrement', sup.encad);
-}
-if (dir){
-addLine('Indemnité de direction', dir);
-}
-
-// Indemnités spécifiques police
-if (sujettionPolice > 0) {
-addLine('Indemnité de sujétion', sujettionPolice);
-}
-if (risquesPolice > 0) {
-addLine('Indemnité de risques', risquesPolice);
-}
-if (chargeMilitaire>0) {
-addLine('Charge Militaire Police');
-}
-
-// 4) Totaux (toujours régénérés)
-totalBox.innerHTML = "";
-const tot = document.createElement('div'); tot.className='line';
-const l = document.createElement('div'); l.className='label'; l.textContent = 'TOTAL BRUT ESTIMÉ';
-const a = document.createElement('div'); a.className='amount'; a.textContent = fmtMoney(totalBrut);
-tot.appendChild(l); tot.appendChild(a);
-totalBox.appendChild(tot);
-
-// Afficher le taux de bail pour la police (non inclus dans le total)
-if (tauxBail > 0) {
-const bailLine = document.createElement('div');
-bailLine.className = 'line';
-const bailLabel = document.createElement('div');
-bailLabel.className = 'label';
-bailLabel.textContent = 'Taux de bail (non inclus)';
-const bailAmount = document.createElement('div');
-bailAmount.className = 'amount';
-bailAmount.textContent = fmtMoney(tauxBail);
-bailLine.appendChild(bailLabel);
-bailLine.appendChild(bailAmount);
-totalBox.appendChild(bailLine);
-}
-
-// Afficher la prime annuelle si présente (note: non incluse dans le total)
-if (annual){
-const aL=document.createElement('div'); aL.className='line';
-const l2=document.createElement('div'); l2.className='label'; l2.textContent='Prime annuelle (non incluse)';
-const a2=document.createElement('div'); a2.className='amount'; a2.textContent=fmtMoney(annual);
-aL.appendChild(l2); aL.appendChild(a2);
-totalBox.appendChild(aL);
-}
-
-// 5) Mode NET : retenues + SALAIRE NET (unique)
-if (typeof isNetMode==='function' && isNetMode()){
-btn.classList.remove('hidden');
-
-// Calcul ITS + retenues
-const itsObj = calcITSMonthly
-? calcITSMonthly(indice, vp, (statutSel&&statutSel.value)||'celibataire', (enfantsSel&&enfantsSel.value)||0, isHealthCadreSup(jobTitle))
-: {impot_net:0};
-const mugefci = (Number(indice||0) < 1000) ? (base*0.03) : 7004;
-const pension = base * 0.0833;
-const pensionCompl = base * 0.05;
-const totalRetenues = (itsObj.impot_net||0) + mugefci + pension + pensionCompl;
-const net = totalBrut - totalRetenues;
-
-// (Re)peindre le panneau des retenues
-retenues.innerHTML = '';
-const make = (lab, val)=>{
-const d=document.createElement('div'); d.className='line';
-const ll=document.createElement('div'); ll.className='label'; ll.textContent=lab;
-const aa=document.createElement('div'); aa.className='amount'; aa.textContent=fmtMoney(val);
-d.appendChild(ll); d.appendChild(aa); retenues.appendChild(d);
-};
-make('ITS (mensuel)', itsObj.impot_net||0);
-make('MUGEFCI', mugefci);
-make('Retenue pension', pension);
-make('Pension complémentaire', pensionCompl);
-make('Total retenues', totalRetenues);
-
-// 🔧 Anti-doublon : retirer toute ancienne ligne "SALAIRE NET"
-totalBox.querySelectorAll('.line').forEach(n=>{
-const lab = n.querySelector && n.querySelector('.label');
-if(lab && lab.textContent.trim().toUpperCase() === 'SALAIRE NET'){ n.remove(); }
-});
-
-// Ajouter "SALAIRE NET" après le total brut (dans totalBox)
-const netLine = document.createElement('div'); netLine.className='line';
-const nlab = document.createElement('div'); nlab.className='label'; nlab.textContent='SALAIRE NET';
-const namt = document.createElement('div');  namt.className='amount'; namt.textContent=fmtMoney(net);
-netLine.appendChild(nlab); netLine.appendChild(namt);
-totalBox.appendChild(netLine);
-
-} else {
-// Mode BRUT : masquer le panneau + retirer les éventuelles lignes "SALAIRE NET"
-btn.classList.add('hidden');
-retenues.classList.remove('open');
-retenues.innerHTML='';
-totalBox.querySelectorAll('.line').forEach(n=>{
-const lab = n.querySelector && n.querySelector('.label');
-if(lab && lab.textContent.trim().toUpperCase() === 'SALAIRE NET'){ n.remove(); }
-});
-}
-}
-
-selCls.addEventListener('change', recalc);
-selEch.addEventListener('change', recalc);
-(vpGlobalInput||{}).addEventListener?.('input', recalc);
-(locGlobalSel||{}).addEventListener?.('change', recalc);
-(enfantsAllocSel||{}).addEventListener?.('change', recalc);
-
-recalc();
+    document.getElementById('backToGrades').addEventListener('click', () => {
+        renderGrades(fam);
+    });
 }
 
 function buildPoliceCard(card, fam, grade, corpsGrades){
