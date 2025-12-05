@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculateur d'Impôt</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4a6fa5;
+            --secondary: #166088;
+            --accent: #4fc3f7;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --success: #28a745;
+            --warning: #ffc107;
+            --danger: #dc3545;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--secondary);
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            color: var(--primary);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 15px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--secondary);
+        }
+        
+        select, input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        select:focus, input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(79, 195, 247, 0.2);
+        }
+        
+        button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: block;
+            width: 100%;
+            margin: 25px 0;
+        }
+        
+        button:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .result-container {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+            border-left: 5px solid var(--accent);
+        }
+        
+        .result-grid {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .result-item {
+            display: contents;
+        }
+        
+        .result-label {
+            font-weight: 500;
+            text-align: right;
+            padding-right: 15px;
+        }
+        
+        .result-value {
+            font-weight: bold;
+            text-align: left;
+            padding-left: 15px;
+        }
+        
+        .result-total {
+            grid-column: 1 / -1;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background: #eee;
+            margin-right: 5px;
+            border-radius: 5px 5px 0 0;
+            font-weight: 500;
+        }
+        
+        .tab.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .info-icon {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            background-color: var(--accent);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 18px;
+            font-size: 12px;
+            margin-left: 5px;
+            cursor: help;
+        }
+        
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: var(--dark);
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 14px;
+            font-weight: normal;
+        }
+        
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        .author-badge {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background-color: var(--primary);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .reset-btn {
+            background-color: var(--warning);
+            color: var(--dark);
+            margin-top: 15px;
+        }
+        
+        .reset-btn:hover {
+            background-color: #e0a800;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 15px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .author-badge {
+                position: static;
+                margin-top: 20px;
+                text-align: center;
+            }
+            
+            .result-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .result-label {
+                text-align: left;
+                padding-right: 0;
+                margin-top: 10px;
+            }
+            
+            .result-value {
+                padding-left: 0;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculateur d'Impôt sur le Revenu</h1>
+        
+        <div class="tabs">
+            <div class="tab active" id="tab-salarie">Salarié</div>
+            <div class="tab" id="tab-fonctionnaire">Fonctionnaire</div>
+        </div>
+        
+        <div class="tab-content active" id="salarie-tab">
+            <div class="form-group">
+                <label for="sbi-salarie">Solde Brut Imposable (SBI) en FCFA</label>
+                <input type="number" id="sbi-salarie" min="0" placeholder="Entrez votre SBI">
+            </div>
+            
+            <div class="form-group">
+                <label for="situation-salarie">Situation matrimoniale</label>
+                <select id="situation-salarie">
+                    <option value="celibataire">Célibataire</option>
+                    <option value="marie">Marié(e)</option>
+                    <option value="divorce">Divorcé(e)</option>
+                    <option value="veuf">Veuf/Veuve</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="enfants-salarie">Nombre d'enfants à charge (max 6)</label>
+                <select id="enfants-salarie">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                </select>
+            </div>
+            
+            <div class="form-group hidden" id="enfant-infirme-group-salarie">
+                <label>
+                    <input type="checkbox" id="enfant-infirme-salarie">
+                    Avez-vous un ou plusieurs enfants infirmes mineurs ou majeurs ?
+                </label>
+            </div>
+            
+            <button id="btn-calculer-salarie">Calculer l'Impôt</button>
+        </div>
+        
+        <div class="tab-content" id="fonctionnaire-tab">
+            <div class="form-group">
+                <label for="indice">Indice de traitement</label>
+                <input type="number" id="indice" min="0" placeholder="Entrez votre indice">
+            </div>
+            
+            <div class="form-group">
+                <label for="sbi-fonctionnaire">Solde Brut Imposable (SBI) sur bulletin <span class="tooltip">(Optionnel)<span class="tooltiptext">Si vous connaissez déjà votre SBI exact, vous pouvez l'entrer directement ici</span></span></label>
+                <input type="number" id="sbi-fonctionnaire" min="0" placeholder="Entrez votre SBI si connu">
+            </div>
+            
+            <div class="form-group">
+                <label for="situation-fonctionnaire">Situation matrimoniale</label>
+                <select id="situation-fonctionnaire">
+                    <option value="celibataire">Célibataire</option>
+                    <option value="marie">Marié(e)</option>
+                    <option value="divorce">Divorcé(e)</option>
+                    <option value="veuf">Veuf/Veuve</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="enfants-fonctionnaire">Nombre d'enfants à charge (max 6)</label>
+                <select id="enfants-fonctionnaire">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                </select>
+            </div>
+            
+            <div class="form-group hidden" id="enfant-infirme-group-fonctionnaire">
+                <label>
+                    <input type="checkbox" id="enfant-infirme-fonctionnaire">
+                    Avez-vous un ou plusieurs enfants infirmes mineurs ou majeurs ?
+                </label>
+            </div>
+            
+            <button id="btn-calculer-fonctionnaire">Calculer l'Impôt</button>
+        </div>
+        
+        <div id="resultats" class="result-container hidden">
+            <h2>Résultats du calcul</h2>
+            <div class="result-grid">
+                <div class="result-item">
+                    <div class="result-label">Solde Brut Imposable (SBI):</div>
+                    <div class="result-value" id="result-sbi">0 FCFA</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-label">Nombre de parts fiscales:</div>
+                    <div class="result-value" id="result-parts">0</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-label">Impôt brut:</div>
+                    <div class="result-value" id="result-impot-brut">0 FCFA</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-label">Réduction pour charges de famille:</div>
+                    <div class="result-value" id="result-reduction">0 FCFA</div>
+                </div>
+                <div class="result-total">
+                    <div>Impôt net à payer:</div>
+                    <div id="result-impot-net">0 FCFA</div>
+                </div>
+            </div>
+            
+            <button class="reset-btn" id="btn-reset">Nouveau calcul</button>
+        </div>
+        
+        <div class="author-badge">
+            Koubi Seri Fils - Professionnel de l'Education
+        </div>
+    </div>
+
+    <script>
+        // Fonction pour changer d'onglet
+        function switchTab(tabName) {
+            // Désactiver tous les onglets et contenus
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Activer l'onglet et le contenu sélectionné
+            document.getElementById(`tab-${tabName}`).classList.add('active');
+            document.getElementById(`${tabName}-tab`).classList.add('active');
+        }
+
+        // Écouteurs pour les onglets
+        document.getElementById('tab-salarie').addEventListener('click', () => switchTab('salarie'));
+        document.getElementById('tab-fonctionnaire').addEventListener('click', () => switchTab('fonctionnaire'));
+
+        // Afficher/masquer le champ enfant infirme en fonction du nombre d'enfants
+        function setupEnfantInfirmeToggle(enfantSelectId, infirmeGroupId, infirmeCheckboxId) {
+            document.getElementById(enfantSelectId).addEventListener('change', function() {
+                const enfants = parseInt(this.value);
+                const groupeInfirme = document.getElementById(infirmeGroupId);
+                
+                if (enfants > 0) {
+                    groupeInfirme.classList.remove('hidden');
+                } else {
+                    groupeInfirme.classList.add('hidden');
+                    document.getElementById(infirmeCheckboxId).checked = false;
+                }
+            });
+        }
+
+        // Configuration des toggles pour enfants infirmes
+        setupEnfantInfirmeToggle('enfants-salarie', 'enfant-infirme-group-salarie', 'enfant-infirme-salarie');
+        setupEnfantInfirmeToggle('enfants-fonctionnaire', 'enfant-infirme-group-fonctionnaire', 'enfant-infirme-fonctionnaire');
+
+        // Calcul du nombre de parts
+        function calculerParts(situation, enfants, enfantInfirme) {
+            enfants = parseInt(enfants);
+            let parts = 1; // Valeur par défaut
+            
+            // Cas particuliers pour célibataires/divorcés/veufs sans enfant
+            if (enfants === 0) {
+                if (situation === 'marie') {
+                    return 2;
+                } else {
+                    return 1;
+                }
+            }
+            
+            // Cas généraux avec enfants
+            switch(situation) {
+                case 'celibataire':
+                case 'divorce':
+                    if (enfants === 1) parts = 2;
+                    else if (enfants === 2) parts = 2.5;
+                    else if (enfants === 3) parts = 3;
+                    else if (enfants === 4) parts = 3.5;
+                    else if (enfants >= 5) parts = 4 + Math.min(enfants - 4, 1); // Max 5 parts
+                    break;
+                case 'marie':
+                case 'veuf':
+                    if (enfants === 1) parts = 2.5;
+                    else if (enfants === 2) parts = 3;
+                    else if (enfants === 3) parts = 3.5;
+                    else if (enfants === 4) parts = 4;
+                    else if (enfants >= 5) parts = 4.5 + Math.min(enfants - 4, 0.5); // Max 5 parts
+                    break;
+            }
+            
+            // Majoration pour enfant infirme
+            if (enfantInfirme) {
+                parts += 0.5 * enfants; // 1 point par enfant infirme (0.5 en plus du 0.5 normal)
+            }
+            
+            // Limite à 5 parts maximum
+            return Math.min(parts, 5);
+        }
+        
+        // Calcul de l'impôt brut
+        function calculerImpotBrut(sbi) {
+            sbi = parseFloat(sbi);
+            let impot = 0;
+            
+            if (sbi <= 75000) {
+                impot = 0;
+            } else if (sbi <= 240000) {
+                impot = (sbi - 75000) * 0.16;
+            } else if (sbi <= 800000) {
+                impot = (240000 - 75000) * 0.16 + (sbi - 240000) * 0.21;
+            } else if (sbi <= 2400000) {
+                impot = (240000 - 75000) * 0.16 + (800000 - 240000) * 0.21 + (sbi - 800000) * 0.24;
+            } else if (sbi <= 8000000) {
+                impot = (240000 - 75000) * 0.16 + (800000 - 240000) * 0.21 + (2400000 - 800000) * 0.24 + (sbi - 2400000) * 0.28;
+            } else {
+                impot = (240000 - 75000) * 0.16 + (800000 - 240000) * 0.21 + (2400000 - 800000) * 0.24 + (8000000 - 2400000) * 0.28 + (sbi - 8000000) * 0.32;
+            }
+            
+            return Math.round(impot);
+        }
+        
+        // Calcul de la réduction pour charges de famille
+        function calculerReduction(parts) {
+            const reductions = {
+                1: 0,
+                1.5: 5500,
+                2: 11000,
+                2.5: 16500,
+                3: 22000,
+                3.5: 27500,
+                4: 33000,
+                4.5: 38500,
+                5: 44000
+            };
+            
+            return reductions[parts] || 0;
+        }
+        
+        // Calcul pour salarié
+        function calculerImpotSalarie() {
+            const sbiInput = document.getElementById('sbi-salarie').value;
+            
+            if (!sbiInput || isNaN(parseFloat(sbiInput))) {
+                alert('Veuillez entrer un SBI valide');
+                return;
+            }
+            
+            const sbi = parseFloat(sbiInput);
+            const situation = document.getElementById('situation-salarie').value;
+            const enfants = document.getElementById('enfants-salarie').value;
+            const enfantInfirme = document.getElementById('enfant-infirme-salarie').checked;
+            
+            const parts = calculerParts(situation, enfants, enfantInfirme);
+            const impotBrut = calculerImpotBrut(sbi);
+            const reduction = calculerReduction(parts);
+            const impotNet = Math.max(0, impotBrut - reduction);
+            
+            afficherResultats(sbi, parts, impotBrut, reduction, impotNet);
+        }
+        
+        // Calcul pour fonctionnaire
+        function calculerImpotFonctionnaire() {
+            let sbi;
+            const sbiInput = document.getElementById('sbi-fonctionnaire').value;
+            
+            if (sbiInput && !isNaN(parseFloat(sbiInput))) {
+                sbi = parseFloat(sbiInput);
+            } else {
+                const indiceInput = document.getElementById('indice').value;
+                
+                if (!indiceInput || isNaN(parseFloat(indiceInput))) {
+                    alert('Veuillez entrer un indice valide');
+                    return;
+                }
+                
+                const indice = parseFloat(indiceInput);
+                sbi = indice * 233.45625 * 1.15;
+            }
+            
+            const situation = document.getElementById('situation-fonctionnaire').value;
+            const enfants = document.getElementById('enfants-fonctionnaire').value;
+            const enfantInfirme = document.getElementById('enfant-infirme-fonctionnaire').checked;
+            
+            const parts = calculerParts(situation, enfants, enfantInfirme);
+            const impotBrut = calculerImpotBrut(sbi);
+            const reduction = calculerReduction(parts);
+            const impotNet = Math.max(0, impotBrut - reduction);
+            
+            afficherResultats(sbi, parts, impotBrut, reduction, impotNet);
+        }
+        
+        // Affichage des résultats
+        function afficherResultats(sbi, parts, impotBrut, reduction, impotNet) {
+            document.getElementById('result-sbi').textContent = formatNombre(sbi) + ' FCFA';
+            document.getElementById('result-parts').textContent = parts;
+            document.getElementById('result-impot-brut').textContent = formatNombre(impotBrut) + ' FCFA';
+            document.getElementById('result-reduction').textContent = formatNombre(reduction) + ' FCFA';
+            document.getElementById('result-impot-net').textContent = formatNombre(impotNet) + ' FCFA';
+            
+            document.getElementById('resultats').classList.remove('hidden');
+        }
+        
+        // Réinitialisation du formulaire
+        function reinitialiserCalcul() {
+            // Réinitialiser l'onglet salarié
+            document.getElementById('sbi-salarie').value = '';
+            document.getElementById('situation-salarie').value = 'celibataire';
+            document.getElementById('enfants-salarie').value = '0';
+            document.getElementById('enfant-infirme-salarie').checked = false;
+            document.getElementById('enfant-infirme-group-salarie').classList.add('hidden');
+            
+            // Réinitialiser l'onglet fonctionnaire
+            document.getElementById('indice').value = '';
+            document.getElementById('sbi-fonctionnaire').value = '';
+            document.getElementById('situation-fonctionnaire').value = 'celibataire';
+            document.getElementById('enfants-fonctionnaire').value = '0';
+            document.getElementById('enfant-infirme-fonctionnaire').checked = false;
+            document.getElementById('enfant-infirme-group-fonctionnaire').classList.add('hidden');
+            
+            // Masquer les résultats
+            document.getElementById('resultats').classList.add('hidden');
+            
+            // Revenir à l'onglet salarié par défaut
+            switchTab('salarie');
+        }
+        
+        // Formatage des nombres avec séparateurs de milliers
+        function formatNombre(nombre) {
+            return nombre.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+        }
+
+        // Écouteurs pour les boutons de calcul
+        document.getElementById('btn-calculer-salarie').addEventListener('click', calculerImpotSalarie);
+        document.getElementById('btn-calculer-fonctionnaire').addEventListener('click', calculerImpotFonctionnaire);
+        document.getElementById('btn-reset').addEventListener('click', reinitialiserCalcul);
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Activer le premier onglet par défaut
+            switchTab('salarie');
+            
+            // Masquer les groupes d'enfants infirmes au départ
+            document.getElementById('enfant-infirme-group-salarie').classList.add('hidden');
+            document.getElementById('enfant-infirme-group-fonctionnaire').classList.add('hidden');
+        });
+    </script>
+</body>
+</html>
