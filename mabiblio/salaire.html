@@ -2088,6 +2088,8 @@ if (grade === 'C3') return { risk:80000, sujet:40000 };
 if (grade === 'B3') return { risk:90000, sujet:50000 };
 if (grade === 'A3') return { risk:100000, sujet:60000 };
 if (['A4','A5','A6','A7'].includes(grade)) return { risk:125000, sujet:75000 };
+if (t.includes('professeur de collège') || t.includes('professeur de college')) return 60000;
+if (t.includes('professeur de lycée') || t.includes('professeur de lycee')) return 70000;
 return { risk:0, sujet:0 };
 }
 function informaticienSpec(jobTitle){
@@ -4001,13 +4003,19 @@ if (/contr[oô]leur\s+g[eé]n[eé]ral\s+de\s+la\s+protection\s+civile/.test(t)) 
 return _housingForBase(grade, jobTitle, famName);
 };
 
-// Wrapper for maritimeRisk to zero for "Professeur de Collège option Sport"
+// Wrapper for maritimeRisk
 maritimeRisk = function(grade, jobTitle, famName){
-const t = norm(jobTitle);
-if (/professeur\s+de\s+coll[eè]ge/.test(t) && /option\s+sport/.test(t)) {
-return { risk:0, sujet:0 };
-}
-return _maritimeRiskBase(grade, jobTitle, famName);
+    const t = norm(jobTitle);
+
+    // --- CORRECTION : Forcer 0 pour TOUS les Professeurs (Collège et Lycée) ---
+    // Cela empêche que des mots comme "Transport", "Sport" ou "Transit" 
+    // ne déclenchent les primes maritimes ou paramilitaires par erreur.
+    if (/professeur\s+de\s+(coll[eè]ge|lyc[eé]e)/.test(t)) {
+        return { risk:0, sujet:0 };
+    }
+    // --------------------------------------------------------------------------
+
+    return _maritimeRiskBase(grade, jobTitle, famName);
 };
 
 // Ensure sanitary risk/paramedical for Agent d'hygiène spécialisé C1 stays applied (already via santePrimes).
