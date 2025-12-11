@@ -565,6 +565,59 @@ justify-content: space-between;
 filter: brightness(0.95);
 }
 
+/* --- NOUVEAU STYLE : VUE SCINDÉE (Liste à gauche, Carte à droite) --- */
+.job-split-view {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 16px;
+    align-items: start;
+}
+@media (max-width: 900px) {
+    .job-split-view {
+        grid-template-columns: 1fr; /* Sur mobile, l'un en dessous de l'autre */
+    }
+}
+
+.job-list-container {
+    max-height: 70vh;
+    overflow-y: auto;
+    padding-right: 8px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 10px;
+}
+
+.job-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 10px 12px;
+    margin-bottom: 6px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.job-btn:hover {
+    background: var(--bg);
+    border-color: var(--border);
+}
+
+.job-btn.active {
+    background: var(--indice-bg);
+    color: #fff;
+    font-weight: 700;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Scrollbar fine pour la liste */
+.job-list-container::-webkit-scrollbar { width: 6px; }
+.job-list-container::-webkit-scrollbar-thumb { background-color: var(--border); border-radius: 3px; }
 </style>
 </head>
 <body>
@@ -1581,7 +1634,8 @@ const DATA = {
 "Médecin Spécialiste",
 "Pharmacien Généraliste",
 "Ingenieur des Eaux-et-Fôret",
-"Ingenieur de l'Informatique"]},
+"Ingenieur de l'Informatique",
+"Chef de Colonne 1ère Classe"]},
 {
 "code": "A5",
 "emplois": ["Chargé de Recherche",
@@ -1589,7 +1643,8 @@ const DATA = {
 "Médecin Principal",
 "Médecin Principal Spécialiste",
 "Ingénieur Principal des Eaux-et-Fôret",
-"Ingénieur Principal de l'Informatique"]},
+"Ingénieur Principal de l'Informatique",
+"Chef de Site de 2è Classe"]},
 {
 "code": "A6",
 "emplois": ["Ingénieur en Chef des Eaux-et-Fôret",
@@ -1598,7 +1653,8 @@ const DATA = {
 "Ingénieur en Chef des services Sanitaires",
 "Maître de Recherches",
 "Médecin en Chef",
-"Médecin en Chef Spécialiste"]},
+"Médecin en Chef Spécialiste",
+"Chef de Site de 1ère Classe"]},
 {
 "code": "A7",
 "emplois": ["Architecte d'État",
@@ -1610,14 +1666,15 @@ const DATA = {
 "Médecin Général",
 "Médecin Général Spécialiste",
 "Pharmacien Général",
-"Pharmacien Général Spécialiste"]},
+"Pharmacien Général Spécialiste",
+"Contrôleur Général de la Protection Civile"]},
 {
 "code": "B1",
 "emplois": ["Technicien des Travaux Publics",
 "Chef d'agrès de 2è classe",
 "Technicien de l'Informatique"]},
 {
-"code": "B3", "emplois": ["Adjoint Technique de la Statistique", "Assistant Dentaire", "Assistant des Productions Végétales et Animales", "Contrôleur des Techniques des Médias", "Diététicien", "Infirmier(ère) diplômé (e) d'Etat", "Sage-femme/Maïeuticien diplômé(é) d'Etat", "Technicien Supérieur de la Santé", "Technicien Supérieur", "Technicien Supérieur Contrôle Qualité", "Technicien Supérieur d'Imprimerie", "Technicien Supérieur de l'Environnement", "Technicien Supérieur de la Santé", "Technicien Supérieurd'Electrotechnique", "Technicien supérieur de l'Aviation Civile", "Technicien supérieur des Travaux Publics", "Technicien supérieur de l'Informatique", "Assistant des Productions Végétales et Animales option Eaux-et-Fôret"]}, {"code": "C3", "emplois": ["Auxiliaire de soins infirmiers", "Auxiliaire de soins obstétricaux", "Auxiliaire des techniques sanitaires : pharmacie", "Auxiliaire des techniques sanitaires : laboratoire", "Auxiliaire des techniques sanitaires : hygiène et assainissement", "Auxiliaire des techniques sanitaires : imagerie médicale", "Agent Servant", "Agent Technique d'Imprimerie", "Opérateur Technique des Médias"]}, {"code": "C2", "emplois": ["Moniteur de Production Végétale", "Agent Technique de la Statistique", "Agent de Maîtrise des Travaux Publics"]}, {"code": "C1", "emplois": ["Aide-soignant", "Agent d'hygiène specialisé"]}, {"code": "D1", "emplois": ["Agent Specialiste des Travaux Publics option Chauffeur", "Commis de la Statistique", "Moniteur Adjoint d'Agriculture", "Agent d'Hygiène"]}]}, {"nom": "ÉDUCATION ET FORMATION", "grades": [{"code": "A3", "emplois": ["Professeur de Collège", "Éducateur", "Conseiller", "Professeur de CAFOP", "Professeur de Collège spécialité Construction Mécanique", "Professeur de Collège spécialité Electricité Bâtiment", "Professeur de Collège spécialité Electronique", "Professeur de Collège spécialité Electrotechnique", "Professeur de Collège spécialité Elevage", "Professeur de Collège spécialité Entrepreneuriat/EDHC", "Professeur de Collège spécialité Fabrication Mécanique", "Professeur de Collège spécialité Génie Alimentaire", "Professeur de Collège spécialité Génie Civil option Bâtiment", "Professeur de Collège spécialité Génie Civil option Topographie", "Professeur de Collège spécialité Génie Industriel option Froid", "Professeur de Collège spécialité Imprimerie", "Professeur de Collège spécialité Informatique de Gestion", "Professeur de Collège spécialité Maintenance Machines Agricoles", "Professeur de Collège spécialité Maintenance Véhicules et Engins", "Professeur de Collège spécialité Mathématiques Appliquées aux Sciences et Techniques Financières", "Professeur de Collège spécialité Navigation", "Professeur de Collège spécialité Physiques Appliquées", "Professeur de Collège spécialité Techniques Administratives et Bureautiques", "Professeur de Collège spécialité Techniques de Pêche", "Professeur de Collège spécialité Transport Logistique Transit"]}, {"code": "A4", "emplois": ["Assistant de l'Enseignement Supérieur", "Inspecteur Pédagogique", "Inspecteur d'Education Préscolaire et Primaire", "Inspecteur de l'Enseignement Préscolaire et Primaire", "Professeur de Collège Bivalent option Francais/EDHC", "Professeur de Collège Bivalent option Histoire-Géographie/Français", "Professeur de Collège Bivalent option Mathématiques/TICE", "Professeur de Collège Bivalent option SVT/Physique-Chimie", "Professeur de Collège d'Education Permanente", "Professeur de Collège option Allemand", "Professeur de Collège option Anglais", "Professeur de Collège option EPS", "Professeur de Collège option Espagnol", "Professeur de Collège option Francais", "Professeur de Collège option Histoire-Géographie", "Professeur de Collège option Mathématiques", "Professeur de Collège option Physique-Chimie", "Professeur de Collège option SVT", "Professeur de Collège option Sport", "Professeur de Lycée", "Professeur de Lycée Philosophie", "Professeur de Lycée d'Education Permanente", "Professeur de Lycée option Allemand", "Professeur de Lycée option Anglais", "Professeur de Lycée option EPS", "Professeur de Lycée option Espagnol", "Professeur de Lycée option Francais", "Professeur de Lycée option Histoire-Géographie", "Professeur de Lycée option Mathématiques", "Professeur de Lycée option Physique-Chimie", "Professeur de Lycée option SVT", "Professeur de Lycée option Sport", "Professeur de Lycée spécialité Agriculture", "Professeur de Lycée spécialité Construction Mécanique", "Professeur de Lycée spécialité Droit", "Professeur de Lycée spécialité Electronique", "Professeur de Lycée spécialité Electrotechnique", "Professeur de Lycée spécialité Fabrication Mécanique", "Professeur de Lycée spécialité Génie Alimentaire", "Professeur de Lycée spécialité Génie Civil option Bâtiment", "Professeur de Lycée spécialité Génie Civil option Topographie", "Professeur de Lycée spécialité Génie Industriel option Froid", "Professeur de Lycée spécialité Informatique de Gestion", "Professeur de Lycée spécialité Mathématiques Appliquées aux Sciences et Techniques Industrielles", "Professeur de Lycée spécialité Mathématiques Appliquées à la Gestion Financière", "Professeur de Lycée spécialité Physiques Appliquées", "Professeur de Lycée spécialité Élevage"]}, {"code": "A5", "emplois": ["Inspecteur Principal", "Maître Assistant", "Maître Assistant de l'Enseignement supérieur Technique et Professionnel", "Professeur Agrégé"]}, {"code": "A6", "emplois": ["Inspecteur en Chef", "Maître de Conférences", "Maître de Conférences de l'Enseignement Supérieur, Technique et Professionnel"]}, {"code": "A7", "emplois": ["Inspecteur Général", "Professeur d'Université", "Professeur de l'Enseignement Supérieur, Technique et Professionnel"]}, {"code": "B3", "emplois": ["Instituteur", "Instructeur de Formation Professionnelle de Base spécialité Agroalimentaire", "Instructeur de Formation Professionnelle de Base spécialité Boulangerie-Pâtisserie", "Instructeur de Formation Professionnelle de Base spécialité Chaudronnerie-Soudure", "Instructeur de Formation Professionnelle de Base spécialité Conducteur d'Engins de Travaux Publics", "Instructeur de Formation Professionnelle de Base spécialité Construction Métallique", "Instructeur de Formation Professionnelle de Base spécialité Electricité Bâtiment", "Instructeur de Formation Professionnelle de Base spécialité Electricité d'Équipement", "Instructeur de Formation Professionnelle de Base spécialité Installation Sanitaire", "Instructeur de Formation Professionnelle de Base spécialité Maintenance Industrielle", "Instructeur de Formation Professionnelle de Base spécialité Maçonnerie", "Instructeur de Formation Professionnelle de Base spécialité Menuiserie Aluminium", "Instructeur de Formation Professionnelle de Base spécialité Mécanique Auto-Moto", "Instructeur de Formation Professionnelle de Base spécialité Mécanique Automobile", "Instructeur de Formation Professionnelle de Base spécialité Peinture Bâtiment Staff", "Instructeur de Formation Professionnelle de Base spécialité Plomberie Sanitaire", "Instructeur de Formation Professionnelle de Base spécialité Réfrigération-Climatisation", "Instructeur de Formation Professionnelle de Base spécialité Techniques de Soudage", "Instructeur de Formation Professionnelle de Base spécialité Textile-Habillement", "Instructeur de Formation Professionnelle de Base spécialité Vie Familiale et Sociale"]}, {"code": "C3", "emplois": ["Instituteur-Adjoint", "Instructeur Adjoint de Formation Professionnelle de Base spécialité Boulangerie-Pâtisserie", "Instructeur Adjoint de Formation Professionnelle de Base spécialité Coiffure", "Instructeur Adjoint de Formation Professionnelle de Base spécialité Construction Métallique", "Instructeur Adjoint de Formation Professionnelle de Base spécialité Coupe-Couture", "Instructeur Adjoint de Formation Professionnelle de Base spécialité Esthétique", "Instructeur Adjoint de Formation Professionnelle de Base spécialité Fabrication Mécanique", "Instructeur Adjoint de Formation Professionnelle de Base spécialité Installation Sanitaire", "Instructeur Adjoint de Formation Professionnelle de Base spécialité Machiniste Agricole", "Maître-Adjoint d'EPS"]}]}, {"nom": "GREFFIER", "emplois": ["Administrateur des Greffes et Parquets", "Attaché des Greffes et Parquets", "Secrétaire des Greffes et Parquets"]},{
+"code": "B3", "emplois": ["Adjoint Technique de la Statistique", "Assistant Dentaire", "Assistant des Productions Végétales et Animales", "Contrôleur des Techniques des Médias", "Diététicien", "Infirmier(ère) diplômé (e) d'Etat", "Sage-femme/Maïeuticien diplômé(é) d'Etat", "Technicien Supérieur de la Santé", "Technicien Supérieur", "Technicien Supérieur Contrôle Qualité", "Technicien Supérieur d'Imprimerie", "Technicien Supérieur de l'Environnement", "Technicien Supérieur de la Santé", "Technicien Supérieurd'Electrotechnique", "Technicien supérieur de l'Aviation Civile", "Technicien supérieur des Travaux Publics", "Technicien supérieur de l'Informatique", "Assistant des Productions Végétales et Animales option Eaux-et-Fôret", "Chef de Garde 2è classe"]}, {"code": "C3", "emplois": ["Auxiliaire de soins infirmiers", "Auxiliaire de soins obstétricaux", "Auxiliaire des techniques sanitaires : pharmacie", "Auxiliaire des techniques sanitaires : laboratoire", "Auxiliaire des techniques sanitaires : hygiène et assainissement", "Auxiliaire des techniques sanitaires : imagerie médicale", "Agent Servant", "Agent Technique d'Imprimerie", "Opérateur Technique des Médias"]}, {"code": "C2", "emplois": ["Moniteur de Production Végétale", "Agent Technique de la Statistique", "Agent de Maîtrise des Travaux Publics"]}, {"code": "C1", "emplois": ["Aide-soignant", "Agent d'hygiène specialisé"]}, {"code": "D1", "emplois": ["Agent Specialiste des Travaux Publics option Chauffeur", "Commis de la Statistique", "Moniteur Adjoint d'Agriculture", "Agent d'Hygiène"]}]}, {"nom": "ÉDUCATION ET FORMATION", "grades": [{"code": "A3", "emplois": ["Professeur de Collège", "Éducateur", "Conseiller", "Professeur de CAFOP", "Professeur de Collège spécialité Construction Mécanique", "Professeur de Collège spécialité Electricité Bâtiment", "Professeur de Collège spécialité Electronique", "Professeur de Collège spécialité Electrotechnique", "Professeur de Collège spécialité Elevage", "Professeur de Collège spécialité Entrepreneuriat/EDHC", "Professeur de Collège spécialité Fabrication Mécanique", "Professeur de Collège spécialité Génie Alimentaire", "Professeur de Collège spécialité Génie Civil option Bâtiment", "Professeur de Collège spécialité Génie Civil option Topographie", "Professeur de Collège spécialité Génie Industriel option Froid", "Professeur de Collège spécialité Imprimerie", "Professeur de Collège spécialité Informatique de Gestion", "Professeur de Collège spécialité Maintenance Machines Agricoles", "Professeur de Collège spécialité Maintenance Véhicules et Engins", "Professeur de Collège spécialité Mathématiques Appliquées aux Sciences et Techniques Financières", "Professeur de Collège spécialité Navigation", "Professeur de Collège spécialité Physiques Appliquées", "Professeur de Collège spécialité Techniques Administratives et Bureautiques", "Professeur de Collège spécialité Techniques de Pêche", "Professeur de Collège spécialité Transport Logistique Transit","Professeur de Collège Bivalent option Francais/EDHC", "Professeur de Collège Bivalent option Histoire-Géographie/Français", "Professeur de Collège Bivalent option Mathématiques/TICE", "Professeur de Collège Bivalent option SVT/Physique-Chimie", "Professeur de Collège d'Education Permanente", "Professeur de Collège option Allemand", "Professeur de Collège option Anglais", "Professeur de Collège option EPS", "Professeur de Collège option Espagnol", "Professeur de Collège option Francais", "Professeur de Collège option Histoire-Géographie", "Professeur de Collège option Mathématiques", "Professeur de Collège option Physique-Chimie", "Professeur de Collège option SVT", "Professeur de Collège option Sport"]}, {"code": "A4", "emplois": ["Assistant de l'Enseignement Supérieur", "Inspecteur Pédagogique", "Inspecteur d'Education Préscolaire et Primaire", "Inspecteur de l'Enseignement Préscolaire et Primaire", "Professeur de Lycée", "Professeur de Lycée Philosophie", "Professeur de Lycée d'Education Permanente", "Professeur de Lycée option Allemand", "Professeur de Lycée option Anglais", "Professeur de Lycée option EPS", "Professeur de Lycée option Espagnol", "Professeur de Lycée option Francais", "Professeur de Lycée option Histoire-Géographie", "Professeur de Lycée option Mathématiques", "Professeur de Lycée option Physique-Chimie", "Professeur de Lycée option SVT", "Professeur de Lycée option Sport", "Professeur de Lycée spécialité Agriculture", "Professeur de Lycée spécialité Construction Mécanique", "Professeur de Lycée spécialité Droit", "Professeur de Lycée spécialité Electronique", "Professeur de Lycée spécialité Electrotechnique", "Professeur de Lycée spécialité Fabrication Mécanique", "Professeur de Lycée spécialité Génie Alimentaire", "Professeur de Lycée spécialité Génie Civil option Bâtiment", "Professeur de Lycée spécialité Génie Civil option Topographie", "Professeur de Lycée spécialité Génie Industriel option Froid", "Professeur de Lycée spécialité Informatique de Gestion", "Professeur de Lycée spécialité Mathématiques Appliquées aux Sciences et Techniques Industrielles", "Professeur de Lycée spécialité Mathématiques Appliquées à la Gestion Financière", "Professeur de Lycée spécialité Physiques Appliquées", "Professeur de Lycée spécialité Élevage"]}, {"code": "A5", "emplois": ["Inspecteur Principal", "Maître Assistant", "Maître Assistant de l'Enseignement supérieur Technique et Professionnel", "Professeur Agrégé"]}, {"code": "A6", "emplois": ["Inspecteur en Chef", "Maître de Conférences", "Maître de Conférences de l'Enseignement Supérieur, Technique et Professionnel"]}, {"code": "A7", "emplois": ["Inspecteur Général", "Professeur d'Université", "Professeur de l'Enseignement Supérieur, Technique et Professionnel"]}, {"code": "B3", "emplois": ["Instituteur", "Instructeur de Formation Professionnelle de Base spécialité Agroalimentaire", "Instructeur de Formation Professionnelle de Base spécialité Boulangerie-Pâtisserie", "Instructeur de Formation Professionnelle de Base spécialité Chaudronnerie-Soudure", "Instructeur de Formation Professionnelle de Base spécialité Conducteur d'Engins de Travaux Publics", "Instructeur de Formation Professionnelle de Base spécialité Construction Métallique", "Instructeur de Formation Professionnelle de Base spécialité Electricité Bâtiment", "Instructeur de Formation Professionnelle de Base spécialité Electricité d'Équipement", "Instructeur de Formation Professionnelle de Base spécialité Installation Sanitaire", "Instructeur de Formation Professionnelle de Base spécialité Maintenance Industrielle", "Instructeur de Formation Professionnelle de Base spécialité Maçonnerie", "Instructeur de Formation Professionnelle de Base spécialité Menuiserie Aluminium", "Instructeur de Formation Professionnelle de Base spécialité Mécanique Auto-Moto", "Instructeur de Formation Professionnelle de Base spécialité Mécanique Automobile", "Instructeur de Formation Professionnelle de Base spécialité Peinture Bâtiment Staff", "Instructeur de Formation Professionnelle de Base spécialité Plomberie Sanitaire", "Instructeur de Formation Professionnelle de Base spécialité Réfrigération-Climatisation", "Instructeur de Formation Professionnelle de Base spécialité Techniques de Soudage", "Instructeur de Formation Professionnelle de Base spécialité Textile-Habillement", "Instructeur de Formation Professionnelle de Base spécialité Vie Familiale et Sociale"]}, {"code": "C3", "emplois": ["Instituteur-Adjoint", "Instructeur Adjoint de Formation Professionnelle de Base spécialité Boulangerie-Pâtisserie", "Instructeur Adjoint de Formation Professionnelle de Base spécialité Coiffure", "Instructeur Adjoint de Formation Professionnelle de Base spécialité Construction Métallique", "Instructeur Adjoint de Formation Professionnelle de Base spécialité Coupe-Couture", "Instructeur Adjoint de Formation Professionnelle de Base spécialité Esthétique", "Instructeur Adjoint de Formation Professionnelle de Base spécialité Fabrication Mécanique", "Instructeur Adjoint de Formation Professionnelle de Base spécialité Installation Sanitaire", "Instructeur Adjoint de Formation Professionnelle de Base spécialité Machiniste Agricole", "Maître-Adjoint d'EPS"]}]}, {"nom": "GREFFIER", "emplois": ["Administrateur des Greffes et Parquets", "Attaché des Greffes et Parquets", "Secrétaire des Greffes et Parquets"]},{
 "nom": "MAGISTRAT",
 "emplois": [
 "Auditeur de justice",
@@ -1910,10 +1967,14 @@ return false;
 }
 
 function isMaritimeBlock(title='', family=''){
-const t=title.toLowerCase(); const f=(family||'').toLowerCase();
-return /(maritime|port|Douanes|douane|douanes|pénitentiaire|penitentiaire|eaux et forêts|eaux-et-forêts|eaux-et-forets|eaux et forets)/.test(t+' '+f)
-;
+    const t = title.toLowerCase(); 
+    const f = (family||'').toLowerCase();
+    
+    // CORRECTION : Regex ajustée pour "Eaux-et-Fôret", "Eaux et Forêts", etc.
+    // Accepte tiret ou espace [- ], accepte o ou ô, e ou ê, et s facultatif à la fin
+    return /(maritime|port|douane|pénitentiaire|penitentiaire|eaux[- ]et[- ]f[oô]r[eê]ts?)/.test(t+' '+f);
 }
+
 function isInformatique(title=''){
 const t=title.toLowerCase();
 return /informatique/.test(t) ||
@@ -1951,18 +2012,56 @@ function getIndice(map, gradeCode, cls, ech){ const entry = map[gradeCode]; if(!
 function getPoliceBail(corps, gradeName) {
 return POLICE_BAIL[corps]?.[gradeName] || 0;
 }
-function housingFor(grade, jobTitle, famName){
-if ((famName || '').toLowerCase().includes('police nationale')) {
-return 0;
-}
-const title = (jobTitle||''); const fam = (famName||'');
-if (isHealthCadreSup(title) || isHigherEdOrResearch(title)) return 90000;
 
-if (isMaritimeBlock(title, fam)) {if (grade === 'B3') return 80000; if (grade === 'A3') return 90000; if (['A4','A5','A6','A7'].includes(grade)) return 110000; if(grade === 'C1'||'C3') return 70000 }
-if (['D1','C1','C2','C3','B1','B3','A1','A2','A3'].includes(grade)) return 60000;
-if (grade === 'A4') return 70000;
-if (['A5','A6','A7'].includes(grade)) return 90000;
-return 60000;
+function housingFor(grade, jobTitle, famName){
+    // 1. Police = 0 (Bail à part)
+    if ((famName || '').toLowerCase().includes('police nationale')) {
+        return 0;
+    }
+
+    const t = (jobTitle||'').toLowerCase(); 
+    const fam = (famName||'');
+
+    // --- RÈGLES SPÉCIFIQUES PROTECTION CIVILE (PRIORITAIRES) ---
+    
+    // CAS 1 : 110.000 FCFA (Chef de site, Contrôleur général)
+    if (/chef de site/.test(t) || /contr[oô]leur g[eé]n[eé]ral de la protection civile/.test(t)) {
+        return 110000;
+    }
+
+    // CAS 2 : 90.000 FCFA (Chef de colonne 2e classe)
+    if (/chef de colonne/.test(t) && /2/.test(t)) {
+        return 90000;
+    }
+
+    // CAS 3 : 80.000 FCFA (Chef d'agrès, Chef de garde 2e classe)
+    if ((/chef d['’]agr[eè]s/.test(t) || /chef de garde/.test(t))) {
+        return 80000;
+    }
+    // -----------------------------------------------------------
+
+    // RÈGLES EXISTANTES...
+    // Professeurs
+    if (t.includes('professeur de collège') || t.includes('professeur de college')) return 60000;
+    if (t.includes('professeur de lycée') || t.includes('professeur de lycee')) return 70000;
+
+    // Cadres Supérieurs Santé / Enseignement Supérieur
+    if (isHealthCadreSup(jobTitle) || isHigherEdOrResearch(jobTitle)) return 90000;
+
+    // Secteur Maritime/Douanes/Pénitentiaire
+    if (isMaritimeBlock(jobTitle, fam)) {
+        if (grade === 'B3') return 80000; 
+        if (grade === 'A3') return 90000; 
+        if (['A4','A5','A6','A7'].includes(grade)) return 110000; 
+        if (grade === 'C1'|| grade === 'C3') return 70000;
+    }
+
+    // Barème Standard
+    if (['D1','C1','C2','C3','B1','B3','A1','A2','A3'].includes(grade)) return 60000;
+    if (grade === 'A4') return 70000;
+    if (['A5','A6','A7'].includes(grade)) return 90000;
+    
+    return 60000;
 }
 
 function greffierIndemnites(jobTitle) {
@@ -2506,93 +2605,204 @@ recalc();
 }
 
 function buildGreffierCard(card, fam, grade, jobTitle){
-const famName = fam.nom;
-const gradeCode = grade.code;
+    const famName = fam.nom;
 
-// 1ère liste déroulante : Hiérarchies
-const selHierarchie = document.createElement('select');
-selHierarchie.className = 'select-sm';
+    // 1. Liste déroulante : Hiérarchies (Hors grade, Grade principal...)
+    const selHierarchie = document.createElement('select');
+    selHierarchie.className = 'select-sm';
+    
+    // On récupère les clés (Hiérarchies) disponibles pour cet emploi précis
+    const dataEmploi = GREFFIER[jobTitle] || {};
+    const hierarchies = Object.keys(dataEmploi);
+    
+    hierarchies.forEach(h => {
+        const o = document.createElement('option');
+        o.value = h;
+        o.textContent = h;
+        selHierarchie.appendChild(o);
+    });
 
-// Ajouter toutes les hiérarchies disponibles pour ce corps
-const hierarchies = Object.keys(GREFFIER[jobTitle] || {});
-hierarchies.forEach(h=>{
-const o=document.createElement('option');
-o.value=h;
-o.textContent=h;
-selHierarchie.appendChild(o);
-});
+    // 2. Liste déroulante : Échelons
+    const selEch = document.createElement('select');
+    selEch.className = 'select-sm';
 
-// 2ème liste déroulante : Échelons (dépendante de la hiérarchie)
-const selEch = document.createElement('select');
-selEch.className = 'select-sm';
+    // Fonction pour mettre à jour les échelons quand on change de hiérarchie
+    function updateEchelons() {
+        selEch.innerHTML = '';
+        const currentHierarchie = selHierarchie.value;
+        const echelonsData = dataEmploi[currentHierarchie] || {};
+        
+        // Trier numériquement si possible
+        const echelons = Object.keys(echelonsData).sort((a,b) => parseInt(a)-parseInt(b));
+        
+        echelons.forEach(e => {
+            const o = document.createElement('option');
+            o.value = e;
+            o.textContent = isNaN(e) ? e : "Échelon " + e;
+            selEch.appendChild(o);
+        });
+    }
 
-// Remplir les échelons pour la hiérarchie sélectionnée
-function updateEchelons() {
-selEch.innerHTML = '';
-const currentHierarchie = selHierarchie.value;
-const echelons = GREFFIER[jobTitle][currentHierarchie] || {};
-Object.keys(echelons).forEach(e=>{
-const o=document.createElement('option');
-o.value=e;
-o.textContent="Échelon " + e;
-selEch.appendChild(o);
-});
+    // Initialisation
+    if(hierarchies.length > 0) updateEchelons();
+
+    // Construction HTML
+    const ctrls = document.createElement('div');
+    ctrls.className = 'controls';
+    
+    const w1 = document.createElement('div');
+    w1.innerHTML = "<label>Hiérarchie / Grade</label>";
+    w1.appendChild(selHierarchie);
+
+    const w2 = document.createElement('div');
+    w2.innerHTML = "<label>Échelon</label>";
+    w2.appendChild(selEch);
+
+    ctrls.appendChild(w1);
+    ctrls.appendChild(w2);
+
+    const rows = document.createElement('div');
+    rows.className = 'rows';
+
+    const totalBox = document.createElement('div');
+    totalBox.className = 'rows total';
+
+    // Bouton Voir retenues
+    const btn = document.createElement('button');
+    btn.textContent = 'Voir retenues';
+    btn.className = 'badge button toggle hidden';
+    btn.style.marginTop = '8px';
+
+    const retenues = document.createElement('div');
+    retenues.className = 'retenues';
+
+    card.appendChild(ctrls);
+    card.appendChild(rows);
+    card.appendChild(totalBox);
+    card.appendChild(btn);
+    card.appendChild(retenues);
+
+    btn.addEventListener('click', () => {
+        retenues.classList.toggle('open');
+        btn.textContent = retenues.classList.contains('open') ? 'Masquer retenues' : 'Voir retenues';
+    });
+
+    // --- LE MOTEUR DE CALCUL (C'est ce qui manquait) ---
+    function recalc() {
+        const h = selHierarchie.value;
+        const e = selEch.value;
+        
+        // 1. Récupération de l'indice
+        let indice = 0;
+        if (dataEmploi[h] && dataEmploi[h][e]) {
+            indice = dataEmploi[h][e];
+        }
+
+        const vp = getVP();
+        const base = indice * vp;
+        
+        // 2. Calculs standards
+        const residence = base * 0.15;
+        const transport = getTransport();
+        const allocFamiliale = (typeof getAllocationFamiliale === 'function') ? getAllocationFamiliale() : 0;
+
+        // 3. Indemnités Spécifiques Greffiers
+        // On utilise la fonction existante 'greffierIndemnites'
+        const params = greffierIndemnites(jobTitle);
+        const log = params.logement || 0;
+        const jud = params.judicature || 0;
+        const suj = params.sujet || 0;
+
+        const totalBrut = base + residence + transport + allocFamiliale + log + jud + suj;
+
+        // --- AFFICHAGE ---
+        rows.innerHTML = "";
+        
+        // Helper pour ajouter une ligne
+        const addLine = (lbl, val, bold=false) => {
+            const d = document.createElement('div'); d.className = 'line';
+            d.innerHTML = `<div class='label'>${lbl}</div><div class='amount' style='${bold?"font-weight:bold":""}'>${fmtMoney(val)}</div>`;
+            rows.appendChild(d);
+        };
+
+        addLine(`Indice (${indice})`, base, true);
+        addLine('Indemnité de Résidence', residence);
+        addLine('Prime de Transport', transport);
+        
+        if (log > 0) addLine('Indemnité de Logement', log);
+        if (jud > 0) addLine('Indemnité de Judicature', jud);
+        if (suj > 0) addLine('Indemnité de Sujétion', suj);
+        if (allocFamiliale > 0) addLine('Allocation Familiale', allocFamiliale);
+
+        // Total Brut
+        totalBox.innerHTML = "";
+        const totLine = document.createElement('div'); totLine.className = 'line';
+        totLine.innerHTML = `<div class='label'>TOTAL BRUT ESTIMÉ</div><div class='amount'>${fmtMoney(totalBrut)}</div>`;
+        totalBox.appendChild(totLine);
+
+        // --- CALCUL NET ---
+        if (typeof isNetMode === 'function' && isNetMode()) {
+            btn.classList.remove('hidden');
+
+            const situation = document.getElementById('statut_matri')?.value || 'celibataire';
+            const nbEnfants = document.getElementById('nb_enfants')?.value || 0;
+            
+            const itsObj = calcITSMonthly ? calcITSMonthly(indice, vp, situation, nbEnfants, false) : {impot_net:0};
+            
+            const mugefci = (Number(indice) < 1000) ? (base * 0.03) : 7004;
+            const pension = base * 0.0833;
+
+            // Pension complémentaire optionnelle
+            const usePensionCompl = document.getElementById('opt_pension_compl')?.checked ?? true;
+            const pensionCompl = usePensionCompl ? (base * 0.05) : 0;
+
+            const totalRetenues = (itsObj.impot_net||0) + mugefci + pension + pensionCompl;
+            const net = totalBrut - totalRetenues;
+
+            // Remplissage Retenues
+            retenues.innerHTML = "";
+            const addRet = (l, v) => {
+                const d = document.createElement('div'); d.className='line';
+                d.innerHTML = `<div class='label'>${l}</div><div class='amount'>${fmtMoney(v)}</div>`;
+                retenues.appendChild(d);
+            };
+
+            addRet('ITS (Impôt)', itsObj.impot_net||0);
+            addRet('MUGEFCI', mugefci);
+            addRet('Pension (8.33%)', pension);
+            if(pensionCompl > 0) addRet('Pension Compl. (5%)', pensionCompl);
+            addRet('Total Retenues', totalRetenues);
+
+            // Ligne Net
+            const netLine = document.createElement('div'); netLine.className = 'line';
+            netLine.style.borderTop = "1px dashed var(--border)";
+            netLine.style.marginTop = "8px";
+            netLine.style.paddingTop = "8px";
+            netLine.innerHTML = `<div class='label'>SALAIRE NET</div><div class='amount' style='color:var(--indice-bg);font-size:1.1em'>${fmtMoney(net)}</div>`;
+            totalBox.appendChild(netLine);
+
+        } else {
+            btn.classList.add('hidden');
+            retenues.classList.remove('open');
+            retenues.innerHTML = '';
+        }
+    }
+
+    // Événements
+    selHierarchie.addEventListener('change', () => {
+        updateEchelons();
+        recalc();
+    });
+    selEch.addEventListener('change', recalc);
+    
+    // Écouteurs globaux
+    document.getElementById('vp_global')?.addEventListener('input', recalc);
+    document.getElementById('loc_global')?.addEventListener('change', recalc);
+    document.getElementById('opt_pension_compl')?.addEventListener('change', recalc);
+
+    // Premier calcul au chargement
+    recalc();
 }
-
-// Initialiser les échelons
-updateEchelons();
-
-const ctrls = document.createElement('div');
-ctrls.className = 'controls';
-const w1 = document.createElement('div');
-w1.innerHTML = "<label>Hiérarchie</label>";
-w1.appendChild(selHierarchie);
-
-const w2 = document.createElement('div');
-w2.innerHTML = "<label>Échelon</label>";
-w2.appendChild(selEch);
-
-ctrls.appendChild(w1);
-ctrls.appendChild(w2);
-
-const rows = document.createElement('div');
-rows.className = 'rows';
-
-function addLine(label, amount, raw=false, key=null){
-const line = document.createElement('div');
-line.className = 'line';
-const l = document.createElement('div'); l.className='label'; l.textContent = label;
-const a = document.createElement('div'); a.className='amount'; a.textContent = raw ? fmtRaw(amount) : fmtMoney(amount);
-if (key) line.setAttribute('data-key', key);
-line.appendChild(l); line.appendChild(a);
-rows.appendChild(line);
-}
-
-const totalBox = document.createElement('div');
-totalBox.className = 'rows total';
-
-card.appendChild(ctrls);
-card.appendChild(rows);
-card.appendChild(totalBox);
-
-const btn = document.createElement('button');
-btn.textContent='Voir retenues';
-btn.className='badge button toggle hidden';
-btn.style.marginTop='8px';
-
-const retenues = document.createElement('div');
-retenues.className='retenues';
-
-card.appendChild(btn);
-card.appendChild(retenues);
-btn.addEventListener('click', ()=> {
-retenues.classList.toggle('open');
-btn.textContent = retenues.classList.contains('open') ? 'Masquer retenues' : 'Voir retenues';
-});
-
-try { onModeChange(); } catch(e){}
-}
-
 function buildPoliceCard(card, fam, grade, corpsGrades) {
     const famName = fam.nom;
     const gradeCode = grade.code; // Ex: "SOUS OFFICIERS"
@@ -2723,7 +2933,7 @@ function buildPoliceCard(card, fam, grade, corpsGrades) {
         rows.innerHTML = "";
         addLine('Indice', indice, true);
         addLine('Salaire de base', base, false, 'salaire-base');
-        addLine('Indemnité de résidence (15%)', residence);
+        addLine('Indemnité de résidence', residence);
 
         if (allocFamiliale > 0) {
             addLine('Allocation familiale', allocFamiliale);
@@ -2887,58 +3097,122 @@ function renderGreffierCorps(titre, fam){
 }
 
 
-function renderJobs(fam, grade){
+function renderJobs(fam, grade) {
     const jobsDiv = document.getElementById('jobs');
-
     const gradesList = document.getElementById('grades');
     if (gradesList) gradesList.classList.add('hidden');
+
+    // Bouton retour
     const backButtonHTML = "<button id='backToGrades' class='badge button' style='margin-bottom:12px'>&larr; Retour aux grades</button>";
-
+    
+    // Titre
+    let headerHTML = "";
     if (fam.nom === "POLICE NATIONALE") {
-        // CORRECTION POUR POLICE
-        jobsDiv.innerHTML = `${backButtonHTML}<h3>Emplois — <span class='badge'>Corps <strong>${getCorpsName(grade.code)}</strong></span></h3><div class='grid' id='grid'></div>`;
-        
-        const grid = document.getElementById('grid');
-        const corpsGrades = POLICE[grade.code] || {};
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.setAttribute('data-emploi', 'Tous les grades');
-        card.setAttribute('data-grade', grade.code);
-        card.setAttribute('data-famille', fam.nom);
-        card.innerHTML = "<h3>" + getCorpsName(grade.code) + "</h3>";
-        grid.appendChild(card);
-        buildPoliceCard(card, fam, grade, corpsGrades);
+        headerHTML = `<h3>Emplois — <span class='badge'>Corps <strong>${getCorpsName(grade.code)}</strong></span></h3>`;
     } else {
-        // CORRECTION POUR LES AUTRES FAMILLES
-        jobsDiv.innerHTML = `${backButtonHTML}<h3>Emplois — <span class='badge'>Grade <strong>${grade.code}</strong></span></h3><div class='grid' id='grid'></div>`;
-
-        const grid = document.getElementById('grid');
-
-        const pairs = [];
-        (fam.grades||[]).forEach(g=>{
-            (g.emplois||[]).forEach(name=> pairs.push({code:g.code, name}));
-        });
-        
-        const list = pairs.filter(p => normalizeGradeCode(fam.nom, p.name, p.code) === grade.code);
-        const seen = new Set();
-        
-        list.forEach(p=>{
-            if (seen.has(p.name)) return; 
-            seen.add(p.name);
-            
-            const card = document.createElement('div');
-            card.className = 'card';
-            card.setAttribute('data-emploi', p.name);
-            card.setAttribute('data-grade', grade.code);
-            card.setAttribute('data-famille', fam.nom);
-            card.innerHTML = "<h3>"+p.name+"</h3>";
-            grid.appendChild(card);
-            
-            // CORRECTION ICI : Appel de buildCard pour les familles standards
-            buildCard(card, fam, grade);
-        });
+        headerHTML = `<h3>Emplois — <span class='badge'>Grade <strong>${grade.code}</strong></span></h3>`;
     }
 
+    // Structure HTML : Split View
+    jobsDiv.innerHTML = `
+        ${backButtonHTML}
+        ${headerHTML}
+        <div class="job-split-view">
+            <div id="leftList" class="job-list-container"></div>
+            <div id="rightCard"></div>
+        </div>
+    `;
+
+    const leftList = document.getElementById('leftList');
+    const rightCard = document.getElementById('rightCard');
+
+    // --- PRÉPARATION DES DONNÉES ---
+    let jobsData = [];
+    
+    if (fam.nom === "POLICE NATIONALE") {
+        // Pour la police, c'est un cas spécial, on garde une entrée unique car la carte gère tout en interne
+        jobsData.push({ name: getCorpsName(grade.code), type: 'police' });
+    } 
+    else if (fam.nom === "MAGISTRAT") {
+        // Pour les magistrats, on liste les emplois définis dans DATA.familles
+        (fam.emplois || []).forEach(j => jobsData.push({ name: j, type: 'magistrat' }));
+    } 
+    else {
+        // Pour les familles standards (Education, Admin, Santé...)
+        const gradeData = (fam.grades || []).find(g => g.code === grade.code);
+        if (gradeData && gradeData.emplois) {
+            // On trie par ordre alphabétique pour que ce soit propre
+            const sortedJobs = [...gradeData.emplois].sort((a, b) => a.localeCompare(b));
+            sortedJobs.forEach(j => jobsData.push({ name: j, type: 'standard' }));
+        }
+    }
+
+    // Si aucun emploi trouvé
+    if (jobsData.length === 0) {
+        leftList.innerHTML = "<div class='muted'>Aucun emploi disponible.</div>";
+        return;
+    }
+
+    // --- FONCTION POUR AFFICHER LA CARTE ---
+    const showCard = (jobName, type) => {
+        // 1. Mettre à jour la classe active dans la liste
+        document.querySelectorAll('.job-btn').forEach(b => b.classList.remove('active'));
+        const activeBtn = document.getElementById('btn-' + jobName.replace(/[^a-zA-Z0-9]/g, ''));
+        if (activeBtn) activeBtn.classList.add('active');
+
+        // 2. Vider et recréer la carte
+        rightCard.innerHTML = "";
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.style.borderTop = "4px solid var(--indice-bg)"; // Petit effet visuel
+        
+        // Configuration des attributs pour que les fonctions build... s'y retrouvent
+        card.setAttribute('data-emploi', jobName);
+        card.setAttribute('data-grade', grade.code);
+        card.setAttribute('data-famille', fam.nom);
+        
+        card.innerHTML = `<h3 style='color:var(--indice-bg)'>${jobName}</h3>`;
+        rightCard.appendChild(card);
+
+        // 3. Lancer le constructeur approprié
+        if (type === 'police') {
+            const corpsGrades = POLICE[grade.code] || {};
+            buildPoliceCard(card, fam, grade, corpsGrades);
+        } else if (type === 'magistrat') {
+            buildMagistratCard(card, jobName);
+        } else {
+            buildCard(card, fam, grade);
+        }
+	
+	// === AJOUT POUR LE MOBILE ===
+        // Si on est sur un petit écran, on descend doucement vers la carte pour voir le résultat
+        if (window.innerWidth < 900) {
+            setTimeout(() => {
+                card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+        }
+        // ============================
+    };
+
+    // --- GÉNÉRATION DE LA LISTE À GAUCHE ---
+    jobsData.forEach((job, index) => {
+        const btn = document.createElement('button');
+        btn.className = 'job-btn';
+        btn.textContent = job.name;
+        // Créer un ID unique simple pour le bouton
+        btn.id = 'btn-' + job.name.replace(/[^a-zA-Z0-9]/g, '');
+        
+        btn.addEventListener('click', () => showCard(job.name, job.type));
+        leftList.appendChild(btn);
+
+        // Sélectionner automatiquement le premier élément au chargement
+        if (index === 0) {
+            // Petit délai pour s'assurer que le DOM est prêt
+            setTimeout(() => showCard(job.name, job.type), 50);
+        }
+    });
+
+    // Gestion du bouton retour
     document.getElementById('backToGrades').addEventListener('click', () => {
         renderGrades(fam);
     });
@@ -3092,32 +3366,87 @@ function buildCard(card, fam, grade){
             indice = defaultIndices[gradeCode] || 300;
             console.log("Utilisation indice par défaut:", indice);
         }
+	
+	// --- 2. GESTION DE LA BONIFICATION (50 POINTS) ---
+        const t = (jobTitle||'').toLowerCase();
+        let bonusPoints = 0;
+        
+        // CORRECTION STRICTE : Agent d'hygiène (sans 'spécialisé')
+        if (/agent\s+d['’]hygi[eè]ne/.test(t) && !/sp[eé]cialis[eé]/.test(t)) {
+            bonusPoints = 50;
+        }
+
+        // On crée un indice effectif pour le calcul
+        const indiceFinal = Number(indice) + bonusPoints;
+        // ------------------------------------------------
         
         const vp = getVP();
-        base = (indice != null && vp > 0) ? indice * vp : 0;
+	// CORRECTION IMPORTANTE ICI : 
+        // On utilise 'indiceFinal' au lieu de 'indice' pour calculer le salaire de base
+        base = (indiceFinal > 0 && vp > 0) ? indiceFinal * vp : 0;
         
         // Calcul des composants du salaire
         const residence = base * 0.15;
         const transport = getTransport();
         const logement = housingFor(gradeCode, jobTitle, famName);
         
+	// === AJOUT : Récupération des primes de Santé ===
+        const pSante = santePrimes(gradeCode, jobTitle);
+
+        // ===============================================
+
+	// --- AJOUT : Récupérer les primes Paramilitaires (Eaux & Forêts, Maritimes, Pénitentiaire) ---
+        // Cette fonction détecte automatiquement si l'emploi fait partie de ces corps
+        const pMaritime = maritimeRisk(gradeCode, jobTitle, famName);
+        // ---------------------------------------------------------------------------------------------
+	
+	// --- AJOUT 1 : Calcul de la prime Informatique ---
+        const pInfo = informaticienSpec(jobTitle); 
+        // ------------------------------------------------
+
         // Prime de famille
         const allocFamiliale = typeof getAllocationFamiliale === 'function' ? getAllocationFamiliale() : 0;
         
-        // Total brut
-        const totalBrut = base + residence + transport + logement + allocFamiliale;
+	// On ajoute pMaritime.risk et pMaritime.sujet au total
+	const totalBrut = base + residence + transport + logement + allocFamiliale + 
+                          pSante.risque + pSante.para + pSante.diff + pSante.special +
+                          pMaritime.risk + pMaritime.sujet +
+                          pInfo;
         
         // AFFICHAGE
         rows.innerHTML = "";
-        addLine('Indice', indice, true);
+	// AFFICHER L'INDICE FINAL (avec le bonus visible)
+        let labelIndice = `Indice (${indice})`;
+        if (bonusPoints > 0) {
+            labelIndice = `Indice (${indice} + ${bonusPoints} pts bonif.)`;
+        }
+	// On affiche 'indiceFinal' (465) et non 'indice' (415)
+        addLine(labelIndice, indiceFinal, true);
         addLine('Salaire de base', base, false, 'salaire-base');
-        addLine('Indemnité de résidence (15%)', residence);
+        addLine('Indemnité de résidence', residence);
         addLine('Prime de transport', transport);
         
         if (logement > 0) {
             addLine('Indemnité de logement', logement);
         }
         
+	// === AJOUT : Affichage des lignes Santé ===
+        if (pSante.para > 0) addLine('Indemnité paramédicale', pSante.para);
+        if (pSante.risque > 0) addLine('Prime de risque sanitaire', pSante.risque);
+        if (pSante.diff > 0) addLine('Indemnité différentielle', pSante.diff);
+        if (pSante.special > 0) addLine('Indemnité de spécialisation', pSante.special);
+        // ==========================================
+
+	// --- AJOUT : Affichage Paramilitaire ---
+        if (pMaritime.risk > 0) addLine('Indemnité de risque', pMaritime.risk);
+        if (pMaritime.sujet > 0) addLine('Indemnité de sujétion', pMaritime.sujet);
+        // ---------------------------------------
+
+	// --- AJOUT 3 : Affichage de la ligne Informatique ---
+        if (pInfo > 0) {
+            addLine('Indemnité de technicité (Informatique)', pInfo);
+        }
+
         if (allocFamiliale > 0) {
             addLine('Allocation familiale', allocFamiliale);
         }
@@ -3246,70 +3575,150 @@ const totalRetenues = (itsObj.impot_net || 0) + mugefci + pension + pensionCompl
     recalc();
 }
 
+// Fonction pour générer une signature unique basée sur les éléments de salaire
+function getSalarySignature(famName, gradeCode, jobTitle) {
+    const t = (jobTitle||'').toLowerCase();
+
+    // 1. Grille indiciaire
+    const gridObj = pickIndexTable(famName, jobTitle, gradeCode);
+    let gridSig = "default";
+    try {
+        const k1 = Object.keys(gridObj)[0];
+        const k2 = gridObj[k1] ? Object.keys(gridObj[k1])[0] : null;
+        if(k2) gridSig = JSON.stringify(gridObj[k1][k2]); 
+    } catch(e) {}
+
+    // 2. Logement
+    const house = housingFor(gradeCode, jobTitle, famName);
+
+    // 3. Primes spécifiques
+    const pSante = JSON.stringify(santePrimes(gradeCode, jobTitle));
+    const pEns = JSON.stringify(higherEdPrimes(jobTitle, gradeCode));
+    const pEnsAn = higherEdAnnualPrime(jobTitle, gradeCode);
+    const pMar = JSON.stringify(maritimeRisk(gradeCode, jobTitle, famName));
+    const pInfo = informaticienSpec(jobTitle);
+    
+    // --- AJOUT IMPORTANT : Détection du Bonus Indiciaire ---
+    // Cela permet de séparer l'Agent d'Hygiène des autres emplois D1
+    let bonus = 0;
+    if (/agent\s+d['’]hygi[eè]ne/.test(t) && !/sp[eé]cialis[eé]/.test(t)) {
+        bonus = 50;
+    }
+    // -------------------------------------------------------
+
+    // On ajoute le BONUS à la signature
+    return `${famName}|${gradeCode}|GRID:${gridSig}|LOG:${house}|SANTE:${pSante}|ENS:${pEns}|ENS_AN:${pEnsAn}|MAR:${pMar}|INFO:${pInfo}|BONUS:${bonus}`;
+}
+
 // CORRECTION SIMPLIFIÉE de renderJobs pour les familles standards :
 function renderJobs(fam, grade){
     const jobsDiv = document.getElementById('jobs');
-
     const gradesList = document.getElementById('grades');
     if (gradesList) gradesList.classList.add('hidden');
-    const backButtonHTML = "<button id='backToGrades' class='badge button' style='margin-bottom:12px'>&larr; Retour aux grades</button>";
 
+    const backButtonHTML = "<button id='backToGrades' class='badge button' style='margin-bottom:12px'>&larr; Retour aux grades</button>";
+    
+    // Cas spéciaux (Police/Magistrat) ne sont pas concernés par ce regroupement dynamique car ils ont leurs propres constructeurs
     if (fam.nom === "POLICE NATIONALE") {
-        // Police - utilise buildPoliceCard
         jobsDiv.innerHTML = `${backButtonHTML}<h3>Emplois — <span class='badge'>Corps <strong>${getCorpsName(grade.code)}</strong></span></h3><div class='grid' id='grid'></div>`;
-        
-        const grid = document.getElementById('grid');
-        const corpsGrades = POLICE[grade.code] || {};
+        const gridDiv = document.getElementById('grid');
         const card = document.createElement('div');
         card.className = 'card';
-        card.setAttribute('data-emploi', 'Tous les grades');
-        card.setAttribute('data-grade', grade.code);
-        card.setAttribute('data-famille', fam.nom);
         card.innerHTML = "<h3>" + getCorpsName(grade.code) + "</h3>";
-        grid.appendChild(card);
-        buildPoliceCard(card, fam, grade, corpsGrades);
-    } else if (fam.nom === "MAGISTRAT") {
-        // Magistrats - utilise buildMagistratCard
+        gridDiv.appendChild(card);
+        buildPoliceCard(card, fam, grade, POLICE[grade.code]||{});
+    } 
+    else if (fam.nom === "MAGISTRAT") {
         jobsDiv.innerHTML = `${backButtonHTML}<h3>Emplois — <span class='badge'>Grade <strong>${grade.code}</strong></span></h3><div class='grid' id='grid'></div>`;
-        const grid = document.getElementById('grid');
-        
+        const gridDiv = document.getElementById('grid');
         (fam.emplois||[]).forEach(jobTitle => {
             const card = document.createElement('div');
             card.className = 'card';
-            card.setAttribute('data-emploi', jobTitle);
-            card.setAttribute('data-famille', fam.nom);
             card.innerHTML = "<h3>" + jobTitle + "</h3>";
-            grid.appendChild(card);
+            gridDiv.appendChild(card);
             buildMagistratCard(card, jobTitle);
         });
-    } else {
-        // TOUTES LES AUTRES FAMILLES - utilise buildCard simplifié
+    } 
+    else {
+        // --- LOGIQUE DE REGROUPEMENT POUR LES EMPLOIS STANDARDS ---
         jobsDiv.innerHTML = `${backButtonHTML}<h3>Emplois — <span class='badge'>Grade <strong>${grade.code}</strong></span></h3><div class='grid' id='grid'></div>`;
+        const gridDiv = document.getElementById('grid');
 
-        const grid = document.getElementById('grid');
-
-        // Récupérer tous les emplois de ce grade
+        // 1. Récupérer tous les emplois du grade
         const gradeData = (fam.grades || []).find(g => g.code === grade.code);
+        const allJobs = gradeData ? (gradeData.emplois || []) : [];
+
+        // 2. Regrouper par signature financière
+        const groups = {};
         
-        if (gradeData && gradeData.emplois && gradeData.emplois.length > 0) {
-            gradeData.emplois.forEach(emploi => {
-                const card = document.createElement('div');
-                card.className = 'card';
-                card.setAttribute('data-emploi', emploi);
-                card.setAttribute('data-grade', grade.code);
-                card.setAttribute('data-famille', fam.nom);
-                card.innerHTML = "<h3>" + emploi + "</h3>";
-                grid.appendChild(card);
+        allJobs.forEach(jobTitle => {
+            const signature = getSalarySignature(fam.nom, grade.code, jobTitle);
+            
+            if (!groups[signature]) {
+                groups[signature] = {
+                    signature: signature,
+                    jobs: [] // Liste des noms d'emplois
+                };
+            }
+            groups[signature].jobs.push(jobTitle);
+        });
+
+        // 3. Générer une carte par groupe
+        Object.values(groups).forEach(group => {
+            const jobList = group.jobs.sort(); // Trier alphabétiquement
+            const representativeJob = jobList[0]; // On utilise le premier pour les calculs (puisqu'ils sont identiques)
+            
+            const card = document.createElement('div');
+            card.className = 'card';
+            
+            // Attributs pour buildCard
+            card.setAttribute('data-grade', grade.code);
+            card.setAttribute('data-famille', fam.nom);
+            // On met le représentatif par défaut, mais on va gérer l'affichage
+            card.setAttribute('data-emploi', representativeJob); 
+
+            // Création de l'en-tête de la carte
+            let titleHTML = "";
+            let selectorHTML = "";
+
+            if (jobList.length === 1) {
+                // Cas simple : un seul emploi
+                titleHTML = `<h3>${representativeJob}</h3>`;
+            } else {
+                // Cas groupé : Plusieurs emplois
+                // On affiche un titre générique ou le premier + "et X autres"
+                const count = jobList.length - 1;
+                titleHTML = `<h3>${representativeJob} <span class="badge" style="font-size:0.7em; background:var(--muted); opacity:0.8">+ ${count} autres</span></h3>`;
                 
-                // Utiliser buildCard pour toutes les familles standards
-                buildCard(card, fam, grade);
-            });
-        } else {
-            // Aucun emploi trouvé
-            const message = document.createElement('div');
-            message.className = 'card';
-            message.innerHTML = "<h3>Configuration en cours</h3><p>Les calculs pour cette catégorie seront disponibles prochainement.</p>";
-            grid.appendChild(message);
+                // On crée un sélecteur pour que l'utilisateur puisse voir les autres
+                selectorHTML = `
+                <div style="margin-bottom:12px; padding:8px; background:var(--bg); border-radius:8px; border:1px dashed var(--border);">
+                    <label style="font-size:11px; color:var(--muted); display:block; margin-bottom:4px;">Emplois identiques inclus :</label>
+                    <select class="job-group-selector select-sm" style="width:100%">
+                        ${jobList.map(j => `<option value="${j}">${j}</option>`).join('')}
+                    </select>
+                </div>`;
+            }
+
+            card.innerHTML = titleHTML + selectorHTML;
+            gridDiv.appendChild(card);
+
+            // 4. Lancer le constructeur
+            buildCard(card, fam, grade);
+
+            // 5. Petit hack : Si on change le selecteur, on met à jour le titre (optionnel, juste pour le visuel)
+            const sel = card.querySelector('.job-group-selector');
+            if(sel) {
+                sel.addEventListener('change', (e) => {
+                    const newTitle = e.target.value;
+                    card.setAttribute('data-emploi', newTitle); // Met à jour pour d'éventuels logs
+                    card.querySelector('h3').firstChild.textContent = newTitle + " ";
+                });
+            }
+        });
+
+        if (allJobs.length === 0) {
+            gridDiv.innerHTML = "<div class='muted'>Aucun emploi configuré pour ce grade.</div>";
         }
     }
 
@@ -3317,7 +3726,6 @@ function renderJobs(fam, grade){
         renderGrades(fam);
     });
 }
-
 function buildPoliceCard(card, fam, grade, corpsGrades){
 const famName = fam.nom;
 const gradeCode = grade.code;
