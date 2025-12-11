@@ -3405,7 +3405,9 @@ function buildCard(card, fam, grade){
 	// --- AJOUT 1 : Calcul de la prime Informatique ---
         const pInfo = informaticienSpec(jobTitle); 
         // ------------------------------------------------
-
+        const pEns = higherEdPrimes(jobTitle, gradeCode)
+        const pEnsAn = higherEdAnnualPrime(jobTitle, gradeCode);
+        
         // Prime de famille
         const allocFamiliale = typeof getAllocationFamiliale === 'function' ? getAllocationFamiliale() : 0;
         
@@ -3413,7 +3415,7 @@ function buildCard(card, fam, grade){
 	const totalBrut = base + residence + transport + logement + allocFamiliale + 
                           pSante.risque + pSante.para + pSante.diff + pSante.special +
                           pMaritime.risk + pMaritime.sujet +
-                          pInfo;
+                          pInfo + pEns.encad + pEns.acad + pEnsAn;
         
         // AFFICHAGE
         rows.innerHTML = "";
@@ -3448,10 +3450,34 @@ function buildCard(card, fam, grade){
         if (pInfo > 0) {
             addLine('Indemnité de technicité (Informatique)', pInfo);
         }
+                // --- AJOUT : Affichage Enseignement Supérieur ---
+        if (pEns.acad > 0) addLine('Indemnité académique (Recherche)', pEns.acad);
+        if (pEns.encad > 0) addLine('Prime d\'encadrement', pEns.encad);
+        // -----------------------------------------------
 
         if (allocFamiliale > 0) {
             addLine('Allocation familiale', allocFamiliale);
         }
+        // --- AJOUT : Affichage de la Prime Annuelle (Séparée visuellement) ---
+        if (pEnsAn > 0) {
+            const divAn = document.createElement('div');
+            divAn.className = 'line';
+            // Style spécifique pour la différencier du mensuel
+            divAn.style.marginTop = "10px";
+            divAn.style.border = "1px dashed var(--indice-bg)";
+            divAn.style.background = "rgba(0,0,0,0.02)";
+            
+            divAn.innerHTML = `
+                <div class='label' style='color:var(--indice-bg); font-weight:bold;'>
+                    Prime de Recherche (Annuelle)
+                </div>
+                <div class='amount' style='color:var(--indice-bg); font-weight:bold;'>
+                    ${fmtMoney(pEnsAn)}
+                </div>`;
+            rows.appendChild(divAn);
+        }
+        // ---------------------------------------------------------------------
+
         
         // TOTAL BRUT
         totalBox.innerHTML = "";
