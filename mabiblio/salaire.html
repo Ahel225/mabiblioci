@@ -624,6 +624,11 @@ Nombre d'enfants
 </span>
 </label>
 
+<label style='font-size:12px; color:var(--muted); display:flex;
+align-items:center; marin-left:8px;
+cursor:pointer'>
+	<input type='checkbox' id='opt_pension_compl' checked style='margin-right:6px;'> pension compl.</label>
+
 <label style='font-size:12px; color:var(--muted)'>
 Thème
 <select id='theme_sel' style='margin-left:8px; padding:6px 10px; border-radius:8px; border:1px solid var(--border); background:#0b1220; color:var(--text)'>
@@ -2430,7 +2435,12 @@ const mugefci = (Number(indice) < 1000) ? (salaireBase * 0.03) : 7004;
 
 // Calcul Pension (CGRAE)
 const pension = salaireBase * 0.0833; // 8.33%
-const pensionCompl = salaireBase * 0.05; // 5%
+
+// --- CORRECTION ICI (ID avec underscore) ---
+const usePensionCompl = document.getElementById('opt_pension_compl')?.checked ?? true;
+const pensionCompl = usePensionCompl ? (salaireBase * 0.05) : 0;
+// ------------------------------------------
+
 
 const totalRetenues = (itsObj.impot_net||0) + mugefci + pension + pensionCompl;
 const salaireNet = totalBrut - totalRetenues;
@@ -2452,7 +2462,9 @@ divRetenues.appendChild(d);
 addRetenue('ITS (Impôt sur Salaire)', itsObj.impot_net||0);
 addRetenue('MUGEFCI', mugefci);
 addRetenue('Retenue Pension', pension);
+if (pensionCompl > 0) {
 addRetenue('Pension Complémentaire CGRAE', pensionCompl);
+}
 addRetenue('Total Retenues', totalRetenues);
 
 // Ajout de la ligne SALAIRE NET en gras dans le totalBox
@@ -2764,11 +2776,17 @@ function buildPoliceCard(card, fam, grade, corpsGrades) {
                 : { impot_net: 0 };
 
             // Calcul des autres retenues
-            const mugefci = (Number(indice || 0) < 1000) ? (base * 0.03) : 7004;
-            const pension = base * 0.0833;
-            const pensionCompl = base * 0.05;
+const mugefci = (Number(indice || 0) < 1000) ? (base * 0.03) : 7004;
+const pension = base * 0.0833;
 
-            const totalRetenues = (itsObj.impot_net || 0) + mugefci + pension + pensionCompl;
+// --- CORRECTION ICI : 'base' au lieu de 'salaireBase' et ID corrigé ---
+const usePensionCompl = document.getElementById('opt_pension_compl')?.checked ?? true;
+const pensionCompl = usePensionCompl ? (base * 0.05) : 0; 
+// ----------------------------------------------------------------------
+
+const totalRetenues = (itsObj.impot_net || 0) + mugefci + pension + pensionCompl;
+
+
             const net = totalBrut - totalRetenues;
 
             // Remplissage du panneau retenues
@@ -3130,10 +3148,15 @@ function buildCard(card, fam, grade){
                     isHealthCadreSup(jobTitle)) : 
                 { impot_net: 0 };
             
-            const mugefci = (Number(indice || 0) < 1000) ? (base * 0.03) : 7004;
-            const pension = base * 0.0833;
-            const pensionCompl = base * 0.05;
-            const totalRetenues = (itsObj.impot_net || 0) + mugefci + pension + pensionCompl;
+const mugefci = (Number(indice || 0) < 1000) ? (base * 0.03) : 7004;
+const pension = base * 0.0833;
+
+// --- CORRECTION ICI : 'base' au lieu de 'salaireBase' et ID corrigé ---
+const usePensionCompl = document.getElementById('opt_pension_compl')?.checked ?? true;
+const pensionCompl = usePensionCompl ? (base * 0.05) : 0;
+// ----------------------------------------------------------------------
+
+const totalRetenues = (itsObj.impot_net || 0) + mugefci + pension + pensionCompl;
             const net = totalBrut - totalRetenues;
             
             // Afficher les retenues
@@ -3155,7 +3178,9 @@ function buildCard(card, fam, grade){
             make('ITS (mensuel)', itsObj.impot_net || 0);
             make('MUGEFCI', mugefci);
             make('Retenue pension', pension);
+		if (pensionCompl > 0) {
             make('Pension complémentaire', pensionCompl);
+		}
             make('Total retenues', totalRetenues);
             
             // Ajouter SALAIRE NET
@@ -3462,7 +3487,8 @@ function recalc(){
 
             const mugefci = (Number(indice||0) < 1000) ? (base*0.03) : 7004;
             const pension = base * 0.0833;
-            const pensionCompl = base * 0.05;
+            const usePensionCompl = document.getElementById('opt_pension-compl')?.checked?? true;
+const pensionCompl = usePensionCompl ? (salaireBase * 0.05) : 0;
             const totalRetenues = (itsObj.impot_net||0) + mugefci + pension + pensionCompl;
             const net = totalBrut - totalRetenues;
 
@@ -3477,7 +3503,9 @@ function recalc(){
             make('ITS (mensuel)', itsObj.impot_net||0);
             make('MUGEFCI', mugefci);
             make('Retenue pension', pension);
+if (pensionCompl > 0) {
             make('Pension complémentaire', pensionCompl);
+}
             make('Total retenues', totalRetenues);
 
             totalBox.querySelectorAll('.line').forEach(n=>{
@@ -3576,6 +3604,9 @@ return _maritimeRiskBase(grade, jobTitle, famName);
 
 // Ensure sanitary risk/paramedical for Agent d'hygiène spécialisé C1 stays applied (already via santePrimes).
 })();
+(document.getElementById('vp_global')||{}).addEventListener?.('change', refreshAll);
+(document.getElementById('loc_global')||{}).addEventListener?.('change', refreshAll);
+(document.getElementById('opt_pension_compl')||{}).addEventListener?.('change', refreshAll);
 
 </script>
 </body>
