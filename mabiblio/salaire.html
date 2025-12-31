@@ -4,17 +4,8 @@
     <meta charset='utf-8' />
 <meta name='viewport' content='width=device-width, initial-scale=1' />
 <title>Salaire des Fonctionnaires et Agents de l'État </title>
-<script>
-        // On vérifie si la "clé" d'accès existe dans le navigateur
-        // Si l'utilisateur ne vient pas de l'index validé, on l'éjecte
-        if (sessionStorage.getItem('acces_autorise') !== 'vrai') {
-            window.location.href = 'index.html'; // Redirection vers l'accueil
-        }
-    </script>
 <style>
-body {
-            display: none; 
-        }
+
 :root {
 --indice-fg: #fff;
 --indice-bg: #0a7c2f;
@@ -1381,12 +1372,9 @@ C - SECRÉTAIRES DES GREFFES ET PARQUETS
 
 </main>
 </div>
+
 <script>
-        // Si le script arrive ici, c'est que la redirection n'a pas eu lieu.
-        // On peut donc afficher la page.
-        document.body.style.display = 'block';
-    </script>
-<script>
+
 const DATA = {
 "familles": [{
 "nom": "ADMINISTRATIF ET JURIDIQUE",
