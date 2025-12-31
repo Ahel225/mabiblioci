@@ -832,7 +832,7 @@
         url: "hub_emplois/index.html",
         category: "Emplois",
         keywords: ["emploi", "salaires", "indices", "grades", "échelons", "prime", "indemnité"]
-      }
+      },
 
       {
   title: "Concours de la Fonction Publique",
@@ -1328,6 +1328,9 @@
       setTimeout(()=>input.classList.remove('shake'), 500);
     }
   }
+// À mettre dans votre index.html au moment de la validation
+sessionStorage.setItem('acces_autorise', 'vrai');
+window.location.href = 'salaire.html';
 
   // --- INITIALISATION ---
 
