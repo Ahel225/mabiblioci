@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code de l'Environnement - Côte d'Ivoire (Interactif)</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #27ae60;
+            --highlight-color: #f1c40f;
+            --text-color: #333;
+            --bg-color: #f9f9f9;
+        }
+
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* --- BARRE DE RECHERCHE (Sticky) --- */
+        #search-container {
+            position: sticky;
+            top: 0;
+            background-color: white;
+            padding: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 3px solid var(--accent-color);
+        }
+
+        #search-input {
+            padding: 10px;
+            width: 300px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        #search-btn, #clear-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            color: white;
+        }
+
+        #search-btn { background-color: var(--primary-color); }
+        #search-btn:hover { background-color: #34495e; }
+        
+        #clear-btn { background-color: #e74c3c; }
+        #clear-btn:hover { background-color: #c0392b; }
+
+        #search-stats {
+            margin-left: 10px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        /* --- NAVIGATION DES RÉSULTATS --- */
+        #search-navigation {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-left: 15px;
+        }
+
+        .nav-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s;
+        }
+
+        .nav-btn:hover {
+            background-color: #34495e;
+        }
+
+        .nav-btn:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+        }
+
+        #search-position {
+            font-size: 14px;
+            color: var(--primary-color);
+            min-width: 60px;
+            text-align: center;
+        }
+
+        /* --- CONTENEUR PRINCIPAL --- */
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 15px rgba(0,0,0,0.05);
+            border-radius: 8px;
+        }
+
+        /* --- SOMMAIRE CLIQUABLE --- */
+        #toc-container {
+            background-color: #f0f4f8;
+            border: 1px solid #d1d9e6;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        #toc-container h2 {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+
+        .toc-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .toc-list li {
+            margin-bottom: 8px;
+        }
+
+        .toc-list a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .toc-list a:hover {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+
+        .toc-sublist {
+            list-style-type: none;
+            padding-left: 20px;
+            margin-top: 5px;
+            font-size: 0.95em;
+        }
+
+        /* --- TYPOGRAPHIE LOI --- */
+        h1 { text-align: center; color: var(--primary-color); margin-bottom: 40px; }
+        h2 { color: #e67e22; border-bottom: 1px solid #eee; padding-top: 40px; margin-top: 40px; }
+        h3 { color: #2980b9; margin-top: 30px; }
+        h4 { color: #16a085; font-style: italic; margin-top: 25px; }
+        
+        .article-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            background-color: #eef2f3;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        ul, ol { margin-bottom: 15px; }
+        
+        /* --- SURLIGNAGE --- */
+        .highlight {
+            background-color: var(--highlight-color);
+            color: black;
+            font-weight: bold;
+            padding: 0 2px;
+            border-radius: 2px;
+            transition: background-color 0.3s;
+        }
+
+        .highlight.current {
+            background-color: #e74c3c;
+            color: white;
+            box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.3);
+        }
+
+        /* --- BOUTON RETOUR HAUT --- */
+        #back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="search-container">
+        <input type="text" id="search-input" placeholder="Rechercher (ex: déchets, pollution...)">
+        <button id="search-btn">Rechercher</button>
+        <button id="clear-btn">Effacer</button>
+        
+        <div id="search-navigation" style="display: none;">
+            <button id="prev-btn" class="nav-btn" title="Résultat précédent">←</button>
+            <span id="search-position">0/0</span>
+            <button id="next-btn" class="nav-btn" title="Résultat suivant">→</button>
+        </div>
+        
+        <span id="search-stats"></span>
+    </div>
+
+    <div class="container">
+        <h1>LOI N° 2023-900 DU 23 NOVEMBRE 2023<br>PORTANT CODE DE L'ENVIRONNEMENT</h1>
+        <div id="toc-container">
+            <h2>Sommaire</h2>
+            <ul class="toc-list">
+                <li><a href="#titre1">TITRE I : DISPOSITIONS GÉNÉRALES</a>
+                    <ul class="toc-sublist">
+                        <li><a href="#t1-chap1">Chapitre 1 : Définitions et objet</a></li>
+                        <li><a href="#t1-chap2">Chapitre 2 : Objectifs</a></li>
+                        <li><a href="#t1-chap3">Chapitre 3 : Domaine d'application</a></li>
+                        <li><a href="#t1-chap4">Chapitre 4 : Principes référentiels</a></li>
+                    </ul>
+                </li>
+                <li><a href="#titre2">TITRE II : DROITS FONDAMENTAUX, OBLIGATIONS ET INSTITUTIONS</a>
+                    <ul class="toc-sublist">
+                        <li><a href="#t2-chap1">Chapitre 1 : Droits fondamentaux</a></li>
+                        <li><a href="#t2-chap2">Chapitre 2 : Obligations communes</a></li>
+                        <li><a href="#t2-chap3">Chapitre 3 : Institutions</a></li>
+                    </ul>
+                </li>
+                <li><a href="#titre3">TITRE III : NORMES, FISCALITÉ, FINANCEMENT ET ÉVALUATION</a>
+                    <ul class="toc-sublist">
+                        <li><a href="#t3-chap1">Chapitre 1 : Normes environnementales</a></li>
+                        <li><a href="#t3-chap2">Chapitre 2 : Fiscalité environnementale</a></li>
+                        <li><a href="#t3-chap3">Chapitre 3 : Mécanismes de financement</a></li>
+                        <li><a href="#t3-chap4">Chapitre 4 : Evaluation environnementale et sociale</a></li>
+                    </ul>
+                </li>
+                <li><a href="#titre4">TITRE IV : DISPOSITIONS SECTORIELLES</a>
+                    <ul class="toc-sublist">
+                        <li><a href="#t4-chap1">Chapitre 1 : Changements climatiques</a></li>
+                        <li><a href="#t4-chap2">Chapitre 2 : Diversité biologique</a></li>
+                        <li><a href="#t4-chap3">Chapitre 3 : Cadre de vie (Bruit, Insalubrité)</a></li>
+                        <li><a href="#t4-chap5-icpe">Chapitre 3 (suite) : Installations classées (ICPE)</a></li>
+                        <li><a href="#t4-chap5-dechets">Chapitre 3 (suite) : Déchets</a></li>
+                        <li><a href="#t4-chap4">Chapitre 4 : Risques et Catastrophes</a></li>
+                        <li><a href="#t4-chap5">Chapitre 5 : Milieux fragiles (Littoral, Sols, Eau)</a></li>
+                    </ul>
+                </li>
+                <li><a href="#titre5">TITRE V : JUSTICE, RÉPARATION ET SANCTIONS</a>
+                    <ul class="toc-sublist">
+                        <li><a href="#t5-chap1">Chapitre 1 : Accès à la justice et réparation</a></li>
+                        <li><a href="#t5-chap2">Chapitre 2 : Sanctions administratives et pénales</a></li>
+                    </ul>
+                </li>
+                <li><a href="#titre6">TITRE VI & VII : DISPOSITIONS TRANSITOIRES ET FINALES</a></li>
+            </ul>
+        </div>
+
+        <div id="law-content">  
+    <p><strong>L'ASSEMBLÉE NATIONALE ET LE SÉNAT ont adopté,<br>
+    LE PRÉSIDENT DE LA RÉPUBLIQUE promulgue la loi dont la teneur suit :</strong></p>
+
+    <h2 id="titre1">TITRE I : DISPOSITIONS GÉNÉRALES</h2>
+
+     <h3 id="t1-chap1">CHAPITRE I : Définitions et objet</h3>
+
+    <p><span class="article-title">Article 1</span> Au sens de la présente loi, on entend par :</p>
+    <ul>
+        <li><span class="definition-term">Air :</span> la couche atmosphérique, corps gazeux dont la modification physique, chimique ou autre peut porter atteinte à la santé des êtres vivants, aux écosystèmes et à l'environnement en général;</li>
+        <li><span class="definition-term">Aires protégées :</span> désigne une portion de terre, de mer, de rivière, et/ou de lagune géographiquement délimitée qui est définie, réglementée et gérée pour la protection et le maintien du patrimoine naturel et culturel;</li>
+        <li><span class="definition-term">Audit environnemental et social :</span> une procédure d'évaluation et de contrôle des actions de protection de l'environnement naturel et humain;</li>
+        <li><span class="definition-term">Autorité nationale compétente :</span> le ministre chargé de l'environnement en général ou toute autre autorité dans les limites de la compétence qui lui est conférée conformément à la réglementation en vigueur;</li>
+        <li><span class="definition-term">Biocénose :</span> ensemble des êtres vivants qui occupent un milieu donné, en interaction les uns avec les autres et avec ce milieu;</li>
+        <li><span class="definition-term">Biofertilisant :</span> produit contenant des micro-organismes vivants qui contribue à améliorer la croissance des plantes et la fertilité des sols;</li>
+        <li><span class="definition-term">Biopiraterie :</span> toute utilisation commerciale des ressources génétiques ou des savoirs traditionnels sans aucun mécanisme de partage des bénéfices découlant de leur utilisation avec les dépositaires des ressources et des savoirs traditionnels;</li>
+        <li><span class="definition-term">Biosécurité :</span> tout dispositif visant à éviter les risques découlant de la biotechnologie moderne sur la diversité biologique, la santé humaine et animale, sur l'environnement et sur les activités sociales et pratiques économiques;</li>
+        <li><span class="definition-term">Biotechnologie moderne :</span> l'application de techniques in vitro aux acides nucléiques, y compris la recombinaison de l'acide désoxyribonucléique et de l'introduction directe d'acides nucléiques dans les cellules ou organites; la fusion cellulaire d'organismes n'appartenant pas à une même famille taxonomique qui surmontent les barrières naturelles de la physiologie de la reproduction ou de la recombinaison et qui ne sont pas des techniques utilisées pour la reproduction et la sélection de type classique;</li>
+        <li><span class="definition-term">Biotope :</span> une aire géographique où l'ensemble des facteurs physiques et chimiques de l'environnement reste sensiblement constant. Le biotope représente l'ensemble des éléments non vivants d'un écosystème: le sol et ses constituants, l'air, l'humidité, la température, la lumière, les éléments chimiques, ainsi que, en milieu aquatique, les propriétés physico-chimiques des eaux;</li>
+        <li><span class="definition-term">Bourse des déchets :</span> une plateforme d'échange et de commercialisation entre diverses entités du secteur privé et public leur permettant d'une part, de proposer à titre onéreux des déchets pour revalorisation, et d'autre part d'en acheter. Elle promeut de manière efficiente la réalisation d'une économie circulaire, favorisant le recyclage et la valorisation des divers déchets;</li>
+        <li><span class="definition-term">Catastrophe :</span> un événement soudain et désastreux qui perturbe gravement le fonctionnement d'une communauté ou d'une société et cause des pertes humaines, matérielles et économiques ou environnementales dépassant les capacités de la société ou de la communauté à faire face à l'aide de ses propres ressources. Bien qu'étant souvent causées par la nature, les catastrophes peuvent aussi avoir une origine anthropique;</li>
+        <li><span class="definition-term">Changements climatiques :</span> des changements de climat qui sont attribués directement ou indirectement à une activité humaine altérant la composition de l'atmosphère et qui viennent s'ajouter à la variabilité naturelle du climat observée au cours des périodes comparables;</li>
+        <li><span class="definition-term">Collecte :</span> tout ramassage de déchets en vue de leur transport vers une installation de traitement;</li>
+        <li><span class="definition-term">Compensation écologique :</span> ensemble d'actions mesurables en faveur de l'environnement conçues pour contrebalancer les impacts résiduels significatifs des projets d'aménagement ou de construction d'infrastructures sur la diversité biologique qui n'ont pu être évités ou limités;</li>
+        <li><span class="definition-term">Contrôle de conformité :</span> la vérification faite au sein d'une organisation afin de s'assurer de l'effectivité de sa démarche de responsabilité sociétale;</li>
+        <li><span class="definition-term">Couche d'ozone :</span> la couche atmosphérique présente au-dessus de la couche limite de la planète, située entre 20 et 50 km d'altitude et qui protège la vie sur la Terre contre les rayonnements ultraviolets nocifs;</li>
+        <li><span class="definition-term">Déchets :</span> des produits solides, liquides ou gazeux, résultant des activités humaines ou tout bien meuble ou immeuble abandonné ou qui menace ruine;</li>
+        <li><span class="definition-term">Déchets dangereux :</span> tous déchets qui présentent une menace sérieuse ou des risques particuliers, pour la santé, la sûreté et la sécurité des êtres vivants et la qualité de l'environnement;</li>
+        <li><span class="definition-term">Déchets d'équipements électriques et électroniques :</span> tous les déchets issus des équipements électriques ou électroniques;</li>
+        <li><span class="definition-term">Déchets ménagers et assimilés :</span> les déchets solides produits par les ménages ou par les industriels, les artisans, les commerçants et les activités diverses de service, contenant de substances dangereuses;</li>
+        <li><span class="definition-term">Déchets non dangereux :</span> tous les déchets qui ne présentent aucune caractéristique des déchets dangereux;</li>
+        <li><span class="definition-term">Déchets toxiques :</span> tous déchets qui en raison de leur origine et/ou de leur composition et de leurs caractéristiques présentent un danger sérieux ou des risques particuliers pour la santé, la sécurité des êtres vivants et la qualité de l'environnement;</li>
+        <li><span class="definition-term">Déchets ultimes :</span> tous les déchets résultants ou non du traitement d'un déchet, qui ne sont plus susceptibles d'être valorisés de quelque manière que ce soit, notamment par le compostage, par le recyclage ou par la valorisation énergétique;</li>
+        <li><span class="definition-term">Désertification :</span> la dégradation des terres dans les zones arides, semi-arides et subhumides sèches par suite de divers facteurs, parmi lesquelles les variations climatiques et les activités humaines;</li>
+        <li><span class="definition-term">Développement durable :</span> un développement qui répond aux besoins du présent sans compromettre la capacité des générations futures à répondre aux leurs. Il repose sur les trois piliers que sont l'économie, le social et l'environnement;</li>
+        <li><span class="definition-term">Diversité biologique ou biodiversité :</span> la variabilité des organismes vivants de toute origine y compris, entre autres les écosystèmes terrestres, marins et autres écosystèmes aquatiques et les complexes écologiques dont ils font partie; cela comprend la diversité au sein des espèces et entre espèces ainsi que celle des écosystèmes;</li>
+        <li><span class="definition-term">Droits des générations futures :</span> des droits-programmes consistant en des fins à réaliser au profit de la communauté de la vie qui unit toutes les sociétés humaines présentes et futures et lie l'humanité à l'ensemble de la nature;</li>
+        <li><span class="definition-term">Éco-contribution :</span> la contrepartie financière versée par une entreprise (producteur, distributeur ou importateur) à un éco-organisme agréé pour la prise en charge de la collecte, le transport, le traitement, le recyclage, la valorisation et l'élimination des déchets générés par ses activités en vertu d'une filière de responsabilité élargie des producteurs;</li>
+        <li><span class="definition-term">Éco-label :</span> un label de qualité destiné à indiquer qu'un produit ou un acteur a un impact réduit sur l'environnement ou présente des avantages environnementaux. Le label est délivré par un organisme de certification indépendant;</li>
+        <li><span class="definition-term">Écologie :</span> l'étude des milieux où vivent, se reproduisent et meurent les êtres vivants ainsi que des rapports de ces êtres entre eux et avec le milieu;</li>
+        <li><span class="definition-term">Économie bleue :</span> une vision de l'utilisation rationnelle et durable des ressources naturelles, renouvelables et non renouvelables des océans, lacs, fleuves et autres étendues d'eau;</li>
+        <li><span class="definition-term">Économie circulaire :</span> un système économique d'échange de production qui, à tous les niveaux du cycle de vie des biens et services, vise à augmenter l'efficacité de l'utilisation des ressources et à diminuer l'impact sur l'environnement tout en développant le bien-être des individus;</li>
+        <li><span class="definition-term">Économie verte :</span> un modèle économique qui entraîne une amélioration du bien-être humain et de l'équité sociale tout en réduisant de manière significative les risques environnementaux et la pénurie des ressources;</li>
+        <li><span class="definition-term">Éco-organisme :</span> une personne morale de droit privé agréée pour la collecte, le transport, le traitement, le recyclage, la valorisation et l'élimination d'une filière de déchet;</li>
+        <li><span class="definition-term">Écosystème :</span> un ensemble structuré qui englobe en une seule et même unité fonctionnelle le biotope et la biocénose;</li>
+        <li><span class="definition-term">Éducation environnementale :</span> un ensemble des actions de sensibilisation, de formation et d'information visant à responsabiliser les populations sur la nécessité absolue de promouvoir un environnement sain et équilibré;</li>
+        <li><span class="definition-term">Élimination :</span> tout processus de transformation irréversible des déchets;</li>
+        <li><span class="definition-term">Émissions :</span> la libération, de fumée, d'odeur, de gaz à effet de serre ou de précurseurs de tels gaz dans l'atmosphère au-dessus d'une zone au cours d'une période donnée;</li>
+        <li><span class="definition-term">Empreinte écologique :</span> la mesure de la superficie de terres ou des eaux productives qu'un individu, une ville, un pays, une région ou l'humanité utilise pour produire les ressources qu'elle consomme et pour absorber les déchets qu'elle génère, y compris les émissions de gaz à effet de serre;</li>
+        <li><span class="definition-term">Environnement :</span> un ensemble des éléments physiques, chimiques, biologiques et des facteurs socio-économiques, moraux et intellectuels susceptibles d'avoir un effet direct ou indirect, immédiat ou à terme sur le développement du milieu, des êtres vivants et des activités humaines;</li>
+        <li><span class="definition-term">Environnement humain :</span> l'aménagement du territoire et du cadre de vie;</li>
+        <li><span class="definition-term">Environnement naturel :</span> le sol et le sous-sol; les ressources en eau; l'air; la diversité biologique; les paysages; les sites et monuments naturels;</li>
+        <li><span class="definition-term">Équilibre écologique :</span> un rapport relativement stable créé progressivement au cours des temps entre l'homme, la faune et la flore ainsi que leurs interactions avec les conditions du milieu naturel dans lequel il vit;</li>
+        <li><span class="definition-term">Érosion côtière :</span> un ensemble de phénomènes naturels ou anthropiques qui provoquent l'enlèvement de matériaux de la plage, modifiant ainsi le tracé du trait de côte;</li>
+        <li><span class="definition-term">Étude d'impact environnemental et social :</span> le processus d'évaluation de l'impact probable d'une activité envisagée sur l'environnement naturel et humain;</li>
+        <li><span class="definition-term">Évaluation des risques pour la santé humaine :</span> un processus visant à estimer le risque pour un organisme, un système, une population cible, y compris l'identification des incertitudes inhérentes, suite à l'exposition à un agent donné, en tenant compte des caractéristiques propres à l'agent étudié et des caractéristiques du système cible spécifique;</li>
+        <li><span class="definition-term">Évaluations environnementales et sociales :</span> un ensemble des processus qui visent la prise en compte des enjeux environnementaux et sociaux ainsi que la gestion des risques, des effets et des impacts associés dans la planification ou le développement d'opérations de politiques, de plans, de programmes, de projets ou de toutes autres activités. Elle a pour but de faciliter la planification du développement durable et la prise de décision;</li>
+        <li><span class="definition-term">Évaluation environnementale et sociale stratégique :</span> un processus d'évaluation et d'examen des impacts appliqués aux politiques, aux plans et aux programmes ou à toute initiative localisée en amont des projets, plans et programmes;</li>
+        <li><span class="definition-term">Finance climatique :</span> un ensemble des ressources financières endogènes et exogènes au service de la réalisation d'opérations, de projets et de politiques en matière d'atténuation ou d'adaptation des effets des changements climatiques;</li>
+        <li><span class="definition-term">Fiscalité environnementale :</span> un ensemble de systèmes d'imposition destiné au financement des politiques, des plans, des programmes et des projets relatifs à l'environnement;</li>
+        <li><span class="definition-term">Gaz à effet de serre :</span> les constituants gazeux de l'atmosphère, tant naturels qu'anthropiques, qui absorbent et réémettent le rayonnement infrarouge;</li>
+        <li><span class="definition-term">Habitat :</span> tout milieu dans lequel un organisme ou la population d'une espèce animale ou végétale existe à l'état naturel;</li>
+        <li><span class="definition-term">Indicateurs :</span> tous outils d'évaluation et d'aide à la décision grâce auxquels l'on mesure une situation ou une tendance, de façon relativement objective, à un instant donné, dans le temps ou l'espace;</li>
+        <li><span class="definition-term">Installation classée pour la protection de l'environnement :</span> toute installation qui peut présenter des dangers ou des inconvénients pour l'environnement, l'eau, la nature, la santé ou encore la commodité du voisinage et le patrimoine archéologique;</li>
+        <li><span class="definition-term">Mangrove :</span> l'écosystème qui se développe le long des côtes des zones tropicales et subtropicales consistant en un groupement de végétaux spécifiques principalement ligneux et poussant dans un milieu à dépôt salin;</li>
+        <li><span class="definition-term">Marché de carbone :</span> un mécanisme d'échange et de négociation portant sur les droits d'émission des gaz à effet de serre exprimés en équivalent de dioxyde de carbone (CO2);</li>
+        <li><span class="definition-term">Matériel génétique :</span> le matériel d'origine végétal, animale, microbienne ou autre, contenant des unités fonctionnelles de l'hérédité;</li>
+        <li><span class="definition-term">Matières fertilisantes :</span> les engrais, les amendements et tout produit dont l'emploi contribue à améliorer la fertilité des sols, la productivité agricole et aquacole;</li>
+        <li><span class="definition-term">Matières radioactives naturelles :</span> toute matière radioactive ne contenant pas de quantité significative de radionucléides autres que les radionucléides naturels;</li>
+        <li><span class="definition-term">Mécanisme pour un développement propre :</span> une technique d'incitation des pays en développement à poursuivre l'objectif du développement durable--incluant des stratégies d'adaptation aux risques provoqués par un réchauffement planétaire-et comme un moyen permettant aux pays développés de remplir leurs obligations;</li>
+        <li><span class="definition-term">Meilleures pratiques environnementales ou meilleures technologies disponibles :</span> toutes obligations fondamentales liées au devoir d'empêcher les dommages à l'environnement. Elles impliquent l'adoption des procédés comparables, des évolutions technologiques et des changements, de la faisabilité économique, des limitations de durée, de la nature et du volume des déversements, des émissions et des effluents concernés, de la technologie ordinaire ne produisant pas de déchets ou produisant peu de déchets;</li>
+        <li><span class="definition-term">Monument naturel :</span> un élément ou un groupe d'éléments liés à la nature tels que les rochers, les arbres, les sources, les bouleversements du sol, les accidents géologiques ou autres qui, séparément ou ensemble, forment un panorama digne d'attention;</li>
+        <li><span class="definition-term">Norme :</span> une valeur limite obligatoire à ne pas dépasser;</li>
+        <li><span class="definition-term">Normes d'émissions :</span> toutes normes qui précisent la quantité ou la concentration de polluants qui peuvent être émis à partir d'une source bien déterminée. Ces normes peuvent varier selon le nombre et le type de pollueurs ainsi que la capacité du milieu à absorber les polluants;</li>
+        <li><span class="definition-term">Normes de produits :</span> toutes les normes visant à fixer les propriétés physiques ou chimiques d'un produit par exemple ou les règles portant sur le conditionnement, l'emballage ou la présentation d'un produit, notamment les produits toxiques, ou encore les limites aux émissions polluantes que ce produit est susceptible de dégager au cours de son utilisation;</li>
+        <li><span class="definition-term">Normes de qualité :</span> toutes normes qui fixent le niveau maximum de pollution admissible dans les milieux récepteurs tels que l'air, l'eau et le sol;</li>
+        <li><span class="definition-term">Nuisance :</span> toute atteinte à la santé des êtres vivants, de leur fait, notamment par l'émission de bruits, de vibrations et d'odeurs;</li>
+        <li><span class="definition-term">Organisme génétiquement modifié :</span> toute entité biologique ou organisme dont le matériel génétique a été modifié par le recours à la biotechnologie moderne;</li>
+        <li><span class="definition-term">Plan d'urgence :</span> l'organisation rapide et rationnelle, sous la responsabilité d'une autorité déterminée, des moyens de toute nature pour faire face à une situation d'une extrême gravité;</li>
+        <li><span class="definition-term">Polluants organiques persistants :</span> toutes molécules définies en fonction de quatre propriétés qui sont la toxicité, la persistance dans l'environnement, la bioaccumulation dans les tissus vivants et l'augmentation des concentrations le long de la chaîne alimentaire et le transport longue distance;</li>
+        <li><span class="definition-term">Pollution :</span> la contamination ou la modification directe ou indirecte de l'environnement provoquée par tout acte susceptible : d'altérer le milieu de vie de l'homme et des autres espèces vivantes; de nuire à la santé, à la sécurité, au bien-être de l'homme, de la flore et de la faune ou aux biens collectifs ou individuels;</li>
+        <li><span class="definition-term">Pollution atmosphérique ou pollution de l'air :</span> l'émission volontaire ou accidentelle dans la couche atmosphérique de gaz, de fumée, de substances de nature à créer des nuisances pour les êtres vivants, à compromettre leur santé ou la sécurité publique ou à nuire à la production agricole, à la conservation des édifices ou au caractère des sites et paysages;</li>
+        <li><span class="definition-term">Pollution des eaux :</span> l'introduction dans le milieu aquatique, ainsi que du sous-sol, de toute substance susceptible de modifier les caractéristiques physiques, chimiques ou biologiques de l'eau et de créer des risques pour la santé de l'homme, de nuire à la faune et à la flore terrestres et aquatiques, de porter atteinte à l'agrément des sites ou de gêner toute autre utilisation normale des eaux;</li>
+        <li><span class="definition-term">Pollution du sol :</span> l'altération ou la contamination du sol par l'introduction de toute substance susceptible de modifier les caractéristiques physiques, chimiques et/ou biologiques, de porter atteinte à la qualité du sol;</li>
+        <li><span class="definition-term">Pollution transfrontière :</span> la pollution qui a son origine dans un pays et dont les effets se propagent dans d'autres pays;</li>
+        <li><span class="definition-term">Préjudice écologique :</span> une atteinte majeure causée au milieu naturel indépendamment de ses répercussions sur les personnes et sur les biens;</li>
+        <li><span class="definition-term">Producteur :</span> toute personne physique ou morale dont l'activité génère des déchets ou toute personne qui effectue des opérations de pré-traitement, de mélange ou autres opérations conduisant à un changement de nature ou de composition de ces déchets;</li>
+        <li><span class="definition-term">Produits chimiques obsolètes :</span> des produits chimiques qui ne peuvent plus être utilisés, reconditionnés ou qui ne sont plus homologués ou qui sont interdits;</li>
+        <li><span class="definition-term">Puits de carbone :</span> un réservoir naturel ou artificiel qui séquestre une quantité de carbone contribuant à la réduction des gaz à effet de serre;</li>
+        <li><span class="definition-term">Recyclage :</span> toute opération de valorisation et de réutilisation partielle ou totale des déchets;</li>
+        <li><span class="definition-term">Réduction des risques de catastrophes :</span> la pratique des efforts pour analyser et gérer les causes des risques de catastrophes, notamment par une réduction de l'exposition aux risques qui permet de réduire la vulnérabilité des personnes et des biens, la gestion rationnelle des terres et de l'environnement et l'amélioration de la préparation aux évènements indésirables;</li>
+        <li><span class="definition-term">Responsabilité environnementale :</span> l'obligation de toute personne physique ou morale de prévenir et de réparer le dommage qu'elle cause à l'environnement, notamment aux espèces et à leurs habitations naturelles, aux ressources en eau et aux biens;</li>
+        <li><span class="definition-term">Responsabilité sociétale des organisations :</span> la démarche volontaire dans laquelle toute organisation intègre les préoccupations sociales, environnementales et économiques dans son activité et dans ses interactions avec les acteurs du développement durable;</li>
+        <li><span class="definition-term">Ressources biologiques :</span> les ressources génétiques, les organismes ou éléments de ceux-ci, les populations, ou tout autre élément biotique des écosystèmes ayant une utilisation ou une valeur effective ou potentielle pour l'humanité;</li>
+        <li><span class="definition-term">Ressources génétiques :</span> le matériel génétique ayant une valeur effective et potentielle;</li>
+        <li><span class="definition-term">Secteur privé :</span> toute organisation relevant du droit privé et poursuivant un but à caractère lucratif. Il comprend toutes les professions et secteurs d'activités ne dépendant pas directement de l'Etat, de son Administration ou des collectivités territoriales et où les fonds publics ne sont pas ou peu investis;</li>
+        <li><span class="definition-term">Site :</span> une portion de paysage particularisée par sa situation géographique ou son histoire;</li>
+        <li><span class="definition-term">Valorisation des déchets :</span> toute opération de recyclage, de réemploi, de récupération, d'utilisation des déchets comme source d'énergie ou toute autre action visant à obtenir des matières premières ou des produits réutilisables provenant de la récupération des déchets, afin de réduire ou d'éliminer l'impact négatif de ces déchets sur la santé et l'environnement;</li>
+    </ul>
+
+    <p><span class="article-title">Art. 2</span> La présente loi a pour objet de fixer le cadre juridique relatif à la protection de l'environnement.</p>
+
+    <h3 id="t1-chap2">CHAPITRE 2 : Objectifs</h3>
+    <p><span class="article-title">Art. 3</span> La présente loi vise à :</p>
+    <ol>
+        <li>renforcer, au profit des générations présentes et futures, la protection de l'environnement en vue du développement durable par le maintien et la promotion des multiples fonctions de l'environnement;</li>
+        <li>préserver la diversité biologique et contribuer à l'équilibre des écosystèmes dans la réalisation des activités agricoles, forestières, halieutiques, cynégétiques, pastorales, touristiques et minières;</li>
+        <li>encourager la gestion durable des secteurs de l'environnement en réduisant l'empreinte écologique;</li>
+        <li>renforcer le processus de valorisation des biens et des services environnementaux;</li>
+        <li>impliquer les collectivités territoriales, les entreprises privées, les organisations de la société civile et les populations locales dans la protection de l'environnement, la planification, la gestion et la réalisation des activités du secteur de l'environnement;</li>
+        <li>lutter contre les changements climatiques, notamment par la réduction des gaz à effet de serre et la mise en œuvre de mesures d'adaptation et d'atténuation;</li>
+        <li>réglementer l'utilisation des ressources génétiques de même que l'accès aux résultats et avantages découlant des biotechnologies issues desdites ressources;</li>
+        <li>garantir à tous les citoyens un cadre de vie écologiquement sain et équilibré;</li>
+        <li>veiller à la restauration des milieux endommagés;</li>
+        <li>promouvoir l'éducation, la formation et la recherche en matière d'environnement et du développement durable.</li>
+    </ol>
+
+    <h3 id="t1-chap3">CHAPITRE 3 : Domaine d'application</h3>
+
+    <p><span class="article-title">Art. 4</span> La présente loi ne fait pas obstacle à l'application des dispositions législatives et réglementaires concernant l'urbanisme et la construction, la santé, l'hygiène, la sécurité et la tranquillité publique, la protection des écosystèmes et d'une manière générale à l'exercice des pouvoirs de police.</p>
+
+    <p><span class="article-title">Art. 5</span> La présente loi ne s'applique pas aux activités militaires et aux situations de guerre. Toutefois, les auteurs de telles activités sont tenus de prendre en compte les préoccupations de protection de l'environnement.</p>
+
+    <p><span class="article-title">Art. 6</span> La présente loi s'applique à toutes les formes de pollution telles que définies à l'article 1 de la présente loi.</p>
+
+    <p><span class="article-title">Art. 7</span> Sont notamment soumis aux dispositions de la présente loi :
+    <ul>
+        <li>les installations classées telles que définies dans leur nomenclature : les usines, les dépôts, les mines, les plateformes pétrolifères, les chantiers, les carrières, les stockages souterrains ou en surface, les magasins et les ateliers;</li>
+        <li>les installations exploitées ou détenues par toute personne physique ou morale, publique ou privée qui peuvent présenter des dangers ou des inconvénients, soit pour la commodité, soit pour la sûreté et la sécurité, la santé et la salubrité publiques;</li>
+        <li>les déversements, écoulements, rejets et dépôts susceptibles de provoquer ou d'accroître la dégradation du milieu récepteur.</li>
+    </ul></p>
+
+    <p><span class="article-title">Art. 8</span> Aux termes de la présente loi, sont visées les substances ou combinaisons de substances fabriquées ou à l'état naturel susceptibles, en raison de leur caractère toxique, radioactif, corrosif ou nocif de constituer un danger pour la santé des personnes, la conservation des sols et sous-sols, des eaux, de la faune et de la flore, de l'environnement en général, lorsqu'elles sont utilisées ou évacuées dans le milieu naturel.</p>
+
+    <p><span class="article-title">Art. 9</span> Sont visés, aux termes de la présente loi, les différents types d'énergies, en l'occurrence : l'énergie solaire; l'énergie de biomasse; l'énergie éolienne; l'énergie géothermique; l'énergie hydroélectrique; l'énergie thermique; l'énergie nucléaire.</p>
+
+    <h3 id="t1-chap4">CHAPITRE 4 : Principes référentiels</h3>
+    <p><span class="article-title">Art. 10</span> Lors de la planification ou de l'exécution des actes pouvant avoir un impact sur l'environnement, les personnes physiques ou morales doivent respecter les principes référentiels suivants :</p>
+    <ul>
+        <li><strong>1- Principe de précaution :</strong> Principe selon lequel en cas de risques graves ou irréversibles, l'absence de certitude scientifique absolue ne doit pas servir de prétexte pour remettre à plus tard l'adoption de mesures effectives visant à prévenir la dégradation de l'environnement;</li>
+        <li><strong>2- Principe de non-régression :</strong> Principe selon lequel l'Etat a l'obligation de faire en sorte que les règles relatives à la protection de l'environnement ne subissent pas de reculs qui remettraient en cause l'évolution continue et progressive des politiques visant à promouvoir la préservation de l'environnement;</li>
+        <li><strong>3- Principe de prévention :</strong> Principe impliquant la mise en œuvre de règles et d'actions qui visent à anticiper toute menace pour l'environnement en utilisant les meilleures techniques disponibles à un coût économiquement acceptable;</li>
+        <li><strong>4- Principe de la gestion intégrée :</strong> Principe qui présente l'avantage de tenir compte de toutes les relations et interactions existant entre les différents acteurs dont l'activité a un impact sur l'environnement et qui est fondée sur une démarche transversale, multidisciplinaire et multipartenariale;</li>
+        <li><strong>5- Principe de subsidiarité :</strong> Principe selon lequel toute action publique devant permettre de lutter contre les menaces pour l'environnement doit être prise à l'échelon de décision le mieux approprié pour agir efficacement en faveur de l'intérêt général des générations présentes et futures;</li>
+        <li><strong>6- Principe de la responsabilité élargie du producteur :</strong> Principe selon lequel il est fait obligation aux fabricants, aux distributeurs des produits de leurs propres marques, aux importateurs qui mettent sur le marché des produits générant des déchets de prendre en charge techniquement et financièrement la gestion de ces déchets;</li>
+        <li><strong>7- Principe pollueur-payeur :</strong> Principe selon lequel toute personne physique ou morale dont les comportements ou les activités causent ou sont susceptibles de causer des dommages à l'environnement est soumise à une taxe ou à une redevance. Elle assume en outre toutes les mesures de remise en état;</li>
+        <li><strong>8- Principe d'interdiction de causer des pollutions transfrontières :</strong> Principe selon lequel un Etat ne doit pas, nonobstant la reconnaissance de ses droits souverains dans les limites de son territoire, entreprendre ou laisser entreprendre des activités engendrant ou susceptibles d'engendrer des pollutions dont la source physique est comprise totalement ou en partie dans une zone soumise à sa juridiction nationale;</li>
+        <li><strong>9- Principe de la responsabilité internationale de l'Etat pour préjudice écologique :</strong> Principe selon lequel un Etat est responsable d'une pollution qui cause des dommages avérés aux personnes ou à la propriété des personnes dans un autre Etat;</li>
+        <li><strong>10- Principe de substitution :</strong> Principe commandant la substitution d'une action susceptible d'avoir un impact préjudiciable à l'environnement par une autre action présentant un risque moindre même si cette dernière action choisie entraîne des coûts plus élevés en rapport avec les valeurs à protéger;</li>
+        <li><strong>11- Principe de la redevabilité :</strong> Principe commandant aux acteurs du développement durable de rendre compte des décisions qu'ils prennent et des actions entreprises en toute transparence aux populations et à toute autre partie prenante;</li>
+        <li><strong>12- Principe de non-discrimination en matière d'évaluation environnementale et sociale :</strong> Principe désignant l'interdiction de traiter moins favorablement une personne ou un groupe de personnes, en raison des critères réels ou supposés tels que l'apparence, la croyance, le handicap, l'âge ou le genre.</li>
+    </ul>
+
+    <h2 id="titre2">TITRE II : DROITS FONDAMENTAUX, OBLIGATIONS ET INSTITUTIONS</h2>
+
+    <h3 id="t2-chap1">CHAPITRE 1 : Droits fondamentaux</h3>
+
+    <p><span class="article-title">Art. 11</span> Le droit à un environnement sain est reconnu sur l'ensemble du territoire national.</p>
+    <p><span class="article-title">Art. 12</span> Toute personne physique ou morale a droit à l'information sur l'état de son environnement. Ce libre accès à l'information environnementale comprend la publication des rapports nationaux sur l'état de l'environnement y compris les données techniques brutes, notamment sur les changements climatiques, la diversité biologique, les ressources marines, la couche d'ozone sous réserve des impératifs de la défense nationale et de la sécurité de l'État.</p>
+    <p><span class="article-title">Art. 13</span> L'autorité nationale compétente prend les mesures appropriées pour faciliter l'accès aux informations et aux conclusions relatives aux évaluations environnementales durant la période de l'enquête publique à l'exception des informations et des données qui sont jugées confidentielles pour des raisons de défense nationale ou de sécurité de l'État.</p>
+    <p><span class="article-title">Art. 14</span> Les associations de protection de l'environnement, les acteurs du domaine de l'environnement, les entreprises et les individus, en particulier, les femmes, les jeunes, les personnes en situation de handicap, les enfants et les vieillards ont le droit de participer à la gestion de leur environnement en vue du développement durable. Ils prennent part au processus de décision, d'élaboration, de mise en œuvre et d'évaluation des plans, des projets, des programmes et des politiques ayant une incidence sur leur environnement.</p>
+    <p><span class="article-title">Art. 15</span> Il est mis en place des cadres consultatifs aux fins de recueillir l'opinion et l'apport des personnes visées à l'article précédent.</p>
+    <p><span class="article-title">Art. 16</span> Les projets soumis à l'Etude d'Impact environnemental et social donnent lieu à une enquête publique. Cette enquête vise à permettre à la population concernée de prendre connaissance des impacts éventuels du projet sur l'environnement, de recueillir et éventuellement de prendre en compte leurs observations et propositions y relatives.</p>
+    <p><span class="article-title">Art. 17</span> Le droit à l'éducation environnementale est reconnu à tous. A cet effet, l'État, les collectivités territoriales, le secteur privé, les organisations de la société civile et toute personne intéressée promeuvent la sensibilisation, l'éveil écologique, la formation, la recherche-développement en matière d'environnement.</p>
+
+    <h3 id="t2-chap2">CHAPITRE 2 : Obligations communes</h3>
+    <p><span class="article-title">Art. 18</span> La protection de l'environnement et la promotion de la qualité de vie sont un devoir pour la communauté et pour chaque personne physique ou morale.</p>
+
+    <h4>Section 1 : État</h4>
+    <p><span class="article-title">Art. 19</span> L'État est tenu d'élaborer un document de politique nationale de gestion de l'environnement indiquant les stratégies de mise en œuvre de ladite politique qui sont révisées tous les cinq ans.</p>
+    <p><span class="article-title">Art. 20</span> L'État encourage l'enseignement, la formation et la recherche relatifs à l'environnement à tous les niveaux, notamment dans les établissements scolaires, professionnels et universitaires.</p>
+    <p><span class="article-title">Art. 21</span> L'État veille à l'intégration systématique de la dimension environnementale dans l'élaboration des politiques sectorielles et macroéconomiques en vue du développement durable.</p>
+    <p><span class="article-title">Art. 22</span> L'État assure le respect des engagements découlant des conventions internationales sur l'environnement. Il prend les mesures juridiques, administratives, économiques et politiques y relatives.</p>
+    <p><span class="article-title">Art. 23</span> L'État rend d'application obligatoire les normes de qualité pour l'eau, l'air, le sol et toute autre norme nécessaire à la sauvegarde de la santé humaine et de l'environnement.</p>
+    <p><span class="article-title">Art. 24</span> L'État élabore tous les cinq ans un rapport général sur l'état de l'environnement ainsi que des rapports sectoriels relatifs, notamment à la diversité biologique, aux changements climatiques, à la désertification, aux niveaux de pollution, aux zones côtières, aux milieux marins et au cadre de vie. Ces rapports sont publiés et diffusés.</p>
+    <p><span class="article-title">Art. 25</span> L'État réalise une évaluation environnementale et sociale des plans, des politiques, des programmes et des projets de développement économique et social en vue de prévenir, minimiser, réduire ou gérer leurs impacts sur l'environnement et les populations.</p>
+    <p><span class="article-title">Art. 26</span> L'État initie, coordonne et met en œuvre les actions portant sur des crises ou des urgences environnementales ou toute autre situation pouvant constituer une menace grave pour l'environnement ou la santé humaine.</p>
+    <p><span class="article-title">Art. 27</span> l'État adopte des mesures utiles pour assurer le bien-être socio-économique des populations dans la gestion des ressources naturelles et la protection de l'environnement.</p>
+    <p><span class="article-title">Art. 28</span> L'État prend les mesures appropriées pour la collecte, le stockage, l'enlèvement, le transport, le traitement, le recyclage, la valorisation et l'élimination des déchets.</p>
+    <p><span class="article-title">Art. 29</span> L'État incite l'investissement dans les filières vertes et les technologies propres conformément aux exigences de l'économie verte.</p>
+    <p><span class="article-title">Art. 30</span> L'État assure la préservation des biens et services environnementaux.</p>
+    <p><span class="article-title">Art. 31</span> L'État adopte des stratégies pour l'éveil écologique. Il développe par tout moyen la conscience écologique de chaque individu.</p>
+    <p><span class="article-title">Art. 32</span> L'État prend toutes les mesures nécessaires pour assurer la compensation écologique.</p>
+    <p><span class="article-title">Art. 33</span> L'État met à niveau les infrastructures de base en s'assurant qu'elles respectent les mesures de protection de l'environnement.</p>
+    <p><span class="article-title">Art. 34</span> L'État prend des mesures appropriées pour favoriser la mise en place de l'économie circulaire.</p>
+
+    <h4>Section 2 : Collectivités territoriales</h4>
+    <p><span class="article-title">Art. 35</span> Les collectivités territoriales prennent les mesures appropriées pour appliquer les dispositions juridiques, les politiques, les stratégies, les plans et les programmes concernant la protection, la gestion et la promotion de l'environnement.</p>
+    <p><span class="article-title">Art. 36</span> Les collectivités territoriales participent à la collecte, au stockage, à l'enlèvement, au transport, au traitement, à la valorisation et à l'élimination des déchets ménagers.</p>
+    <p><span class="article-title">Art. 37</span> Les collectivités territoriales prennent les mesures appropriées pour protéger et reboiser les terres, gérer les monuments naturels, les sites et les paysages qui relèvent de leurs compétences.</p>
+    <p><span class="article-title">Art. 38</span> Les collectivités territoriales prennent les mesures appropriées pour préserver et gérer de manière écologiquement rationnelle les espaces verts et tous les autres espaces relevant de leurs compétences.</p>
+    <p><span class="article-title">Art. 39</span> Les collectivités territoriales promeuvent les initiatives, les actions, les activités, les programmes, les projets des populations, des associations ou des entreprises visant à protéger l'environnement.</p>
+    <p><span class="article-title">Art. 40</span> Les collectivités territoriales bénéficient d'une partie des taxes prélevées sur les produits des activités des mines, des industries et des autres installations classées pour le financement de leur politique environnementale. Elles bénéficient également d'une partie des ressources perçues en application du principe pollueur payeur.</p>
+    <p><span class="article-title">Art. 41</span> Les collectivités territoriales sont tenues d'avoir :
+        <ul>
+            <li>un plan local de gestion de l'environnement;</li>
+            <li>une ou plusieurs décharges contrôlées d'ordures ménagères.</li>
+        </ul>
+    </p>
+    <p><span class="article-title">Art. 42</span> Les collectivités territoriales participent et contribuent à l'éducation environnementale.</p>
+
+    <h4>Section 3 : Secteur privé</h4>
+    <p><span class="article-title">Art. 43</span> Le secteur privé promeut la pratique de la responsabilité sociétale.</p>
+    <p><span class="article-title">Art. 44</span> Le secteur privé collabore avec les autorités publiques à la protection de l'environnement et à la réalisation du développement durable. À cet effet, il dresse un rapport périodique de développement durable.</p>
+    <p><span class="article-title">Art. 45</span> Le secteur privé élabore des plans de gestion de l'environnement ou met en place des systèmes de management environnemental dans l'exercice de ses activités.</p>
+    <p><span class="article-title">Art. 46</span> Le secteur privé participe à la collecte, au stockage, à l'enlèvement, au transport, au traitement, au recyclage, à la valorisation et à l'élimination des déchets par son implication dans la mise en place d'éco-organisme en application du principe de la responsabilité élargie du producteur. L'éco-organisme est reconnu par les pouvoirs publics sur la base d'une convention d'agrément.</p>
+    <p><span class="article-title">Art. 47</span> Le secteur privé contribue à la mobilisation des ressources financières et matérielles pour la protection de l'environnement et la réalisation du développement durable par la mise en place entre autres de l'éco-contribution.</p>
+    <p><span class="article-title">Art. 48</span> Le secteur privé prend des mesures pour assurer le contrôle de conformité de son organisation. Il suit la démarche de responsabilité sociétale en veillant au respect des normes de comportement en vue de la réalisation du développement durable.</p>
+    <p><span class="article-title">Art. 49</span> Le secteur privé est responsable du financement de la gestion des déchets provenant de ses propres produits.</p>
+    <p><span class="article-title">Art. 50</span> Le secteur privé contribue à l'éducation environnementale.</p>
+
+    <h4>Section 4 : Associations et individus</h4>
+    <p><span class="article-title">Art. 51</span> Les associations de protection de l'environnement régulièrement constituées contribuent aux actions des organismes publics ou parapublics en matière de protection de l'environnement.</p>
+    <p><span class="article-title">Art. 52</span> Les associations et les individus, en particulier, les femmes, les jeunes, les personnes en situation de handicap, les enfants et les vieillards ont le devoir de protéger leur environnement et leur cadre de vie contre toutes formes de pollution ou de dégradation. Ils promeuvent par l'action individuelle et collective les activités y relatives.</p>
+    <p><span class="article-title">Art. 53</span> Les associations et les individus, en particulier, les femmes, les jeunes, les personnes en situation de handicap, les enfants et les vieillards ont le devoir d'informer les autorités compétentes des situations susceptibles d'affecter ou de dégrader l'environnement.</p>
+    <p><span class="article-title">Art. 54</span> Les associations et les individus, en particulier, les femmes, les jeunes, les personnes en situation de handicap, les enfants et les vieillards contribuent à l'éducation environnementale.</p>
+
+    <h3 id="t2-chap3">CHAPITRE 3 : Institutions</h3>
+    
+    <h4>Section 1 : Agence chargée de l'exécution de la politique nationale de l'environnement et du développement durable</h4>
+    <p><span class="article-title">Art. 55</span> L'État met en place une agence qui bénéficie de la personnalité juridique, de l'autonomie financière, d'un patrimoine et des moyens de gestion propres. Elle est chargée notamment :
+        <ul>
+            <li>de conduire les procédures d'évaluation environnementale et sociale;</li>
+            <li>de coordonner l'élaboration des rapports nationaux en matière d'environnement;</li>
+            <li>d'appuyer les collectivités territoriales dans l'élaboration des plans locaux de gestion de l'environnement;</li>
+            <li>de définir les filières concernées de la responsabilité élargie du producteur et contrôler sa mise en œuvre.</li>
+        </ul>
+    </p>
+
+    <h4>Section 2 : Police de l'environnement</h4>
+    <p><span class="article-title">Art. 56</span> L'État met en place une police de l'environnement chargée de faire respecter les dispositions juridiques relatives à la protection et à la gestion de l'environnement.</p>
+    <p><span class="article-title">Art. 57</span> Les pouvoirs de police de l'environnement sont conférés à des agents de la police nationale, de la gendarmerie, des eaux et forêts, à certains fonctionnaires et agents de l'État en vue du contrôle de la mise en œuvre des règles relatives à la protection de l'environnement sur l'ensemble du territoire national. Les agents investis de pouvoir de police de l'environnement prêtent serment.</p>
+    <p><span class="article-title">Art. 58</span> Les attributions, l'organisation et le fonctionnement de la police de l'environnement sont précisés par décret pris en Conseil des ministres.</p>
+
+    <h4>Section 3 : Autres structures</h4>
+    <p><span class="article-title">Art. 59</span> L'État met en place :
+        <ul>
+            <li>une structure technique opérationnelle chargée d'assurer la veille environnementale et le suivi de la qualité des milieux récepteurs, de l'observation de la qualité de l'air, du renforcement de la politique globale de conservation de la nature et de la gestion des déchets industriels et chimiques;</li>
+            <li>une structure chargée de la mise en œuvre de la politique de gestion durable du littoral.</li>
+        </ul>
+    </p>
+
+    <h2 id="titre3">TITRE III : NORMES ENVIRONNEMENTALES, FISCALITÉ ENVIRONNEMENTALE, MÉCANISMES DE FINANCEMENT ET ÉVALUATION ENVIRONNEMENTALE ET SOCIALE</h2>
+
+    <h3 id="t3-chap1">CHAPITRE 1 : Normes environnementales</h3>
+    <p><span class="article-title">Art. 60</span> L'État rend d'application obligatoire les normes techniques anti-pollution dans les domaines de l'air, de l'eau, du sol et du bruit. Ces normes, fixées par les structures compétentes, sont établies en fonction des innovations technologiques et des capacités d'absorption des réceptacles. Ces normes servent de base à l'élaboration des attributions spéciales de rejet, d'émission, de dépôt ou d'occupation. Les normes de rejet, d'émission et de dépôt sont rendues d'application obligatoire par voie règlementaire.</p>
+    <p><span class="article-title">Art. 61</span> Les immeubles, les installations classées pour la protection de l'environnement, les établissements commerciaux ou artisanaux, les véhicules ou tout autre objet mobile sont conçus, construits, exploités, utilisés selon les normes de produits, les normes d'émissions, les normes de qualité et les meilleures technologies disponibles.</p>
+    <p><span class="article-title">Art. 62</span> Les installations d'exploration ou d'exploitation des ressources naturelles, notamment les ressources minières, fauniques, floristiques, hydrauliques, marines, pétrolières, gazières sont tenues de se conformer aux normes de qualité et aux meilleures technologies disponibles.</p>
+
+    <h3>CHAPITRE 2 : Fiscalité environnementale</h3>
+    <p><span class="article-title">Art. 63</span> L'État met en place un système d'incitation financière et fiscale destiné à encourager les investissements et le financement des projets de protection et de mise en valeur de l'environnement.</p>
+    <p><span class="article-title">Art. 64</span> L'État prend des mesures fiscales incitatives ou dissuasives sur les produits, les services et les équipements ayant un effet potentiel ou avéré sur les comportements des agents économiques ou sur la protection de l'environnement.</p>
+
+    <h3 id="t3-chap2">CHAPITRE 3 : Mécanismes de financement</h3>
+    <h4>Section 1 : Fonds de l'Environnement et du Développement durable</h4>
+    <p><span class="article-title">Art. 65</span> L'État met en place un Fonds de l'Environnement et du Développement durable. Ce fonds, qui mobilise ou reçoit les ressources destinées aux projets et aux programmes de protection et de gestion durable de l'environnement, comprend plusieurs guichets correspondant aux secteurs importants de l'environnement, notamment les changements climatiques, la diversité biologique, la désertification, le littoral et les produits et substances chimiques. Les attributions, l'organisation, les modalités de fonctionnement et la mobilisation des fonds opérationnels sont précisées par décret pris en Conseil des ministres.</p>
+    
+    <h4>Section 2 : Autres agents de mobilisation des financements</h4>
+    <p><span class="article-title">Art. 66</span> L'État, les collectivités territoriales et le secteur privé mobilisent les ressources financières nécessaires pour l'élaboration et la mise en œuvre de la politique nationale de l'environnement.</p>
+    <p><span class="article-title">Art. 67</span> L'État, les collectivités territoriales, le secteur privé et les organisations de la société civile mobilisent des fonds verts pour la mise en œuvre des actions de protection et de valorisation de l'environnement.</p>
+
+    <h3 id="t3-chap4">CHAPITRE 4 : Evaluation environnementale et sociale</h3>
+    <h4>Section 1 : Domaine d'application des évaluations environnementales et sociales</h4>
+    <p><span class="article-title">Art. 68</span> Tout projet susceptible d'avoir un impact sur l'environnement est soumis au préalable à une évaluation environnementale et sociale.</p>
+    <p><span class="article-title">Art. 69</span> L'évaluation environnementale et sociale s'applique aux politiques, aux plans, aux programmes et aux projets susceptibles d'avoir des répercussions sur l'environnement naturel et humain.</p>
+    <p><span class="article-title">Art. 70</span> Tout promoteur d'une politique, d'un plan, d'un programme ou d'un projet soumis à une évaluation environnementale et sociale doit recourir librement au service d'un bureau d'études ou d'un consultant indépendant agréé par le ministre chargé de l'Environnement en vue de la réalisation de l'évaluation. Les conditions de délivrance de l'agrément aux bureaux d'études ou aux consultants indépendants sont définies par décret pris en Conseil des ministres.</p>
+
+    <h4>Section 2 : Outils de gestion de l'environnement</h4>
+    <p><span class="article-title">Art. 71</span> Les principaux outils d'évaluation environnementale et sociale sont :
+        <ul>
+            <li>l'Evaluation environnementale et sociale stratégique (EESS);</li>
+            <li>l'Etude d'Impact environnemental et social (EIES);</li>
+            <li>l'Audit environnemental et social (AES).</li>
+        </ul>
+    </p>
+    <p><span class="article-title">Art. 72</span> Les politiques publiques, les stratégies, les plans, les programmes de développement susceptibles d'avoir des effets environnementaux et sociaux importants sont soumis à une Evaluation environnementale et sociale stratégique (EESS).</p>
+    <p><span class="article-title">Art. 73</span> Les projets ayant fait l'objet d'une évaluation environnementale et sociale stratégique peuvent être assujettis à la réalisation d'une étude d'impact environnemental et social détaillée ou simplifiée, ou encore d'un constat d'exclusion catégorielle.</p>
+    <p><span class="article-title">Art. 74</span> Les projets de développement qui, par l'importance de leurs dimensions ou de leurs incidences, peuvent porter atteinte aux milieux naturel et humain, sont soumis à une Etude d'Impact environnemental et social (EIES). Cette étude prend en compte les changements climatiques, les risques radiologiques et les risques de catastrophes. Les projets concernés sont classés en fonction de l'ampleur des impacts anticipés. Ils sont recensés sur une liste établie par décret pris en Conseil des ministres.</p>
+    <p><span class="article-title">Art. 75</span> Les projets, dont les impacts sur les milieux naturel et humain, sont facilement identifiables ou limités et dont les moyens d'atténuation sont généralement connus, sont soumis à une étude d'impact environnemental et social simplifiée ou notice d'impact environnemental et social.</p>
+    <p><span class="article-title">Art. 76</span> L'exécution de toute opération réalisée dans le cadre d'un projet, d'une politique, d'un plan, d'un programme soumis à une évaluation environnementale fait l'objet d'un Audit environnemental et social (AES).</p>
+    <p><span class="article-title">Art. 77</span> L'Audit environnemental et social vise à évaluer la conformité d'une activité par rapport à la réglementation en vigueur en déterminant les impacts que tout ou partie de cette activité génère, directement ou indirectement, sur l'environnement naturel et humain.</p>
+    <p><span class="article-title">Art. 78</span> Sont soumis à l'Audit environnemental et social périodique, les ouvrages, les entreprises, les activités, parties ou combinaisons de celles-ci assujettis à l'évaluation environnementale et sociale. Il en est de même pour les activités, projets en phase de cessation.</p>
+
+    <h4>Section 3 : Taxe et frais afférents à la mise en œuvre des évaluations environnementales et sociales</h4>
+    <p><span class="article-title">Art. 79</span> L'examen du dossier des Etudes d'Impact environnemental et social, des Evaluations environnementales et sociales stratégiques et des Audits environnementaux et sociaux par l'Agence visée à l'article 55 donne lieu au versement d'une redevance fixée par la loi de finances.</p>
+    <p><span class="article-title">Art. 80</span> Les frais afférents à l'enquête publique et à l'examen technique de l'Evaluation environnementale et sociale stratégique, des Audits environnementaux et sociaux et toutes autres études en Evaluation environnementale et sociale énumérées dans le présent chapitre sont à la charge du promoteur et payable à l'Agence visée à l'article 55, dont les montants sont définis conformément aux dispositions en vigueur.</p>
+
+    <h2 id="titre4">TITRE IV : DISPOSITIONS SECTORIELLES</h2>
+
+    <h3 id="t4-chap1">CHAPITRE 1 : Changements climatiques</h3>
+    <h4>Section 1 : Stratégies</h4>
+    <p><span class="article-title">Art. 81</span> L'État adopte une stratégie d'adaptation aux changements climatiques en édictant des mesures destinées à réduire la vulnérabilité des systèmes naturels et humains contre les effets des changements climatiques.</p>
+    <p><span class="article-title">Art. 82</span> L'État adopte une stratégie d'atténuation aux changements climatiques en prenant des mesures visant à réduire les émissions des gaz à effet de serre.</p>
+    <p><span class="article-title">Art. 83</span> L'État réalise périodiquement une évaluation nationale de la vulnérabilité aux changements climatiques et des programmes contenant des mesures d'adaptation aux impacts des changements climatiques dans les différents secteurs susceptibles d'être affectés.</p>
+    <p><span class="article-title">Art. 84</span> L'État favorise le transfert de technologie qui contribue à la réduction des émissions des gaz à effet de serre par la réduction du coût des investissements y relatifs.</p>
+    <p><span class="article-title">Art. 85</span> Les évaluations environnementales des politiques, des plans, des programmes et des projets doivent inclure les stratégies de l'adaptation et de l'atténuation aux changements climatiques.</p>
+    <p><span class="article-title">Art. 86</span> L'État facilite la mise en place des mécanismes de financement des actions ou des activités de lutte contre les changements climatiques.</p>
+    <p><span class="article-title">Art. 87</span> L'État publie tous les trois ans des rapports sur les changements climatiques. Ces rapports, actualisés et rendus disponibles, comprennent les inventaires nationaux des émissions anthropiques par les sources et absorptions par les puits de tous les gaz à effet de serre selon les méthodes comparables fournies par la Convention Cadre des Nations-Unies sur les changements climatiques et l'Accord de Paris. Ils contiennent aussi les mesures pour atténuer les changements climatiques.</p>
+
+    <h4>Section 2 : Energies renouvelables</h4>
+    <p><span class="article-title">Art. 88</span> L'État adopte des mesures qui facilitent l'utilisation des ressources énergétiques renouvelables et des énergies non polluantes. Il veille à la promotion de ces énergies.</p>
+
+    <h4>Section 3 : Efficacité énergétique</h4>
+    <p><span class="article-title">Art. 89</span> L'État adopte des mesures pour la promotion de l'efficacité énergétique dans les industries, les bâtiments et le transport. Il veille à la promotion de l'efficacité énergétique.</p>
+    <p><span class="article-title">Art. 90</span> Les immeubles, les installations classées et les établissements industriels, les établissements artisanaux, les établissements agricoles, les surfaces commerciales ou tout édifice sont conçus et construits dans le respect des conditions relatives à l'efficacité énergétique.</p>
+
+    <h3 id="t4-chap2">CHAPITRE 2 : Diversité biologique</h3>
+    <h4>Section 1 : Ressources biologiques et génétiques</h4>
+    <p><span class="article-title">Art. 91</span> Les ressources de la diversité biologique font partie du patrimoine national.</p>
+    <p><span class="article-title">Art. 92</span> L'État élabore un plan d'action pour la conservation et l'utilisation durable de la diversité biologique.</p>
+    <p><span class="article-title">Art. 93</span> L'État constitue un réseau de conservation in situ et ex-situ de la diversité biologique.</p>
+    <p><span class="article-title">Art. 94</span> Les recherches et l'utilisation des ressources biologiques ou génétiques doivent être réalisées au profit de l'État, des collectivités territoriales et des populations en collaboration avec les institutions nationales de recherche.</p>
+    <p><span class="article-title">Art. 95</span> Les recherches sur les ressources génétiques et leur utilisation sont effectuées selon un accord préalable donné en connaissance de cause.</p>
+    <p><span class="article-title">Art. 96</span> Les ressources de la diversité biologique sont utilisées d'une manière écologiquement rationnelle et responsable aux fins d'assurer le respect de l'équilibre écologique.</p>
+    <p><span class="article-title">Art. 97</span> Le ministère en charge de l'Environnement prend des mesures pour empêcher, contrôler ou éradiquer les espèces envahissantes qui menacent les écosystèmes, les habitats et les autres espèces. L'État définit et met en œuvre une politique de gestion et de protection des espèces menacées ou vulnérables.</p>
+    <p><span class="article-title">Art. 98</span> L'État met en place un système de contrôle d'accès aux ressources génétiques. Cet accès est soumis à un consentement préalable donné en connaissance de cause.</p>
+    <p><span class="article-title">Art. 99</span> L'État garantit les droits des communautés locales qui ont, par leurs connaissances et pratiques, entretenu les écosystèmes, protégé l'existence des ressources génétiques, mis au point des variétés sur lesdites ressources génétiques et les connaissances traditionnelles associées.</p>
+    <p><span class="article-title">Art. 100</span> L'État met en place un système de partage juste et équitable des avantages découlant de l'utilisation des ressources génétiques conformément aux dispositions des conventions internationales y relatives.</p>
+    <p><span class="article-title">Art. 101</span> Les échanges d'informations ou de connaissances sur les ressources génétiques sont effectués en collaboration avec les ministères et les structures intéressés.</p>
+
+    <h4>Section 2 : Ressources naturelles</h4>
+    <p><span class="article-title">Art. 102</span> Les collectivités territoriales, les personnes morales de droit public ou privé ou tout propriétaire de terres sont autorisés à créer et gérer des réserves naturelles volontaires conformément à la réglementation en vigueur.</p>
+    <p><span class="article-title">Art. 103</span> Les populations exercent un droit d'usage sur les ressources naturelles conformément à la règlementation en vigueur.</p>
+
+    <h5>Paragraphe 1 : Faune et flore</h5>
+    <p><span class="article-title">Art. 104</span> L'État établit la liste des espèces animales et végétales qui doivent être protégées en fonction de leur rôle dans les écosystèmes, de leur rareté, de leur valeur esthétique, économique, culturelle et scientifique. Cette liste est révisée tous les trois ans par voie règlementaire.</p>
+    <p><span class="article-title">Art. 105</span> La vente, l'échange, la commercialisation de la viande de chasse, les semences et les plantes sont réglementés.</p>
+    <p><span class="article-title">Art. 106</span> L'introduction, l'importation et l'exportation de toute espèce animale ou végétale sont soumises à autorisation préalable des autorités compétentes.</p>
+    <p><span class="article-title">Art. 107</span> En dehors des cas relatifs à la légitime défense et à l'état de nécessité, toutes les formes de chasse sont soumises à l'obtention d'un permis de chasse conformément aux textes en vigueur en la matière.</p>
+
+    <h5>Paragraphe 2 : Habitats naturels</h5>
+    <p><span class="article-title">Art. 108</span> L'État adopte les mesures appropriées pour préserver et restaurer la diversité des habitats naturels, assurer la protection des espaces naturels et le maintien des équilibres biologiques auxquels ils participent, notamment au niveau des réserves naturelles, des parcs nationaux, des parcs naturels marins et des sites naturels.</p>
+
+    <h5>Paragraphe 3 : Forêts</h5>
+    <p><span class="article-title">Art. 109</span> L'État favorise la reconstitution de la couverture forestière.</p>
+    <p><span class="article-title">Art. 110</span> L'État adopte des mesures appropriées pour une gestion écologiquement rationnelle des forêts en tenant compte de leurs fonctions écologique, sociale, culturelle, cultuelle et de leur valeur économique.</p>
+
+    <h5>Paragraphe 4 : Montagnes</h5>
+    <p><span class="article-title">Art. 111</span> Les zones montagneuses constituent un patrimoine naturel commun pour les collectivités territoriales et les individus. Elles assurent des fonctions de réservoirs hydrologiques, de zones agricoles et pastorales, de récréation et de vie sauvage.</p>
+    <p><span class="article-title">Art. 112</span> Les zones montagneuses sont préservées de toute érosion des sols, des glissements de terrains dus entre autres aux interventions humaines destructrices en vue d'assurer une gestion intégrée et durable de ces écosystèmes.</p>
+
+    <h5>Paragraphe 5 : Mangroves</h5>
+    <p><span class="article-title">Art. 113</span> L'État assure le suivi de la conservation et de la gestion durable des mangroves.</p>
+
+    <h4>Section 3 : Aires protégées</h4>
+    <p><span class="article-title">Art. 114</span> L'État crée et consolide un réseau d'aires protégées. Elles font l'objet d'un plan d'aménagement et de gestion.</p>
+    <p><span class="article-title">Art. 115</span> Lorsque la décision de classer une zone en une aire protégée entraîne un préjudice direct et certain par la délimitation des activités antérieures dans la zone concernée, les propriétaires de l'espace concerné ou leurs ayants droit bénéficient des réparations découlant des préjudices causés.</p>
+
+    <h3 id="t4-chap3">CHAPITRE 3 : Cadre de vie</h3>
+    <h4>Section 1 : Verdissement des zones d'habitation</h4>
+    <p><span class="article-title">Art. 116</span> L'État et les collectivités territoriales créent des espaces verts.</p>
+    <p><span class="article-title">Art. 117</span> La création et la préservation des espaces verts dans les plans directeurs d'aménagement du territoire et dans les programmes immobiliers sont déterminées par les autorités compétentes.</p>
+    <p><span class="article-title">Art. 118</span> Les plans d'urbanisation sont élaborés en tenant compte des impératifs de protection de l'environnement.</p>
+    <p><span class="article-title">Art. 119</span> Toute agglomération urbaine doit comporter des espaces à usages récréatifs et des espaces verts selon une proportion harmonieuse fixée par les plans d'urbanisme compte tenu des superficies disponibles, du coefficient d'occupation du sol et de la population résidentielle.</p>
+
+    <h4>Section 2 : Nuisances sonores</h4>
+    <p><span class="article-title">Art. 120</span> Toute émission sonore susceptible de causer des bruits doit être conforme à la réglementation établie par les autorités compétentes.</p>
+    <p><span class="article-title">Art. 121</span> L'État prend des mesures appropriées pour fixer les valeurs limites sonores admises. Il met en place des systèmes de mesures et les moyens de contrôle. Ces mesures sont précisées par décret pris en Conseil des ministres.</p>
+
+    <h4>Section 3 : Lutte contre les habitats insalubres</h4>
+    <p><span class="article-title">Art. 122</span> L'État prend des mesures pour lutter contre les habitats insalubres et les logements dont l'état expose les occupants ou le voisinage à des risques manifestes pouvant porter atteinte à leur sécurité physique ou à leur santé.</p>
+    <p><span class="article-title">Art. 123</span> La procédure de constat d'insalubrité est engagée par le ministère en charge de la Salubrité en collaboration avec les autres ministères intéressés. Elle concerne uniquement l'état de l'immeuble ou du logement ou ses conditions d'occupation.</p>
+    <p><span class="article-title">Art. 124</span> La procédure de constat d'insalubrité peut aboutir à l'évacuation ou à la démolition de l'habitat dans le respect du droit de propriété et du droit au logement.</p>
+
+    <h4>Section 4 : Pollution de l'air</h4>
+    <p><span class="article-title">Art. 125</span> L'État fixe par voie règlementaire des normes de rejet, d'émission, de dépôt ou d'occupation spécifique qui prennent en compte les exigences du milieu récepteur, la qualité de l'environnement et les considérations socio-économiques, culturelles et techniques.</p>
+    <p><span class="article-title">Art. 126</span> Les autorisations spéciales de rejet, d'émission, de dépôt ou d'occupation y compris les rejets et effluents radioactifs, indiquent notamment :
+        <ul>
+            <li>la dénomination des matières dont le rejet ou le dépôt est autorisé ;</li>
+            <li>le lieu de dépôt ou d'occupation ;</li>
+            <li>la quantité globale du rejet ou du dépôt ;</li>
+            <li>la quantité par unité de temps ou de surface ainsi que toutes les prescriptions techniques appropriées pour supprimer ou réduire les effets nocifs que le rejet ou le dépôt autorisé peut avoir sur le milieu récepteur, les êtres vivants, l'alimentation ou la santé publique ;</li>
+            <li>la date limite de validation de l'autorisation et le montant de la redevance annuelle de rejet, d'émission, de dépôt ou d'occupation.</li>
+        </ul>
+    </p>
+    <p><span class="article-title">Art. 127</span> L'utilisation des polluants atmosphériques et des substances qui dégradent la couche d'ozone ou susceptibles de causer des changements climatiques est soumise à autorisation du ministre chargé de l'Environnement. Une liste des polluants atmosphériques et des substances est établie par voie règlementaire.</p>
+
+    <h4>Section 5 : Installations classées pour la protection de l'environnement</h4>
+    <p><span class="article-title">Art. 128</span> Sont soumises aux dispositions de la présente loi les installations classées pour la protection de l'environnement telles que définies dans leur nomenclature. Cette nomenclature est établie en fonction de la nature des activités et des inconvénients ou dangers générés.</p>
+    <p><span class="article-title">Art. 129</span> Les installations classées pour la protection de l'environnement sont soumises à autorisation ou à déclaration suivant la gravité des dangers ou inconvénients que peut présenter leur exploitation. Elles fournissent aux services d'inspection des installations classées des rapports périodiques sur la situation environnementale, hygiénique et sanitaire de leurs activités ou des déclarations semestrielles de leurs déchets.</p>
+    <p><span class="article-title">Art. 130</span> L'État institue des servitudes d'utilité publique autour du périmètre des installations classées pour la protection de l'environnement.</p>
+    <p><span class="article-title">Art. 131</span> Les installations classées pour la protection de l'environnement font l'objet d'inspection des services compétents du ministère en charge de l'Environnement conformément à la réglementation en vigueur. Les inspections sont sanctionnées par des rapports qui contiennent toutes les observations relevées.</p>
+    <p><span class="article-title">Art. 132</span> Les installations classées pour la protection de l'environnement visées à l'article 7 sont assujetties à une redevance de contrôle et d'inspection payée à la structure technique chargée du contrôle et de l'inspection desdites installations. Cette redevance est fixée par la loi de finances.</p>
+    <p><span class="article-title">Art. 133</span> Les installations classées situées à proximité des habitations doivent être déplacées pour protéger l'environnement, la santé publique, la tranquillité et les sécurités publiques.</p>
+    <p><span class="article-title">Art. 134</span> Les activités de recherches minières, les carrières, les installations électriques, les antennes radioélectriques doivent préalablement être autorisées dans le respect des exigences environnementales et sanitaires. Leur exploitation doit se faire selon la méthode de la gestion écologiquement rationnelle en tenant compte de la santé humaine et des intérêts des populations riveraines.</p>
+    <p><span class="article-title">Art. 135</span> L'État aménage des zones d'implantation des unités industrielles en infrastructures appropriées, notamment les stations communes de traitement des eaux usées et des centres de gestion des déchets.</p>
+    <p><span class="article-title">Art. 136</span> Tout promoteur qui exploite une installation traitant des déchets dangereux tels que les déchets radioactifs, des produits chimiques ou des polluants organiques persistants ou tout autre produit dangereux ou nocif est tenu de fournir aux autorités compétentes, notamment au ministère en charge de l'Environnement ou sur sa demande une analyse des déchets ou des produits qu'il stocke, transforme ou dont il assure la gestion pour lui-même ou pour le compte de tiers.</p>
+    <p><span class="article-title">Art. 137</span> Les installations classées doivent réaliser tous les cinq ans des études de danger. Les études de danger indiquent soit un plan d'opération interne soit un plan d'urgence simplifié. Les plans d'opération interne font l'objet de test de situation d'urgence impliquant les autorités compétentes. Les modalités d'application de cette disposition sont précisées par décret pris en Conseil des ministres.</p>
+
+    <h4>Section 6 : Déchets</h4>
+    <p><span class="article-title">Art. 138</span> L'État établit la liste et la classification des déchets dangereux et non dangereux.</p>
+    <p><span class="article-title">Art. 139</span> L'État élabore, en collaboration avec les collectivités territoriales et les organisations de la société civile, la politique, les plans et schémas de gestion des déchets. Cette liste tient compte de l'origine et de la composition des déchets et des valeurs limites de concentration.</p>
+
+    <h5>Paragraphe 1 : Déchets ménagers et assimilés</h5>
+    <p><span class="article-title">Art. 140</span> Toutes les opérations de collecte, de stockage, de transport, de valorisation ou d'élimination des déchets ménagers et assimilés sont subordonnées à l'obtention d'une autorisation préalable du ministère en charge de la Salubrité.</p>
+    <p><span class="article-title">Art. 141</span> La collecte, le stockage et le transport des déchets ménagers et assimilés doivent être structurés et identifiés par des étiquettes visibles et distinctes. Le transport de ces déchets à partir des sites de production ne peut être effectué que si les emballages et les conteneurs prévus à cet effet portent des étiquettes identifiant clairement et visiblement ces déchets.</p>
+    <p><span class="article-title">Art. 142</span> Les établissements de valorisation et d'élimination des déchets ménagers et assimilés sont responsables des dommages occasionnés dans le cadre de l'exercice de leurs activités.</p>
+    <p><span class="article-title">Art. 143</span> L'État prend des mesures appropriées pour valoriser les déchets par la réutilisation, le recyclage et toute autre action visant la récupération des matériaux réutilisables.</p>
+    <p><span class="article-title">Art. 144</span> Un espace ou un site ayant été utilisé comme un lieu d'élimination, de dépôt ou de décharge contrôlée ou incontrôlée ou d'incinération des déchets désaffecté ou non ne peut être utilisé à des fins de constructions ou d'autres exploitations sans l'autorisation préalable du ministère en charge de l'Environnement.</p>
+    <p><span class="article-title">Art. 145</span> L'enfouissement des déchets ménagers et assimilés ne peut être réalisé qu'avec l'autorisation du ministère en charge de l'Environnement qui fixe les mesures techniques et les règles particulières à cet effet.</p>
+
+    <h5>Paragraphe 2 : Déchets industriels, commerciaux et artisanaux</h5>
+    <p><span class="article-title">Art. 146</span> La fabrication, la détention en vue de la vente, la mise en vente, la vente et la mise à la disposition de l'utilisateur, sous quelque forme que ce soit, de produits générateurs de déchets industriels, commerciaux et artisanaux peuvent être réglementées en vue de faciliter l'élimination desdits déchets ou, en cas de nécessité, interdites. Il peut être fait obligation aux producteurs, aux importateurs et aux distributeurs de produits de pourvoir ou de contribuer à la prévention et à la gestion des déchets qui en proviennent.</p>
+    <p><span class="article-title">Art. 147</span> L'éco-contribution concerne les producteurs, les importateurs et les distributeurs des produits. La liste des filières des déchets concernés par la responsabilité élargie des producteurs est établie par l'autorité nationale compétente. Cette liste est révisée tous les cinq ans.</p>
+    <p><span class="article-title">Art. 148</span> Conformément à l'application du principe pollueur-payeur, le coût de l'élimination des déchets industriels, commerciaux et artisanaux, déduction faite de leur valorisation éventuelle, doit être supporté par le détenteur qui remet des déchets à un collecteur ou à une entreprise agréée.</p>
+    <p><span class="article-title">Art. 149</span> L'État a l'obligation de créer et de gérer d'une manière écologiquement rationnelle les stations de traitement collectives.</p>
+    <p><span class="article-title">Art. 150</span> Les entreprises et unités industrielles ont l'obligation de mettre en place des stations de traitement des eaux usées afin de minimiser la dangerosité de leurs rejets.</p>
+    <p><span class="article-title">Art. 151</span> Les sites contaminés par des déchets industriels sont considérés comme des installations classées. Ils sont soumis aux règles applicables aux installations classées des produits dangereux et font l'objet d'un inventaire précis. Ils sont aussi soumis à des contrôles piézométriques, à l'analyse du contenu des déchets et leur résorption.</p>
+    <p><span class="article-title">Art. 152</span> La collecte, le stockage, le transport et l'élimination des déchets industriels spéciaux sont effectués par des structures spécialisées et agréées par l'autorité nationale compétente.</p>
+    <p><span class="article-title">Art. 153</span> L'État impose aux responsables des sites contaminés leur remise en état à la fin de leur exploitation.</p>
+
+    <h5>Paragraphe 3 : Déchets sanitaires</h5>
+    <p><span class="article-title">Art. 154</span> Les établissements hospitaliers et vétérinaires adoptent des mesures pour la gestion écologiquement rationnelle des déchets sanitaires.</p>
+    <p><span class="article-title">Art. 155</span> L'élimination des déchets sanitaires est faite sous la supervision des services d'inspection des installations classées pour la protection de l'environnement en collaboration avec les administrations compétentes.</p>
+
+    <h5>Paragraphe 4 : Déchets d'équipements électriques et électroniques</h5>
+    <p><span class="article-title">Art. 156</span> L'État élabore une politique nationale pour la gestion des déchets d'équipements électriques et électroniques.</p>
+    <p><span class="article-title">Art. 157</span> L'importation et l'exportation des déchets d'équipements électroniques et électriques sont effectuées conformément aux conventions internationales.</p>
+    <p><span class="article-title">Art. 158</span> La collecte, le stockage, le transport et le traitement des déchets d'équipements électriques et électroniques sont effectués dans des conditions écologiquement rationnelles.</p>
+    <p><span class="article-title">Art. 159</span> Les déchets d'équipements électriques et électroniques sont stockés et éliminés dans des installations agréées par les autorités nationales compétentes.</p>
+
+    <h5>Paragraphe 5 : Déchets dangereux</h5>
+    <p><span class="article-title">Art. 160</span> L'exportation, le transport, le stockage ou le transit des déchets dangereux sont subordonnés à une autorisation délivrée par le ministre chargé de l'Environnement conformément aux dispositions des conventions internationales. Le transit, l'importation, le transport, le stockage et le déversement de déchets toxiques sur le territoire national constituent des crimes imprescriptibles.</p>
+    <p><span class="article-title">Art. 161</span> Les conditions d'exportation, de transport et de transit des déchets dangereux sont précisées par décret pris en Conseil des ministres.</p>
+    <p><span class="article-title">Art. 162</span> Les déchets dangereux produits sur le territoire national ne peuvent être éliminés ou valorisés que dans des installations spécialisées et agréées conformément aux dispositions fixées par décret pris en Conseil des ministres.</p>
+    <p><span class="article-title">Art. 163</span> Tous les produits, y compris les produits d'origine animale et végétale, sont considérés dangereux dès lors qu'ils ont été en contact avec des déchets dangereux.</p>
+
+    <h4>Section 7 : Substances chimiques</h4>
+    <h5>Paragraphe 1 : Polluants organiques persistants</h5>
+    <p><span class="article-title">Art. 164</span> L'État prend des mesures pour éliminer l'utilisation des polluants organiques persistants.</p>
+    <p><span class="article-title">Art. 165</span> L'État adopte des mesures pour réduire au minimum ou prévenir les rejets des polluants organiques persistants dans un milieu récepteur.</p>
+    <p><span class="article-title">Art. 166</span> Toute mesure dérogatoire relative à l'utilisation des polluants organiques persistants est faite conformément aux dispositions des conventions internationales.</p>
+
+    <h5>Paragraphe 2 : Produits chimiques dangereux</h5>
+    <p><span class="article-title">Art. 167</span> L'État prend des mesures pour faire l'inventaire et la collecte des substances chimiques obsolètes, des substances et déchets radioactifs, selon leurs catégories. Il sécurise les stocks existants des substances radioactives, chimiques et prévient de l'accumulation des nouveaux stocks.</p>
+    <p><span class="article-title">Art. 168</span> L'État rend d'application obligatoire les normes d'utilisation des substances radioactives, chimiques, nocives ou dangereuses fixées par les structures compétentes.</p>
+    <p><span class="article-title">Art. 169</span> L'État promeut l'utilisation des biofertilisants pour une agriculture propre et pour lutter contre la dégradation des terres.</p>
+    <p><span class="article-title">Art. 170</span> L'État définit les politiques et met en œuvre des mesures propres à assurer une gestion performante des produits radioactifs et chimiques, depuis l'importation ou la fabrication jusqu'à l'élimination des produits et de leur emballage, en passant par leur utilisation.</p>
+    <p><span class="article-title">Art. 171</span> L'État impose des mesures spéciales pour l'élimination ou l'incinération des substances radioactives et chimiques dangereuses y compris les substances chimiques périmées des établissements scolaires, universitaires, sanitaires ou professionnels et les drogues selon les meilleures pratiques environnementales dans les installations classées agréées à cet effet.</p>
+    <p><span class="article-title">Art. 172</span> Les services compétents du ministère en charge de l'environnement participent à l'escorte des produits chimiques dangereux et radioactifs pendant leur transit en collaboration avec les administrations compétentes.</p>
+    <p><span class="article-title">Art. 173</span> L'État élabore un programme national relatif à l'élimination des produits chimiques obsolètes, des déchets radioactifs et à la prévention de l'accumulation de stocks prévoyant les activités suivantes :
+        <ul>
+            <li>dresser un inventaire national des stocks des produits chimiques obsolètes, des déchets radioactifs et le tenir à jour ;</li>
+            <li>mettre en évidence et, si possible, quantifier les risques induits par les stocks des produits chimiques obsolètes et des déchets radioactifs.</li>
+        </ul>
+    </p>
+    <p><span class="article-title">Art. 174</span> L'État et les collectivités territoriales sensibilisent les populations aux problèmes qu'entraînent les stocks des produits chimiques obsolètes et des déchets radioactifs.</p>
+    <p><span class="article-title">Art. 175</span> L'État fait tous les cinq ans l'inventaire, la sécurisation ou l'élimination des stocks des produits chimiques obsolètes dans des conditions écologiquement rationnelles.</p>
+    <p><span class="article-title">Art. 176</span> L'État fait l'inventaire, la sécurisation ou l'élimination des stocks de déchets radioactifs, dans des conditions écologiquement rationnelles, en cas de besoin, en tenant compte de la décroissance radioactive et des seuils de libération fixés par l'autorité compétente.</p>
+    <p><span class="article-title">Art. 177</span> L'État prend des mesures pour assurer le contrôle des produits chimiques obsolètes, des substances et des déchets radioactifs, des pesticides, des matières fertilisantes ou d'autres produits chimiques. Il prend également des mesures pour la biosécurité et la sécurité nucléaire, pour la sécurité des bâtiments publics, des immeubles d'habitation et des infrastructures.</p>
+    <p><span class="article-title">Art. 178</span> Les produits chimiques obsolètes et les substances radioactives, qui en raison de leur dangerosité, de leur toxicité ou de leur concentration dans les chaînes biologiques présentent ou sont susceptibles de présenter un danger pour la santé humaine, l'environnement, sont soumis au contrôle et à la surveillance des autorités compétentes.</p>
+    <p><span class="article-title">Art. 179</span> Il est établi la liste des substances nocives ou dangereuses, des produits chimiques obsolètes dont le rejet ou le transport dans le milieu naturel sont interdits ou soumis à autorisation préalable des autorités compétentes.</p>
+    <p><span class="article-title">Art. 180</span> Il est fait obligation aux fabricants et importateurs de substances chimiques destinées à la commercialisation de fournir aux autorités compétentes les informations relatives à la composition des substances et des produits mis sur le marché, leur volume commercialisé, leurs effets potentiels sur l'homme et l'environnement.</p>
+    <p><span class="article-title">Art. 181</span> Les substances radioactives sont régies par des textes spéciaux. À cet effet, l'autorité nationale compétente organise régulièrement des campagnes, des rencontres, des promotions, des séances de formation et de sensibilisation à travers les médias ou tout autre moyen d'information disponible pour faire connaître ces risques.</p>
+
+    <h5>Paragraphe 3 : Métaux lourds</h5>
+    <p><span class="article-title">Art. 182</span> L'importation et l'exportation des métaux lourds notamment le mercure, le plomb, le cyanure, l'uranium sont soumises à autorisation du ministère en charge de l'Environnement.</p>
+    <p><span class="article-title">Art. 183</span> L'exportation et l'utilisation du mercure ne sont possibles uniquement que pour des raisons de recherche en laboratoire, d'exploitation d'unités industrielles agréées ou de sécurité nationale. Son utilisation est effectuée selon les meilleures pratiques disponibles.</p>
+
+    <h4>Section 8 : Installations de traitement et d'élimination des déchets</h4>
+    <h5>Paragraphe 1 : Centre d'enfouissement technique et de valorisation</h5>
+    <p><span class="article-title">Art. 184</span> Il est créé des centres d'enfouissement technique et de valorisation chargés de recevoir les déchets. Ces déchets sont triés et collectés avant qu'ils ne soient transportés et stockés dans les sites ci-dessus indiqués.</p>
+    <p><span class="article-title">Art. 185</span> Les centres d'enfouissement technique et de valorisation sont construits hors des villes et des agglomérations.</p>
+    <p><span class="article-title">Art. 186</span> Les centres d'enfouissement technique et de valorisation sont créés, gérés et aménagés conformément aux meilleures techniques disponibles en vue de recevoir séparément les déchets ultimes suivant leurs catégories :
+        <ul>
+            <li>les déchets dangereux dont la liste est fixée par les autorités ;</li>
+            <li>les déchets toxiques qui ne peuvent pas être enfouis dans le même centre technique que les autres ;</li>
+            <li>les déchets ménagers issus des activités des ménages et des déchets non dangereux à l'exclusion des déchets inertes provenant des travaux de démolition, de construction ou de rénovation qui ne sont pas contaminés par des substances dangereuses ou autre élément générateur potentiel de nuisance ;</li>
+            <li>les déchets d'équipements électriques et électroniques qui font l'objet d'un traitement particulier.</li>
+        </ul>
+    </p>
+
+    <h5>Paragraphe 2 : Incinérateurs</h5>
+    <p><span class="article-title">Art. 187</span> Les installations de traitement des déchets par incinération sont construites conformément aux dispositions en vigueur. Ces installations sont dotées d'équipements nécessaires pour réduire et limiter les émissions de gaz à effet de serre dans l'air.</p>
+    <p><span class="article-title">Art. 188</span> Les incinérateurs sont créés, gérés et aménagés selon les meilleures technologies disponibles en vue de recevoir séparément certains déchets ultimes, des déchets sanitaires, des produits chimiques obsolètes et tout autre produit qui fait l'objet d'un traitement spécifique.</p>
+    <p><span class="article-title">Art. 189</span> Toute unité de traitement des déchets est soumise à une évaluation environnementale et sociale.</p>
+
+    <h3 id="t4-chap4">CHAPITRE 4 : Réduction des risques et gestion des catastrophes, prévention et gestion des risques technologiques et biotechnologiques modernes</h3>
+    <h4>Section 1 : Réduction des risques et gestion des catastrophes</h4>
+    <p><span class="article-title">Art. 190</span> L'État veille à intégrer la réduction et la gestion des risques et des catastrophes naturelles dans les politiques, les plans, les projets et les programmes de développement. À cet effet, l'avis du ministère en charge de l'environnement est requis pour tout projet de lotissement et d'aménagement foncier en vue de prévenir les risques de catastrophes.</p>
+    <p><span class="article-title">Art. 191</span> L'État prend les dispositions pour la mise en œuvre des instruments internationaux relatifs à la réduction des risques de catastrophes.</p>
+    <p><span class="article-title">Art. 192</span> L'État adopte les mesures ou encourage les pratiques appropriées pour atténuer les effets des catastrophes.</p>
+    <p><span class="article-title">Art. 193</span> L'État prend les mesures pour sensibiliser les populations sur l'existence des risques de catastrophes et les effets néfastes des catastrophes.</p>
+    <p><span class="article-title">Art. 194</span> L'État établit un plan de prévention des risques de catastrophes prévisibles et un test de simulation. Cette obligation incombe également aux collectivités territoriales.</p>
+    <p><span class="article-title">Art. 195</span> Lorsqu'un risque de catastrophe prévisible ou non menace gravement les êtres humains ou l'environnement dans une partie du territoire national, l'Etat prend et publie les mesures d'urgence, de protection et éventuellement d'évacuation des populations, de protection et de sauvegarde des biens exposés ou de l'environnement.</p>
+
+    <h4>Section 2 : Prévention et gestion des risques technologiques et biotechnologiques modernes</h4>
+    <p><span class="article-title">Art. 196</span> L'État prend les mesures en vue de prévenir et de gérer les risques technologiques ou biotechnologiques modernes.</p>
+    <p><span class="article-title">Art. 197</span> Lorsqu'un risque technologique ou biotechnologique moderne, prévisible ou non, menace gravement les êtres humains ou l'environnement dans une partie du territoire nationale, l'Etat prend et publie les mesures d'urgence, de protection et d'évacuation des populations, de protection et de sauvegarde des biens exposés ou de l'environnement.</p>
+    <p><span class="article-title">Art. 198</span> L'importation, l'exportation, la circulation, la commercialisation, la manipulation, l'utilisation ou la consommation des organismes génétiquement modifiés sont soumises à l'accord préalable donné en connaissance de cause de l'autorité nationale compétente.</p>
+    <p><span class="article-title">Art. 199</span> L'État prend les mesures appropriées pour protéger la santé humaine et animale, la diversité biologique et l'environnement contre les risques potentiels liés à l'utilisation des biotechnologies modernes et des produits dérivés conformément aux dispositions en vigueur.</p>
+
+    <h3 id="t4-chap5">CHAPITRE 5 : Milieux fragiles</h3>
+    <h4>Section 1 : Littoral et milieux aquatiques</h4>
+    <p><span class="article-title">Art. 200</span> L'État assure la gestion intégrée et la surveillance du littoral et des zones maritimes sous juridiction nationale.</p>
+    <p><span class="article-title">Art. 201</span> La gestion intégrée et durable du littoral ainsi que la prévention de toute dégradation de ses ressources sont soumises à des dispositions spéciales.</p>
+    <p><span class="article-title">Art. 202</span> L'exploration, l'exploitation, l'utilisation et la mise en valeur des ressources naturelles, renouvelables ou non renouvelables de la mer, des fleuves et autres étendues d'eau s'exercent conformément aux exigences de l'économie bleue et sont soumises à l'autorisation préalable des autorités compétentes.</p>
+    <p><span class="article-title">Art. 203</span> L'État prend des mesures pour prévenir et mettre fin aux activités susceptibles d'altérer la qualité des eaux et des ressources marines, de porter atteinte à la santé de l'homme ou de nuire à la faune, à la flore et aux intérêts connexes de l'environnement marin côtier d'une manière générale.</p>
+    <p><span class="article-title">Art. 204</span> L'État prend des mesures appropriées de classement des zones maritimes en fonction de leurs spécificités. Il crée à cet effet des aires marines protégées.</p>
+    <p><span class="article-title">Art. 205</span> L'État identifie et protège les ressources de la biodiversité marine, notamment les ressources aquatiques. Il assure la protection des limites de ses zones maritimes.</p>
+    <p><span class="article-title">Art. 206</span> L'État élabore des plans d'aménagement des mangroves afin de les maintenir dans un état de conservation efficace.</p>
+    <p><span class="article-title">Art. 207</span> L'État prend des mesures appropriées pour lutter contre l'érosion côtière et les risques de submersion. Il assure la résilience des populations face aux risques de catastrophes et aux risques technologiques ou biotechnologiques dans les zones côtières.</p>
+    <p><span class="article-title">Art. 208</span> Les constructions des infrastructures ou autres établissements sont soumises à des autorisations spéciales des autorités compétentes. Ces constructions doivent respecter les plans d'aménagement du littoral et les caractéristiques de chaque zone.</p>
+
+    <h4>Section 2 : Sols et sous-sols</h4>
+    <p><span class="article-title">Art. 209</span> Le sol et le sous-sol et les richesses qu'ils contiennent sont protégés contre toutes les formes de dégradation et sont gérés de manière écologiquement rationnelle par l'Etat et les populations.</p>
+    <p><span class="article-title">Art. 210</span> L'État prend des mesures spéciales de protection aux fins de lutter contre la désertification, les inondations, les incendies, les feux de brousse, la disparition des couverts forestiers, l'érosion, les pertes des terres fertiles et la pollution du sol et de ses ressources.</p>
+    <p><span class="article-title">Art. 211</span> L'État prend toutes les mesures appropriées pour préserver la qualité des eaux et de l'air afin d'assurer la fertilité des sols.</p>
+
+    <h4>Section 3 : Ressources en eau</h4>
+    <p><span class="article-title">Art. 212</span> Toute activité susceptible de nuire à la qualité des eaux est conduite conformément aux dispositions spéciales relatives à la gestion intégrée des ressources en eau. Les points de prélèvement de l'eau destinée à la consommation humaine doivent prévoir un périmètre de protection.</p>
+
+    <h4>Section 4 : Monuments naturels, sites et paysages</h4>
+    <p><span class="article-title">Art. 213</span> L'État prend des mesures appropriées pour la protection et la mise en valeur des monuments naturels, sites et paysages présentant un intérêt historique, archéologique, scientifique, légendaire, pittoresque ou culturel certain.</p>
+    <p><span class="article-title">Art. 214</span> L'État établit une liste des monuments naturels, sites et paysages.</p>
+
+    <h2 id="titre5">TITRE V : DROIT D'ACCÈS À LA JUSTICE, RÉPARATION, SANCTIONS ADMINISTRATIVES ET PÉNALES</h2>
+
+    <h3 id="t5-chap1">CHAPITRE 1 : Droit d'accès à la justice et réparation</h3>
+    <p><span class="article-title">Art. 215</span> L'action en réparation du préjudice écologique est ouverte à toute personne ayant qualité et intérêt à agir. Il s'agit notamment de l'Etat, des collectivités territoriales et leurs groupements ainsi que les associations de défense de l'environnement agréées avant la date d'introduction de l'action.</p>
+    <p><span class="article-title">Art. 216</span> Les collectivités territoriales, les associations de protection de l'environnement régulièrement déclarées, les groupements professionnels du domaine de l'environnement ou toutes personnes peuvent saisir les juridictions compétentes ou exercer les droits reconnus à la partie civile en ce qui concerne les faits constituant une infraction relevant de la présente loi et portant un préjudice direct ou indirect aux intérêts collectifs ou individuels.</p>
+    <p><span class="article-title">Art. 217</span> Toute activité ayant porté atteinte à l'environnement oblige son auteur à remettre en état le milieu endommagé.</p>
+    <p><span class="article-title">Art. 218</span> La réparation du préjudice écologique s'effectue prioritairement en nature. En cas d'impossibilité ou de réparation insuffisante, le juge condamne le responsable à verser des dommages et intérêts affectés à ladite réparation au demandeur ou le cas échéant à l'Etat.</p>
+
+    <h3 id="t5-chap2">CHAPITRE 2 : Sanctions administratives et pénales</h3>
+    <h4>Section 1 : Sanctions administratives</h4>
+    <p><span class="article-title">Art. 219</span> Le ministre chargé de l'Environnement peut prendre des sanctions administratives pour réprimer des infractions aux dispositions de cette loi. Il peut prononcer des mises en demeure de faire cesser les atteintes à l'environnement, imposer des mesures administratives ou pécuniaires, publier la décision de sanction des installations classées mises en cause.</p>
+    <p><span class="article-title">Art. 220</span> Le ministre chargé de l'environnement met en demeure toute installation classée pour la protection de l'environnement responsable d'un préjudice écologique de restaurer le milieu dans un délai de trois mois.</p>
+    <p><span class="article-title">Art. 221</span> Si à l'expiration du délai de trois mois, le contrevenant n'obtempère pas, le ministre chargé de l'Environnement peut :
+        <ul>
+            <li>soit faire procéder d'office par l'administration de l'environnement à la restauration du milieu, aux frais et dépens du contrevenant ;</li>
+            <li>soit suspendre le fonctionnement de l'installation.</li>
+        </ul>
+    </p>
+    <p><span class="article-title">Art. 222</span> Le ministre chargé de l'Environnement peut suspendre ou retirer un permis d'exploitation ou de construire, mettre fin unilatéralement à un contrat portant sur la gestion, la conservation, la protection de l'environnement ou mettre fin à une activité lorsque celle-ci est susceptible de porter gravement atteinte à la sûreté, à la sécurité, à la santé, à la salubrité, à la tranquillité des populations ou porter gravement atteinte à l'environnement.</p>
+    <p><span class="article-title">Art. 223</span> Toute installation classée pour la protection de l'environnement susceptible de porter gravement atteinte à la sûreté sécurité, à la santé, à la salubrité, à la tranquillité des populations ou porter gravement atteinte à l'environnement peut faire l'objet d'une suspension d'activité ou d'une fermeture par le ministre chargé de l'Environnement, sans préjudice des mesures de réparation des dommages causés à l'environnement, aux personnes et aux biens. La procédure de fermeture est menée conformément aux dispositions relatives aux installations classées pour la protection de l'environnement.</p>
+    <p><span class="article-title">Art. 224</span> Toute personne morale ou physique, qui omet de faire une évaluation environnementale et sociale préalable à tout projet susceptible d'avoir des effets nuisibles sur l'environnement, est passible de suspension d'activité ou de fermeture d'établissement sans préjudice des mesures de réparation aux dommages causés à l'environnement, aux personnes et aux biens. La falsification d'une évaluation environnementale et sociale ou sa non-conformité encourt les mêmes sanctions.</p>
+    <p><span class="article-title">Art. 225</span> Toute installation classée qui omet d'accomplir les démarches administratives et techniques auprès des services compétents du ministère en charge de l'Environnement est passible d'une suspension d'activité ou de fermeture de l'établissement sans préjudice des mesures de réparation aux dommages causés à l'environnement, aux personnes et aux biens.</p>
+
+    <h4>Section 2 : Sanctions pénales</h4>
+    <p><span class="article-title">Art. 226</span> Est puni d'une amende de 10.000 francs à 500.000 francs quiconque abandonne, jette des déchets ménagers et assimilés ou verse des eaux usées domestiques en un lieu public ou tout autre endroit inapproprié.</p>
+    <p><span class="article-title">Art. 227</span> Est puni d'une amende de 10.000 francs à 500.000 francs ou astreint au nettoyage des lieux quiconque urine ou défèque dans un lieu public ou dans tout autre endroit inapproprié.</p>
+    <p><span class="article-title">Art. 228</span> Est puni d'une amende de 50.000 à 1.000.000 de francs, quiconque :
+        <ul>
+            <li>incinère les déchets ménagers et assimilés, les déchets d'équipements électriques et électroniques, les pneus et les matières plastiques en dehors des centres et installations agréés ;</li>
+            <li>émet des odeurs particulièrement incommodantes pour l'homme et pour l'environnement ;</li>
+            <li>laisse échapper de son véhicule des fumées et des gaz nocifs.</li>
+        </ul>
+    </p>
+    <p><span class="article-title">Art. 229</span> Est passible d'une amende de 50.000 francs à 1.000.000 de francs, quiconque détient ou abandonne des déchets susceptibles de :
+        <ul>
+            <li>favoriser le développement d'animaux vecteurs de maladies;</li>
+            <li>provoquer des dommages aux personnes et aux biens.</li>
+        </ul>
+    </p>
+    <p><span class="article-title">Art. 230</span> Est passible d'une amende de 50.000 francs à 1.000.000 de francs quiconque, sauf dans le cadre de l'exercice d'une profession :
+        <ul>
+            <li>fait usage dans les agglomérations et aux environs des hôpitaux et des écoles, d'avertisseurs sonores en dehors des cas de danger immédiat;</li>
+            <li>fait usage intempestif et sans nécessité absolue, en dehors des agglomérations d'avertisseurs sonores ;</li>
+            <li>fait usage, sans nécessité absolue d'avertisseurs sonores dans la nuit;</li>
+            <li>émet des bruits susceptibles de causer une gêne aux usagers de la route et aux riverains;</li>
+            <li>utilise des engins à moteur munis d'avertisseurs sonores non conformes au type homologué par les services compétents ;</li>
+            <li>émet des bruits susceptibles de nuire à la santé des êtres vivants, de constituer une gêne excessive et insupportable pour le voisinage ou d'endommager les biens.</li>
+        </ul>
+    </p>
+    <p><span class="article-title">Art. 231</span> Est puni d'une amende de 50.000 francs à 1.000.000 de francs quiconque fait de l'affichage sur les immeubles classés monuments historiques, sur les monuments naturels et dans les sites inscrits ou protégés.</p>
+    <p><span class="article-title">Art. 232</span> Est puni d'un emprisonnement de trois mois à deux ans et d'une amende de 100.000 francs à 1.000.000.000 de francs quiconque mène une activité qui altère de manière irréversible la qualité du sol ou du sous-sol.</p>
+    <p><span class="article-title">Art. 233</span> Est puni d'un emprisonnement de deux mois à deux ans et d'une amende de 200.000 francs à 1.000.000.000 de francs quiconque se livre :
+        <ul>
+            <li>à la capture d'animaux appartenant aux espèces protégées et menacées d'extinction ;</li>
+            <li>à la destruction d'habitats, des larves et des jeunes espèces protégées;</li>
+            <li>à la destruction des mangroves ;</li>
+            <li>au minage du sable marin ;</li>
+            <li>à la pratique de feux de brousse non contrôlés.</li>
+        </ul>
+    </p>
+    <p><span class="article-title">Art. 234</span> Est puni d'un emprisonnement de un à six mois et d'une amende de 1.000.000 francs à 10.000.000 de francs ou de l'une de ces deux peines seulement tout responsable d'un établissement faisant obstacle à l'exercice des fonctions des agents chargés de l'inspection des installations classées pour la protection de l'environnement. En cas de récidive, il sera procédé à la fermeture temporaire de l'établissement.</p>
+    <p><span class="article-title">Art. 235</span> Est puni d'un emprisonnement de deux mois à deux ans et d'une amende de 200.000 francs à 100.000.000 de francs, toute personne qui se rend coupable de l'altération de la qualité de l'air.</p>
+    <p><span class="article-title">Art. 236</span> Est puni d'un emprisonnement de deux mois à deux ans et d'une amende de 200.000 francs à 100.000.000 de francs quiconque fait :
+        <ul>
+            <li>usage d'explosif, de drogues, de produits chimiques ou appâts dans les eaux de nature à enivrer les poissons ou à les détruire ;</li>
+            <li>emploi de drogues, de produits chimiques ou appâts de nature à détruire le gibier ou le rendre impropre à la consommation.</li>
+        </ul>
+    </p>
+    <p><span class="article-title">Art. 237</span> Est puni d'un emprisonnement de deux mois à deux ans et d'une amende de 200.000 francs à 100.000.000 de francs quiconque se rend coupable d'appropriation et d'exploitation privée des ressources biologiques ou génétiques et des connaissances traditionnelles des populations locales qui y sont associées sans l'accord explicite des autorités compétentes.</p>
+    <p><span class="article-title">Art. 238</span> Quiconque se livre à l'utilisation et à la manipulation du mercure notamment dans les mines artisanales est puni d'un emprisonnement d'un mois à un an et d'une amende de 1.000.000 de francs à 100.000.000 de francs.</p>
+    <p><span class="article-title">Art. 239</span> Quiconque poursuit l'exploitation d'une installation classée sans se conformer à la mise en demeure d'avoir à respecter les prescriptions techniques déterminées est puni d'un emprisonnement d'un mois à un an et d'une amende de 1.000.000 de francs à 100.000.000 de francs.</p>
+    <p><span class="article-title">Art. 240</span> Est puni d'un emprisonnement de six mois à cinq ans et d'une amende de 5.000.000 de francs à 50.000.000 de francs quiconque procède ou fait procéder à l'abattage d'arbres ou d'animaux dans les aires protégées et les parcs nationaux. Les complices sont punis des mêmes peines.</p>
+    <p><span class="article-title">Art. 241</span> Est punie d'une amende de 10.000.000 de francs à 100.000.000 de francs, toute entreprise agréée procédant à des dépôts sauvages de déchets ménagers et assimilés. L'autorisation d'exercer toute activité de collecte de déchets ménagers et assimilés sur le territoire national peut être suspendue pour une période d'au moins deux ans.</p>
+    <p><span class="article-title">Art. 242</span> Quiconque poursuit l'exploitation d'une installation classée frappée de fermeture, de suspension ou d'interdiction sera puni d'un emprisonnement de six mois à cinq ans et d'une amende de 100.000.000 à 500.000.000 de francs.</p>
+    <p><span class="article-title">Art. 243</span> Est puni d'un emprisonnement de six mois à deux ans et d'une amende de 100.000.000 à 10.000.000.000 de francs quiconque détruit un site ou un monument naturel classé.</p>
+    <p><span class="article-title">Art. 244</span> Est puni d'un emprisonnement de six mois à deux ans et d'une amende de 200.000.000 de francs à 20.000.000.000 de francs quiconque se livre de façon illicite à des travaux de recherche ou d'exploitation des hydrocarbures.</p>
+    <p><span class="article-title">Art. 245</span> Est puni d'un emprisonnement de dix ans et d'une amende de 1.000.000.000 de francs à 100.000.000.000 de francs quiconque se livre à :
+        <ul>
+            <li>l'importation et l'utilisation des polluants organiques persistants ;</li>
+            <li>l'importation et l'utilisation des produits chimiques obsolètes ;</li>
+            <li>la production, la commercialisation, l'exportation, le transit, la réexportation, le transport et la détention des substances chimiques interdites.</li>
+        </ul>
+    </p>
+    <p><span class="article-title">Art. 246</span> Est puni d'un emprisonnement de dix à vingt ans et d'une amende de 1.000.000.000 à 100.000.000.000 de francs quiconque pollue les eaux intérieures par des déversements, écoulements, rejets et dépôts de substances radioactives et chimiques de toute nature susceptible de provoquer ou d'accroître la pollution des eaux intérieures ou des zones maritimes sous juridiction nationale. Le coupable peut être condamné à curer les lieux pollués. Le ministère en charge de l'Environnement peut, en cas de négligence, refus ou résistance, y procéder ou y faire procéder aux frais et dépens de l'intéressé.</p>
+    <p><span class="article-title">Art. 247</span> Est passible d'un emprisonnement de dix à vingt ans et d'une amende de 1.000.000.000 de francs à 100.000.000.000 de francs quiconque :
+        <ul>
+            <li>dépose des déchets dangereux dans le domaine public maritime national ;</li>
+            <li>importe sans autorisation des déchets dangereux sur le territoire national ;</li>
+            <li>immerge, incinère ou élimine par quelque procédé que ce soit des déchets dangereux dans les eaux intérieures ou zones maritimes sous juridiction nationale.</li>
+        </ul>
+    </p>
+    <p><span class="article-title">Art. 248</span> Toute personne, qui mélange sans autorisation des déchets dangereux et qui cause un dommage à la santé humaine et à l'environnement, est passible d'un emprisonnement de dix à vingt ans et d'une amende de 10.000.000.000 de francs à 500.000.000.000 de francs.</p>
+    <p><span class="article-title">Art. 249</span> Toute personne morale, qui procède ou fait procéder sans autorisation à l'achat, à la vente, au transit, au stockage, à l'enfouissement ou au déversement sur le territoire national de déchets dangereux, est passible d'un emprisonnement de dix à vingt ans et d'une amende de 100.000.000.000 de francs à 1.000.000.000.000 de francs. La juridiction ayant prononcé la peine peut :
+        <ul>
+            <li>ordonner la saisie de tout moyen ayant servi à la commission de l'infraction ;</li>
+            <li>ordonner la saisie et l'élimination des déchets aux frais et dépens du propriétaire desdits déchets.</li>
+        </ul>
+    </p>
+    <p><span class="article-title">Art. 250</span> Quiconque procède ou fait procéder à l'importation de déchets dangereux, est passible d'un emprisonnement de dix à vingt ans et d'une amende de 100.000.000.000 à 1.000.000.000.000 de francs. La juridiction ayant prononcé la peine peut :
+        <ul>
+            <li>ordonner la saisie de tout moyen ayant servi à la commission de l'infraction ;</li>
+            <li>ordonner la saisie et l'élimination des déchets aux frais et dépens du propriétaire desdits déchets.</li>
+        </ul>
+    </p>
+    <p><span class="article-title">Art. 251</span> Quiconque remet des déchets dangereux à une installation non autorisée en vue de leur stockage, traitement, incinération, valorisation ou élimination et cause des dommages à la santé humaine et à l'environnement, est passible d'un emprisonnement de dix à vingt ans et d'une amende de 100.000.000.000 de francs à 1.000.000.000.000 de francs. La juridiction ayant prononcé la peine peut :
+        <ul>
+            <li>ordonner la saisie de tout moyen ayant servi à la commission de l'infraction ;</li>
+            <li>ordonner la saisie et l'élimination des déchets aux frais et dépens du propriétaire desdits déchets ou de l'une de ces deux peines seulement.</li>
+        </ul>
+    </p>
+    <p><span class="article-title">Art. 252</span> Les circonstances atténuantes et le sursis ne sont pas applicables aux infractions prévues par les dispositions relatives aux déchets dangereux.</p>
+    <p><span class="article-title">Art. 253</span> La tentative des infractions prévues par la présente loi est punissable.</p>
+    <p><span class="article-title">Art. 254</span> Les infractions sont constatées sur procès-verbal par les agents assermentés.</p>
+    <p><span class="article-title">Art. 255</span> L'administration chargée de l'Environnement peut transiger en toute circonstance et à tout moment de la procédure avant toute décision au fond. La demande de transaction est soumise au ministre chargé de l'Environnement qui fixe en cas d'acceptation, le montant de celle-ci.</p>
+    <p><span class="article-title">Art. 256</span> La poursuite des infractions relevant de la présente loi obéit aux règles définies par le Code de procédure pénale.</p>
+
+    <h2 id="titre6">TITRE VI : DISPOSITION TRANSITOIRE</h2>
+    <p><span class="article-title">Art 257</span> Tous les établissements, les installations classées pour la protection de l'environnement bénéficient d'un délai de deux ans à compter de la publication de la présente loi pour se conformer aux présentes dispositions.</p>
+
+    <h2 id="titre6">TITRE VII : DISPOSITIONS FINALES</h2>
+    <p><span class="article-title">Art. 258</span> Les modalités d'application des dispositions de la présente loi font l'objet de décrets.</p>
+    <p><span class="article-title">Art. 259</span> La présente loi abroge les dispositions de la loi n°96-766 du 3 octobre 1996.</p>
+    <p><span class="article-title">Art. 260</span> La présente loi sera publiée au Journal officiel de la République de Côte d'Ivoire et exécutée comme loi de l'Etat.</p>
+
+    <br>
+    <p>Fait à Abidjan, le 23 novembre 2023.</p>
+    <p><strong>Alassane OUATTARA.</strong></p>
+
+</div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('search-input');
+            const searchBtn = document.getElementById('search-btn');
+            const clearBtn = document.getElementById('clear-btn');
+            const stats = document.getElementById('search-stats');
+            const contentDiv = document.getElementById('law-content');
+            const originalContent = contentDiv.innerHTML;
+            
+            // Éléments de navigation
+            const searchNav = document.getElementById('search-navigation');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const searchPosition = document.getElementById('search-position');
+
+            // Variables pour gérer les résultats
+            let currentSearchTerm = '';
+            let currentMatches = [];
+            let currentMatchIndex = -1;
+            let highlightElements = [];
+
+            // Fonction pour effectuer la recherche
+            function performSearch() {
+                const query = searchInput.value.trim();
+                
+                // Réinitialiser
+                contentDiv.innerHTML = originalContent;
+                stats.textContent = "";
+                searchNav.style.display = "none";
+                currentMatches = [];
+                currentMatchIndex = -1;
+                highlightElements = [];
+
+                if (query === "") {
+                    return;
+                }
+
+                if (query.length < 2) {
+                    stats.textContent = "Entrez au moins 2 caractères";
+                    return;
+                }
+
+                currentSearchTerm = query;
+                
+                // Récupérer tout le texte du contenu (en ignorant les balises HTML)
+                const walker = document.createTreeWalker(
+                    contentDiv,
+                    NodeFilter.SHOW_TEXT,
+                    null,
+                    false
+                );
+
+                let node;
+                const nodesWithText = [];
+                
+                while (node = walker.nextNode()) {
+                    if (node.textContent.trim().length > 0) {
+                        nodesWithText.push(node);
+                    }
+                }
+
+                // Parcourir les noeuds texte et les remplacer si nécessaire
+                nodesWithText.forEach(textNode => {
+                    const originalText = textNode.textContent;
+                    const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+                    
+                    if (regex.test(originalText)) {
+                        const parent = textNode.parentNode;
+                        const fragment = document.createDocumentFragment();
+                        let lastIndex = 0;
+                        let match;
+                        
+                        // Réinitialiser regex pour réutilisation
+                        regex.lastIndex = 0;
+                        
+                        while ((match = regex.exec(originalText)) !== null) {
+                            // Texte avant le match
+                            if (match.index > lastIndex) {
+                                fragment.appendChild(
+                                    document.createTextNode(originalText.substring(lastIndex, match.index))
+                                );
+                            }
+                            
+                            // Le match lui-même
+                            const span = document.createElement('span');
+                            span.className = 'highlight';
+                            span.textContent = match[0];
+                            fragment.appendChild(span);
+                            
+                            // Enregistrer le match
+                            currentMatches.push({
+                                element: span,
+                                text: match[0]
+                            });
+                            
+                            lastIndex = regex.lastIndex;
+                        }
+                        
+                        // Texte après le dernier match
+                        if (lastIndex < originalText.length) {
+                            fragment.appendChild(
+                                document.createTextNode(originalText.substring(lastIndex))
+                            );
+                        }
+                        
+                        // Remplacer le noeud texte par le fragment
+                        parent.replaceChild(fragment, textNode);
+                    }
+                });
+
+                // Mettre à jour les éléments highlight après remplacement
+                highlightElements = Array.from(contentDiv.querySelectorAll('.highlight'));
+                
+                if (highlightElements.length > 0) {
+                    // Afficher la navigation
+                    searchNav.style.display = "flex";
+                    
+                    // Aller au premier résultat
+                    goToMatch(0);
+                    
+                    stats.textContent = `${highlightElements.length} occurrence(s) trouvée(s)`;
+                    updateNavigation();
+                } else {
+                    stats.textContent = "Aucun résultat trouvé";
+                }
+            }
+
+            // Fonction pour aller à un résultat spécifique
+            function goToMatch(index) {
+                // Retirer la classe "current" de tous les highlights
+                highlightElements.forEach(el => {
+                    el.classList.remove('current');
+                });
+                
+                if (index >= 0 && index < highlightElements.length) {
+                    currentMatchIndex = index;
+                    const element = highlightElements[index];
+                    
+                    // Ajouter la classe "current"
+                    element.classList.add('current');
+                    
+                    // Faire défiler jusqu'à l'élément
+                    element.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
+                    
+                    // Mettre à jour l'affichage de la position
+                    updateNavigation();
+                }
+            }
+
+            // Fonction pour mettre à jour les boutons de navigation
+            function updateNavigation() {
+                searchPosition.textContent = `${currentMatchIndex + 1}/${highlightElements.length}`;
+                
+                // Activer/désactiver les boutons
+                prevBtn.disabled = currentMatchIndex <= 0;
+                nextBtn.disabled = currentMatchIndex >= highlightElements.length - 1;
+            }
+
+            // Fonction pour aller au résultat précédent
+            function goToPrevious() {
+                if (currentMatchIndex > 0) {
+                    goToMatch(currentMatchIndex - 1);
+                }
+            }
+
+            // Fonction pour aller au résultat suivant
+            function goToNext() {
+                if (currentMatchIndex < highlightElements.length - 1) {
+                    goToMatch(currentMatchIndex + 1);
+                }
+            }
+
+            // Recherche en temps réel avec debounce
+            let searchTimeout;
+            searchInput.addEventListener('input', function() {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(performSearch, 300); // Délai de 300ms
+            });
+
+            // Recherche avec le bouton
+            searchBtn.addEventListener('click', performSearch);
+            
+            // Recherche avec la touche Entrée
+            searchInput.addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+
+            // Effacer la recherche
+            clearBtn.addEventListener('click', function() {
+                searchInput.value = "";
+                contentDiv.innerHTML = originalContent;
+                stats.textContent = "";
+                searchNav.style.display = "none";
+                currentMatches = [];
+                currentMatchIndex = -1;
+                highlightElements = [];
+            });
+
+            // Navigation avec les flèches
+            prevBtn.addEventListener('click', goToPrevious);
+            nextBtn.addEventListener('click', goToNext);
+
+            // Navigation avec les touches du clavier
+            document.addEventListener('keydown', function(e) {
+                if (highlightElements.length > 0) {
+                    if (e.key === 'F3' || (e.ctrlKey && e.key === 'f')) {
+                        e.preventDefault();
+                        searchInput.focus();
+                    } else if (e.key === 'ArrowLeft' || (e.ctrlKey && e.key === 'ArrowUp')) {
+                        e.preventDefault();
+                        goToPrevious();
+                    } else if (e.key === 'ArrowRight' || (e.ctrlKey && e.key === 'ArrowDown')) {
+                        e.preventDefault();
+                        goToNext();
+                    }
+                }
+            });
+
+            // --- BOUTON RETOUR HAUT ---
+            const backToTopBtn = document.getElementById("back-to-top");
+            window.onscroll = function() {
+                if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                    backToTopBtn.style.display = "block";
+                } else {
+                    backToTopBtn.style.display = "none";
+                }
+            };
+
+            backToTopBtn.addEventListener("click", function() {
+                window.scrollTo({top: 0, behavior: 'smooth'});
+            });
+        });
+    </script>
+</body>
+</html>
