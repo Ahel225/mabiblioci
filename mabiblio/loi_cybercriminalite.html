@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Loi n° 2013-451 du 19 juin 2013 — Lutte contre la cybercriminalité</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f8ff; --paper:#ffffff; --ink:#0f2742;
+  --primary:#1e4e8c; --primary-700:#113761; --accent:#f2c94c; --accent-2:#fff6cc;
+  --muted:#e7eef9; --shadow:0 12px 28px rgba(0,0,0,.08); --radius:18px; --transition:.25s ease;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.6}
+header{position:sticky;top:0;z-index:60;background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(255,255,255,.88));backdrop-filter:saturate(1.1) blur(8px);border-bottom:1px solid #e6eef6}
+.container{max-width:1120px;margin:0 auto;padding:14px 16px;display:flex;align-items:center;gap:12px}
+.logo{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:radial-gradient(circle at 30% 30%, var(--accent), #ffe89c);color:#113761;box-shadow:var(--shadow);font-size:18px}
+h1{margin:0;font-family:'Playfair Display',serif;font-size:20px;color:var(--primary-700)}
+.sub{color:#496b8d;font-size:12px;margin-top:2px}
+.control-buttons{margin-left:auto;display:flex;gap:8px;align-items:center}
+.btn{min-width:38px;height:38px;border-radius:12px;border:1px solid #d5e6f6;background:#fff;color:var(--primary-700);display:grid;place-items:center;cursor:pointer;box-shadow:var(--shadow);transition:var(--transition)}
+.btn:hover{transform:translateY(-1px)}
+.wrapper{max-width:1120px;margin:16px auto;padding:0 12px}
+.group{background:var(--paper);border:1px solid #e2eef7;border-radius:var(--radius);box-shadow:var(--shadow);margin:14px 0;overflow:hidden}
+.group>h2{margin:0;padding:14px 16px;background:linear-gradient(180deg,#ffffff,#f2f8ff);border-bottom:1px solid #e2eef7;color:#1a4177;font-size:18px;font-family:'Playfair Display',serif}
+.article{margin:10px 10px 14px 10px;padding:12px 14px;border-left:6px solid var(--primary);background:#fff;border-radius:14px;box-shadow:0 1px 0 rgba(0,0,0,.03)}
+.article-header{display:flex; align-items:center; gap:8px; margin:0 0 6px 0;}
+.article-header h3{margin:0; color:#113761;}
+.article .open-fs{ order:2; margin-left:auto; width:34px; height:34px; border:1px solid #d5e6f6; background:#fff; border-radius:10px; cursor:pointer; }
+.article-content p{margin:.5rem 0}.article-content ul,.article-content ol{margin:.5rem 0 .8rem 1.25rem}
+.article-content ol>li, .article-content ul>li{ padding:8px 0; line-height:1.7; border-bottom:1px solid #eaf3fb; }
+.article-content ol>li:last-child, .article-content ul>li:last-child{ border-bottom:0; }
+.article-content li > ol > li, .article-content li > ul > li{ padding:6px 0; border-bottom:1px dashed #eaf3fb; }
+.article-content li > ol > li:last-child, .article-content li > ul > li:last-child{ border-bottom:0; }
+.reading{ outline:2px solid var(--accent); outline-offset:2px; border-left-color:var(--accent) !important; background:linear-gradient(180deg,#fff, var(--accent-2)) }
+mark{background:rgba(242,201,76,.45)}
+/* Floating TOC */
+#tocFloatBtn{position:fixed; right:14px; bottom:120px; width:46px; height:46px; border-radius:50%; border:none; background:var(--primary); color:#fff; display:grid; place-items:center; box-shadow:0 10px 24px rgba(0,0,0,.25); z-index:1500;}
+#tocPanel{position:fixed; top:0; right:0; height:100%; width:86%; max-width:420px; background:#fff; border-left:1px solid #e2eef7; box-shadow:-16px 0 35px rgba(0,0,0,.2); transform:translateX(100%); transition:transform .25s ease; z-index:1600; overflow:auto;}
+#tocOverlay{position:fixed; inset:0; background:rgba(0,0,0,.28); backdrop-filter:blur(2px); display:none; z-index:1590}
+#tocPanel.open{ transform:none } #tocOverlay.show{ display:block }
+#tocPanel header{position:sticky; top:0; background:#fff; padding:12px 14px; border-bottom:1px solid #e2eef7}
+#tocPanel h3{margin:0; color:#1a4177} #tocPanel .toc-list{padding:12px 14px}
+#tocPanel .toc-list a{display:block; padding:6px 0; color:#183a69; text-decoration:none}
+#tocPanel .toc-sub{margin-left:10px; border-left:2px solid #eef6fd; padding-left:8px}
+/* Voice bar */
+#voiceBar{position:fixed; left:50%; transform:translateX(-50%); bottom:14px; background:#113761; color:#fff; z-index:1550; border-radius:22px; padding:8px 12px; display:flex; gap:10px; align-items:center; box-shadow:0 12px 28px rgba(0,0,0,.3)}
+#voiceBar button{width:34px; height:34px; border-radius:10px; border:1px solid #cfe3f5; background:transparent; color:#eaf0f6; display:grid; place-items:center; cursor:pointer}
+#voiceBar .now{font-size:12px; max-width:52vw; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:#f1f5f9}
+/* Fullscreen */
+#fsOverlay{ position:fixed; inset:0; background:#fff; z-index:1700; display:none; }
+#fsOverlay.show{ display:block } #fsHeader{ position:sticky; top:0; background:#fff; padding:10px 14px; border-bottom:1px solid #e2eef7; display:flex; align-items:center; gap:10px }
+#fsHeader .ttl{ font-weight:700; color:#173f64; flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
+#fsHeader button{ width:36px; height:36px; border-radius:10px; border:1px solid #d5e6f6; background:#fff; }
+#fsBody{ padding:14px; height:calc(100% - 58px); overflow:auto } #fsBody .article-content{ font-size:1.04rem }
+#fsNavPrev,#fsNavNext{ position:fixed; top:50%; transform:translateY(-50%); width:42px; height:42px; border-radius:50%; border:none; background:var(--primary); color:#fff; display:grid; place-items:center; z-index:1710; opacity:.9 }
+#fsNavPrev{ left:10px } #fsNavNext{ right:10px }
+footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c6785;font-size:12px}
+
+/* ===== Anti-sélection / anti-copie ===== */
+.no-select, .no-select *:not(input):not(textarea):not(.selectable){
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  -webkit-touch-callout: none !important;
+}
+</style>
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#22c55e">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<style>
+  #auth-fab, .views-badge, #auth-modal, .card-views-badge { display: none !important; }
+</style>
+
+</head>
+<body>
+<header>
+  <div class="container">
+    <div class="logo"><i class="fa-solid fa-shield-haltered"></i></div>
+    <div>
+      <h1>Loi n° 2013-451 du 19 juin 2013 — Lutte contre la cybercriminalité</h1>
+      <div class="sub">République de Côte d’Ivoire — Journal officiel</div>
+    </div>
+    <div class="control-buttons">
+      <button class="btn" id="tocHeaderBtn" title="Sommaire"><i class="fa-solid fa-graduation-cap"></i></button>
+      <button class="btn" title="Haut de page" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fa-solid fa-angles-up"></i></button>
+    </div>
+  </div>
+</header>
+<main class="wrapper">
+
+<!-- CHAPITRE 1 : Définitions -->
+<section class="group"><h2>CHAPITRE 1 : DÉFINITIONS</h2>
+<div class="article" id="Article_1"><div class="article-header"><h3>Article premier</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Les définitions des instruments juridiques de la CEDEAO, de l'Union africaine ou de l'Union Internationale des Télécommunications prévalent pour les termes non définis par la présente loi.</p><p>Au sens de la présente loi, on entend par :</p><ul><li><strong>cybercriminalité :</strong> l'ensemble des infractions pénales qui se commettent au moyen ou sur un réseau de télécommunication ou un système d'information;</li><li><strong>atteinte à la dignité humaine :</strong> toute atteinte, hors les cas d'attentat à la vie, d'atteinte à l'intégrité ou à la liberté, qui a pour effet essentiel de traiter la personne comme une chose, comme un animal ou comme un être auquel serait dénié tout droit;</li><li><strong>communication électronique :</strong> toute émission, transmission ou réception de signes, de signaux, d'écrits, d'images, de sons ou de vidéos par voie électromagnétique, optique ou par tout autre moyen;</li><li><strong>données à caractère personnel :</strong> toute information de quelque nature qu'elle soit et indépendamment de son support, y compris le son et l'image relative à une personne physique identifiée ou identifiable directement ou indirectement, par référence à un numéro d'identification ou à un ou plusieurs éléments spécifiques, propres à son identité physique, physiologique, génétique, psychique, culturelle, sociale ou économique;</li><li><strong>données informatiques ou données :</strong> toute représentation de faits, d'informations ou de concepts sous une forme qui se prête à un traitement informatique, y compris un programme de nature à faire exécuter une fonction par un système d'information;</li><li><strong>données relatives aux abonnés :</strong> toute information, sous forme de données informatiques ou sous toute autre forme, détenue par un fournisseur de services et se rapportant aux abonnés de ses services, autres que des données relatives au trafic ou au contenu, et permettant d'établir sur la base d'un contrat ou d'un arrangement de services : le type de service de communication, les dispositions techniques prises à cet égard et la période de service; l'identité, l'adresse postale ou géographique, le numéro de téléphone et tout autre numéro d'accès, les informations relatives à la localisation, la facturation et à l'endroit où se trouvent les équipements de communication;</li><li><strong>données relatives au trafic :</strong> toutes données ayant trait à une communication passant par un système d'information, produites par ce dernier en tant qu'élément de la chaîne de communication, indiquant l'origine, la destination, l'itinéraire, l'heure, la date, la taille et la durée de la communication ou le type de service sous-jacent;</li><li><strong>données sensibles :</strong> toutes données à caractère personnel relatives aux opinions ou activités religieuse, philosophique, politique, syndicale, à la vie sexuelle ou raciale, à la santé, aux mesures d'ordre social, aux poursuites, aux sanctions pénales ou administratives;</li><li><strong>infrastructures critiques :</strong> les installations physiques et des technologies de l'information, les réseaux, les services et les actifs qui, en cas d'arrêt ou de destruction, peuvent avoir de graves incidences sur la santé, la sécurité ou le bien-être économique et social des citoyens ou encore le fonctionnement continu des services de l'Etat;</li><li><strong>mineur :</strong> toute personne âgée de moins de dix-huit ans, conformément au Code pénal;</li><li><strong>pays tiers :</strong> tout Etat non membre de la CEDEAO;</li><li><strong>personne concernée :</strong> toute personne physique qui fait l'objet d'un traitement de données à caractère personnel;</li><li><strong>pornographie infantile :</strong> toute donnée quelle qu'en soit la nature ou la forme représentant de manière visuelle un enfant de moins de dix-huit ans se livrant à un agissement sexuellement explicite ou des images représentant un enfant de moins de quinze ans se livrant à un comportement sexuellement explicite;</li><li><strong>racisme et xénophobie en matière des TIC :</strong> tout écrit, toute image ou toute autre représentation d'idées ou de théories qui préconise ou encourage la haine, la discrimination ou la violence contre une personne ou un groupe de personnes, en raison de la race, de la couleur, de l'ascendance ou de l'origine nationale ou ethnique ou de la religion, dans la mesure où cette dernière sert de prétexte à l'un ou à l'autre de ces éléments ou qui incite à de tels actes;</li><li><strong>SMS :</strong> le sigle anglo-saxon signifiant &lt;&lt; short message service &gt;&gt; (en français : service de message court);</li><li><strong>surveillance :</strong> toute activité faisant appel à des moyens techniques ou électroniques en vue de détecter, d'observer, de copier ou d'enregistrer les mouvements, images, paroles, écrits, ou l'état d'un objet ou d'une personne fixe ou mobile;</li><li><strong>système d'information ou système informatique :</strong> tout dispositif isolé ou non, tout ensemble de dispositifs interconnectés assurant en tout ou partie, un traitement automatisé de données en exécution d'un programme.</li></ul></div></div></section>
+
+<!-- CHAPITRE 2 : Objet et champ d'application -->
+<section class="group"><h2>CHAPITRE 2 : OBJET ET CHAMP D'APPLICATION</h2>
+<div class="article" id="Article_2"><div class="article-header"><h3>Article 2</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>La présente loi a pour objet de lutter contre la cybercriminalité.</p></div></div>
+<div class="article" id="Article_3"><div class="article-header"><h3>Article 3</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Sont soumis aux dispositions de la présente loi, les infractions relatives à la cybercriminalité, ainsi que les infractions pénales dont la constatation requiert la collecte d'une preuve électronique.</p></div></div></section>
+
+<!-- CHAPITRE 3 : Infractions spécifiques aux TIC -->
+<section class="group"><h2>CHAPITRE 3 : INFRACTIONS SPÉCIFIQUES AUX TIC</h2>
+<div class="article" id="Article_4"><div class="article-header"><h3>Article 4</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Est puni de un à deux ans d'emprisonnement et de 5.000.000 à 10.000.000 de francs CFA d'amende, quiconque accède ou tente d'accéder frauduleusement à tout ou partie d'un système d'information.</p></div></div>
+<div class="article" id="Article_5"><div class="article-header"><h3>Article 5</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Est puni de un à deux ans d'emprisonnement et de 5.000.000 à 10.000.000 de francs CFA d'amende, quiconque se maintient ou tente de se maintenir frauduleusement dans tout ou partie d'un système d'information.</p></div></div>
+<div class="article" id="Article_6"><div class="article-header"><h3>Article 6</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Est puni de un à cinq ans d'emprisonnement et de 10.000.000 à 40.000.000 de francs CFA d'amende, quiconque entrave, fausse ou tente d'entraver ou de fausser frauduleusement le fonctionnement d'un système d'information.</p></div></div>
+<div class="article" id="Article_7"><div class="article-header"><h3>Article 7</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Est puni de un à cinq ans d'emprisonnement et de 10.000.000 à 40.000.000 de francs CFA d'amende, quiconque introduit ou tente d'introduire frauduleusement des données dans un système d'information.</p></div></div>
+<div class="article" id="Article_8"><div class="article-header"><h3>Article 8</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Est puni de cinq à dix ans d'emprisonnement et de 40.000.000 à 60.000.000 de francs CFA d'amende, quiconque intercepte ou tente d'intercepter frauduleusement par des moyens techniques des données informatiques lors de leur transmission non publique à destination, en provenance ou à l'intérieur d'un système d'information.</p></div></div>
+<div class="article" id="Article_9"><div class="article-header"><h3>Article 9</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Est puni de cinq à dix ans d'emprisonnement et de 40.000.000 à 60.000.000 de francs CFA d'amende, quiconque altère ou tente d'altérer, modifie ou tente de modifier, supprime ou tente de supprimer frauduleusement des données informatiques.</p></div></div>
+<div class="article" id="Article_10"><div class="article-header"><h3>Article 10</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Est puni de cinq à dix ans d'emprisonnement et de 40.000.000 à 60.000.000 de francs CFA d'amende, quiconque produit ou fabrique un ensemble de données par l'introduction, la modification, l'altération ou la suppression frauduleuse de données informatiques, engendrant des données contrefaites, dans l'intention qu'elles soient prises en compte ou utilisées à des fins légales comme si elles étaient originales.</p></div></div>
+<div class="article" id="Article_11"><div class="article-header"><h3>Article 11</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Est puni de un à cinq ans d'emprisonnement et de 20.000.000 à 40.000.000 de francs CFA d'amende, quiconque fait usage, en connaissance de cause, de données informatiques frauduleusement obtenues.</p></div></div>
+<div class="article" id="Article_12"><div class="article-header"><h3>Article 12</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Est puni de un à cinq ans d'emprisonnement et de 30.000.000 à 50.000.000 de francs CFA d'amende, quiconque obtient frauduleusement, pour soi-même ou pour autrui, un avantage quelconque, par l'introduction, l'utilisation, la modification, l'altération ou la suppression de données informatiques ou par toute forme d'atteinte au système d'information.</p></div></div>
+<div class="article" id="Article_13"><div class="article-header"><h3>Article 13</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Est puni de un an à deux ans d'emprisonnement et de 10.000.000 à 50.000.000 de francs CFA d'amende, quiconque, dans l'intention de commettre l'une des infractions prévues par la présente loi produit, vend, importe, détient, diffuse, offre, cède ou met à disposition, en connaissance de cause : un équipement, un dispositif ou un programme informatique; un mot de passe, un code d'accès ou des données informatiques similaires.</p></div></div>
+<div class="article" id="Article_14"><div class="article-header"><h3>Article 14</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Est puni de dix à vingt ans d'emprisonnement et de 75.000.000 à 100.000.000 de francs CFA d'amende, quiconque participe à une association formée ou à une entente établie en vue de préparer ou de commettre une ou plusieurs des infractions prévues dans la présente loi. L'infraction ci-dessus définie est un délit.</p></div></div>
+<div class="article" id="Article_15"><div class="article-header"><h3>Article 15</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Est puni de deux à cinq ans d'emprisonnement et de 75.000.000 à 100.000.000 de francs CFA d'amende, quiconque produit, enregistre, offre, met à disposition, diffuse, transmet une image ou une représentation présentant un caractère de pornographie infantile par le biais d'un système d'information ou d'un moyen de stockage de données informatiques.</p></div></div>
+<div class="article" id="Article_16"><div class="article-header"><h3>Article 16</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Est puni de deux à cinq ans d'emprisonnement et de 75.000.000 à 100.000.000 de francs CFA d'amende, quiconque se procure ou procure à autrui, importe ou fait importer, exporte ou fait exporter une image ou une représentation présentant un caractère de pornographie infantile par le biais d'un système d'information ou d'un moyen de stockage de données informatiques.</p></div></div>
+<div class="article" id="Article_17"><div class="article-header"><h3>Article 17</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Est puni de un à trois ans d'emprisonnement et de 20.000.000 à 40.000.000 de francs CFA d'amende, quiconque possède intentionnellement une image ou une représentation présentant un caractère de pornographie infantile dans un système d'information ou dans un moyen de stockage de données informatiques.</p></div></div>
+<div class="article" id="Article_18"><div class="article-header"><h3>Article 18</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Est puni de un à cinq ans d'emprisonnement et de 20.000.000 à 40.000.000 de francs CFA d'amende, quiconque facilite l'accès à des images, des documents, du son ou une représentation présentant un caractère de pornographie à un mineur.</p></div></div>
+<div class="article" id="Article_19"><div class="article-header"><h3>Article 19</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Est puni de deux à cinq ans d'emprisonnement et de 5.000.000 à 10.000.000 de francs CFA d'amende, quiconque utilise frauduleusement un ou des éléments d'identification d'une personne physique ou morale par le biais d'un système d'information. Quiconque utilise, possède, offre, vend, met à disposition, transmet en toute connaissance de cause de fausses données d'identification est puni de deux ans à cinq ans d'emprisonnement et de 5.000.000 à 10.000.000 de francs CFA d'amende. Quiconque réalise ou tente de réaliser de fausses données d'identification est puni de deux à cinq ans d'emprisonnement et de 5.000.000 à 10.000.000 de francs CFA d'amende.</p></div></div>
+<div class="article" id="Article_20"><div class="article-header"><h3>Article 20</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Est puni d'une peine d'emprisonnement de un à cinq ans et d'une amende de 10.000.000 à 100.000.000 de francs CFA, quiconque ne respecte pas l'interdiction d'exercer la profession de prestataire de cryptologie ou l'obligation de retrait des moyens de cryptologie.</p></div></div>
+<div class="article" id="Article_21"><div class="article-header"><h3>Article 21</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Est puni d'une peine d'emprisonnement de un à cinq ans et d'une amende de 1.000.000 à 10.000.000 de francs CFA, quiconque procède à la prospection directe à l'aide de tout moyen de communication utilisant, sous quelque forme que ce soit, les données à caractère personnel d'une personne physique qui n'a pas exprimé son consentement préalable par écrit à recevoir de telles prospections.</p></div></div>
+<div class="article" id="Article_22"><div class="article-header"><h3>Article 22</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Est puni d'une peine d'emprisonnement de un à cinq ans et d'une amende de 1.000.000 à 10.000.000 de francs CFA, quiconque utilise des procédés illicites d'envoi de messages électroniques non sollicités sur la base de la collecte de données à caractère personnel.</p></div></div>
+<div class="article" id="Article_23"><div class="article-header"><h3>Article 23</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Est puni d'une peine d'emprisonnement de un mois à un an et d'une amende de 500.000 à 1.000.000 de francs, quiconque dissimule l'identité de la personne pour le compte de laquelle une offre commerciale est émise ou mentionne une offre sans rapport avec la prestation ou le service proposé.</p></div></div>
+<div class="article" id="Article_24"><div class="article-header"><h3>Article 24</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Est puni d'une peine d'emprisonnement de un à cinq ans et de 5.000.000 à 100.000.000 de francs CFA d'amende, quiconque procède au traitement de données à caractère personnel par un moyen frauduleux, déloyal ou illicite. La peine d'amende ne peut être inférieure à 10.000.000 de francs CFA lorsque le traitement frauduleux, déloyal ou illicite a été fait en vue de l'envoi de messages électroniques non sollicités par une personne morale, autre que l'Etat.</p></div></div>
+<div class="article" id="Article_25"><div class="article-header"><h3>Article 25</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Est puni d'une peine d'emprisonnement d'un an à cinq ans et d'une amende de 5.000.000 à 100.000.000 de francs CFA, quiconque utilise les éléments d'identification d'une personne physique ou morale dans le but de tromper les destinataires d'un message électronique ou les usagers d'un site Internet en vue de les amener à communiquer des données à caractère personnel ou des informations confidentielles. La peine d'emprisonnement ne peut être inférieure à cinq ans et la peine d'amende ne peut être inférieure à 20.000.000 de francs CFA, lorsque les données à caractère personnel ou les informations confidentielles communiquées ont servi au détournement de fonds publics ou privés.</p></div></div>
+<div class="article" id="Article_26"><div class="article-header"><h3>Article 26</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Quiconque prend frauduleusement connaissance d'une information à l'intérieur d'un système d'information électronique, ou copie frauduleusement une information à partir d'un tel système, ou encore soustrait frauduleusement le support physique sur lequel se trouve une information, est coupable de vol d'information. Quiconque commet un vol d'information est puni d'un emprisonnement de cinq à dix ans et de 3.000.000 à 5.000.000 de francs d'amende. La tentative est punissable. L'infraction ci-dessus définie est un délit.</p></div></div>
+<div class="article" id="Article_27"><div class="article-header"><h3>Article 27</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>La peine est d'un emprisonnement de dix à vingt ans et d'une amende de 5.000.000 à 10.000.000 de francs CFA si le vol d'information ou la tentative de vol d'information a été commis accompagné d'une au moins des circonstances ci-après : avec des violences ayant entraîné des blessures; avec effraction, escalade ou usage de fausse clé; en réunion par au moins deux personnes; avec usage frauduleux, soit d'un uniforme ou d'un costume d'un fonctionnaire public, civil ou militaire, soit d'un titre d'un fonctionnaire, soit d'un faux ordre d'une autorité civile ou militaire; dans une maison habitée ou servant d'habitation ou dans les locaux professionnels; avec l'usage d'un masque; avec l'usage d'un véhicule pour faciliter son entreprise ou sa fuite; la nuit.</p></div></div>
+<div class="article" id="Article_28"><div class="article-header"><h3>Article 28</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le vol d'information ou la tentative de vol d'information est puni de vingt ans d'emprisonnement et de 10.000.000 de francs CFA d'amende, s'il est accompagné de l'une des circonstances ci-après : lorsque l'auteur ou le complice est porteur d'une arme apparente ou cachée; lorsque l'auteur ou le complice a fait usage d'une arme ayant entraîné des blessures ou la mort de la victime.</p></div></div>
+<div class="article" id="Article_29"><div class="article-header"><h3>Article 29</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Lorsqu'elle est faite intentionnellement et sans droit, la production, la vente, l'obtention pour utilisation, l'importation, la diffusion ou d'autres formes de mise à disposition d'un dispositif, y compris un programme informatique, principalement conçu ou adapté pour permettre la commission d'un vol d'information, ou l'usage d'un mot de passe, d'un code d'accès ou de données informatiques similaires permettant d'accéder à tout ou partie d'un système d'information, dans l'intention qu'ils soient utilisés afin de commettre l'une ou l'autre des infractions prévues par la présente loi, est punie des peines prévues pour l'infraction elle-même ou pour l'infraction la plus sévèrement réprimée d'entre elles.</p></div></div>
+<div class="article" id="Article_30"><div class="article-header"><h3>Article 30</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Lorsque les faits punis par la présente loi portent sur un système d'information ou un programme de traitement de données protégé par un code d'accès secret, la peine encourue ne peut être inférieure à dix ans d'emprisonnement.</p></div></div>
+<div class="article" id="Article_31"><div class="article-header"><h3>Article 31</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Est puni d'un emprisonnement de un à cinq ans et de 1.000.000 de francs CFA d'amende, quiconque de mauvaise foi, ouvre, supprime, retarde ou détourne des correspondances électroniques arrivées ou non à destination et adressées à un tiers, ou en prend frauduleusement connaissance. Est puni des mêmes peines, quiconque de mauvaise foi, intercepte, détourne, utilise ou divulgue des correspondances électroniques émises, transmises ou reçues par la voie des télécommunications ou procède à l'installation d'appareils conçus pour réaliser de telles interceptions.</p></div></div>
+<div class="article" id="Article_32"><div class="article-header"><h3>Article 32</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Les personnes condamnées pour les délits prévus au présent chapitre encourent également les peines complémentaires suivantes : l'interdiction, pour une durée de cinq ans, d'exercer une fonction publique ou d'exercer l'activité professionnelle ou sociale dans l'exercice de laquelle ou à l'occasion de laquelle l'infraction a été commise; la confiscation du moyen qui a servi à commettre l'infraction ou qui était destiné à la commission de l'infraction ou du bien qui en est le produit; la fermeture, pour une durée de cinq ans s'il y a lieu, des établissements ou de l'un ou de plusieurs des établissements de l'entreprise ayant servi à commettre les faits incriminés; l'exclusion, pour une durée de cinq ans, des marchés publics; l'interdiction, pour une durée de cinq ans, d'émettre des chèques autres que ceux qui permettent le retrait de fonds par le tireur auprès du tiré ou ceux qui sont certifiés; l'affichage ou la diffusion de la décision prononcée, aux frais du condamné.</p></div></div></section>
+
+<!-- CHAPITRE 4 : Atteintes à la propriété intellectuelle -->
+<section class="group"><h2>CHAPITRE 4 : ATTEINTES À LA PROPRIÉTÉ INTELLECTUELLE</h2>
+<div class="article" id="Article_33"><div class="article-header"><h3>Article 33</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Sont punies d'une peine d'emprisonnement de un à dix ans et d'une amende de 500.000 à 100.000.000 de francs CFA, les atteintes à la propriété intellectuelle commises au moyen d'un système d'information. Constitue une atteinte à la propriété intellectuelle : le fait, sans autorisation de l'auteur ou de ses ayants droit, de reproduire, de représenter ou de mettre à la disposition du public sur un système d'information ou un support numérique ou analogique, intégralement ou partiellement une œuvre de l'esprit protégée par le droit d'auteur ou un droit voisin; le fait, sans autorisation de l'auteur ou de ses ayants droit, de traduire ou d'adapter une œuvre de l'esprit par le biais d'un programme informatique ou de mettre cette traduction ou adaptation sur un système d'information ou un support numérique ou analogique à la disposition du public; le fait, sans autorisation de l'auteur ou de ses ayants droit, de reproduire, d'utiliser, de vendre, de dénaturer, de dénigrer une marque, une raison sociale, un nom commercial, un nom de domaine Internet ou tout autre signe distinctif appartenant à un tiers par le biais d'un système d'information ouvert au public ou par le biais d'un programme informatique ou sur un support numérique ou analogique; le fait, en toute connaissance de cause, d'exploiter par reproduction ou par représentation une œuvre de l'esprit mise de façon illicite à disposition du public sur un réseau de communication électronique; le fait, en toute connaissance de cause, sans droit, de vendre ou de mettre à disposition du public par reproduction ou par représentation un bien ou un produit protégé par un brevet d'invention.</p></div></div>
+<div class="article" id="Article_34"><div class="article-header"><h3>Article 34</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Ne constituent pas une atteinte à la propriété intellectuelle lorsqu'elles sont réalisées par le biais d'un système ou un programme informatique ou électronique : les copies ou reproductions d'œuvres de l'esprit strictement réservées à l'usage privé du copiste et non destinées à une utilisation collective, à l'exclusion des copies des œuvres d'art destinées à être utilisées pour des fins identiques ou similaires à celles pour lesquelles l'œuvre originale a été créée; les analyses et courtes citations, sous réserve que soient clairement indiqués le nom de l'auteur de l'œuvre et de la source, justifiées par le caractère critique, polémique, pédagogique, scientifique ou d'information de l'œuvre à laquelle elles sont incorporées; la parodie et la caricature de l'œuvre originale réalisée sans intention de nuire à l'image et à l'honorabilité de l'auteur de ladite œuvre; les copies ou reproductions provisoires présentant un caractère transitoire et accessoire lorsqu'elles sont une partie intégrante et essentielle d'un procédé technique et qu'elles ont pour objet de permettre la transmission ou l'utilisation licite de l'œuvre sur un système d'information ou électronique; la reproduction et la représentation réalisée à des fins non lucratives par des personnes morales de droit public et par des établissements ouverts au public, tels que les bibliothèques, les services d'archives, les musées, les centres de documentation et les espaces culturels multimédias, en vue d'une consultation strictement personnelle de l'œuvre par des personnes atteintes d'une ou de plusieurs déficiences des fonctions motrices, physiques, sensorielles, mentales, cognitives ou psychiques dont le niveau d'incapacité est reconnu dans un certificat médical dûment établi; la reproduction d'une œuvre, effectuée à des fins de conservation ou destinée à préserver les conditions de sa consultation sur place par des bibliothèques accessibles au public, par des musées ou par des services d'archives, sous réserve que ceux-ci ne recherchent aucun avantage économique ou commercial; la reproduction et la représentation d'œuvre de l'esprit réalisée à des fins exclusivement pédagogiques par les enseignants et les chercheurs dans le cadre strict de leurs enseignements ou de leurs recherches pour leurs élèves et étudiants ou pour d'autres enseignants et chercheurs directement concernés, sous réserve que cette reproduction ou représentation ne donne lieu à aucune exploitation commerciale ou lucrative.</p></div></div>
+<div class="article" id="Article_35"><div class="article-header"><h3>Article 35</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>L'auteur d'une œuvre de l'esprit ou ses ayants droit peuvent faire obstacle à la copie de l'œuvre en limitant le droit de copie reconnue par la présente loi, notamment, par la mise en œuvre de mesures techniques de protection lorsque la mise en œuvre du droit de copie porte atteinte à l'exploitation normale de l'œuvre ou cause un préjudice injustifié aux intérêts de l'auteur. On entend par mesure technique de protection, toute technologie, dispositif, composant qui, dans le cadre normal de son fonctionnement, accomplit la fonction de contrôle des utilisations de l'œuvre ou de limitation des copies de l'œuvre considérée. L'usager doit être clairement informé de l'existence des mesures techniques de protection sur l'œuvre qu'il acquiert ou utilise et sur les fonctions de ces mesures techniques, notamment si elles interdisent ou non l'usage de l'œuvre sur d'autres systèmes d'information ou d'exploitation.</p></div></div>
+<div class="article" id="Article_36"><div class="article-header"><h3>Article 36</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le titulaire d'un service d'accès à internet ou à tout réseau de communication électronique est tenu de veiller à ce que cet accès ne soit pas utilisé à des fins manifestement illicites, notamment de reproduction ou de représentation d'œuvres de l'esprit sans l'autorisation de leurs auteurs ou leurs ayants droit. En cas de non-respect de cette obligation, il peut être poursuivi pour complicité par fourniture de moyen.</p></div></div></section>
+
+<!-- CHAPITRE 5 : Agissements illicites sur les réseaux -->
+<section class="group"><h2>CHAPITRE 5 : AGISSEMENTS ILLICITES SUR LES RÉSEAUX DE COMMUNICATION ÉLECTRONIQUE</h2>
+<div class="article" id="Article_37"><div class="article-header"><h3>Article 37</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>L'organisation des jeux d'argent sur les réseaux de communication électronique est placée sous un régime de droits exclusifs de l'Etat concédés à un nombre restreint d'opérateurs.</p></div></div>
+<div class="article" id="Article_38"><div class="article-header"><h3>Article 38</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Est puni d'une peine d'emprisonnement de un à cinq ans et d'une amende de 5.000.000 à 100.000.000 de francs CFA, quiconque sans autorisation, organise des jeux d'argent illicites en ligne caractérisés par la tenue de jeux de hasard, de loterie illicite, de publicité de loterie prohibée, de prise de paris illicite sur les réseaux de communication électronique.</p></div></div>
+<div class="article" id="Article_39"><div class="article-header"><h3>Article 39</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Sont interdits les transferts d'argent par cartes de paiement ou par virement ou par tout autre moyen de paiement effectués par des personnes physiques ou morales dans le cadre de jeux d'argent illicites sur les réseaux de communication électronique. Les établissements bancaires ou financiers exerçant sur le territoire national veillent au respect de cette interdiction. Ces établissements notifient aux autorités compétentes toute violation constatée ou tentative de violation de cette interdiction.</p></div></div>
+<div class="article" id="Article_40"><div class="article-header"><h3>Article 40</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Est puni d'une peine d'emprisonnement de cinq ans et d'amende de 5.000.000 à 10.000.000 de francs CFA, quiconque ne respecte pas l'interdiction de transfert d'argent. La peine encourue par la personne morale responsable est le double de l'amende prévue pour la personne physique ayant commis l'infraction. Si le transfert est effectué à destination de l'étranger, l'infraction commise constitue également une infraction à la réglementation régissant les relations financières extérieures et elle est punie sans préjudice des dispositions de la loi relative au contentieux des infractions au contrôle des changes.</p></div></div>
+<div class="article" id="Article_41"><div class="article-header"><h3>Article 41</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Les juridictions nationales sont compétentes pour constater ou punir les infractions lorsque les activités de jeux d'argent illicites sont offertes à partir du territoire national ou sont accessibles aux utilisateurs des réseaux de communication électronique à partir du territoire national et qu'il existe un lien suffisant, substantiel ou significatif entre la prestation illicite offerte aux utilisateurs des réseaux de communication en ligne et le territoire national, notamment, par la langue utilisée, la monnaie employée, les produits proposés, le nom de domaine utilisé par le site proposant ladite prestation.</p></div></div></section>
+
+<!-- CHAPITRE 6 : Responsabilité des prestataires techniques -->
+<section class="group"><h2>CHAPITRE 6 : RESPONSABILITÉ DES PRESTATAIRES TECHNIQUES DE SERVICE EN LIGNE</h2>
+<div class="article" id="Article_42"><div class="article-header"><h3>Article 42</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>L'accès au service internet à partir d'un cybercafé situé sur le territoire national est soumis à l'identification préalable des usagers. Les exploitants de cybercafé sont tenus de procéder à cette identification suivant les modalités fixées par décret.</p></div></div>
+<div class="article" id="Article_43"><div class="article-header"><h3>Article 43</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Le mineur de moins de dix ans ne peut accéder à un cybercafé qu'accompagné d'un adulte. L'accès à internet dans un cybercafé pour un mineur de moins de dix-huit ans est un accès limité, qui exclut les sites web à caractère pornographique, violent, raciste ou dégradant et de manière générale tous les sites web portant atteinte à la dignité humaine ou incitant à l'incivisme.</p></div></div>
+<div class="article" id="Article_44"><div class="article-header"><h3>Article 44</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Les personnes dont l'activité est d'offrir un accès à des services de communication en ligne informent leurs abonnés de l'existence de moyens techniques permettant de restreindre l'accès à certains services ou de les sélectionner et leur proposent au moins un de ces moyens.</p></div></div>
+<div class="article" id="Article_45"><div class="article-header"><h3>Article 45</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Est puni d'une peine d'amende de 1.000.000 à 10.000.000 de francs CFA, quiconque ne respecte pas l'obligation d'information et de mise à disposition de moyens techniques de filtrage. Le fournisseur de services offrant un accès à des services de communication ou assurant à titre gratuit ou onéreux le stockage direct et permanent pour mise à disposition de contenus, est tenu, sur décision du juge compétent, de suspendre immédiatement l'accès auxdits services ou contenus.</p></div></div>
+<div class="article" id="Article_46"><div class="article-header"><h3>Article 46</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Les personnes physiques ou morales qui offrent un accès à des services de communication en ligne ou qui assurent, même à titre gratuit, pour mise à disposition du public par des services de communication en ligne, le stockage de signaux, d'écrits, d'images, de sons ou de messages de toute nature fournis par des destinataires de ces services ne peuvent voir leur responsabilité civile ou pénale engagée du fait des activités ou des informations stockées à la demande d'un destinataire de ces services : si elles n'avaient effectivement connaissance de leur caractère illicite ou de faits et circonstances faisant apparaître ce caractère; si, dès le moment où elles en ont eu cette connaissance, elles ont agi promptement pour retirer ces données ou en rendre l'accès impossible; si le retrait de ces données n'a pas été ordonné par un tribunal.</p></div></div>
+<div class="article" id="Article_47"><div class="article-header"><h3>Article 47</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>La connaissance des faits litigieux est présumée acquise par les personnes mentionnées à l'article précédent, lorsqu'il leur est notifié par la victime ou par une personne intéressée, les activités illicites ou les faits et circonstances faisant apparaître ce caractère. Pour être prise en compte la notification doit comporter les éléments suivants : si l'auteur de la notification est une personne physique : ses nom, prénoms, profession, domicile, nationalité, date et lieu de naissance; si l'auteur de la notification est une personne morale : sa dénomination et son siège social; les nom, prénoms et domicile du destinataire du service en cause ou s'il s'agit d'une personne morale, sa dénomination et son siège social; la description des faits litigieux et leur localisation précise sur le réseau; les droits et les motifs pour lesquels le retrait du contenu litigieux est demandé; la copie de la correspondance adressée à l'auteur ou à défaut à l'éditeur des informations ou activités litigieuses demandant leur interruption, leur retrait ou leur modification, ou la justification de ce que l'auteur ou l'éditeur n'a pu être contacté.</p></div></div>
+<div class="article" id="Article_48"><div class="article-header"><h3>Article 48</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>La procédure de notification des faits ou d'activités illicites prévue à l'article précédent n'a pas pour effet d'engager la responsabilité d'une des personnes concernées par les exceptions prévues à l'article 47 de la présente loi.</p></div></div>
+<div class="article" id="Article_49"><div class="article-header"><h3>Article 49</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Est puni d'une peine d'emprisonnement de un à cinq ans et d'une amende de 1.000.000 à 5.000.000 de francs CFA, le fait, pour toute personne de présenter de mauvaise foi aux personnes mentionnées à l'article 47 de la présente loi, un contenu ou une activité comme étant illicite dans le but d'en obtenir le retrait ou d'en faire cesser la diffusion.</p></div></div>
+<div class="article" id="Article_50"><div class="article-header"><h3>Article 50</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Les personnes mentionnées à l'article 47 de la présente loi ne sont pas soumises à une obligation de surveillance des informations qu'elles transmettent ou stockent, ni à une obligation de recherche des faits ou des circonstances révélant des activités illicites. Toutefois, l'autorité judiciaire peut requérir de ces personnes une surveillance ciblée et temporaire des activités exercées par le biais de leurs services.</p></div></div>
+<div class="article" id="Article_51"><div class="article-header"><h3>Article 51</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Les fournisseurs d'accès internet sont tenus de mettre en place un dispositif facilement accessible et visible sur leur site internet permettant à toute personne de porter à leur connaissance ce type d'activités illicites et sont tenus de rendre publics les moyens consacrés à cette lutte. Les fournisseurs d'accès internet sont tenus également d'informer promptement les autorités publiques compétentes de toutes activités illicites qui leur sont signalées et qu'exercent les destinataires de leurs services. Tout manquement aux obligations définies ci-dessus est puni d'une peine d'emprisonnement de un à cinq ans et d'une amende de 1.000.000 à 5.000.000 de francs CFA.</p></div></div>
+<div class="article" id="Article_52"><div class="article-header"><h3>Article 52</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>L'autorité judiciaire peut prescrire, à toute personne mentionnée à l'article 47 de la présente loi, toutes mesures propres à prévenir un dommage ou à faire cesser un dommage occasionné par le contenu d'un service de communication électronique. Tout manquement aux prescriptions judiciaires définies ci-dessus est puni d'une peine d'emprisonnement d'un an à cinq ans et d'une amende de 1.000.000 à 5.000.000 de francs CFA.</p></div></div>
+<div class="article" id="Article_53"><div class="article-header"><h3>Article 53</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Les personnes mentionnées à l'article 47 de la présente loi sont tenues de détenir et de conserver sur une période de trois ans les données informatiques de nature à permettre l'identification de quiconque a contribué à la création d'un contenu ou de l'un des contenus des services dont elles sont prestataires conformément aux dispositions légales ou réglementaires relatives à la protection des données à caractère personnel. L'autorité judiciaire peut requérir auprès de ces personnes la communication des données d'identification des destinataires des services dont elles sont prestataires.</p></div></div>
+<div class="article" id="Article_54"><div class="article-header"><h3>Article 54</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Les personnes mentionnées à l'article 47 de la présente loi sont tenues de mettre à la disposition du public en ligne leurs propres données permettant de les identifier lorsque leurs services sont offerts à partir du territoire national ou sont accessibles à partir de ce territoire et destinés aux utilisateurs des réseaux de communication en ligne dudit territoire. Ces données d'identification doivent comporter les éléments suivants : s'il s'agit de personnes physiques : leurs nom, prénoms, domicile, date et lieu de naissance, numéro de téléphone, adresse postale, adresse électronique et, si elles sont assujetties aux formalités d'inscription au registre de commerce et du crédit mobilier ou au répertoire des métiers, le numéro de leur inscription; s'il s'agit de personnes morales, leur dénomination sociale et l'adresse de leur siège social, leur numéro de téléphone et, si elles sont assujetties aux formalités d'inscription au registre de commerce et du crédit mobilier ou au répertoire des métiers, le numéro de leur inscription, leur capital social et leur adresse électronique; Toutefois, les personnes éditant à titre non professionnel un service de communication électronique peuvent ne tenir à la disposition du public, pour préserver leur anonymat, que le nom, la dénomination sociale et l'adresse de la personne mentionnée à l'article 47 de la présente loi, sous réserve d'avoir satisfait auprès de cette dernière à son obligation d'identification telle que prévue ci-dessus.</p></div></div>
+<div class="article" id="Article_55"><div class="article-header"><h3>Article 55</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Est puni d'une peine d'emprisonnement de un an à cinq ans et d'une amende de 1.000.000 à 5.000.000 de francs CFA le fait pour une personne physique ou le dirigeant de droit ou de fait d'une personne morale exerçant l'une des activités mentionnées à l'article 47 de la présente loi, de ne pas satisfaire aux obligations définies aux articles 53 et 54 ci-dessus.</p></div></div>
+<div class="article" id="Article_56"><div class="article-header"><h3>Article 56</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Toute personne assurant une activité de transmission de contenus sur un réseau de télécommunications ou de fourniture d'accès à un réseau de télécommunications ne peut voir sa responsabilité civile ou pénale engagée en raison de ces contenus que dans l'un des cas suivants : lorsqu'elle est à l'origine de la demande de transmission litigieuse; lorsqu'elle sélectionne le destinataire de la transmission; lorsqu'elle sélectionne ou modifie les contenus faisant l'objet de la transmission.</p></div></div>
+<div class="article" id="Article_57"><div class="article-header"><h3>Article 57</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Toute personne assurant dans le seul but de rendre plus efficace leur transmission ultérieure, une activité de stockage automatique, intermédiaire et temporaire des contenus qu'un prestataire transmet ne peut voir sa responsabilité civile ou pénale engagée à raison de ces contenus que si : elle a modifié ces contenus et ne s'est pas conformée à leurs conditions d'accès et aux règles usuelles concernant leur mise à jour ou a entravé l'utilisation licite et usuelle de la technologie utilisée pour obtenir des données; elle n'a pas agi avec promptitude pour retirer les contenus qu'elle a stockés ou pour en rendre l'accès impossible, dès qu'elle a effectivement eu connaissance soit du fait que les contenus transmis initialement ont été retirés du réseau, soit du fait que l'accès aux contenus transmis initialement a été rendu impossible, soit du fait que les autorités judiciaires ont ordonné de retirer du réseau les contenus transmis initialement ou d'en rendre l'accès impossible.</p></div></div></section>
+
+<!-- CHAPITRE 7 : Adaptation des infractions classiques -->
+<section class="group"><h2>CHAPITRE 7 : ADAPTATION DES INFRACTIONS CLASSIQUES AUX TIC</h2>
+<div class="article" id="Article_58"><div class="article-header"><h3>Article 58</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Est puni de dix à vingt ans d'emprisonnement et de 5.000.000 à 10.000.000 de francs CFA d'amende, le fait pour toute personne de créer, de diffuser ou de mettre à disposition sous quelque forme que ce soient des écrits, messages, photos, sons, vidéos, dessins ou toute autre représentation d'idées ou de théories, de nature raciste ou xénophobe, par le biais d'un système d'information. L'infraction ci-dessus définie est un délit.</p></div></div>
+<div class="article" id="Article_59"><div class="article-header"><h3>Article 59</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Est puni de deux à cinq ans d'emprisonnement et de 5.000.000 à 20.000.000 de francs CFA d'amende, le fait pour toute personne de menacer autrui de mort ou de violence par le biais d'un système d'information. Lorsque la menace a un caractère raciste, xénophobe, ethnique religieux ou fait référence à un groupe qui se caractérise par la race, la couleur, l'ascendance ou l'origine nationale ou ethnique, la peine d'emprisonnement est de dix à vingt ans et l'amende est de 20.000.000 à 40.000.000 de francs CFA. L'infraction ci-dessus définie est un délit.</p></div></div>
+<div class="article" id="Article_60"><div class="article-header"><h3>Article 60</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Est puni de un à cinq ans d'emprisonnement et de 5.000.000 à 10.000.000 de francs CFA d'amende, le fait pour toute personne de proférer ou d'émettre toute expression outrageante, tout terme de mépris ou toute invective qui ne renferme l'imputation d'aucun fait, par le biais d'un système d'information.</p></div></div>
+<div class="article" id="Article_61"><div class="article-header"><h3>Article 61</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Est puni de trois à cinq ans d'emprisonnement et de 75.000.000 à 100.000.000 de francs CFA d'amende, le fait pour toute personne de nier, d'approuver ou de justifier, intentionnellement, des actes constitutifs de génocide ou de crimes contre l'humanité par le biais d'un système d'information.</p></div></div>
+<div class="article" id="Article_62"><div class="article-header"><h3>Article 62</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Est puni de un mois à cinq ans d'emprisonnement et de 1.000.000 à 20.000.000 de francs CFA d'amende, le fait pour une personne de produire, de mettre à la disposition d'autrui ou de diffuser des données de nature à troubler l'ordre public ou à porter atteinte à la dignité humaine par le biais d'un système d'information.</p></div></div>
+<div class="article" id="Article_63"><div class="article-header"><h3>Article 63</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Est puni de un à cinq ans d'emprisonnement et de 5.000.000 à 20.000.000 de francs CFA d'amende, le fait pour toute personne de diffuser ou de mettre à disposition d'autrui par le biais d'un système d'information, sauf à destination des personnes autorisées, un mode d'emploi ou un procédé permettant la fabrication de moyens de destruction de nature à porter atteinte à la vie, aux biens ou à l'environnement.</p></div></div>
+<div class="article" id="Article_64"><div class="article-header"><h3>Article 64</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Est puni de un à cinq ans d'emprisonnement et de 5.000.000 à 20.000.000 de francs CFA d'amende, le fait pour toute personne de diffuser ou de mettre à disposition d'autrui, par le biais d'un système d'information, des procédés ou des informations d'incitation au suicide.</p></div></div>
+<div class="article" id="Article_65"><div class="article-header"><h3>Article 65</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Est puni de six mois à deux ans d'emprisonnement et de 1.000.000 à 5.000.000 de francs CFA d'amende, le fait pour toute personne de communiquer ou de divulguer par le biais d'un système d'information, une fausse information tendant à faire croire qu'une destruction, une dégradation ou une détérioration de biens ou une atteinte aux personnes a été commise ou va être commise. Est puni des mêmes peines, le fait de communiquer ou de divulguer par le biais d'un système d'information, une fausse information faisant croire à un sinistre ou à toute autre situation d'urgence.</p></div></div>
+<div class="article" id="Article_66"><div class="article-header"><h3>Article 66</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Est puni de cinq à dix ans d'emprisonnement et de 5.000.000 à 20.000.000 de francs CFA d'amende, le fait pour toute personne de menacer de commettre par le biais d'un système d'information, une destruction, une dégradation ou une détérioration de biens ou une atteinte aux personnes, lorsqu'elle est matérialisée par un écrit, une image, un son, une vidéo ou toute autre donnée.</p></div></div>
+<div class="article" id="Article_67"><div class="article-header"><h3>Article 67</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Est coupable de trahison et puni de l'emprisonnement à vie, le fait pour un Ivoirien : de livrer ou de s'assurer de la possession en vue de la livraison à un pays étranger ou à une personne physique ou morale étrangère par le biais d'un système d'information, un renseignement, un document, un procédé ou une donnée informatique qui doit être tenu(e) secret dans l'intérêt de la Défense nationale; de détruire ou de laisser détruire un renseignement, un document, un procédé ou une donnée informatique qui doit être tenu(e) secret dans l'intérêt de la Défense nationale, en vue de favoriser un pays étranger ou une personne physique ou morale étrangère.</p></div></div>
+<div class="article" id="Article_68"><div class="article-header"><h3>Article 68</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Est coupable d'espionnage et puni de l'emprisonnement à vie, le fait pour un étranger : de livrer ou de s'assurer de la possession en vue de la livraison à un pays étranger ou à une personne physique ou morale étrangère par le biais d'un système d'information, un renseignement, un document, un procédé ou une donnée informatique qui doit être tenu(e) secret dans l'intérêt de la Défense nationale, de détruire ou de laisser détruire un tel renseignement, un document, un procédé ou une donnée informatique qui doit être tenu(e) secret dans l'intérêt de la Défense nationale, en vue de favoriser un pays étranger ou une personne physique ou morale étrangère.</p></div></div>
+<div class="article" id="Article_69"><div class="article-header"><h3>Article 69</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Toute personne morale, à l'exception de l'Etat est pénalement responsable des infractions prévues par la présente loi, lorsqu'elles sont commises pour son compte par ses représentants. La responsabilité des personnes morales n'exclut pas celle des personnes physiques auteurs ou complices des mêmes faits. La peine encourue par les personnes morales responsables est le double de l'amende prévue pour la personne physique ayant commis l'infraction.</p></div></div>
+<div class="article" id="Article_70"><div class="article-header"><h3>Article 70</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>En cas de condamnation au titre de la présente loi, outre la publicité de la condamnation ordonnée et exécutée, conformément à l'article 75 du Code pénal, le juge peut prononcer à titre complémentaire, la confiscation spéciale la privation des droits et l'interdiction de séjour prévues respectivement aux articles 63, 66 et 80 du Code pénal.</p></div></div></section>
+
+<!-- CHAPITRE 8 : Procédure pénale -->
+<section class="group"><h2>CHAPITRE 8 : PROCÉDURE PÉNALE EN MATIÈRE DE CYBERCRIMINALITÉ</h2>
+<div class="article" id="Article_71"><div class="article-header"><h3>Article 71</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Les officiers de police judiciaire définis à l'article 16 nouveau du Code de Procédure pénale, les experts agréés auprès des tribunaux et toute autre personne dont les compétences sont requises, serment préalablement prêté, peuvent procéder aux opérations prévues par la présente loi. Les autorités compétentes visées ci-dessus n'ayant pas la qualité d'officier de Police judiciaire ne peuvent procéder à une perquisition qu'en présence de ces officiers.</p></div></div>
+<div class="article" id="Article_72"><div class="article-header"><h3>Article 72</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Les données relatives aux abonnés doivent être conservées par les fournisseurs de services. Cette obligation impose aux fournisseurs de services de conserver et de protéger l'intégrité desdites données pendant une durée de dix ans. Lorsqu'il est impossible de retrouver l'auteur d'une communication électronique pour défaut de conservation des données relatives aux abonnés, le fournisseur de services encourt une peine d'amende de 10.000.000 à 50.000.000 de francs CFA.</p></div></div>
+<div class="article" id="Article_73"><div class="article-header"><h3>Article 73</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Lorsque dans le cadre d'une enquête ou d'une instruction, il y a des raisons de penser que des données informatiques spécifiées, y compris des données relatives aux abonnés et au trafic, stockées au moyen d'un système d'information, sont susceptibles de perte ou de modification, l'autorité compétente procède ou fait procéder à la conservation immédiate desdites données. La personne physique ou morale à qui injonction est faite, conserve et protège l'intégrité desdites données pendant une durée aussi longue que nécessaire pour les besoins de l'enquête ou l'instruction.</p></div></div>
+<div class="article" id="Article_74"><div class="article-header"><h3>Article 74</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>L'autorité compétente, sur réquisition du procureur ou ordonnance du juge d'instruction, peut requérir : de toute personne physique ou morale, l'obligation de communiquer des données spécifiées, en sa possession ou sous son contrôle, qui sont stockées dans un système d'information ou un support de stockage informatique; d'un fournisseur de services, de communiquer les données spécifiées relatives au trafic et aux abonnés en sa possession ou sous son contrôle.</p></div></div>
+<div class="article" id="Article_75"><div class="article-header"><h3>Article 75</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>L'autorité compétente peut, au cours d'une perquisition effectuée dans les conditions prévues par le Code de Procédure pénale, accéder à un système d'information ou à un support de stockage numérique et à des données intéressant l'enquête en cours et stockées dans ledit système ou ledit support se trouvant sur les lieux de la perquisition. L'autorité compétente peut également accéder à des données intéressant l'enquête en cours et stockées dans un autre système d'information, dès lors que ces données sont accessibles à partir du système initial ou disponibles pour le système initial. S'il est avéré que ces données, accessibles à partir du système initial ou disponibles pour le système initial, sont stockées dans un autre système d'information situé hors du territoire national, elles sont recueillies par l'autorité compétente, sous réserve du respect des engagements internationaux.</p></div></div>
+<div class="article" id="Article_76"><div class="article-header"><h3>Article 76</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>L'autorité compétente peut, dans les conditions prévues par le Code de Procédure pénale, procéder à la saisie des systèmes informatiques, des supports de stockage informatique ou procéder à la copie des données informatiques nécessaires à la manifestation de la vérité. Si une copie est réalisée dans le cadre de cette procédure, il peut être procédé, sur décision du juge, à l'effacement définitif sur le support physique qui n'a pas été placé sous-main de justice, des données informatiques dont la détention ou l'usage est illégal ou dangereux pour la sécurité des personnes ou des biens. Lorsque les systèmes informatiques ou les supports de stockage informatique sont mis sous scellés, ils ne peuvent être ouverts que selon les modalités prévues par le Code de Procédure pénale.</p></div></div>
+<div class="article" id="Article_77"><div class="article-header"><h3>Article 77</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>L'autorité compétente, sur réquisition du procureur ou ordonnance du juge d'instruction, est habilitée : à collecter ou enregistrer par tout moyen technique les données relatives au trafic ou au contenu associées à des communications spécifiques transmises sur son territoire au moyen d'un système d'information; à obliger un fournisseur de services, dans le cadre de ses capacités techniques existantes, à collecter ou enregistrer par tout moyen technique ou prêter aux autorités compétentes son concours et son assistance pour collecter ou enregistrer en temps réel, les données relatives au trafic ou au contenu associées à des communications spécifiques transmises sur son territoire au moyen d'un système d'information. Les surcoûts identifiables et spécifiques éventuellement exposés par les fournisseurs de services pour répondre à ces demandes font l'objet d'une compensation financière de l'Etat.</p></div></div>
+<div class="article" id="Article_78"><div class="article-header"><h3>Article 78</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>Est puni d'une peine d'emprisonnement de trois à six mois et de 1.000.000 à 5.000.000 de francs CFA d'amende, quiconque refuse de déférer à la demande du procureur ou du juge d'instruction. Lorsqu'il s'agit d'une personne morale, elle encourt une peine d'amende de 10.000.000 à 100.000.000 de francs CFA.</p></div></div>
+<div class="article" id="Article_79"><div class="article-header"><h3>Article 79</h3><button class="open-fs" title="Plein écran"><i class="fas fa-maximize"></i></button></div><div class="article-content"><p>La présente loi sera publiée au Journal officiel de la République de Côte d'Ivoire et exécutée comme loi de l'Etat.</p><p>Fait à Abidjan, le 19 juin 2013.</p><p><strong>Alassane OUATTARA.</strong></p></div></div></section>
+
+</main>
+<button id="tocFloatBtn" title="Sommaire" class="btn"><i class="fa-solid fa-book"></i></button>
+<div id="tocOverlay"></div>
+<aside id="tocPanel"><header><h3><i class="fa-solid fa-gavel"></i> Sommaire</h3></header><div class="toc-list" id="tocList"></div></aside>
+<div id="voiceBar" role="region" aria-label="Lecteur vocal">
+  <button id="vPrev" title="Article précédent"><i class="fas fa-backward"></i></button>
+  <button id="vPlay" title="Lire / Reprendre"><i class="fas fa-play"></i></button>
+  <button id="vPause" title="Pause"><i class="fas fa-pause"></i></button>
+  <button id="vStop" title="Arrêter"><i class="fas fa-stop"></i></button>
+  <button id="vNext" title="Article suivant"><i class="fas fa-forward"></i></button>
+  <span class="now" id="vNow">—</span>
+</div>
+<div id="fsOverlay">
+  <div id="fsHeader">
+    <button id="fsClose" title="Fermer"><i class="fas fa-xmark"></i></button>
+    <div class="ttl" id="fsTitle"></div>
+    <button id="fsPlay" title="Lecture"><i class="fas fa-play"></i></button>
+  </div>
+  <div id="fsBody"><article class="article"><div class="article-content" id="fsContent"></div></article></div>
+  <button id="fsNavPrev" title="Précédent"><i class="fas fa-chevron-left"></i></button>
+  <button id="fsNavNext" title="Suivant"><i class="fas fa-chevron-right"></i></button>
+</div>
+
+<script>
+function initSearchFeature() {
+    const searchBtn = document.createElement('button');
+    searchBtn.className = 'btn';
+    searchBtn.id = 'searchBtn';
+    searchBtn.title = 'Rechercher';
+    searchBtn.innerHTML = '<i class="fas fa-search"></i>';
+    document.querySelector('.control-buttons').appendChild(searchBtn);
+    
+    const searchInterface = document.createElement('div');
+    searchInterface.id = 'searchInterface';
+    searchInterface.style.cssText = `
+        position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+        width: calc(100% - 40px); max-width: 550px; background: #fff;
+        padding: 10px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        z-index: 1800; display: none; align-items: center; gap: 5px; transition: .25s ease;
+    `;
+    searchInterface.innerHTML = `
+        <input type="text" id="searchInput" placeholder="Rechercher..." style="flex-grow: 1; padding: 8px; border: 1px solid #d6e2ef; border-radius: 5px;">
+        <button id="searchPrevBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-up"></i></button>
+        <button id="searchNextBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-chevron-down"></i></button>
+        <span id="searchResultsCount" style="flex-shrink: 0; padding: 0 5px; min-width: 40px; text-align: center;"></span>
+        <button id="closeSearchBtn" class="btn" style="width: 35px; height: 35px; flex-shrink: 0;"><i class="fas fa-times"></i></button>
+    `;
+    document.body.appendChild(searchInterface);
+
+    let searchResults = [];
+    let currentSearchIndex = -1;
+    let originalContents = new Map();
+
+    function performSearch() {
+        const searchTerm = document.getElementById('searchInput').value.trim();
+        if (!originalContents.size) {
+            document.querySelectorAll('.article-content, h2, h3').forEach(el => originalContents.set(el, el.innerHTML));
+        }
+        originalContents.forEach((content, el) => el.innerHTML = content);
+        searchResults = [];
+        currentSearchIndex = -1;
+        if (!searchTerm) { updateSearchUI(); return; }
+
+        const regex = new RegExp(searchTerm.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&'), 'gi');
+        originalContents.forEach((content, element) => {
+            element.innerHTML = content.replace(regex, match => `<mark>${match}</mark>`);
+        });
+        searchResults = Array.from(document.querySelectorAll('mark'));
+        if (searchResults.length > 0) navigateResults(true, false);
+        updateSearchUI();
+        window.dispatchEvent(new Event('reflowArticles'));
+    }
+
+    function navigateResults(isNext, shouldWrap = true) {
+        if (!searchResults.length) return;
+        searchResults.forEach(mark => mark.style.backgroundColor = '');
+        if (shouldWrap) {
+            currentSearchIndex = isNext ? (currentSearchIndex + 1) % searchResults.length : (currentSearchIndex - 1 + searchResults.length) % searchResults.length;
+        } else {
+            currentSearchIndex = 0;
+        }
+        const currentMark = searchResults[currentSearchIndex];
+        currentMark.style.backgroundColor = 'var(--accent)';
+        currentMark.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        updateSearchUI();
+    }
+
+    function updateSearchUI() {
+        document.getElementById('searchResultsCount').textContent = searchResults.length > 0 ? `${currentSearchIndex + 1}/${searchResults.length}` : '0/0';
+    }
+    
+    function resetSearch() {
+        originalContents.forEach((content, el) => el.innerHTML = content);
+        originalContents.clear();
+        document.getElementById('searchInput').value = '';
+        searchResults = []; currentSearchIndex = -1;
+        updateSearchUI();
+    }
+
+    searchBtn.addEventListener('click', () => {
+        const isVisible = searchInterface.style.display === 'flex';
+        searchInterface.style.display = isVisible ? 'none' : 'flex';
+        if (isVisible) resetSearch(); else document.getElementById('searchInput').focus();
+    });
+    document.getElementById('searchInput').addEventListener('input', performSearch);
+    document.getElementById('searchNextBtn').addEventListener('click', () => navigateResults(true));
+    document.getElementById('searchPrevBtn').addEventListener('click', () => navigateResults(false));
+    document.getElementById('closeSearchBtn').addEventListener('click', () => {
+        searchInterface.style.display = 'none';
+        resetSearch();
+    });
+}
+</script>
+
+<script>
+(function(){
+  function extractEnumeration(s){
+    const re = /(\d{1,2})(?:\s*°)?(?:\))?(?:\.)?\s+/g; const matches = []; let m;
+    while ((m = re.exec(s))){ const idx=m.index; const prev = idx>0 ? s.charAt(idx-1) : " "; if (/\d/.test(prev)) continue; matches.push({num:parseInt(m[1],10), start:idx, end:re.lastIndex}); }
+    if (matches.length < 2) return null;
+    for (let i=1;i<matches.length;i++){ if (matches[i].num !== matches[i-1].num + 1) return null; }
+    const intro = s.slice(0, matches[0].start).trim().replace(/[:;,\-]\s*$/, ""); const items = [];
+    for (let i=0;i<matches.length;i++){ const st=matches[i].end; const en=(i+1<matches.length)?matches[i+1].start:s.length; let seg = s.slice(st,en).trim().replace(/^[;,:-]\s*/,"").replace(/[;,\s]+$/,""); items.push(seg); }
+    return {intro, start: matches[0].num, items};
+  }
+  function transformNode(node){
+    if (node.querySelector('ol')) return;
+    const plain = node.textContent.replace(/\s+/g,' ').trim(); const res = extractEnumeration(plain); if (!res) return;
+    const frag = document.createElement('div'); if (res.intro){ const p=document.createElement('p'); p.textContent=res.intro; frag.appendChild(p); }
+    const ol=document.createElement('ol'); if (res.start!==1) ol.setAttribute('start', String(res.start));
+    res.items.forEach(it=>{ const li=document.createElement('li'); li.textContent=it; ol.appendChild(li); });
+    frag.appendChild(ol); node.innerHTML=frag.innerHTML;
+  }
+  function run(){ document.querySelectorAll('.article-content').forEach(transformNode); }
+  window.addEventListener('DOMContentLoaded', ()=>setTimeout(run, 60));
+  window.addEventListener('reflowArticles', run);
+})();
+</script>
+
+<script>
+(function(){
+  const $ = s=>document.querySelector(s);
+  const $$ = s=>Array.from(document.querySelectorAll(s));
+  function buildTOC(){
+    const toc = document.getElementById('tocList'); if(!toc) return; toc.innerHTML='';
+    $$('.group').forEach((grp, gi)=>{
+      const gh = grp.querySelector('h2')?.textContent.trim() || `Groupe ${gi+1}`;
+      const gl = document.createElement('a'); gl.textContent=gh; gl.href='#'; gl.style.fontWeight='700';
+      gl.addEventListener('click', e=>{ e.preventDefault(); grp.scrollIntoView({behavior:'smooth', block:'start'}); hideTOC(); });
+      toc.appendChild(gl);
+      const sub = document.createElement('div'); sub.className='toc-sub';
+      grp.querySelectorAll('.article').forEach((art, ai)=>{
+        const at = art.querySelector('.article-header h3')?.textContent.trim() || `Article ${ai+1}`;
+        const a = document.createElement('a'); a.textContent=at; a.href='#';
+        a.addEventListener('click', e=>{ e.preventDefault(); art.scrollIntoView({behavior:'smooth', block:'start'}); hideTOC(); });
+        sub.appendChild(a);
+        if (!art.querySelector('.open-fs')){
+          const btn = document.createElement('button'); btn.className='open-fs'; btn.innerHTML='<i class="fas fa-maximize"></i>';
+          btn.title='Plein écran'; btn.addEventListener('click', ()=>openFS(artIndex(art))); art.querySelector('.article-header')?.appendChild(btn);
+        }
+      });
+      toc.appendChild(sub);
+    });
+  }
+  function showTOC(){ document.getElementById('tocOverlay').classList.add('show'); document.getElementById('tocPanel').classList.add('open'); }
+  function hideTOC(){ document.getElementById('tocOverlay').classList.remove('show'); document.getElementById('tocPanel').classList.remove('open'); }
+  document.addEventListener('DOMContentLoaded', ()=>{
+    const floatBtn = document.getElementById('tocFloatBtn');
+    if (floatBtn) floatBtn.addEventListener('click', showTOC);
+    const overlay = document.getElementById('tocOverlay');
+    if (overlay) overlay.addEventListener('click', hideTOC);
+    const headerBtn = document.getElementById('tocHeaderBtn');
+    if (headerBtn) headerBtn.addEventListener('click', showTOC);
+  });
+  const articles = $$('.article');
+  function artIndex(el){ return articles.indexOf(el); }
+  function getArticle(i){ return articles[Math.max(0, Math.min(articles.length-1, i))]; }
+  function artTitle(i){ const el=getArticle(i); return el? (el.querySelector('.article-header h3')?.textContent.trim()||'') : ''; }
+  function artText(i){ const el=getArticle(i); return el? (el.querySelector('.article-content')?.innerText.trim()||'') : ''; }
+  const synth = window.speechSynthesis;
+  let current = 0, utter = null, playing = false, paused = false, inFS=false;
+  function speakIndex(i){ stopSpeak(); current=i; const text=artText(i); if(!text){ nextArticle(); return; }
+    utter = new SpeechSynthesisUtterance(text); utter.lang='fr-FR'; utter.rate=1; utter.pitch=1;
+    utter.onend = ()=>{ if(playing && !paused){ nextArticle(); } };
+    try{ synth.speak(utter);}catch(e){ console.warn(e); }
+    playing=true; paused=false; updateUI(); highlightCurrent(); }
+  function highlightCurrent(){ articles.forEach(a=>a.classList.remove('reading')); const el=getArticle(current); if(el){ el.classList.add('reading'); if(!inFS) el.scrollIntoView({behavior:'smooth', block:'center'}); } document.getElementById('vNow').textContent = artTitle(current) || '—'; }
+  function pauseSpeak(){ if(synth && synth.speaking){ synth.pause(); paused=true; playing=true; } }
+  function resumeSpeak(){ if(synth && paused){ synth.resume(); paused=false; } else { speakIndex(current); } updateUI(); }
+  function stopSpeak(){ if(synth){ try{synth.cancel();}catch(e){} } playing=false; paused=false; updateUI(); }
+  function prevArticle(){ current=Math.max(0,current-1); if(playing){ speakIndex(current);} else {highlightCurrent();} if(inFS) openFS(current); }
+  function nextArticle(){ current=Math.min(articles.length-1,current+1); if(playing){ speakIndex(current);} else {highlightCurrent();} if(inFS) openFS(current); }
+  document.addEventListener('DOMContentLoaded', ()=>{
+    document.getElementById('vPlay').addEventListener('click', ()=>{ if(!playing || paused){ resumeSpeak(); } else { pauseSpeak(); } });
+    document.getElementById('vPause').addEventListener('click', ()=>pauseSpeak());
+    document.getElementById('vStop').addEventListener('click', ()=>{ stopSpeak(); });
+    document.getElementById('vPrev').addEventListener('click', prevArticle);
+    document.getElementById('vNext').addEventListener('click', nextArticle);
+  });
+  function updateUI(){ document.getElementById('vPlay').innerHTML = paused || !playing ? '<i class="fas fa-play"></i>' : '<i class="fas fa-pause"></i>'; }
+  function openFS(i){ inFS=true; current=i; document.getElementById('fsTitle').textContent=artTitle(i); document.getElementById('fsContent').textContent=artText(i); document.getElementById('fsOverlay').classList.add('show'); document.body.style.overflow='hidden'; speakIndex(i); }
+  function closeFS(){ inFS=false; document.getElementById('fsOverlay').classList.remove('show'); document.body.style.overflow=''; }
+  document.addEventListener('DOMContentLoaded', ()=>{
+    document.getElementById('fsClose').addEventListener('click', ()=>{ closeFS(); });
+    document.getElementById('fsPlay').addEventListener('click', ()=>{ if(!playing || paused){ resumeSpeak(); } else { pauseSpeak(); } });
+    document.getElementById('fsNavPrev').addEventListener('click', ()=>{ prevArticle(); });
+    document.getElementById('fsNavNext').addEventListener('click', ()=>{ nextArticle(); });
+    document.querySelectorAll('.article .open-fs').forEach((btn, idx)=> btn.addEventListener('click', ()=>openFS(idx)));
+    document.querySelectorAll('.article').forEach((art, idx)=> art.addEventListener('dblclick', ()=>openFS(idx)));
+    document.getElementById('fsOverlay').addEventListener('touchstart', (e)=>{ window.__touchX = e.changedTouches[0].clientX; }, {passive:true});
+    document.getElementById('fsOverlay').addEventListener('touchend', (e)=>{ const dx = e.changedTouches[0].clientX - (window.__touchX||0); const TH=50; if(dx<-TH){ nextArticle(); } else if(dx>TH){ prevArticle(); } }, {passive:true});
+  });
+  window.addEventListener('reflowArticles', ()=>{ buildTOC(); });
+  buildTOC();
+})();
+</script>
+
+<script>initSearchFeature(); window.dispatchEvent(new Event('reflowArticles'));</script>
+<footer>Source : Loi n° 2013-451 du 19 juin 2013 — République de Côte d’Ivoire. Adapté au format lecteur interactif.</footer>
+
+<script>
+(function(){
+  function isInteractive(el){
+    if (!el) return false;
+    if (el.tagName){
+      const tag = el.tagName.toLowerCase();
+      if (['input','textarea','select'].includes(tag)) return true;
+    }
+    if (el.isContentEditable) return true;
+    if (el.closest && el.closest('#searchInterface')) return true;
+    return false;
+  }
+  document.addEventListener('DOMContentLoaded', ()=>{ document.body.classList.add('no-select'); });
+  document.addEventListener('contextmenu', e=>{ if (!isInteractive(e.target)) e.preventDefault(); }, {capture:true});
+  document.addEventListener('selectstart', e=>{ if (!isInteractive(e.target)) e.preventDefault(); }, {capture:true});
+  ['copy','cut','paste','dragstart'].forEach(type=>{
+    document.addEventListener(type, e=>{ if (!isInteractive(document.activeElement)) e.preventDefault(); }, {capture:true});
+  });
+  document.addEventListener('keydown', e=>{
+    const k=(e.key||'').toLowerCase();
+    const combo=(e.ctrlKey||e.metaKey)&&['c','x','a','s','p','insert'].includes(k);
+    if(combo && !isInteractive(document.activeElement)){ e.preventDefault(); e.stopPropagation(); }
+  }, {capture:true});
+})();
+</script>
+
+  <script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js"));
+  }
+</script>
+  <button id="pwa-install-btn" aria-label="Installer l'application" hidden>Installer</button>
+<style>
+  #pwa-install-btn{
+    position:fixed; right:16px; bottom:16px; z-index:9999;
+    padding:10px 14px; border:none; border-radius:999px;
+    background:#22c55e; color:white; font:600 14px system-ui,Segoe UI,Roboto,Arial,sans-serif;
+    box-shadow:0 8px 20px rgba(34,197,94,.35);
+  }
+  #pwa-install-btn[hidden]{ display:none; }
+  @supports (padding-bottom: env(safe-area-inset-bottom)){
+    #pwa-install-btn{ bottom: calc(16px + env(safe-area-inset-bottom)); }
+  }
+</style>
+<script>
+  (function(){
+    let deferredPrompt;
+    const btnId = "pwa-install-btn";
+    function ensureBtn(){
+      let b = document.getElementById(btnId);
+      if(!b){
+        b = document.createElement("button");
+        b.id = btnId;
+        b.textContent = "Installer";
+        document.body.appendChild(b);
+      }
+      return b;
+    }
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      const btn = ensureBtn();
+      btn.hidden = false;
+      btn.onclick = async () => {
+        btn.hidden = true;
+        deferredPrompt.prompt();
+        await deferredPrompt.userChoice;
+        deferredPrompt = null;
+      };
+    });
+    if (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) {
+      const btn = document.getElementById(btnId);
+      if(btn) btn.hidden = true;
+    }
+  })();
+</script>
+
+<style>
+  #auth-fab, .views-badge, #auth-modal, .card-views-badge { display: none !important; }
+  .admin-link{ display: none !important; }
+</style>
+
+</body>
+</html>
