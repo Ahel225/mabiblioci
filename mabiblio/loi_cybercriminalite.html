@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Loi n° 2013-451 du 19 juin 2013 — Lutte contre la cybercriminalité</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
@@ -13,7 +13,8 @@
 }
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.6}
-header{position:sticky;top:0;z-index:60;background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(255,255,255,.88));backdrop-filter:saturate(1.1) blur(8px);border-bottom:1px solid #e6eef6}
+header{position:sticky;top:0;z-index:60;background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(255,255,255,.88));backdrop-filter:saturate(1.1) blur(8px);border-bottom:1px solid #e6eef6;transition: transform 0.3s ease, opacity 0.2s ease; transform: translateY(0);}
+.header-hidden{ transform: translateY(-100%) !important; opacity: 0; pointer-events: none; }
 .container{max-width:1120px;margin:0 auto;padding:14px 16px;display:flex;align-items:center;gap:12px}
 .logo{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:radial-gradient(circle at 30% 30%, var(--accent), #ffe89c);color:#113761;box-shadow:var(--shadow);font-size:18px}
 h1{margin:0;font-family:'Playfair Display',serif;font-size:20px;color:var(--primary-700)}
@@ -45,7 +46,7 @@ mark{background:rgba(242,201,76,.45)}
 #tocPanel .toc-list a{display:block; padding:6px 0; color:#183a69; text-decoration:none}
 #tocPanel .toc-sub{margin-left:10px; border-left:2px solid #eef6fd; padding-left:8px}
 /* Voice bar */
-#voiceBar{position:fixed; left:50%; transform:translateX(-50%); bottom:14px; background:#113761; color:#fff; z-index:1550; border-radius:22px; padding:8px 12px; display:flex; gap:10px; align-items:center; box-shadow:0 12px 28px rgba(0,0,0,.3)}
+#voiceBar{position:fixed; left:50%; transform:translateX(-50%); bottom:14px; background:#113761; color:#fff; z-index:1550; border-radius:22px; padding:8px 12px; display:flex; gap:10px; align-items:center; box-shadow:0 12px 28px rgba(0,0,0,.3); transition: transform 0.2s ease; }
 #voiceBar button{width:34px; height:34px; border-radius:10px; border:1px solid #cfe3f5; background:transparent; color:#eaf0f6; display:grid; place-items:center; cursor:pointer}
 #voiceBar .now{font-size:12px; max-width:52vw; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:#f1f5f9}
 /* Fullscreen */
@@ -79,7 +80,7 @@ footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c6785;font-
 
 </head>
 <body>
-<header>
+<header id="mainHeader">
   <div class="container">
     <div class="logo"><i class="fa-solid fa-shield-haltered"></i></div>
     <div>
@@ -87,7 +88,7 @@ footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c6785;font-
       <div class="sub">République de Côte d’Ivoire — Journal officiel</div>
     </div>
     <div class="control-buttons">
-      <button class="btn" id="tocHeaderBtn" title="Sommaire"><i class="fa-solid fa-graduation-cap"></i></button>
+      <button class="btn" id="tocHeaderBtn" title="Sommaire"><i class="fa-solid fa-gavel"></i></button>
       <button class="btn" title="Haut de page" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fa-solid fa-angles-up"></i></button>
     </div>
   </div>
@@ -219,6 +220,131 @@ footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c6785;font-
   <button id="fsNavPrev" title="Précédent"><i class="fas fa-chevron-left"></i></button>
   <button id="fsNavNext" title="Suivant"><i class="fas fa-chevron-right"></i></button>
 </div>
+
+<script>
+// HEADER AUTO-HIDE DURING READING / SCROLLING + REVEAL ON TOUCH/MOUSE MOVE
+(function() {
+    const header = document.getElementById('mainHeader');
+    if (!header) return;
+    let lastScrollY = window.scrollY;
+    let hideTimeout = null;
+    let isVisible = true;
+    
+    function showHeader() {
+        if (!isVisible) {
+            header.classList.remove('header-hidden');
+            isVisible = true;
+        }
+        // reset timer pour le masquage
+        if (hideTimeout) clearTimeout(hideTimeout);
+        hideTimeout = setTimeout(() => {
+            hideHeaderIfScrolling();
+        }, 2000);
+    }
+    
+    function hideHeader() {
+        if (isVisible && !isInteractionBlocked()) {
+            header.classList.add('header-hidden');
+            isVisible = false;
+            if (hideTimeout) clearTimeout(hideTimeout);
+        }
+    }
+    
+    function hideHeaderIfScrolling() {
+        // On cache seulement si on a défilé d'au moins 50px et qu'on n'est pas en haut de page
+        if (window.scrollY > 50) {
+            hideHeader();
+        } else {
+            // en haut, on garde visible
+            if (!isVisible) {
+                header.classList.remove('header-hidden');
+                isVisible = true;
+            }
+        }
+    }
+    
+    function isInteractionBlocked() {
+        // Évite de masquer si un modal/overlay est ouvert
+        const fs = document.getElementById('fsOverlay');
+        if (fs && fs.classList.contains('show')) return true;
+        const tocPanel = document.getElementById('tocPanel');
+        if (tocPanel && tocPanel.classList.contains('open')) return true;
+        const searchInt = document.getElementById('searchInterface');
+        if (searchInt && searchInt.style.display === 'flex') return true;
+        return false;
+    }
+    
+    // Gestion du scroll : on montre puis on cache après délai
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.scrollY;
+        // Si on remonte vers le haut (< 30px), on montre toujours
+        if (currentScroll < 30) {
+            showHeader();
+        } else if (Math.abs(currentScroll - lastScrollY) > 8) {
+            // scroll actif, on montre
+            showHeader();
+        }
+        lastScrollY = currentScroll;
+    }, { passive: true });
+    
+    // Interactions: souris bouge, doigt touche l'écran => réafficher
+    window.addEventListener('mousemove', () => showHeader());
+    window.addEventListener('touchstart', () => showHeader());
+    window.addEventListener('keydown', (e) => {
+        // flèches ou espace, etc.
+        if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === ' ' || e.key === 'Space') {
+            showHeader();
+        }
+    });
+    
+    // Clic sur le document (sauf si cible dans les boutons de contrôle ou la barre vocale)
+    document.addEventListener('click', (e) => {
+        // Vérifier si on clique dans un élément interactif qui ne doit pas masquer le header ?
+        // on montre toujours le header au clic
+        showHeader();
+    });
+    
+    // Sur les boutons de la barre vocale, on montre et on évite masquage rapide
+    const voiceButtons = document.querySelectorAll('#voiceBar button, #tocFloatBtn, .control-buttons button');
+    voiceButtons.forEach(btn => {
+        btn.addEventListener('click', () => showHeader());
+        btn.addEventListener('mouseenter', () => showHeader());
+        btn.addEventListener('touchstart', () => showHeader());
+    });
+    
+    // Lorsqu'on lit un article (highlight via lecture vocale), on montre le header
+    const originalHighlight = highlightCurrent;
+    window.highlightCurrent = function(i) {
+        if (originalHighlight) originalHighlight(i);
+        showHeader();
+    };
+    // Patch dans le lecteur vocal
+    if (typeof highlightCurrent !== 'undefined') {
+        window.highlightCurrent = highlightCurrent;
+    }
+    
+    // Réafficher quand on ouvre le fullscreen aussi
+    const fsOverlay = document.getElementById('fsOverlay');
+    if (fsOverlay) {
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mut) => {
+                if (mut.type === 'attributes' && mut.attributeName === 'class') {
+                    if (fsOverlay.classList.contains('show')) {
+                        showHeader();
+                    } else {
+                        // Quand on quitte le fullscreen, on réévalue le scroll
+                        setTimeout(() => { if (window.scrollY < 30) showHeader(); else hideHeaderIfScrolling(); }, 50);
+                    }
+                }
+            });
+        });
+        observer.observe(fsOverlay, { attributes: true });
+    }
+    
+    // Initialisation: on montre le header
+    showHeader();
+})();
+</script>
 
 <script>
 function initSearchFeature() {
