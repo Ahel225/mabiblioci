@@ -83,6 +83,62 @@ footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c6785;font-
   transform: scale(0) !important;
 }
 
+/* Bouton IA */
+.ai-explain-btn {
+  order: 2;
+  margin-left: auto;
+  width: 34px;
+  height: 34px;
+  border: 1px solid #d5e6f6;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 10px;
+  cursor: pointer;
+  color: white;
+  transition: all 0.2s ease;
+}
+.ai-explain-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+}
+.ai-explanation {
+  margin-top: 12px;
+  padding: 12px;
+  background: linear-gradient(135deg, #f5f0ff 0%, #e8e0ff 100%);
+  border-left: 4px solid #764ba2;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #2d1b4e;
+  display: none;
+}
+.ai-explanation.show {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+.ai-explanation strong {
+  color: #5a3e8c;
+  display: block;
+  margin-bottom: 6px;
+}
+.ai-explanation .ai-loader {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #764ba2;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 </style>
   <link rel="manifest" href="manifest.webmanifest">
   <meta name="theme-color" content="#22c55e">
@@ -647,12 +703,181 @@ function initSearchFeature() {
       if(btn) btn.hidden = true;
     }
   })();
+  
+  // ==================== FONCTION IA POUR EXPLIQUER LES ARTICLES ====================
+(function() {
+    // Configuration - REMPLACEZ PAR VOTRE CLÉ API OPENIBLIO
+    // Pour tester sans clé, le mode simulation est activé automatiquement
+    const API_KEY = '';  // Laissez vide pour utiliser le mode simulation
+    const USE_SIMULATION = !API_KEY;  // Mode simulation si pas de clé
+    
+    // Fonction d'explication via API OpenAI (ou simulation)
+    async function explainArticle(articleTitle, articleContent) {
+        const prompt = `En tant qu'expert juridique pédagogique, explique simplement le contenu de cet article de loi à un élève ou un non-juriste. Utilise un langage clair, donne un exemple concret si possible, et reste concis (max 150 mots).
+        
+Titre : ${articleTitle}
+Contenu : ${articleContent.substring(0, 1500)}
+
+Explication :`;
+        
+        if (USE_SIMULATION) {
+            // Mode simulation hors-ligne (parfait pour démonstration)
+            await new Promise(resolve => setTimeout(resolve, 800));
+            return genererExplicationSimulee(articleTitle, articleContent);
+        }
+        
+        // Appel réel à l'API OpenAI (si clé fournie)
+        try {
+            const response = await fetch('https://api.openai.com/v1/chat/completions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${API_KEY}`
+                },
+                body: JSON.stringify({
+                    model: 'gpt-3.5-turbo',
+                    messages: [
+                        { role: 'system', content: 'Tu es un professeur de droit qui explique simplement des articles de loi.' },
+                        { role: 'user', content: prompt }
+                    ],
+                    temperature: 0.7,
+                    max_tokens: 300
+                })
+            });
+            
+            if (!response.ok) throw new Error('API error');
+            const data = await response.json();
+            return data.choices[0].message.content;
+        } catch (error) {
+            console.error('Erreur IA:', error);
+            return genererExplicationSimulee(articleTitle, articleContent);
+        }
+    }
+    
+    // Simulation intelligente d'explication (hors-ligne)
+    function genererExplicationSimulee(titre, contenu) {
+        const contenuLower = contenu.toLowerCase();
+        
+        // Détection du type d'article pour personnaliser l'explication
+        if (contenuLower.includes('emprisonnement') || contenuLower.includes('amende')) {
+            return `📌 **Explication** : Cet article décrit une infraction et sa sanction. Il précise la peine d'emprisonnement (de ${extrairePeine(contenu) || 'X à Y ans'}) et l'amende encourue (${extraireAmende(contenu) || 'montant variable'}). 
+            
+💡 **Exemple** : Si une personne commet l'acte interdit décrit ici, elle risque une peine de prison et une amende, selon la gravité des faits.`;
+        }
+        
+        if (contenuLower.includes('définition') || contenuLower.includes('on entend par')) {
+            return `📌 **Explication** : Cet article donne la définition juridique de termes importants. Comprendre ces définitions est essentiel pour bien interpréter la loi.
+            
+💡 **Exemple** : Comme un dictionnaire spécialisé, cet article fixe le sens exact des mots employés dans ce texte de loi.`;
+        }
+        
+        if (contenuLower.includes('interdit') || contenuLower.includes('passible')) {
+            return `📌 **Explication** : Cet article énumère des comportements interdits par la loi. Toute personne qui les commet s'expose à des sanctions.
+            
+💡 **Exemple** : C'est comme un "code de bonne conduite" : ce qui est listé ici ne doit absolument pas être fait.`;
+        }
+        
+        if (contenuLower.includes('obligation') || contenuLower.includes('doit')) {
+            return `📌 **Explication** : Cet article impose une obligation légale. Les personnes concernées doivent respecter cette règle.
+            
+💡 **Exemple** : C'est un "il faut" de la loi : une action qui est exigée, pas seulement recommandée.`;
+        }
+        
+        // Explication générique par défaut
+        return `📌 **Explication** : ${titre} pose une règle juridique importante dans le cadre de la lutte contre la cybercriminalité. 
+        
+💡 **En résumé** : ${contenu.substring(0, 200)}...`;
+    }
+    
+    function extrairePeine(texte) {
+        const match = texte.match(/(\d+)\s*à\s*(\d+)\s*ans?/i);
+        return match ? `${match[1]} à ${match[2]} ans` : null;
+    }
+    
+    function extraireAmende(texte) {
+        const match = texte.match(/(\d[\d\s]*\.?\d*)\s*(?:à\s*(\d[\d\s]*\.?\d*))?\s*(?:francs|FCFA)/i);
+        if (match) return `${match[1]}${match[2] ? ' à ' + match[2] : ''} FCFA`;
+        return null;
+    }
+    
+    // Ajouter les boutons IA à chaque article
+    function ajouterBoutonsIA() {
+        const articles = document.querySelectorAll('.article');
+        articles.forEach(article => {
+            // Vérifier si le bouton existe déjà
+            if (article.querySelector('.ai-explain-btn')) return;
+            
+            const header = article.querySelector('.article-header');
+            if (!header) return;
+            
+            // Créer le bouton IA
+            const btnIA = document.createElement('button');
+            btnIA.className = 'ai-explain-btn';
+            btnIA.title = 'Expliquer cet article avec l\'IA';
+            btnIA.innerHTML = '<i class="fas fa-robot"></i>';
+            
+            // Créer le conteneur d'explication
+            const explanationDiv = document.createElement('div');
+            explanationDiv.className = 'ai-explanation';
+            article.appendChild(explanationDiv);
+            
+            // Événement au clic
+            btnIA.addEventListener('click', async (e) => {
+                e.stopPropagation();
+                
+                // Si déjà ouvert et chargé, on toggle
+                if (explanationDiv.classList.contains('show') && explanationDiv.dataset.loaded === 'true') {
+                    explanationDiv.classList.toggle('show');
+                    return;
+                }
+                
+                // Afficher le loader
+                explanationDiv.innerHTML = '<strong><i class="fas fa-robot"></i> Explication IA</strong><div><span class="ai-loader"></span> Génération de l\'explication...</div>';
+                explanationDiv.classList.add('show');
+                
+                // Récupérer le contenu
+                const title = article.querySelector('.article-header h3')?.textContent.trim() || 'Article';
+                const content = article.querySelector('.article-content')?.innerText.trim() || '';
+                
+                if (!content) {
+                    explanationDiv.innerHTML = '<strong><i class="fas fa-robot"></i> Explication IA</strong><div>❌ Impossible d\'expliquer cet article.</div>';
+                    return;
+                }
+                
+                try {
+                    const explication = await explainArticle(title, content);
+                    explanationDiv.innerHTML = `<strong><i class="fas fa-robot"></i> 🤖 Explication IA</strong><div>${explication.replace(/\n/g, '<br>')}</div>`;
+                    explanationDiv.dataset.loaded = 'true';
+                } catch (error) {
+                    explanationDiv.innerHTML = '<strong><i class="fas fa-robot"></i> Explication IA</strong><div>❌ Service momentanément indisponible.</div>';
+                }
+            });
+            
+            // Insérer le bouton après le titre
+            const h3 = header.querySelector('h3');
+            if (h3) {
+                header.insertBefore(btnIA, h3.nextSibling);
+            } else {
+                header.appendChild(btnIA);
+            }
+        });
+    }
+    
+    // Exécuter après le chargement et après chaque reflow
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', ajouterBoutonsIA);
+    } else {
+        ajouterBoutonsIA();
+    }
+    window.addEventListener('reflowArticles', ajouterBoutonsIA);
+})();
 </script>
 
 <style>
   #auth-fab, .views-badge, #auth-modal, .card-views-badge { display: none !important; }
   .admin-link{ display: none !important; }
 </style>
+
 
 </body>
 </html>
