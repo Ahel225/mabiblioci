@@ -67,6 +67,22 @@ footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c6785;font-
   user-select: none !important;
   -webkit-touch-callout: none !important;
 }
+
+/* Masquage automatique pour la barre vocale et le bouton sommaire */
+#voiceBar, #tocFloatBtn {
+  transition: transform 0.3s ease, opacity 0.2s ease;
+}
+
+.voice-hidden, .toc-hidden {
+  transform: translateY(100%) !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+#tocFloatBtn.toc-hidden {
+  transform: scale(0) !important;
+}
+
 </style>
   <link rel="manifest" href="manifest.webmanifest">
   <meta name="theme-color" content="#22c55e">
@@ -222,49 +238,73 @@ footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c6785;font-
 </div>
 
 <script>
-// HEADER AUTO-HIDE DURING READING / SCROLLING + REVEAL ON TOUCH/MOUSE MOVE
+// HEADER + VOICE BAR + TOC BUTTON AUTO-HIDE DURING READING / SCROLLING + REVEAL ON TOUCH/MOUSE MOVE
 (function() {
     const header = document.getElementById('mainHeader');
+    const voiceBar = document.getElementById('voiceBar');
+    const tocBtn = document.getElementById('tocFloatBtn');
     if (!header) return;
+    
     let lastScrollY = window.scrollY;
     let hideTimeout = null;
-    let isVisible = true;
+    let isHeaderVisible = true;
+    let isVoiceVisible = true;
+    let isTocVisible = true;
     
-    function showHeader() {
-        if (!isVisible) {
+    function showAll() {
+        // Afficher le header
+        if (!isHeaderVisible) {
             header.classList.remove('header-hidden');
-            isVisible = true;
+            isHeaderVisible = true;
         }
-        // reset timer pour le masquage
+        // Afficher la barre vocale
+        if (voiceBar && !isVoiceVisible) {
+            voiceBar.classList.remove('voice-hidden');
+            isVoiceVisible = true;
+        }
+        // Afficher le bouton sommaire
+        if (tocBtn && !isTocVisible) {
+            tocBtn.classList.remove('toc-hidden');
+            isTocVisible = true;
+        }
+        // Reset timer
         if (hideTimeout) clearTimeout(hideTimeout);
         hideTimeout = setTimeout(() => {
-            hideHeaderIfScrolling();
+            hideAllIfScrolling();
         }, 2000);
     }
     
-    function hideHeader() {
-        if (isVisible && !isInteractionBlocked()) {
+    function hideAll() {
+        if (isInteractionBlocked()) return;
+        // Masquer header
+        if (isHeaderVisible) {
             header.classList.add('header-hidden');
-            isVisible = false;
-            if (hideTimeout) clearTimeout(hideTimeout);
+            isHeaderVisible = false;
         }
+        // Masquer barre vocale
+        if (voiceBar && isVoiceVisible) {
+            voiceBar.classList.add('voice-hidden');
+            isVoiceVisible = false;
+        }
+        // Masquer bouton sommaire
+        if (tocBtn && isTocVisible) {
+            tocBtn.classList.add('toc-hidden');
+            isTocVisible = false;
+        }
+        if (hideTimeout) clearTimeout(hideTimeout);
     }
     
-    function hideHeaderIfScrolling() {
-        // On cache seulement si on a défilé d'au moins 50px et qu'on n'est pas en haut de page
+    function hideAllIfScrolling() {
+        // On cache seulement si on a défilé d'au moins 50px
         if (window.scrollY > 50) {
-            hideHeader();
+            hideAll();
         } else {
             // en haut, on garde visible
-            if (!isVisible) {
-                header.classList.remove('header-hidden');
-                isVisible = true;
-            }
+            showAll();
         }
     }
     
     function isInteractionBlocked() {
-        // Évite de masquer si un modal/overlay est ouvert
         const fs = document.getElementById('fsOverlay');
         if (fs && fs.classList.contains('show')) return true;
         const tocPanel = document.getElementById('tocPanel');
@@ -274,66 +314,55 @@ footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c6785;font-
         return false;
     }
     
-    // Gestion du scroll : on montre puis on cache après délai
+    // Gestion du scroll
     window.addEventListener('scroll', () => {
         const currentScroll = window.scrollY;
-        // Si on remonte vers le haut (< 30px), on montre toujours
         if (currentScroll < 30) {
-            showHeader();
+            showAll();
         } else if (Math.abs(currentScroll - lastScrollY) > 8) {
-            // scroll actif, on montre
-            showHeader();
+            showAll();
         }
         lastScrollY = currentScroll;
     }, { passive: true });
     
-    // Interactions: souris bouge, doigt touche l'écran => réafficher
-    window.addEventListener('mousemove', () => showHeader());
-    window.addEventListener('touchstart', () => showHeader());
+    // Interactions: souris, toucher, clavier
+    window.addEventListener('mousemove', () => showAll());
+    window.addEventListener('touchstart', () => showAll());
     window.addEventListener('keydown', (e) => {
-        // flèches ou espace, etc.
         if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === ' ' || e.key === 'Space') {
-            showHeader();
+            showAll();
         }
     });
     
-    // Clic sur le document (sauf si cible dans les boutons de contrôle ou la barre vocale)
-    document.addEventListener('click', (e) => {
-        // Vérifier si on clique dans un élément interactif qui ne doit pas masquer le header ?
-        // on montre toujours le header au clic
-        showHeader();
+    document.addEventListener('click', () => showAll());
+    
+    // Boutons spécifiques
+    const interactiveButtons = document.querySelectorAll('#voiceBar button, #tocFloatBtn, .control-buttons button, .open-fs');
+    interactiveButtons.forEach(btn => {
+        btn.addEventListener('click', () => showAll());
+        btn.addEventListener('mouseenter', () => showAll());
+        btn.addEventListener('touchstart', () => showAll());
     });
     
-    // Sur les boutons de la barre vocale, on montre et on évite masquage rapide
-    const voiceButtons = document.querySelectorAll('#voiceBar button, #tocFloatBtn, .control-buttons button');
-    voiceButtons.forEach(btn => {
-        btn.addEventListener('click', () => showHeader());
-        btn.addEventListener('mouseenter', () => showHeader());
-        btn.addEventListener('touchstart', () => showHeader());
-    });
-    
-    // Lorsqu'on lit un article (highlight via lecture vocale), on montre le header
-    const originalHighlight = highlightCurrent;
-    window.highlightCurrent = function(i) {
-        if (originalHighlight) originalHighlight(i);
-        showHeader();
-    };
-    // Patch dans le lecteur vocal
-    if (typeof highlightCurrent !== 'undefined') {
-        window.highlightCurrent = highlightCurrent;
+    // Patch pour la lecture vocale : on affiche tout quand on change d'article
+    const originalHighlight = window.highlightCurrent;
+    if (typeof originalHighlight === 'function') {
+        window.highlightCurrent = function(i) {
+            showAll();
+            originalHighlight(i);
+        };
     }
     
-    // Réafficher quand on ouvre le fullscreen aussi
+    // Observer pour le fullscreen
     const fsOverlay = document.getElementById('fsOverlay');
     if (fsOverlay) {
         const observer = new MutationObserver((mutations) => {
             mutations.forEach((mut) => {
                 if (mut.type === 'attributes' && mut.attributeName === 'class') {
                     if (fsOverlay.classList.contains('show')) {
-                        showHeader();
+                        showAll();
                     } else {
-                        // Quand on quitte le fullscreen, on réévalue le scroll
-                        setTimeout(() => { if (window.scrollY < 30) showHeader(); else hideHeaderIfScrolling(); }, 50);
+                        setTimeout(() => { if (window.scrollY < 30) showAll(); else hideAllIfScrolling(); }, 50);
                     }
                 }
             });
@@ -341,8 +370,8 @@ footer{max-width:1120px;margin:16px auto 26px;padding:0 12px;color:#4c6785;font-
         observer.observe(fsOverlay, { attributes: true });
     }
     
-    // Initialisation: on montre le header
-    showHeader();
+    // Initialisation
+    showAll();
 })();
 </script>
 
