@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Statistiques scolaires</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+
+  <style>
+    body {
+      background: #f6f8fb;
+    }
+    .card {
+      border: 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,.06);
+      border-radius: 16px;
+    }
+    .metric {
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+    .metric-label {
+      color: #6c757d;
+      font-size: .9rem;
+    }
+    .table-responsive {
+      max-height: 70vh;
+    }
+    canvas {
+      max-height: 340px;
+    }
+    .nav-tabs .nav-link {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+<div class="container-fluid py-4">
+  <div class="row mb-4">
+    <div class="col-12">
+      <div class="card p-4">
+        <h1 class="mb-2">Application dynamique de statistiques scolaires</h1>
+        <p class="mb-3 text-muted">Importe plusieurs fichiers Excel, consolide les listes et calcule les statistiques globales et par classe.</p>
+
+        <div class="row g-3 align-items-center">
+          <div class="col-lg-8">
+            <input type="file" id="fileInput" class="form-control" accept=".xls,.xlsx" multiple />
+          </div>
+          <div class="col-lg-4 d-grid">
+            <button id="clearBtn" class="btn btn-outline-danger">Réinitialiser les données</button>
+          </div>
+        </div>
+
+        <div class="mt-3">
+          <small class="text-muted">
+            Astuce : ajoute tous les fichiers un à un ou en même temps. L’application fusionne les données automatiquement.
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-3 mb-4" id="metricsRow">
+    <div class="col-md-3">
+      <div class="card p-3 text-center">
+        <div class="metric" id="totalStudents">0</div>
+        <div class="metric-label">Élèves</div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card p-3 text-center">
+        <div class="metric" id="totalClasses">0</div>
+        <div class="metric-label">Classes</div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card p-3 text-center">
+        <div class="metric" id="globalAverage">N/A</div>
+        <div class="metric-label">Moyenne générale</div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card p-3 text-center">
+        <div class="metric" id="totalFiles">0</div>
+        <div class="metric-label">Fichiers importés</div>
+      </div>
+    </div>
+  </div>
+
+  <ul class="nav nav-tabs mb-3" id="statsTabs" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#generalTab" type="button" role="tab">Vue générale</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#classTab" type="button" role="tab">Par classe</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#sexTab" type="button" role="tab">Par sexe</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#rankingTab" type="button" role="tab">Classement</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#dataTab" type="button" role="tab">Données</button>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane fade show active" id="generalTab" role="tabpanel">
+      <div class="row g-3">
+        <div class="col-lg-6">
+          <div class="card p-3">
+            <h5>Répartition par sexe</h5>
+            <canvas id="sexChart"></canvas>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card p-3">
+            <h5>Distribution des moyennes</h5>
+            <canvas id="avgChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane fade" id="classTab" role="tabpanel">
+      <div class="row g-3">
+        <div class="col-lg-6">
+          <div class="card p-3">
+            <h5>Moyenne par classe</h5>
+            <canvas id="classChart"></canvas>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card p-3">
+            <h5>Tableau des statistiques par classe</h5>
+            <div class="table-responsive">
+              <table class="table table-striped table-sm" id="classStatsTable">
+                <thead></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane fade" id="sexTab" role="tabpanel">
+      <div class="card p-3">
+        <h5>Tableau des statistiques par sexe</h5>
+        <div class="table-responsive">
+          <table class="table table-striped table-sm" id="sexStatsTable">
+            <thead></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane fade" id="rankingTab" role="tabpanel">
+      <div class="card p-3">
+        <h5>Classement des élèves</h5>
+        <div class="table-responsive">
+          <table class="table table-striped table-sm" id="rankingTable">
+            <thead></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane fade" id="dataTab" role="tabpanel">
+      <div class="card p-3">
+        <h5>Données consolidées</h5>
+        <div class="table-responsive">
+          <table class="table table-bordered table-sm" id="dataTable">
+            <thead></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  let allData = [];
+  let fileCount = 0;
+  let sexChart, avgChart, classChart;
+
+  const columnMap = {
+    "matricule": "Matricule",
+    "nom": "Nom",
+    "sexe": "Sexe",
+    "classe": "Classe",
+    "niveau": "Classe",
+    "serie": "Classe",
+    "série": "Classe",
+    "moy.": "Moyenne",
+    "moyenne": "Moyenne",
+    "m.g.": "Moyenne",
+    "mg": "Moyenne",
+    "rang": "Rang",
+    "mention": "Mention",
+    "observ": "Mention",
+    "observation": "Mention"
+  };
+
+  function normalizeKey(key) {
+    return String(key).trim().toLowerCase();
+  }
+
+  function normalizeColumns(row) {
+    const newRow = {};
+    for (const key in row) {
+      const nk = normalizeKey(key);
+      const mapped = columnMap[nk] || key.trim();
+      newRow[mapped] = row[key];
+    }
+    return newRow;
+  }
+
+  function toNumber(v) {
+    if (v === null || v === undefined || v === "") return null;
+    const s = String(v).replace(/\s/g, "").replace(",", ".");
+    const n = parseFloat(s);
+    return isNaN(n) ? null : n;
+  }
+
+  function detectClass(value) {
+    if (value === null || value === undefined) return "Non renseignée";
+    const s = String(value).trim();
+    return s ? s : "Non renseignée";
+  }
+
+  function detectSexe(value) {
+    if (value === null || value === undefined) return "Non renseigné";
+    const s = String(value).trim().toUpperCase();
+    if (s.startsWith("M")) return "M";
+    if (s.startsWith("F")) return "F";
+    return s || "Non renseigné";
+  }
+
+  function readWorkbook(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const data = new Uint8Array(e.target.result);
+          const wb = XLSX.read(data, { type: "array" });
+          let rows = [];
+          wb.SheetNames.forEach(sheetName => {
+            const ws = wb.Sheets[sheetName];
+            const json = XLSX.utils.sheet_to_json(ws, { defval: "" });
+            json.forEach(r => {
+              const nr = normalizeColumns(r);
+              nr.__Fichier = file.name;
+              nr.__Feuille = sheetName;
+              rows.push(nr);
+            });
+          });
+          resolve(rows);
+        } catch (err) {
+          reject(err);
+        }
+      };
+      reader.onerror = reject;
+      reader.readAsArrayBuffer(file);
+    });
+  }
+
+  function computeStats() {
+    allData.forEach(r => {
+      r.Classe = detectClass(r.Classe);
+      r.Sexe = detectSexe(r.Sexe);
+      r.Moyenne = toNumber(r.Moyenne);
+    });
+
+    const validAvg = allData.map(r => r.Moyenne).filter(v => v !== null);
+    const classes = [...new Set(allData.map(r => r.Classe))].sort();
+    const files = [...new Set(allData.map(r => r.__Fichier))];
+
+    document.getElementById("totalStudents").textContent = allData.length;
+    document.getElementById("totalClasses").textContent = classes.length;
+    document.getElementById("globalAverage").textContent = validAvg.length ? (validAvg.reduce((a,b)=>a+b,0)/validAvg.length).toFixed(2) : "N/A";
+    document.getElementById("totalFiles").textContent = files.length;
+
+    buildGeneralCharts();
+    buildClassSection();
+    buildSexSection();
+    buildRankingSection();
+    buildDataSection();
+  }
+
+  function destroyCharts() {
+    if (sexChart) sexChart.destroy();
+    if (avgChart) avgChart.destroy();
+    if (classChart) classChart.destroy();
+  }
+
+  function buildGeneralCharts() {
+    destroyCharts();
+
+    const sexCounts = {};
+    allData.forEach(r => {
+      sexCounts[r.Sexe] = (sexCounts[r.Sexe] || 0) + 1;
+    });
+
+    const sexLabels = Object.keys(sexCounts);
+    const sexValues = Object.values(sexCounts);
+
+    sexChart = new Chart(document.getElementById("sexChart"), {
+      type: "pie",
+       {
+        labels: sexLabels,
+        datasets: [{
+           sexValues,
+          backgroundColor: ["#0d6efd", "#dc3545", "#198754", "#ffc107", "#6c757d"]
+        }]
+      },
+      options: { responsive: true }
+    });
+
+    const avgValues = allData.map(r => r.Moyenne).filter(v => v !== null);
+    avgChart = new Chart(document.getElementById("avgChart"), {
+      type: "bar",
+       {
+        labels: avgValues.map((_, i) => String(i + 1)),
+        datasets: [{
+          label: "Moyenne",
+           avgValues,
+          backgroundColor: "#0d6efd"
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: { beginAtZero: true }
+        }
+      }
+    });
+  }
+
+  function buildClassSection() {
+    const classAgg = {};
+    allData.forEach(r => {
+      if (!classAgg[r.Classe]) classAgg[r.Classe] = [];
+      classAgg[r.Classe].push(r);
+    });
+
+    const classRows = Object.entries(classAgg).map(([cls, rows]) => {
+      const avgs = rows.map(r => r.Moyenne).filter(v => v !== null);
+      return {
+        Classe: cls,
+        Effectif: rows.length,
+        Moyenne: avgs.length ? (avgs.reduce((a,b)=>a+b,0)/avgs.length).toFixed(2) : "N/A",
+        Max: avgs.length ? Math.max(...avgs).toFixed(2) : "N/A",
+        Min: avgs.length ? Math.min(...avgs).toFixed(2) : "N/A"
+      };
+    }).sort((a,b) => (b.Moyenne === "N/A" ? -1 : parseFloat(b.Moyenne)) - (a.Moyenne === "N/A" ? -1 : parseFloat(a.Moyenne)));
+
+    const classLabels = classRows.map(r => r.Classe);
+    const classValues = classRows.map(r => r.Moyenne === "N/A" ? 0 : parseFloat(r.Moyenne));
+
+    classChart = new Chart(document.getElementById("classChart"), {
+      type: "bar",
+       {
+        labels: classLabels,
+        datasets: [{
+          label: "Moyenne par classe",
+           classValues,
+          backgroundColor: "#198754"
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: { y: { beginAtZero: true } }
+      }
+    });
+
+    renderTable("classStatsTable", ["Classe", "Effectif", "Moyenne", "Max", "Min"], classRows);
+  }
+
+  function buildSexSection() {
+    const sexAgg = {};
+    allData.forEach(r => {
+      if (!sexAgg[r.Sexe]) sexAgg[r.Sexe] = [];
+      sexAgg[r.Sexe].push(r);
+    });
+
+    const sexRows = Object.entries(sexAgg).map(([sex, rows]) => {
+      const avgs = rows.map(r => r.Moyenne).filter(v => v !== null);
+      return {
+        Sexe: sex,
+        Effectif: rows.length,
+        Moyenne: avgs.length ? (avgs.reduce((a,b)=>a+b,0)/avgs.length).toFixed(2) : "N/A",
+        Max: avgs.length ? Math.max(...avgs).toFixed(2) : "N/A",
+        Min: avgs.length ? Math.min(...avgs).toFixed(2) : "N/A"
+      };
+    }).sort((a,b) => a.Sexe.localeCompare(b.Sexe));
+
+    renderTable("sexStatsTable", ["Sexe", "Effectif", "Moyenne", "Max", "Min"], sexRows);
+  }
+
+  function buildRankingSection() {
+    const ranked = [...allData]
+      .filter(r => r.Moyenne !== null)
+      .sort((a,b) => b.Moyenne - a.Moyenne)
+      .map((r, i) => ({
+        Rang: i + 1,
+        Matricule: r.Matricule || "",
+        Nom: r.Nom || "",
+        Sexe: r.Sexe || "",
+        Classe: r.Classe || "",
+        Moyenne: r.Moyenne.toFixed(2),
+        Mention: r.Mention || "",
+        Fichier: r.__Fichier || ""
+      }));
+
+    renderTable("rankingTable", ["Rang", "Matricule", "Nom", "Sexe", "Classe", "Moyenne", "Mention", "Fichier"], ranked.slice(0, 50));
+  }
+
+  function buildDataSection() {
+    const rows = allData.map(r => ({
+      Matricule: r.Matricule || "",
+      Nom: r.Nom || "",
+      Sexe: r.Sexe || "",
+      Classe: r.Classe || "",
+      Moyenne: r.Moyenne !== null ? r.Moyenne.toFixed(2) : "",
+      Rang: r.Rang || "",
+      Mention: r.Mention || "",
+      Fichier: r.__Fichier || "",
+      Feuille: r.__Feuille || ""
+    }));
+    renderTable("dataTable", ["Matricule", "Nom", "Sexe", "Classe", "Moyenne", "Rang", "Mention", "Fichier", "Feuille"], rows);
+  }
+
+  function renderTable(tableId, headers, rows) {
+    const table = document.getElementById(tableId);
+    const thead = table.querySelector("thead");
+    const tbody = table.querySelector("tbody");
+    thead.innerHTML = "<tr>" + headers.map(h => `<th>${h}</th>`).join("") + "</tr>";
+    tbody.innerHTML = rows.map(r => "<tr>" + headers.map(h => `<td>${r[h] ?? ""}</td>`).join("") + "</tr>").join("");
+  }
+
+  document.getElementById("fileInput").addEventListener("change", async function(e) {
+    const files = [...e.target.files];
+    for (const file of files) {
+      try {
+        const rows = await readWorkbook(file);
+        allData = allData.concat(rows);
+        fileCount++;
+      } catch (err) {
+        alert("Erreur lors de la lecture de " + file.name);
+      }
+    }
+    computeStats();
+  });
+
+  document.getElementById("clearBtn").addEventListener("click", function() {
+    allData = [];
+    fileCount = 0;
+    destroyCharts();
+    document.getElementById("fileInput").value = "";
+    document.getElementById("totalStudents").textContent = "0";
+    document.getElementById("totalClasses").textContent = "0";
+    document.getElementById("globalAverage").textContent = "N/A";
+    document.getElementById("totalFiles").textContent = "0";
+    ["classStatsTable","sexStatsTable","rankingTable","dataTable"].forEach(id => {
+      document.querySelector("#" + id + " thead").innerHTML = "";
+      document.querySelector("#" + id + " tbody").innerHTML = "";
+    });
+    const ctx1 = document.getElementById("sexChart").getContext("2d");
+    const ctx2 = document.getElementById("avgChart").getContext("2d");
+    const ctx3 = document.getElementById("classChart").getContext("2d");
+    ctx1.clearRect(0,0,ctx1.canvas.width,ctx1.canvas.height);
+    ctx2.clearRect(0,0,ctx2.canvas.width,ctx2.canvas.height);
+    ctx3.clearRect(0,0,ctx3.canvas.width,ctx3.canvas.height);
+  });
+</script>
+</body>
+</html>
