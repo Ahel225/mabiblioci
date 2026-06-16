@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BEPC 2026 - Vérificateur Automatique des Résultats</title>
+
+    <!-- SheetJS pour lire / écrire les fichiers Excel -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js">
+    </script>
+
+    <style>
+        /* ----- RESET & BASE ----- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #f0f4f8;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .app {
+            max-width: 1200px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 28px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.10);
+            padding: 32px 36px 40px;
+            transition: all 0.2s;
+        }
+
+        /* ----- HEADER ----- */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+        .header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            color: #0b2b4a;
+            letter-spacing: -0.3px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .header h1 small {
+            font-weight: 400;
+            font-size: 16px;
+            color: #4a6a85;
+            letter-spacing: 0;
+        }
+        .badge {
+            background: #eef3fa;
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #1a4972;
+        }
+
+        /* ----- UPLOAD ZONE ----- */
+        .upload-zone {
+            background: #f7fafc;
+            border: 2px dashed #cbd9e6;
+            border-radius: 18px;
+            padding: 36px 24px;
+            text-align: center;
+            transition: border-color 0.25s, background 0.25s;
+            cursor: pointer;
+            margin-bottom: 28px;
+        }
+        .upload-zone:hover,
+        .upload-zone.dragover {
+            border-color: #2c7be0;
+            background: #edf4fe;
+        }
+        .upload-zone .icon {
+            font-size: 44px;
+            display: block;
+            margin-bottom: 8px;
+        }
+        .upload-zone p {
+            color: #2c3e50;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        .upload-zone .hint {
+            color: #6b7f93;
+            font-size: 14px;
+            margin-top: 4px;
+        }
+        .upload-zone input[type="file"] {
+            display: none;
+        }
+
+        /* ----- INFOS FICHIER ----- */
+        .file-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #f0f6fe;
+            padding: 10px 18px;
+            border-radius: 14px;
+            margin-top: 12px;
+            font-size: 14px;
+            color: #1a4972;
+            flex-wrap: wrap;
+        }
+        .file-info .name {
+            font-weight: 600;
+            word-break: break-all;
+        }
+        .file-info .count {
+            background: #d4e2f5;
+            padding: 2px 14px;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        /* ----- CONTROLES ----- */
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            align-items: center;
+            margin: 18px 0 22px;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 28px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+            background: #eef2f6;
+            color: #1f3a57;
+        }
+        .btn:active {
+            transform: scale(0.97);
+        }
+        .btn-primary {
+            background: #1a5fb0;
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(26, 95, 176, 0.30);
+        }
+        .btn-primary:hover {
+            background: #134a8a;
+            box-shadow: 0 6px 16px rgba(26, 95, 176, 0.35);
+        }
+        .btn-primary:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+        .btn-success {
+            background: #0f7b3a;
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(15, 123, 58, 0.30);
+        }
+        .btn-success:hover {
+            background: #0b622e;
+        }
+        .btn-danger {
+            background: #b13a3a;
+            color: #fff;
+        }
+        .btn-danger:hover {
+            background: #8f2e2e;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #cbd9e6;
+        }
+        .btn-outline:hover {
+            background: #f0f4f8;
+        }
+
+        /* ----- PROGRESS ----- */
+        .progress-wrap {
+            margin: 18px 0 24px;
+            display: none;
+        }
+        .progress-wrap.active {
+            display: block;
+        }
+        .progress-bar-bg {
+            background: #e9edf2;
+            border-radius: 100px;
+            height: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #1a5fb0, #4a8fe0);
+            border-radius: 100px;
+            transition: width 0.35s ease;
+        }
+        .progress-status {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #2c3e50;
+            margin-top: 6px;
+        }
+        .progress-status .eta {
+            color: #6b7f93;
+        }
+
+        /* ----- TABLEAU DES RÉSULTATS ----- */
+        .table-wrap {
+            overflow-x: auto;
+            border-radius: 16px;
+            border: 1px solid #e6ecf3;
+            margin-top: 16px;
+            max-height: 540px;
+            overflow-y: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            min-width: 700px;
+        }
+        thead {
+            position: sticky;
+            top: 0;
+            z-index: 5;
+            background: #e9eff6;
+        }
+        th {
+            text-align: left;
+            padding: 12px 14px;
+            font-weight: 600;
+            color: #1f3a57;
+            border-bottom: 2px solid #d0dcec;
+            white-space: nowrap;
+        }
+        td {
+            padding: 10px 14px;
+            border-bottom: 1px solid #eef3f9;
+            vertical-align: middle;
+        }
+        tr:hover td {
+            background: #f7fafd;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 2px 14px;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        .status-badge.admis {
+            background: #d4edda;
+            color: #0b5e2b;
+        }
+        .status-badge.non-admis {
+            background: #f8dddd;
+            color: #922a2a;
+        }
+        .status-badge.en-attente {
+            background: #fff3cd;
+            color: #856404;
+        }
+        .status-badge.erreur {
+            background: #f0d0d0;
+            color: #7a2e2e;
+        }
+
+        .matricule-cell {
+            font-family: 'Courier New', monospace;
+            font-weight: 600;
+            color: #0b2b4a;
+        }
+
+        /* ----- STATS ----- */
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px 28px;
+            margin: 18px 0 8px;
+            font-size: 14px;
+            color: #2c3e50;
+        }
+        .stats span {
+            background: #f0f4f8;
+            padding: 4px 16px;
+            border-radius: 100px;
+        }
+        .stats .num {
+            font-weight: 700;
+            color: #0b2b4a;
+        }
+
+        /* ----- RESPONSIVE ----- */
+        @media (max-width: 700px) {
+            .app {
+                padding: 18px 16px 28px;
+            }
+            .header h1 {
+                font-size: 20px;
+                flex-wrap: wrap;
+            }
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .btn {
+                justify-content: center;
+            }
+            .upload-zone {
+                padding: 24px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app" id="app">
+
+        <!-- HEADER -->
+        <div class="header">
+            <h1>
+                🎓 BEPC 2026
+                <small>Vérificateur automatique</small>
+            </h1>
+            <span class="badge">🇨🇮 itdeco.ci</span>
+        </div>
+
+        <!-- UPLOAD -->
+        <div class="upload-zone" id="uploadZone">
+            <span class="icon">📂</span>
+            <p>Déposez votre fichier Excel (.xls / .xlsx)</p>
+            <div class="hint">ou cliquez pour parcourir</div>
+            <input type="file" id="fileInput" accept=".xls,.xlsx" />
+            <div id="fileInfo" class="file-info" style="display:none;"></div>
+        </div>
+
+        <!-- CONTROLES -->
+        <div class="controls">
+            <button class="btn btn-primary" id="btnStart" disabled>
+                ▶ Lancer la vérification
+            </button>
+            <button class="btn btn-success" id="btnExport" disabled>
+                ⬇ Exporter les résultats (Excel)
+            </button>
+            <button class="btn btn-outline" id="btnClear">
+                🗑 Effacer
+            </button>
+            <span style="margin-left:auto; font-size:13px; color:#6b7f93;" id="lblStatus">Aucun fichier chargé</span>
+        </div>
+
+        <!-- PROGRESS -->
+        <div class="progress-wrap" id="progressWrap">
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-status">
+                <span id="progressText">Préparation…</span>
+                <span class="eta" id="progressEta"></span>
+            </div>
+        </div>
+
+        <!-- STATS -->
+        <div class="stats" id="statsArea" style="display:none;">
+            <span>👥 <span class="num" id="statTotal">0</span> candidats</span>
+            <span>✅ <span class="num" id="statAdmis">0</span> admis</span>
+            <span>❌ <span class="num" id="statNonAdmis">0</span> non admis</span>
+            <span>⏳ <span class="num" id="statAttente">0</span> en attente</span>
+            <span>⚠️ <span class="num" id="statErreur">0</span> erreurs</span>
+        </div>
+
+        <!-- TABLEAU -->
+        <div class="table-wrap" id="tableWrap" style="display:none;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Matricule</th>
+                        <th>Nom</th>
+                        <th>Classe</th>
+                        <th>Statut BEPC</th>
+                        <th>Moyenne</th>
+                        <th>Rang</th>
+                        <th>Détails</th>
+                    </tr>
+                </thead>
+                <tbody id="resultBody">
+                </tbody>
+            </table>
+        </div>
+
+        <div style="margin-top:20px; font-size:13px; color:#6b7f93; border-top:1px solid #e6ecf3; padding-top:16px;">
+            ⚡ Les requêtes sont effectuées via un proxy CORS.
+            En cas d'échec, vérifiez votre connexion ou réessayez plus tard.
+        </div>
+    </div>
+
+    <script>
+        // ============================================================
+        //  CONFIGURATION
+        // ============================================================
+        const CONFIG = {
+            // URL du site BEPC (avec le paramètre matricule)
+            BEPC_URL: 'https://itdeco.ci/examens/resultat/bepc/index.html',
+            // Proxy CORS pour contourner les restrictions (public, gratuit)
+            // Utilise api.allorigins.win qui supporte POST
+            PROXY_URL: 'https://api.allorigins.win/raw',
+            // Nombre max de tentatives par matricule
+            MAX_RETRIES: 2,
+            // Délai entre chaque requête (ms) pour ne pas surcharger le serveur
+            DELAY_MS: 1800,
+        };
+
+        // ============================================================
+        //  ÉTAT
+        // ============================================================
+        let state = {
+            rawData: null, // données brutes du fichier Excel (tableau)
+            headers: [], // en-têtes
+            matricules: [], // liste des matricules extraits
+            students: [], // objets { matricule, nom, classe, ligne, resultat }
+            results: [], // résultats obtenus
+            isRunning: false,
+            isCancelled: false,
+            file: null,
+        };
+
+        // ============================================================
+        //  RÉFÉRENCES DOM
+        // ============================================================
+        const $ = (id) => document.getElementById(id);
+        const uploadZone = $('uploadZone');
+        const fileInput = $('fileInput');
+        const fileInfo = $('fileInfo');
+        const btnStart = $('btnStart');
+        const btnExport = $('btnExport');
+        const btnClear = $('btnClear');
+        const lblStatus = $('lblStatus');
+        const progressWrap = $('progressWrap');
+        const progressFill = $('progressFill');
+        const progressText = $('progressText');
+        const progressEta = $('progressEta');
+        const statsArea = $('statsArea');
+        const statTotal = $('statTotal');
+        const statAdmis = $('statAdmis');
+        const statNonAdmis = $('statNonAdmis');
+        const statAttente = $('statAttente');
+        const statErreur = $('statErreur');
+        const tableWrap = $('tableWrap');
+        const resultBody = $('resultBody');
+
+        // ============================================================
+        //  UPLOAD / LECTURE DU FICHIER EXCEL
+        // ============================================================
+        uploadZone.addEventListener('click', () => fileInput.click());
+        uploadZone.addEventListener('dragover', (e) => { e.preventDefault();
+            uploadZone.classList.add('dragover'); });
+        uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('dragover'));
+        uploadZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadZone.classList.remove('dragover');
+            if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length) handleFile(e.target.files[0]);
+        });
+
+        function handleFile(file) {
+            const ext = file.name.split('.').pop().toLowerCase();
+            if (!['xls', 'xlsx'].includes(ext)) {
+                alert('Veuillez sélectionner un fichier Excel (.xls ou .xlsx)');
+                return;
+            }
+            state.file = file;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    const data = new Uint8Array(e.target.result);
+                    const workbook = XLSX.read(data, { type: 'array' });
+                    const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+                    const json = XLSX.utils.sheet_to_json(firstSheet, { defval: '' });
+                    if (!json || json.length === 0) {
+                        alert('Le fichier est vide ou illisible.');
+                        return;
+                    }
+                    // Extraction des matricules
+                    const headers = Object.keys(json[0]);
+                    // Chercher la colonne "Matricule" (ou "matricule" ou "MATRICULE")
+                    const matCol = headers.find(h => h.toLowerCase().trim() === 'matricule');
+                    const nomCol = headers.find(h => h.toLowerCase().trim() === 'nom');
+                    const classeCol = headers.find(h => h.toLowerCase().trim() === 'classe' || h.toLowerCase().trim() ===
+                    'h');
+                    if (!matCol) {
+                        alert('Colonne "Matricule" introuvable dans le fichier.');
+                        return;
+                    }
+                    // Construire la liste des étudiants
+                    const students = json.map((row, idx) => {
+                        const matricule = String(row[matCol] || '').trim();
+                        const nom = nomCol ? String(row[nomCol] || '').trim() : `Élève ${idx+1}`;
+                        const classe = classeCol ? String(row[classeCol] || '').trim() : '';
+                        return { matricule, nom, classe, ligne: idx, row, resultat: null };
+                    }).filter(s => s.matricule.length > 0);
+
+                    if (students.length === 0) {
+                        alert('Aucun matricule trouvé dans le fichier.');
+                        return;
+                    }
+
+                    state.rawData = json;
+                    state.headers = headers;
+                    state.students = students;
+                    state.matricules = students.map(s => s.matricule);
+                    state.results = [];
+
+                    // Afficher les infos du fichier
+                    fileInfo.style.display = 'flex';
+                    fileInfo.innerHTML = `
+                        <span class="name">📄 ${file.name}</span>
+                        <span class="count">${students.length} matricules</span>
+                        <span style="color:#6b7f93; font-size:13px;">(colonne "${matCol}")</span>
+                    `;
+                    lblStatus.textContent = `✅ ${students.length} candidats chargés`;
+                    btnStart.disabled = false;
+                    btnExport.disabled = true;
+                    tableWrap.style.display = 'none';
+                    statsArea.style.display = 'none';
+                    progressWrap.classList.remove('active');
+                    // Reset results
+                    state.results = [];
+                    renderTable();
+                    updateStats();
+
+                } catch (err) {
+                    console.error(err);
+                    alert('Erreur lors de la lecture du fichier : ' + err.message);
+                }
+            };
+            reader.readAsArrayBuffer(file);
+        }
+
+        // ============================================================
+        //  VÉRIFICATION AUTOMATIQUE
+        // ============================================================
+        btnStart.addEventListener('click', startVerification);
+
+        let abortController = null;
+
+        async function startVerification() {
+            if (state.isRunning) return;
+            if (!state.students || state.students.length === 0) {
+                alert('Veuillez charger un fichier Excel d\'abord.');
+                return;
+            }
+
+            // Confirmer
+            const total = state.students.length;
+            const confirmMsg =
+                `Vérifier les résultats BEPC pour ${total} candidats ?\n\nCette opération peut prendre quelques minutes.`;
+            if (!confirm(confirmMsg)) return;
+
+            state.isRunning = true;
+            state.isCancelled = false;
+            btnStart.disabled = true;
+            btnStart.textContent = '⏳ En cours…';
+            btnExport.disabled = true;
+            progressWrap.classList.add('active');
+            progressFill.style.width = '0%';
+            progressText.textContent = 'Démarrage…';
+            progressEta.textContent = '';
+            tableWrap.style.display = 'none';
+            statsArea.style.display = 'none';
+
+            // Réinitialiser les résultats
+            state.results = [];
+            state.students.forEach(s => s.resultat = null);
+
+            let completed = 0;
+            let successCount = 0;
+            let errorCount = 0;
+
+            const startTime = Date.now();
+
+            for (let i = 0; i < state.students.length; i++) {
+                if (state.isCancelled) break;
+
+                const student = state.students[i];
+                const matricule = student.matricule;
+
+                progressText.textContent = `🔍 ${i+1}/${total} : ${matricule} (${student.nom})`;
+
+                try {
+                    const result = await fetchResult(matricule);
+                    student.resultat = result;
+                    state.results.push({ matricule, ...result });
+                    if (result.status === 'admis' || result.status === 'non-admis') {
+                        successCount++;
+                    } else {
+                        errorCount++;
+                    }
+                } catch (err) {
+                    console.error(`Erreur pour ${matricule}:`, err);
+                    student.resultat = { status: 'erreur', message: err.message || 'Erreur inconnue', moyenne: null,
+                        rang: null, details: '' };
+                    state.results.push({ matricule, status: 'erreur', message: err.message || 'Erreur inconnue',
+                        moyenne: null, rang: null, details: '' });
+                    errorCount++;
+                }
+
+                completed = i + 1;
+                const pct = Math.round((completed / total) * 100);
+                progressFill.style.width = pct + '%';
+
+                // Estimation du temps restant
+                const elapsed = (Date.now() - startTime) / 1000;
+                const avg = elapsed / completed;
+                const remaining = (total - completed) * avg;
+                if (remaining > 0) {
+                    const min = Math.floor(remaining / 60);
+                    const sec = Math.floor(remaining % 60);
+                    progressEta.textContent = `⏱ reste ~${min}m${sec}s`;
+                } else {
+                    progressEta.textContent = '';
+                }
+
+                // Mettre à jour l'affichage au fur et à mesure
+                renderTable();
+                updateStats();
+
+                // Délai entre les requêtes
+                if (i < state.students.length - 1 && !state.isCancelled) {
+                    await sleep(CONFIG.DELAY_MS);
+                }
+            }
+
+            // Terminé
+            state.isRunning = false;
+            btnStart.disabled = false;
+            btnStart.textContent = '▶ Lancer la vérification';
+            progressText.textContent = state.isCancelled ? '⏹ Vérification annulée' : '✅ Vérification terminée !';
+            progressEta.textContent = '';
+            tableWrap.style.display = 'block';
+            statsArea.style.display = 'block';
+            btnExport.disabled = false;
+
+            if (state.isCancelled) {
+                lblStatus.textContent = `⏹ Annulé - ${completed}/${total} traités`;
+            } else {
+                lblStatus.textContent = `✅ ${successCount} réussis, ${errorCount} erreurs`;
+            }
+
+            // Recalculer les stats
+            updateStats();
+        }
+
+        // ============================================================
+        //  REQUÊTE VERS LE SITE BEPC (via proxy)
+        // ============================================================
+        async function fetchResult(matricule) {
+            // Tentatives
+            let lastError = null;
+            for (let attempt = 1; attempt <= CONFIG.MAX_RETRIES; attempt++) {
+                try {
+                    // Construire la requête POST vers le site BEPC via le proxy
+                    // Le proxy api.allorigins.win/raw accepte POST et transmet les headers
+                    const formData = new FormData();
+                    formData.append('matricule', matricule);
+                    // Certains sites utilisent 'matricule' ou 'numero' ou 'code'
+                    // On essaie avec les deux noms les plus courants
+                    const body = new URLSearchParams();
+                    body.append('matricule', matricule);
+                    body.append('numero', matricule);
+                    body.append('code', matricule);
+
+                    // On envoie une requête POST avec le bon content-type
+                    const response = await fetch(CONFIG.PROXY_URL, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                            'Origin': 'https://itdeco.ci',
+                            'Referer': 'https://itdeco.ci/examens/resultat/bepc/index.html',
+                        },
+                        body: body.toString(),
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}`);
+                    }
+
+                    const html = await response.text();
+
+                    // Analyser le HTML pour extraire les résultats
+                    const parsed = parseResultHTML(html, matricule);
+
+                    if (parsed.status === 'inconnu') {
+                        // Peut-être que le site utilise un autre nom de paramètre
+                        // On réessaie avec une autre méthode
+                        if (attempt < CONFIG.MAX_RETRIES) {
+                            await sleep(500);
+                            continue;
+                        }
+                        return { status: 'inconnu', message: 'Réponse non reconnue', moyenne: null, rang: null,
+                            details: '' };
+                    }
+
+                    return parsed;
+
+                } catch (err) {
+                    lastError = err;
+                    console.warn(`Tentative ${attempt} pour ${matricule} échouée:`, err.message);
+                    if (attempt < CONFIG.MAX_RETRIES) {
+                        await sleep(800 * attempt);
+                    }
+                }
+            }
+
+            return {
+                status: 'erreur',
+                message: lastError ? lastError.message : 'Échec après plusieurs tentatives',
+                moyenne: null,
+                rang: null,
+                details: ''
+            };
+        }
+
+        // ============================================================
+        //  PARSING DU HTML
+        // ============================================================
+        function parseResultHTML(html, matricule) {
+            // Créer un DOM virtuel
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+
+            // Chercher des indicateurs de résultat
+            const bodyText = doc.body ? doc.body.textContent : '';
+            const htmlText = html;
+
+            // 1. Vérifier si c'est la page de résultats
+            // On cherche des mots-clés typiques : "Admis", "Non admis", "Moyenne", "Rang", etc.
+            const lower = htmlText.toLowerCase();
+
+            // Détection du statut
+            let status = 'inconnu';
+            let moyenne = null;
+            let rang = null;
+            let details = '';
+
+            // Chercher "Admis" ou "Non admis" dans le texte
+            if (lower.includes('admis') && !lower.includes('non admis')) {
+                status = 'admis';
+            } else if (lower.includes('non admis')) {
+                status = 'non-admis';
+            } else if (lower.includes('absent') || lower.includes('absen')) {
+                status = 'absent';
+            } else if (lower.includes('erreur') || lower.includes('introuvable') || lower.includes('inexistant')) {
+                status = 'erreur';
+            }
+
+            // Essayer d'extraire la moyenne et le rang avec des expressions régulières
+            // Cherche "Moyenne : 12,50" ou "Moyenne: 12.50" ou "Moyenne générale : 12,50"
+            const moyenneRegex = /moyenne\s*[:]\s*([\d,\.]+)/i;
+            const moyenneMatch = htmlText.match(moyenneRegex);
+            if (moyenneMatch) {
+                moyenne = parseFloat(moyenneMatch[1].replace(',', '.'));
+            }
+
+            // Cherche "Rang : 5" ou "Rang: 5" ou "Rang général : 5"
+            const rangRegex = /rang\s*[:]\s*(\d+)/i;
+            const rangMatch = htmlText.match(rangRegex);
+            if (rangMatch) {
+                rang = parseInt(rangMatch[1], 10);
+            }
+
+            // Chercher le nom du candidat
+            const nomRegex = /nom\s*[:]\s*([^<]+)/i;
+            const nomMatch = htmlText.match(nomRegex);
+            if (nomMatch) {
+                details += `Nom: ${nomMatch[1].trim()} | `;
+            }
+
+            // Chercher la classe
+            const classeRegex = /classe\s*[:]\s*([^<]+)/i;
+            const classeMatch = htmlText.match(classeRegex);
+            if (classeMatch) {
+                details += `Classe: ${classeMatch[1].trim()} | `;
+            }
+
+            // Chercher les notes par matière (si présentes)
+            const notes = [];
+            const noteRegex = /([A-Za-zÀ-ÖØ-öø-ÿ\s]+)\s*[:]\s*([\d,\.]+)/gi;
+            let match;
+            while ((match = noteRegex.exec(htmlText)) !== null) {
+                const matiere = match[1].trim();
+                const note = parseFloat(match[2].replace(',', '.'));
+                if (!isNaN(note) && matiere.length > 1 && matiere.length < 30) {
+                    notes.push(`${matiere}: ${note}`);
+                }
+            }
+            if (notes.length > 0) {
+                details += `Notes: ${notes.join(', ')}`;
+            }
+
+            // Si le statut est encore inconnu mais qu'on a une moyenne, on considère comme admis/non-admis
+            if (status === 'inconnu' && moyenne !== null) {
+                status = moyenne >= 10 ? 'admis' : 'non-admis';
+            }
+
+            // Si on n'a rien trouvé du tout, on vérifie si le texte contient le matricule
+            if (status === 'inconnu' && htmlText.includes(matricule)) {
+                // Peut-être que la page affiche juste le matricule mais pas de résultat clair
+                status = 'inconnu';
+            }
+
+            return {
+                status,
+                moyenne,
+                rang,
+                details: details.trim() || 'Aucun détail disponible',
+                message: status === 'admis' ? 'Admis' :
+                    status === 'non-admis' ? 'Non admis' :
+                    status === 'absent' ? 'Absent' :
+                    status === 'erreur' ? 'Erreur' :
+                    'Statut inconnu'
+            };
+        }
+
+        // ============================================================
+        //  RENDU DU TABLEAU
+        // ============================================================
+        function renderTable() {
+            const tbody = resultBody;
+            tbody.innerHTML = '';
+
+            const students = state.students || [];
+            if (students.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; color:#6b7f93; padding:30px;">Aucun candidat à afficher</td></tr>`;
+                return;
+            }
+
+            students.forEach((student, idx) => {
+                const tr = document.createElement('tr');
+                const result = student.resultat || null;
+
+                let statusText = 'En attente';
+                let statusClass = 'en-attente';
+                let moyenneText = '—';
+                let rangText = '—';
+                let detailsText = '';
+
+                if (result) {
+                    if (result.status === 'admis') {
+                        statusText = '✅ Admis';
+                        statusClass = 'admis';
+                    } else if (result.status === 'non-admis') {
+                        statusText = '❌ Non admis';
+                        statusClass = 'non-admis';
+                    } else if (result.status === 'absent') {
+                        statusText = '⚠️ Absent';
+                        statusClass = 'erreur';
+                    } else if (result.status === 'erreur') {
+                        statusText = '⚠️ Erreur';
+                        statusClass = 'erreur';
+                    } else if (result.status === 'inconnu') {
+                        statusText = '❓ Inconnu';
+                        statusClass = 'en-attente';
+                    } else {
+                        statusText = '⏳ En attente';
+                        statusClass = 'en-attente';
+                    }
+
+                    if (result.moyenne !== null && result.moyenne !== undefined) {
+                        moyenneText = result.moyenne.toFixed(2);
+                    }
+                    if (result.rang !== null && result.rang !== undefined) {
+                        rangText = result.rang;
+                    }
+                    detailsText = result.details || result.message || '';
+                }
+
+                tr.innerHTML = `
+                    <td>${idx+1}</td>
+                    <td class="matricule-cell">${student.matricule}</td>
+                    <td>${student.nom}</td>
+                    <td>${student.classe || '—'}</td>
+                    <td><span class="status-badge ${statusClass}">${statusText}</span></td>
+                    <td>${moyenneText}</td>
+                    <td>${rangText}</td>
+                    <td style="font-size:12px; color:#4a6a85; max-width:200px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" title="${detailsText}">${detailsText}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // ============================================================
+        //  STATISTIQUES
+        // ============================================================
+        function updateStats() {
+            const students = state.students || [];
+            const total = students.length;
+            let admis = 0,
+                nonAdmis = 0,
+                attente = 0,
+                erreur = 0;
+
+            students.forEach(s => {
+                const r = s.resultat;
+                if (!r || r.status === 'inconnu' || r.status === 'en-attente') {
+                    attente++;
+                } else if (r.status === 'admis') {
+                    admis++;
+                } else if (r.status === 'non-admis') {
+                    nonAdmis++;
+                } else {
+                    erreur++;
+                }
+            });
+
+            statTotal.textContent = total;
+            statAdmis.textContent = admis;
+            statNonAdmis.textContent = nonAdmis;
+            statAttente.textContent = attente;
+            statErreur.textContent = erreur;
+
+            if (total > 0) {
+                statsArea.style.display = 'flex';
+            }
+        }
+
+        // ============================================================
+        //  EXPORT EXCEL
+        // ============================================================
+        btnExport.addEventListener('click', exportExcel);
+
+        function exportExcel() {
+            if (!state.students || state.students.length === 0) {
+                alert('Aucune donnée à exporter.');
+                return;
+            }
+
+            const students = state.students;
+            // Construire les données d'export
+            const headers = [
+                'Matricule', 'Nom', 'Classe', 'Statut BEPC',
+                'Moyenne BEPC', 'Rang BEPC', 'Détails'
+            ];
+
+            const rows = students.map(s => {
+                const r = s.resultat || { status: 'en-attente', moyenne: null, rang: null, details: '' };
+                let statut = 'En attente';
+                if (r.status === 'admis') statut = 'Admis';
+                else if (r.status === 'non-admis') statut = 'Non admis';
+                else if (r.status === 'absent') statut = 'Absent';
+                else if (r.status === 'erreur') statut = 'Erreur';
+                else if (r.status === 'inconnu') statut = 'Inconnu';
+
+                return [
+                    s.matricule,
+                    s.nom,
+                    s.classe || '',
+                    statut,
+                    r.moyenne !== null && r.moyenne !== undefined ? r.moyenne : '',
+                    r.rang !== null && r.rang !== undefined ? r.rang : '',
+                    r.details || r.message || ''
+                ];
+            });
+
+            const data = [headers, ...rows];
+            const wb = XLSX.utils.book_new();
+            const ws = XLSX.utils.aoa_to_sheet(data);
+
+            // Ajuster les largeurs des colonnes
+            ws['!cols'] = [
+                { wch: 18 }, // Matricule
+                { wch: 28 }, // Nom
+                { wch: 14 }, // Classe
+                { wch: 18 }, // Statut
+                { wch: 16 }, // Moyenne
+                { wch: 14 }, // Rang
+                { wch: 50 }, // Détails
+            ];
+
+            XLSX.utils.book_append_sheet(wb, ws, 'Résultats BEPC');
+            const fileName = `BEPC_2026_Resultats_${new Date().toISOString().slice(0,10)}.xlsx`;
+            XLSX.writeFile(wb, fileName);
+
+            lblStatus.textContent = `⬇ Exporté : ${fileName}`;
+        }
+
+        // ============================================================
+        //  ANNULER / EFFACER
+        // ============================================================
+        btnClear.addEventListener('click', () => {
+            if (state.isRunning) {
+                if (confirm('Annuler la vérification en cours ?')) {
+                    state.isCancelled = true;
+                }
+                return;
+            }
+            resetAll();
+        });
+
+        function resetAll() {
+            state.students = [];
+            state.results = [];
+            state.matricules = [];
+            state.rawData = null;
+            state.file = null;
+            fileInfo.style.display = 'none';
+            fileInput.value = '';
+            btnStart.disabled = true;
+            btnExport.disabled = true;
+            progressWrap.classList.remove('active');
+            tableWrap.style.display = 'none';
+            statsArea.style.display = 'none';
+            resultBody.innerHTML = '';
+            lblStatus.textContent = 'Aucun fichier chargé';
+            progressFill.style.width = '0%';
+            progressText.textContent = '';
+            progressEta.textContent = '';
+            state.isRunning = false;
+            state.isCancelled = false;
+            btnStart.textContent = '▶ Lancer la vérification';
+        }
+
+        // ============================================================
+        //  UTILITAIRES
+        // ============================================================
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        // ============================================================
+        //  INIT
+        // ============================================================
+        console.log('📊 BEPC 2026 - Vérificateur automatique');
+        console.log(`ℹ️  Utilise le proxy: ${CONFIG.PROXY_URL}`);
+        console.log('ℹ️  Développé pour itdeco.ci');
+    </script>
+
+</body>
+</html>
