@@ -1,874 +1,233 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BEPC 2026 - Vérificateur Automatique</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js">
-    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détecteur BEPC Mobile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
     <style>
-        /* Styles identiques à la version précédente, je les garde */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            background: #f0f4f8;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            padding: 20px;
-        }
-        .app {
-            max-width: 1200px;
-            width: 100%;
-            background: #ffffff;
-            border-radius: 28px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.10);
-            padding: 32px 36px 40px;
-        }
-        .header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 16px;
-            margin-bottom: 28px;
-        }
-        .header h1 {
-            font-size: 26px;
-            font-weight: 700;
-            color: #0b2b4a;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .header h1 small {
-            font-weight: 400;
-            font-size: 16px;
-            color: #4a6a85;
-        }
-        .badge {
-            background: #eef3fa;
-            padding: 6px 16px;
-            border-radius: 100px;
-            font-size: 14px;
-            font-weight: 500;
-            color: #1a4972;
-        }
-        .upload-zone {
-            background: #f7fafc;
-            border: 2px dashed #cbd9e6;
-            border-radius: 18px;
-            padding: 36px 24px;
-            text-align: center;
-            transition: border-color 0.25s, background 0.25s;
-            cursor: pointer;
-            margin-bottom: 28px;
-        }
-        .upload-zone:hover,
-        .upload-zone.dragover {
-            border-color: #2c7be0;
-            background: #edf4fe;
-        }
-        .upload-zone .icon {
-            font-size: 44px;
-            display: block;
-            margin-bottom: 8px;
-        }
-        .upload-zone p {
-            color: #2c3e50;
-            font-size: 16px;
-            font-weight: 500;
-        }
-        .upload-zone .hint {
-            color: #6b7f93;
-            font-size: 14px;
-            margin-top: 4px;
-        }
-        .upload-zone input[type="file"] {
-            display: none;
-        }
-        .file-info {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: #f0f6fe;
-            padding: 10px 18px;
-            border-radius: 14px;
-            margin-top: 12px;
-            font-size: 14px;
-            color: #1a4972;
-            flex-wrap: wrap;
-        }
-        .file-info .name {
-            font-weight: 600;
-            word-break: break-all;
-        }
-        .file-info .count {
-            background: #d4e2f5;
-            padding: 2px 14px;
-            border-radius: 100px;
-            font-weight: 600;
-            font-size: 13px;
-        }
-        .controls {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 14px;
-            align-items: center;
-            margin: 18px 0 22px;
-        }
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 28px;
-            border: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 15px;
-            cursor: pointer;
-            transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
-            background: #eef2f6;
-            color: #1f3a57;
-        }
-        .btn:active {
-            transform: scale(0.97);
-        }
-        .btn-primary {
-            background: #1a5fb0;
-            color: #fff;
-            box-shadow: 0 4px 12px rgba(26, 95, 176, 0.30);
-        }
-        .btn-primary:hover {
-            background: #134a8a;
-            box-shadow: 0 6px 16px rgba(26, 95, 176, 0.35);
-        }
-        .btn-primary:disabled {
-            opacity: 0.55;
-            cursor: not-allowed;
-            box-shadow: none;
-        }
-        .btn-success {
-            background: #0f7b3a;
-            color: #fff;
-            box-shadow: 0 4px 12px rgba(15, 123, 58, 0.30);
-        }
-        .btn-success:hover {
-            background: #0b622e;
-        }
-        .btn-outline {
-            background: transparent;
-            border: 2px solid #cbd9e6;
-        }
-        .btn-outline:hover {
-            background: #f0f4f8;
-        }
-        .progress-wrap {
-            margin: 18px 0 24px;
-            display: none;
-        }
-        .progress-wrap.active {
-            display: block;
-        }
-        .progress-bar-bg {
-            background: #e9edf2;
-            border-radius: 100px;
-            height: 10px;
-            overflow: hidden;
-            position: relative;
-        }
-        .progress-bar-fill {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, #1a5fb0, #4a8fe0);
-            border-radius: 100px;
-            transition: width 0.35s ease;
-        }
-        .progress-status {
-            display: flex;
-            justify-content: space-between;
-            font-size: 14px;
-            color: #2c3e50;
-            margin-top: 6px;
-        }
-        .progress-status .eta {
-            color: #6b7f93;
-        }
-        .table-wrap {
-            overflow-x: auto;
-            border-radius: 16px;
-            border: 1px solid #e6ecf3;
-            margin-top: 16px;
-            max-height: 540px;
-            overflow-y: auto;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 14px;
-            min-width: 800px;
-        }
-        thead {
-            position: sticky;
-            top: 0;
-            z-index: 5;
-            background: #e9eff6;
-        }
-        th {
-            text-align: left;
-            padding: 12px 14px;
-            font-weight: 600;
-            color: #1f3a57;
-            border-bottom: 2px solid #d0dcec;
-            white-space: nowrap;
-        }
-        td {
-            padding: 10px 14px;
-            border-bottom: 1px solid #eef3f9;
-            vertical-align: middle;
-        }
-        tr:hover td {
-            background: #f7fafd;
-        }
-        .status-badge {
-            display: inline-block;
-            padding: 2px 14px;
-            border-radius: 100px;
-            font-weight: 600;
-            font-size: 12px;
-        }
-        .status-badge.admis {
-            background: #d4edda;
-            color: #0b5e2b;
-        }
-        .status-badge.non-admis {
-            background: #f8dddd;
-            color: #922a2a;
-        }
-        .status-badge.en-attente {
-            background: #fff3cd;
-            color: #856404;
-        }
-        .status-badge.erreur {
-            background: #f0d0d0;
-            color: #7a2e2e;
-        }
-        .matricule-cell {
-            font-family: 'Courier New', monospace;
-            font-weight: 600;
-            color: #0b2b4a;
-        }
-        .stats {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 16px 28px;
-            margin: 18px 0 8px;
-            font-size: 14px;
-            color: #2c3e50;
-        }
-        .stats span {
-            background: #f0f4f8;
-            padding: 4px 16px;
-            border-radius: 100px;
-        }
-        .stats .num {
-            font-weight: 700;
-            color: #0b2b4a;
-        }
-        @media (max-width: 700px) {
-            .app {
-                padding: 18px 16px 28px;
-            }
-            .header h1 {
-                font-size: 20px;
-                flex-wrap: wrap;
-            }
-            .controls {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .btn {
-                justify-content: center;
-            }
-            .upload-zone {
-                padding: 24px 16px;
-            }
-        }
+        body { background-color: #f8f9fa; font-size: 14px; font-family: system-ui, sans-serif; }
+        .header-box { background: linear-gradient(135deg, #0d6efd, #0a58ca); color: white; padding: 20px 10px; text-align: center; border-radius: 0 0 15px 15px; }
+        .card { border: none; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 15px; }
+        .btn-touch { padding: 12px; font-weight: bold; border-radius: 8px; }
+        .badge-admis { background-color: #198754; color: white; padding: 6px 10px; border-radius: 6px; font-weight: bold; }
+        .badge-refuse { background-color: #dc3545; color: white; padding: 6px 10px; border-radius: 6px; font-weight: bold; }
+        .badge-attente { background-color: #6c757d; color: white; padding: 6px 10px; border-radius: 6px; }
+        .badge-cours { background-color: #ffc107; color: #212529; padding: 6px 10px; border-radius: 6px; animation: blink 1s infinite; }
+        @keyframes blink { 50% { opacity: 0.5; } }
+        .table-responsive { max-height: 300px; overflow-y: auto; }
     </style>
 </head>
 <body>
 
-    <div class="app" id="app">
-        <div class="header">
-            <h1>🎓 BEPC 2026 <small>Vérificateur automatique</small></h1>
-            <span class="badge">🇨🇮 itdeco.ci</span>
+    <div class="header-box mb-3">
+        <h4 class="m-0">Vérificateur BEPC - DECO</h4>
+        <small>Version Spéciale Mobile</small>
+    </div>
+
+    <div class="container text-dark">
+        <div class="card p-3">
+            <h6 class="fw-bold text-primary">1. Entrer les matricules</h6>
+            
+            <div class="mb-3">
+                <label class="form-label text-muted small">Option A : Collez vos matricules (un par ligne)</label>
+                <textarea id="textMatricules" class="form-control" rows="4" placeholder="Exemple :&#10;21881248C&#10;22327613B"></textarea>
+            </div>
+
+            <div class="mb-2">
+                <label class="form-label text-muted small">Option B : Ou charger le fichier CSV</label>
+                <input type="file" id="csvFile" class="form-control form-control-sm" accept=".csv">
+            </div>
+            
+            <button id="btnCharger" class="btn btn-secondary btn-sm mt-2">Valider la liste</button>
         </div>
 
-        <div class="upload-zone" id="uploadZone">
-            <span class="icon">📂</span>
-            <p>Déposez votre fichier Excel (.xls / .xlsx)</p>
-            <div class="hint">ou cliquez pour parcourir</div>
-            <input type="file" id="fileInput" accept=".xls,.xlsx" />
-            <div id="fileInfo" class="file-info" style="display:none;"></div>
-        </div>
+        <div class="card p-3">
+            <h6 class="fw-bold text-primary">2. Lancer la recherche</h6>
+            <div class="d-grid gap-2">
+                <button id="btnStart" class="btn btn-primary btn-touch" disabled>DÉMARRER LA DÉTECTION</button>
+                <button id="btnExport" class="btn btn-success btn-touch" disabled>TÉLÉCHARGER LE RÉSULTAT (CSV)</button>
+            </div>
 
-        <div class="controls">
-            <button class="btn btn-primary" id="btnStart" disabled>▶ Lancer la vérification</button>
-            <button class="btn btn-success" id="btnExport" disabled>⬇ Exporter (Excel)</button>
-            <button class="btn btn-outline" id="btnClear">🗑 Effacer</button>
-            <span style="margin-left:auto; font-size:13px; color:#6b7f93;" id="lblStatus">Aucun fichier chargé</span>
-        </div>
-
-        <div class="progress-wrap" id="progressWrap">
-            <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill"></div></div>
-            <div class="progress-status">
-                <span id="progressText">Préparation…</span>
-                <span class="eta" id="progressEta"></span>
+            <div class="mt-3">
+                <div class="progress" style="height: 15px;">
+                    <div id="progressBar" class="progress-bar progress-bar-striped" role="progressbar" style="width: 0%;">0%</div>
+                </div>
+                <div id="progressText" class="text-center small text-muted mt-1">En attente de matricules...</div>
             </div>
         </div>
 
-        <div class="stats" id="statsArea" style="display:none;">
-            <span>👥 <span class="num" id="statTotal">0</span> candidats</span>
-            <span>✅ <span class="num" id="statAdmis">0</span> admis</span>
-            <span>❌ <span class="num" id="statNonAdmis">0</span> non admis</span>
-            <span>⏳ <span class="num" id="statAttente">0</span> en attente</span>
-            <span>⚠️ <span class="num" id="statErreur">0</span> erreurs</span>
-        </div>
-
-        <div class="table-wrap" id="tableWrap" style="display:none;">
-            <table>
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Matricule</th>
-                        <th>Nom</th>
-                        <th>Classe</th>
-                        <th>Statut BEPC</th>
-                        <th>Moyenne</th>
-                        <th>Points</th>
-                        <th>Rang</th>
-                        <th>Détails</th>
-                    </tr>
-                </thead>
-                <tbody id="resultBody"></tbody>
-            </table>
-        </div>
-
-        <div style="margin-top:20px; font-size:13px; color:#6b7f93; border-top:1px solid #e6ecf3; padding-top:16px;">
-            ⚡ Les requêtes sont effectuées via un proxy CORS. En cas d'échec, ouvrez la console (F12) pour voir les détails.
+        <div class="card p-3">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <h6 class="fw-bold m-0 text-primary">3. Aperçu des Résultats</h6>
+                <span id="totalBadge" class="badge bg-dark">Total : 0</span>
+            </div>
+            
+            <div class="table-responsive">
+                <table class="table table-sm table-striped align-middle" id="tableResultats">
+                    <thead>
+                        <tr>
+                            <th>Matricule</th>
+                            <th>Résultat</th>
+                            <th>Points</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="3" class="text-center text-muted py-4">Aucun matricule validé pour le moment.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
     <script>
-        // ============================================================
-        // CONFIGURATION
-        // ============================================================
-        const CONFIG = {
-            BASE_URL: 'https://itdeco.ci/examens/resultat/bepc',
-            PROXY_URL: 'https://api.allorigins.win/raw',
-            MAX_RETRIES: 2,
-            DELAY_MS: 2000,
-        };
+        let listeCandidats = [];
+        
+        // Gestion du bouton de validation manuelle ou CSV
+        document.getElementById('btnCharger').addEventListener('click', function() {
+            const text = document.getElementById('textMatricules').value.trim();
+            const fileInput = document.getElementById('csvFile').files[0];
 
-        // ============================================================
-        // ÉTAT
-        // ============================================================
-        let state = {
-            students: [],
-            results: [],
-            isRunning: false,
-            isCancelled: false,
-            file: null,
-            csrfToken: null,
-        };
+            if (fileInput) {
+                // Si un fichier CSV est fourni
+                Papa.parse(fileInput, {
+                    skipEmptyLines: true,
+                    complete: function(results) {
+                        let data = results.data;
+                        if(data[0] && data[0][0] && data[0][0].includes("Tableau 1")) data.shift(); // Nettoyage de votre en-tête
+                        data.shift(); // En-tête des colonnes
+                        
+                        listeCandidats = data.map(row => ({
+                            matricule: row[0] ? row[0].trim() : '',
+                            decision: 'En attente',
+                            points: 'N/A'
+                        })).filter(c => c.matricule !== '');
 
-        // ============================================================
-        // RÉFÉRENCES DOM
-        // ============================================================
-        const $ = id => document.getElementById(id);
-        const uploadZone = $('uploadZone');
-        const fileInput = $('fileInput');
-        const fileInfo = $('fileInfo');
-        const btnStart = $('btnStart');
-        const btnExport = $('btnExport');
-        const btnClear = $('btnClear');
-        const lblStatus = $('lblStatus');
-        const progressWrap = $('progressWrap');
-        const progressFill = $('progressFill');
-        const progressText = $('progressText');
-        const progressEta = $('progressEta');
-        const statsArea = $('statsArea');
-        const statTotal = $('statTotal');
-        const statAdmis = $('statAdmis');
-        const statNonAdmis = $('statNonAdmis');
-        const statAttente = $('statAttente');
-        const statErreur = $('statErreur');
-        const tableWrap = $('tableWrap');
-        const resultBody = $('resultBody');
-
-        // ============================================================
-        // UPLOAD
-        // ============================================================
-        uploadZone.addEventListener('click', () => fileInput.click());
-        uploadZone.addEventListener('dragover', e => { e.preventDefault();
-            uploadZone.classList.add('dragover'); });
-        uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('dragover'));
-        uploadZone.addEventListener('drop', e => {
-            e.preventDefault();
-            uploadZone.classList.remove('dragover');
-            if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
-        });
-        fileInput.addEventListener('change', e => { if (e.target.files.length) handleFile(e.target.files[0]); });
-
-        function handleFile(file) {
-            const ext = file.name.split('.').pop().toLowerCase();
-            if (!['xls', 'xlsx'].includes(ext)) {
-                alert('Veuillez sélectionner un fichier Excel (.xls ou .xlsx)');
-                return;
-            }
-            state.file = file;
-            const reader = new FileReader();
-            reader.onload = e => {
-                try {
-                    const data = new Uint8Array(e.target.result);
-                    const workbook = XLSX.read(data, { type: 'array' });
-                    const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
-                    const json = XLSX.utils.sheet_to_json(firstSheet, { defval: '' });
-                    if (!json || json.length === 0) throw new Error('Fichier vide');
-                    const headers = Object.keys(json[0]);
-                    const matCol = headers.find(h => h.toLowerCase().trim() === 'matricule');
-                    const nomCol = headers.find(h => h.toLowerCase().trim() === 'nom');
-                    const classeCol = headers.find(h => h.toLowerCase().trim() === 'classe' || h.toLowerCase().trim() ===
-                        'h');
-                    if (!matCol) throw new Error('Colonne "Matricule" introuvable');
-                    const students = json.map((row, idx) => {
-                        const matricule = String(row[matCol] || '').trim();
-                        const nom = nomCol ? String(row[nomCol] || '').trim() : `Élève ${idx+1}`;
-                        const classe = classeCol ? String(row[classeCol] || '').trim() : '';
-                        return { matricule, nom, classe, resultat: null };
-                    }).filter(s => s.matricule.length > 0);
-                    if (!students.length) throw new Error('Aucun matricule trouvé');
-                    state.students = students;
-                    fileInfo.style.display = 'flex';
-                    fileInfo.innerHTML = `
-                        <span class="name">📄 ${file.name}</span>
-                        <span class="count">${students.length} matricules</span>
-                    `;
-                    lblStatus.textContent = `✅ ${students.length} candidats chargés`;
-                    btnStart.disabled = false;
-                    btnExport.disabled = true;
-                    tableWrap.style.display = 'none';
-                    statsArea.style.display = 'none';
-                    progressWrap.classList.remove('active');
-                    state.results = [];
-                    renderTable();
-                    updateStats();
-                } catch (err) {
-                    alert('Erreur : ' + err.message);
-                }
-            };
-            reader.readAsArrayBuffer(file);
-        }
-
-        // ============================================================
-        // RÉCUPÉRATION DU TOKEN CSRF
-        // ============================================================
-        async function fetchCsrfToken() {
-            try {
-                const response = await fetch(CONFIG.PROXY_URL, {
-                    method: 'GET',
-                    headers: {
-                        'Origin': 'https://itdeco.ci',
-                        'Referer': 'https://itdeco.ci/examens/resultat/bepc/index.html',
+                        preparerInterface();
                     }
                 });
-                if (!response.ok) throw new Error(`HTTP ${response.status}`);
-                const html = await response.text();
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, 'text/html');
-                // Recherche d'un input hidden nommé _token, csrf, etc.
-                const inputs = doc.querySelectorAll('input[type="hidden"]');
-                for (let input of inputs) {
-                    const name = input.getAttribute('name') || '';
-                    const value = input.getAttribute('value') || '';
-                    if (name.toLowerCase().includes('token') || name.toLowerCase().includes('csrf')) {
-                        return value;
-                    }
-                }
-                return null;
-            } catch (err) {
-                console.warn('Impossible de récupérer le token CSRF :', err);
-                return null;
+            } else if (text) {
+                // Si l'utilisateur a collé du texte directement
+                let lignes = text.split('\n');
+                listeCandidats = lignes.map(l => ({
+                    matricule: l.trim(),
+                    decision: 'En attente',
+                    points: 'N/A'
+                })).filter(c => c.matricule !== '');
+
+                preparerInterface();
+            } else {
+                alert("Veuillez coller des matricules ou sélectionner un fichier CSV.");
             }
-        }
-
-        // ============================================================
-        // VÉRIFICATION
-        // ============================================================
-        btnStart.addEventListener('click', async () => {
-            if (state.isRunning) return;
-            if (!state.students.length) {
-                alert('Veuillez charger un fichier Excel.');
-                return;
-            }
-            // Récupération du token CSRF une seule fois
-            if (state.csrfToken === null) {
-                progressText.textContent = '🔑 Récupération du token…';
-                progressWrap.classList.add('active');
-                state.csrfToken = await fetchCsrfToken();
-                progressWrap.classList.remove('active');
-                if (!state.csrfToken) {
-                    console.warn('Aucun token CSRF trouvé, on continue sans.');
-                }
-            }
-
-            const total = state.students.length;
-            if (!confirm(`Vérifier les résultats pour ${total} candidats ?`)) return;
-
-            state.isRunning = true;
-            state.isCancelled = false;
-            btnStart.disabled = true;
-            btnStart.textContent = '⏳ En cours…';
-            btnExport.disabled = true;
-            progressWrap.classList.add('active');
-            progressFill.style.width = '0%';
-            progressText.textContent = 'Démarrage…';
-            progressEta.textContent = '';
-            tableWrap.style.display = 'none';
-            statsArea.style.display = 'none';
-
-            state.results = [];
-            state.students.forEach(s => s.resultat = null);
-
-            let completed = 0,
-                success = 0,
-                errors = 0;
-            const startTime = Date.now();
-
-            for (let i = 0; i < state.students.length; i++) {
-                if (state.isCancelled) break;
-                const student = state.students[i];
-                const matricule = student.matricule;
-                progressText.textContent = `🔍 ${i+1}/${total} : ${matricule}`;
-                try {
-                    const result = await fetchResult(matricule);
-                    student.resultat = result;
-                    state.results.push({ matricule, ...result });
-                    if (result.status === 'admis' || result.status === 'non-admis') success++;
-                    else errors++;
-                } catch (err) {
-                    console.error(err);
-                    student.resultat = { status: 'erreur', message: err.message, moyenne: null, rang: null,
-                    points: null, details: '' };
-                    errors++;
-                }
-                completed = i + 1;
-                const pct = Math.round((completed / total) * 100);
-                progressFill.style.width = pct + '%';
-                const elapsed = (Date.now() - startTime) / 1000;
-                const remaining = (total - completed) * (elapsed / completed);
-                if (remaining > 0) {
-                    const min = Math.floor(remaining / 60),
-                        sec = Math.floor(remaining % 60);
-                    progressEta.textContent = `⏱ reste ~${min}m${sec}s`;
-                }
-                renderTable();
-                updateStats();
-                if (i < state.students.length - 1 && !state.isCancelled) await sleep(CONFIG.DELAY_MS);
-            }
-
-            state.isRunning = false;
-            btnStart.disabled = false;
-            btnStart.textContent = '▶ Lancer la vérification';
-            progressText.textContent = state.isCancelled ? '⏹ Annulé' : '✅ Terminé !';
-            progressEta.textContent = '';
-            tableWrap.style.display = 'block';
-            statsArea.style.display = 'block';
-            btnExport.disabled = false;
-            lblStatus.textContent = `✅ ${success} réussis, ${errors} erreurs`;
-            updateStats();
         });
 
-        // ============================================================
-        // REQUÊTE DE RÉSULTAT (avec token)
-        // ============================================================
-        async function fetchResult(matricule) {
-            let lastError = null;
-            for (let attempt = 1; attempt <= CONFIG.MAX_RETRIES; attempt++) {
-                try {
-                    const body = new URLSearchParams();
-                    body.append('matricule', matricule);
-                    if (state.csrfToken) {
-                        body.append('_token', state.csrfToken);
-                        body.append('csrf', state.csrfToken);
-                    }
-                    // Ajouter d'autres champs éventuels
-                    body.append('action', 'consulter');
-
-                    const response = await fetch(CONFIG.PROXY_URL, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded',
-                            'Origin': 'https://itdeco.ci',
-                            'Referer': 'https://itdeco.ci/examens/resultat/bepc/index.html',
-                            'X-Requested-With': 'XMLHttpRequest',
-                        },
-                        body: body.toString(),
-                    });
-
-                    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-                    const html = await response.text();
-
-                    // Vérifier si la page contient des résultats (au moins le matricule)
-                    if (!html.includes(matricule) && !html.includes('Félicitations') && !html.includes('Désolé')) {
-                        // Peut-être que le site redirige ou utilise JS, on tente avec une autre URL
-                        if (attempt < CONFIG.MAX_RETRIES) {
-                            await sleep(1000);
-                            continue;
-                        }
-                        return {
-                            status: 'inconnu',
-                            message: 'Page de résultats introuvable',
-                            moyenne: null,
-                            rang: null,
-                            points: null,
-                            details: 'Le site utilise peut-être JavaScript ou un token invalide.'
-                        };
-                    }
-
-                    const parsed = parseResultHTML(html, matricule);
-                    return parsed;
-
-                } catch (err) {
-                    lastError = err;
-                    console.warn(`Tentative ${attempt} échouée:`, err.message);
-                    if (attempt < CONFIG.MAX_RETRIES) await sleep(1000 * attempt);
-                }
-            }
-            return {
-                status: 'erreur',
-                message: lastError ? lastError.message : 'Échec',
-                moyenne: null,
-                rang: null,
-                points: null,
-                details: ''
-            };
+        function __getBadgeHTML(status) {
+            if (status === 'Admis') return `<span class="badge-admis">Admis</span>`;
+            if (status === 'Refusé') return `<span class="badge-refuse">Refusé</span>`;
+            if (status === 'Scan...') return `<span class="badge-cours">Scan...</span>`;
+            return `<span class="badge-attente">En attente</span>`;
         }
 
-        // ============================================================
-        // PARSING
-        // ============================================================
-        function parseResultHTML(html, matricule) {
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(html, 'text/html');
-            const bodyText = doc.body ? doc.body.textContent : html;
-            const normalized = bodyText.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
-
-            let status = 'inconnu',
-                moyenne = null,
-                rang = null,
-                points = null,
-                details = '';
-
-            // Détection des mots-clés
-            if (normalized.includes('felicitations')) status = 'admis';
-            else if (normalized.includes('desole')) status = 'non-admis';
-            else if (normalized.includes('admis') && !normalized.includes('non admis')) status = 'admis';
-            else if (normalized.includes('non admis')) status = 'non-admis';
-            else if (normalized.includes('refuse')) status = 'non-admis';
-            else if (normalized.includes('absent')) status = 'absent';
-            else if (normalized.includes('erreur') || normalized.includes('introuvable')) status = 'erreur';
-
-            // Extraction de la moyenne
-            const moyMatch = html.match(/moyenne\s*[:]\s*([\d,\.]+)/i);
-            if (moyMatch) moyenne = parseFloat(moyMatch[1].replace(',', '.'));
-
-            // Extraction des points
-            const ptsMatch = html.match(/(?:total|points|score|note)\s*[:]\s*([\d,\.]+)/i);
-            if (ptsMatch) points = parseFloat(ptsMatch[1].replace(',', '.'));
-            else {
-                // Chercher un nombre flottant à la fin
-                const floatMatch = html.match(/(\d+[\.,]\d{1,2})\s*$/m);
-                if (floatMatch) {
-                    const val = parseFloat(floatMatch[1].replace(',', '.'));
-                    if (val > 0 && val < 100) points = val;
-                }
-            }
-
-            // Extraction du rang
-            const rangMatch = html.match(/rang\s*[:]\s*(\d+)/i);
-            if (rangMatch) rang = parseInt(rangMatch[1], 10);
-
-            // Nom et classe
-            const nomMatch = html.match(/nom\s*[:]\s*([^<]+)/i);
-            if (nomMatch) details += `Nom: ${nomMatch[1].trim()} | `;
-            const classeMatch = html.match(/classe\s*[:]\s*([^<]+)/i);
-            if (classeMatch) details += `Classe: ${classeMatch[1].trim()} | `;
-
-            if (status === 'inconnu' && moyenne !== null) status = moyenne >= 10 ? 'admis' : 'non-admis';
-            if (status === 'inconnu' && points !== null) status = points >= 120 ? 'admis' : 'non-admis';
-
-            if (status === 'inconnu') details += 'Statut non reconnu. Voir console.';
-
-            // Journal pour débogage
-            console.log(`Matricule ${matricule} -> statut: ${status}, points: ${points}, moyenne: ${moyenne}, rang: ${rang}`);
-
-            return {
-                status,
-                moyenne,
-                rang,
-                points,
-                details: details.trim() || 'Aucun détail',
-                message: status === 'admis' ? 'Admis' :
-                    status === 'non-admis' ? 'Non admis' :
-                    status === 'absent' ? 'Absent' :
-                    status === 'erreur' ? 'Erreur' :
-                    'Inconnu'
-            };
-        }
-
-        // ============================================================
-        // AFFICHAGE
-        // ============================================================
-        function renderTable() {
-            const tbody = resultBody;
+        function preparerInterface() {
+            document.getElementById('totalBadge').innerText = `Total : ${listeCandidats.length}`;
+            document.getElementById('btnStart').disabled = listeCandidats.length === 0;
+            document.getElementById('progressText').innerText = `${listeCandidats.length} candidat(s) prêt(s).`;
+            
+            const tbody = document.querySelector('#tableResultats tbody');
             tbody.innerHTML = '';
-            if (!state.students.length) {
-                tbody.innerHTML =
-                    `<tr><td colspan="9" style="text-align:center; color:#6b7f93; padding:30px;">Aucun candidat</td></tr>`;
-                return;
-            }
-            state.students.forEach((student, idx) => {
-                const r = student.resultat || null;
-                let statusText = 'En attente',
-                    statusClass = 'en-attente',
-                    moy = '—',
-                    pts = '—',
-                    rang = '—',
-                    details = '';
-                if (r) {
-                    if (r.status === 'admis') { statusText = '✅ Admis';
-                        statusClass = 'admis'; } else if (r.status === 'non-admis') { statusText = '❌ Non admis';
-                        statusClass = 'non-admis'; } else if (r.status === 'absent') { statusText = '⚠️ Absent';
-                        statusClass = 'erreur'; } else if (r.status === 'erreur') { statusText = '⚠️ Erreur';
-                        statusClass = 'erreur'; } else if (r.status === 'inconnu') { statusText = '❓ Inconnu';
-                        statusClass = 'en-attente'; }
-                    if (r.moyenne !== null && r.moyenne !== undefined) moy = r.moyenne.toFixed(2);
-                    if (r.points !== null && r.points !== undefined) pts = r.points.toFixed(2);
-                    if (r.rang !== null && r.rang !== undefined) rang = r.rang;
-                    details = r.details || r.message || '';
-                }
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td>${idx+1}</td>
-                    <td class="matricule-cell">${student.matricule}</td>
-                    <td>${student.nom}</td>
-                    <td>${student.classe || '—'}</td>
-                    <td><span class="status-badge ${statusClass}">${statusText}</span></td>
-                    <td>${moy}</td>
-                    <td>${pts}</td>
-                    <td>${rang}</td>
-                    <td style="font-size:12px; color:#4a6a85; max-width:200px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" title="${details}">${details}</td>
-                `;
+            listeCandidats.forEach((c, idx) => {
+                let tr = document.createElement('tr');
+                tr.id = `row-${idx}`;
+                tr.innerHTML = `<td>${c.matricule}</td><td>${__getBadgeHTML(c.decision)}</td><td class="fw-bold">${c.points}</td>`;
                 tbody.appendChild(tr);
             });
         }
 
-        function updateStats() {
-            const total = state.students.length;
-            let admis = 0,
-                nonAdmis = 0,
-                attente = 0,
-                erreur = 0;
-            state.students.forEach(s => {
-                const r = s.resultat;
-                if (!r || r.status === 'inconnu' || r.status === 'en-attente') attente++;
-                else if (r.status === 'admis') admis++;
-                else if (r.status === 'non-admis') nonAdmis++;
-                else erreur++;
-            });
-            statTotal.textContent = total;
-            statAdmis.textContent = admis;
-            statNonAdmis.textContent = nonAdmis;
-            statAttente.textContent = attente;
-            statErreur.textContent = erreur;
-            if (total > 0) statsArea.style.display = 'flex';
-        }
+        // Boucle de détection mobile via un proxy CORS
+        document.getElementById('btnStart').addEventListener('click', async function() {
+            this.disabled = true;
+            document.getElementById('btnCharger').disabled = true;
+            
+            const progressBar = document.getElementById('progressBar');
+            const progressText = document.getElementById('progressText');
 
-        // ============================================================
-        // EXPORT
-        // ============================================================
-        btnExport.addEventListener('click', () => {
-            if (!state.students.length) return alert('Aucune donnée à exporter.');
-            const headers = ['Matricule', 'Nom', 'Classe', 'Statut BEPC', 'Moyenne', 'Points', 'Rang', 'Détails'];
-            const rows = state.students.map(s => {
-                const r = s.resultat || { status: 'en-attente', moyenne: null, points: null, rang: null,
-                    details: '' };
-                let statut = 'En attente';
-                if (r.status === 'admis') statut = 'Admis';
-                else if (r.status === 'non-admis') statut = 'Non admis';
-                else if (r.status === 'absent') statut = 'Absent';
-                else if (r.status === 'erreur') statut = 'Erreur';
-                else if (r.status === 'inconnu') statut = 'Inconnu';
-                return [
-                    s.matricule, s.nom, s.classe || '', statut,
-                    r.moyenne !== null && r.moyenne !== undefined ? r.moyenne : '',
-                    r.points !== null && r.points !== undefined ? r.points : '',
-                    r.rang !== null && r.rang !== undefined ? r.rang : '',
-                    r.details || r.message || ''
-                ];
-            });
-            const data = [headers, ...rows];
-            const wb = XLSX.utils.book_new();
-            const ws = XLSX.utils.aoa_to_sheet(data);
-            ws['!cols'] = [{ wch: 18 }, { wch: 28 }, { wch: 14 }, { wch: 18 }, { wch: 16 }, { wch: 14 }, { wch: 14 },
-            { wch: 50 }];
-            XLSX.utils.book_append_sheet(wb, ws, 'Résultats BEPC');
-            XLSX.writeFile(wb, `BEPC_2026_Resultats_${new Date().toISOString().slice(0,10)}.xlsx`);
-        });
+            // URL officielle de la DECO
+            const targetBaseUrl = "https://itdeco.ci/examens/resultat/bepc/index.html";
 
-        // ============================================================
-        // EFFACER
-        // ============================================================
-        btnClear.addEventListener('click', () => {
-            if (state.isRunning) {
-                if (confirm('Annuler la vérification ?')) state.isCancelled = true;
-                return;
+            for (let i = 0; i < listeCandidats.length; i++) {
+                let candidat = listeCandidats[i];
+                candidat.decision = 'Scan...';
+                let currentRow = document.getElementById(`row-${i}`);
+                currentRow.cells[1].innerHTML = __getBadgeHTML('Scan...');
+                currentRow.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+                progressText.innerText = `Analyse : ${candidat.matricule} (${i+1}/${listeCandidats.length})`;
+
+                try {
+                    // Utilisation d'un proxy public pour éviter le blocage CORS sur mobile
+                    // On simule l'envoi du matricule (généralement passé en paramètre GET ou POST)
+                    let urlRecherche = `${targetBaseUrl}?matricule=${encodeURIComponent(candidat.matricule)}`;
+                    let proxyUrl = `https://corsproxy.io/?${encodeURIComponent(urlRecherche)}`;
+
+                    let response = await fetch(proxyUrl);
+                    let htmlText = await response.text();
+                    let htmlLower = htmlText.toLowerCase();
+
+                    // --- Logique de détection demandée ---
+                    if (htmlLower.includes("félicitations") || htmlLower.includes("felicitations") || htmlLower.includes("admis")) {
+                        candidat.decision = "Admis";
+                    } else if (htmlLower.includes("désolé") || htmlLower.includes("desole") || htmlLower.includes("refusé")) {
+                        candidat.decision = "Refusé";
+                    } else {
+                        candidat.decision = "Refusé"; // Par défaut ou si non trouvé
+                    }
+
+                    // --- Extraction du nombre de points ---
+                    let matchPoints = htmlLower.match(/(\d+)\s*(?:point|pt|pts)/);
+                    if (matchPoints) {
+                        candidat.points = matchPoints[1];
+                    } else {
+                        let matchTotal = htmlLower.match(/(?:total|score)\s*(?::)?\s*(\d+)/);
+                        candidat.points = matchTotal ? matchTotal[1] : "0";
+                    }
+
+                } catch (error) {
+                    // En cas de micro-coupure réseau sur le mobile
+                    candidat.decision = "Erreur Réseau";
+                    candidat.points = "N/A";
+                }
+
+                // Mise à jour de la ligne dans le tableau en temps réel
+                currentRow.cells[1].innerHTML = __getBadgeHTML(candidat.decision);
+                currentRow.cells[2].innerText = candidat.points;
+
+                // Barre de progression
+                let pct = Math.round(((i + 1) / listeCandidats.length) * 100);
+                progressBar.style.width = `${pct}%`;
+                progressBar.innerText = `${pct}%`;
             }
-            resetAll();
+
+            progressText.innerHTML = `<b class="text-success">Vérification terminée !</b>`;
+            document.getElementById('btnExport').disabled = false;
         });
 
-        function resetAll() {
-            state.students = [];
-            state.results = [];
-            state.file = null;
-            state.csrfToken = null;
-            fileInfo.style.display = 'none';
-            fileInput.value = '';
-            btnStart.disabled = true;
-            btnExport.disabled = true;
-            progressWrap.classList.remove('active');
-            tableWrap.style.display = 'none';
-            statsArea.style.display = 'none';
-            resultBody.innerHTML = '';
-            lblStatus.textContent = 'Aucun fichier chargé';
-            progressFill.style.width = '0%';
-            progressText.textContent = '';
-            progressEta.textContent = '';
-            state.isRunning = false;
-            state.isCancelled = false;
-            btnStart.textContent = '▶ Lancer la vérification';
-        }
-
-        function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
-
-        console.log('📊 BEPC 2026 - Vérificateur avec extraction de token CSRF');
-        console.log('ℹ️  Ouvrez la console pour voir les logs de chaque requête.');
+        // Téléchargement du résultat au format CSV depuis le navigateur du téléphone
+        document.getElementById('btnExport').addEventListener('click', function() {
+            let formatExport = listeCandidats.map(c => ({
+                'Matricule': c.matricule,
+                'Resultat': c.decision,
+                'Nombre de Points': c.points
+            }));
+            let csv = Papa.unparse(formatExport);
+            let blob = new Blob(["\ufeff" + csv], { type: 'text/csv;charset=utf-8;' });
+            let link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "Resultats_BEPC_Mobile.csv";
+            link.click();
+        });
     </script>
-
 </body>
 </html>
