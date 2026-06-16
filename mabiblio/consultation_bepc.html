@@ -687,12 +687,15 @@
                     const parsed = parseResultHTML(html, matricule);
 
                     if (parsed.status === 'inconnu') {
+                        // On log le HTML pour déboguer
+                        console.warn(`HTML reçu pour ${matricule} (inconnu) :`, html.substring(0, 500));
                         if (attempt < CONFIG.MAX_RETRIES) {
                             await sleep(500);
                             continue;
                         }
-                        return { status: 'inconnu', message: 'Réponse non reconnue', moyenne: null, rang: null,
-                            points: null, details: '' };
+                        // On essaie de récupérer plus d'infos
+                        parsed.details = `HTML non reconnu (début): ${html.substring(0, 200)}...`;
+                        return parsed;
                     }
 
                     return parsed;
@@ -724,9 +727,10 @@
         }
 
         // ============================================================
-        //  PARSING DU HTML (avec normalisation pour "désolé" et "refusé")
+        //  PARSING DU HTML (amélioré avec plus de motifs)
         // ============================================================
         function parseResultHTML(html, matricule) {
+            // On crée un DOM pour extraire le texte visible
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, 'text/html');
             const bodyText = doc.body ? doc.body.textContent : html;
@@ -738,40 +742,47 @@
             let points = null;
             let details = '';
 
-            // Détection des mots "désolé" ou "refusé" (normalisés) => non admis
-            if (normalized.includes('desole') || normalized.includes('refuse')) {
-                status = 'non-admis';
-            } else if (normalized.includes('admis') && !normalized.includes('non admis')) {
+            // --- Détection du statut ---
+            // Mots-clés positifs
+            if (normalized.includes('felicitations') || normalized.includes('bravo') ||
+                (normalized.includes('admis') && !normalized.includes('non admis'))) {
                 status = 'admis';
-            } else if (normalized.includes('non admis')) {
+            }
+            // Mots-clés négatifs (prioritaires)
+            if (normalized.includes('desole') || normalized.includes('refuse') ||
+                normalized.includes('non admis') || normalized.includes('n\'est pas admis') ||
+                normalized.includes('ne sont pas admis')) {
                 status = 'non-admis';
-            } else if (normalized.includes('absent')) {
+            }
+            // Absence
+            if (normalized.includes('absent')) {
                 status = 'absent';
-            } else if (normalized.includes('erreur') || normalized.includes('introuvable')) {
+            }
+            // Erreur
+            if (normalized.includes('erreur') || normalized.includes('introuvable') || normalized.includes('inexistant')) {
                 status = 'erreur';
             }
 
-            // Extraction de la moyenne
+            // --- Extraction de la moyenne ---
             const moyenneRegex = /moyenne\s*[:]\s*([\d,\.]+)/i;
             const moyenneMatch = html.match(moyenneRegex);
             if (moyenneMatch) {
                 moyenne = parseFloat(moyenneMatch[1].replace(',', '.'));
+            } else {
+                // Chercher "moyenne générale" ou "moyenne :"
+                const moyGenRegex = /moyenne\s*générale\s*[:]\s*([\d,\.]+)/i;
+                const moyGenMatch = html.match(moyGenRegex);
+                if (moyGenMatch) moyenne = parseFloat(moyGenMatch[1].replace(',', '.'));
             }
 
-            // Extraction du rang
-            const rangRegex = /rang\s*[:]\s*(\d+)/i;
-            const rangMatch = html.match(rangRegex);
-            if (rangMatch) {
-                rang = parseInt(rangMatch[1], 10);
-            }
-
-            // Extraction des points : chercher "Total", "Points", "Score", "Note" suivi d'un nombre
+            // --- Extraction des points ---
+            // Chercher "total", "points", "score", "note" suivi d'un nombre
             const pointsRegex = /(?:total|points|score|note)\s*[:]\s*([\d,\.]+)/i;
             const pointsMatch = html.match(pointsRegex);
             if (pointsMatch) {
                 points = parseFloat(pointsMatch[1].replace(',', '.'));
             } else {
-                // Sinon, chercher un nombre flottant en fin de page (souvent le total)
+                // Chercher un nombre flottant à la fin de la page (peut être le total)
                 const floatRegex = /(\d+[\.,]\d{1,2})\s*$/m;
                 const floatMatch = html.match(floatRegex);
                 if (floatMatch) {
@@ -780,7 +791,19 @@
                 }
             }
 
-            // Récupérer le nom
+            // --- Extraction du rang ---
+            const rangRegex = /rang\s*[:]\s*(\d+)/i;
+            const rangMatch = html.match(rangRegex);
+            if (rangMatch) {
+                rang = parseInt(rangMatch[1], 10);
+            } else {
+                // Chercher "rang général"
+                const rangGenRegex = /rang\s*général\s*[:]\s*(\d+)/i;
+                const rangGenMatch = html.match(rangGenRegex);
+                if (rangGenMatch) rang = parseInt(rangGenMatch[1], 10);
+            }
+
+            // --- Récupérer le nom et la classe ---
             const nomRegex = /nom\s*[:]\s*([^<]+)/i;
             const nomMatch = html.match(nomRegex);
             if (nomMatch) details += `Nom: ${nomMatch[1].trim()} | `;
@@ -788,12 +811,31 @@
             const classeMatch = html.match(classeRegex);
             if (classeMatch) details += `Classe: ${classeMatch[1].trim()} | `;
 
-            // Si status est inconnu mais moyenne existe, on ajuste
+            // Si le statut est encore inconnu mais qu'on a une moyenne, on ajuste
             if (status === 'inconnu' && moyenne !== null) {
                 status = moyenne >= 10 ? 'admis' : 'non-admis';
             }
 
-            // Si status est non-admis via "désolé" ou "refusé", on le laisse
+            // Si on a des points mais pas de statut, on peut déduire (par exemple si points >= 120)
+            if (status === 'inconnu' && points !== null) {
+                // Seuil : souvent 120/200 pour le BEPC
+                status = points >= 120 ? 'admis' : 'non-admis';
+            }
+
+            // Si status est 'inconnu' mais qu'on a des mots comme "résultat" et le matricule est présent, on peut essayer de chercher "admis" dans le texte
+            if (status === 'inconnu' && normalized.includes(matricule.toLowerCase())) {
+                // On vérifie s'il y a "admis" ou "non admis" dans le texte global
+                if (normalized.includes('admis') && !normalized.includes('non admis')) {
+                    status = 'admis';
+                } else if (normalized.includes('non admis')) {
+                    status = 'non-admis';
+                }
+            }
+
+            // Si on a toujours inconnu, on met un message d'erreur
+            if (status === 'inconnu') {
+                details += 'Statut non reconnu. Vérifiez le HTML.';
+            }
 
             return {
                 status,
@@ -1022,7 +1064,7 @@
         // ============================================================
         console.log('📊 BEPC 2026 - Vérificateur automatique');
         console.log(`ℹ️  Utilise le proxy: ${CONFIG.PROXY_URL}`);
-        console.log('ℹ️  Détection des mots "désolé" ou "refusé" (insensible à la casse et aux accents).');
+        console.log('ℹ️  Détection améliorée : Félicitations, Bravo, Désolé, Refusé, etc.');
     </script>
 
 </body>
