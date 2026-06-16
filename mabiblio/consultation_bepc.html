@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Détecteur BEPC Mobile - Version Excel</title>
+    <title>Vérificateur BEPC – Extraction complète</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     <style>
@@ -16,43 +16,41 @@
         .badge-attente { background-color: #6c757d; color: white; padding: 6px 12px; border-radius: 6px; display: inline-block; }
         .badge-cours { background-color: #ffc107; color: #212529; padding: 6px 12px; border-radius: 6px; animation: blink 1s infinite; font-weight: bold; display: inline-block; }
         @keyframes blink { 50% { opacity: 0.4; } }
-        .table-responsive { max-height: 320px; overflow-y: auto; border: 1px solid #dee2e6; border-radius: 8px; }
+        .table-responsive { max-height: 380px; overflow-y: auto; border: 1px solid #dee2e6; border-radius: 8px; }
         .form-label { font-weight: 600; color: #495057; }
+        .col-petit { width: 90px; }
     </style>
 </head>
 <body>
 
     <div class="header-box mb-3">
-        <h4 class="m-0">Vérificateur BEPC DECO</h4>
-        <small>Compatibilité Totale Excel (.xlsx / .xls)</small>
+        <h4 class="m-0">Extracteur BEPC</h4>
+        <small>Nom, Prénom, Date de naissance, Âge, Points &amp; Décision</small>
     </div>
 
     <div class="container">
+        <!-- Étape 1 : chargement -->
         <div class="card p-3">
-            <h6 class="fw-bold text-success mb-3">1. Charger vos données</h6>
-            
+            <h6 class="fw-bold text-success mb-3">1. Charger vos matricules</h6>
             <div class="mb-3">
-                <label class="form-label small">Option A : Sélectionner votre fichier Excel (.xlsx ou .xls)</label>
+                <label class="form-label small">Option A : Fichier Excel (.xlsx / .xls)</label>
                 <input type="file" id="excelFile" class="form-control" accept=".xlsx, .xls">
             </div>
-
             <div class="text-center text-muted my-2 small fw-bold">— OU —</div>
-
             <div class="mb-3">
-                <label class="form-label small">Option B : Coller vos matricules directement (un par ligne)</label>
+                <label class="form-label small">Option B : Coller les matricules (un par ligne)</label>
                 <textarea id="textMatricules" class="form-control" rows="3" placeholder="Exemple :&#10;21881248C&#10;22327613B"></textarea>
             </div>
-            
             <button id="btnCharger" class="btn btn-secondary w-100 fw-bold btn-sm">Valider et analyser le fichier</button>
         </div>
 
+        <!-- Étape 2 : lancement -->
         <div class="card p-3">
-            <h6 class="fw-bold text-success mb-2">2. Lancer la vérification</h6>
+            <h6 class="fw-bold text-success mb-2">2. Lancer l'extraction</h6>
             <div class="d-grid gap-2 mt-2">
-                <button id="btnStart" class="btn btn-success btn-touch" disabled>LANCER LA DÉTECTION AUTOMATIQUE</button>
+                <button id="btnStart" class="btn btn-success btn-touch" disabled>EXTRAIRE LES DONNÉES</button>
                 <button id="btnExport" class="btn btn-primary btn-touch" disabled>TÉLÉCHARGER LE RÉSULTAT EXCEL (.XLSX)</button>
             </div>
-
             <div class="mt-3">
                 <div class="progress" style="height: 18px; border-radius: 10px;">
                     <div id="progressBar" class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 0%;">0%</div>
@@ -61,26 +59,27 @@
             </div>
         </div>
 
+        <!-- Étape 3 : aperçu -->
         <div class="card p-3">
             <div class="d-flex justify-content-between align-items-center mb-3">
-                <h6 class="fw-bold m-0 text-success">3. Aperçu en temps réel</h6>
+                <h6 class="fw-bold m-0 text-success">3. Aperçu des résultats extraits</h6>
                 <span id="totalBadge" class="badge bg-dark px-3 py-2">Candidats : 0</span>
             </div>
-            
             <div class="table-responsive">
                 <table class="table table-sm table-striped align-middle m-0" id="tableResultats">
                     <thead class="table-light sticky-top">
                         <tr>
                             <th>Matricule</th>
                             <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Date naiss.</th>
+                            <th>Âge</th>
                             <th>Résultat</th>
                             <th>Points</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td colspan="4" class="text-center text-muted py-4">Veuillez charger des matricules ci-dessus.</td>
-                        </tr>
+                        <tr><td colspan="7" class="text-center text-muted py-4">Veuillez charger des matricules.</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -88,9 +87,10 @@
     </div>
 
     <script>
+        // Structure de données enrichie
         let listeCandidats = [];
-        
-        // Lecture et extraction intelligente du fichier Excel (.xlsx ou .xls)
+
+        // ===== CHARGEMENT DU FICHIER EXCEL OU DU TEXTE =====
         document.getElementById('btnCharger').addEventListener('click', function() {
             const fileInput = document.getElementById('excelFile').files[0];
             const textInput = document.getElementById('textMatricules').value.trim();
@@ -100,104 +100,153 @@
                 reader.onload = function(e) {
                     const data = new Uint8Array(e.target.result);
                     const workbook = XLSX.read(data, { type: 'array' });
-                    
-                    // On prend la première feuille du fichier Excel
                     const sheetName = workbook.SheetNames[0];
                     const worksheet = workbook.Sheets[sheetName];
-                    
-                    // Conversion de la feuille Excel en tableau de lignes
                     const rows = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-                    
-                    let matIndex = -1;
-                    let nomIndex = -1;
-                    let headerRowIndex = -1;
 
-                    // Recherche dynamique de la ligne d'en-tête (contourne les "Tableau 1")
+                    let matIndex = -1, nomIndex = -1, headerRowIndex = -1;
                     for (let i = 0; i < rows.length; i++) {
                         let row = rows[i];
                         for (let j = 0; j < row.length; j++) {
-                            let cellText = String(row[j]).trim().toLowerCase();
-                            if (cellText.includes("matricule")) {
-                                matIndex = j;
-                                headerRowIndex = i;
-                            }
-                            if (cellText.includes("nom")) {
-                                nomIndex = j;
-                            }
+                            let cell = String(row[j]).trim().toLowerCase();
+                            if (cell.includes("matricule")) { matIndex = j; headerRowIndex = i; }
+                            if (cell.includes("nom")) { nomIndex = j; }
                         }
-                        if (matIndex !== -1) break; // En-tête trouvé !
+                        if (matIndex !== -1) break;
                     }
 
                     if (matIndex === -1) {
-                        alert("Impossible de trouver une colonne nommée 'Matricule' dans votre fichier Excel.");
+                        alert("Aucune colonne 'Matricule' trouvée dans le fichier.");
                         return;
                     }
 
-                    // Extraction des candidats à partir de la ligne située après l'en-tête
                     listeCandidats = [];
                     for (let i = headerRowIndex + 1; i < rows.length; i++) {
                         let row = rows[i];
-                        let matValue = row[matIndex] ? String(row[matIndex]).trim() : '';
-                        let nomValue = (nomIndex !== -1 && row[nomIndex]) ? String(row[nomIndex]).trim() : 'Inconnu';
-                        
-                        if (matValue && matValue.toLowerCase() !== 'matricule') {
+                        let mat = row[matIndex] ? String(row[matIndex]).trim() : '';
+                        let nom = (nomIndex !== -1 && row[nomIndex]) ? String(row[nomIndex]).trim() : 'Inconnu';
+                        if (mat && mat.toLowerCase() !== 'matricule') {
                             listeCandidats.push({
-                                matricule: matValue,
-                                nom: nomValue,
+                                matricule: mat,
+                                nomSource: nom,          // sauvegarde du nom initial (fallback)
+                                nom: '',
+                                prenom: '',
+                                dateNaissance: '',
+                                age: '',
                                 decision: 'En attente',
                                 points: 'N/A'
                             });
                         }
                     }
-
                     preparerInterface();
                 };
                 reader.readAsArrayBuffer(fileInput);
 
             } else if (textInput) {
-                // Si l'utilisateur utilise le copier-coller
-                let lignes = textInput.split('\n');
-                listeCandidats = lignes.map(l => ({
-                    matricule: l.trim(),
-                    nom: 'Saisie manuelle',
+                let lignes = textInput.split('\n').map(l => l.trim()).filter(l => l !== '');
+                listeCandidats = lignes.map(mat => ({
+                    matricule: mat,
+                    nomSource: 'Saisie manuelle',
+                    nom: '',
+                    prenom: '',
+                    dateNaissance: '',
+                    age: '',
                     decision: 'En attente',
                     points: 'N/A'
-                })).filter(c => c.matricule !== '');
-
+                }));
                 preparerInterface();
             } else {
-                alert("Veuillez sélectionner un fichier Excel ou coller des matricules.");
+                alert("Veuillez sélectionner un fichier ou coller des matricules.");
             }
         });
 
-        function __getBadgeHTML(status) {
-            if (status === 'Admis') return `<span class="badge-admis">Admis</span>`;
-            if (status === 'Refusé') return `<span class="badge-refuse">Refusé</span>`;
+        // ===== AFFICHAGE DU TABLEAU =====
+        function getBadgeHTML(status) {
+            if (status === 'Admis')   return `<span class="badge-admis">Admis</span>`;
+            if (status === 'Refusé')  return `<span class="badge-refuse">Refusé</span>`;
             if (status === 'Scan...') return `<span class="badge-cours">Scan...</span>`;
             return `<span class="badge-attente">En attente</span>`;
         }
 
         function preparerInterface() {
             document.getElementById('totalBadge').innerText = `Candidats : ${listeCandidats.length}`;
-            document.getElementById('btnStart').disabled = listeCandidats.length === 0;
-            document.getElementById('progressText').innerText = `${listeCandidats.length} candidat(s) chargé(s) avec succès.`;
-            
+            document.getElementById('btnStart').disabled = (listeCandidats.length === 0);
+            document.getElementById('progressText').innerText = `${listeCandidats.length} candidat(s) chargé(s).`;
+
             const tbody = document.querySelector('#tableResultats tbody');
             tbody.innerHTML = '';
             listeCandidats.forEach((c, idx) => {
                 let tr = document.createElement('tr');
                 tr.id = `row-${idx}`;
-                tr.innerHTML = `<td><b>${c.matricule}</b></td><td>${c.nom}</td><td>${__getBadgeHTML(c.decision)}</td><td class="fw-bold">${c.points}</td>`;
+                tr.innerHTML = `
+                    <td><b>${c.matricule}</b></td>
+                    <td>${c.nom || c.nomSource}</td>
+                    <td>${c.prenom}</td>
+                    <td>${c.dateNaissance}</td>
+                    <td>${c.age}</td>
+                    <td>${getBadgeHTML(c.decision)}</td>
+                    <td class="fw-bold">${c.points}</td>
+                `;
                 tbody.appendChild(tr);
             });
         }
 
-        // Script de requêtage en arrière-plan avec contournement CORS pour mobile
+        // ===== CALCUL DE L'ÂGE =====
+        function calculerAge(dateStr) {
+            if (!dateStr) return '';
+            // formats possibles : 12/10/2011 ou 2011-10-12
+            let parts = dateStr.split(/[\/\-]/);
+            if (parts.length !== 3) return '';
+            let jour = parseInt(parts[0], 10);
+            let mois = parseInt(parts[1], 10) - 1;
+            let annee = parseInt(parts[2], 10);
+            if (isNaN(annee)) return '';
+            let naissance = new Date(annee, mois, jour);
+            let aujourdhui = new Date();
+            let age = aujourdhui.getFullYear() - naissance.getFullYear();
+            let m = aujourdhui.getMonth() - naissance.getMonth();
+            if (m < 0 || (m === 0 && aujourdhui.getDate() < naissance.getDate())) age--;
+            return age >= 0 ? age : '';
+        }
+
+        // ===== EXTRACTION DES DONNÉES DEPUIS LA PAGE =====
+        function extraireDonnees(html) {
+            // Nettoyer les balises pour éviter les sauts de ligne
+            let texte = html.replace(/<br\s*\/?>/gi, '\n').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
+            let result = { nom: '', prenom: '', dateNaissance: '', points: '', decision: '' };
+
+            // Décision
+            if (/félicitations|felicitations|admis/i.test(texte)) {
+                result.decision = 'Admis';
+            } else if (/désolé|desole|refusé|refuse/i.test(texte)) {
+                result.decision = 'Refusé';
+            } else {
+                result.decision = 'Inconnu';
+            }
+
+            // Nom
+            let m = texte.match(/Nom\s*[:.]?\s*([A-Za-zÀ-ÖØ-öø-ÿ\- ]+)/i);
+            if (m) result.nom = m[1].trim();
+
+            // Prénom
+            m = texte.match(/Pr[eé]nom\s*[:.]?\s*([A-Za-zÀ-ÖØ-öø-ÿ\- ]+)/i);
+            if (m) result.prenom = m[1].trim();
+
+            // Date de naissance
+            m = texte.match(/Date\s*de\s*naissance\s*[:.]?\s*([\d\/\-]+)/i);
+            if (m) result.dateNaissance = m[1].trim();
+
+            // Points
+            m = texte.match(/POINTS\s*[:.]?\s*([\d.]+)/i);
+            if (m) result.points = m[1].trim();
+
+            return result;
+        }
+
+        // ===== LANCEMENT DE L'EXTRACTION =====
         document.getElementById('btnStart').addEventListener('click', async function() {
             this.disabled = true;
             document.getElementById('btnCharger').disabled = true;
-            document.getElementById('excelFile').disabled = true;
-            
             const progressBar = document.getElementById('progressBar');
             const progressText = document.getElementById('progressText');
             const targetBaseUrl = "https://itdeco.ci/examens/resultat/bepc/index.html";
@@ -205,76 +254,66 @@
             for (let i = 0; i < listeCandidats.length; i++) {
                 let candidat = listeCandidats[i];
                 candidat.decision = 'Scan...';
-                
-                let currentRow = document.getElementById(`row-${i}`);
-                currentRow.cells[2].innerHTML = __getBadgeHTML('Scan...');
-                currentRow.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                let row = document.getElementById(`row-${i}`);
+                row.cells[5].innerHTML = getBadgeHTML('Scan...');
+                row.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
                 progressText.innerText = `Recherche : ${candidat.matricule} (${i+1}/${listeCandidats.length})`;
 
                 try {
-                    // Utilisation du proxy gratuit corsproxy.io pour permettre au téléphone de lire la DECO
-                    let urlRecherche = `${targetBaseUrl}?matricule=${encodeURIComponent(candidat.matricule)}`;
-                    let proxyUrl = `https://corsproxy.io/?${encodeURIComponent(urlRecherche)}`;
+                    let url = `${targetBaseUrl}?matricule=${encodeURIComponent(candidat.matricule)}`;
+                    let proxy = `https://corsproxy.io/?${encodeURIComponent(url)}`;
+                    let response = await fetch(proxy);
+                    let html = await response.text();
 
-                    let response = await fetch(proxyUrl);
-                    let htmlText = await response.text();
-                    let htmlLower = htmlText.toLowerCase();
+                    let extrait = extraireDonnees(html);
 
-                    // --- RÈGLE 1 : Détection Admis / Refusé ---
-                    if (htmlLower.includes("félicitations") || htmlLower.includes("felicitations") || htmlLower.includes("admis")) {
-                        candidat.decision = "Admis";
-                    } else if (htmlLower.includes("désolé") || htmlLower.includes("desole") || htmlLower.includes("refusé") || htmlLower.includes("refuse")) {
-                        candidat.decision = "Refusé";
-                    } else {
-                        candidat.decision = "Refusé"; // Valeur par défaut
-                    }
+                    // Mise à jour des champs
+                    candidat.nom = extrait.nom || candidat.nomSource;
+                    candidat.prenom = extrait.prenom || '';
+                    candidat.dateNaissance = extrait.dateNaissance || '';
+                    candidat.age = calculerAge(extrait.dateNaissance);
+                    candidat.decision = extrait.decision || 'Inconnu';
+                    candidat.points = extrait.points || 'N/A';
 
-                    // --- RÈGLE 2 : Extraction du nombre de points ---
-                    let matchPoints = htmlLower.match(/(\d+)\s*(?:point|pt|pts)/);
-                    if (matchPoints) {
-                        candidat.points = matchPoints[1];
-                    } else {
-                        let matchTotal = htmlLower.match(/(?:total|score|note)\s*(?::)?\s*(\d+)/);
-                        candidat.points = matchTotal ? matchTotal[1] : "Non trouvé";
-                    }
-
-                } catch (error) {
-                    candidat.decision = "Erreur Réseau";
-                    candidat.points = "N/A";
+                } catch (err) {
+                    candidat.decision = 'Erreur réseau';
+                    candidat.points = 'N/A';
                 }
 
-                // Application des modifications visuelles immédiates
-                currentRow.cells[2].innerHTML = __getBadgeHTML(candidat.decision);
-                currentRow.cells[3].innerText = candidat.points;
+                // Rafraîchir la ligne
+                row.cells[1].innerText = candidat.nom;
+                row.cells[2].innerText = candidat.prenom;
+                row.cells[3].innerText = candidat.dateNaissance;
+                row.cells[4].innerText = candidat.age;
+                row.cells[5].innerHTML = getBadgeHTML(candidat.decision);
+                row.cells[6].innerText = candidat.points;
 
-                // Progression de la barre
                 let pct = Math.round(((i + 1) / listeCandidats.length) * 100);
                 progressBar.style.width = `${pct}%`;
                 progressBar.innerText = `${pct}%`;
             }
 
-            progressText.innerHTML = `<b class="text-success">Vérification complétée avec succès !</b>`;
+            progressText.innerHTML = `<b class="text-success">✓ Extraction terminée !</b>`;
             document.getElementById('btnExport').disabled = false;
         });
 
-        // Génération et téléchargement instantané d'un VRAI fichier Excel (.xlsx)
+        // ===== EXPORT EXCEL =====
         document.getElementById('btnExport').addEventListener('click', function() {
-            // Structuration des lignes de colonnes pour Excel
-            let donneesExcel = listeCandidats.map(c => ({
+            let donnees = listeCandidats.map(c => ({
                 'Matricule': c.matricule,
-                'Nom & Prénoms': c.nom,
-                'Résultat (Décision)': c.decision,
-                'Nombre de Points': c.points
+                'Nom': c.nom || c.nomSource,
+                'Prénom': c.prenom,
+                'Date de naissance': c.dateNaissance,
+                'Âge': c.age,
+                'Résultat': c.decision,
+                'Points': c.points
             }));
 
-            // Processus de création du classeur Excel via SheetJS
-            let feuille = XLSX.utils.json_to_sheet(donneesExcel);
+            let feuille = XLSX.utils.json_to_sheet(donnees);
             let classeur = XLSX.utils.book_new();
             XLSX.utils.book_append_sheet(classeur, feuille, "Résultats BEPC");
-
-            // Déclenchement du téléchargement sur le téléphone
-            XLSX.writeFile(classeur, "Resultats_BEPC_Analyses.xlsx");
+            XLSX.writeFile(classeur, "Resultats_BEPC_complets.xlsx");
         });
     </script>
 </body>
