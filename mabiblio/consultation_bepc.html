@@ -236,7 +236,7 @@
             width: 100%;
             border-collapse: collapse;
             font-size: 14px;
-            min-width: 700px;
+            min-width: 800px;
         }
         thead {
             position: sticky;
@@ -399,6 +399,7 @@
                         <th>Classe</th>
                         <th>Statut BEPC</th>
                         <th>Moyenne</th>
+                        <th>Points</th>
                         <th>Rang</th>
                         <th>Détails</th>
                     </tr>
@@ -419,14 +420,9 @@
         //  CONFIGURATION
         // ============================================================
         const CONFIG = {
-            // URL du site BEPC (avec le paramètre matricule)
             BEPC_URL: 'https://itdeco.ci/examens/resultat/bepc/index.html',
-            // Proxy CORS pour contourner les restrictions (public, gratuit)
-            // Utilise api.allorigins.win qui supporte POST
             PROXY_URL: 'https://api.allorigins.win/raw',
-            // Nombre max de tentatives par matricule
             MAX_RETRIES: 2,
-            // Délai entre chaque requête (ms) pour ne pas surcharger le serveur
             DELAY_MS: 1800,
         };
 
@@ -434,11 +430,11 @@
         //  ÉTAT
         // ============================================================
         let state = {
-            rawData: null, // données brutes du fichier Excel (tableau)
-            headers: [], // en-têtes
-            matricules: [], // liste des matricules extraits
-            students: [], // objets { matricule, nom, classe, ligne, resultat }
-            results: [], // résultats obtenus
+            rawData: null,
+            headers: [],
+            matricules: [],
+            students: [],
+            results: [],
             isRunning: false,
             isCancelled: false,
             file: null,
@@ -503,9 +499,7 @@
                         alert('Le fichier est vide ou illisible.');
                         return;
                     }
-                    // Extraction des matricules
                     const headers = Object.keys(json[0]);
-                    // Chercher la colonne "Matricule" (ou "matricule" ou "MATRICULE")
                     const matCol = headers.find(h => h.toLowerCase().trim() === 'matricule');
                     const nomCol = headers.find(h => h.toLowerCase().trim() === 'nom');
                     const classeCol = headers.find(h => h.toLowerCase().trim() === 'classe' || h.toLowerCase().trim() ===
@@ -514,7 +508,6 @@
                         alert('Colonne "Matricule" introuvable dans le fichier.');
                         return;
                     }
-                    // Construire la liste des étudiants
                     const students = json.map((row, idx) => {
                         const matricule = String(row[matCol] || '').trim();
                         const nom = nomCol ? String(row[nomCol] || '').trim() : `Élève ${idx+1}`;
@@ -533,7 +526,6 @@
                     state.matricules = students.map(s => s.matricule);
                     state.results = [];
 
-                    // Afficher les infos du fichier
                     fileInfo.style.display = 'flex';
                     fileInfo.innerHTML = `
                         <span class="name">📄 ${file.name}</span>
@@ -546,7 +538,6 @@
                     tableWrap.style.display = 'none';
                     statsArea.style.display = 'none';
                     progressWrap.classList.remove('active');
-                    // Reset results
                     state.results = [];
                     renderTable();
                     updateStats();
@@ -573,7 +564,6 @@
                 return;
             }
 
-            // Confirmer
             const total = state.students.length;
             const confirmMsg =
                 `Vérifier les résultats BEPC pour ${total} candidats ?\n\nCette opération peut prendre quelques minutes.`;
@@ -591,7 +581,6 @@
             tableWrap.style.display = 'none';
             statsArea.style.display = 'none';
 
-            // Réinitialiser les résultats
             state.results = [];
             state.students.forEach(s => s.resultat = null);
 
@@ -621,9 +610,9 @@
                 } catch (err) {
                     console.error(`Erreur pour ${matricule}:`, err);
                     student.resultat = { status: 'erreur', message: err.message || 'Erreur inconnue', moyenne: null,
-                        rang: null, details: '' };
+                        rang: null, points: null, details: '' };
                     state.results.push({ matricule, status: 'erreur', message: err.message || 'Erreur inconnue',
-                        moyenne: null, rang: null, details: '' });
+                        moyenne: null, rang: null, points: null, details: '' });
                     errorCount++;
                 }
 
@@ -631,7 +620,6 @@
                 const pct = Math.round((completed / total) * 100);
                 progressFill.style.width = pct + '%';
 
-                // Estimation du temps restant
                 const elapsed = (Date.now() - startTime) / 1000;
                 const avg = elapsed / completed;
                 const remaining = (total - completed) * avg;
@@ -643,17 +631,14 @@
                     progressEta.textContent = '';
                 }
 
-                // Mettre à jour l'affichage au fur et à mesure
                 renderTable();
                 updateStats();
 
-                // Délai entre les requêtes
                 if (i < state.students.length - 1 && !state.isCancelled) {
                     await sleep(CONFIG.DELAY_MS);
                 }
             }
 
-            // Terminé
             state.isRunning = false;
             btnStart.disabled = false;
             btnStart.textContent = '▶ Lancer la vérification';
@@ -669,7 +654,6 @@
                 lblStatus.textContent = `✅ ${successCount} réussis, ${errorCount} erreurs`;
             }
 
-            // Recalculer les stats
             updateStats();
         }
 
@@ -677,22 +661,14 @@
         //  REQUÊTE VERS LE SITE BEPC (via proxy)
         // ============================================================
         async function fetchResult(matricule) {
-            // Tentatives
             let lastError = null;
             for (let attempt = 1; attempt <= CONFIG.MAX_RETRIES; attempt++) {
                 try {
-                    // Construire la requête POST vers le site BEPC via le proxy
-                    // Le proxy api.allorigins.win/raw accepte POST et transmet les headers
-                    const formData = new FormData();
+                    const formData = new URLSearchParams();
                     formData.append('matricule', matricule);
-                    // Certains sites utilisent 'matricule' ou 'numero' ou 'code'
-                    // On essaie avec les deux noms les plus courants
-                    const body = new URLSearchParams();
-                    body.append('matricule', matricule);
-                    body.append('numero', matricule);
-                    body.append('code', matricule);
+                    formData.append('numero', matricule);
+                    formData.append('code', matricule);
 
-                    // On envoie une requête POST avec le bon content-type
                     const response = await fetch(CONFIG.PROXY_URL, {
                         method: 'POST',
                         headers: {
@@ -700,7 +676,7 @@
                             'Origin': 'https://itdeco.ci',
                             'Referer': 'https://itdeco.ci/examens/resultat/bepc/index.html',
                         },
-                        body: body.toString(),
+                        body: formData.toString(),
                     });
 
                     if (!response.ok) {
@@ -708,19 +684,15 @@
                     }
 
                     const html = await response.text();
-
-                    // Analyser le HTML pour extraire les résultats
                     const parsed = parseResultHTML(html, matricule);
 
                     if (parsed.status === 'inconnu') {
-                        // Peut-être que le site utilise un autre nom de paramètre
-                        // On réessaie avec une autre méthode
                         if (attempt < CONFIG.MAX_RETRIES) {
                             await sleep(500);
                             continue;
                         }
                         return { status: 'inconnu', message: 'Réponse non reconnue', moyenne: null, rang: null,
-                            details: '' };
+                            points: null, details: '' };
                     }
 
                     return parsed;
@@ -739,102 +711,95 @@
                 message: lastError ? lastError.message : 'Échec après plusieurs tentatives',
                 moyenne: null,
                 rang: null,
+                points: null,
                 details: ''
             };
         }
 
         // ============================================================
-        //  PARSING DU HTML
+        //  NORMALISATION (supprime accents, met en minuscule)
+        // ============================================================
+        function normalizeText(text) {
+            return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+        }
+
+        // ============================================================
+        //  PARSING DU HTML (avec normalisation pour "désolé" et "refusé")
         // ============================================================
         function parseResultHTML(html, matricule) {
-            // Créer un DOM virtuel
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, 'text/html');
+            const bodyText = doc.body ? doc.body.textContent : html;
+            const normalized = normalizeText(bodyText);
 
-            // Chercher des indicateurs de résultat
-            const bodyText = doc.body ? doc.body.textContent : '';
-            const htmlText = html;
-
-            // 1. Vérifier si c'est la page de résultats
-            // On cherche des mots-clés typiques : "Admis", "Non admis", "Moyenne", "Rang", etc.
-            const lower = htmlText.toLowerCase();
-
-            // Détection du statut
             let status = 'inconnu';
             let moyenne = null;
             let rang = null;
+            let points = null;
             let details = '';
 
-            // Chercher "Admis" ou "Non admis" dans le texte
-            if (lower.includes('admis') && !lower.includes('non admis')) {
-                status = 'admis';
-            } else if (lower.includes('non admis')) {
+            // Détection des mots "désolé" ou "refusé" (normalisés) => non admis
+            if (normalized.includes('desole') || normalized.includes('refuse')) {
                 status = 'non-admis';
-            } else if (lower.includes('absent') || lower.includes('absen')) {
+            } else if (normalized.includes('admis') && !normalized.includes('non admis')) {
+                status = 'admis';
+            } else if (normalized.includes('non admis')) {
+                status = 'non-admis';
+            } else if (normalized.includes('absent')) {
                 status = 'absent';
-            } else if (lower.includes('erreur') || lower.includes('introuvable') || lower.includes('inexistant')) {
+            } else if (normalized.includes('erreur') || normalized.includes('introuvable')) {
                 status = 'erreur';
             }
 
-            // Essayer d'extraire la moyenne et le rang avec des expressions régulières
-            // Cherche "Moyenne : 12,50" ou "Moyenne: 12.50" ou "Moyenne générale : 12,50"
+            // Extraction de la moyenne
             const moyenneRegex = /moyenne\s*[:]\s*([\d,\.]+)/i;
-            const moyenneMatch = htmlText.match(moyenneRegex);
+            const moyenneMatch = html.match(moyenneRegex);
             if (moyenneMatch) {
                 moyenne = parseFloat(moyenneMatch[1].replace(',', '.'));
             }
 
-            // Cherche "Rang : 5" ou "Rang: 5" ou "Rang général : 5"
+            // Extraction du rang
             const rangRegex = /rang\s*[:]\s*(\d+)/i;
-            const rangMatch = htmlText.match(rangRegex);
+            const rangMatch = html.match(rangRegex);
             if (rangMatch) {
                 rang = parseInt(rangMatch[1], 10);
             }
 
-            // Chercher le nom du candidat
-            const nomRegex = /nom\s*[:]\s*([^<]+)/i;
-            const nomMatch = htmlText.match(nomRegex);
-            if (nomMatch) {
-                details += `Nom: ${nomMatch[1].trim()} | `;
-            }
-
-            // Chercher la classe
-            const classeRegex = /classe\s*[:]\s*([^<]+)/i;
-            const classeMatch = htmlText.match(classeRegex);
-            if (classeMatch) {
-                details += `Classe: ${classeMatch[1].trim()} | `;
-            }
-
-            // Chercher les notes par matière (si présentes)
-            const notes = [];
-            const noteRegex = /([A-Za-zÀ-ÖØ-öø-ÿ\s]+)\s*[:]\s*([\d,\.]+)/gi;
-            let match;
-            while ((match = noteRegex.exec(htmlText)) !== null) {
-                const matiere = match[1].trim();
-                const note = parseFloat(match[2].replace(',', '.'));
-                if (!isNaN(note) && matiere.length > 1 && matiere.length < 30) {
-                    notes.push(`${matiere}: ${note}`);
+            // Extraction des points : chercher "Total", "Points", "Score", "Note" suivi d'un nombre
+            const pointsRegex = /(?:total|points|score|note)\s*[:]\s*([\d,\.]+)/i;
+            const pointsMatch = html.match(pointsRegex);
+            if (pointsMatch) {
+                points = parseFloat(pointsMatch[1].replace(',', '.'));
+            } else {
+                // Sinon, chercher un nombre flottant en fin de page (souvent le total)
+                const floatRegex = /(\d+[\.,]\d{1,2})\s*$/m;
+                const floatMatch = html.match(floatRegex);
+                if (floatMatch) {
+                    const val = parseFloat(floatMatch[1].replace(',', '.'));
+                    if (val > 0 && val < 100) points = val;
                 }
             }
-            if (notes.length > 0) {
-                details += `Notes: ${notes.join(', ')}`;
-            }
 
-            // Si le statut est encore inconnu mais qu'on a une moyenne, on considère comme admis/non-admis
+            // Récupérer le nom
+            const nomRegex = /nom\s*[:]\s*([^<]+)/i;
+            const nomMatch = html.match(nomRegex);
+            if (nomMatch) details += `Nom: ${nomMatch[1].trim()} | `;
+            const classeRegex = /classe\s*[:]\s*([^<]+)/i;
+            const classeMatch = html.match(classeRegex);
+            if (classeMatch) details += `Classe: ${classeMatch[1].trim()} | `;
+
+            // Si status est inconnu mais moyenne existe, on ajuste
             if (status === 'inconnu' && moyenne !== null) {
                 status = moyenne >= 10 ? 'admis' : 'non-admis';
             }
 
-            // Si on n'a rien trouvé du tout, on vérifie si le texte contient le matricule
-            if (status === 'inconnu' && htmlText.includes(matricule)) {
-                // Peut-être que la page affiche juste le matricule mais pas de résultat clair
-                status = 'inconnu';
-            }
+            // Si status est non-admis via "désolé" ou "refusé", on le laisse
 
             return {
                 status,
                 moyenne,
                 rang,
+                points,
                 details: details.trim() || 'Aucun détail disponible',
                 message: status === 'admis' ? 'Admis' :
                     status === 'non-admis' ? 'Non admis' :
@@ -845,7 +810,7 @@
         }
 
         // ============================================================
-        //  RENDU DU TABLEAU
+        //  RENDU DU TABLEAU (avec colonne Points)
         // ============================================================
         function renderTable() {
             const tbody = resultBody;
@@ -853,7 +818,7 @@
 
             const students = state.students || [];
             if (students.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; color:#6b7f93; padding:30px;">Aucun candidat à afficher</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="9" style="text-align:center; color:#6b7f93; padding:30px;">Aucun candidat à afficher</td></tr>`;
                 return;
             }
 
@@ -864,6 +829,7 @@
                 let statusText = 'En attente';
                 let statusClass = 'en-attente';
                 let moyenneText = '—';
+                let pointsText = '—';
                 let rangText = '—';
                 let detailsText = '';
 
@@ -891,6 +857,9 @@
                     if (result.moyenne !== null && result.moyenne !== undefined) {
                         moyenneText = result.moyenne.toFixed(2);
                     }
+                    if (result.points !== null && result.points !== undefined) {
+                        pointsText = result.points.toFixed(2);
+                    }
                     if (result.rang !== null && result.rang !== undefined) {
                         rangText = result.rang;
                     }
@@ -904,6 +873,7 @@
                     <td>${student.classe || '—'}</td>
                     <td><span class="status-badge ${statusClass}">${statusText}</span></td>
                     <td>${moyenneText}</td>
+                    <td>${pointsText}</td>
                     <td>${rangText}</td>
                     <td style="font-size:12px; color:#4a6a85; max-width:200px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" title="${detailsText}">${detailsText}</td>
                 `;
@@ -947,7 +917,7 @@
         }
 
         // ============================================================
-        //  EXPORT EXCEL
+        //  EXPORT EXCEL (avec colonne Points)
         // ============================================================
         btnExport.addEventListener('click', exportExcel);
 
@@ -958,14 +928,14 @@
             }
 
             const students = state.students;
-            // Construire les données d'export
             const headers = [
                 'Matricule', 'Nom', 'Classe', 'Statut BEPC',
-                'Moyenne BEPC', 'Rang BEPC', 'Détails'
+                'Moyenne BEPC', 'Points', 'Rang BEPC', 'Détails'
             ];
 
             const rows = students.map(s => {
-                const r = s.resultat || { status: 'en-attente', moyenne: null, rang: null, details: '' };
+                const r = s.resultat || { status: 'en-attente', moyenne: null, points: null, rang: null,
+                    details: '' };
                 let statut = 'En attente';
                 if (r.status === 'admis') statut = 'Admis';
                 else if (r.status === 'non-admis') statut = 'Non admis';
@@ -979,6 +949,7 @@
                     s.classe || '',
                     statut,
                     r.moyenne !== null && r.moyenne !== undefined ? r.moyenne : '',
+                    r.points !== null && r.points !== undefined ? r.points : '',
                     r.rang !== null && r.rang !== undefined ? r.rang : '',
                     r.details || r.message || ''
                 ];
@@ -987,22 +958,19 @@
             const data = [headers, ...rows];
             const wb = XLSX.utils.book_new();
             const ws = XLSX.utils.aoa_to_sheet(data);
-
-            // Ajuster les largeurs des colonnes
             ws['!cols'] = [
                 { wch: 18 }, // Matricule
                 { wch: 28 }, // Nom
                 { wch: 14 }, // Classe
                 { wch: 18 }, // Statut
                 { wch: 16 }, // Moyenne
+                { wch: 14 }, // Points
                 { wch: 14 }, // Rang
                 { wch: 50 }, // Détails
             ];
-
             XLSX.utils.book_append_sheet(wb, ws, 'Résultats BEPC');
             const fileName = `BEPC_2026_Resultats_${new Date().toISOString().slice(0,10)}.xlsx`;
             XLSX.writeFile(wb, fileName);
-
             lblStatus.textContent = `⬇ Exporté : ${fileName}`;
         }
 
@@ -1054,7 +1022,7 @@
         // ============================================================
         console.log('📊 BEPC 2026 - Vérificateur automatique');
         console.log(`ℹ️  Utilise le proxy: ${CONFIG.PROXY_URL}`);
-        console.log('ℹ️  Développé pour itdeco.ci');
+        console.log('ℹ️  Détection des mots "désolé" ou "refusé" (insensible à la casse et aux accents).');
     </script>
 
 </body>
