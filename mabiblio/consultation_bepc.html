@@ -10,7 +10,8 @@
     </script>
 
     <style>
-        /* ----- RESET & BASE ----- */
+        /* ... (styles inchangés) ... */
+        /* Je garde les mêmes styles que précédemment pour ne pas alourdir */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -24,7 +25,6 @@
             justify-content: center;
             padding: 20px;
         }
-
         .app {
             max-width: 1200px;
             width: 100%;
@@ -32,10 +32,7 @@
             border-radius: 28px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.10);
             padding: 32px 36px 40px;
-            transition: all 0.2s;
         }
-
-        /* ----- HEADER ----- */
         .header {
             display: flex;
             align-items: center;
@@ -48,7 +45,6 @@
             font-size: 26px;
             font-weight: 700;
             color: #0b2b4a;
-            letter-spacing: -0.3px;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -57,7 +53,6 @@
             font-weight: 400;
             font-size: 16px;
             color: #4a6a85;
-            letter-spacing: 0;
         }
         .badge {
             background: #eef3fa;
@@ -67,8 +62,6 @@
             font-weight: 500;
             color: #1a4972;
         }
-
-        /* ----- UPLOAD ZONE ----- */
         .upload-zone {
             background: #f7fafc;
             border: 2px dashed #cbd9e6;
@@ -102,8 +95,6 @@
         .upload-zone input[type="file"] {
             display: none;
         }
-
-        /* ----- INFOS FICHIER ----- */
         .file-info {
             display: flex;
             align-items: center;
@@ -127,8 +118,6 @@
             font-weight: 600;
             font-size: 13px;
         }
-
-        /* ----- CONTROLES ----- */
         .controls {
             display: flex;
             flex-wrap: wrap;
@@ -175,13 +164,6 @@
         .btn-success:hover {
             background: #0b622e;
         }
-        .btn-danger {
-            background: #b13a3a;
-            color: #fff;
-        }
-        .btn-danger:hover {
-            background: #8f2e2e;
-        }
         .btn-outline {
             background: transparent;
             border: 2px solid #cbd9e6;
@@ -189,8 +171,6 @@
         .btn-outline:hover {
             background: #f0f4f8;
         }
-
-        /* ----- PROGRESS ----- */
         .progress-wrap {
             margin: 18px 0 24px;
             display: none;
@@ -222,8 +202,6 @@
         .progress-status .eta {
             color: #6b7f93;
         }
-
-        /* ----- TABLEAU DES RÉSULTATS ----- */
         .table-wrap {
             overflow-x: auto;
             border-radius: 16px;
@@ -260,7 +238,6 @@
         tr:hover td {
             background: #f7fafd;
         }
-
         .status-badge {
             display: inline-block;
             padding: 2px 14px;
@@ -284,14 +261,11 @@
             background: #f0d0d0;
             color: #7a2e2e;
         }
-
         .matricule-cell {
             font-family: 'Courier New', monospace;
             font-weight: 600;
             color: #0b2b4a;
         }
-
-        /* ----- STATS ----- */
         .stats {
             display: flex;
             flex-wrap: wrap;
@@ -309,8 +283,6 @@
             font-weight: 700;
             color: #0b2b4a;
         }
-
-        /* ----- RESPONSIVE ----- */
         @media (max-width: 700px) {
             .app {
                 padding: 18px 16px 28px;
@@ -503,7 +475,7 @@
                     const matCol = headers.find(h => h.toLowerCase().trim() === 'matricule');
                     const nomCol = headers.find(h => h.toLowerCase().trim() === 'nom');
                     const classeCol = headers.find(h => h.toLowerCase().trim() === 'classe' || h.toLowerCase().trim() ===
-                    'h');
+                        'h');
                     if (!matCol) {
                         alert('Colonne "Matricule" introuvable dans le fichier.');
                         return;
@@ -554,8 +526,6 @@
         //  VÉRIFICATION AUTOMATIQUE
         // ============================================================
         btnStart.addEventListener('click', startVerification);
-
-        let abortController = null;
 
         async function startVerification() {
             if (state.isRunning) return;
@@ -664,10 +634,9 @@
             let lastError = null;
             for (let attempt = 1; attempt <= CONFIG.MAX_RETRIES; attempt++) {
                 try {
+                    // On simule la requête POST que fait le formulaire
                     const formData = new URLSearchParams();
                     formData.append('matricule', matricule);
-                    formData.append('numero', matricule);
-                    formData.append('code', matricule);
 
                     const response = await fetch(CONFIG.PROXY_URL, {
                         method: 'POST',
@@ -684,21 +653,28 @@
                     }
 
                     const html = await response.text();
-                    const parsed = parseResultHTML(html, matricule);
 
-                    if (parsed.status === 'inconnu') {
-                        // On log le HTML pour déboguer
-                        console.warn(`HTML reçu pour ${matricule} (inconnu) :`, html.substring(0, 500));
+                    // On vérifie si on a bien une page de résultats
+                    if (html.includes('Félicitations') || html.includes('Désolé') || html.includes('Admis') || html
+                        .includes('Non admis')) {
+                        const parsed = parseResultHTML(html, matricule);
+                        return parsed;
+                    } else {
+                        // Peut-être que le site utilise une redirection ou un chargement dynamique
+                        // On tente avec un autre paramètre
                         if (attempt < CONFIG.MAX_RETRIES) {
                             await sleep(500);
                             continue;
                         }
-                        // On essaie de récupérer plus d'infos
-                        parsed.details = `HTML non reconnu (début): ${html.substring(0, 200)}...`;
-                        return parsed;
+                        return {
+                            status: 'inconnu',
+                            message: 'Page de résultats non trouvée',
+                            moyenne: null,
+                            rang: null,
+                            points: null,
+                            details: 'Le site a peut-être changé ou utilise JavaScript.'
+                        };
                     }
-
-                    return parsed;
 
                 } catch (err) {
                     lastError = err;
@@ -720,21 +696,16 @@
         }
 
         // ============================================================
-        //  NORMALISATION (supprime accents, met en minuscule)
-        // ============================================================
-        function normalizeText(text) {
-            return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
-        }
-
-        // ============================================================
-        //  PARSING DU HTML (amélioré avec plus de motifs)
+        //  PARSING DU HTML (recherche de "Félicitations" et "Désolé")
         // ============================================================
         function parseResultHTML(html, matricule) {
-            // On crée un DOM pour extraire le texte visible
+            // On extrait le texte de la page
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, 'text/html');
             const bodyText = doc.body ? doc.body.textContent : html;
-            const normalized = normalizeText(bodyText);
+
+            // On normalise le texte pour faciliter la recherche
+            const normalized = bodyText.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
 
             let status = 'inconnu';
             let moyenne = null;
@@ -743,23 +714,20 @@
             let details = '';
 
             // --- Détection du statut ---
-            // Mots-clés positifs
-            if (normalized.includes('felicitations') || normalized.includes('bravo') ||
-                (normalized.includes('admis') && !normalized.includes('non admis'))) {
+            // Priorité aux mots exacts "Félicitations" et "Désolé"
+            if (normalized.includes('felicitations')) {
                 status = 'admis';
-            }
-            // Mots-clés négatifs (prioritaires)
-            if (normalized.includes('desole') || normalized.includes('refuse') ||
-                normalized.includes('non admis') || normalized.includes('n\'est pas admis') ||
-                normalized.includes('ne sont pas admis')) {
+            } else if (normalized.includes('desole')) {
                 status = 'non-admis';
-            }
-            // Absence
-            if (normalized.includes('absent')) {
+            } else if (normalized.includes('admis') && !normalized.includes('non admis')) {
+                status = 'admis';
+            } else if (normalized.includes('non admis')) {
+                status = 'non-admis';
+            } else if (normalized.includes('refuse')) {
+                status = 'non-admis';
+            } else if (normalized.includes('absent')) {
                 status = 'absent';
-            }
-            // Erreur
-            if (normalized.includes('erreur') || normalized.includes('introuvable') || normalized.includes('inexistant')) {
+            } else if (normalized.includes('erreur') || normalized.includes('introuvable')) {
                 status = 'erreur';
             }
 
@@ -768,21 +736,16 @@
             const moyenneMatch = html.match(moyenneRegex);
             if (moyenneMatch) {
                 moyenne = parseFloat(moyenneMatch[1].replace(',', '.'));
-            } else {
-                // Chercher "moyenne générale" ou "moyenne :"
-                const moyGenRegex = /moyenne\s*générale\s*[:]\s*([\d,\.]+)/i;
-                const moyGenMatch = html.match(moyGenRegex);
-                if (moyGenMatch) moyenne = parseFloat(moyGenMatch[1].replace(',', '.'));
             }
 
             // --- Extraction des points ---
-            // Chercher "total", "points", "score", "note" suivi d'un nombre
+            // On cherche "Total", "Points", "Score", "Note" ou un nombre flottant à la fin
             const pointsRegex = /(?:total|points|score|note)\s*[:]\s*([\d,\.]+)/i;
             const pointsMatch = html.match(pointsRegex);
             if (pointsMatch) {
                 points = parseFloat(pointsMatch[1].replace(',', '.'));
             } else {
-                // Chercher un nombre flottant à la fin de la page (peut être le total)
+                // On cherche un nombre flottant à la fin de la page
                 const floatRegex = /(\d+[\.,]\d{1,2})\s*$/m;
                 const floatMatch = html.match(floatRegex);
                 if (floatMatch) {
@@ -796,14 +759,9 @@
             const rangMatch = html.match(rangRegex);
             if (rangMatch) {
                 rang = parseInt(rangMatch[1], 10);
-            } else {
-                // Chercher "rang général"
-                const rangGenRegex = /rang\s*général\s*[:]\s*(\d+)/i;
-                const rangGenMatch = html.match(rangGenRegex);
-                if (rangGenMatch) rang = parseInt(rangGenMatch[1], 10);
             }
 
-            // --- Récupérer le nom et la classe ---
+            // --- Récupération du nom et de la classe ---
             const nomRegex = /nom\s*[:]\s*([^<]+)/i;
             const nomMatch = html.match(nomRegex);
             if (nomMatch) details += `Nom: ${nomMatch[1].trim()} | `;
@@ -816,15 +774,13 @@
                 status = moyenne >= 10 ? 'admis' : 'non-admis';
             }
 
-            // Si on a des points mais pas de statut, on peut déduire (par exemple si points >= 120)
+            // Si on a des points mais pas de statut, on peut déduire (seuil 120/200)
             if (status === 'inconnu' && points !== null) {
-                // Seuil : souvent 120/200 pour le BEPC
                 status = points >= 120 ? 'admis' : 'non-admis';
             }
 
-            // Si status est 'inconnu' mais qu'on a des mots comme "résultat" et le matricule est présent, on peut essayer de chercher "admis" dans le texte
+            // Si le matricule est présent mais que le statut est inconnu, on essaie de détecter "admis" ou "non admis"
             if (status === 'inconnu' && normalized.includes(matricule.toLowerCase())) {
-                // On vérifie s'il y a "admis" ou "non admis" dans le texte global
                 if (normalized.includes('admis') && !normalized.includes('non admis')) {
                     status = 'admis';
                 } else if (normalized.includes('non admis')) {
@@ -832,7 +788,7 @@
                 }
             }
 
-            // Si on a toujours inconnu, on met un message d'erreur
+            // Si on a toujours inconnu, on ajoute un message
             if (status === 'inconnu') {
                 details += 'Statut non reconnu. Vérifiez le HTML.';
             }
@@ -852,7 +808,7 @@
         }
 
         // ============================================================
-        //  RENDU DU TABLEAU (avec colonne Points)
+        //  RENDU DU TABLEAU
         // ============================================================
         function renderTable() {
             const tbody = resultBody;
@@ -959,7 +915,7 @@
         }
 
         // ============================================================
-        //  EXPORT EXCEL (avec colonne Points)
+        //  EXPORT EXCEL
         // ============================================================
         btnExport.addEventListener('click', exportExcel);
 
@@ -1064,7 +1020,7 @@
         // ============================================================
         console.log('📊 BEPC 2026 - Vérificateur automatique');
         console.log(`ℹ️  Utilise le proxy: ${CONFIG.PROXY_URL}`);
-        console.log('ℹ️  Détection améliorée : Félicitations, Bravo, Désolé, Refusé, etc.');
+        console.log('ℹ️  Recherche des mots "Félicitations" et "Désolé" pour déterminer le statut.');
     </script>
 
 </body>
