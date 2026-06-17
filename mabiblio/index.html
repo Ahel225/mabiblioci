@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html data-theme="light" lang="fr">
 <head>
 <meta charset="utf-8"/>
@@ -314,6 +313,28 @@
       transform: translateY(-2px);
     }
     
+    /* Carte orientation en évidence */
+    .card-orientation {
+      border: 2px solid var(--accent);
+      background: linear-gradient(135deg, var(--card-bg) 60%, rgba(249, 115, 22, 0.05));
+      position: relative;
+      overflow: hidden;
+    }
+    .card-orientation::before {
+      content: "⭐";
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      font-size: 4rem;
+      opacity: 0.15;
+      transform: rotate(20deg);
+    }
+    .card-orientation .category-link {
+      background-color: var(--accent);
+      font-weight: 700;
+      padding: 10px 18px;
+    }
+    
     footer {
       text-align: center;
       padding: 30px 0;
@@ -454,6 +475,27 @@
 
 <main>
 <div class="categories" id="documentsContainer">
+  
+  <!-- === NOUVELLE CARTE ORIENTATION EN ÉVIDENCE === -->
+  <div class="category-card card-orientation">
+    <div class="category-header">
+      <div class="category-icon" style="background-color: #f97316;">
+        <i class="fas fa-graduation-cap"></i>
+      </div>
+      <h3 class="category-title">Orientation Scolaire</h3>
+    </div>
+    <p class="category-desc">
+      Simulateur d'orientation post-BEPC pour les voies générale et technique.
+      Calculez votre moyenne d'orientation, vos bilans et découvrez les filières éligibles selon vos résultats.
+    </p>
+    <div class="category-buttons">
+      <a class="category-link" href="orientation.html">
+        <i class="fas fa-arrow-right"></i> Accéder au simulateur
+      </a>
+    </div>
+  </div>
+  <!-- =========================================== -->
+
 <div class="category-card">
 <div class="category-header">
 <div class="category-icon" style="background-color: #6366f1;">
@@ -732,6 +774,14 @@
 <script>
     // Index de recherche complet avec tous les documents
     const searchIndex = [
+      // Nouvelle entrée pour l'orientation
+      {
+        title: "Orientation Scolaire",
+        description: "Simulateur d'orientation post-BEPC pour les voies générale et technique. Calcul de moyennes, bilans et éligibilité aux filières.",
+        url: "orientation.html",
+        category: "Orientation",
+        keywords: ["orientation", "BEPC", "seconde", "C", "A", "technique", "BT", "BAC", "moyenne", "bilan", "scientifique", "littéraire"]
+      },
       {
         title: "Constitution",
         description: "Texte fondamental qui organise les pouvoirs publics et garantit les droits des citoyens",
