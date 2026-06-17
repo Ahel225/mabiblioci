@@ -586,7 +586,7 @@
         ];
 
         // ----------------------------------------------
-        // 2. CONDITIONS D'ADMISSION POUR LES SÉRIES TECHNIQUES
+        // 2. CONDITIONS D'ADMISSION POUR LES SÉRIES TECHNIQUES (BAC)
         // ----------------------------------------------
         const seriesConditions = {
             'T1': { math: 12, pc: 12, cf: 9, ang: 9, ageMax: 19 },
@@ -646,7 +646,7 @@
 
             const area = document.getElementById('resultArea');
 
-            // Fonction pour évaluer l'éligibilité aux séries avec âge et nationalité
+            // Fonction pour évaluer l'éligibilité aux séries BAC technique
             function checkEligibility() {
                 const results = {};
                 for (const [serie, conditions] of Object.entries(seriesConditions)) {
