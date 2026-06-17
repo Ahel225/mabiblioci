@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapport de remédiation – Lycée Moderne KFW</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background: #f4f4f4;
+            padding: 20px 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            background: #fff;
+            padding: 30px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #002b5c;
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+        .header .republic { font-size: 14px; font-weight: bold; text-transform: uppercase; color: #002b5c; }
+        .header .devise { font-size: 13px; font-style: italic; color: #444; }
+        .header .ministere { font-size: 15px; font-weight: bold; margin-top: 8px; color: #1a3b5d; }
+        .header .etab { font-size: 18px; font-weight: bold; margin-top: 10px; color: #c00; text-decoration: underline; }
+        .header .titre { font-size: 22px; font-weight: bold; margin-top: 15px; text-transform: uppercase; color: #002b5c; }
+        .header .sous-titre { font-size: 15px; color: #333; margin-top: 4px; }
+        .signature { text-align: right; margin: 20px 0; font-style: italic; font-size: 15px; }
+        h2 { font-size: 19px; color: #002b5c; border-left: 5px solid #c00; padding-left: 12px; margin: 25px 0 15px 0; clear: both; }
+        h3 { font-size: 16px; color: #1a3b5d; margin: 20px 0 10px 0; font-weight: bold; }
+        p { font-size: 14px; line-height: 1.6; text-align: justify; margin-bottom: 10px; }
+        .intro { background: #f9f9f9; padding: 15px 18px; border-left: 4px solid #002b5c; margin-bottom: 20px; border-radius: 4px; }
+        .scroll-table {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 10px 0;
+            width: 100%;
+        }
+        table {
+            width: 100%;
+            min-width: 1400px;
+            border-collapse: collapse;
+            font-size: 11px;
+            margin: 10px 0;
+        }
+        th {
+            background: #002b5c;
+            color: #fff;
+            font-weight: bold;
+            padding: 6px 3px;
+            border: 1px solid #002b5c;
+            text-align: center;
+            white-space: nowrap;
+        }
+        td {
+            padding: 4px 3px;
+            border: 1px solid #999;
+            text-align: center;
+            white-space: nowrap;
+        }
+        tr:nth-child(even) { background: #f6f9fc; }
+        .highlight-green { background: #e6f7e6; }
+        .highlight-orange { background: #fff3e0; }
+        .highlight-red { background: #ffe6e6; }
+        .badge { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: bold; color: #fff; }
+        .badge-ok { background: #2e7d32; }
+        .badge-warn { background: #ed6c02; }
+        .badge-danger { background: #b71c1c; }
+        .badge-info { background: #0d47a1; }
+        .alert-box { background: #fff3cd; border-left: 6px solid #856404; padding: 12px 18px; margin: 15px 0; border-radius: 4px; font-weight: bold; color: #533f03; }
+        .recom { background: #eef4fb; padding: 15px 20px; border-radius: 6px; margin: 20px 0; }
+        .recom ul { margin-left: 25px; font-size: 14px; line-height: 1.8; }
+        .footer { margin-top: 35px; padding-top: 20px; border-top: 2px solid #ccc; font-size: 14px; text-align: center; color: #555; }
+
+        /* ===== RESPONSIVE : ajustements pour mobile ===== */
+        @media (max-width: 768px) {
+            .container { padding: 15px 10px; }
+            .header .titre { font-size: 18px; }
+            .header .etab { font-size: 16px; }
+            h2 { font-size: 17px; }
+            h3 { font-size: 15px; }
+            p, .intro p, .recom ul, .footer { font-size: 13px; }
+            table { font-size: 9px; min-width: 1200px; } /* un peu plus compact */
+            th, td { padding: 2px 2px; }
+            .badge { font-size: 9px; padding: 1px 6px; }
+            .alert-box { font-size: 13px; padding: 10px 12px; }
+        }
+        @media (max-width: 480px) {
+            table { font-size: 8px; min-width: 1000px; }
+            th, td { padding: 1px 1px; }
+        }
+        @media print {
+            body { background: #fff; padding: 0; }
+            .container { box-shadow: none; padding: 15px; }
+            .badge { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .highlight-green, .highlight-orange, .highlight-red { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            table { font-size: 10px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- ==================== HEADER ==================== -->
+    <div class="header">
+        <div class="republic">République de Côte d'Ivoire</div>
+        <div class="devise">Union – Discipline – Travail</div>
+        <div class="ministere">Ministère de l'Éducation Nationale, de l'Alphabétisation et de l'Enseignement Technique</div>
+        <div class="ministere" style="font-weight:normal;">Direction Régionale de San-Pedro</div>
+        <div class="etab">Lycée Moderne KFW</div>
+        <div class="titre">Rapport du deuxième trimestre<br>sur la remédiation au décrochage scolaire</div>
+        <div class="sous-titre">Année scolaire 2025-2026</div>
+    </div>
+
+    <div class="signature">
+        <strong>Le secrétaire de la CPLDS</strong><br>
+        SERI Koubi Hippolyte
+    </div>
+
+    <!-- ==================== INTRODUCTION ==================== -->
+    <h2>Introduction</h2>
+    <div class="intro">
+        <p>Au Lycée Moderne KFW, le test LYCAM a été administré au premier trimestre aux classes de <strong>6<sup>ème</sup> 6</strong>, <strong>3<sup>ème</sup> 3</strong>, <strong>2<sup>nde</sup> A</strong>, <strong>Tle A</strong> et <strong>Tle D2</strong>. Un total de <strong>335 élèves</strong> a bénéficié du test (176 Filles, 159 Garçons). Les motifs du choix de ces classes sont : effectifs pléthoriques, classes turbulentes et indisciplinées, nombre élevé de redoublants, ou faibles performances scolaires.</p>
+        <p>Après dépouillement, des stratégies de remédiation ont été mises en œuvre. Les résultats des activités d’encadrement, désormais enrichis des données du troisième trimestre et des moyennes générales annuelles (MGA), sont présentés ci-après.</p>
+    </div>
+
+    <!-- ==================== TABLEAU INDIVIDUEL (108 élèves) ==================== -->
+    <h2>Tableau de synthèse des résultats individuels (108 élèves suivis)</h2>
+    <p style="font-size:13px; margin-bottom:5px;">
+
+    </p>
+    <div class="scroll-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>N°</th><th>Nom</th><th>Prénoms</th><th>Matricule</th><th>Niv.</th><th>Classe</th>
+                    <th>Score</th><th>Risque</th>
+                    <th>Entr. parents</th><th>Tutorat</th><th>Mentorat</th>
+                    <th>Coaching<br>Orientation</th><th>Coaching<br>Org. travail</th><th>Coaching<br>Autre</th>
+                    <th>Soutien Psy</th><th>Valorisation</th><th>Autre</th>
+                    <th>MT1</th><th>MT2</th><th>Moy. 3e trim.</th><th>M.G. An</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- 108 lignes – identiques à l'original, sans répétition -->
+                <tr><td>1</td><td>SORO</td><td>TIEREGNIMIN FEBE</td><td>18357429Q</td><td>TLE</td><td>TD2</td><td>11</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td>X</td><td></td><td></td><td>8.46</td><td>9.80</td><td>11.34</td><td>10.14</td></tr>
+                <tr><td>2</td><td>YAO</td><td>BOUREIMA</td><td>18549109U</td><td>TLE</td><td>TD2</td><td>12</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td>X</td><td></td><td></td><td>8.81</td><td>9.35</td><td>11.28</td><td>10.01</td></tr>
+                <tr><td>3</td><td>DOSSO</td><td>ISSIAKA</td><td>17224741A</td><td>TLE</td><td>TD2</td><td>15</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td>X</td><td></td><td></td><td>9.40</td><td>9.92</td><td>10.40</td><td>10.00</td></tr>
+                <tr><td>4</td><td>FOFANA</td><td>NAWA</td><td>18164416R</td><td>TLE</td><td>TD2</td><td>12</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td>Entretien</td><td>X</td><td></td><td></td><td>8.48</td><td>7.12</td><td>9.97</td><td>8.53</td></tr>
+                <tr><td>5</td><td>OUEDRAOGO</td><td>HAROUNA</td><td>18409490Y</td><td>TLE</td><td>TD2</td><td>15</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td>X</td><td></td><td></td><td>8.95</td><td>8.31</td><td>8.68</td><td>8.58</td></tr>
+                <tr><td>6</td><td>GRAH</td><td>RUTH</td><td>17224241D</td><td>TLE</td><td>TD2</td><td>19</td><td>Élevé</td><td>X</td><td></td><td></td><td>X</td><td>X</td><td>Entretien</td><td>X</td><td></td><td></td><td>9.64</td><td>9.09</td><td>11.50</td><td>10.16</td></tr>
+                <tr><td>7</td><td>GORE</td><td>LOU TINAN ESTHER</td><td>19603239F</td><td>TLE</td><td>TD2</td><td>15</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td>Entretien</td><td>X</td><td></td><td></td><td>10.86</td><td>10.63</td><td>12.86</td><td>11.56</td></tr>
+                <tr><td>8</td><td>SERIKPA</td><td>KOUDOU CHRIST FLORIAN</td><td>17463375Z</td><td>TLE</td><td>TD2</td><td>13</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td>X</td><td></td><td></td><td>8.75</td><td>10.43</td><td>11.10</td><td>10.36</td></tr>
+                <tr><td>9</td><td>DJEKO</td><td>DAVID MARCEL</td><td>18359998Y</td><td>TLE</td><td>TD2</td><td>17</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td>X</td><td></td><td></td><td>13.24</td><td>12.69</td><td>13.69</td><td>13.20</td></tr>
+                <tr><td>10</td><td>KOUADIO</td><td>YANN WILFRIED</td><td>17557694Z</td><td>TLE</td><td>TD2</td><td>17</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td>X</td><td></td><td></td><td>11.53</td><td>11.70</td><td>11.54</td><td>11.60</td></tr>
+                <tr><td>11</td><td>ASSI</td><td>GUY ARMEL</td><td>19241882V</td><td>TLE</td><td>TD2</td><td>14</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td>X</td><td></td><td></td><td>9.62</td><td>10.70</td><td>12.11</td><td>11.04</td></tr>
+                <tr><td>12</td><td>AZOUMANA</td><td>N'DRI DIEUDONNE</td><td>18357568B</td><td>TLE</td><td>TLEA</td><td>12</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td>Entretien</td><td>X</td><td></td><td></td><td>12.19</td><td>11.03</td><td>11.80</td><td>11.57</td></tr>
+                <tr><td>13</td><td>TIA</td><td>BAMBA ISMAËL</td><td>18229673F</td><td>TLE</td><td>TLEA</td><td>16</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td>X</td><td></td><td></td><td>10.68</td><td>10.01</td><td>11.60</td><td>10.78</td></tr>
+                <tr><td>14</td><td>SAWADOGO</td><td>SAFIATA</td><td>17227380G</td><td>TLE</td><td>TLEA</td><td>11</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td>X</td><td></td><td></td><td>10.05</td><td>10.52</td><td>12.72</td><td>11.30</td></tr>
+                <tr><td>15</td><td>OUATTARA</td><td>MAIMOUNA</td><td>18229194Z</td><td>TLE</td><td>TLEA</td><td>16</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td>X</td><td></td><td></td><td>10.39</td><td>10.74</td><td>12.84</td><td>11.51</td></tr>
+                <tr><td>16</td><td>KABA</td><td>NAGNOUMA</td><td>16366178C</td><td>TLE</td><td>TLEA</td><td>12</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td>X</td><td></td><td></td><td>9.05</td><td>8.92</td><td>11.63</td><td>10.03</td></tr>
+                <tr><td>17</td><td>MAKANDI</td><td>FATOUMATA</td><td>19602904H</td><td>TLE</td><td>TLEA</td><td>12</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td>X</td><td></td><td></td><td>11.44</td><td>11.87</td><td>13.37</td><td>12.38</td></tr>
+                <tr><td>18</td><td>POHO</td><td>ANGE D'AVILA</td><td>17224725N</td><td>TLE</td><td>TLEA</td><td>10</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td>X</td><td></td><td></td><td>12.03</td><td>11.58</td><td>14.15</td><td>12.69</td></tr>
+                <tr><td>19</td><td>DOUA</td><td>BI TAKALO WILFRIED</td><td>18230662N</td><td>TLE</td><td>TLEA</td><td>13</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td>X</td><td></td><td></td><td>9.46</td><td>8.80</td><td>11.48</td><td>10.00</td></tr>
+                <tr><td>20</td><td>NEMLIN</td><td>TOULO MARIE BERTHE</td><td>19640538E</td><td>TLE</td><td>TLEA</td><td>12</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td>X</td><td></td><td></td><td>9.06</td><td>9.93</td><td>11.05</td><td>10.20</td></tr>
+                <tr><td>21</td><td>YAPI</td><td>N'GUESSAN SAMSON</td><td>19239716A</td><td>TLE</td><td>TLEA</td><td>10</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td>X</td><td></td><td></td><td>10.32</td><td>10.03</td><td>10.94</td><td>10.45</td></tr>
+                <tr><td>22</td><td>DIE</td><td>BI GOUE ARSENE</td><td>17108855L</td><td>TLE</td><td>TLEA</td><td>13</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td>X</td><td></td><td></td><td>9.39</td><td>9.07</td><td>11.66</td><td>10.17</td></tr>
+                <tr><td>23</td><td>KOUAME</td><td>AMENAN DIVINE GRACE</td><td>18229591C</td><td>TLE</td><td>TLEA</td><td>11</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td>X</td><td></td><td></td><td>8.52</td><td>8.38</td><td>12.38</td><td>10.00</td></tr>
+                <tr><td>24</td><td>KOUADIO</td><td>KOUADIO TOUSSAINT</td><td>17500618R</td><td>TLE</td><td>TLEA</td><td>10</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td>X</td><td></td><td></td><td>8.69</td><td>9.32</td><td>11.44</td><td>10.04</td></tr>
+                <tr><td>25</td><td>KOFFI</td><td>YVES FREJUSTE</td><td>18546597M</td><td>TLE</td><td>TLEA</td><td>11</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td>X</td><td></td><td></td><td>9.62</td><td>10.10</td><td>10.90</td><td>10.32</td></tr>
+                <tr><td>26</td><td>DIAKITE</td><td>IBRAHIM CYRILLE</td><td>17471971C</td><td>TLE</td><td>TLEA</td><td>11</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td>X</td><td></td><td></td><td>9.13</td><td>9.31</td><td>11.18</td><td>10.02</td></tr>
+                <tr><td>27</td><td>TEHEDY</td><td>JUNIOR ANGE KEVIN</td><td>17496995D</td><td>TLE</td><td>TLEA</td><td>10</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td>X</td><td></td><td></td><td>13.24</td><td>13.58</td><td>14.09</td><td>13.71</td></tr>
+                <tr><td>28</td><td>KONE</td><td>AFFOUSSATA</td><td>18228499B</td><td>TLE</td><td>TLEA</td><td>12</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td>X</td><td></td><td></td><td>11.48</td><td>11.15</td><td>13.26</td><td>12.06</td></tr>
+                <tr><td>29</td><td>KAMAGATE</td><td>AYOUB VASSIRIKI</td><td>17351946E</td><td>TLE</td><td>TLEA</td><td>15</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td>X</td><td></td><td></td><td>9.72</td><td>10.29</td><td>10.31</td><td>10.18</td></tr>
+                <tr><td>30</td><td>ZOHO</td><td>IRIAGNENAON RUTH EMMANUELA</td><td>22712308F</td><td>2NDE</td><td>2NDEA</td><td>10</td><td>Modéré</td><td></td><td></td><td></td><td></td><td>X</td><td></td><td></td><td></td><td></td><td>10.22</td><td>10.58</td><td>9.85</td><td>10.21</td></tr>
+                <tr><td>31</td><td>DIOMANDE</td><td>MANTCHENY</td><td>19552803G</td><td>2NDE</td><td>2NDEA</td><td>15</td><td>Modéré</td><td></td><td></td><td></td><td></td><td>X</td><td></td><td></td><td></td><td></td><td>7.72</td><td>9.39</td><td>10.07</td><td>9.32</td></tr>
+                <tr><td>32</td><td>OUEDRAOGO</td><td>OUSMANE</td><td>19603355Q</td><td>2NDE</td><td>2NDEA</td><td>13</td><td>Modéré</td><td></td><td></td><td></td><td></td><td>X</td><td></td><td></td><td></td><td></td><td>10.18</td><td>9.34</td><td>9.81</td><td>9.69</td></tr>
+                <tr><td>33</td><td>KEITA</td><td>IBRAHIM BONTIGUI MORY</td><td>20657846E</td><td>2NDE</td><td>2NDEA</td><td>15</td><td>Modéré</td><td></td><td></td><td></td><td></td><td>X</td><td></td><td></td><td></td><td></td><td>9.85</td><td>9.33</td><td>9.80</td><td>9.62</td></tr>
+                <tr><td>34</td><td>SAWADOGO</td><td>FADILATOU</td><td>20426174X</td><td>2NDE</td><td>2NDEA</td><td>10</td><td>Modéré</td><td></td><td></td><td></td><td></td><td>X</td><td></td><td></td><td></td><td></td><td>11.23</td><td>12.19</td><td>11.22</td><td>11.61</td></tr>
+                <tr><td>35</td><td>WANDE</td><td>GOKO AUDE SAMIRA</td><td>20376246G</td><td>2NDE</td><td>2NDEA</td><td>14</td><td>Modéré</td><td></td><td></td><td></td><td></td><td>X</td><td></td><td></td><td></td><td></td><td>10.36</td><td>11.24</td><td>10.73</td><td>10.86</td></tr>
+                <tr><td>36</td><td>LAKPA</td><td>EDIBRI NANI RUTH</td><td>21913743B</td><td>2NDE</td><td>2NDEA</td><td>21</td><td>Élevé</td><td>X</td><td></td><td></td><td></td><td>X</td><td>Entretien</td><td>X</td><td></td><td></td><td>9.66</td><td>10.36</td><td>10.38</td><td>10.22</td></tr>
+                <tr><td>37</td><td>DJITEDJI</td><td>DJI KLA LEWIS</td><td>18357825M</td><td>2NDE</td><td>2NDEA</td><td>11</td><td>Modéré</td><td></td><td></td><td></td><td></td><td>X</td><td></td><td></td><td></td><td></td><td>9.01</td><td>8.61</td><td>9.12</td><td>8.89</td></tr>
+                <tr><td>38</td><td>KOUASSI</td><td>KOFFI ANGE GHISLAIN</td><td>20782146V</td><td>2NDE</td><td>2NDEA</td><td>14</td><td>Modéré</td><td></td><td></td><td></td><td></td><td>X</td><td></td><td></td><td></td><td></td><td>5.46</td><td>7.57</td><td>7.36</td><td>7.06</td></tr>
+                <tr><td>39</td><td>GNENEMA</td><td>WAH LAURENT ETIENNE</td><td>19613640H</td><td>2NDE</td><td>2NDEA</td><td>11</td><td>Modéré</td><td></td><td></td><td></td><td></td><td>X</td><td></td><td></td><td></td><td></td><td>10.41</td><td>10.18</td><td>11.29</td><td>10.67</td></tr>
+                <tr><td>40</td><td>TRAORE</td><td>NOUMOUTIE DRAMANE</td><td>18228175K</td><td>2NDE</td><td>2NDEA</td><td>19</td><td>Élevé</td><td>X</td><td></td><td></td><td></td><td>X</td><td>Entretien</td><td>X</td><td></td><td></td><td>11.47</td><td>8.15</td><td>9.88</td><td>9.50</td></tr>
+                <tr><td>41</td><td>BAMBA</td><td>KADER</td><td>20774983H</td><td>2NDE</td><td>2NDEA</td><td>21</td><td>Élevé</td><td>X</td><td></td><td></td><td></td><td>X</td><td>Entretien</td><td>X</td><td></td><td></td><td>7.71</td><td>8.36</td><td>9.72</td><td>8.77</td></tr>
+                <tr><td>42</td><td>GALLO</td><td>LOU GOHI MARLENE FLEUR JACQUIE</td><td>20248400T</td><td>2NDE</td><td>2NDEA</td><td>13</td><td>Modéré</td><td></td><td></td><td></td><td></td><td>X</td><td></td><td></td><td></td><td></td><td>8.87</td><td>8.56</td><td>7.95</td><td>8.37</td></tr>
+                <tr><td>43</td><td>KINDA</td><td>NAFFISSATOU</td><td>19370570U</td><td>2NDE</td><td>2NDEA</td><td>14</td><td>Modéré</td><td></td><td></td><td></td><td></td><td>X</td><td></td><td></td><td></td><td></td><td>9.27</td><td>7.84</td><td>8.41</td><td>8.35</td></tr>
+                <tr><td>44</td><td>KABLAN</td><td>KOUAME PACOME</td><td>19827599Z</td><td>2NDE</td><td>2NDEA</td><td>17</td><td>Modéré</td><td></td><td></td><td></td><td></td><td>X</td><td></td><td></td><td></td><td></td><td>7.22</td><td>8.88</td><td>8.49</td><td>8.39</td></tr>
+                <tr><td>45</td><td>DIABY</td><td>MOHAMED KASSEM JUNIOR</td><td>20657840L</td><td>2NDE</td><td>2NDEA</td><td>11</td><td>Modéré</td><td></td><td></td><td></td><td></td><td>X</td><td></td><td>X</td><td></td><td></td><td>9.74</td><td>10.69</td><td>8.93</td><td>9.79</td></tr>
+                <tr><td>46</td><td>KORE</td><td>YABA GRACE MAURICETTE</td><td>19214136C</td><td>2NDE</td><td>2NDEA</td><td>17</td><td>Modéré</td><td></td><td></td><td></td><td></td><td>X</td><td></td><td></td><td></td><td></td><td>9.44</td><td>9.30</td><td>8.88</td><td>9.16</td></tr>
+                <tr><td>47</td><td>KONE</td><td>INZA</td><td>18229283S</td><td>2NDE</td><td>2NDEA</td><td>11</td><td>Modéré</td><td></td><td></td><td></td><td></td><td>X</td><td></td><td></td><td></td><td></td><td>9.81</td><td>8.94</td><td>9.38</td><td>9.29</td></tr>
+                <tr><td>48</td><td>GLA</td><td>VELOU DELICIA</td><td>20774897C</td><td>2NDE</td><td>2NDEA</td><td>12</td><td>Modéré</td><td></td><td></td><td></td><td></td><td>X</td><td></td><td></td><td></td><td></td><td>9.54</td><td>10.29</td><td>10.13</td><td>10.07</td></tr>
+                <tr><td>49</td><td>SAYE</td><td>ODILE</td><td>21462587M</td><td>2NDE</td><td>2NDEA</td><td>10</td><td>Modéré</td><td></td><td></td><td></td><td></td><td>X</td><td></td><td></td><td></td><td></td><td>8.67</td><td>10.98</td><td>11.49</td><td>10.72</td></tr>
+                <tr><td>50</td><td>KAMBOU</td><td>SISSERE ROSALIE</td><td>21868321S</td><td>2NDE</td><td>2NDEA</td><td>10</td><td>Modéré</td><td>X</td><td></td><td></td><td></td><td>X</td><td>Entretien</td><td>X</td><td></td><td></td><td>10.81</td><td>11.39</td><td>10.34</td><td>10.85</td></tr>
+                <tr><td>51</td><td>SAHI</td><td>GRACE MANUELLA</td><td>19753367E</td><td>2NDE</td><td>2NDEA</td><td>11</td><td>Modéré</td><td></td><td></td><td></td><td></td><td>X</td><td></td><td></td><td></td><td></td><td>9.40</td><td>9.84</td><td>8.22</td><td>9.10</td></tr>
+                <tr><td>52</td><td>DJEDJE</td><td>GOUREBLE JORA</td><td>20776045Q</td><td>2NDE</td><td>2NDEA</td><td>10</td><td>Modéré</td><td></td><td></td><td></td><td></td><td>X</td><td></td><td>X</td><td></td><td></td><td>8.54</td><td>9.55</td><td>8.57</td><td>8.95</td></tr>
+                <tr><td>53</td><td>BALY</td><td>PRINCE AKILAS</td><td>21785765Z</td><td>2NDE</td><td>2NDEA</td><td>17</td><td>Modéré</td><td></td><td></td><td></td><td></td><td>X</td><td></td><td></td><td></td><td></td><td>9.10</td><td>9.88</td><td>9.58</td><td>9.60</td></tr>
+                <tr><td>54</td><td>ASSE</td><td>KERRYNE HASTRIDE MYSWRAN</td><td>20453427F</td><td>2NDE</td><td>2NDEA</td><td>13</td><td>Modéré</td><td></td><td></td><td></td><td></td><td>X</td><td></td><td></td><td></td><td></td><td>11.16</td><td>11.33</td><td>9.98</td><td>10.75</td></tr>
+                <tr><td>55</td><td>KANATE</td><td>NABITOU</td><td>21462473F</td><td>2NDE</td><td>2NDEA</td><td>16</td><td>Modéré</td><td></td><td></td><td></td><td></td><td>X</td><td></td><td></td><td></td><td></td><td>10.29</td><td>11.51</td><td>9.38</td><td>10.41</td></tr>
+                <tr><td>56</td><td>GOUANOU</td><td>OUAWOLEU SAMUEL</td><td>20096073H</td><td>2NDE</td><td>2NDEA</td><td>13</td><td>Modéré</td><td></td><td></td><td></td><td></td><td>X</td><td></td><td></td><td></td><td></td><td>11.03</td><td>10.48</td><td>10.27</td><td>10.50</td></tr>
+                <tr><td>57</td><td>DAI</td><td>SOULEYMANE</td><td>21400748X</td><td>2NDE</td><td>2NDEA</td><td>10</td><td>Modéré</td><td></td><td></td><td></td><td></td><td>X</td><td></td><td>X</td><td></td><td></td><td>9.82</td><td>11.88</td><td>10.20</td><td>10.79</td></tr>
+                <tr><td>58</td><td>OUEDRAOGO</td><td>MOHAMED</td><td>20783733A</td><td>2NDE</td><td>2NDEA</td><td>16</td><td>Modéré</td><td></td><td></td><td></td><td></td><td>X</td><td></td><td></td><td></td><td></td><td>6.29</td><td>7.73</td><td>7.89</td><td>7.50</td></tr>
+                <tr><td>59</td><td>BAH</td><td>FRANCIS</td><td>19368993W</td><td>2NDE</td><td>2NDEA</td><td>12</td><td>Modéré</td><td></td><td></td><td></td><td></td><td>X</td><td></td><td></td><td></td><td></td><td>11.46</td><td>10.14</td><td>11.06</td><td>10.77</td></tr>
+                <tr><td>60</td><td>BADINI</td><td>ADAMA</td><td>19603709F</td><td>2NDE</td><td>2NDEA</td><td>19</td><td>Élevé</td><td>X</td><td></td><td></td><td></td><td>X</td><td>Entretien</td><td>X</td><td></td><td></td><td>10.85</td><td>9.42</td><td>10.64</td><td>10.19</td></tr>
+                <tr><td>61</td><td>OUEDRAOGO</td><td>MARIAM</td><td>19610491Z</td><td>2NDE</td><td>2NDEA</td><td>10</td><td>Modéré</td><td></td><td></td><td></td><td></td><td>X</td><td></td><td></td><td></td><td></td><td>9.98</td><td>9.88</td><td>10.28</td><td>10.06</td></tr>
+                <tr><td>62</td><td>KONE</td><td>HAMED</td><td>18229141E</td><td>2NDE</td><td>2NDEA</td><td>15</td><td>Modéré</td><td></td><td></td><td></td><td></td><td>X</td><td></td><td></td><td></td><td></td><td>9.73</td><td>11.24</td><td>10.62</td><td>10.69</td></tr>
+                <tr><td>63</td><td>AMANI</td><td>EKRA STEVEN</td><td>21207220Y</td><td>2NDE</td><td>2NDEA</td><td>16</td><td>Modéré</td><td></td><td></td><td></td><td></td><td>X</td><td></td><td></td><td></td><td></td><td>5.53</td><td>6.21</td><td>5.83</td><td>5.92</td></tr>
+                <tr><td>64</td><td>SIDIBE</td><td>NOUFO KARIM</td><td>18093523Z</td><td>2NDE</td><td>2NDEA</td><td>18</td><td>Élevé</td><td>X</td><td></td><td></td><td></td><td>X</td><td>Entretien</td><td>X</td><td></td><td></td><td>7.68</td><td>10.17</td><td>10.11</td><td>9.64</td></tr>
+                <tr><td>65</td><td>OUATTARA</td><td>N'GOLO OUDOU</td><td>18363080D</td><td>2NDE</td><td>2NDEA</td><td>15</td><td>Modéré</td><td></td><td></td><td></td><td></td><td>X</td><td></td><td></td><td></td><td></td><td>10.34</td><td>12.31</td><td>11.26</td><td>11.49</td></tr>
+                <tr><td>66</td><td>KUIAN</td><td>DOMINIQUE ALEXIA</td><td>21942187S</td><td>3EME</td><td>3EME 3</td><td>12</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td></td><td></td><td></td><td>8.14</td><td>6.49</td><td>9.50</td><td>8.02</td></tr>
+                <tr><td>67</td><td>DAKOURI</td><td>HONOZALE COLOMBE SAMIRA</td><td>22814552D</td><td>3EME</td><td>3EME 3</td><td>18</td><td>Élevé</td><td>X</td><td></td><td></td><td>X</td><td>X</td><td>Entretien</td><td>X</td><td></td><td></td><td>7.73</td><td>6.17</td><td>8.36</td><td>7.35</td></tr>
+                <tr><td>68</td><td>SORO</td><td>FATOUMATA JOELLE</td><td>22757510K</td><td>3EME</td><td>3EME 3</td><td>12</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td></td><td></td><td></td><td>10.27</td><td>7.54</td><td>10.76</td><td>9.37</td></tr>
+                <tr><td>69</td><td>YERENGA</td><td>BAGNAN</td><td>21711630H</td><td>3EME</td><td>3EME 3</td><td>11</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td></td><td></td><td></td><td>10.89</td><td>10.76</td><td>11.43</td><td>11.05</td></tr>
+                <tr><td>70</td><td>TUO</td><td>DJATA</td><td>21635798R</td><td>3EME</td><td>3EME 3</td><td>13</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td></td><td></td><td></td><td>12.06</td><td>13.35</td><td>12.99</td><td>12.94</td></tr>
+                <tr><td>71</td><td>SOUMAHORO</td><td>SARAH</td><td>21388803A</td><td>3EME</td><td>3EME 3</td><td>14</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td></td><td></td><td></td><td>10.77</td><td>11.25</td><td>11.24</td><td>11.15</td></tr>
+                <tr><td>72</td><td>DOUMBIA</td><td>MASSANDJE</td><td>22601532M</td><td>3EME</td><td>3EME 3</td><td>14</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td></td><td></td><td></td><td>7.67</td><td>7.70</td><td>10.50</td><td>8.81</td></tr>
+                <tr><td>73</td><td>KAPET</td><td>EDWIGE ORELIE</td><td>22856367F</td><td>3EME</td><td>3EME 3</td><td>11</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td></td><td></td><td></td><td>8.16</td><td>8.19</td><td>9.95</td><td>8.88</td></tr>
+                <tr><td>74</td><td>MAMADOU</td><td>AMI KARAMOKO</td><td>21915832W</td><td>3EME</td><td>3EME 3</td><td>11</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td></td><td></td><td></td><td>10.26</td><td>9.40</td><td>10.58</td><td>10.04</td></tr>
+                <tr><td>75</td><td>BAMBA</td><td>MAIMOUNA</td><td>21315806X</td><td>3EME</td><td>3EME 3</td><td>10</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td>X</td><td></td><td></td><td>7.74</td><td>9.01</td><td>9.73</td><td>9.04</td></tr>
+                <tr><td>76</td><td>MIMBA</td><td>ZRANDO GRACE SHEILA</td><td>19604377A</td><td>3EME</td><td>3EME 3</td><td>16</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td></td><td></td><td></td><td>9.02</td><td>6.57</td><td>10.30</td><td>8.55</td></tr>
+                <tr><td>77</td><td>DIARRASSOUBA</td><td>YOUSSOUF</td><td>19713775Q</td><td>3EME</td><td>3EME 3</td><td>12</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td></td><td></td><td></td><td>8.17</td><td>7.78</td><td>10.87</td><td>9.09</td></tr>
+                <tr><td>78</td><td>KONATE</td><td>ALI</td><td>22330931X</td><td>3EME</td><td>3EME 3</td><td>11</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td></td><td></td><td></td><td>6.51</td><td>6.74</td><td>8.62</td><td>7.44</td></tr>
+                <tr><td>79</td><td>KONATE</td><td>SINDOU</td><td>20143800N</td><td>3EME</td><td>3EME 3</td><td>12</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td></td><td></td><td></td><td>10.02</td><td>9.32</td><td>10.72</td><td>10.02</td></tr>
+                <tr><td>80</td><td>DIALLO</td><td>SALIMATOU</td><td>21385349D</td><td>3EME</td><td>3EME 3</td><td>19</td><td>Élevé</td><td>X</td><td></td><td></td><td>X</td><td>X</td><td>Entretien</td><td>X</td><td></td><td></td><td>8.56</td><td>7.12</td><td>9.95</td><td>8.54</td></tr>
+                <tr><td>81</td><td>OWHE</td><td>ABIGAEL UNOTOKA AURELIE</td><td>22603206H</td><td>3EME</td><td>3EME 3</td><td>17</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td></td><td></td><td></td><td>9.87</td><td>9.09</td><td>11.62</td><td>10.25</td></tr>
+                <tr><td>82</td><td>KONAN</td><td>AKISSI EVA CHRISTELLE</td><td>21782548V</td><td>3EME</td><td>3EME 3</td><td>10</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td></td><td></td><td></td><td>8.62</td><td>8.08</td><td>9.98</td><td>8.94</td></tr>
+                <tr><td>83</td><td>AGNAN</td><td>SEKA GILLES JUNIOR</td><td>21739303Q</td><td>3EME</td><td>3EME 3</td><td>10</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td></td><td></td><td></td><td>8.96</td><td>7.44</td><td>9.32</td><td>8.49</td></tr>
+                <tr><td>84</td><td>KOUAME</td><td>GRAH PAUL EMILE ANDRE</td><td>21680918N</td><td>3EME</td><td>3EME 3</td><td>13</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td></td><td></td><td></td><td>7.55</td><td>8.08</td><td>10.07</td><td>8.77</td></tr>
+                <tr><td>85</td><td>DIOMANDE</td><td>ABOU</td><td>22813950K</td><td>3EME</td><td>3EME 3</td><td>18</td><td>Élevé</td><td>X</td><td></td><td></td><td>X</td><td>X</td><td>Entretien</td><td>X</td><td></td><td></td><td>8.04</td><td>7.49</td><td>9.55</td><td>8.42</td></tr>
+                <tr><td>86</td><td>SIAMA</td><td>KASSOUM</td><td>21260860D</td><td>3EME</td><td>3EME 3</td><td>10</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td></td><td></td><td></td><td>8.94</td><td>7.72</td><td>9.76</td><td>8.78</td></tr>
+                <tr><td>87</td><td>SYLLA</td><td>MORY</td><td>21752623L</td><td>3EME</td><td>3EME 3</td><td>11</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td></td><td></td><td></td><td>12.34</td><td>11.97</td><td>11.97</td><td>12.04</td></tr>
+                <tr><td>88</td><td>DOUA</td><td>BI MIGONE CASMI EMMANUEL</td><td>19462640Q</td><td>3EME</td><td>3EME 3</td><td>12</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td></td><td></td><td></td><td>6.64</td><td>5.81</td><td>7.24</td><td>6.54</td></tr>
+                <tr><td>89</td><td>SORO</td><td>WODANHAN VICTORINE</td><td>21788158H</td><td>3EME</td><td>3EME 3</td><td>13</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td></td><td></td><td></td><td>6.80</td><td>4.74</td><td>6.24</td><td>5.75</td></tr>
+                <tr><td>90</td><td>AMANKA</td><td>AKA ANGE DERMARK</td><td>21915801A</td><td>3EME</td><td>3EME 3</td><td>25</td><td>Élevé</td><td>X</td><td></td><td></td><td>X</td><td>X</td><td>Entretien</td><td>X</td><td></td><td></td><td>6.96</td><td>5.41</td><td>6.73</td><td>6.24</td></tr>
+                <tr><td>91</td><td>IRIE</td><td>LOU TINAN ANGELA MICHELLE</td><td>19239143W</td><td>3EME</td><td>3EME 3</td><td>19</td><td>Élevé</td><td>X</td><td></td><td></td><td>X</td><td>X</td><td>Entretien</td><td>X</td><td></td><td></td><td>10.57</td><td>8.30</td><td>10.33</td><td>9.56</td></tr>
+                <tr><td>92</td><td>DIARRA</td><td>SEKOU</td><td>21904584F</td><td>3EME</td><td>3EME 3</td><td>14</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td></td><td></td><td></td><td>11.38</td><td>9.73</td><td>11.38</td><td>10.72</td></tr>
+                <tr><td>93</td><td>DINDANE</td><td>YACOUBA</td><td>21417708X</td><td>3EME</td><td>3EME 3</td><td>16</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td></td><td></td><td></td><td>5.66</td><td>7.67</td><td>9.40</td><td>7.96</td></tr>
+                <tr><td>94</td><td>COULIBALY</td><td>DJAKARIDJA</td><td>20143527E</td><td>3EME</td><td>3EME 3</td><td>23</td><td>Élevé</td><td>X</td><td></td><td></td><td>X</td><td>X</td><td>Entretien</td><td>X</td><td></td><td></td><td>4.96</td><td>4.02</td><td>5.46</td><td>4.78</td></tr>
+                <tr><td>95</td><td>KONE</td><td>SOULEYMANE</td><td>21440839W</td><td>3EME</td><td>3EME 3</td><td>15</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td></td><td></td><td></td><td>10.40</td><td>8.98</td><td>8.82</td><td>9.20</td></tr>
+                <tr><td>96</td><td>OUATTARA</td><td>KIGUO SIE ABOUBAKAR</td><td>25017012L</td><td>6EME</td><td>6EME 6</td><td>10</td><td>Modéré</td><td></td><td></td><td></td><td></td><td>X</td><td></td><td></td><td></td><td></td><td>11.08</td><td>8.91</td><td>11.47</td><td>10.36</td></tr>
+                <tr><td>97</td><td>KOFFI</td><td>WELEI AKISSI SEPHORA</td><td>24170356U</td><td>6EME</td><td>6EME 6</td><td>12</td><td>Modéré</td><td></td><td></td><td></td><td></td><td>X</td><td></td><td></td><td></td><td></td><td>10.10</td><td>8.86</td><td>11.14</td><td>10.02</td></tr>
+                <tr><td>98</td><td>KOUASSI</td><td>AMOIN MIENMOH GRACE</td><td>25185692U</td><td>6EME</td><td>6EME 6</td><td>10</td><td>Modéré</td><td></td><td></td><td></td><td></td><td>X</td><td></td><td>X</td><td></td><td></td><td>10.71</td><td>11.08</td><td>11.41</td><td>11.13</td></tr>
+                <tr><td>99</td><td>BLYO</td><td>BI TRA ANDERSON</td><td>24513624H</td><td>6EME</td><td>6EME 6</td><td>12</td><td>Modéré</td><td></td><td></td><td></td><td></td><td>X</td><td></td><td>X</td><td></td><td></td><td>9.20</td><td>10.50</td><td>7.87</td><td>7.95</td></tr>
+                <tr><td>100</td><td>SANGARE</td><td>MORY</td><td>24190119F</td><td>6EME</td><td>6EME 6</td><td>10</td><td>Modéré</td><td></td><td></td><td></td><td></td><td>X</td><td></td><td></td><td></td><td></td><td>9.13</td><td>6.31</td><td>5.54</td><td>6.56</td></tr>
+                <tr><td>101</td><td>DOSSO</td><td>ISSA KADER</td><td>25205651P</td><td>6EME</td><td>6EME 6</td><td>12</td><td>Modéré</td><td></td><td></td><td></td><td></td><td>X</td><td></td><td></td><td></td><td></td><td>9.16</td><td>8.36</td><td>9.24</td><td>8.87</td></tr>
+                <tr><td>102</td><td>N'GUESSAN</td><td>KOSSIA AUDE MARIE</td><td>N25077471</td><td>6EME</td><td>6EME 6</td><td>10</td><td>Modéré</td><td></td><td></td><td></td><td></td><td>X</td><td></td><td></td><td></td><td></td><td>9.11</td><td>8.99</td><td>11.49</td><td>10.01</td></tr>
+                <tr><td>103</td><td>COULIBALY</td><td>ABDEL AZIZ</td><td>25331629W</td><td>6EME</td><td>6EME 6</td><td>15</td><td>Modéré</td><td></td><td></td><td></td><td></td><td>X</td><td></td><td>X</td><td></td><td></td><td>11.64</td><td>12.09</td><td>11.38</td><td>11.71</td></tr>
+                <tr><td>104</td><td>BERTHE</td><td>DJIBRIL</td><td>23860181R</td><td>6EME</td><td>6EME 6</td><td>13</td><td>Modéré</td><td></td><td></td><td></td><td></td><td>X</td><td></td><td></td><td></td><td></td><td>10.25</td><td>8.30</td><td>11.99</td><td>10.16</td></tr>
+                <tr><td>105</td><td>TANOU</td><td>IBRAHIMA</td><td>22601451B</td><td>6EME</td><td>6EME 6</td><td>12</td><td>Modéré</td><td></td><td></td><td></td><td></td><td>X</td><td></td><td></td><td></td><td></td><td>12.31</td><td>9.02</td><td>11.94</td><td>10.84</td></tr>
+                <tr><td>106</td><td>BAMBA</td><td>AWA</td><td>24150736Y</td><td>6EME</td><td>6EME 6</td><td>10</td><td>Modéré</td><td></td><td></td><td></td><td></td><td>X</td><td></td><td></td><td></td><td></td><td>11.34</td><td>10.15</td><td>11.57</td><td>10.95</td></tr>
+                <tr><td>107</td><td>BROU</td><td>BALIZELHE BETHEL</td><td>24065128V</td><td>6EME</td><td>6EME 6</td><td>10</td><td>Modéré</td><td></td><td></td><td></td><td></td><td>X</td><td></td><td>X</td><td></td><td></td><td>9.80</td><td>8.55</td><td>10.78</td><td>9.69</td></tr>
+                <tr><td>108</td><td>KONE</td><td>MABOUNOU</td><td>25243485N</td><td>6EME</td><td>6EME 6</td><td>12</td><td>Modéré</td><td></td><td></td><td></td><td></td><td>X</td><td></td><td></td><td></td><td></td><td>10.19</td><td>9.19</td><td>12.21</td><td>10.59</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <p style="font-size:12px; color:#555; font-style:italic;">* Les colonnes « Moy. 3e trim. » et « M.G. An » ont été ajoutées à partir du fichier « table_20260617 lycam 2.xlsx ».</p>
+
+    <!-- ==================== TABLEAUX PAR CLASSE ==================== -->
+    <h2>Résultats par classe (avec données du 3<sup>e</sup> trimestre et MGA)</h2>
+
+    <h3>6<sup>ème</sup> 6 (13 élèves)</h3>
+    <table style="min-width:300px;">
+        <thead><tr><th>Période</th><th>≥ 10</th><th>8,5 – 9,99</th><th>&lt; 8,5</th></tr></thead>
+        <tbody>
+            <tr><td>T1</td><td>11</td><td>2</td><td>0</td></tr>
+            <tr><td>T2</td><td>13</td><td>0</td><td>0</td></tr>
+            <tr><td>T3</td><td>9</td><td>2</td><td>2</td></tr>
+            <tr class="highlight-green"><td><strong>MGA</strong></td><td><strong>9</strong></td><td><strong>2</strong></td><td><strong>2</strong></td></tr>
+        </tbody>
+    </table>
+    <p><strong>Interprétation :</strong> La classe de 6<sup>ème</sup> 6, qui avait montré une nette progression au T2 (100 % ≥ 10), a connu un recul au T3 (9 élèves ≥ 10). Les actions semi‑collectives (entretiens, règlement intérieur, gestion du temps) ont eu un effet positif sur la discipline mais n’ont pas suffi à maintenir les performances. La MGA confirme une fragilisation : 2 élèves passent sous 8,5.</p>
+
+    <h3>3<sup>ème</sup> 3 (30 élèves)</h3>
+    <table style="min-width:300px;">
+        <thead><tr><th>Période</th><th>≥ 10</th><th>8,5 – 9,99</th><th>&lt; 8,5</th></tr></thead>
+        <tbody>
+            <tr><td>T1</td><td>14</td><td>9</td><td>7</td></tr>
+            <tr><td>T2</td><td>9</td><td>9</td><td>12</td></tr>
+            <tr><td>T3</td><td>13</td><td>10</td><td>7</td></tr>
+            <tr class="highlight-red"><td><strong>MGA</strong></td><td><strong>8</strong></td><td><strong>10</strong></td><td><strong>12</strong></td></tr>
+        </tbody>
+    </table>
+    <p><strong>Interprétation :</strong> La classe de 3<sup>ème</sup> 3, qui avait connu une dégradation au T2, a vu ses résultats se rétablir légèrement au T3 (13 élèves ≥ 10). Cependant, la MGA montre une réalité plus contrastée : seulement 8 élèves ont une MGA ≥ 10, et 12 sont sous 8,5. Les actions de remédiation ont permis un sursaut en fin d’année mais n’ont pas inversé la tendance structurelle. Classe très préoccupante.</p>
+
+    <h3>2<sup>nde</sup> A (36 élèves)</h3>
+    <table style="min-width:300px;">
+        <thead><tr><th>Période</th><th>≥ 10</th><th>8,5 – 9,99</th><th>&lt; 8,5</th></tr></thead>
+        <tbody>
+            <tr><td>T1</td><td>21</td><td>10</td><td>5</td></tr>
+            <tr><td>T2</td><td>21</td><td>10</td><td>5</td></tr>
+            <tr><td>T3</td><td>23</td><td>9</td><td>4</td></tr>
+            <tr class="highlight-green"><td><strong>MGA</strong></td><td><strong>17</strong></td><td><strong>13</strong></td><td><strong>6</strong></td></tr>
+        </tbody>
+    </table>
+    <p><strong>Interprétation :</strong> La 2<sup>nde</sup> A maintient des résultats stables. Au T3, on observe une légère amélioration (23 ≥ 10). Toutefois, la MGA est inférieure aux performances trimestrielles : seulement 17 élèves ont une MGA ≥ 10, et 6 sont sous 8,5. Les fragilités persistent sur l’année.</p>
+
+    <h3>Tle A (12 élèves)</h3>
+    <table style="min-width:300px;">
+        <thead><tr><th>Période</th><th>≥ 10</th><th>8,5 – 9,99</th><th>&lt; 8,5</th></tr></thead>
+        <tbody>
+            <tr><td>T1</td><td>12</td><td>0</td><td>0</td></tr>
+            <tr><td>T2</td><td>10</td><td>2</td><td>0</td></tr>
+            <tr><td>T3</td><td>12</td><td>0</td><td>0</td></tr>
+            <tr class="highlight-green"><td><strong>MGA</strong></td><td><strong>12</strong></td><td><strong>0</strong></td><td><strong>0</strong></td></tr>
+        </tbody>
+    </table>
+    <p><strong>Interprétation :</strong> La Tle A retrouve au T3 un niveau satisfaisant : tous les élèves ont une moyenne ≥ 10. La MGA confirme cette performance : 12 élèves sur 12 ont une MGA ≥ 10. Les actions (emplois du temps, organisation du travail) ont permis un redressement en fin d’année, après un T2 plus mitigé.</p>
+
+    <h3>Tle D2 (11 élèves)</h3>
+    <table style="min-width:300px;">
+        <thead><tr><th>Période</th><th>≥ 10</th><th>8,5 – 9,99</th><th>&lt; 8,5</th></tr></thead>
+        <tbody>
+            <tr><td>T1</td><td>4</td><td>4</td><td>3</td></tr>
+            <tr><td>T2</td><td>6</td><td>2</td><td>3</td></tr>
+            <tr><td>T3</td><td>9</td><td>2</td><td>0</td></tr>
+            <tr class="highlight-green"><td><strong>MGA</strong></td><td><strong>9</strong></td><td><strong>2</strong></td><td><strong>0</strong></td></tr>
+        </tbody>
+    </table>
+    <p><strong>Interprétation :</strong> La Tle D2 est la classe qui a le mieux progressé sur l’année. Au T3, 9 élèves sur 11 ont une moyenne ≥ 10, et aucun n’est sous 8,5. La MGA est excellente : 9 élèves ≥ 10, 2 entre 8,5 et 10. Les entretiens collectifs et les conseils méthodologiques ont porté leurs fruits.</p>
+
+    <!-- ==================== SYNTHÈSE ANNUELLE PAR CLASSE ==================== -->
+    <h2>Synthèse des résultats annuels par classe (MGA)</h2>
+    <table style="min-width:400px;">
+        <thead><tr><th>Classe</th><th>Effectif</th><th>≥ 10</th><th>8,5 – 9,99</th><th>&lt; 8,5</th></tr></thead>
+        <tbody>
+            <tr><td>6<sup>ème</sup> 6</td><td>13</td><td>9</td><td>2</td><td>2</td></tr>
+            <tr><td>3<sup>ème</sup> 3</td><td>30</td><td>8</td><td>10</td><td>12</td></tr>
+            <tr><td>2<sup>nde</sup> A</td><td>36</td><td>17</td><td>13</td><td>6</td></tr>
+            <tr><td>Tle A</td><td>12</td><td>12</td><td>0</td><td>0</td></tr>
+            <tr><td>Tle D2</td><td>11</td><td>9</td><td>2</td><td>0</td></tr>
+            <tr style="font-weight:bold; background:#e0e7f0;"><td><strong>Total</strong></td><td><strong>102</strong></td><td><strong>55</strong></td><td><strong>27</strong></td><td><strong>20</strong></td></tr>
+        </tbody>
+    </table>
+
+    <!-- ==================== BILAN PAR TYPE DE RISQUE ==================== -->
+    <h2>Bilan annuel par type de risque (102 élèves suivis)</h2>
+    <table style="min-width:300px;">
+        <thead><tr><th>Risque</th><th>≥ 10</th><th>8,5 – 9,99</th><th>&lt; 8,5</th><th>Total</th></tr></thead>
+        <tbody>
+            <tr><td><span class="badge badge-ok">Modéré</span></td><td>53</td><td>24</td><td>14</td><td>91</td></tr>
+            <tr><td><span class="badge badge-danger">Élevé</span></td><td>2</td><td>3</td><td>6</td><td>11</td></tr>
+            <tr style="font-weight:bold; background:#e0e7f0;"><td><strong>Total</strong></td><td><strong>55</strong></td><td><strong>27</strong></td><td><strong>20</strong></td><td><strong>102</strong></td></tr>
+        </tbody>
+    </table>
+
+    <!-- ==================== BILAN DES DÉCISIONS ==================== -->
+    <h2>Bilan annuel des décisions</h2>
+    <table style="min-width:500px;">
+        <thead><tr><th>Décision</th><th>Niveaux concernés</th><th>Effectif</th><th>Remarques</th></tr></thead>
+        <tbody>
+            <tr class="highlight-red">
+                <td><strong>Exclus</strong><br><span style="font-size:11px;">(MGA &lt; 8,5)</span></td>
+                <td>3<sup>ème</sup> 3 : 12<br>2<sup>nde</sup> A : 6<br>6<sup>ème</sup> 6 : 2</td>
+                <td><strong>20</strong></td>
+                <td>⚠️ Les 12 élèves de 3<sup>ème</sup> sont exclus, indépendamment du BEPC.</td>
+            </tr>
+            <tr class="highlight-orange">
+                <td><strong>Redoublants</strong><br><span style="font-size:11px;">(8,5 ≤ MGA &lt; 10)</span></td>
+                <td>2<sup>nde</sup> A : 13<br>6<sup>ème</sup> 6 : 2</td>
+                <td><strong>15</strong></td>
+                <td>Redoublement dans le même niveau.</td>
+            </tr>
+            <tr class="highlight-green">
+                <td><strong>Passage en classe supérieure</strong><br><span style="font-size:11px;">(MGA ≥ 10)</span></td>
+                <td>2<sup>nde</sup> A : 17<br>6<sup>ème</sup> 6 : 9</td>
+                <td><strong>26</strong></td>
+                <td>Admis directement.</td>
+            </tr>
+            <tr style="background:#e3f2fd;">
+                <td><strong>En attente des résultats d’examen</strong><br><span style="font-size:11px;">(MGA ≥ 8,5)</span></td>
+                <td>Tle A : 12<br>Tle D2 : 11<br>3<sup>ème</sup> 3 : 18</td>
+                <td><strong>41</strong></td>
+                <td>Décision subordonnée aux résultats du BAC / BEPC.</td>
+            </tr>
+            <tr style="font-weight:bold; background:#e0e7f0;">
+                <td colspan="2"><strong>TOTAL</strong></td>
+                <td><strong>102</strong></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- ==================== CONCLUSION ==================== -->
+    <h2>Conclusion générale – Remédiation au décrochage scolaire</h2>
+    <p>L’administration du test LYCAM à 335 élèves, suivie d’actions de remédiation individuelles et semi‑collectives, a permis d’obtenir des résultats contrastés sur l’ensemble de l’année scolaire.</p>
+
+    <h3>Constat principal</h3>
+    <ul style="margin-left:20px; font-size:14px; line-height:1.8;">
+        <li>Sur les <strong>102 élèves</strong> suivis individuellement, la <strong>MGA</strong> montre :
+            <ul>
+                <li><span class="badge badge-ok">55 (53,9 %)</span> ont une MGA ≥ 10.</li>
+                <li><span class="badge badge-warn">27 (26,5 %)</span> ont une MGA entre 8,5 et 9,99.</li>
+                <li><span class="badge badge-danger">20 (19,6 %)</span> ont une MGA &lt; 8,5.</li>
+            </ul>
+        </li>
+        <li>Comparé aux résultats trimestriels, la MGA est souvent inférieure aux pics atteints au T3, ce qui indique une <strong>irrégularité des performances</strong> dans l’année.</li>
+    </ul>
+
+    <h3>Disparités par classe</h3>
+    <ul style="margin-left:20px; font-size:14px; line-height:1.8;">
+        <li><strong>Tle A et Tle D2</strong> : très bons résultats annuels (100 % et 81,8 % de MGA ≥ 10).</li>
+        <li><strong>6<sup>ème</sup> 6</strong> : résultats corrects (9/13 ≥ 10) mais avec un recul en fin d’année.</li>
+        <li><strong>2<sup>nde</sup> A</strong> : résultats moyens (17/36 ≥ 10) avec un nombre significatif d’élèves sous 8,5.</li>
+        <li><strong>3<sup>ème</sup> 3</strong> : classe la plus fragile (8/30 ≥ 10, 12 élèves sous 8,5). Elle concentre la majorité des élèves à risque élevé et des redoublants.</li>
+    </ul>
+
+    <h3>Efficacité des actions de remédiation</h3>
+    <ul style="margin-left:20px; font-size:14px; line-height:1.8;">
+        <li>Les actions menées (entretiens, tutorat, coaching, soutien psychologique, entretiens avec les parents) ont eu des effets :
+            <ul>
+                <li><strong>Positifs</strong> sur la discipline, l’ambiance de classe et l’implication des élèves.</li>
+                <li><strong>Inégaux</strong> sur les résultats scolaires : très efficaces en Tle D, moyennes en 2<sup>nde</sup> et 6<sup>ème</sup>, insuffisantes en 3<sup>ème</sup>.</li>
+            </ul>
+        </li>
+        <li>Les élèves à <strong>risque élevé</strong> restent les plus difficiles à remobiliser (seulement 2 sur 11 ont une MGA ≥ 10).</li>
+    </ul>
+
+    <div class="recom">
+        <h3 style="margin-top:0;">Recommandations pour l’année suivante</h3>
+        <ul>
+            <li><strong>Renforcer le suivi individuel</strong> des élèves à risque élevé (contrats de progrès, tutorat renforcé).</li>
+            <li><strong>Mettre en place un dispositif de soutien continu</strong> en 3<sup>ème</sup>, avec des cours de remédiation ciblés.</li>
+            <li><strong>Impliquer davantage les enseignants</strong> dans l’identification et l’accompagnement des élèves fragiles.</li>
+            <li><strong>Évaluer systématiquement l’impact</strong> des actions pour ajuster les stratégies en temps réel.</li>
+        </ul>
+    </div>
+
+    <h3>Conclusion finale</h3>
+    <p>La CPLDS a permis une meilleure identification du décrochage et une amélioration notable du climat scolaire. Toutefois, les résultats annuels montrent que la remédiation n’a pas encore réussi à inverser durablement les trajectoires des élèves les plus fragiles, notamment en 3<sup>ème</sup>. Un effort accru et mieux ciblé est nécessaire lors de la prochaine année scolaire.</p>
+
+    <!-- ==================== FOOTER ==================== -->
+    <div class="footer">
+        <p style="text-align:right; font-style:italic;">Fait à San-Pedro, le <span style="text-decoration:underline;">15/06/2026</span></p>
+        <p style="text-align:right; font-weight:bold;">Le secrétaire de la CPLDS</p>
+        <p style="text-align:right; font-weight:bold;">SERI Koubi Hippolyte</p>
+        <p style="text-align:center; font-size:12px; color:#777; margin-top:10px;">© Lycée Moderne KFW – Année scolaire 2025-2026</p>
+    </div>
+
+</div>
+</body>
+</html>
