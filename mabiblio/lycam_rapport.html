@@ -88,7 +88,7 @@
             h2 { font-size: 17px; }
             h3 { font-size: 15px; }
             p, .intro p, .recom ul, .footer { font-size: 13px; }
-            table { font-size: 9px; min-width: 1200px; } /* un peu plus compact */
+            table { font-size: 9px; min-width: 1200px; }
             th, td { padding: 2px 2px; }
             .badge { font-size: 9px; padding: 1px 6px; }
             .alert-box { font-size: 13px; padding: 10px 12px; }
@@ -97,12 +97,52 @@
             table { font-size: 8px; min-width: 1000px; }
             th, td { padding: 1px 1px; }
         }
+
+        /* ===== IMPRESSION : le tableau tient sur une page en paysage ===== */
         @media print {
-            body { background: #fff; padding: 0; }
-            .container { box-shadow: none; padding: 15px; }
-            .badge { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-            .highlight-green, .highlight-orange, .highlight-red { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-            table { font-size: 10px; }
+            @page {
+                size: landscape;
+                margin: 6mm;
+            }
+            body { background: #fff; padding: 0; margin: 0; }
+            .container {
+                box-shadow: none;
+                padding: 5px;
+                max-width: 100%;
+                border-radius: 0;
+            }
+            .scroll-table {
+                overflow: visible !important;
+                transform: scale(0.72);
+                transform-origin: top left;
+                width: 100%;
+                margin-bottom: -25%;
+            }
+            table {
+                font-size: 6.5px !important;
+                min-width: auto !important;
+                width: 100%;
+            }
+            th, td {
+                padding: 1px 1.5px !important;
+                border: 1px solid #666;
+            }
+            .badge {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                font-size: 6px;
+                padding: 0 4px;
+            }
+            .highlight-green, .highlight-orange, .highlight-red {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .header .titre { font-size: 16px; }
+            h2 { font-size: 15px; }
+            h3 { font-size: 13px; }
+            p { font-size: 11px; }
+            .recom ul { font-size: 11px; }
+            .intro { padding: 8px 12px; }
         }
     </style>
 </head>
@@ -135,7 +175,9 @@
     <!-- ==================== TABLEAU INDIVIDUEL (108 élèves) ==================== -->
     <h2>Tableau de synthèse des résultats individuels (108 élèves suivis)</h2>
     <p style="font-size:13px; margin-bottom:5px;">
-
+        <strong>Légende :</strong> Entr. parents = Entretien de persuasion avec les parents ; Tutorat = Pair aidant ; 
+        Mentorat ; Coaching (Orientation / Organisation du travail / Autre) ; Soutien Psy ; Valorisation ; Autre.
+        Les cases vides signifient « non concerné ».
     </p>
     <div class="scroll-table">
         <table>
@@ -150,7 +192,7 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- 108 lignes – identiques à l'original, sans répétition -->
+                <!-- 108 lignes – reprises de l'original -->
                 <tr><td>1</td><td>SORO</td><td>TIEREGNIMIN FEBE</td><td>18357429Q</td><td>TLE</td><td>TD2</td><td>11</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td>X</td><td></td><td></td><td>8.46</td><td>9.80</td><td>11.34</td><td>10.14</td></tr>
                 <tr><td>2</td><td>YAO</td><td>BOUREIMA</td><td>18549109U</td><td>TLE</td><td>TD2</td><td>12</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td>X</td><td></td><td></td><td>8.81</td><td>9.35</td><td>11.28</td><td>10.01</td></tr>
                 <tr><td>3</td><td>DOSSO</td><td>ISSIAKA</td><td>17224741A</td><td>TLE</td><td>TD2</td><td>15</td><td>Modéré</td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td>X</td><td></td><td></td><td>9.40</td><td>9.92</td><td>10.40</td><td>10.00</td></tr>
@@ -354,6 +396,9 @@
 
     <!-- ==================== BILAN DES DÉCISIONS ==================== -->
     <h2>Bilan annuel des décisions</h2>
+    <div class="alert-box">
+        ⚠️ <strong>Attention :</strong> Les 12 élèves de 3<sup>ème</sup> ayant une moyenne générale annuelle inférieure à 8,5 sont exclus du système, <strong>quel que soit le résultat du BEPC</strong>.
+    </div>
     <table style="min-width:500px;">
         <thead><tr><th>Décision</th><th>Niveaux concernés</th><th>Effectif</th><th>Remarques</th></tr></thead>
         <tbody>
@@ -439,7 +484,7 @@
 
     <!-- ==================== FOOTER ==================== -->
     <div class="footer">
-        <p style="text-align:right; font-style:italic;">Fait à San-Pedro, le <span style="text-decoration:underline;">15/06/2026</span></p>
+        <p style="text-align:right; font-style:italic;">Fait à San-Pedro, le <span style="text-decoration:underline;">[date]</span></p>
         <p style="text-align:right; font-weight:bold;">Le secrétaire de la CPLDS</p>
         <p style="text-align:right; font-weight:bold;">SERI Koubi Hippolyte</p>
         <p style="text-align:center; font-size:12px; color:#777; margin-top:10px;">© Lycée Moderne KFW – Année scolaire 2025-2026</p>
