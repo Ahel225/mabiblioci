@@ -368,13 +368,13 @@
     <h1>📘 Orientation &amp; Filières Techniques</h1>
     <div class="subtitle">
         Choisissez votre voie, saisissez vos notes, âge et nationalité pour connaître votre éligibilité.
-        <br><span style="font-weight:500;">✅ Critères d'âge pour BT (15-22 ans) et séries techniques inclus.</span>
+        <br><span style="font-weight:500;">✅ Éligibilité BT (15-22 ans) et BAC général (C/A) clairement affichées.</span>
     </div>
 
     <!-- Choix du type d'orientation -->
     <div class="radio-group" id="typeSelector">
-        <label><input type="radio" name="orientationType" value="general" checked> 📚 Enseignement général (Seconde C / A)</label>
-        <label><input type="radio" name="orientationType" value="technique"> 🔧 Enseignement technique &amp; professionnel</label>
+        <label><input type="radio" name="orientationType" value="general" checked> 📚 Enseignement général (BAC général – Seconde C / A)</label>
+        <label><input type="radio" name="orientationType" value="technique"> 🔧 Enseignement technique &amp; professionnel (BT &amp; BAC technique)</label>
     </div>
 
     <!-- Informations personnelles -->
@@ -688,7 +688,7 @@
                 const ageMsg = ageOk ? '✅ Âge valide (≤20 ans)' : '❌ Âge > 20 ans, non éligible';
 
                 let html = `<div class="result-box">
-                    <h3 style="margin-bottom: 12px;">📈 Résultats pour l'enseignement général</h3>
+                    <h3 style="margin-bottom: 12px;">📈 Résultats pour l'enseignement général – BAC général (Seconde C / A)</h3>
                     <div class="${ageOk ? 'info-message success' : 'info-message error'}">${ageMsg}</div>
                     <div class="result-grid">
                         <div class="result-item"><span class="label">Moyenne d'orientation</span><div class="value">${moyenne_orientation.toFixed(2)} / 20</div></div>
@@ -696,8 +696,8 @@
                         <div class="result-item"><span class="label">Bilan littéraire</span><div class="value">${bilan_litteraire.toFixed(2)} / 20</div></div>
                     </div>
                     <div style="margin-top: 16px; display: flex; flex-wrap: wrap; gap: 12px;">
-                        <div><span class="badge ${eligibleC && ageOk ? 'badge-green' : 'badge-red'}">Seconde C</span> ${eligibleC && ageOk ? '✅ Éligible' : '❌ Non éligible'}</div>
-                        <div><span class="badge ${eligibleA && ageOk ? 'badge-green' : 'badge-red'}">Seconde A</span> ${eligibleA && ageOk ? '✅ Éligible' : '❌ Non éligible'}</div>
+                        <div><span class="badge ${eligibleC && ageOk ? 'badge-green' : 'badge-red'}">Seconde C (BAC scientifique)</span> ${eligibleC && ageOk ? '✅ Éligible' : '❌ Non éligible'}</div>
+                        <div><span class="badge ${eligibleA && ageOk ? 'badge-green' : 'badge-red'}">Seconde A (BAC littéraire)</span> ${eligibleA && ageOk ? '✅ Éligible' : '❌ Non éligible'}</div>
                     </div>
                     <div style="margin-top: 12px; background: white; border-radius: 12px; padding: 12px; font-size: 14px;">
                         <strong>Moyennes de sélection (par matière) :</strong><br>
@@ -715,12 +715,13 @@
 
                 // Vérification pour les BT (15-22 ans)
                 const btAgeOk = (age >= 15 && age <= 22);
-                const btMsg = btAgeOk ? '✅ Âge 15-22 ans : éligible aux formations BT' : '❌ Âge hors intervalle 15-22 ans : non éligible aux BT';
+                const btEligible = nationaliteOk && btAgeOk;
+                const btMsg = btEligible ? '✅ Éligible aux formations BT (Brevet de Technicien) – âge 15-22 ans' : '❌ Non éligible aux BT (âge hors 15-22 ans ou nationalité)';
 
                 let html = `<div class="result-box">
                     <h3 style="margin-bottom: 12px;">🔧 Résultats pour l'enseignement technique</h3>
                     <div class="${nationaliteOk ? 'info-message success' : 'info-message error'}">${nationaliteMsg}</div>
-                    <div class="${btAgeOk ? 'info-message success' : 'info-message error'}">${btMsg}</div>
+                    <div class="${btEligible ? 'info-message success' : 'info-message error'}">${btMsg}</div>
                     <p style="margin-bottom: 12px; color: #1f4a7a;">Moyennes de sélection (annuelle ×2 + BEPC ×3) / 5 :</p>
                     <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; background: white; border-radius: 12px; padding: 16px;">
                         <div><strong>Math :</strong> ${sel_math.toFixed(2)}</div>
@@ -732,7 +733,7 @@
                         <div><strong>Orthographe :</strong> ${sel_orth.toFixed(2)}</div>
                     </div>
                     <div style="margin-top: 18px;">
-                        <h4 style="font-size: 16px; margin-bottom: 10px;">🎯 Éligibilité aux séries techniques (BAC)</h4>
+                        <h4 style="font-size: 16px; margin-bottom: 10px;">🎯 Éligibilité aux séries techniques (BAC technique)</h4>
                         <div class="eligibility-grid">`;
 
                 const seriesOrder = ['T1', 'T2', 'T3', 'AB', 'G1', 'G2'];
@@ -762,7 +763,7 @@
 
                 html += `</div></div>
                     <div style="margin-top: 12px; font-size: 13px; background: #e4edf6; padding: 8px 14px; border-radius: 30px;">
-                        💡 Pour les BT : âge entre 15 et 22 ans (vérifié ci-dessus). Les séries BAC ont des âges maximum spécifiques.
+                        💡 Pour les BT : âge 15-22 ans et nationalité ivoirienne (vérifiés ci-dessus). Les séries BAC techniques ont des âges maximum spécifiques.
                     </div>
                 </div>`;
                 area.innerHTML = html;
