@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Orientation Scolaire &amp; Filières Techniques - Côte d'Ivoire</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+            background: #f4f7fb;
+            color: #1e2a41;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            background: white;
+            padding: 25px 30px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+        h1 {
+            font-size: 28px;
+            font-weight: 600;
+            color: #0a2a44;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #3e5a76;
+            font-size: 16px;
+            margin-bottom: 30px;
+            border-left: 4px solid #2a7de1;
+            padding-left: 16px;
+            background: #eef4fc;
+            border-radius: 0 12px 12px 0;
+            line-height: 1.5;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        @media (max-width: 900px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+        .card {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 20px 22px;
+            box-shadow: 0 6px 18px rgba(0, 20, 40, 0.06);
+            border: 1px solid #e9edf4;
+        }
+        .card h2 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a3a5c;
+            margin-bottom: 18px;
+            border-bottom: 2px solid #dce3ec;
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 18px;
+            margin-bottom: 12px;
+        }
+        .form-group {
+            flex: 1 0 calc(50% - 18px);
+            min-width: 140px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: #2b405a;
+            margin-bottom: 3px;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #ccd7e6;
+            border-radius: 10px;
+            font-size: 14px;
+            background: #fafcff;
+            transition: 0.15s;
+        }
+        .form-group input:focus, .form-group select:focus {
+            border-color: #2a7de1;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(42, 125, 225, 0.15);
+        }
+        .btn {
+            background: #1a5fb4;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 6px;
+            box-shadow: 0 4px 10px rgba(26, 95, 180, 0.25);
+        }
+        .btn:hover {
+            background: #0e4a8f;
+            transform: scale(1.01);
+        }
+        .btn-secondary {
+            background: #e9edf4;
+            color: #1e2a41;
+            box-shadow: none;
+        }
+        .btn-secondary:hover {
+            background: #d5dee9;
+        }
+        .result-box {
+            background: #f0f6fe;
+            border-radius: 16px;
+            padding: 18px 20px;
+            margin-top: 18px;
+            border-left: 6px solid #2a7de1;
+        }
+        .result-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 30px;
+            margin-top: 8px;
+        }
+        .result-item {
+            flex: 1 0 180px;
+        }
+        .result-item .label {
+            font-size: 13px;
+            color: #3d5a78;
+        }
+        .result-item .value {
+            font-size: 22px;
+            font-weight: 700;
+            color: #0a2a44;
+        }
+        .badge {
+            display: inline-block;
+            background: #2a7de1;
+            color: white;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+            margin-right: 6px;
+        }
+        .badge-green {
+            background: #0f9d58;
+        }
+        .badge-orange {
+            background: #e67e22;
+        }
+        .badge-red {
+            background: #c0392b;
+        }
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 16px;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+        .filters select,
+        .filters input {
+            padding: 8px 14px;
+            border-radius: 30px;
+            border: 1px solid #ccd7e6;
+            background: white;
+            font-size: 14px;
+        }
+        .filters input {
+            min-width: 180px;
+        }
+        .offer-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 16px;
+            max-height: 600px;
+            overflow-y: auto;
+            padding-right: 6px;
+        }
+        .offer-item {
+            background: #f9fbfe;
+            border-radius: 14px;
+            padding: 14px 16px;
+            border: 1px solid #e2e9f2;
+            transition: 0.1s;
+        }
+        .offer-item:hover {
+            background: #f0f5fd;
+            border-color: #b8cde0;
+        }
+        .offer-item .domaine {
+            font-size: 12px;
+            font-weight: 600;
+            color: #2a7de1;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .offer-item .specialite {
+            font-size: 16px;
+            font-weight: 600;
+            color: #0a2a44;
+            margin: 4px 0 2px;
+        }
+        .offer-item .diplome {
+            font-size: 13px;
+            color: #1f4a7a;
+            background: #dce6f2;
+            display: inline-block;
+            padding: 2px 12px;
+            border-radius: 16px;
+        }
+        .offer-item .etablissements {
+            font-size: 13px;
+            color: #2f4d6e;
+            margin-top: 6px;
+            line-height: 1.4;
+        }
+        .no-result {
+            color: #5a6f88;
+            font-style: italic;
+            padding: 20px 0;
+        }
+        .mt-20 {
+            margin-top: 20px;
+        }
+        .flex-between {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .small-note {
+            font-size: 13px;
+            color: #4d6a8a;
+            margin-top: 6px;
+        }
+        hr {
+            border: none;
+            border-top: 2px dashed #d6e0ea;
+            margin: 24px 0;
+        }
+        .radio-group {
+            display: flex;
+            gap: 30px;
+            background: #f0f4fa;
+            padding: 12px 20px;
+            border-radius: 40px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        .radio-group input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #1a5fb4;
+        }
+        .hidden-field {
+            display: none;
+        }
+        .eligibility-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+            margin: 12px 0;
+        }
+        .elig-item {
+            background: white;
+            border-radius: 12px;
+            padding: 10px 14px;
+            border: 1px solid #dce3ec;
+            display: flex;
+            flex-direction: column;
+        }
+        .elig-item .serie {
+            font-weight: 700;
+            font-size: 16px;
+            color: #0a2a44;
+        }
+        .elig-item .status {
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .elig-item .conditions {
+            font-size: 12px;
+            color: #4d6a8a;
+            margin-top: 4px;
+        }
+        .badge-sm {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .badge-sm.green {
+            background: #d4edda;
+            color: #155724;
+        }
+        .badge-sm.red {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .info-message {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 12px;
+            padding: 10px 14px;
+            margin: 8px 0;
+            font-size: 14px;
+            color: #856404;
+        }
+        .info-message.success {
+            background: #d4edda;
+            border-color: #b8daff;
+            color: #155724;
+        }
+        .info-message.error {
+            background: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 16px;
+            }
+            .form-group {
+                flex: 1 0 100%;
+            }
+            .result-item {
+                flex: 1 0 100%;
+            }
+            .radio-group {
+                gap: 15px;
+                border-radius: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container" id="app">
+
+    <h1>📘 Orientation &amp; Filières Techniques</h1>
+    <div class="subtitle">
+        Choisissez votre voie, saisissez vos notes, âge et nationalité pour connaître votre éligibilité.
+        <br><span style="font-weight:500;">✅ Critères d'âge pour BT (15-22 ans) et séries techniques inclus.</span>
+    </div>
+
+    <!-- Choix du type d'orientation -->
+    <div class="radio-group" id="typeSelector">
+        <label><input type="radio" name="orientationType" value="general" checked> 📚 Enseignement général (Seconde C / A)</label>
+        <label><input type="radio" name="orientationType" value="technique"> 🔧 Enseignement technique &amp; professionnel</label>
+    </div>
+
+    <!-- Informations personnelles -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; background: #f8faff; padding: 16px 20px; border-radius: 18px; margin-bottom: 20px; border: 1px solid #e0e8f0;">
+        <div style="flex: 1 0 200px;">
+            <label style="font-weight: 500; display: block; margin-bottom: 4px; font-size: 14px;">Âge (années)</label>
+            <input type="number" id="ageInput" min="0" max="99" value="18" style="width: 100%; padding: 8px 12px; border-radius: 10px; border: 1px solid #ccd7e6; font-size: 14px;">
+        </div>
+        <div style="flex: 1 0 200px;">
+            <label style="font-weight: 500; display: block; margin-bottom: 4px; font-size: 14px;">Nationalité</label>
+            <select id="nationaliteInput" style="width: 100%; padding: 8px 12px; border-radius: 10px; border: 1px solid #ccd7e6; font-size: 14px; background: white;">
+                <option value="ivoirienne">Ivoirienne</option>
+                <option value="autre">Autre</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Formulaire -->
+    <div class="grid-2">
+        <!-- Colonne gauche : moyennes annuelles -->
+        <div class="card">
+            <h2>📚 Moyennes annuelles (sur 20)</h2>
+            <div class="form-row">
+                <div class="form-group"><label>Mathématiques</label><input type="number" step="0.1" min="0" max="20" id="ann_math" value="12"></div>
+                <div class="form-group"><label>Physique-Chimie</label><input type="number" step="0.1" min="0" max="20" id="ann_phys" value="11"></div>
+                <div class="form-group"><label>SVT</label><input type="number" step="0.1" min="0" max="20" id="ann_svt" value="10"></div>
+                <div class="form-group"><label>Français (Composition)</label><input type="number" step="0.1" min="0" max="20" id="ann_fr" value="13"></div>
+                <div class="form-group"><label>Anglais</label><input type="number" step="0.1" min="0" max="20" id="ann_ang" value="12"></div>
+                <div class="form-group"><label>Histoire-Géographie</label><input type="number" step="0.1" min="0" max="20" id="ann_hg" value="11"></div>
+                <!-- Orthographe (caché par défaut) -->
+                <div class="form-group hidden-field" id="ann_orth_group"><label>Orthographe</label><input type="number" step="0.1" min="0" max="20" id="ann_orth" value="10"></div>
+            </div>
+        </div>
+
+        <!-- Colonne droite : notes BEPC -->
+        <div class="card">
+            <h2>📝 Notes du BEPC (sur 20)</h2>
+            <div class="form-row">
+                <div class="form-group"><label>Mathématiques</label><input type="number" step="0.1" min="0" max="20" id="bepc_math" value="13"></div>
+                <div class="form-group"><label>Physique-Chimie</label><input type="number" step="0.1" min="0" max="20" id="bepc_phys" value="12"></div>
+                <div class="form-group"><label>SVT</label><input type="number" step="0.1" min="0" max="20" id="bepc_svt" value="11"></div>
+                <div class="form-group"><label>Français (Composition)</label><input type="number" step="0.1" min="0" max="20" id="bepc_fr" value="14"></div>
+                <div class="form-group"><label>Anglais Écrit</label><input type="number" step="0.1" min="0" max="20" id="bepc_ang_ecrit" value="12"></div>
+                <div class="form-group"><label>Anglais Oral</label><input type="number" step="0.1" min="0" max="20" id="bepc_ang_oral" value="11"></div>
+                <div class="form-group"><label>Histoire-Géographie</label><input type="number" step="0.1" min="0" max="20" id="bepc_hg" value="10"></div>
+                <!-- Orthographe BEPC (caché) -->
+                <div class="form-group hidden-field" id="bepc_orth_group"><label>Orthographe BEPC</label><input type="number" step="0.1" min="0" max="20" id="bepc_orth" value="12"></div>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-top: 8px; display: flex; gap: 12px; flex-wrap: wrap;">
+        <button class="btn" id="calcBtn">📊 Calculer</button>
+        <button class="btn btn-secondary" id="resetBtn">↺ Réinitialiser</button>
+    </div>
+
+    <!-- Résultats -->
+    <div id="resultArea" style="margin-top: 24px;"></div>
+
+    <hr>
+
+    <!-- Offres de formation -->
+    <div style="margin-top: 10px;">
+        <div class="flex-between">
+            <h2 style="font-size: 20px;">🎯 Offres de formation technique</h2>
+            <span style="font-size: 14px; color: #3e5a76;">Filtrez pour trouver votre filière</span>
+        </div>
+        <div class="filters">
+            <select id="filterDiplome"><option value="all">Tous diplômes</option><option value="CAP">CAP</option><option value="BT">BT</option><option value="BTS">BTS</option><option value="BAC">BAC technique</option></select>
+            <select id="filterDomaine"><option value="all">Tous domaines</option></select>
+            <input type="text" id="filterSearch" placeholder="🔍 Rechercher une spécialité...">
+        </div>
+        <div id="offerContainer" class="offer-list"></div>
+    </div>
+
+    <div style="margin-top: 24px; font-size: 13px; color: #5a738e; border-top: 1px solid #dde4ed; padding-top: 16px;">
+        Données extraites du document <strong>FICHES METIERS ACTUALISEES 2025</strong> · 
+        Orientation selon les critères du système éducatif ivoirien.
+    </div>
+</div>
+
+<script>
+    (function() {
+        // ----------------------------------------------
+        // 1. DONNÉES DES FORMATIONS (issues du PDF)
+        // ----------------------------------------------
+        const formations = [
+            // Génie Mécanique
+            { domaine: "Génie Mécanique", specialite: "Machine - Ouli", diplome: "BTLP", etablissements: "LTP Man, LPMS Diabo, LPM Yoppaong" },
+            { domaine: "Génie Mécanique", specialite: "Maintenance Macianque", diplome: "BTLP", etablissements: "LPMS Diabo, LPM Yoppaong" },
+            { domaine: "Génie Mécanique", specialite: "Gestion de Production", diplome: "BTLTP", etablissements: "LTP Man" },
+            { domaine: "Génie Mécanique", specialite: "Maintenance Véhicules et Engins", diplome: "BTLP", etablissements: "LP Ferké, LP Jacqueville, LTP Ebmuek, LTP Eimpeé, LPY Yamoussoukro, LPMS Korhogo" },
+            { domaine: "Génie Mécanique", specialite: "Mécanique Automobile", diplome: "BTLP", etablissements: "LP Bimbresso, LP Bondoukou, LTP Man, LP Man-Pedro, LPMA Vidi" },
+            { domaine: "Génie Mécanique", specialite: "Mécanique Automobile", diplome: "CAPLP", etablissements: "LP Adzopé, LP Bimbresso, LP Bondoukou, LP Bongouamou, LP Ferké, LP Katiola, LP Kouto, LP Man, LP Mankono, LP San-Pedro, LP Touba, LP Bouaké, LP Man-Marcory" },
+            { domaine: "Génie Mécanique", specialite: "Construction et Réparation Navales", diplome: "CAP/BTLP", etablissements: "Grand-Lahou" },
+            { domaine: "Génie Mécanique", specialite: "Conducteur d'engins de Travaux Publics", diplome: "CAP", etablissements: "LTP Ebmpe" },
+            { domaine: "Génie Mécanique", specialite: "Maintenance Industrielle", diplome: "BTLP", etablissements: "MME Koumiss, LPS Yoppaong" },
+            { domaine: "Génie Mécanique", specialite: "Imprimerie", diplome: "BTLP", etablissements: "MY Yoppaong, LTP Ebmpe" },
+            { domaine: "Génie Mécanique", specialite: "Conducteur de ligne", diplome: "BTLP", etablissements: "S Yoppaong" },
+            { domaine: "Génie Mécanique", specialite: "Agent de maintenance", diplome: "BTLP", etablissements: "S Yoppaong" },
+            { domaine: "Génie Mécanique", specialite: "Maintenance Moteurs et Machines Marines", diplome: "BTLTP", etablissements: "Grand-Lahou" },
+            { domaine: "Génie Mécanique", specialite: "2nd T1", diplome: "BAC", etablissements: "LT Abidjan, LT Bouaké" },
+            { domaine: "Génie Mécanique", specialite: "Agro-Mécanique", diplome: "CAP", etablissements: "LPM Yamoou" },
+            { domaine: "Génie Mécanique", specialite: "Carrosserie Peinture (FPA)", diplome: "CAPLP", etablissements: "LPMA Vidi" },
+            { domaine: "Génie Mécanique", specialite: "Carrosserie Peinture", diplome: "CAPLP", etablissements: "LPMA Vidi" },
+            { domaine: "Génie Mécanique", specialite: "Maintenance Mécanique Agricole", diplome: "BTLP", etablissements: "MY Yamoou" },
+            { domaine: "Génie Mécanique", specialite: "Mécanique Moto", diplome: "CAPLP", etablissements: "LPMS Korhogo, LPM Gibelban, CFFT Bourdalli" },
+            { domaine: "Génie Mécanique", specialite: "Machines Agricoles", diplome: "CAP", etablissements: "LPM Gibelban, LPM Dakakala, LPM Kong" },
+            { domaine: "Génie Mécanique", specialite: "Mécanique Générale", diplome: "CAPLP", etablissements: "LP Adzopé, LP Bimbresso, LP Ferké, LP Guiglo, LP Korhogo, LP Man, LP Man-Marcory, LPMS Diabo, LTP Ebmpe" },
+            { domaine: "Génie Mécanique", specialite: "Mécanique Automobile (FPA)", diplome: "CAPLP", etablissements: "LPMA Vidi" },
+            { domaine: "Génie Mécanique", specialite: "Maintenance des Systèmes de Production", diplome: "BTS", etablissements: "LP Jacqueville, LTP Abidjan" },
+
+            // Génie Électrique
+            { domaine: "Génie Électrique", specialite: "Froid et Climatisation", diplome: "BTLP", etablissements: "LP Bimbresso, LPMME Koumassi" },
+            { domaine: "Génie Électrique", specialite: "Électro-frigoriste", diplome: "BTLP", etablissements: "LP Daoukro, LPT Elempo" },
+            { domaine: "Génie Électrique", specialite: "Électronique", diplome: "BTLP", etablissements: "LP Yamoussoukro, LPT Man, LPMK Korhogo, LPMK Koumassi" },
+            { domaine: "Génie Électrique", specialite: "Électronique", diplome: "CAP", etablissements: "CFPT Boundail" },
+            { domaine: "Génie Électrique", specialite: "Maintenance Électromécanique", diplome: "BTLP", etablissements: "LP Jacqueville" },
+            { domaine: "Génie Électrique", specialite: "Réfrigération et conditionnement d'air (FPA)", diplome: "BTLTP", etablissements: "LP Odienné" },
+            { domaine: "Génie Électrique", specialite: "Maintenance des Systèmes Industriels et Énergétiques", diplome: "BTLP", etablissements: "LP Yamoussoukro" },
+            { domaine: "Génie Électrique", specialite: "Maintenance des Équipements Électriques et Électroniques", diplome: "BTLP", etablissements: "LP Grand-Lahou" },
+            { domaine: "Génie Électrique", specialite: "Système Électronique et Informatique", diplome: "BTS", etablissements: "LPELIA Treichville, LT Abidjan" },
+            { domaine: "Génie Électrique", specialite: "Électricité d'équipement", diplome: "CAP", etablissements: "LPT Elempo, LPT Man" },
+
+            // Construction Métallique
+            { domaine: "Construction Métallique", specialite: "Construction Métallique", diplome: "CAP", etablissements: "CFPT Abtobo, CFPT Daloa, CFPT Ferké, CFPT Kolla, CFPT Lakota, CFPT Ouango, CFPT Tengerula, LP Abzopé, LP Bimbo, LP Bondoukou, LP Ferké, LP Guiglo, LP Katola, LP Korhogo, LP Man, LP Mankono, LP San-pedro, LP Touba, LP Bouaké, LP Gagnoa, LP Marcony" },
+            { domaine: "Construction Métallique", specialite: "Construction Métallique", diplome: "BT", etablissements: "LP Bouaké, LP Daoukro, LP Abenopourou, LP Katola, LP Korhogo, LP Man, LP San-pedro, LP Gagnoa, LP Marcony, LP Abzopé, LPMME Koumassi, LP Jacqueville, LTP Man, LPI Yopougon, LTP Ebimpé, LPMIS Korhogo, LPMIS Diabo" },
+
+            // Hôtellerie
+            { domaine: "Hôtellerie", specialite: "Cuisine Professionnelle", diplome: "BTLP", etablissements: "LPMS-M VI Yopougon, LPH Riviera, LPH Yamoussoukro" },
+            { domaine: "Hôtellerie", specialite: "Techniques Hôtelières", diplome: "BTLP", etablissements: "LPH Riviera" },
+            { domaine: "Hôtellerie", specialite: "Réception d'Hôtel", diplome: "BTLP", etablissements: "LPH Yamoussoukro, LPMS M VI Yopougon" },
+            { domaine: "Hôtellerie", specialite: "Boulangerie Pâtisserie", diplome: "CAP", etablissements: "CPTPB Yamoussoukro, LPH Yopougon" },
+            { domaine: "Hôtellerie", specialite: "Tourisme et Hôtellerie", diplome: "BTS", etablissements: "LPC Cocody, LPH Riviera, LPMS-M VI Yopougon" },
+            { domaine: "Hôtellerie", specialite: "Agent d'étage", diplome: "CAP", etablissements: "LPH Yamoussoukro, LPH Riviera, LPMS-M VI Yopougon" },
+
+            // Vie Familiale et Sociale
+            { domaine: "Vie Familiale et Sociale", specialite: "Sciences médico-sociales", diplome: "BTLP", etablissements: "LPMMS Agboville, LPMMS Bourké" },
+            { domaine: "Vie Familiale et Sociale", specialite: "Sanitaire social", diplome: "CAP", etablissements: "CFPT Gbon, LPMMS Agboville, LPMMS Bouaké, LPMMS Port-bouët" },
+
+            // Génie Civil BTP
+            { domaine: "Génie Civil BTP", specialite: "Chantier Gros Œuvres", diplome: "BTLP", etablissements: "LP Bongouanou, LP Daoulou, LP Kouba, LPB Mat Koumassi, LPM-M VI Yopougou, LTP San-pedro" },
+            { domaine: "Génie Civil BTP", specialite: "Métier Gros Œuvres", diplome: "BTLTP", etablissements: "LTP San-pedro" },
+            { domaine: "Génie Civil BTP", specialite: "Peinture Décoration", diplome: "BTLP", etablissements: "LPM-S-M VI Yopougou" },
+            { domaine: "Génie Civil BTP", specialite: "Installation Sanitaire", diplome: "BTLP", etablissements: "LP Bongouanou, LP Katiola, LPB Bouaké, LPB Mat Koumassi" },
+            { domaine: "Génie Civil BTP", specialite: "Bâtiment", diplome: "BTLP", etablissements: "LPB Mat Koumassi" },
+            { domaine: "Génie Civil BTP", specialite: "Peinture Bâtiment", diplome: "BTLP", etablissements: "LPB Mat Koumassi" },
+            { domaine: "Génie Civil BTP", specialite: "Revêtement Sols et Murs", diplome: "BTLP", etablissements: "LPB Mat Koumassi" },
+            { domaine: "Génie Civil BTP", specialite: "Topographie", diplome: "BTLP", etablissements: "LP Daoulou, LTP San-pedro" },
+            { domaine: "Génie Civil BTP", specialite: "Revêtement Sols et Murs", diplome: "CAP", etablissements: "CFPT Alépé" },
+            { domaine: "Génie Civil BTP", specialite: "Génie civil option Bâtiment", diplome: "BTS", etablissements: "LP Daoulou, LTP San-pedro" },
+            { domaine: "Génie Civil BTP", specialite: "Génie civil option Géométrie Topographie", diplome: "BTS", etablissements: "LTP San-pedro, LPMS-M VI Yopougou" },
+            { domaine: "Génie Civil BTP", specialite: "Bâtiment et Travaux Publics", diplome: "BTLP", etablissements: "LPM Korhogo, LPM Diabo" },
+            { domaine: "Génie Civil BTP", specialite: "Peinture Bâtiment", diplome: "CAP", etablissements: "LP Katiola" },
+            { domaine: "Génie Civil BTP", specialite: "Plomberie Sanitaire", diplome: "CAP", etablissements: "CFPT Alépé, CFPT Odienné, LP Bongouakou, LP Bongouanou, LP Faréké, LP Katiola, LPMS-M VI Yopougou, LPM Gagnoa" },
+            { domaine: "Génie Civil BTP", specialite: "Maçonnerie", diplome: "CAP", etablissements: "CFPT Atotobo, CFPT Alépé, CFPT Katiola, CFPT Katiota, CFPT Odienné, CFPT Ouangolo, LP Abenporou, LP Adzopé, LP Bondoukou, LP Bongouanou, LP Katiola, LP Kouto, LP Gagnoa" },
+            { domaine: "Génie Civil BTP", specialite: "2nde T2 (BAC F4)", diplome: "BAC", etablissements: "LT Bouaké" },
+
+            // Industrie du Bois
+            { domaine: "Industrie du Bois", specialite: "Menuiserie Ébénisterie", diplome: "BTLP", etablissements: "LPM Bois Koumassi" },
+            { domaine: "Industrie du Bois", specialite: "Menuiserie Charpente", diplome: "BTLP", etablissements: "LPM Bois Koumassi" },
+            { domaine: "Industrie du Bois", specialite: "Tapisserie d'Ameublement", diplome: "BTLP", etablissements: "LPM Bois Koumassi" },
+            { domaine: "Industrie du Bois", specialite: "Tapisserie", diplome: "CAP", etablissements: "LPM Bois Koumassi" },
+            { domaine: "Industrie du Bois", specialite: "Menuiserie Aluminium", diplome: "CAP", etablissements: "CFPT Alépé" },
+
+            // Techniques Administratives
+            { domaine: "Techniques Administratives", specialite: "Secrétariat Bureautique", diplome: "BT", etablissements: "CFPT Tengraia, LPC 1 Treichville, LP Abdoité, LP Bouaïle, LP Ferké, LP Issaï, LP Mankono, LPC 2 Treichville, LPC Bouaïle, LPC Cocody, LPC Dalao, LPC Yopogon, LTP Gagnoa" },
+            { domaine: "Techniques Administratives", specialite: "Assistant de Direction", diplome: "BTS", etablissements: "LPC Bouaïle, LPC Cocody, LPC Dalao, LPC 1 Treichville, LPC Yopogon, LT Abidjan, LTP Gagnoa" },
+            { domaine: "Techniques Administratives", specialite: "2nde G1 (BAC G1)", diplome: "BAC", etablissements: "LT Abidjan, Établissements Privés" },
+            { domaine: "Techniques Administratives", specialite: "2nde G2 (BAC G2)", diplome: "BAC", etablissements: "LT Abidjan" },
+
+            // Pêche
+            { domaine: "Pêche", specialite: "Aquaculture", diplome: "BT", etablissements: "LP Grand-Lahou" },
+            { domaine: "Pêche", specialite: "Exploitation - Pêche", diplome: "CAP", etablissements: "LP Grand-Lahou" },
+
+            // Economie et Gestion
+            { domaine: "Economie et Gestion", specialite: "Comptabilité", diplome: "BT", etablissements: "CFPT Tengrella, LP Bouaké, LP Farké" },
+            { domaine: "Economie et Gestion", specialite: "Comptabilité - Commerce", diplome: "BT", etablissements: "LP Mankono, LP Bouaké, LP Cocody, LP Dakoa, LPTreichville, LP2 Treichville, LP Yopogon, LPTaghona" },
+            { domaine: "Economie et Gestion", specialite: "Transit - Transport", diplome: "BT", etablissements: "LP Cocody" },
+            { domaine: "Economie et Gestion", specialite: "Finance Comptabilité et Gestion des Entreprises", diplome: "BTS", etablissements: "LPLT Treichville, LP Yopogon" },
+            { domaine: "Economie et Gestion", specialite: "Gestion Commerciale", diplome: "BTS", etablissements: "LP Cocody, LPTreichville" },
+            { domaine: "Economie et Gestion", specialite: "Logistique", diplome: "BTS", etablissements: "LP Cocody" },
+            { domaine: "Economie et Gestion", specialite: "2nd AB (BAC B)", diplome: "BAC", etablissements: "LT Abidjan" },
+
+            // Génie Alimentaire
+            { domaine: "Génie Alimentaire", specialite: "Transformation et contrôle qualité en industrie agroalimentaire (TCQIA)", diplome: "BTLP", etablissements: "LP Odienné, LPPS Korhogo, LP Konga, LPMS Diabo" },
+            { domaine: "Génie Alimentaire", specialite: "Industrie Agro-Alimentaires et Chimique - Contrôle", diplome: "BTS", etablissements: "LTP Yopougon" },
+            { domaine: "Génie Alimentaire", specialite: "Industrie Agro-Alimentaires et Chimique - Production", diplome: "BTS", etablissements: "LTP Odienné" },
+            { domaine: "Génie Alimentaire", specialite: "2nde T3 (BAC F7)", diplome: "BAC", etablissements: "LTP Yopougon" },
+
+            // Beauté et Bien-être
+            { domaine: "Beauté et Bien-être", specialite: "Art Mural", diplome: "BTLP", etablissements: "LPCD Katiola" },
+            { domaine: "Beauté et Bien-être", specialite: "Décoration textile", diplome: "BTLP", etablissements: "LPCD Katiola" },
+            { domaine: "Beauté et Bien-être", specialite: "Bijouterie", diplome: "CAP", etablissements: "EIBMA Marcory" },
+            { domaine: "Beauté et Bien-être", specialite: "Céramique", diplome: "CAP", etablissements: "LPCD Katiola" },
+            { domaine: "Beauté et Bien-être", specialite: "Coiffure", diplome: "CAP", etablissements: "LPMMS Port-bouët" },
+            { domaine: "Beauté et Bien-être", specialite: "Coiffure-Esthétique", diplome: "CAP", etablissements: "LPMMS Agboville" },
+            { domaine: "Beauté et Bien-être", specialite: "Coupe - couture", diplome: "CAP", etablissements: "CFPT Gibon, CFPT Ouangolo, LPMMS Agboville, LPMMS Bouaké, LPMMS Port-bouët" },
+            { domaine: "Beauté et Bien-être", specialite: "Esthétique", diplome: "CAP", etablissements: "LPMMS Port-bouët" },
+
+            // Agriculture
+            { domaine: "Agriculture", specialite: "Agriculture", diplome: "BTLP", etablissements: "LP Gbéléban, LP Dabakala" },
+            { domaine: "Agriculture", specialite: "Techniques de Maraichage", diplome: "CAP", etablissements: "LPS-FMA Botro" },
+            { domaine: "Agriculture", specialite: "Première Transformation", diplome: "BTLP", etablissements: "LPS-FMA Botro" },
+            { domaine: "Agriculture", specialite: "Gestion des systèmes irrigués", diplome: "BTS", etablissements: "LPS-FMA Botro" },
+
+            // Elevage
+            { domaine: "Elevage", specialite: "Elevage", diplome: "BTLP", etablissements: "LP Gbéléban, LP Dabakala, LPMS Diabo" },
+        ];
+
+        // ----------------------------------------------
+        // 2. CONDITIONS D'ADMISSION POUR LES SÉRIES TECHNIQUES
+        // ----------------------------------------------
+        const seriesConditions = {
+            'T1': { math: 12, pc: 12, cf: 9, ang: 9, ageMax: 19 },
+            'T2': { math: 12, pc: 12, cf: 9, ang: 9, ageMax: 20 },
+            'T3': { math: 11, pc: 11, cf: 8, ang: 8, svt: 12, ageMax: 20 },
+            'AB': { cf: 11, math: 10, ang: 11, hg: 10, ageMax: 19 },
+            'G1': { cf: 10, ang: 9, orth: 10, hg: 9, ageMax: 20 },
+            'G2': { cf: 9, math: 10, ang: 8, ageMax: 20 }
+        };
+
+        // ----------------------------------------------
+        // 3. LOGIQUE DE CALCUL
+        // ----------------------------------------------
+        function getVal(id) {
+            const el = document.getElementById(id);
+            return parseFloat(el.value) || 0;
+        }
+
+        function getType() {
+            const radio = document.querySelector('input[name="orientationType"]:checked');
+            return radio ? radio.value : 'general';
+        }
+
+        function calculer() {
+            const type = getType();
+            const age = parseInt(document.getElementById('ageInput').value) || 0;
+            const nationalite = document.getElementById('nationaliteInput').value;
+
+            // Lecture des notes
+            const ann_math = getVal('ann_math');
+            const ann_phys = getVal('ann_phys');
+            const ann_svt = getVal('ann_svt');
+            const ann_fr = getVal('ann_fr');
+            const ann_ang = getVal('ann_ang');
+            const ann_hg = getVal('ann_hg');
+            const ann_orth = getVal('ann_orth');
+
+            const bepc_math = getVal('bepc_math');
+            const bepc_phys = getVal('bepc_phys');
+            const bepc_svt = getVal('bepc_svt');
+            const bepc_fr = getVal('bepc_fr');
+            const bepc_ang_ecrit = getVal('bepc_ang_ecrit');
+            const bepc_ang_oral = getVal('bepc_ang_oral');
+            const bepc_hg = getVal('bepc_hg');
+            const bepc_orth = getVal('bepc_orth');
+
+            const bepc_ang_moy = (bepc_ang_ecrit + bepc_ang_oral) / 2;
+            const sel = (ann, bepc) => (ann * 2 + bepc * 3) / 5;
+
+            const sel_math = sel(ann_math, bepc_math);
+            const sel_phys = sel(ann_phys, bepc_phys);
+            const sel_svt = sel(ann_svt, bepc_svt);
+            const sel_fr = sel(ann_fr, bepc_fr);
+            const sel_ang = sel(ann_ang, bepc_ang_moy);
+            const sel_hg = sel(ann_hg, bepc_hg);
+            const sel_orth = sel(ann_orth, bepc_orth);
+
+            const area = document.getElementById('resultArea');
+
+            // Fonction pour évaluer l'éligibilité aux séries avec âge et nationalité
+            function checkEligibility() {
+                const results = {};
+                for (const [serie, conditions] of Object.entries(seriesConditions)) {
+                    let ok = true;
+                    let reasons = [];
+                    if (nationalite !== 'ivoirienne') {
+                        ok = false;
+                        reasons.push('nationalité non ivoirienne');
+                    }
+                    if (conditions.ageMax !== undefined && age > conditions.ageMax) {
+                        ok = false;
+                        reasons.push(`âge > ${conditions.ageMax} ans`);
+                    }
+                    if (conditions.math !== undefined && sel_math < conditions.math) ok = false;
+                    if (conditions.pc !== undefined && sel_phys < conditions.pc) ok = false;
+                    if (conditions.cf !== undefined && sel_fr < conditions.cf) ok = false;
+                    if (conditions.ang !== undefined && sel_ang < conditions.ang) ok = false;
+                    if (conditions.svt !== undefined && sel_svt < conditions.svt) ok = false;
+                    if (conditions.hg !== undefined && sel_hg < conditions.hg) ok = false;
+                    if (conditions.orth !== undefined && sel_orth < conditions.orth) ok = false;
+                    results[serie] = { ok, reasons };
+                }
+                return results;
+            }
+
+            if (type === 'general') {
+                const numerateur = (ann_fr + bepc_fr + ann_math + bepc_math) * 2
+                    + ann_phys + bepc_phys
+                    + ann_ang + bepc_ang_moy;
+                const moyenne_orientation = numerateur / 12;
+
+                const bilan_scientifique = (ann_math + bepc_math + ann_phys + bepc_phys + ann_svt + bepc_svt) / 6;
+                const bilan_litteraire = (ann_fr + bepc_fr + ann_ang + bepc_ang_moy + ann_hg + bepc_hg) / 6;
+
+                const eligibleC = (moyenne_orientation >= 10 && bilan_scientifique >= 10);
+                const eligibleA = (moyenne_orientation >= 10 && bilan_litteraire >= 10);
+
+                const ageOk = (age <= 20);
+                const ageMsg = ageOk ? '✅ Âge valide (≤20 ans)' : '❌ Âge > 20 ans, non éligible';
+
+                let html = `<div class="result-box">
+                    <h3 style="margin-bottom: 12px;">📈 Résultats pour l'enseignement général</h3>
+                    <div class="${ageOk ? 'info-message success' : 'info-message error'}">${ageMsg}</div>
+                    <div class="result-grid">
+                        <div class="result-item"><span class="label">Moyenne d'orientation</span><div class="value">${moyenne_orientation.toFixed(2)} / 20</div></div>
+                        <div class="result-item"><span class="label">Bilan scientifique</span><div class="value">${bilan_scientifique.toFixed(2)} / 20</div></div>
+                        <div class="result-item"><span class="label">Bilan littéraire</span><div class="value">${bilan_litteraire.toFixed(2)} / 20</div></div>
+                    </div>
+                    <div style="margin-top: 16px; display: flex; flex-wrap: wrap; gap: 12px;">
+                        <div><span class="badge ${eligibleC && ageOk ? 'badge-green' : 'badge-red'}">Seconde C</span> ${eligibleC && ageOk ? '✅ Éligible' : '❌ Non éligible'}</div>
+                        <div><span class="badge ${eligibleA && ageOk ? 'badge-green' : 'badge-red'}">Seconde A</span> ${eligibleA && ageOk ? '✅ Éligible' : '❌ Non éligible'}</div>
+                    </div>
+                    <div style="margin-top: 12px; background: white; border-radius: 12px; padding: 12px; font-size: 14px;">
+                        <strong>Moyennes de sélection (par matière) :</strong><br>
+                        Math : ${sel_math.toFixed(2)} &nbsp;|&nbsp; Physique : ${sel_phys.toFixed(2)} &nbsp;|&nbsp; SVT : ${sel_svt.toFixed(2)}<br>
+                        Français : ${sel_fr.toFixed(2)} &nbsp;|&nbsp; Anglais : ${sel_ang.toFixed(2)} &nbsp;|&nbsp; HG : ${sel_hg.toFixed(2)}
+                    </div>
+                </div>`;
+                area.innerHTML = html;
+            } else {
+                // Enseignement technique
+                const elig = checkEligibility();
+
+                const nationaliteOk = (nationalite === 'ivoirienne');
+                let nationaliteMsg = nationaliteOk ? '✅ Nationalité ivoirienne' : '❌ Nationalité non ivoirienne – non éligible à l\'enseignement technique';
+
+                // Vérification pour les BT (15-22 ans)
+                const btAgeOk = (age >= 15 && age <= 22);
+                const btMsg = btAgeOk ? '✅ Âge 15-22 ans : éligible aux formations BT' : '❌ Âge hors intervalle 15-22 ans : non éligible aux BT';
+
+                let html = `<div class="result-box">
+                    <h3 style="margin-bottom: 12px;">🔧 Résultats pour l'enseignement technique</h3>
+                    <div class="${nationaliteOk ? 'info-message success' : 'info-message error'}">${nationaliteMsg}</div>
+                    <div class="${btAgeOk ? 'info-message success' : 'info-message error'}">${btMsg}</div>
+                    <p style="margin-bottom: 12px; color: #1f4a7a;">Moyennes de sélection (annuelle ×2 + BEPC ×3) / 5 :</p>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; background: white; border-radius: 12px; padding: 16px;">
+                        <div><strong>Math :</strong> ${sel_math.toFixed(2)}</div>
+                        <div><strong>Physique :</strong> ${sel_phys.toFixed(2)}</div>
+                        <div><strong>SVT :</strong> ${sel_svt.toFixed(2)}</div>
+                        <div><strong>Français :</strong> ${sel_fr.toFixed(2)}</div>
+                        <div><strong>Anglais :</strong> ${sel_ang.toFixed(2)}</div>
+                        <div><strong>HG :</strong> ${sel_hg.toFixed(2)}</div>
+                        <div><strong>Orthographe :</strong> ${sel_orth.toFixed(2)}</div>
+                    </div>
+                    <div style="margin-top: 18px;">
+                        <h4 style="font-size: 16px; margin-bottom: 10px;">🎯 Éligibilité aux séries techniques (BAC)</h4>
+                        <div class="eligibility-grid">`;
+
+                const seriesOrder = ['T1', 'T2', 'T3', 'AB', 'G1', 'G2'];
+                const conditionsLabels = {
+                    'T1': 'Math≥12, PC≥12, CF≥9, Ang≥9, âge≤19',
+                    'T2': 'Math≥12, PC≥12, CF≥9, Ang≥9, âge≤20',
+                    'T3': 'Math≥11, PC≥11, CF≥8, Ang≥8, SVT≥12, âge≤20',
+                    'AB': 'CF≥11, Math≥10, Ang≥11, HG≥10, âge≤19',
+                    'G1': 'CF≥10, Ang≥9, Orth≥10, HG≥9, âge≤20',
+                    'G2': 'CF≥9, Math≥10, Ang≥8, âge≤20'
+                };
+
+                for (const serie of seriesOrder) {
+                    const result = elig[serie];
+                    const ok = result.ok;
+                    const reasons = result.reasons.join(', ');
+                    const statusText = ok ? '✅ Éligible' : '❌ Non éligible';
+                    const extra = reasons ? ` (${reasons})` : '';
+                    html += `<div class="elig-item">
+                        <div class="serie">${serie}</div>
+                        <div class="status">
+                            <span class="badge-sm ${ok ? 'green' : 'red'}">${statusText}${extra}</span>
+                        </div>
+                        <div class="conditions">${conditionsLabels[serie]}</div>
+                    </div>`;
+                }
+
+                html += `</div></div>
+                    <div style="margin-top: 12px; font-size: 13px; background: #e4edf6; padding: 8px 14px; border-radius: 30px;">
+                        💡 Pour les BT : âge entre 15 et 22 ans (vérifié ci-dessus). Les séries BAC ont des âges maximum spécifiques.
+                    </div>
+                </div>`;
+                area.innerHTML = html;
+            }
+        }
+
+        // ----------------------------------------------
+        // 4. AFFICHAGE DES FILIÈRES AVEC FILTRES
+        // ----------------------------------------------
+        function renderOffers() {
+            const diplomeFilter = document.getElementById('filterDiplome').value;
+            const domaineFilter = document.getElementById('filterDomaine').value;
+            const searchText = document.getElementById('filterSearch').value.toLowerCase().trim();
+
+            let filtered = formations.filter(f => {
+                if (diplomeFilter !== 'all' && f.diplome !== diplomeFilter) return false;
+                if (domaineFilter !== 'all' && f.domaine !== domaineFilter) return false;
+                if (searchText && !f.specialite.toLowerCase().includes(searchText) && !f.domaine.toLowerCase().includes(searchText))
+                    return false;
+                return true;
+            });
+
+            const container = document.getElementById('offerContainer');
+            if (filtered.length === 0) {
+                container.innerHTML = `<div class="no-result">Aucune formation ne correspond à vos critères.</div>`;
+                return;
+            }
+            let html = '';
+            filtered.forEach(f => {
+                html += `<div class="offer-item">
+                    <div class="domaine">${f.domaine}</div>
+                    <div class="specialite">${f.specialite}</div>
+                    <div><span class="diplome">${f.diplome}</span></div>
+                    <div class="etablissements">🏫 ${f.etablissements}</div>
+                </div>`;
+            });
+            container.innerHTML = html;
+        }
+
+        function populateDomaines() {
+            const domaines = [...new Set(formations.map(f => f.domaine))].sort();
+            const sel = document.getElementById('filterDomaine');
+            sel.innerHTML = '<option value="all">Tous domaines</option>';
+            domaines.forEach(d => {
+                const opt = document.createElement('option');
+                opt.value = d;
+                opt.textContent = d;
+                sel.appendChild(opt);
+            });
+        }
+
+        // ----------------------------------------------
+        // 5. GESTION DE L'AFFICHAGE DES CHAMPS ORTHOGRAPHE
+        // ----------------------------------------------
+        function toggleOrthographeFields() {
+            const type = getType();
+            const annGroup = document.getElementById('ann_orth_group');
+            const bepcGroup = document.getElementById('bepc_orth_group');
+            if (type === 'technique') {
+                annGroup.classList.remove('hidden-field');
+                bepcGroup.classList.remove('hidden-field');
+            } else {
+                annGroup.classList.add('hidden-field');
+                bepcGroup.classList.add('hidden-field');
+            }
+        }
+
+        // ----------------------------------------------
+        // 6. INITIALISATION ET ÉVÈNEMENTS
+        // ----------------------------------------------
+        document.addEventListener('DOMContentLoaded', function() {
+            populateDomaines();
+            renderOffers();
+            toggleOrthographeFields();
+
+            document.querySelectorAll('input[name="orientationType"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    toggleOrthographeFields();
+                });
+            });
+
+            document.getElementById('calcBtn').addEventListener('click', calculer);
+            document.getElementById('resetBtn').addEventListener('click', function() {
+                document.querySelectorAll('input[type="number"]').forEach(inp => inp.value = '');
+                document.getElementById('resultArea').innerHTML = '';
+                document.getElementById('ageInput').value = '18';
+                document.getElementById('nationaliteInput').value = 'ivoirienne';
+            });
+
+            document.getElementById('filterDiplome').addEventListener('change', renderOffers);
+            document.getElementById('filterDomaine').addEventListener('change', renderOffers);
+            document.getElementById('filterSearch').addEventListener('input', renderOffers);
+
+            calculer();
+        });
+    })();
+</script>
+</body>
+</html>
