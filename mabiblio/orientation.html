@@ -378,6 +378,76 @@
             border-color: #f5c6cb;
             color: #721c24;
         }
+        /* Styles pour les établissements secondaires */
+        .etab-section {
+            margin-top: 20px;
+            border-top: 2px solid #dce3ec;
+            padding-top: 20px;
+        }
+        .etab-section h4 {
+            font-size: 18px;
+            color: #0a2a44;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .etab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+        }
+        .etab-card {
+            background: white;
+            border-radius: 14px;
+            padding: 14px 16px;
+            border: 1px solid #e2e9f2;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+            transition: 0.15s;
+        }
+        .etab-card:hover {
+            border-color: #2a7de1;
+            box-shadow: 0 4px 12px rgba(42,125,225,0.1);
+        }
+        .etab-card .nom {
+            font-weight: 700;
+            font-size: 15px;
+            color: #0a2a44;
+        }
+        .etab-card .categorie {
+            font-size: 12px;
+            color: #2a7de1;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .etab-card .critere {
+            font-size: 12px;
+            color: #4d6a8a;
+            margin-top: 6px;
+            line-height: 1.5;
+            background: #f8faff;
+            padding: 6px 10px;
+            border-radius: 8px;
+            border-left: 3px solid #2a7de1;
+        }
+        .etab-card .critere strong {
+            color: #1e2a41;
+        }
+        .etab-card .badge-etab {
+            display: inline-block;
+            background: #eef4fc;
+            color: #1a5fb4;
+            font-size: 11px;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+        .etab-card .non-eligible {
+            opacity: 0.6;
+            filter: grayscale(0.3);
+        }
         @media (max-width: 600px) {
             .container {
                 padding: 16px;
@@ -395,6 +465,9 @@
             .bande-annonce {
                 font-size: 14px;
                 padding: 8px 10px;
+            }
+            .etab-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -446,6 +519,13 @@
             </div>
             <div style="font-size: 12px; color: #4d6a8a; margin-top: 2px;">Interdit pour T1 et AB</div>
         </div>
+        <div style="flex: 1 0 200px;">
+            <div class="form-group-checkbox">
+                <input type="checkbox" id="genreFeminin">
+                <label for="genreFeminin" style="font-weight: 500; font-size: 14px; cursor: pointer;">Je suis une fille</label>
+            </div>
+            <div style="font-size: 12px; color: #4d6a8a; margin-top: 2px;">Pour les établissements exclusivement féminins</div>
+        </div>
     </div>
 
     <!-- Formulaire -->
@@ -492,10 +572,10 @@
 
     <hr>
 
-    <!-- Offres de formation -->
+    <!-- Offres de formation technique -->
     <div style="margin-top: 10px;">
         <div class="flex-between">
-            <h2 style="font-size: 20px;">🎯 Formation Professionnelle et Enseignement Technique</h2>
+            <h2 style="font-size: 20px;">🎯 Offres de formation technique</h2>
             <span style="font-size: 14px; color: #3e5a76;">Filtrez pour trouver votre filière</span>
         </div>
         <div class="filters">
@@ -658,7 +738,6 @@
 
         // ----------------------------------------------
         // 3. CONDITIONS D'ADMISSION POUR LES BT (extraction du tableau)
-        //    On ajoute la condition "admisBEPC" pour Sciences médico-sociales
         // ----------------------------------------------
         const btConditions = [
             // Mécanique et Métiers de l'Imprimerie
@@ -723,7 +802,111 @@
         ];
 
         // ----------------------------------------------
-        // 4. LOGIQUE DE CALCUL
+        // 4. ÉTABLISSEMENTS SECONDAIRES AVEC LEURS CRITÈRES
+        // ----------------------------------------------
+        const etablissements = {
+            // Établissements à statut commun (publics et privés)
+            statutCommun: {
+                nom: "Établissements publics et privés (statut commun)",
+                serie: ["A", "C"],
+                criteres: {
+                    ageMax: 20,
+                    mgaMin: 8.5,
+                    moMin: 10,
+                    bilanLitteraireMin: 10,  // pour série A
+                    bilanScientifiqueMin: 10 // pour série C
+                }
+            },
+            // Lycées d'excellence à caractère mixte (scientifique uniquement)
+            excellenceScientifique: {
+                nom: "Lycées d'excellence - Scientifique (Yamoussoukro, Grand-Bassam)",
+                serie: ["C"],
+                criteres: {
+                    nationalite: "ivoirienne",
+                    ageMax: 16,
+                    noRedouble: true,
+                    mgaMin: 16,
+                    moMin: 16,
+                    bilanScientifiqueMin: 16,
+                    bilanLitteraireMin: 12,
+                    bepcMathMin: 16,
+                    bepcPCMin: 16
+                },
+                criteresInternes: {
+                    nationalite: "ivoirienne",
+                    ageMax: 16,
+                    noRedouble: true,
+                    mgaMin: 14,
+                    moMin: 13,
+                    bilanScientifiqueMin: 14,
+                    bilanLitteraireMin: 12,
+                    bepcMathMin: 14,
+                    bepcPCMin: 14
+                },
+                etablissements: ["Lycée Scientifique de Yamoussoukro", "Lycée d'Excellence Alassane Ouattara de Grand-Bassam"]
+            },
+            // Lycées d'excellence à caractère mixte (scientifique et littéraire)
+            excellenceMixte: {
+                nom: "Lycées d'excellence mixtes (Classique Abidjan, Houphouët-Boigny Korhogo)",
+                serie: ["A", "C"],
+                criteres: {
+                    nationalite: "ivoirienne",
+                    ageMax: 16,
+                    noRedouble: true,
+                    mgaMin: 12,
+                    moMin: 12,
+                    bepcRequis: true,
+                    // Pour série A
+                    bilanLitteraireMinA: 12,
+                    bilanScientifiqueMinA: 10,
+                    // Pour série C
+                    bilanScientifiqueMinC: 12,
+                    bilanLitteraireMinC: 10
+                },
+                etablissements: ["Lycée Classique Abidjan", "Lycée Houphouët-Boigny de Korhogo"]
+            },
+            // Établissements d'excellence à genre unique (filles)
+            excellenceFilles: {
+                nom: "Lycées d'excellence pour filles (Sainte-Marie, Mamie Adjoua, etc.)",
+                serie: ["A", "C"],
+                criteres: {
+                    nationalite: "ivoirienne",
+                    ageMax: 16,
+                    noRedouble: true,
+                    genre: "feminin",
+                    bepcRequis: true,
+                    mgaMin: 16,
+                    moMin: 16,
+                    // Pour Sainte-Marie et assimilés (externes)
+                    bilanLitteraireMinA: 14,
+                    bilanScientifiqueMinA: 12,
+                    bilanScientifiqueMinC: 16,
+                    bilanLitteraireMinC: 12
+                },
+                criteresInternes: {
+                    nationalite: "ivoirienne",
+                    ageMax: 16,
+                    noRedouble: true,
+                    genre: "feminin",
+                    bepcRequis: true,
+                    mgaMin: 12,
+                    moMin: 12,
+                    // Internes
+                    bilanLitteraireMinA: 12,
+                    bilanScientifiqueMinC: 12
+                },
+                etablissements: [
+                    "Lycée Sainte-Marie Cocody", "Lycée Mamie Adjoua Yamoussoukro",
+                    "Lycée d'Excellence de Jeunes Filles Dominique Ouattara de Sinématiali",
+                    "Lycée d'Excellence de Jeunes Filles Aboisso", "Lycée d'Excellence de Jeunes Filles Adzopé",
+                    "Lycée d'Excellence de Jeunes Filles Boundiali", "Lycée d'Excellence de Jeunes Filles Daloa",
+                    "Lycée d'Excellence de Jeunes Filles Odienné", "Lycée d'Excellence de Jeunes Filles San Pedro"
+                ]
+            }
+        };
+
+        // ----------------------------------------------
+        // 5. LOGIQUE DE CALCUL
         // ----------------------------------------------
         function getVal(id) {
             const el = document.getElementById(id);
@@ -741,6 +924,7 @@
             const nationalite = document.getElementById('nationaliteInput').value;
             const admisBEPC = document.getElementById('admisBEPC').checked;
             const redouble3e = document.getElementById('redouble3e').checked;
+            const genreFeminin = document.getElementById('genreFeminin').checked;
 
             // Lecture des notes
             const ann_math = getVal('ann_math');
@@ -770,6 +954,23 @@
             const sel_ang = sel(ann_ang, bepc_ang_moy);
             const sel_hg = sel(ann_hg, bepc_hg);
             const sel_orth = sel(ann_orth, bepc_orth);
+
+            // Moyenne générale annuelle (MGA)
+            const mga = (ann_math + ann_phys + ann_svt + ann_fr + ann_ang + ann_hg) / 6;
+
+            // Moyenne d'orientation
+            const numerateur = (ann_fr + bepc_fr + ann_math + bepc_math) * 2
+                + ann_phys + bepc_phys
+                + ann_ang + bepc_ang_moy;
+            const moyenne_orientation = numerateur / 12;
+
+            // Bilans
+            const bilan_scientifique = (ann_math + bepc_math + ann_phys + bepc_phys + ann_svt + bepc_svt) / 6;
+            const bilan_litteraire = (ann_fr + bepc_fr + ann_ang + bepc_ang_moy + ann_hg + bepc_hg) / 6;
+
+            // Éligibilité générale Seconde C et A
+            const eligibleC = (moyenne_orientation >= 10 && bilan_scientifique >= 10 && mga >= 8.5 && age <= 20);
+            const eligibleA = (moyenne_orientation >= 10 && bilan_litteraire >= 10 && mga >= 8.5 && age <= 20);
 
             const area = document.getElementById('resultArea');
 
@@ -828,7 +1029,6 @@
                     if (bt.hg !== undefined && sel_hg < bt.hg) ok = false;
                     if (bt.svt !== undefined && sel_svt < bt.svt) ok = false;
                     if (bt.orth !== undefined && sel_orth < bt.orth) ok = false;
-                    // Construire la chaîne des conditions
                     let condStr = '';
                     if (bt.math !== undefined) condStr += `Math≥${bt.math}, `;
                     if (bt.phys !== undefined) condStr += `PC≥${bt.phys}, `;
@@ -849,18 +1049,172 @@
                 return results;
             }
 
+            // Fonction pour évaluer l'éligibilité aux établissements secondaires
+            function checkEtablissements() {
+                const results = [];
+                const elig = {};
+
+                // Statut commun
+                const sc = etablissements.statutCommun;
+                let okSC = true;
+                let reasonsSC = [];
+                if (nationalite !== 'ivoirienne') { okSC = false; reasonsSC.push('nationalité non ivoirienne'); }
+                if (age > sc.criteres.ageMax) { okSC = false; reasonsSC.push(`âge > ${sc.criteres.ageMax} ans`); }
+                if (mga < sc.criteres.mgaMin) { okSC = false; reasonsSC.push(`MGA < ${sc.criteres.mgaMin}`); }
+                if (moyenne_orientation < sc.criteres.moMin) { okSC = false; reasonsSC.push(`MO < ${sc.criteres.moMin}`); }
+                // Pour série A
+                let okSC_A = okSC && (bilan_litteraire >= sc.criteres.bilanLitteraireMin);
+                let reasonsSC_A = [...reasonsSC];
+                if (!okSC_A) reasonsSC_A.push(`bilan littéraire < ${sc.criteres.bilanLitteraireMin}`);
+                // Pour série C
+                let okSC_C = okSC && (bilan_scientifique >= sc.criteres.bilanScientifiqueMin);
+                let reasonsSC_C = [...reasonsSC];
+                if (!okSC_C) reasonsSC_C.push(`bilan scientifique < ${sc.criteres.bilanScientifiqueMin}`);
+
+                results.push({
+                    categorie: "Statut commun (publics et privés)",
+                    serieA: { ok: okSC_A, reasons: reasonsSC_A },
+                    serieC: { ok: okSC_C, reasons: reasonsSC_C },
+                    etablissements: ["Tous les établissements publics et privés"]
+                });
+
+                // Excellence scientifique
+                const es = etablissements.excellenceScientifique;
+                const crit = es.criteres;
+                let okES = true;
+                let reasonsES = [];
+                if (nationalite !== crit.nationalite) { okES = false; reasonsES.push('nationalité non ivoirienne'); }
+                if (age > crit.ageMax) { okES = false; reasonsES.push(`âge > ${crit.ageMax} ans`); }
+                if (redouble3e) { okES = false; reasonsES.push('redoublement en 1er cycle interdit'); }
+                if (mga < crit.mgaMin) { okES = false; reasonsES.push(`MGA < ${crit.mgaMin}`); }
+                if (moyenne_orientation < crit.moMin) { okES = false; reasonsES.push(`MO < ${crit.moMin}`); }
+                if (bilan_scientifique < crit.bilanScientifiqueMin) { okES = false; reasonsES.push(`bilan scientifique < ${crit.bilanScientifiqueMin}`); }
+                if (bilan_litteraire < crit.bilanLitteraireMin) { okES = false; reasonsES.push(`bilan littéraire < ${crit.bilanLitteraireMin}`); }
+                if (bepc_math < crit.bepcMathMin) { okES = false; reasonsES.push(`note BEPC math < ${crit.bepcMathMin}`); }
+                if (bepc_phys < crit.bepcPCMin) { okES = false; reasonsES.push(`note BEPC PC < ${crit.bepcPCMin}`); }
+
+                // Critères internes (élèves de ces établissements)
+                const critInt = es.criteresInternes;
+                let okESInt = true;
+                let reasonsESInt = [];
+                if (nationalite !== critInt.nationalite) { okESInt = false; reasonsESInt.push('nationalité non ivoirienne'); }
+                if (age > critInt.ageMax) { okESInt = false; reasonsESInt.push(`âge > ${critInt.ageMax} ans`); }
+                if (redouble3e) { okESInt = false; reasonsESInt.push('redoublement en 1er cycle interdit'); }
+                if (mga < critInt.mgaMin) { okESInt = false; reasonsESInt.push(`MGA < ${critInt.mgaMin}`); }
+                if (moyenne_orientation < critInt.moMin) { okESInt = false; reasonsESInt.push(`MO < ${critInt.moMin}`); }
+                if (bilan_scientifique < critInt.bilanScientifiqueMin) { okESInt = false; reasonsESInt.push(`bilan scientifique < ${critInt.bilanScientifiqueMin}`); }
+                if (bilan_litteraire < critInt.bilanLitteraireMin) { okESInt = false; reasonsESInt.push(`bilan littéraire < ${critInt.bilanLitteraireMin}`); }
+                if (bepc_math < critInt.bepcMathMin) { okESInt = false; reasonsESInt.push(`note BEPC math < ${critInt.bepcMathMin}`); }
+                if (bepc_phys < critInt.bepcPCMin) { okESInt = false; reasonsESInt.push(`note BEPC PC < ${critInt.bepcPCMin}`); }
+
+                results.push({
+                    categorie: es.nom,
+                    serieA: { ok: false, reasons: ["Série C uniquement"] },
+                    serieC: { ok: okES, reasons: reasonsES },
+                    serieCInt: { ok: okESInt, reasons: reasonsESInt },
+                    etablissements: es.etablissements,
+                    hasInternal: true
+                });
+
+                // Excellence mixte
+                const em = etablissements.excellenceMixte;
+                const critMix = em.criteres;
+                let okEM = true;
+                let reasonsEM = [];
+                if (nationalite !== critMix.nationalite) { okEM = false; reasonsEM.push('nationalité non ivoirienne'); }
+                if (age > critMix.ageMax) { okEM = false; reasonsEM.push(`âge > ${critMix.ageMax} ans`); }
+                if (redouble3e) { okEM = false; reasonsEM.push('redoublement en 1er cycle interdit'); }
+                if (!admisBEPC) { okEM = false; reasonsEM.push('BEPC requis'); }
+                if (mga < critMix.mgaMin) { okEM = false; reasonsEM.push(`MGA < ${critMix.mgaMin}`); }
+                if (moyenne_orientation < critMix.moMin) { okEM = false; reasonsEM.push(`MO < ${critMix.moMin}`); }
+
+                let okEM_A = okEM && (bilan_litteraire >= critMix.bilanLitteraireMinA) && (bilan_scientifique >= critMix.bilanScientifiqueMinA);
+                let reasonsEM_A = [...reasonsEM];
+                if (!okEM_A) {
+                    if (bilan_litteraire < critMix.bilanLitteraireMinA) reasonsEM_A.push(`bilan littéraire < ${critMix.bilanLitteraireMinA}`);
+                    if (bilan_scientifique < critMix.bilanScientifiqueMinA) reasonsEM_A.push(`bilan scientifique < ${critMix.bilanScientifiqueMinA}`);
+                }
+
+                let okEM_C = okEM && (bilan_scientifique >= critMix.bilanScientifiqueMinC) && (bilan_litteraire >= critMix.bilanLitteraireMinC);
+                let reasonsEM_C = [...reasonsEM];
+                if (!okEM_C) {
+                    if (bilan_scientifique < critMix.bilanScientifiqueMinC) reasonsEM_C.push(`bilan scientifique < ${critMix.bilanScientifiqueMinC}`);
+                    if (bilan_litteraire < critMix.bilanLitteraireMinC) reasonsEM_C.push(`bilan littéraire < ${critMix.bilanLitteraireMinC}`);
+                }
+
+                results.push({
+                    categorie: em.nom,
+                    serieA: { ok: okEM_A, reasons: reasonsEM_A },
+                    serieC: { ok: okEM_C, reasons: reasonsEM_C },
+                    etablissements: em.etablissements
+                });
+
+                // Excellence filles
+                const ef = etablissements.excellenceFilles;
+                const critF = ef.criteres;
+                let okEF = true;
+                let reasonsEF = [];
+                if (nationalite !== critF.nationalite) { okEF = false; reasonsEF.push('nationalité non ivoirienne'); }
+                if (age > critF.ageMax) { okEF = false; reasonsEF.push(`âge > ${critF.ageMax} ans`); }
+                if (redouble3e) { okEF = false; reasonsEF.push('redoublement en 1er cycle interdit'); }
+                if (!genreFeminin) { okEF = false; reasonsEF.push('établissement réservé aux filles'); }
+                if (!admisBEPC) { okEF = false; reasonsEF.push('BEPC requis'); }
+                if (mga < critF.mgaMin) { okEF = false; reasonsEF.push(`MGA < ${critF.mgaMin}`); }
+                if (moyenne_orientation < critF.moMin) { okEF = false; reasonsEF.push(`MO < ${critF.moMin}`); }
+
+                let okEF_A = okEF && (bilan_litteraire >= critF.bilanLitteraireMinA) && (bilan_scientifique >= critF.bilanScientifiqueMinA);
+                let reasonsEF_A = [...reasonsEF];
+                if (!okEF_A) {
+                    if (bilan_litteraire < critF.bilanLitteraireMinA) reasonsEF_A.push(`bilan littéraire < ${critF.bilanLitteraireMinA}`);
+                    if (bilan_scientifique < critF.bilanScientifiqueMinA) reasonsEF_A.push(`bilan scientifique < ${critF.bilanScientifiqueMinA}`);
+                }
+
+                let okEF_C = okEF && (bilan_scientifique >= critF.bilanScientifiqueMinC) && (bilan_litteraire >= critF.bilanLitteraireMinC);
+                let reasonsEF_C = [...reasonsEF];
+                if (!okEF_C) {
+                    if (bilan_scientifique < critF.bilanScientifiqueMinC) reasonsEF_C.push(`bilan scientifique < ${critF.bilanScientifiqueMinC}`);
+                    if (bilan_litteraire < critF.bilanLitteraireMinC) reasonsEF_C.push(`bilan littéraire < ${critF.bilanLitteraireMinC}`);
+                }
+
+                // Critères internes pour filles
+                const critFInt = ef.criteresInternes;
+                let okEFInt = true;
+                let reasonsEFInt = [];
+                if (nationalite !== critFInt.nationalite) { okEFInt = false; reasonsEFInt.push('nationalité non ivoirienne'); }
+                if (age > critFInt.ageMax) { okEFInt = false; reasonsEFInt.push(`âge > ${critFInt.ageMax} ans`); }
+                if (redouble3e) { okEFInt = false; reasonsEFInt.push('redoublement en 1er cycle interdit'); }
+                if (!genreFeminin) { okEFInt = false; reasonsEFInt.push('établissement réservé aux filles'); }
+                if (!admisBEPC) { okEFInt = false; reasonsEFInt.push('BEPC requis'); }
+                if (mga < critFInt.mgaMin) { okEFInt = false; reasonsEFInt.push(`MGA < ${critFInt.mgaMin}`); }
+                if (moyenne_orientation < critFInt.moMin) { okEFInt = false; reasonsEFInt.push(`MO < ${critFInt.moMin}`); }
+
+                let okEFInt_A = okEFInt && (bilan_litteraire >= critFInt.bilanLitteraireMinA);
+                let reasonsEFInt_A = [...reasonsEFInt];
+                if (!okEFInt_A) {
+                    if (bilan_litteraire < critFInt.bilanLitteraireMinA) reasonsEFInt_A.push(`bilan littéraire < ${critFInt.bilanLitteraireMinA}`);
+                }
+
+                let okEFInt_C = okEFInt && (bilan_scientifique >= critFInt.bilanScientifiqueMinC);
+                let reasonsEFInt_C = [...reasonsEFInt];
+                if (!okEFInt_C) {
+                    if (bilan_scientifique < critFInt.bilanScientifiqueMinC) reasonsEFInt_C.push(`bilan scientifique < ${critFInt.bilanScientifiqueMinC}`);
+                }
+
+                results.push({
+                    categorie: ef.nom,
+                    serieA: { ok: okEF_A, reasons: reasonsEF_A },
+                    serieC: { ok: okEF_C, reasons: reasonsEF_C },
+                    serieAInt: { ok: okEFInt_A, reasons: reasonsEFInt_A },
+                    serieCInt: { ok: okEFInt_C, reasons: reasonsEFInt_C },
+                    etablissements: ef.etablissements,
+                    hasInternal: true
+                });
+
+                return results;
+            }
+
+            // Construction de l'affichage
             if (type === 'general') {
-                const numerateur = (ann_fr + bepc_fr + ann_math + bepc_math) * 2
-                    + ann_phys + bepc_phys
-                    + ann_ang + bepc_ang_moy;
-                const moyenne_orientation = numerateur / 12;
-
-                const bilan_scientifique = (ann_math + bepc_math + ann_phys + bepc_phys + ann_svt + bepc_svt) / 6;
-                const bilan_litteraire = (ann_fr + bepc_fr + ann_ang + bepc_ang_moy + ann_hg + bepc_hg) / 6;
-
-                const eligibleC = (moyenne_orientation >= 10 && bilan_scientifique >= 10);
-                const eligibleA = (moyenne_orientation >= 10 && bilan_litteraire >= 10);
-
                 const ageOk = (age <= 20);
                 const ageMsg = ageOk ? '✅ Âge valide (≤20 ans)' : '❌ Âge > 20 ans, non éligible';
 
@@ -868,13 +1222,14 @@
                     <h3 style="margin-bottom: 12px;">📈 Résultats pour l'enseignement général – BAC général (Seconde C / A)</h3>
                     <div class="${ageOk ? 'info-message success' : 'info-message error'}">${ageMsg}</div>
                     <div class="result-grid">
+                        <div class="result-item"><span class="label">Moyenne générale annuelle (MGA)</span><div class="value">${mga.toFixed(2)} / 20</div></div>
                         <div class="result-item"><span class="label">Moyenne d'orientation</span><div class="value">${moyenne_orientation.toFixed(2)} / 20</div></div>
                         <div class="result-item"><span class="label">Bilan scientifique</span><div class="value">${bilan_scientifique.toFixed(2)} / 20</div></div>
                         <div class="result-item"><span class="label">Bilan littéraire</span><div class="value">${bilan_litteraire.toFixed(2)} / 20</div></div>
                     </div>
                     <div style="margin-top: 16px; display: flex; flex-wrap: wrap; gap: 12px;">
-                        <div><span class="badge ${eligibleC && ageOk ? 'badge-green' : 'badge-red'}">Seconde C (BAC scientifique)</span> ${eligibleC && ageOk ? '✅ Éligible' : '❌ Non éligible'}</div>
-                        <div><span class="badge ${eligibleA && ageOk ? 'badge-green' : 'badge-red'}">Seconde A (BAC littéraire)</span> ${eligibleA && ageOk ? '✅ Éligible' : '❌ Non éligible'}</div>
+                        <div><span class="badge ${eligibleC ? 'badge-green' : 'badge-red'}">Seconde C (BAC scientifique)</span> ${eligibleC ? '✅ Éligible' : '❌ Non éligible'}</div>
+                        <div><span class="badge ${eligibleA ? 'badge-green' : 'badge-red'}">Seconde A (BAC littéraire)</span> ${eligibleA ? '✅ Éligible' : '❌ Non éligible'}</div>
                     </div>
                     <div style="margin-top: 12px; background: white; border-radius: 12px; padding: 12px; font-size: 14px;">
                         <strong>Moyennes de sélection (par matière) :</strong><br>
@@ -882,6 +1237,60 @@
                         Français : ${sel_fr.toFixed(2)} &nbsp;|&nbsp; Anglais : ${sel_ang.toFixed(2)} &nbsp;|&nbsp; HG : ${sel_hg.toFixed(2)}
                     </div>
                 </div>`;
+
+                // Ajout de la section établissements secondaires
+                const etabResults = checkEtablissements();
+
+                html += `<div class="etab-section">
+                    <h4>🏫 Établissements secondaires éligibles (Seconde A/C)</h4>
+                    <div class="etab-grid">`;
+
+                for (const cat of etabResults) {
+                    const hasA = cat.serieA && cat.serieA.ok !== undefined;
+                    const hasC = cat.serieC && cat.serieC.ok !== undefined;
+                    const isEligibleA = hasA && cat.serieA.ok;
+                    const isEligibleC = hasC && cat.serieC.ok;
+                    const isEligible = isEligibleA || isEligibleC;
+
+                    let classCard = 'etab-card';
+                    if (!isEligible && (hasA || hasC)) classCard += ' non-eligible';
+
+                    html += `<div class="${classCard}">
+                        <div class="categorie">${cat.categorie}</div>
+                        <div class="nom">${cat.etablissements ? cat.etablissements.join(', ') : ''}</div>`;
+
+                    if (hasA) {
+                        html += `<div class="critere">
+                            <strong>Série A :</strong> ${cat.serieA.ok ? '✅ Éligible' : '❌ Non éligible'}
+                            ${cat.serieA.reasons && cat.serieA.reasons.length > 0 ? `<br><span style="font-size:11px;color:#64748b;">(${cat.serieA.reasons.join(', ')})</span>` : ''}
+                        </div>`;
+                    }
+                    if (hasC) {
+                        html += `<div class="critere">
+                            <strong>Série C :</strong> ${cat.serieC.ok ? '✅ Éligible' : '❌ Non éligible'}
+                            ${cat.serieC.reasons && cat.serieC.reasons.length > 0 ? `<br><span style="font-size:11px;color:#64748b;">(${cat.serieC.reasons.join(', ')})</span>` : ''}
+                        </div>`;
+                    }
+                    // Critères internes si présents
+                    if (cat.hasInternal) {
+                        if (cat.serieAInt) {
+                            html += `<div class="critere" style="border-left-color:#f59e0b; background:#fffbeb;">
+                                <strong>Série A (internes) :</strong> ${cat.serieAInt.ok ? '✅ Éligible' : '❌ Non éligible'}
+                                ${cat.serieAInt.reasons && cat.serieAInt.reasons.length > 0 ? `<br><span style="font-size:11px;color:#64748b;">(${cat.serieAInt.reasons.join(', ')})</span>` : ''}
+                            </div>`;
+                        }
+                        if (cat.serieCInt) {
+                            html += `<div class="critere" style="border-left-color:#f59e0b; background:#fffbeb;">
+                                <strong>Série C (internes) :</strong> ${cat.serieCInt.ok ? '✅ Éligible' : '❌ Non éligible'}
+                                ${cat.serieCInt.reasons && cat.serieCInt.reasons.length > 0 ? `<br><span style="font-size:11px;color:#64748b;">(${cat.serieCInt.reasons.join(', ')})</span>` : ''}
+                            </div>`;
+                        }
+                    }
+                    html += `</div>`;
+                }
+
+                html += `</div></div>`;
+
                 area.innerHTML = html;
             } else {
                 // Enseignement technique
@@ -891,7 +1300,6 @@
                 const nationaliteOk = (nationalite === 'ivoirienne');
                 let nationaliteMsg = nationaliteOk ? '✅ Nationalité ivoirienne' : '❌ Nationalité non ivoirienne – non éligible à l\'enseignement technique';
 
-                // Vérification pour les BT (15-22 ans)
                 const btAgeOk = (age >= 15 && age <= 22);
                 const btEligible = nationaliteOk && btAgeOk;
                 const btMsg = btEligible ? '✅ Éligible aux formations BT (Brevet de Technicien) – âge 15-22 ans' : '❌ Non éligible aux BT (âge hors 15-22 ans ou nationalité)';
@@ -971,7 +1379,7 @@
         }
 
         // ----------------------------------------------
-        // 5. AFFICHAGE DES FILIÈRES AVEC FILTRES
+        // 6. AFFICHAGE DES FILIÈRES AVEC FILTRES
         // ----------------------------------------------
         function renderOffers() {
             const diplomeFilter = document.getElementById('filterDiplome').value;
@@ -1016,7 +1424,7 @@
         }
 
         // ----------------------------------------------
-        // 6. GESTION DE L'AFFICHAGE DES CHAMPS ORTHOGRAPHE
+        // 7. GESTION DE L'AFFICHAGE DES CHAMPS ORTHOGRAPHE
         // ----------------------------------------------
         function toggleOrthographeFields() {
             const type = getType();
@@ -1032,7 +1440,7 @@
         }
 
         // ----------------------------------------------
-        // 7. INITIALISATION ET ÉVÈNEMENTS
+        // 8. INITIALISATION ET ÉVÈNEMENTS
         // ----------------------------------------------
         document.addEventListener('DOMContentLoaded', function() {
             populateDomaines();
@@ -1053,6 +1461,7 @@
                 document.getElementById('nationaliteInput').value = 'ivoirienne';
                 document.getElementById('admisBEPC').checked = true;
                 document.getElementById('redouble3e').checked = false;
+                document.getElementById('genreFeminin').checked = false;
             });
 
             document.getElementById('filterDiplome').addEventListener('change', renderOffers);
