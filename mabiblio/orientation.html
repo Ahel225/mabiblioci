@@ -153,6 +153,13 @@
             outline: none;
             box-shadow: 0 0 0 3px rgba(42, 125, 225, 0.15);
         }
+        /* Style pour les champs désactivés par test d'or */
+        .field-disabled {
+            background: #e9ecef !important;
+            opacity: 0.6;
+            pointer-events: none;
+            cursor: not-allowed;
+        }
         .form-group-checkbox {
             display: flex;
             align-items: center;
@@ -600,6 +607,15 @@
                 <option value="autre">Autre</option>
             </select>
         </div>
+            <!-- Nouvelle case Test d'or -->
+                <div style="flex: 1 0 200px;">
+            <div class="form-group-checkbox">
+                <input type="checkbox" id="testOr">
+                <label for="testOr" style="font-weight: 500; font-size: 14px; cursor: pointer;">Test d'or</label>
+            </div>
+            <div style="font-size: 12px; color: #4d6a8a; margin-top: 2px;">Exclut SVT, HG, Anglais oral et Orthographe du BEPC</div>
+        </div>
+        
         <div style="flex: 1 0 200px;">
             <div class="form-group-checkbox">
                 <input type="checkbox" id="admisBEPC" checked>
@@ -621,6 +637,7 @@
             </div>
             <div style="font-size: 12px; color: #4d6a8a; margin-top: 2px;">Pour les établissements exclusivement féminins</div>
         </div>
+
         <div style="flex: 1 0 200px;">
             <label style="font-weight: 500; display: block; margin-bottom: 4px; font-size: 14px;">Moyenne Générale Annuelle (MGA)</label>
             <input type="number" id="mgaInput" step="0.01" min="0" max="20" value="12" style="width: 100%; padding: 8px 12px; border-radius: 10px; border: 1px solid #ccd7e6; font-size: 14px;">
@@ -1055,6 +1072,19 @@
             }
         }
 
+        // Fonction pour activer/désactiver les champs selon test d'or
+        function toggleTestOrFields() {
+            const checked = document.getElementById('testOr').checked;
+            const fields = ['bepc_svt', 'bepc_hg', 'bepc_ang_oral', 'bepc_orth'];
+            fields.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.disabled = checked;
+                    el.classList.toggle('field-disabled', checked);
+                }
+            });
+        }
+
         // Fonction pour calculer tous les résultats
         function calculer() {
             const type = getType();
@@ -1063,6 +1093,7 @@
             const admisBEPC = document.getElementById('admisBEPC').checked;
             const redouble3e = document.getElementById('redouble3e').checked;
             const genreFeminin = document.getElementById('genreFeminin').checked;
+            const testOr = document.getElementById('testOr').checked;
             const mga = parseFloat(document.getElementById('mgaInput').value) || 0;
 
             // Lecture des notes
@@ -1083,28 +1114,39 @@
             const bepc_hg = getVal('bepc_hg');
             const bepc_orth = getVal('bepc_orth');
 
+            // Calcul de la moyenne d'anglais effective (selon test d'or)
             const bepc_ang_moy = (bepc_ang_ecrit + bepc_ang_oral) / 2;
+            const bepc_ang_effective = testOr ? bepc_ang_ecrit : bepc_ang_moy;
+
+            // Sélections (annuelle ×2 + BEPC ×3) / 5
             const sel = (ann, bepc) => (ann * 2 + bepc * 3) / 5;
 
             const sel_math = sel(ann_math, bepc_math);
             const sel_phys = sel(ann_phys, bepc_phys);
             const sel_svt = sel(ann_svt, bepc_svt);
             const sel_fr = sel(ann_fr, bepc_fr);
-            const sel_ang = sel(ann_ang, bepc_ang_moy);
+            const sel_ang = sel(ann_ang, bepc_ang_effective);
             const sel_hg = sel(ann_hg, bepc_hg);
             const sel_orth = sel(ann_orth, bepc_orth);
 
-            // Moyenne d'orientation
+            // Moyenne d'orientation (utilise anglais effectif)
             const numerateur = (ann_fr + bepc_fr + ann_math + bepc_math) * 2
                 + ann_phys + bepc_phys
-                + ann_ang + bepc_ang_moy;
+                + ann_ang + bepc_ang_effective;
             const moyenne_orientation = numerateur / 12;
 
-            // Bilans
-            const bilan_scientifique = (ann_math + bepc_math + ann_phys + bepc_phys + ann_svt + bepc_svt) / 6;
-            const bilan_litteraire = (ann_fr + bepc_fr + ann_ang + bepc_ang_moy + ann_hg + bepc_hg) / 6;
+            // Bilans (exclusion selon test d'or)
+            let bilan_scientifique, bilan_litteraire;
+            if (testOr) {
+                // Exclure SVT, HG et utiliser anglais écrit uniquement
+                bilan_scientifique = (sel_math + sel_phys) / 2;
+                bilan_litteraire = (sel_fr + sel_ang) / 2; // sel_ang déjà calculé avec bepc_ang_effective
+            } else {
+                bilan_scientifique = (sel_math + sel_phys + sel_svt) / 3;
+                bilan_litteraire = (sel_fr + sel_ang + sel_hg) / 3;
+            }
 
-            // Éligibilité générale Seconde C et A
+            // Éligibilité générale Seconde C et A (utilise moyenne_orientation modifiée)
             const eligibleC = (moyenne_orientation >= 10 && bilan_scientifique >= 10 && mga >= 8.5 && age <= 20);
             const eligibleA = (moyenne_orientation >= 10 && bilan_litteraire >= 10 && mga >= 8.5 && age <= 20);
 
@@ -1128,9 +1170,11 @@
                         ok = false;
                         reasons.push('redoublement de 3e interdit');
                     }
+                    // On utilise les notes sélectionnées (inchangées pour les conditions)
                     if (conditions.math !== undefined && sel_math < conditions.math) ok = false;
                     if (conditions.pc !== undefined && sel_phys < conditions.pc) ok = false;
                     if (conditions.cf !== undefined && sel_fr < conditions.cf) ok = false;
+                    // Pour l'anglais, on utilise sel_ang (déjà avec effet test d'or)
                     if (conditions.ang !== undefined && sel_ang < conditions.ang) ok = false;
                     if (conditions.svt !== undefined && sel_svt < conditions.svt) ok = false;
                     if (conditions.hg !== undefined && sel_hg < conditions.hg) ok = false;
@@ -1329,6 +1373,7 @@
                 let html = `<div class="result-box">
                     <h3 style="margin-bottom: 12px;">📈 Résultats pour l'enseignement général – BAC général (Seconde C / A)</h3>
                     <div class="${ageOk ? 'info-message success' : 'info-message error'}">${ageMsg}</div>
+                    ${testOr ? '<div class="info-message" style="background:#e2f0fa; border-color:#8ab8d6; color:#1a4f6e;">🔘 Test d\'or activé – SVT, HG, Anglais oral et Orthographe du BEPC exclus des bilans.</div>' : ''}
                     <div class="result-grid">
                         <div class="result-item"><span class="label">Moyenne générale annuelle (MGA)</span><div class="value">${mga.toFixed(2)} / 20</div></div>
                         <div class="result-item"><span class="label">Moyenne d'orientation</span><div class="value">${moyenne_orientation.toFixed(2)} / 20</div></div>
@@ -1343,6 +1388,7 @@
                         <strong>Moyennes de sélection (par matière) :</strong><br>
                         Math : ${sel_math.toFixed(2)} &nbsp;|&nbsp; Physique : ${sel_phys.toFixed(2)} &nbsp;|&nbsp; SVT : ${sel_svt.toFixed(2)}<br>
                         Francais : ${sel_fr.toFixed(2)} &nbsp;|&nbsp; Anglais : ${sel_ang.toFixed(2)} &nbsp;|&nbsp; HG : ${sel_hg.toFixed(2)}
+                        ${testOr ? '<br><span style="color:#2a7de1;">(Anglais calculé sur la seule note écrite)</span>' : ''}
                     </div>
                 </div>`;
 
@@ -1431,6 +1477,7 @@
 
                 let html = `<div class="result-box">
                     <h3 style="margin-bottom: 12px;">🔧 Résultats pour l'enseignement technique</h3>
+                    ${testOr ? '<div class="info-message" style="background:#e2f0fa; border-color:#8ab8d6; color:#1a4f6e;">🔘 Test d\'or activé – SVT, HG, Anglais oral et Orthographe du BEPC exclus des bilans.</div>' : ''}
                     <div class="${nationaliteOk ? 'info-message success' : 'info-message error'}">${nationaliteMsg}</div>
                     <div class="${btEligible ? 'info-message success' : 'info-message error'}">${btMsg}</div>
                     <p style="margin-bottom: 12px; color: #1f4a7a;">Moyennes de sélection (annuelle ×2 + BEPC ×3) / 5 :</p>
@@ -1497,6 +1544,7 @@
                     <div style="margin-top: 12px; font-size: 13px; background: #e4edf6; padding: 8px 14px; border-radius: 30px;">
                         💡 Pour les BT : âge 15-22 ans et nationalité ivoirienne (vérifiés ci-dessus). Les conditions de moyennes sont issues de l'extraction du tableau officiel.<br>
                         ⚠️ Sciences médico-sociales requiert l'admission au BEPC.
+                        ${testOr ? '<br>🔘 Test d\'or actif : les notes de SVT, HG et Anglais oral ne sont pas prises en compte pour les bilans.' : ''}
                     </div>
                 </div>`;
                 area.innerHTML = html;
@@ -1578,6 +1626,7 @@
             populateDomaines();
             renderOffers();
             toggleOrthographeFields();
+            toggleTestOrFields(); // initialisation de l'état des champs test d'or
 
             document.querySelectorAll('input[name="orientationType"]').forEach(radio => {
                 radio.addEventListener('change', function() {
@@ -1594,12 +1643,20 @@
                 document.getElementById('admisBEPC').checked = true;
                 document.getElementById('redouble3e').checked = false;
                 document.getElementById('genreFeminin').checked = false;
+                document.getElementById('testOr').checked = false;
+                toggleTestOrFields();
                 updateMGA();
             });
 
             document.getElementById('filterDiplome').addEventListener('change', renderOffers);
             document.getElementById('filterDomaine').addEventListener('change', renderOffers);
             document.getElementById('filterSearch').addEventListener('input', renderOffers);
+
+            // Écouteur sur la case test d'or
+            document.getElementById('testOr').addEventListener('change', function() {
+                toggleTestOrFields();
+                // On peut recalculer automatiquement si souhaité, mais on laisse l'utilisateur cliquer sur Calculer
+            });
 
             calculer();
         });
