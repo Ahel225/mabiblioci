@@ -680,8 +680,8 @@
     </div>
 
     <div style="margin-top: 8px; display: flex; gap: 12px; flex-wrap: wrap;">
-        <button class="btn" id="calcBtn">📊 Calculer</button>
-        <button class="btn btn-secondary" id="resetBtn">↺ Réinitialiser</button>
+        <button class="btn" id="calcBTn">📊 Calculer</button>
+        <button class="btn btn-secondary" id="resetBTn">↺ Réinitialiser</button>
     </div>
 
     <!-- Résultats -->
@@ -718,7 +718,7 @@
             // Génie Mécanique
             { domaine: "Génie Mécanique", specialite: "Machine - Outil", diplome: "BT", etablissements: "LTP Man, LPMS Diabo, LPM Yopougon" },
             { domaine: "Génie Mécanique", specialite: "Maintenance Macianque", diplome: "BT", etablissements: "LPMS Diabo, LPM Yopougon" },
-            { domaine: "Génie Mécanique", specialite: "Gestion de Production", diplome: "Bt", etablissements: "LTP Man" },
+            { domaine: "Génie Mécanique", specialite: "Gestion de Production", diplome: "BT", etablissements: "LTP Man" },
             { domaine: "Génie Mécanique", specialite: "Maintenance Véhicules et Engins", diplome: "BT", etablissements: "LP Ferké, LP Jacqueville, LTP Ebmuek, LTP Eimpeé, LPY Yamoussoukro, LPMS Korhogo" },
             { domaine: "Génie Mécanique", specialite: "Mécanique Automobile", diplome: "BT", etablissements: "LP Bimbresso, LP Bondoukou, LTP Man, LP Man-Pedro, LPMA Vidi" },
             { domaine: "Génie Mécanique", specialite: "Mécanique Automobile", diplome: "CAP", etablissements: "LP Adzopé, LP Bimbresso, LP Bondoukou, LP Bongouamou, LP Ferké, LP Katiola, LP Kouto, LP Man, LP Mankono, LP San-Pedro, LP Touba, LP Bouaké, LP Man-Marcory" },
@@ -728,7 +728,7 @@
             { domaine: "Génie Mécanique", specialite: "Imprimerie", diplome: "BT", etablissements: "LTMI Yopougon, LTP Ebimpé" },
             { domaine: "Génie Mécanique", specialite: "Conducteur de ligne", diplome: "BT", etablissements: "LPS Yopougon" },
             { domaine: "Génie Mécanique", specialite: "Agent de maintenance", diplome: "BT", etablissements: "S Yopougon" },
-            { domaine: "Génie Mécanique", specialite: "Maintenance Moteurs et Machines Marines", diplome: "Bt", etablissements: "Grand-Lahou" },
+            { domaine: "Génie Mécanique", specialite: "Maintenance Moteurs et Machines Marines", diplome: "BT", etablissements: "Grand-Lahou" },
             { domaine: "Génie Mécanique", specialite: "2nd T1", diplome: "BAC", etablissements: "LT Abidjan, LT Bouaké" },
             { domaine: "Génie Mécanique", specialite: "Agro-Mécanique", diplome: "CAP", etablissements: "LPM Yamoou" },
             { domaine: "Génie Mécanique", specialite: "Carrosserie Peinture (FPA)", diplome: "CAP", etablissements: "LPMA Vidi" },
@@ -746,7 +746,7 @@
             { domaine: "Génie Électrique", specialite: "Électronique", diplome: "BT", etablissements: "LP Yamoussoukro, LPT Man, LPMK Korhogo, LPMK Koumassi" },
             { domaine: "Génie Électrique", specialite: "Électronique", diplome: "CAP", etablissements: "CFPT Boundail" },
             { domaine: "Génie Électrique", specialite: "Maintenance Électromécanique", diplome: "BT", etablissements: "LP Jacqueville" },
-            { domaine: "Génie Électrique", specialite: "Réfrigération et conditionnement d'air (FPA)", diplome: "Bt", etablissements: "LP Odienné" },
+            { domaine: "Génie Électrique", specialite: "Réfrigération et conditionnement d'air (FPA)", diplome: "BT", etablissements: "LP Odienné" },
             { domaine: "Génie Électrique", specialite: "Maintenance des Systèmes Industriels et Énergétiques", diplome: "BT", etablissements: "LP Yamoussoukro" },
             { domaine: "Génie Électrique", specialite: "Maintenance des Équipements Électriques et Électroniques", diplome: "BT", etablissements: "LP Grand-Lahou" },
             { domaine: "Génie Électrique", specialite: "Système Électronique et Informatique", diplome: "BTS", etablissements: "LPELIA Treichville, LT Abidjan" },
@@ -773,7 +773,7 @@
 
             // Génie Civil BTP
             { domaine: "Génie Civil BTP", specialite: "Chantier Gros Œuvres", diplome: "BT", etablissements: "LP Bongouanou, LP Daoulou, LP Kouba, LPB Mat Koumassi, LPM-M VI Yopougou, LTP San-pedro" },
-            { domaine: "Génie Civil BTP", specialite: "Métier Gros Œuvres", diplome: "Bt", etablissements: "LTP San-pedro" },
+            { domaine: "Génie Civil BTP", specialite: "Métier Gros Œuvres", diplome: "BT", etablissements: "LTP San-pedro" },
             { domaine: "Génie Civil BTP", specialite: "Peinture Décoration", diplome: "BT", etablissements: "LPM-S-M VI Yopougou" },
             { domaine: "Génie Civil BTP", specialite: "Installation Sanitaire", diplome: "BT", etablissements: "LP Bongouanou, LP Katiola, LPB Bouaké, LPB Mat Koumassi" },
             { domaine: "Génie Civil BTP", specialite: "Bâtiment", diplome: "BT", etablissements: "LPB Mat Koumassi" },
@@ -1634,8 +1634,8 @@
                 });
             });
 
-            document.getElementById('calcBtn').addEventListener('click', calculer);
-            document.getElementById('resetBtn').addEventListener('click', function() {
+            document.getElementById('calcBTn').addEventListener('click', calculer);
+            document.getElementById('resetBTn').addEventListener('click', function() {
                 document.querySelectorAll('input[type="number"]').forEach(inp => inp.value = '');
                 document.getElementById('resultArea').innerHTML = '';
                 document.getElementById('ageInput').value = '18';
