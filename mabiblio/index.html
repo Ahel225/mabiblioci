@@ -10,6 +10,24 @@
 
   gtag('config', 'G-3ZM57RMK0X');
 </script>
+<div id="page-counter">🔍 Chargement...</div>
+
+<script>
+  // Fonction pour récupérer et afficher le nombre de vues
+  async function getPageViews() {
+    const path = window.location.pathname;
+    try {
+      const response = await fetch(`/.netlify/functions/pageviews?path=${path}`);
+      const data = await response.json();
+      document.getElementById('page-counter').textContent = `📖 ${data.views} vues`;
+    } catch (error) {
+      document.getElementById('page-counter').textContent = '📊 Statistiques indisponibles';
+    }
+  }
+  
+  // Exécuter quand la page est chargée
+  getPageViews();
+</script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta content="#0ea5e9" id="meta-theme-color" name="theme-color"/>
