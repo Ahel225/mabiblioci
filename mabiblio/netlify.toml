@@ -1,0 +1,8 @@
+[build]
+  command = "echo 'Pas de build requis'"
+
+[functions]
+  node_bundler = "esbuild"
+
+[[blobs]]
+  name = "pageviews"
