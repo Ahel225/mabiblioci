@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Test - Communes dépendantes des DRENA</title>
+    <title>Classement BEPC 2026</title>
 
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js">
@@ -43350,79 +43350,4 @@
             }
             document.querySelectorAll('thead th').forEach(th => {
                 th.classList.remove('sorted');
-                const icon = th.querySelector('.sort-icon');
-                if (icon) icon.textContent = '▾';
-            });
-            const activeTh = document.querySelector(`thead th[data-sort="${key}"]`);
-            if (activeTh) {
-                activeTh.classList.add('sorted');
-                const icon = activeTh.querySelector('.sort-icon');
-                if (icon) icon.textContent = sortAsc ? '▾' : '▴';
-            }
-            renderTable();
-        }
-
-        // ================================================================
-        // 9. INIT
-        // ================================================================
-        populateFilters();
-        applyFilters();
-        initColumnResize();
-
-        // Événements
-        filterDrena.addEventListener('change', function() {
-            const selectedDrena = this.value;
-            updatecommuneFilter(selectedDrena);
-            applyFilters();
-        });
-
-        filtercommune.addEventListener('change', applyFilters);
-        filterType.addEventListener('change', applyFilters);
-        filterSearch.addEventListener('input', applyFilters);
-        rankingScope.addEventListener('change', () => {
-            if (sortKey === 'rank') {
-                renderTable();
-            } else {
-                renderTable();
-            }
-        });
-
-        resetBtn.addEventListener('click', () => {
-            filterDrena.value = 'all';
-            updatecommuneFilter('all');
-            filterType.value = 'all';
-            filterSearch.value = '';
-            rankingScope.value = 'national';
-            applyFilters();
-        });
-
-        document.querySelectorAll('thead th[data-sort]').forEach(th => {
-            th.addEventListener('click', (e) => {
-                if (e.target.closest('.resizer')) return;
-                const key = th.dataset.sort;
-                handleSort(key);
-            });
-        });
-
-        // Tri initial sur "rank"
-        const rankTh = document.querySelector('thead th[data-sort="rank"]');
-        if (rankTh) {
-            rankTh.classList.add('sorted');
-            const icon = rankTh.querySelector('.sort-icon');
-            if (icon) icon.textContent = '▾';
-        }
-
-        let resizeTimer;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(() => {
-                if (chartTop10) chartTop10.resize();
-                if (chartcommune) chartcommune.resize();
-            }, 200);
-        });
-
-        console.log('✅ Test – communes dépendantes des DRENA –', allData.length, 'établissements');
-    </script>
-
-</body>
-</html>
+                const icon = th.querySelector('.s
