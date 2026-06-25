@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>📊 BEPC 2026 – Comparateur avec classement</title>
+    <title>Test - Communes dépendantes des DRENA</title>
 
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js">
@@ -561,14 +561,13 @@
     <div class="container" id="app">
 
         <!-- HEADER -->
-        <header class="header">
+          <header class="header">
             <h1>
                 📊 BEPC 2026
                 <span>Classement</span>
             </h1>
             <div class="badge-year">🏆 Taux de réussite · colonnes ajustables</div>
         </header>
-
         <!-- STATS -->
         <section class="stats-grid" id="statsGrid">
             <div class="stat-card accent">
@@ -705,7 +704,7 @@
         </section>
 
         <div class="footer">
-            <strong>BEPC 2026 – Classement national et par critère</strong> &nbsp;·&nbsp;
+            <strong>BEPC 2026 – Test de filtrage DRENA → communes</strong> &nbsp;·&nbsp;
             <span id="footerCount">0</span> établissements affichés
             &nbsp;·&nbsp; <span style="color:#94a3b8;">Glissez les séparateurs d'en-tête pour ajuster les colonnes</span>
         </div>
@@ -713,10 +712,9 @@
 
     <script>
         // ================================================================
-        // 1. DONNÉES – Vous pouvez remplacer cette constante par votre JSON
-        //    (copiez/collez votre tableau d'objets ici)
+        // 1. DONNÉES DE TEST (15 établissements)
         // ================================================================
-             const rawData = [
+        const rawData = [
             { "N°": 1, "DRENAET": "ABIDJAN 2", "commune": "MARCORY", "code étab": "054645",
                 "nom_etablissement": "COLLEGE PRIVE AL-GHADIR DE MARCORY ZONE 4", "Type étab": "Prive",
                 "inscrits": 24, "presents": 24, "admis": 24, "%taux": 100.0 },
@@ -42913,8 +42911,9 @@
         // ================================================================
         let allData = rawData.map(d => ({ ...d }));
         let filteredData = [...allData];
-        let sortKey = 'rank'; // par défaut tri par rang
+        let sortKey = 'rank';
         let sortAsc = true;
+        let communesParDrena = {};
 
         // ================================================================
         // 3. DOM REFS
@@ -42943,11 +42942,9 @@
         let chartcommune = null;
 
         // ================================================================
-        // 4. PRÉCALCUL DES RANGS (sur toutes les données)
+        // 4. PRÉCALCUL DES RANGS
         // ================================================================
         function computeRanks(data) {
-            // On ajoute des propriétés rankNational, rankDrena, rankcommune, rankType
-            // Triage par %taux descendant (avec gestion des ex-aequo : rang identique)
             const sorted = [...data].sort((a, b) => b['%taux'] - a['%taux']);
             let rank = 1;
             for (let i = 0; i < sorted.length; i++) {
@@ -42957,7 +42954,6 @@
                 sorted[i].rankNational = rank;
             }
 
-            // Par DRENA
             const DRENAETGroups = {};
             data.forEach(d => {
                 const key = d.DRENAET;
@@ -42973,7 +42969,6 @@
                 }
             }
 
-            // Par commune
             const communeGroups = {};
             data.forEach(d => {
                 const key = d.commune;
@@ -42989,7 +42984,6 @@
                 }
             }
 
-            // Par Type
             const typeGroups = {};
             data.forEach(d => {
                 const key = d['Type étab'];
@@ -43012,19 +43006,16 @@
         // 5. FILTRES & RENDU
         // ================================================================
 
-        function populateFilters() {
-            // DRENA
-            const DRENAETs = [...new Set(allData.map(d => d.DRENAET))].sort();
-            filterDrena.innerHTML = '<option value="all">Toutes</option>';
-            DRENAETs.forEach(d => {
-                const opt = document.createElement('option');
-                opt.value = d;
-                opt.textContent = d;
-                filterDrena.appendChild(opt);
-            });
+        // Fonction pour mettre à jour le filtre commune en fonction de la DRENA
+        function updatecommuneFilter(drenaValue) {
+            let communes = [];
+            if (drenaValue === 'all') {
+                communes = [...new Set(allData.map(d => d.commune))].sort();
+            } else {
+                communes = communesParDrena[drenaValue] || [];
+            }
 
-            // commune (déjà fait ailleurs, mais on le fait ici aussi)
-            const communes = [...new Set(allData.map(d => d.commune))].sort();
+            const currentValue = filtercommune.value;
             filtercommune.innerHTML = '<option value="all">Toutes</option>';
             communes.forEach(c => {
                 const opt = document.createElement('option');
@@ -43032,6 +43023,37 @@
                 opt.textContent = c;
                 filtercommune.appendChild(opt);
             });
+
+            if (communes.includes(currentValue)) {
+                filtercommune.value = currentValue;
+            } else {
+                filtercommune.value = 'all';
+            }
+        }
+
+        function populateFilters() {
+            // DRENA
+            const drenaSet = [...new Set(allData.map(d => d.DRENAET))].sort();
+            filterDrena.innerHTML = '<option value="all">Toutes</option>';
+            drenaSet.forEach(d => {
+                const opt = document.createElement('option');
+                opt.value = d;
+                opt.textContent = d;
+                filterDrena.appendChild(opt);
+            });
+
+            // Construire communesParDrena
+            communesParDrena = {};
+            allData.forEach(d => {
+                if (!communesParDrena[d.DRENAET]) communesParDrena[d.DRENAET] = new Set();
+                communesParDrena[d.DRENAET].add(d.commune);
+            });
+            for (let key in communesParDrena) {
+                communesParDrena[key] = [...communesParDrena[key]].sort();
+            }
+
+            // Initialiser le filtre commune avec toutes les communes
+            updatecommuneFilter('all');
         }
 
         function applyFilters() {
@@ -43075,22 +43097,15 @@
             const sorted = [...filteredData].sort((a, b) => {
                 let va = a[sortKey] ?? '';
                 let vb = b[sortKey] ?? '';
-                // Pour le tri par "rank" on utilise le champ dynamique
                 if (sortKey === 'rank') {
                     va = a[rankField] ?? 9999;
                     vb = b[rankField] ?? 9999;
-                    if (typeof va === 'string') va = va.toUpperCase();
-                    if (typeof vb === 'string') vb = vb.toUpperCase();
-                    if (va < vb) return sortAsc ? -1 : 1;
-                    if (va > vb) return sortAsc ? 1 : -1;
-                    return 0;
-                } else {
-                    if (typeof va === 'string') va = va.toUpperCase();
-                    if (typeof vb === 'string') vb = vb.toUpperCase();
-                    if (va < vb) return sortAsc ? -1 : 1;
-                    if (va > vb) return sortAsc ? 1 : -1;
-                    return 0;
                 }
+                if (typeof va === 'string') va = va.toUpperCase();
+                if (typeof vb === 'string') vb = vb.toUpperCase();
+                if (va < vb) return sortAsc ? -1 : 1;
+                if (va > vb) return sortAsc ? 1 : -1;
+                return 0;
             });
 
             tbody.innerHTML = sorted.map((d) => {
@@ -43100,11 +43115,8 @@
                 else if (rate < 75) rateClass = 'mid';
 
                 const typeCls = d['Type étab'] === 'Public' ? 'public' : 'private';
-
-                // Récupérer le rang pour l'affichage
                 const rank = d[rankField] ?? '-';
 
-                // Badge pour le top 3 national (on garde un petit indicateur)
                 let badge = '';
                 if (rankField === 'rankNational' && rank <= 3) {
                     const medals = ['🥇', '🥈', '🥉'];
@@ -43165,7 +43177,7 @@
         }
 
         // ================================================================
-        // 6. CHARTES (inchangées)
+        // 6. CHARTES
         // ================================================================
         function updateCharts() {
             const top10 = [...filteredData].sort((a, b) => b['%taux'] - a['%taux']).slice(0, 10);
@@ -43216,7 +43228,6 @@
                 }
             });
 
-            // commune
             const communeMap = {};
             filteredData.forEach(d => {
                 const c = d.commune;
@@ -43264,7 +43275,7 @@
         }
 
         // ================================================================
-        // 7. REDIMENSIONNEMENT DES COLONNES (inchangé)
+        // 7. REDIMENSIONNEMENT DES COLONNES
         // ================================================================
         function initColumnResize() {
             const ths = table.querySelectorAll('thead th');
@@ -43359,23 +43370,26 @@
         initColumnResize();
 
         // Événements
-        filterDrena.addEventListener('change', applyFilters);
+        filterDrena.addEventListener('change', function() {
+            const selectedDrena = this.value;
+            updatecommuneFilter(selectedDrena);
+            applyFilters();
+        });
+
         filtercommune.addEventListener('change', applyFilters);
         filterType.addEventListener('change', applyFilters);
         filterSearch.addEventListener('input', applyFilters);
         rankingScope.addEventListener('change', () => {
-            // On refait le tri par rang (si le tri actuel est sur 'rank')
             if (sortKey === 'rank') {
                 renderTable();
             } else {
-                // Sinon on rafraîchit quand même pour mettre à jour l'affichage du rang
                 renderTable();
             }
         });
 
         resetBtn.addEventListener('click', () => {
             filterDrena.value = 'all';
-            filtercommune.value = 'all';
+            updatecommuneFilter('all');
             filterType.value = 'all';
             filterSearch.value = '';
             rankingScope.value = 'national';
@@ -43398,7 +43412,6 @@
             if (icon) icon.textContent = '▾';
         }
 
-        // Resize des chartes
         let resizeTimer;
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimer);
@@ -43408,7 +43421,7 @@
             }, 200);
         });
 
-        console.log('✅ BEPC 2026 – Classement intégré –', allData.length, 'établissements');
+        console.log('✅ Test – communes dépendantes des DRENA –', allData.length, 'établissements');
     </script>
 
 </body>
