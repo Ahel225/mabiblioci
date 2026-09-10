@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0f766e" id="meta-theme-color">
+<title>Hub des Codes — Côte d'Ivoire</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --primary:#0f766e;
+  --primary-2:#0ea5e9;
+  --accent:#f59e0b;
+  --success:#10b981;
+  --danger:#ef4444;
+  --bg:#f4f7f8;
+  --surface:#fff;
+  --surface-2:#f8fafc;
+  --text:#102a2a;
+  --muted:#64748b;
+  --border:#dbe4e6;
+  --shadow:0 10px 30px rgba(15,118,110,.08);
+  --radius:20px;
+}
+[data-theme="dark"]{
+  --bg:#081415;
+  --surface:#102021;
+  --surface-2:#14292a;
+  --text:#e8f4f3;
+  --muted:#9bb3b3;
+  --border:#254243;
+  --shadow:0 12px 35px rgba(0,0,0,.25);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+  background:var(--bg); color:var(--text); line-height:1.6;
+}
+button,input{font:inherit}
+button{cursor:pointer}
+a{color:inherit}
+.container{max-width:1280px;margin:auto;padding:0 22px}
+
+/* Header */
+.header{
+  position:sticky;top:0;z-index:1000;
+  background:color-mix(in srgb,var(--surface) 92%,transparent);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+}
+.header-inner{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;font-weight:800}
+.brand-mark{
+  width:44px;height:44px;border-radius:14px;display:grid;place-items:center;color:#fff;
+  background:linear-gradient(135deg,var(--primary),var(--primary-2));
+  box-shadow:0 8px 20px rgba(14,165,233,.18);
+}
+.brand-text small{display:block;color:var(--muted);font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em}
+.brand-text strong{font-size:1.08rem}
+.header-actions{display:flex;align-items:center;gap:10px}
+.icon-btn{
+  width:42px;height:42px;border:1px solid var(--border);border-radius:12px;
+  background:var(--surface);color:var(--text);display:grid;place-items:center;
+}
+.icon-btn:hover{border-color:var(--primary);color:var(--primary)}
+
+/* Hero */
+.hero{padding:58px 0 34px}
+.hero-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:30px;align-items:stretch}
+.hero-main{
+  position:relative;overflow:hidden;border-radius:28px;padding:42px;
+  color:#fff;background:
+    radial-gradient(circle at 90% 15%,rgba(255,255,255,.16),transparent 28%),
+    linear-gradient(135deg,#0f766e,#0b5d62 48%,#0ea5e9);
+  box-shadow:0 20px 45px rgba(15,118,110,.18);
+}
+.hero-main:after{
+  content:"\f02d";font-family:"Font Awesome 6 Free";font-weight:900;
+  position:absolute;right:25px;bottom:-28px;font-size:12rem;opacity:.08;transform:rotate(-12deg)
+}
+.eyebrow{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;font-weight:800;opacity:.82;margin-bottom:12px}
+.hero h1{font-family:"Playfair Display",serif;font-size:clamp(2rem,4vw,3.35rem);line-height:1.08;max-width:780px}
+.hero p{margin-top:16px;max-width:760px;font-size:1.04rem;opacity:.9}
+.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.btn{
+  border:0;border-radius:12px;padding:11px 16px;font-weight:700;text-decoration:none;
+  display:inline-flex;align-items:center;gap:8px;transition:.2s
+}
+.btn-light{background:#fff;color:#0f766e}
+.btn-ghost{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.25)}
+.btn:hover{transform:translateY(-2px)}
+
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.stat{
+  background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:22px;
+  box-shadow:var(--shadow);display:flex;flex-direction:column;justify-content:center
+}
+.stat i{font-size:1.35rem;color:var(--primary);margin-bottom:10px}
+.stat strong{font-size:1.8rem;line-height:1}
+.stat span{color:var(--muted);font-size:.84rem;margin-top:7px}
+
+/* Toolbar */
+.toolbar{padding:8px 0 26px}
+.toolbar-inner{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.search{
+  flex:1;min-width:260px;position:relative
+}
+.search input{
+  width:100%;padding:14px 46px 14px 18px;border:1px solid var(--border);
+  border-radius:15px;background:var(--surface);color:var(--text);outline:none;box-shadow:var(--shadow)
+}
+.search input:focus{border-color:var(--primary);box-shadow:0 0 0 4px rgba(15,118,110,.1)}
+.search i{position:absolute;right:17px;top:50%;transform:translateY(-50%);color:var(--muted)}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.filter{
+  border:1px solid var(--border);background:var(--surface);color:var(--text);
+  padding:10px 13px;border-radius:12px;font-weight:600
+}
+.filter.active,.filter:hover{background:var(--primary);border-color:var(--primary);color:#fff}
+
+/* Code cards */
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin:10px 0 18px}
+.section-head h2{font-size:1.45rem}
+.section-head p{color:var(--muted);font-size:.9rem}
+.codes-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(285px,1fr));gap:18px}
+.code-card{
+  position:relative;overflow:hidden;background:var(--surface);border:1px solid var(--border);
+  border-radius:22px;padding:22px;box-shadow:var(--shadow);transition:.25s
+}
+.code-card:hover{transform:translateY(-5px);box-shadow:0 18px 38px rgba(15,118,110,.13)}
+.code-card:before{content:"";position:absolute;left:0;top:0;right:0;height:4px;background:var(--card-accent,#0f766e)}
+.code-top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
+.code-icon{
+  width:54px;height:54px;border-radius:16px;display:grid;place-items:center;color:#fff;
+  background:var(--card-accent,#0f766e);font-size:1.35rem;flex:none
+}
+.status{
+  font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;font-weight:800;
+  padding:6px 9px;border-radius:999px;background:rgba(16,185,129,.11);color:#059669
+}
+.status.soon{background:rgba(245,158,11,.13);color:#b45309}
+.status.planned{background:rgba(100,116,139,.12);color:#64748b}
+.code-card h3{margin-top:17px;font-size:1.12rem}
+.code-subtitle{color:var(--muted);font-size:.84rem;margin-top:4px;min-height:42px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 18px}
+.tag{font-size:.7rem;padding:5px 8px;border-radius:8px;background:var(--surface-2);color:var(--muted);border:1px solid var(--border)}
+.card-actions{display:flex;gap:8px}
+.open-btn{
+  flex:1;text-align:center;text-decoration:none;background:var(--card-accent,#0f766e);color:#fff;
+  padding:10px 12px;border-radius:11px;font-weight:700;font-size:.86rem
+}
+.info-btn{
+  width:42px;border:1px solid var(--border);background:var(--surface);color:var(--muted);
+  border-radius:11px
+}
+.disabled{opacity:.62}
+.disabled .open-btn{background:var(--surface-2);color:var(--muted);pointer-events:none}
+
+/* Empty */
+.empty{display:none;text-align:center;padding:55px 20px;color:var(--muted)}
+.empty i{font-size:2rem;margin-bottom:10px;color:var(--primary)}
+
+/* Footer */
+footer{margin-top:55px;border-top:1px solid var(--border);padding:28px 0 35px;color:var(--muted);font-size:.82rem}
+.footer-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.disclaimer{max-width:780px}
+
+/* Modal */
+.modal{position:fixed;inset:0;z-index:2000;display:none;background:rgba(2,8,23,.55);backdrop-filter:blur(5px);padding:20px}
+.modal.show{display:grid;place-items:center}
+.modal-card{max-width:520px;width:100%;background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:25px;box-shadow:0 30px 80px rgba(0,0,0,.25)}
+.modal-head{display:flex;justify-content:space-between;gap:15px;align-items:flex-start}
+.modal h3{font-size:1.25rem}.modal p{margin-top:10px;color:var(--muted)}
+.close{border:0;background:transparent;color:var(--muted);font-size:1.2rem}
+
+/* Responsive */
+@media(max-width:850px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero-main{padding:30px}
+}
+@media(max-width:560px){
+  .container{padding:0 15px}
+  .hero{padding-top:35px}
+  .hero-main{padding:25px;border-radius:22px}
+  .stats{grid-template-columns:1fr 1fr}
+  .header-inner{min-height:64px}
+  .brand-text small{display:none}
+  .codes-grid{grid-template-columns:1fr}
+  .section-head{display:block}
+}
+</style>
+</head>
+
+<body>
+<header class="header">
+  <div class="container header-inner">
+    <a class="brand" href="index_neuf.html" aria-label="Retour à l'accueil">
+      <span class="brand-mark"><i class="fa-solid fa-scale-balanced"></i></span>
+      <span class="brand-text">
+        <small>Bibliothèque juridique</small>
+        <strong>Hub des Codes</strong>
+      </span>
+    </a>
+    <div class="header-actions">
+      <button class="icon-btn" id="homeBtn" title="Accueil"><i class="fa-solid fa-house"></i></button>
+      <button class="icon-btn" id="themeBtn" title="Changer de thème"><i class="fa-solid fa-moon"></i></button>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-main">
+      <div class="eyebrow">Côte d'Ivoire · Textes codifiés</div>
+      <h1>Les Codes, réunis dans un seul espace.</h1>
+      <p>
+        Un hub conçu pour consulter rapidement les grands codes juridiques.
+        Chaque code dispose de sa propre page, de son identité visuelle et pourra être ajouté
+        au catalogue sans modifier toute l'interface.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-light" href="#codes"><i class="fa-solid fa-book-open"></i> Explorer les codes</a>
+        <a class="btn btn-ghost" href="index_neuf.html"><i class="fa-solid fa-arrow-left"></i> Accueil</a>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat"><i class="fa-solid fa-book"></i><strong id="statTotal">0</strong><span>Codes au catalogue</span></div>
+      <div class="stat"><i class="fa-solid fa-circle-check"></i><strong id="statReady">0</strong><span>Codes disponibles</span></div>
+      <div class="stat"><i class="fa-solid fa-clock"></i><strong id="statSoon">0</strong><span>Codes à venir</span></div>
+      <div class="stat"><i class="fa-solid fa-magnifying-glass"></i><strong id="statVisible">0</strong><span>Résultats affichés</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="toolbar">
+  <div class="container toolbar-inner">
+    <div class="search">
+      <input id="search" type="search" placeholder="Rechercher un code, un domaine ou un mot-clé…" autocomplete="off">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </div>
+    <div class="filters" id="filters">
+      <button class="filter active" data-filter="all">Tous</button>
+      <button class="filter" data-filter="available">Disponibles</button>
+      <button class="filter" data-filter="soon">À venir</button>
+    </div>
+  </div>
+</section>
+
+<section id="codes" class="container">
+  <div class="section-head">
+    <div>
+      <h2>Catalogue des codes</h2>
+      <p>Une nouvelle carte peut être ajoutée simplement dans le registre ci-dessous.</p>
+    </div>
+  </div>
+  <div class="codes-grid" id="codesGrid"></div>
+  <div class="empty" id="empty">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <div>Aucun code ne correspond à votre recherche.</div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <div>Hub des Codes · Côte d'Ivoire</div>
+    <div class="disclaimer">
+      Interface de consultation non officielle. Le texte juridique de référence demeure celui publié
+      par les autorités compétentes et les Journaux officiels applicables.
+    </div>
+  </div>
+</footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-card">
+    <div class="modal-head">
+      <div><h3 id="modalTitle">Informations</h3></div>
+      <button class="close" id="closeModal" aria-label="Fermer"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <p id="modalText"></p>
+  </div>
+</div>
+
+<script>
+/*
+  ============================================================
+  REGISTRE DES CODES
+  ------------------------------------------------------------
+  Pour ajouter un nouveau code, dupliquez simplement un objet :
+  {
+    id: "code-minier",
+    title: "Code minier",
+    subtitle: "Régime juridique de l'activité minière",
+    icon: "fa-gem",
+    accent: "#7c3aed",
+    status: "available",
+    url: "code_minier.html",
+    tags: ["Mines", "Carrières", "Permis"],
+    info: "..."
+  }
+
+  status :
+    available = page prête
+    soon      = page prochainement disponible
+    planned   = prévu
+  ============================================================
+*/
+
+const CODE_REGISTRY = [
+  {
+    id:"douanes",
+    title:"Code des Douanes",
+    subtitle:"Régime douanier, importation, exportation, droits et taxes",
+    icon:"fa-boxes-stacked",
+    accent:"#0f766e",
+    status:"available",
+    url:"Code_des_Douanes_Cote_d_Ivoire_Pro_Douanes.html",
+    tags:["Douanes","Importation","Exportation","Droits & taxes"],
+    info:"Version HTML structurée du Code des Douanes, avec navigation et lecture facilitée."
+  },
+  {
+    id:"environnement",
+    title:"Code de l'Environnement",
+    subtitle:"Protection de l'environnement et gestion durable des ressources",
+    icon:"fa-leaf",
+    accent:"#16a34a",
+    status:"available",
+    url:"code_de_l'environnement.html",
+    tags:["Environnement","Pollution","Déchets","Biodiversité"],
+    info:"Espace consacré au Code de l'Environnement."
+  },
+  {
+    id:"minier",
+    title:"Code minier",
+    subtitle:"Exploration, exploitation et régime juridique des substances minérales",
+    icon:"fa-gem",
+    accent:"#7c3aed",
+    status:"soon",
+    url:"code_minier.html",
+    tags:["Mines","Carrières","Permis","Exploitation"],
+    info:"Le Code minier sera ajouté ici dès que sa page HTML sera intégrée."
+  },
+  {
+    id:"electricite",
+    title:"Code de l'Électricité",
+    subtitle:"Production, transport, distribution et réglementation du secteur électrique",
+    icon:"fa-bolt",
+    accent:"#d97706",
+    status:"soon",
+    url:"code_electricite.html",
+    tags:["Électricité","Énergie","Réseau","Distribution"],
+    info:"Le Code de l'Électricité sera ajouté ici dès que sa page HTML sera intégrée."
+  },
+  {
+    id:"travail",
+    title:"Code du Travail",
+    subtitle:"Relations de travail, droits et obligations des employeurs et travailleurs",
+    icon:"fa-briefcase",
+    accent:"#2563eb",
+    status:"planned",
+    url:"code_du_travail.html",
+    tags:["Travail","Emploi","Contrat","Salaires"],
+    info:"Emplacement prévu pour le Code du Travail."
+  },
+  {
+    id:"commerce",
+    title:"Code de Commerce",
+    subtitle:"Activités commerciales, commerçants et opérations commerciales",
+    icon:"fa-store",
+    accent:"#db2777",
+    status:"planned",
+    url:"code_de_commerce.html",
+    tags:["Commerce","Entreprises","Commerçants"],
+    info:"Emplacement prévu pour le Code de Commerce."
+  },
+  {
+    id:"eau",
+    title:"Code de l'Eau",
+    subtitle:"Protection, gestion et utilisation des ressources en eau",
+    icon:"fa-droplet",
+    accent:"#0284c7",
+    status:"planned",
+    url:"code_de_l_eau.html",
+    tags:["Eau","Ressources","Protection"],
+    info:"Emplacement prévu pour le Code de l'Eau."
+  },
+  {
+    id:"urbanisme",
+    title:"Code de l'Urbanisme et de la Construction",
+    subtitle:"Urbanisme, aménagement, construction et occupation des sols",
+    icon:"fa-city",
+    accent:"#475569",
+    status:"planned",
+    url:"code_urbanisme_construction.html",
+    tags:["Urbanisme","Construction","Foncier"],
+    info:"Emplacement prévu pour les textes codifiés relatifs à l'urbanisme et à la construction."
+  }
+];
+
+const grid = document.getElementById("codesGrid");
+const search = document.getElementById("search");
+const empty = document.getElementById("empty");
+let activeFilter = "all";
+
+const STATUS_LABEL = {
+  available:"Disponible",
+  soon:"À venir",
+  planned:"Prévu"
+};
+
+function normalize(s){
+  return (s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
+}
+
+function cardTemplate(code){
+  const disabled = code.status !== "available";
+  return `
+    <article class="code-card ${disabled ? "disabled" : ""}" style="--card-accent:${code.accent}">
+      <div class="code-top">
+        <div class="code-icon"><i class="fa-solid ${code.icon}"></i></div>
+        <span class="status ${code.status !== "available" ? (code.status === "soon" ? "soon" : "planned") : ""}">
+          ${STATUS_LABEL[code.status]}
+        </span>
+      </div>
+      <h3>${code.title}</h3>
+      <p class="code-subtitle">${code.subtitle}</p>
+      <div class="tags">${code.tags.map(t=>`<span class="tag">${t}</span>`).join("")}</div>
+      <div class="card-actions">
+        <a class="open-btn" href="${disabled ? "#" : code.url}" data-disabled="${disabled}">
+          <i class="fa-solid ${disabled ? "fa-clock" : "fa-arrow-right"}"></i>
+          ${disabled ? "Bientôt disponible" : "Consulter le code"}
+        </a>
+        <button class="info-btn" data-info="${code.id}" title="Informations">
+          <i class="fa-solid fa-circle-info"></i>
+        </button>
+      </div>
+    </article>`;
+}
+
+function render(){
+  const q = normalize(search.value.trim());
+  const filtered = CODE_REGISTRY.filter(code=>{
+    const matchesFilter = activeFilter === "all" || code.status === activeFilter;
+    const haystack = normalize([code.title,code.subtitle,...code.tags].join(" "));
+    return matchesFilter && (!q || haystack.includes(q));
+  });
+
+  grid.innerHTML = filtered.map(cardTemplate).join("");
+  empty.style.display = filtered.length ? "none" : "block";
+  document.getElementById("statVisible").textContent = filtered.length;
+
+  grid.querySelectorAll(".open-btn[data-disabled='true']").forEach(btn=>{
+    btn.addEventListener("click",e=>{
+      e.preventDefault();
+      const id = btn.closest(".code-card").querySelector(".info-btn").dataset.info;
+      openInfo(id);
+    });
+  });
+  grid.querySelectorAll(".info-btn").forEach(btn=>{
+    btn.addEventListener("click",()=>openInfo(btn.dataset.info));
+  });
+}
+
+function openInfo(id){
+  const code = CODE_REGISTRY.find(c=>c.id===id);
+  if(!code) return;
+  document.getElementById("modalTitle").textContent = code.title;
+  document.getElementById("modalText").textContent = code.info;
+  document.getElementById("modal").classList.add("show");
+}
+function closeInfo(){document.getElementById("modal").classList.remove("show")}
+
+function updateStats(){
+  document.getElementById("statTotal").textContent = CODE_REGISTRY.length;
+  document.getElementById("statReady").textContent = CODE_REGISTRY.filter(c=>c.status==="available").length;
+  document.getElementById("statSoon").textContent = CODE_REGISTRY.filter(c=>c.status!=="available").length;
+}
+
+document.getElementById("filters").addEventListener("click",e=>{
+  const b=e.target.closest(".filter"); if(!b) return;
+  document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));
+  b.classList.add("active"); activeFilter=b.dataset.filter; render();
+});
+search.addEventListener("input",render);
+
+document.getElementById("closeModal").addEventListener("click",closeInfo);
+document.getElementById("modal").addEventListener("click",e=>{if(e.target.id==="modal") closeInfo()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape") closeInfo()});
+
+document.getElementById("homeBtn").addEventListener("click",()=>location.href="index_neuf.html");
+
+const themeBtn=document.getElementById("themeBtn");
+function setTheme(t){
+  document.documentElement.dataset.theme=t;
+  localStorage.setItem("hub_codes_theme",t);
+  themeBtn.innerHTML=`<i class="fa-solid ${t==="dark"?"fa-sun":"fa-moon"}"></i>`;
+}
+setTheme(localStorage.getItem("hub_codes_theme") || "light");
+themeBtn.addEventListener("click",()=>{
+  setTheme(document.documentElement.dataset.theme==="dark"?"light":"dark");
+});
+
+updateStats();
+render();
+</script>
+</body>
+</html>
