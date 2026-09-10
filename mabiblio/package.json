@@ -1,0 +1,12 @@
+{
+  "name": "assistant-ia-code-minier",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server_ia_code_minier.mjs"
+  },
+  "dependencies": {
+    "express": "latest",
+    "openai": "latest"
+  }
+}
