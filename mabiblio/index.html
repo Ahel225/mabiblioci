@@ -113,6 +113,41 @@ footer{margin-top:50px;border-top:1px solid var(--line);padding:28px 0 38px;colo
 @media(max-width:1000px){.grid{grid-template-columns:repeat(3,1fr)}.code-list{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:780px){.hero-layout{grid-template-columns:1fr}.quick{margin-top:18px}.grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:520px){.container{width:min(100% - 22px,1180px)}.hero{padding-top:42px}.grid,.code-list{grid-template-columns:1fr}.feature{grid-column:span 1}.search-box input{height:56px}.nav{height:62px}.brand-sub{display:none}.section-head{display:block}.section-head p{margin-top:4px}}
+
+/* Bibliothèque complète : liens conservés depuis l'index d'origine */
+.library-panel{margin-top:24px;padding:24px;border:1px solid var(--line);background:var(--surface);border-radius:20px}
+.library-panel-head{display:flex;align-items:end;justify-content:space-between;gap:15px;margin-bottom:18px}
+.library-panel-head h2{font-size:1.18rem}
+.library-panel-head p{color:var(--muted);font-size:.8rem;margin-top:4px}
+.library-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.library-card{border:1px solid var(--line);border-radius:15px;padding:16px;background:var(--paper)}
+.library-card h3{font-size:.92rem;margin-bottom:6px}
+.library-card p{font-size:.75rem;color:var(--muted);margin-bottom:11px}
+.library-links{display:flex;flex-wrap:wrap;gap:7px}
+.library-link{display:inline-flex;align-items:center;gap:6px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--surface);font-size:.72rem;font-weight:700;color:var(--green2);transition:.15s}
+.library-link:hover{background:var(--soft);transform:translateY(-1px)}
+.library-card.salary{border-left:3px solid var(--gold)}
+.library-card.salary .library-link{background:var(--green);color:#fff;border-color:var(--green)}
+@media(max-width:1000px){.library-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.library-grid{grid-template-columns:1fr}.library-panel{padding:18px}.library-panel-head{display:block}}
+/* Modal salaires */
+.sal-modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;z-index:3000;padding:18px}
+.sal-modal-card{width:min(420px,100%);background:var(--surface);color:var(--ink);padding:22px;border-radius:18px;box-shadow:0 25px 70px rgba(0,0,0,.25);border:1px solid var(--line)}
+.sal-modal-card h3{text-align:center;margin:10px 0 8px}
+.sal-modal-card p{font-size:.82rem;color:var(--muted);text-align:center;line-height:1.55}
+.sal-device{margin:16px 0;padding:12px;border:1px dashed var(--line);border-radius:12px;background:var(--soft)}
+.sal-device label{display:block;font-size:.68rem;text-transform:uppercase;color:var(--muted);font-weight:800;margin-bottom:5px}
+.sal-device-row{display:flex;gap:7px}
+.sal-device-row input{width:100%;border:0;background:transparent;color:var(--ink);font-family:monospace;font-weight:800;letter-spacing:1px}
+.sal-code{width:100%;padding:11px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);text-align:center;letter-spacing:2px;font-weight:800}
+.sal-actions{display:flex;justify-content:center;gap:8px;margin-top:16px}
+.sal-btn{padding:9px 14px;border-radius:10px;border:1px solid var(--line);font-weight:800}
+.sal-btn.primary{background:var(--green);color:#fff;border-color:var(--green)}
+.sal-btn.secondary{background:transparent;color:var(--ink)}
+.sal-message{text-align:center;font-size:.8rem;margin-top:10px;display:none}
+@keyframes salShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.sal-shake{animation:salShake .45s ease}
+
 </style>
 </head>
 
@@ -226,7 +261,142 @@ footer{margin-top:50px;border-top:1px solid var(--line);padding:28px 0 38px;colo
       <span class="card-link">Ouvrir <i class="fa-solid fa-arrow-right"></i></span>
     </a>
 
+
   </div>
+
+  <section class="library-panel" aria-label="Bibliothèque complète">
+    <div class="library-panel-head">
+      <div>
+        <h2>Textes & ressources</h2>
+        <p>Les accès détaillés de l'ancien index sont conservés ici, sans supprimer les liens existants.</p>
+      </div>
+    </div>
+
+    <div class="library-grid">
+
+      <article class="library-card">
+        <h3>Textes législatifs</h3>
+        <p>Constitution, nationalité et lois organiques.</p>
+        <div class="library-links">
+          <a class="library-link" href="constitution.html"><i class="fa-solid fa-landmark"></i> Constitution</a>
+          <a class="library-link" href="code_de_nationalite.html"><i class="fa-solid fa-passport"></i> Nationalité</a>
+          <a class="library-link" href="lois_organiques.html"><i class="fa-solid fa-scroll"></i> Lois organiques</a>
+        </div>
+      </article>
+
+      <article class="library-card">
+        <h3>Statuts & règlements</h3>
+        <p>Statut général, décrets, pensions, indices et statuts spécifiques.</p>
+        <div class="library-links">
+          <a class="library-link" href="statuts.html"><i class="fa-solid fa-file-contract"></i> Consulter</a>
+        </div>
+      </article>
+
+      <article class="library-card salary">
+        <h3>Salaires des fonctionnaires</h3>
+        <p>Grilles salariales par grades et échelons. L'accès protégé de l'index d'origine est conservé.</p>
+        <div class="library-links">
+          <a class="library-link" href="#" id="btn-salaires"><i class="fa-solid fa-lock"></i> Accès restreint</a>
+        </div>
+      </article>
+
+      <article class="library-card">
+        <h3>Déontologie</h3>
+        <p>Codes de déontologie des personnels et professions concernés.</p>
+        <div class="library-links">
+          <a class="library-link" href="deontologie.html"><i class="fa-solid fa-hand-holding-heart"></i> Consulter</a>
+        </div>
+      </article>
+
+      <article class="library-card">
+        <h3>Pensions</h3>
+        <p>Loi générale et décret d'application sur les pensions.</p>
+        <div class="library-links">
+          <a class="library-link" href="ordonnancepension.html"><i class="fa-solid fa-file-contract"></i> Loi</a>
+          <a class="library-link" href="decret_pension.html"><i class="fa-solid fa-file-lines"></i> Décret</a>
+        </div>
+      </article>
+
+      <article class="library-card">
+        <h3>Droit pénal</h3>
+        <p>Les quatre accès pénaux présents dans l'index d'origine.</p>
+        <div class="library-links">
+          <a class="library-link" href="code_penal.html"><i class="fa-solid fa-gavel"></i> Code pénal</a>
+          <a class="library-link" href="code_penal_reglement.html"><i class="fa-solid fa-scroll"></i> Règlement</a>
+          <a class="library-link" href="cpp.html"><i class="fa-solid fa-scale-balanced"></i> Procédure pénale</a>
+          <a class="library-link" href="loi_cybercriminalite.html"><i class="fa-solid fa-shield-halved"></i> Cybercriminalité</a>
+        </div>
+      </article>
+
+      <article class="library-card">
+        <h3>Droit de la famille</h3>
+        <p>Mariage, divorce, minorité, adoption, filiation, succession et état civil.</p>
+        <div class="library-links">
+          <a class="library-link" href="loi_mariage.html">Mariage</a>
+          <a class="library-link" href="loi_divorce.html">Divorce</a>
+          <a class="library-link" href="loiminorite.html">Minorité</a>
+          <a class="library-link" href="loi_adoption.html">Adoption</a>
+          <a class="library-link" href="filiation.html">Filiation</a>
+          <a class="library-link" href="loi_succession.html">Succession</a>
+          <a class="library-link" href="loietatcivil.html">État civil</a>
+        </div>
+      </article>
+
+      <article class="library-card">
+        <h3>Habitat, construction & foncier</h3>
+        <p>Foncier, urbanisme et construction.</p>
+        <div class="library-links">
+          <a class="library-link" href="droit_foncier.html">Foncier</a>
+          <a class="library-link" href="urbanisme.html">Urbanisme</a>
+          <a class="library-link" href="construction.html">Construction</a>
+        </div>
+      </article>
+
+      <article class="library-card">
+        <h3>Environnement</h3>
+        <p>Code de l'Environnement et protection durable.</p>
+        <div class="library-links">
+          <a class="library-link" href="code_de_l'environnement.html"><i class="fa-solid fa-leaf"></i> Code de l'Environnement</a>
+        </div>
+      </article>
+
+      <article class="library-card">
+        <h3>Emplois & salaires</h3>
+        <p>Familles d'emplois, grades, échelons, rémunération, primes et indemnités.</p>
+        <div class="library-links">
+          <a class="library-link" href="hub_emplois/index.html"><i class="fa-solid fa-briefcase"></i> Hub des emplois</a>
+        </div>
+      </article>
+
+      <article class="library-card">
+        <h3>Concours de la Fonction Publique</h3>
+        <p>Annonces, calendrier et résultats.</p>
+        <div class="library-links">
+          <a class="library-link" href="concours.html">Concours</a>
+          <a class="library-link" href="calendrier_concours.html">Calendrier</a>
+          <a class="library-link" href="resultats_concours.html">Résultats</a>
+        </div>
+      </article>
+
+      <article class="library-card">
+        <h3>Finances & outils</h3>
+        <p>Budget de l'État et calculateur de facture électrique.</p>
+        <div class="library-links">
+          <a class="library-link" href="budget.html">Budget</a>
+          <a class="library-link" href="facture-electrique.html">Facture électrique</a>
+        </div>
+      </article>
+
+      <article class="library-card">
+        <h3>Droit du travail</h3>
+        <p>Code, décrets, arrêtés et autres textes du travail.</p>
+        <div class="library-links">
+          <a class="library-link" href="droit_du_travail.html">Tous les textes</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
 
   <div class="code-strip">
     <div class="code-strip-head">
@@ -234,7 +404,7 @@ footer{margin-top:50px;border-top:1px solid var(--line);padding:28px 0 38px;colo
       <a href="hub_codes.html">Voir le Hub <i class="fa-solid fa-arrow-right"></i></a>
     </div>
     <div class="code-list">
-      <a class="code-item" href="Code_des_Douanes.html"><i class="fa-solid fa-boxes-stacked"></i><span>Code des Douanes<small>Disponible</small></span></a>
+      <a class="code-item" href="Code_des_Douanes_Cote_d_Ivoire_Pro_Douanes.html"><i class="fa-solid fa-boxes-stacked"></i><span>Code des Douanes<small>Disponible</small></span></a>
       <a class="code-item" href="code_de_l'environnement.html"><i class="fa-solid fa-leaf"></i><span>Code de l'Environnement<small>Disponible</small></span></a>
       <a class="code-item" href="code_minier.html"><i class="fa-solid fa-gem"></i><span>Code minier<small>À intégrer</small></span></a>
       <a class="code-item" href="code_electricite.html"><i class="fa-solid fa-bolt"></i><span>Code de l'Électricité<small>À intégrer</small></span></a>
@@ -250,6 +420,41 @@ footer{margin-top:50px;border-top:1px solid var(--line);padding:28px 0 38px;colo
   <span>Interface de consultation non officielle.</span>
 </div>
 </footer>
+
+
+<!-- Accès protégé aux grilles salariales : repris du fonctionnement de l'index d'origine -->
+<div id="salModal" style="display:none" aria-hidden="true">
+  <div class="sal-modal-backdrop" id="salBackdrop">
+    <div class="sal-modal-card" role="dialog" aria-modal="true" aria-labelledby="salModalTitle">
+      <div style="text-align:center">
+        <div style="width:48px;height:48px;border-radius:50%;display:inline-grid;place-items:center;background:var(--soft);color:var(--green2);font-size:1.3rem">
+          <i class="fa-solid fa-shield-halved"></i>
+        </div>
+      </div>
+      <h3 id="salModalTitle">Activation requise</h3>
+      <p>
+        Pour avoir un accès permanent aux grilles salariales, veuillez transmettre votre
+        <strong>ID Appareil après paiement d'un pass de 2000 FCFA par OM ou Wave au 0707739427</strong>
+        à l'administrateur afin d'obtenir votre clé d'activation.
+      </p>
+
+      <div class="sal-device">
+        <label for="deviceUniqueId">Votre ID Appareil</label>
+        <div class="sal-device-row">
+          <input id="deviceUniqueId" type="text" readonly>
+          <button id="btnCopyId" class="sal-btn secondary" type="button" title="Copier"><i class="fa-solid fa-copy"></i></button>
+        </div>
+      </div>
+
+      <input id="salCodeInput" class="sal-code" type="text" placeholder="Entrez la clé d'activation reçue">
+      <div class="sal-actions">
+        <button id="salCancel" class="sal-btn secondary" type="button">Fermer</button>
+        <button id="salSubmit" class="sal-btn primary" type="button">Activer</button>
+      </div>
+      <div id="salMessage" class="sal-message"></div>
+    </div>
+  </div>
+</div>
 
 <script>
 /* Index conservé depuis la page d'origine. */
@@ -604,6 +809,143 @@ themeBtn.onclick=()=>setTheme(document.documentElement.dataset.theme==="dark"?"l
 
 document.getElementById("resourceCount").textContent =
   `${searchIndex.length} ressource${searchIndex.length>1?"s":""}`;
+
+/* Protection des grilles salariales — fonctionnement conservé depuis l'index d'origine */
+(function(){
+  const SECRET_SALT = "RH_IVORY_COAST_2025_SECURE_KEY";
+  const STORAGE_KEY = "salaires_license_key";
+  const TARGET_URL = "all_salary.html";
+
+  function getDeviceId(){
+    let id = localStorage.getItem("device_fingerprint");
+    if(!id){
+      const array = new Uint32Array(1);
+      window.crypto.getRandomValues(array);
+      id = array[0].toString(16).toUpperCase().padStart(8,"0");
+      localStorage.setItem("device_fingerprint",id);
+    }
+    return id;
+  }
+
+  async function generateValidKey(deviceId){
+    const msgBuffer = new TextEncoder().encode(deviceId + SECRET_SALT);
+    const hashBuffer = await crypto.subtle.digest("SHA-256",msgBuffer);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b=>b.toString(16).padStart(2,"0")).join("");
+    return hashHex.substring(0,8).toUpperCase();
+  }
+
+  function showModal(){
+    const m=document.getElementById("salModal");
+    if(!m) return;
+    const id=document.getElementById("deviceUniqueId");
+    const input=document.getElementById("salCodeInput");
+    const msg=document.getElementById("salMessage");
+    if(id) id.value=getDeviceId();
+    if(input) input.value="";
+    if(msg) msg.style.display="none";
+    m.style.display="block";
+    m.setAttribute("aria-hidden","false");
+    setTimeout(()=>input && input.focus(),50);
+  }
+
+  function hideModal(){
+    const m=document.getElementById("salModal");
+    if(m){
+      m.style.display="none";
+      m.setAttribute("aria-hidden","true");
+    }
+  }
+
+  async function validateSalaryKey(){
+    const input=document.getElementById("salCodeInput");
+    const msg=document.getElementById("salMessage");
+    const userKey=(input?.value||"").trim().toUpperCase();
+    const expected=await generateValidKey(getDeviceId());
+
+    if(userKey===expected){
+      localStorage.setItem(STORAGE_KEY,userKey);
+      if(msg){
+        msg.style.color="#16805f";
+        msg.textContent="Activation réussie ! Redirection...";
+        msg.style.display="block";
+      }
+      setTimeout(()=>{ hideModal(); window.location.href=TARGET_URL; },1000);
+    }else{
+      if(msg){
+        msg.style.color="#a84a4a";
+        msg.textContent="Clé invalide pour cet appareil.";
+        msg.style.display="block";
+      }
+      input?.classList.add("sal-shake");
+      setTimeout(()=>input?.classList.remove("sal-shake"),500);
+    }
+  }
+
+  function setupSalaryButton(){
+    const btn=document.getElementById("btn-salaires");
+    if(!btn) return;
+    btn.addEventListener("click",function(e){
+      e.preventDefault();
+      showModal();
+    });
+  }
+
+  function initSalaryAccess(){
+    const stored=localStorage.getItem(STORAGE_KEY);
+    const deviceId=getDeviceId();
+    const btn=document.getElementById("btn-salaires");
+
+    if(stored){
+      generateValidKey(deviceId).then(valid=>{
+        if(stored===valid && btn){
+          btn.href=TARGET_URL;
+          btn.innerHTML='<i class="fa-solid fa-circle-check"></i> Grilles salariales (Actif)';
+          btn.style.background="var(--green)";
+          btn.style.color="#fff";
+          btn.style.borderColor="var(--green)";
+          btn.removeAttribute("id");
+        }else{
+          setupSalaryButton();
+        }
+      });
+    }else{
+      setupSalaryButton();
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded",()=>{
+    initSalaryAccess();
+
+    const submit=document.getElementById("salSubmit");
+    const cancel=document.getElementById("salCancel");
+    const copy=document.getElementById("btnCopyId");
+    const input=document.getElementById("salCodeInput");
+    const backdrop=document.getElementById("salBackdrop");
+
+    submit?.addEventListener("click",e=>{e.preventDefault();validateSalaryKey();});
+    cancel?.addEventListener("click",e=>{e.preventDefault();hideModal();});
+
+    copy?.addEventListener("click",()=>{
+      const field=document.getElementById("deviceUniqueId");
+      if(!field) return;
+      field.select();
+      navigator.clipboard?.writeText(field.value);
+      copy.innerHTML='<i class="fa-solid fa-check"></i>';
+      setTimeout(()=>copy.innerHTML='<i class="fa-solid fa-copy"></i>',2000);
+    });
+
+    input?.addEventListener("keydown",e=>{
+      if(e.key==="Enter"){e.preventDefault();validateSalaryKey();}
+      if(e.key==="Escape") hideModal();
+    });
+
+    backdrop?.addEventListener("click",e=>{
+      if(e.target===backdrop) hideModal();
+    });
+  });
+})();
+
 </script>
 </body>
 </html>
