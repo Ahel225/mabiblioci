@@ -2,6 +2,7 @@
   command = "echo 'Pas de build requis'"
 
 [functions]
+  directory = "netlify/functions"
   node_bundler = "esbuild"
 
 [[blobs]]
